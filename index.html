@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Singapore Family Trip 2026 · v13.2</title>
+<title>Singapore Family Trip 2026 · v13.3</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -204,6 +204,23 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
  .day:first-of-type{page-break-before:auto}.wrap{max-width:none}.hero,.panel{break-inside:avoid}
  details{display:block}details>.details-body{display:block}
 }
+
+/* v13.3 live info + current itinerary focus */
+.livebar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.weatherbox{display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:12px;line-height:1.25}
+.weatherbox b{font-size:13px}
+.weatherbox .wmeta{color:var(--muted);font-size:10px}
+.livebadge{font-size:10px;color:var(--muted)}
+.livebadge.offline{font-weight:800}
+.refreshlive{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 8px;font:inherit;font-size:11px;cursor:pointer}
+.slot.nowfocus{border-radius:12px;padding-left:10px;padding-right:10px;box-shadow:0 0 0 2px rgba(229,157,40,.55);background:rgba(255,246,220,.85)}
+.slot.nowfocus .when{font-weight:900}
+.slot.nowfocus::before{content:"● 지금";display:inline-block;font-size:10px;font-weight:900;margin-bottom:5px}
+@media(max-width:560px){
+ .weatherbox{flex:1 1 calc(50% - 5px);min-width:140px}
+ .refreshlive{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -233,6 +250,12 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
     <span>= ₩</span><input id="krwAmount" inputmode="numeric" aria-label="대한민국 원">
   </div>
  </div>
+ </div>
+ <div class="livebar" id="liveBar">
+   <div class="weatherbox" id="weatherKR">🇰🇷 서울 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
+   <div class="weatherbox" id="weatherSG">🇸🇬 싱가포르 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
+   <button class="refreshlive" type="button" onclick="refreshLiveInfo(true)">↻ 날씨·환율 새로고침</button>
+   <span class="livebadge" id="liveStatus">시간은 오프라인에서도 작동</span>
  </div>
 </div>
  <div class="modebar">
@@ -556,7 +579,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
   </div>
   <div id="dataStatus" class="statusmsg"></div>
 </section>
-<div class="footer">v13.2 · 사전확인 체크리스트 보강</div>
+<div class="footer">v13.3 · 날씨·오프라인 캐시·현재 일정 포커스</div>
 </div>
 <div id="prepview" class="prepview">
 <section class="panel studyintro">
@@ -894,7 +917,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="childline"><b>여행 마지막에 아이에게:</b> “우리가 본 MRT, 아파트, 호커센터, Marina Bay, Jewel은 서로 다른 관광지가 아니야. 작은 항구도시가 어떻게 살아남을지 고민하면서 하나씩 만든 결과들이야.”</div>
 </section>
-<div class="footer">STUDY v13.2 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
+<div class="footer">STUDY v13.3 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
 </div>
 </div>
 <script>
@@ -987,7 +1010,7 @@ function exportData(){
   const data=getData();
   const payload={
     title:'Singapore Family Trip 2026',
-    version:'v13.2',
+    version:'v13.3',
     exportedAt:new Date().toISOString(),
     data
   };
@@ -1145,6 +1168,178 @@ function toggleTripMap(){
     },{passive:true});
   });
 })();
+
+// ---------- v13.3 current DAY / current slot autofocus ----------
+const TRIP_DATES={
+  '2026-09-19':'d1','2026-09-20':'d2','2026-09-21':'d3',
+  '2026-09-22':'d4','2026-09-23':'d5','2026-09-24':'d6'
+};
+
+function singaporeNow(){
+  // Test example: ?testnow=2026-09-22T16:00
+  const q=new URLSearchParams(location.search).get('testnow');
+  if(q){
+    const m=q.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);
+    if(m) return {date:`${m[1]}-${m[2]}-${m[3]}`,minutes:+m[4]*60 + +m[5],testing:true};
+  }
+  const now=new Date();
+  const parts=new Intl.DateTimeFormat('en-CA',{
+    timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit',
+    hour:'2-digit',minute:'2-digit',hourCycle:'h23'
+  }).formatToParts(now).reduce((o,p)=>(o[p.type]=p.value,o),{});
+  return {date:`${parts.year}-${parts.month}-${parts.day}`,minutes:+parts.hour*60 + +parts.minute,testing:false};
+}
+function hmToMin(h,m){return (+h)*60+(+(m||0))}
+function parseWhenRange(text){
+  const s=(text||'').replace(/\s+/g,' ').trim();
+  // HH:MM ~ HH:MM
+  let m=s.match(/(\d{1,2}):(\d{2})\s*[~\-–]\s*(\d{1,2}):(\d{2})/);
+  if(m) return [hmToMin(m[1],m[2]),hmToMin(m[3],m[4])];
+  // HH:MM ~ 오후 : practical Sentosa block
+  m=s.match(/(\d{1,2}):(\d{2})\s*[~\-–]\s*오후/);
+  if(m) return [hmToMin(m[1],m[2]),18*60];
+  // HH:MM 이후
+  m=s.match(/(\d{1,2}):(\d{2})\s*이후/);
+  if(m) return [hmToMin(m[1],m[2]),24*60];
+  // HH:MM 전후
+  m=s.match(/(\d{1,2}):(\d{2})\s*전후/);
+  if(m){const x=hmToMin(m[1],m[2]);return [Math.max(0,x-30),Math.min(1440,x+45)]}
+  // exact HH:MM; end is inferred later
+  m=s.match(/^(\d{1,2}):(\d{2})$/);
+  if(m){const x=hmToMin(m[1],m[2]);return [x,null]}
+  return null;
+}
+function focusCurrentTripTime(){
+  const now=singaporeNow();
+  const dayId=TRIP_DATES[now.date];
+  if(!dayId) return; // outside trip dates: keep normal default
+  const tab=document.querySelector(`.tab[data-day="${dayId}"]`);
+  if(tab) tab.click();
+
+  const day=document.getElementById(dayId);
+  if(!day) return;
+  const slots=[...day.querySelectorAll('.slot')];
+  slots.forEach(s=>s.classList.remove('nowfocus'));
+
+  const parsed=slots.map((slot,i)=>({
+    slot,i,range:parseWhenRange(slot.querySelector('.when')?.innerText||'')
+  }));
+  // Infer end for exact-time slots from next parsable slot start.
+  parsed.forEach((p,i)=>{
+    if(!p.range || p.range[1]!==null) return;
+    let nextStart=null;
+    for(let j=i+1;j<parsed.length;j++){
+      if(parsed[j].range){nextStart=parsed[j].range[0];break}
+    }
+    p.range[1]=nextStart!==null ? nextStart : Math.min(1440,p.range[0]+90);
+  });
+  let target=parsed.find(p=>p.range && now.minutes>=p.range[0] && now.minutes<p.range[1]);
+  // If a free-text slot has no clock range, focus the closest earlier timed block.
+  if(!target){
+    const before=parsed.filter(p=>p.range && p.range[0]<=now.minutes);
+    if(before.length) target=before[before.length-1];
+  }
+  if(target){
+    target.slot.classList.add('nowfocus');
+    setTimeout(()=>target.slot.scrollIntoView({behavior:'smooth',block:'center'}),180);
+  }
+  if(now.testing){
+    const status=document.getElementById('liveStatus');
+    if(status) status.textContent=`🧪 테스트 시간 ${now.date} ${String(Math.floor(now.minutes/60)).padStart(2,'0')}:${String(now.minutes%60).padStart(2,'0')} (SGT)`;
+  }
+}
+
+// ---------- v13.3 online weather + offline cache ----------
+const LIVE_CACHE_KEY='sg_family_trip_2026_live_v13_3';
+const LIVE_CACHE_MAX_AGE=1000*60*60*12;
+const WEATHER_CODES={
+  0:'맑음',1:'대체로 맑음',2:'구름 조금',3:'흐림',
+  45:'안개',48:'서리 안개',51:'약한 이슬비',53:'이슬비',55:'강한 이슬비',
+  61:'약한 비',63:'비',65:'강한 비',66:'어는 비',67:'강한 어는 비',
+  71:'약한 눈',73:'눈',75:'강한 눈',77:'싸락눈',
+  80:'소나기',81:'강한 소나기',82:'매우 강한 소나기',
+  85:'눈 소나기',86:'강한 눈 소나기',95:'뇌우',96:'우박 동반 뇌우',99:'강한 우박 뇌우'
+};
+function loadLiveCache(){
+  try{return JSON.parse(localStorage.getItem(LIVE_CACHE_KEY))||{}}catch(e){return {}}
+}
+function saveLiveCache(v){try{localStorage.setItem(LIVE_CACHE_KEY,JSON.stringify(v))}catch(e){}}
+function weatherIcon(code){
+  if(code===0) return '☀️';
+  if([1,2].includes(code)) return '🌤️';
+  if(code===3) return '☁️';
+  if([45,48].includes(code)) return '🌫️';
+  if(code>=95) return '⛈️';
+  if((code>=51&&code<=67)||(code>=80&&code<=82)) return '🌧️';
+  if((code>=71&&code<=77)||(code>=85&&code<=86)) return '🌨️';
+  return '🌡️';
+}
+function renderWeather(id,label,data,cached=false){
+  const el=document.getElementById(id); if(!el||!data) return;
+  const temp=Math.round(data.temperature_2m);
+  const code=+data.weather_code;
+  const hum=data.relative_humidity_2m;
+  el.innerHTML=`${weatherIcon(code)} ${label} <b>${temp}°</b><span>${WEATHER_CODES[code]||'날씨'}</span><span class="wmeta">${hum!=null?`습도 ${Math.round(hum)}% · `:''}${cached?'저장값':'실시간'}</span>`;
+}
+async function fetchWeather(lat,lon,tz){
+  const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code&timezone=${encodeURIComponent(tz)}`;
+  const r=await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error('weather');
+  const j=await r.json(); return j.current;
+}
+async function fetchFxRate(){
+  // Frankfurter: no API key, SGD -> KRW
+  const r=await fetch('https://api.frankfurter.app/latest?from=SGD&to=KRW',{cache:'no-store'});
+  if(!r.ok) throw new Error('fx');
+  const j=await r.json();
+  return j?.rates?.KRW;
+}
+async function refreshLiveInfo(force=false){
+  const status=document.getElementById('liveStatus');
+  const cache=loadLiveCache();
+  const fresh=cache.savedAt && Date.now()-cache.savedAt<LIVE_CACHE_MAX_AGE;
+  if(!force && fresh){
+    if(cache.kr) renderWeather('weatherKR','서울',cache.kr,true);
+    if(cache.sg) renderWeather('weatherSG','싱가포르',cache.sg,true);
+  }
+  if(!navigator.onLine){
+    if(cache.kr) renderWeather('weatherKR','서울',cache.kr,true);
+    if(cache.sg) renderWeather('weatherSG','싱가포르',cache.sg,true);
+    if(status){status.textContent=cache.savedAt?'📴 오프라인 · 마지막 저장값 사용':'📴 오프라인 · 저장된 날씨 없음';status.classList.add('offline')}
+    return;
+  }
+  try{
+    if(status){status.textContent='온라인 정보 갱신중…';status.classList.remove('offline')}
+    const [kr,sg,fx]=await Promise.allSettled([
+      fetchWeather(37.5665,126.9780,'Asia/Seoul'),
+      fetchWeather(1.3521,103.8198,'Asia/Singapore'),
+      fetchFxRate()
+    ]);
+    const next={...cache,savedAt:Date.now()};
+    if(kr.status==='fulfilled'){next.kr=kr.value;renderWeather('weatherKR','서울',kr.value,false)}
+    else if(cache.kr) renderWeather('weatherKR','서울',cache.kr,true);
+    if(sg.status==='fulfilled'){next.sg=sg.value;renderWeather('weatherSG','싱가포르',sg.value,false)}
+    else if(cache.sg) renderWeather('weatherSG','싱가포르',cache.sg,true);
+    if(fx.status==='fulfilled' && Number.isFinite(+fx.value)){
+      next.fx=+fx.value;
+      const rate=document.getElementById('fxRate');
+      if(rate){
+        rate.value=(+fx.value).toFixed(2);
+        localStorage.setItem(FX_KEY,rate.value);
+        rate.dispatchEvent(new Event('input'));
+      }
+    }
+    saveLiveCache(next);
+    if(status) status.textContent=`✓ 온라인 갱신 · ${new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}`;
+  }catch(e){
+    if(cache.kr) renderWeather('weatherKR','서울',cache.kr,true);
+    if(cache.sg) renderWeather('weatherSG','싱가포르',cache.sg,true);
+    if(status){status.textContent=cache.savedAt?'⚠️ 연결 실패 · 마지막 저장값 사용':'⚠️ 연결 실패 · 실시간 정보 없음';status.classList.add('offline')}
+  }
+}
+window.addEventListener('online',()=>refreshLiveInfo(true));
+window.addEventListener('offline',()=>refreshLiveInfo(false));
+
+
 // ---------- header clock / FX ----------
 const FX_KEY='sg_family_trip_2026_fxrate';
 function updateClocks(){
@@ -1190,8 +1385,10 @@ restorePrep();
 restoreBrowserNotice();
 updateClocks();setInterval(updateClocks,60000);
 initFx();
+refreshLiveInfo(false);
+setTimeout(focusCurrentTripTime,250);
 applyTripPhase();
 loadSharedData(true);
 </script>
 </body>
-  </html>
+                                           </html>
