@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Singapore Family Trip 2026 · v13</title>
+<title>Singapore Family Trip 2026 · v13.1</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -556,7 +556,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
   </div>
   <div id="dataStatus" class="statusmsg"></div>
 </section>
-<div class="footer">v13 · 후기/체크리스트 반영 업데이트</div>
+<div class="footer">v13.1 · 가방별 준비물/체크리스트 업데이트</div>
 </div>
 <div id="prepview" class="prepview">
 <section class="panel studyintro">
@@ -605,56 +605,91 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 </section>
 <section class="panel prepsection">
-<h2>3. 개인 준비물</h2>
+<h2>3. 가방별 준비물</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>필수품</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="passportbag"><span>여권 / 지갑 / 카드 / 현금</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="phone"><span>휴대폰 / 충전케이블 / 충전기</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="powerbank"><span>보조배터리 <span class="note">항공사 반입 규정 확인 후 기내 휴대</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="adapter"><span>싱가포르 Type G(영국식 3핀) 여행용 어댑터</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="medicine"><span>상비약 세분화: 해열·진통 / 감기 / 소화 / 지사 / 밴드·연고 / 개인 복용약</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="insurance"><span>여행자보험 증서/연락처 저장</span></label>
+ <div class="checkgroup"><h3>🎒 배낭 / 개인 휴대가방</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_passport"><span>여권 / 지갑 / 신용카드·트래블카드 / 소액 현금</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_phone"><span>휴대폰 / 이어폰 / 충전케이블</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_power"><span>보조배터리 <span class="note">위탁하지 않고 기내 휴대. 항공사 규정 재확인</span></span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_docs"><span>항공·호텔·보험·관광지 예약 바우처 및 호텔 주소 캡처</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_daily"><span>물티슈 / 휴지 / 손소독제 / 작은 우산 / 선글라스 / 얇은 겉옷</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="carry_kids"><span>아이 간식 / 물병 / 당일 필요한 기저귀·물티슈</span></label>
  </div>
- <div class="checkgroup"><h3>더위·비</h3>
+ <div class="checkgroup"><h3>🧳 기내 캐리어</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_clothes"><span>가족별 갈아입을 옷 1벌 + 아이 여벌옷 1~2벌</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_toiletry"><span>기내용 세면도구 소량 <span class="note">액체류 기내 반입 기준 확인</span></span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_medicine"><span>필수약 / 개인 처방약 / 안경·렌즈</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_kids"><span>아이 장난감·태블릿·이어폰 / 기내 간식 / 작은 담요·목베개</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_elec"><span>충전기 / 멀티충전기 / Type G 여행용 어댑터</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="cabin_swim"><span>필요 시 수영복 등 도착 직후 사용할 물품</span></label>
+ </div>
+ <div class="checkgroup"><h3>🛄 위탁수하물 캐리어</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="check_clothes"><span>옷 / 속옷 / 양말 / 잠옷 / 신발·샌들</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="check_toiletry"><span>큰 용량 세면도구 / 화장품 / 선크림 / 샴푸·바디용품</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="check_kids"><span>여분 기저귀 / 아이 여벌옷 / 수영용품</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="check_laundry"><span>빨래망 / 지퍼백 / 비닐봉투 / 세탁세제 소량</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="check_space"><span>접이식 여분가방 + 기념품·쇼핑용 여유 공간</span></label>
+ </div>
+ <div class="checkgroup"><h3>🔌 전자기기 파우치</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="elec_multi"><span>멀티충전기 / USB-C 등 가족별 충전케이블</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="elec_adapter"><span>싱가포르 Type G(영국식 3핀) 어댑터</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="elec_devices"><span>태블릿 / 스마트워치 / 카메라 등 충전기</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="elec_powerbank"><span>보조배터리·예비배터리는 기내 휴대 위치로 이동</span></label>
+ </div>
+</div>
+</section>
+
+<section class="panel prepsection">
+<h2>4. 아이 · 상비약 · 더위/비 대비</h2>
+<div class="prepgrid">
+ <div class="checkgroup"><h3>👧 아이 전용</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="stroller1"><span>유모차 1</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="stroller2"><span>유모차 2 <span class="note">3세 2명이므로 현실적으로 2대 권장</span></span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="kidclothes"><span>아이 여벌옷 / 속옷 / 얇은 겉옷</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="kidsnack"><span>아이 간식 / 물병 / 물티슈 / 필요 시 기저귀</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="kidplay"><span>태블릿 / 이어폰 / 작은 장난감</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="kidmed"><span>아이 상비약 / 체온계 <span class="note">성인 약과 구분해 보관</span></span></label>
+ </div>
+ <div class="checkgroup"><h3>💊 상비약</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="med_fever"><span>해열제 / 진통제 / 감기약</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="med_stomach"><span>소화제 / 지사제 / 멀미약</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="med_firstaid"><span>밴드 / 연고 / 모기기피제 / 벌레물림약</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="med_personal"><span>개인 처방약 및 평소 복용약</span></label>
+ </div>
+ <div class="checkgroup"><h3>☀️ 더위 · 비 · 냉방</h3>
   <label class="localcheck"><input type="checkbox" data-prep="umbrella"><span>접이식 우산 또는 가벼운 우비</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="sun"><span>선크림 / 모자 / 선글라스</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="bottle"><span>물병 / 작은 손수건 / 휴지·물티슈 / 지퍼백</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="layer"><span>실내 냉방 대비 얇은 겉옷</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="shoes"><span>오래 걸어도 편한 신발</span></label>
  </div>
-</div>
-</section>
-<section class="panel prepsection">
-<h2>4. 아이들과 가족 공용</h2>
-<div class="prepgrid">
- <div class="checkgroup"><h3>아이</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="stroller1"><span>유모차 1</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="stroller2"><span>유모차 2 <span class="note">3세 2명이므로 현실적으로 2대 권장</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidclothes"><span>아이 여벌옷 / 속옷 / 얇은 겉옷</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidsnack"><span>아이 간식 / 물 / 물티슈</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidmed"><span>아이 상비약 / 체온계</span></label>
- </div>
- <div class="checkgroup"><h3>가족 공용</h3>
+ <div class="checkgroup"><h3>👨‍👩‍👧‍👦 가족 공용</h3>
   <label class="localcheck"><input type="checkbox" data-prep="docs"><span>호텔·항공·예약 바우처 대표자 휴대폰 저장</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="contacts"><span>가족 단톡방에 항공편/호텔 주소/대표 연락처 고정</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="lounge"><span>인천공항 라운지 카드·동반자 조건·잔여 이용횟수 확인</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="dutyfree"><span>면세점 주문/수령할 물품 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="bagcount"><span>출발 전 캐리어·유모차 등 위탁/휴대 짐 개수 기록</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="bagcount"><span>캐리어·유모차 등 위탁/휴대 짐 개수 기록</span></label>
  </div>
 </div>
 </section>
+
 <section class="panel prepsection">
-<h2>5. 수하물 · 반입규정 최종 점검</h2>
+<h2>5. 출발 전날 · 수하물 최종 점검</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>기내/위탁 분리</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="liquid"><span>100mL 초과 액체류는 위탁수하물로 분리</span></label>
+ <div class="checkgroup"><h3>✈️ 기내/위탁 분리</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="liquid"><span>기내 액체류 용량·포장 기준 확인, 초과 물품은 위탁수하물로 분리</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="powercarry"><span>보조배터리·예비배터리 기내 휴대, 항공사 용량/포장 규정 재확인</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="sharp"><span>가위·칼 등 날카로운 물품은 위탁 여부 확인</span></label>
- </div>
- <div class="checkgroup"><h3>반입·무게</h3>
   <label class="localcheck"><input type="checkbox" data-prep="restrictedfood"><span>육가공품 등 출입국 반입 제한 식품 없는지 확인</span></label>
+ </div>
+ <div class="checkgroup"><h3>☑️ 출발 전날 마지막 확인</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="final_passport"><span>온 가족 여권 실제로 다시 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="final_power"><span>보조배터리를 배낭/기내가방으로 이동</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="bagweight"><span>항공사 위탁/기내 수하물 규격·무게 최종 확인</span></label>
   <label class="localcheck"><input type="checkbox" data-prep="baglabel"><span>캐리어 이름표·연락처 및 가족별 짐 개수 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="final_charge"><span>휴대폰 / 태블릿 / 보조배터리 충전 완료</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="final_kids"><span>아이 약·간식·기저귀·여벌옷 기내가방에 충분히 준비</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="final_docs"><span>SG Arrival Card / 항공 / 호텔 / 보험 / 예약 바우처 최종 확인</span></label>
  </div>
 </div>
 </section>
@@ -927,7 +962,7 @@ function exportData(){
   const data=getData();
   const payload={
     title:'Singapore Family Trip 2026',
-    version:'v13',
+    version:'v13.1',
     exportedAt:new Date().toISOString(),
     data
   };
@@ -1134,4 +1169,4 @@ applyTripPhase();
 loadSharedData(true);
 </script>
 </body>
-   </html>
+ </html>
