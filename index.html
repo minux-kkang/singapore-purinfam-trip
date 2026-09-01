@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Singapore Family Trip 2026 · v13.1</title>
+<title>Singapore Family Trip 2026 · v13.2</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -556,7 +556,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
   </div>
   <div id="dataStatus" class="statusmsg"></div>
 </section>
-<div class="footer">v13.1 · 가방별 준비물/체크리스트 업데이트</div>
+<div class="footer">v13.2 · 사전확인 체크리스트 보강</div>
 </div>
 <div id="prepview" class="prepview">
 <section class="panel studyintro">
@@ -565,27 +565,52 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
  <div class="sub">체크 상태는 이 기기의 브라우저에만 저장됩니다. 출국 후에는 이 준비 탭이 자동으로 숨겨집니다.</div>
 </section>
 <section class="panel prepsection">
-<h2>1. 출발 전에 미리 해야 할 일</h2>
+<h2>1. 출발 전에 미리 확인 · 확정할 일</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>입국·예약</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="sgac"><span><b>SG Arrival Card(싱가포르 입국신고서, SGAC)</b> 11명 제출 <span class="deadline">9/17~9/19</span><br><span class="note">공식 Immigration & Checkpoints Authority(싱가포르 이민국, ICA)에서 무료. 도착일 포함 3일 이내.</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="passports"><span>여권 11명 <b>잔여 유효기간 6개월 이상</b>·영문명 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="passportcopy"><span>여권 사본/사진을 대표자 휴대폰·클라우드에 분산 저장</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="flight"><span>항공권/좌석/수하물 규정 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="hotel"><span>Singapore Marriott Tang Plaza Hotel(싱가포르 메리어트 탕 플라자 호텔) 4객실 예약 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="taxiout"><span>집 → 인천공항 사전예약 택시 확정</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="taxiin"><span>Changi Airport(창이공항) → 호텔 대형차량/택시 계획 확정</span></label>
+ <div class="checkgroup"><h3>🛂 여권 · 입국</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="passport_all"><span><b>온 가족 여권 확인</b> — 만료일(입국일 기준 6개월 이상) · 영문명 · 여권번호 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="visa_check"><span><b>싱가포르 비자 필요 여부 확인</b> — 가족 전원 국적/여권 기준으로 최종 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="sgac_all"><span><b>SG Arrival Card(입국신고서) 확인·제출</b> <span class="deadline">9/17~9/19</span><br><span class="note">11명 전원 · 공식 ICA에서 무료 제출 · 도착일 포함 3일 이내</span></span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="passport_copy"><span>여권 사본/사진을 휴대폰 또는 가족 공유공간에 보관</span></label>
  </div>
- <div class="checkgroup"><h3>티켓·식당</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="uss"><span>Universal Studios Singapore(유니버설 스튜디오 싱가포르, USS) 날짜 지정 티켓</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="gardens"><span>Gardens by the Bay(가든스 바이 더 베이) 유료 온실 티켓</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="mandai"><span>Mandai Wildlife Reserve(만다이 야생동물 보호구역) Zoo + River Wonders 티켓/패스</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cruise"><span>Singapore River Cruise(싱가포르 리버 크루즈) 11명</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="jumbo"><span>JUMBO Seafood Riverside Point(점보 시푸드 리버사이드 포인트) 저녁 예약</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="nightsafari"><span>Night Safari(나이트 사파리) 참여 인원 확정 후 예약</span></label>
+
+ <div class="checkgroup"><h3>✈️ 항공 · 숙소</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="flight_status"><span><b>항공권 예약 상태 확인</b> — 11명 영문명 · 항공편 · 출도착 시간 · 터미널</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="flight_baggage"><span>좌석 지정 여부 · 기내/위탁 수하물 규정 및 허용량 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="hotel_detail"><span><b>숙소 예약 상세내역 확인</b> — Singapore Marriott Tang Plaza Hotel · 4객실 · 투숙자명 · 체크인/아웃 · 객실/조식 조건</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="booking_capture"><span>항공권·숙소 예약번호/바우처를 대표자 휴대폰에 캡처</span></label>
+ </div>
+
+ <div class="checkgroup"><h3>🗓 일정 · 관광지</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="attraction_closed"><span><b>여행 일정 내 관광지 휴무일·운영시간 확인</b><br><span class="note">9/20~9/24 실제 방문일 기준 · 임시휴장/정비/쇼 시간 포함</span></span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="attraction_booking"><span><b>관광지별 사전예약 필요 여부 확인</b> — 날짜지정/시간지정 여부 포함</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="attraction_site"><span><b>관광지 예약·결제 사이트와 방법 확인</b> — 공식사이트/공식판매처 우선, 11명 결제·취소조건 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="attraction_pay"><span>USS · Gardens by the Bay · Mandai · River Cruise 등 예약/결제 완료 여부 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="restaurant_res"><span>JUMBO 등 인원 많은 식당 사전예약 필요 여부 확인</span></label>
+ </div>
+
+ <div class="checkgroup"><h3>🚕 공항 · 현지 이동</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="home_airport"><span><b>집 → 인천공항 이동 방식 확정 및 예약</b> — 픽업시간 · 차량 · 기사 연락처 · 가족별 탑승차량 확인</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="changi_hotel"><span><b>창이공항 → 숙소 이동 방식 확정 및 예약</b> — 11명+캐리어+유모차 고려, 대형차량/택시·Grab 분산 비교</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="grab_method"><span><b>싱가포르 Grab 사용방법 확인</b> — 앱 설치 · 가입 · 카드등록 · 차량 호출/탑승 위치 · 결제방법</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="kids_transport"><span>3세 아이 2명 차량 탑승/카시트 규정 및 대중교통 이용 방식 최종 확인</span></label>
+ </div>
+
+ <div class="checkgroup"><h3>💳 카드 · 통신 · 보험</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="card_overseas"><span><b>신용카드 해외사용 확인</b> — 해외결제 차단 여부 · 비밀번호 · 예비카드 준비</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="roaming"><span><b>휴대폰 로밍/eSIM/유심 확인</b> — 가족별 사용할 방식과 개통방법 확정</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="insurance"><span><b>여행자보험 확인</b> — 가족 전원 가입 여부 · 보장기간/내용 · 보험사 연락처 · 증권 저장</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="payment_backup"><span>현지 결제용 카드 2장 이상 + 소액 SGD 준비 여부 확인</span></label>
+ </div>
+
+ <div class="checkgroup"><h3>📱 출발 전 디지털 보관</h3>
+  <label class="localcheck"><input type="checkbox" data-prep="offline_docs"><span>여권 사본 · 항공 · 호텔 · 보험 · 관광지 바우처를 오프라인에서도 열 수 있게 저장</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="family_share"><span>가족 단톡방에 항공편 · 호텔 주소 · 공항차량 연락처 · 주요 예약시간 공유</span></label>
+  <label class="localcheck"><input type="checkbox" data-prep="apps_ready"><span>Grab · 항공사 · 지도 등 여행 중 사용할 앱 로그인/업데이트 확인</span></label>
  </div>
 </div>
 </section>
+
 <section class="panel prepsection">
 <h2>2. 돈 · 통신 · 휴대폰</h2>
 <div class="prepgrid">
@@ -869,7 +894,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="childline"><b>여행 마지막에 아이에게:</b> “우리가 본 MRT, 아파트, 호커센터, Marina Bay, Jewel은 서로 다른 관광지가 아니야. 작은 항구도시가 어떻게 살아남을지 고민하면서 하나씩 만든 결과들이야.”</div>
 </section>
-<div class="footer">STUDY v3 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
+<div class="footer">STUDY v13.2 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
 </div>
 </div>
 <script>
@@ -962,7 +987,7 @@ function exportData(){
   const data=getData();
   const payload={
     title:'Singapore Family Trip 2026',
-    version:'v13.1',
+    version:'v13.2',
     exportedAt:new Date().toISOString(),
     data
   };
@@ -1169,4 +1194,4 @@ applyTripPhase();
 loadSharedData(true);
 </script>
 </body>
- </html>
+  </html>
