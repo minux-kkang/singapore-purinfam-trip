@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Singapore Family Trip 2026 · v14.1</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Singapore Family Trip 2026 · v14.2</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -229,7 +230,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
  details{display:block}details>.details-body{display:block}
 }
 
-/* v14.1 live info + current itinerary focus */
+/* v14.2 live info + current itinerary focus */
 .livebar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
 .weatherbox{display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:12px;line-height:1.25}
 .weatherbox b{font-size:13px}
@@ -266,7 +267,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 @media(max-width:560px){.infogrid{grid-template-columns:1fr}.datamodedesc{display:none}.mapframe{height:240px}}
 
 
-/* v14.1 click fixes + detailed itinerary */
+/* v14.2 click fixes + detailed itinerary */
 .mealbtn{position:relative;z-index:6;pointer-events:auto;touch-action:manipulation}
 .slot[data-detail="1"]{position:relative}
 .slot[data-detail="1"] .slot-top{pointer-events:auto}
@@ -279,617 +280,622 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .detailplace span{font-size:11px;line-height:1.5;color:#4e565c}
 .detailtip{border-left:3px solid #111;padding:8px 10px;background:#fafafa;border-radius:0 9px 9px 0;font-size:11px;line-height:1.55}
 
+
+/* v14.2 flight fold */
+.flightfold{padding:0!important;overflow:hidden}
+.flightfoldsummary{list-style:none;display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;user-select:none}
+.flightfoldsummary::-webkit-details-marker{display:none}
+.flightfoldtitle{font-size:12px;font-weight:950;flex:1;min-width:0}
+.flightchev{font-size:16px;font-weight:900;transition:transform .18s ease}
+.flightfold[open] .flightchev{transform:rotate(180deg)}
+.flightfoldbody{padding:0 12px 12px}
+.flightverify{font-size:10px;color:#687078;margin:-1px 0 8px;padding:7px 9px;background:#f7f7f7;border-radius:8px}
+
+/* v14.2 itinerary multi-point map */
+.route-map-wrap{margin-top:13px}
+.route-map-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.route-map-head b{font-size:12px}
+.route-map-head small{font-size:9px;color:#72777c;text-align:right}
+.route-map{height:245px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f4f4f4;position:relative;z-index:1}
+.route-stop-list{display:grid;gap:5px;margin-top:7px}
+.route-stop{display:flex;gap:7px;align-items:flex-start;font-size:10px;line-height:1.4}
+.route-num{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:#111;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:950}
+.route-marker{width:26px;height:26px;border-radius:50%;background:#111;color:#fff;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}
+.route-map-offline{padding:14px;border:1px dashed var(--line);border-radius:12px;background:#fafafa;font-size:11px;line-height:1.55;color:#5e6368}
+
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="datamodebar" id="dataModeBar"><div class="datamodeleft"><b id="dataModeLabel">🌱 데이터 절약모드</b><span class="datamodedesc" id="dataModeDesc">온라인 지도·날씨·환율·외부 이미지를 자동으로 불러오지 않음</span></div><label class="dataswitch" title="데이터 사용 모드 전환"><input type="checkbox" id="dataModeToggle" aria-label="데이터 사용 모드"><span class="dataslider"></span></label></div>
+<div class="datamodebar" id="dataModeBar"><div class="datamodeleft"><b id="dataModeLabel">🌱 데이터 절약모드</b><span class="datamodedesc" id="dataModeDesc">온라인 지도·날씨·환율·외부 이미지를 자동으로 불러오지 않음</span></div><label class="dataswitch" title="데이터 사용 모드 전환"><input aria-label="데이터 사용 모드" id="dataModeToggle" type="checkbox"/><span class="dataslider"></span></label></div>
 <section class="hero">
- <h1>싱가포르 3대 가족여행</h1>
- <div class="sub">2026.09.19 SAT – 09.24 THU · 11명 · 5박 6일</div>
- <div class="badges">
-  <span class="badge hotelquick" id="hotelQuick" title="호텔 위치 보기">Singapore Marriott Tang Plaza Hotel</span>
-  <span class="badge">Orchard MRT · NS22 / TE14</span>
- </div>
-<div class="headtools">
- <div class="headtool">
-   <div class="clockrow">
-     <div class="clockitem">🇰🇷 한국 <b id="krTime">--:--</b></div>
-     <div class="clockitem">🇸🇬 싱가포르 <b id="sgTime">--:--</b></div>
-     <span class="note">싱가포르가 한국보다 1시간 느림</span>
-   </div>
- </div>
- <div class="headtool">
-  <div class="fxcalc">
-    <span class="fxlabel">1 SGD =</span>
-    <input id="fxRate" class="fxrate" inputmode="decimal" value="1075.31" aria-label="환율">
-    <span>₩</span>
-    <span style="margin-left:6px">·</span>
-    <span>S$</span><input id="sgdAmount" inputmode="decimal" value="10" aria-label="싱가포르 달러">
-    <span>= ₩</span><input id="krwAmount" inputmode="numeric" aria-label="대한민국 원">
-  </div>
- </div>
- </div>
- <div class="livebar" id="liveBar">
-   <div class="weatherbox" id="weatherKR">🇰🇷 서울 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
-   <div class="weatherbox" id="weatherSG">🇸🇬 싱가포르 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
-   <button class="refreshlive" type="button" onclick="refreshLiveInfo(true)">↻ 날씨·환율 새로고침</button>
-   <span class="livebadge" id="liveStatus">시간은 오프라인에서도 작동</span>
- </div>
+<h1>싱가포르 3대 가족여행</h1>
+<div class="sub">2026.09.19 SAT – 09.24 THU · 11명 · 5박 6일</div>
+<div class="badges">
+<span class="badge hotelquick" id="hotelQuick" title="호텔 위치 보기">Singapore Marriott Tang Plaza Hotel</span>
+<span class="badge">Orchard MRT · NS22 / TE14</span>
 </div>
- <div class="modebar">
-  <button class="modebtn active" data-mode="trip">🗓 여행 일정</button>
-  <button class="modebtn" data-mode="study">📚 싱가포르 공부</button>
-  <button class="modebtn" data-mode="prep">🧳 체크리스트</button>
-  <button class="modebtn" data-mode="phrase">💬 현지 표현</button>
- </div>
-</section>
-<div id="tripview" class="tripview active">
+<div class="headtools">
+<div class="headtool">
+<div class="clockrow">
+<div class="clockitem">🇰🇷 한국 <b id="krTime">--:--</b></div>
+<div class="clockitem">🇸🇬 싱가포르 <b id="sgTime">--:--</b></div>
+<span class="note">싱가포르가 한국보다 1시간 느림</span>
+</div>
+</div>
+<div class="headtool">
+<div class="fxcalc">
+<span class="fxlabel">1 SGD =</span>
+<input aria-label="환율" class="fxrate" id="fxRate" inputmode="decimal" value="1075.31"/>
+<span>₩</span>
+<span style="margin-left:6px">·</span>
+<span>S$</span><input aria-label="싱가포르 달러" id="sgdAmount" inputmode="decimal" value="10"/>
+<span>= ₩</span><input aria-label="대한민국 원" id="krwAmount" inputmode="numeric"/>
+</div>
+</div>
+</div>
+<div class="livebar" id="liveBar">
+<div class="weatherbox" id="weatherKR">🇰🇷 서울 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
+<div class="weatherbox" id="weatherSG">🇸🇬 싱가포르 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
+<button class="refreshlive" onclick="refreshLiveInfo(true)" type="button">↻ 날씨·환율 새로고침</button>
+<span class="livebadge" id="liveStatus">시간은 오프라인에서도 작동</span>
+</div>
+</section></div>
+<div class="modebar">
+<button class="modebtn active" data-mode="trip">🗓 여행 일정</button>
+<button class="modebtn" data-mode="study">📚 싱가포르 공부</button>
+<button class="modebtn" data-mode="prep">🧳 체크리스트</button>
+<button class="modebtn" data-mode="phrase">💬 현지 표현</button>
+</div>
+
+<div class="tripview active" id="tripview">
 <nav class="tabs">
- <button class="tab active" data-day="d1">DAY 1 · 도착</button>
- <button class="tab" data-day="d2">DAY 2 · Marina Bay</button>
- <button class="tab" data-day="d3">DAY 3 · Sentosa</button>
- <button class="tab" data-day="d4">DAY 4 · Old Singapore</button>
- <button class="tab" data-day="d5">DAY 5 · Mandai</button>
- <button class="tab" data-day="d6">DAY 6 · Goodbye</button>
+<button class="tab active" data-day="d1">DAY 1 · 도착</button>
+<button class="tab" data-day="d2">DAY 2 · Marina Bay</button>
+<button class="tab" data-day="d3">DAY 3 · Sentosa</button>
+<button class="tab" data-day="d4">DAY 4 · Old Singapore</button>
+<button class="tab" data-day="d5">DAY 5 · Mandai</button>
+<button class="tab" data-day="d6">DAY 6 · Goodbye</button>
 </nav>
 <div class="swipehint">← 일정 영역을 좌우로 밀어 DAY 이동 →</div>
-
 <div class="trip-map-wrap">
-  <button class="trip-map-toggle" type="button" onclick="toggleTripMap()" aria-expanded="false" id="tripMapToggle">
-    <span>🗺️ 전체 여행지도</span>
-    <span class="maphint">체크인 발리&싱가포르 공유 지도 · 필요할 때 펼쳐보기 ▼</span>
-  </button>
-  <div class="trip-map-box" id="tripMapBox">
-    <iframe
-      id="tripMapFrame"
-      class="trip-map-frame"
-      title="싱가포르 여행 참고 지도"
-      data-src="https://www.google.com/maps/d/embed?mid=1xWmSIy2lnI3zlbLx0SXwTnqypIW61CE"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-    <div class="trip-map-links">
-      <a href="https://www.google.com/maps/d/viewer?mid=1xWmSIy2lnI3zlbLx0SXwTnqypIW61CE" target="_blank" rel="noopener">Google 지도에서 크게 보기 ↗</a>
-    </div>
-  </div>
+<button aria-expanded="false" class="trip-map-toggle" id="tripMapToggle" onclick="toggleTripMap()" type="button">
+<span>🗺️ 전체 여행지도</span>
+<span class="maphint">체크인 발리&amp;싱가포르 공유 지도 · 필요할 때 펼쳐보기 ▼</span>
+</button>
+<div class="trip-map-box" id="tripMapBox">
+<iframe class="trip-map-frame" data-src="https://www.google.com/maps/d/embed?mid=1xWmSIy2lnI3zlbLx0SXwTnqypIW61CE" id="tripMapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="싱가포르 여행 참고 지도">
+</iframe>
+<div class="trip-map-links">
+<a href="https://www.google.com/maps/d/viewer?mid=1xWmSIy2lnI3zlbLx0SXwTnqypIW61CE" rel="noopener" target="_blank">Google 지도에서 크게 보기 ↗</a>
 </div>
-
-<div class="browsernotice" id="browserNotice"><b>💡 메모</b> 카카오톡·Safari·삼성 인터넷은 저장공간이 서로 달라요. <b>메모는 한 브라우저에서 사용 권장.</b><button class="noticeclose" onclick="dismissBrowserNotice()" aria-label="닫기">×</button></div>
-<section id="d1" class="day active">
- <div class="panel dayhead"><h2>DAY 1 · HELLO, SINGAPORE</h2><div class="theme">도착일 · “여행을 시작하는 날”보다 “몸을 싱가포르에 맞추는 날”. 공항→호텔 이동만 안정적으로 끝내고 체력을 남기는 일정.</div>
-<div class="flightlive" data-flight-card="677"><div class="flightlivehead"><div class="flightlivetitle">✈️ KE677 · ICN → SIN · 13:50</div><span class="flightlivebadge">출국일 LIVE</span></div><div class="flightlivegrid"><div class="flightliveitem"><small>터미널</small><b id="flightTerminal677">—</b></div><div class="flightliveitem"><small>체크인</small><b id="flightCounter677">—</b></div><div class="flightliveitem"><small>Gate</small><b id="flightGate677">아직 미정</b></div><div class="flightliveitem"><small>상태</small><b id="flightStatus677">확인 전</b></div></div><div class="flightlivemeta" id="flightUpdated677">업데이트 정보 없음 · 공항/항공사 현장 정보가 최종 기준</div><div class="flightliveactions"><button type="button" onclick="refreshFlightCard('677')">↻ 새로고침</button> <a href="https://www.airport.kr/ap_ko/868/subview.do" target="_blank" rel="noopener">인천공항 공식 확인 ↗</a></div></div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d1-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d1-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d1-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d1-memo" class="editorbox" hidden>
-          <textarea id="d1-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d1')">메모 저장</button></div>
-          <div id="d1-memo-view"></div>
-        </div>
-        <div id="d1-food" class="editorbox" hidden>
-          <input id="d1-food-name" placeholder="식당 이름">
-          <input id="d1-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d1','food')">식당 추가</button></div>
-          <ul id="d1-food-list" class="userlist"></ul>
-        </div>
-        <div id="d1-candidate" class="editorbox" hidden>
-          <input id="d1-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d1-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d1','candidate')">후보 추가</button></div>
-          <ul id="d1-candidate-list" class="userlist"></ul>
-        </div>
-        </div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">출발 전날</div><div class="activity"><b>공항 이동·여행서류 최종 확인</b><div class="note">사전예약 택시 기사·차량·픽업시간 확인. 가족별 탑승차량과 집결시간 공유.</div><div class="meta"><strong>✓ 체크</strong> 여권 11명 · 항공권 · 호텔 예약 · SG Arrival Card 제출 · 캐리어/유모차/기내용 가방 개수 · 보조배터리 기내휴대 여부 확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">출발 당일<br>집</div><div class="activity"><b>집에서 출발 → 인천공항 이동</b><div class="meta"><strong>🚕 이동</strong> 현재 계획: 사전예약 택시. 출발 직전 가족별 인원·여권·휴대폰·지갑·짐 개수 최종 카운트.</div><div class="note">인천공항 도착 시간을 기준으로 택시 픽업시간은 여유 있게 잡기.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">인천공항</div><div class="activity"><b>집결 → 체크인 → 출국심사 → 면세/라운지 → 탑승</b><ul class="steps"><li>항공사 터미널·체크인 카운터 확인 → 위탁수하물 처리</li><li>탑승구와 Boarding Time 먼저 확인</li><li>면세품 수령·구매, 라운지 이용자는 카드·동반자 조건 확인</li><li>탑승 전 싱가포르 도착 차량 연락처와 호텔 주소를 대표자 휴대폰에 준비</li></ul></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">12:50~<br>13:00</div><div class="activity"><b>✈️ 탑승구 도착 · 탑승 준비</b><div class="meta"><strong>인지 기준</strong> 13:50 출발 기준 약 50~60분 전에는 Gate 앞에 도착해 있기. <b>실제 Boarding Time은 탑승권·공항 안내가 최우선.</b></div><div class="note">11명 이동이라 면세·라운지에서 늦게 출발하지 않도록 이 시간을 ‘이제 탑승하러 가야 하는 시간’으로 사용.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+</div>
+</div>
+<div class="browsernotice" id="browserNotice"><b>💡 메모</b> 카카오톡·Safari·삼성 인터넷은 저장공간이 서로 달라요. <b>메모는 한 브라우저에서 사용 권장.</b><button aria-label="닫기" class="noticeclose" onclick="dismissBrowserNotice()">×</button></div>
+<section class="day active" id="d1">
+<div class="panel dayhead"><h2>DAY 1 · HELLO, SINGAPORE</h2><div class="theme">도착일 · “여행을 시작하는 날”보다 “몸을 싱가포르에 맞추는 날”. 공항→호텔 이동만 안정적으로 끝내고 체력을 남기는 일정.</div>
+<details class="flightlive flightfold" data-flight-card="677"><summary class="flightfoldsummary"><span class="flightfoldtitle">✈️ 대한항공 · ICN → SIN · 13:50</span><span class="flightlivebadge">출국일 LIVE</span><span class="flightchev">⌄</span></summary><div class="flightfoldbody"><div class="flightverify">항공편 번호는 예약내역 기준으로 최종 확인</div><div class="flightlivegrid"><div class="flightliveitem"><small>터미널</small><b id="flightTerminal677">—</b></div><div class="flightliveitem"><small>체크인</small><b id="flightCounter677">—</b></div><div class="flightliveitem"><small>Gate</small><b id="flightGate677">아직 미정</b></div><div class="flightliveitem"><small>상태</small><b id="flightStatus677">확인 전</b></div></div><div class="flightlivemeta" id="flightUpdated677">업데이트 정보 없음 · 공항/항공사 현장 정보가 최종 기준</div><div class="flightliveactions"><button onclick="refreshFlightCard('677')" type="button">↻ 새로고침</button> <a href="https://www.airport.kr/ap_ko/868/subview.do" rel="noopener" target="_blank">인천공항 공식 확인 ↗</a></div></div></details>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d1-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d1-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d1-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d1-memo">
+<textarea id="d1-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d1')">메모 저장</button></div>
+<div id="d1-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d1-food">
+<input id="d1-food-name" placeholder="식당 이름"/>
+<input id="d1-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d1','food')">식당 추가</button></div>
+<ul class="userlist" id="d1-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d1-candidate">
+<input id="d1-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d1-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d1','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d1-candidate-list"></ul>
+</div>
+</div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">출발 전날</div><div class="activity"><b>공항 이동·여행서류 최종 확인</b><div class="note">사전예약 택시 기사·차량·픽업시간 확인. 가족별 탑승차량과 집결시간 공유.</div><div class="meta"><strong>✓ 체크</strong> 여권 11명 · 항공권 · 호텔 예약 · SG Arrival Card 제출 · 캐리어/유모차/기내용 가방 개수 · 보조배터리 기내휴대 여부 확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">출발 당일<br/>집</div><div class="activity"><b>집에서 출발 → 인천공항 이동</b><div class="meta"><strong>🚕 이동</strong> 현재 계획: 사전예약 택시. 출발 직전 가족별 인원·여권·휴대폰·지갑·짐 개수 최종 카운트.</div><div class="note">인천공항 도착 시간을 기준으로 택시 픽업시간은 여유 있게 잡기.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">인천공항</div><div class="activity"><b>집결 → 체크인 → 출국심사 → 면세/라운지 → 탑승</b><ul class="steps"><li>항공사 터미널·체크인 카운터 확인 → 위탁수하물 처리</li><li>탑승구와 Boarding Time 먼저 확인</li><li>면세품 수령·구매, 라운지 이용자는 카드·동반자 조건 확인</li><li>탑승 전 싱가포르 도착 차량 연락처와 호텔 주소를 대표자 휴대폰에 준비</li></ul></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">12:50~<br/>13:00</div><div class="activity"><b>✈️ 탑승구 도착 · 탑승 준비</b><div class="meta"><strong>인지 기준</strong> 13:50 출발 기준 약 50~60분 전에는 Gate 앞에 도착해 있기. <b>실제 Boarding Time은 탑승권·공항 안내가 최우선.</b></div><div class="note">11명 이동이라 면세·라운지에서 늦게 출발하지 않도록 이 시간을 ‘이제 탑승하러 가야 하는 시간’으로 사용.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
 <div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">13:10 전후</div><div class="activity"><b>🛫 탑승 예상 구간</b><div class="note">계획용 예상치. 실제 탑승 개시·마감 시각은 당일 KE677 탑승권과 Gate 안내를 따름.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">13:50</div><div class="activity"><b>인천 출발 → 싱가포르</b><div class="note">비행 중 도착 후 이동 차량·가족별 역할만 간단히 재확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:15</div><div class="activity"><b>창이공항 Changi Airport 도착</b><div class="note">입국심사·수하물·화장실 정비까지 여유 있게.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">20:30 전후</div><div class="activity"><b>입국 완료 · 차량 탑승 준비</b><div class="meta"><strong>🚕 이동</strong> 11명+캐리어 → 대형차량 사전예약 또는 택시/Grab 분산 추천. 3세 아이 2명의 카시트/차량 규정은 출발 직전 공식 기준 재확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">21:30~<br>22:00</div><div class="activity"><b>Singapore Marriott Tang Plaza Hotel 체크인</b><div class="note">Orchard MRT NS22 / TE14 생활권.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">22:00 이후</div><div class="activity"><b>가벼운 야식 · 휴식</b><div class="foodmeta meta"><strong>🍽 추천</strong> 국수·샌드위치·빵·과일처럼 부담 없는 메뉴.</div>
-   <details><summary>시간이 남는다면</summary><div class="details-body">Orchard Road(오차드 로드) 산책 → ION Orchard 또는 TANGS에서 생필품·간식 구매. Jewel은 마지막 날로 남김.</div></details></div></div></div>
-  </div>
-  <aside class="panel knowledge"><h3>아이들에게 한마디</h3><div class="fact"><b>왜 첫날 바로 관광 안 해?</b><br>싱가포르는 작지만 공항에서 입국하고 11명이 함께 움직이면 시간이 꽤 걸린다. 첫날 체력을 아끼면 다음 날부터 훨씬 즐겁다.</div></aside>
- </div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:15</div><div class="activity"><b>창이공항 Changi Airport 도착</b><div class="note">입국심사·수하물·화장실 정비까지 여유 있게.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">20:30 전후</div><div class="activity"><b>입국 완료 · 차량 탑승 준비</b><div class="meta"><strong>🚕 이동</strong> 11명+캐리어 → 대형차량 사전예약 또는 택시/Grab 분산 추천. 3세 아이 2명의 카시트/차량 규정은 출발 직전 공식 기준 재확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">21:30~<br/>22:00</div><div class="activity"><b>Singapore Marriott Tang Plaza Hotel 체크인</b><div class="note">Orchard MRT NS22 / TE14 생활권.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">22:00 이후</div><div class="activity"><b>가벼운 야식 · 휴식</b><div class="foodmeta meta"><strong>🍽 추천</strong> 국수·샌드위치·빵·과일처럼 부담 없는 메뉴.</div>
+<details><summary>시간이 남는다면</summary><div class="details-body">Orchard Road(오차드 로드) 산책 → ION Orchard 또는 TANGS에서 생필품·간식 구매. Jewel은 마지막 날로 남김.</div></details></div></div></div>
+</div>
+<aside class="panel knowledge"><h3>아이들에게 한마디</h3><div class="fact"><b>왜 첫날 바로 관광 안 해?</b><br/>싱가포르는 작지만 공항에서 입국하고 11명이 함께 움직이면 시간이 꽤 걸린다. 첫날 체력을 아끼면 다음 날부터 훨씬 즐겁다.</div></aside>
+</div>
 </section>
-<section id="d2" class="day">
- <div class="panel dayhead"><h2>DAY 2 · ICONIC SINGAPORE</h2><div class="theme">현대 싱가포르를 가장 압축해서 보는 날. 간척·도시계획·관광전략·정원도시·야경까지, “국가가 설계한 미래도시”를 보는 일정.</div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d2-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d2-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d2-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d2-memo" class="editorbox" hidden>
-          <textarea id="d2-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d2')">메모 저장</button></div>
-          <div id="d2-memo-view"></div>
-        </div>
-        <div id="d2-food" class="editorbox" hidden>
-          <input id="d2-food-name" placeholder="식당 이름">
-          <input id="d2-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d2','food')">식당 추가</button></div>
-          <ul id="d2-food-list" class="userlist"></ul>
-        </div>
-        <div id="d2-candidate" class="editorbox" hidden>
-          <input id="d2-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d2-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d2','candidate')">후보 추가</button></div>
-          <ul id="d2-candidate-list" class="userlist"></ul>
-        </div>
-        <div class="detailhint">탭하면 일정 상세 보기</div></div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:00</div><div class="activity"><b>호텔 출발 → Merlion Park(머라이언 파크)</b><div class="meta"><strong>🚇 MRT</strong> Orchard NS22 → Raffles Place NS26 직통 · 이후 도보 약 10분.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:30~12:30</div><div class="activity"><ul class="steps"><li>Merlion Park(머라이언 파크)<span class="placeinfo">싱가포르 대표 상징. 머라이언과 MBS가 함께 보이는 방향에서 가족사진 추천.</span></li><li>Esplanade – Theatres on the Bay(에스플러네이드)<span class="placeinfo">두리안처럼 보이는 공연장. 강 건너 Civic District와 Marina Bay 경관을 같이 보기.</span></li><li>Singapore Flyer(싱가포르 플라이어)<span class="placeinfo">대형 관람차. 높은 곳에서 간척지와 Marina Bay 전체 구조를 보는 포인트.</span></li></ul><div class="note">오전 루트는 옆으로 나열하지 않고 위에서 아래 순서대로 이동.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~14:00</div><div class="activity"><b>점심 + 에어컨 휴식</b><div class="foodmeta meta"><strong>🍽 추천 식사</strong> Marina Bay/MBS 일대. 가족 편의 우선. 1인 대략 S$15~30 예상.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">14:00~16:30</div><div class="activity"><ul class="steps"><li>Helix Bridge(헬릭스 브리지)<span class="placeinfo">DNA 이중나선에서 착안한 보행교. 다리 자체와 MBS 방향 사진 포인트.</span></li><li>Marina Bay Sands(마리나 베이 샌즈, MBS)<span class="placeinfo">호텔·쇼핑·컨벤션·카지노를 묶은 복합리조트. 싱가포르 관광산업 전략의 상징.</span></li><li>The Shoppes at Marina Bay Sands(마리나 베이 샌즈 쇼핑몰)<span class="placeinfo">더위를 피하며 식사·화장실·카페 휴식을 하기 좋은 실내 거점.</span></li></ul><div class="meta"><strong>🚶 이동</strong> 기본 도보. 더위·아이 낮잠 상황이면 짧은 택시 적극 활용.</div>
-   <details><summary>시간이 남는다면</summary><div class="details-body">ArtScience Museum(아트사이언스 뮤지엄) 또는 쇼핑몰 카페에서 긴 휴식.</div></details></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00~19:00</div><div class="activity"><ul class="steps"><li>Gardens by the Bay(가든스 바이 더 베이)<span class="placeinfo">간척지 위에 만든 거대한 도심 정원. ‘Garden City’ 정책을 눈으로 보는 장소.</span></li><li>Cloud Forest(클라우드 포레스트)<span class="placeinfo">거대한 실내 폭포와 고산 식생이 핵심. 더운 오후에 넣기 좋은 실내 코스.</span></li><li>Flower Dome(플라워 돔)<span class="placeinfo">세계 여러 기후대의 식물을 전시하는 대형 온실. 아이들과 천천히 보기 좋음.</span></li></ul><div class="meta"><strong>🎟 참고</strong> 비거주자 Cloud Forest+Flower Dome 공식가: 성인 S$46 / 아동 3~12세 S$32. 권장 관람 약 2시간.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:00 전후</div><div class="activity"><b>저녁식사</b><div class="foodmeta meta"><strong>🍽 현지 메뉴</strong> Satay(사테) · Hokkien Mee(호키엔 미) · BBQ Seafood · Chicken Wings. 호커형 식사라면 1인 약 S$12~25 예상.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:45 이후</div><div class="activity"><ul class="steps"><li>Supertree Grove(슈퍼트리 그로브)<span class="placeinfo">식물이 자라는 거대한 인공 구조물. 낮보다 해질 무렵과 야간 조명이 핵심.</span></li><li>Garden Rhapsody(가든 랩소디)<span class="placeinfo">Supertree 음악·조명 쇼. <b>매일 19:45 / 20:45</b> · 무료. 시작 전 자리를 잡고 아래에서 올려다보는 방식 추천.</span></li><li>MBS 쪽 이동</li><li>Spectra – A Light & Water Show(스펙트라)<span class="placeinfo"><b>일~목 20:00 / 21:00 · 금~토 20:00 / 21:00 / 22:00</b> · 약 15분 · 무료. DAY 2는 일요일이라 20:00 또는 21:00 중 선택.</span></li></ul>
+<section class="day" id="d2">
+<div class="panel dayhead"><h2>DAY 2 · ICONIC SINGAPORE</h2><div class="theme">현대 싱가포르를 가장 압축해서 보는 날. 간척·도시계획·관광전략·정원도시·야경까지, “국가가 설계한 미래도시”를 보는 일정.</div>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d2-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d2-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d2-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d2-memo">
+<textarea id="d2-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d2')">메모 저장</button></div>
+<div id="d2-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d2-food">
+<input id="d2-food-name" placeholder="식당 이름"/>
+<input id="d2-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d2','food')">식당 추가</button></div>
+<ul class="userlist" id="d2-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d2-candidate">
+<input id="d2-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d2-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d2','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d2-candidate-list"></ul>
+</div>
+<div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:00</div><div class="activity"><b>호텔 출발 → Merlion Park(머라이언 파크)</b><div class="meta"><strong>🚇 MRT</strong> Orchard NS22 → Raffles Place NS26 직통 · 이후 도보 약 10분.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:30~12:30</div><div class="activity"><ul class="steps"><li>Merlion Park(머라이언 파크)<span class="placeinfo">싱가포르 대표 상징. 머라이언과 MBS가 함께 보이는 방향에서 가족사진 추천.</span></li><li>Esplanade – Theatres on the Bay(에스플러네이드)<span class="placeinfo">두리안처럼 보이는 공연장. 강 건너 Civic District와 Marina Bay 경관을 같이 보기.</span></li><li>Singapore Flyer(싱가포르 플라이어)<span class="placeinfo">대형 관람차. 높은 곳에서 간척지와 Marina Bay 전체 구조를 보는 포인트.</span></li></ul><div class="note">오전 루트는 옆으로 나열하지 않고 위에서 아래 순서대로 이동.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~14:00</div><div class="activity"><b>점심 + 에어컨 휴식</b><div class="foodmeta meta"><strong>🍽 추천 식사</strong> Marina Bay/MBS 일대. 가족 편의 우선. 1인 대략 S$15~30 예상.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">14:00~16:30</div><div class="activity"><ul class="steps"><li>Helix Bridge(헬릭스 브리지)<span class="placeinfo">DNA 이중나선에서 착안한 보행교. 다리 자체와 MBS 방향 사진 포인트.</span></li><li>Marina Bay Sands(마리나 베이 샌즈, MBS)<span class="placeinfo">호텔·쇼핑·컨벤션·카지노를 묶은 복합리조트. 싱가포르 관광산업 전략의 상징.</span></li><li>The Shoppes at Marina Bay Sands(마리나 베이 샌즈 쇼핑몰)<span class="placeinfo">더위를 피하며 식사·화장실·카페 휴식을 하기 좋은 실내 거점.</span></li></ul><div class="meta"><strong>🚶 이동</strong> 기본 도보. 더위·아이 낮잠 상황이면 짧은 택시 적극 활용.</div>
+<details><summary>시간이 남는다면</summary><div class="details-body">ArtScience Museum(아트사이언스 뮤지엄) 또는 쇼핑몰 카페에서 긴 휴식.</div></details></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00~19:00</div><div class="activity"><ul class="steps"><li>Gardens by the Bay(가든스 바이 더 베이)<span class="placeinfo">간척지 위에 만든 거대한 도심 정원. ‘Garden City’ 정책을 눈으로 보는 장소.</span></li><li>Cloud Forest(클라우드 포레스트)<span class="placeinfo">거대한 실내 폭포와 고산 식생이 핵심. 더운 오후에 넣기 좋은 실내 코스.</span></li><li>Flower Dome(플라워 돔)<span class="placeinfo">세계 여러 기후대의 식물을 전시하는 대형 온실. 아이들과 천천히 보기 좋음.</span></li></ul><div class="meta"><strong>🎟 참고</strong> 비거주자 Cloud Forest+Flower Dome 공식가: 성인 S$46 / 아동 3~12세 S$32. 권장 관람 약 2시간.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:00 전후</div><div class="activity"><b>저녁식사</b><div class="foodmeta meta"><strong>🍽 현지 메뉴</strong> Satay(사테) · Hokkien Mee(호키엔 미) · BBQ Seafood · Chicken Wings. 호커형 식사라면 1인 약 S$12~25 예상.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:45 이후</div><div class="activity"><ul class="steps"><li>Supertree Grove(슈퍼트리 그로브)<span class="placeinfo">식물이 자라는 거대한 인공 구조물. 낮보다 해질 무렵과 야간 조명이 핵심.</span></li><li>Garden Rhapsody(가든 랩소디)<span class="placeinfo">Supertree 음악·조명 쇼. <b>매일 19:45 / 20:45</b> · 무료. 시작 전 자리를 잡고 아래에서 올려다보는 방식 추천.</span></li><li>MBS 쪽 이동</li><li>Spectra – A Light &amp; Water Show(스펙트라)<span class="placeinfo"><b>일~목 20:00 / 21:00 · 금~토 20:00 / 21:00 / 22:00</b> · 약 15분 · 무료. DAY 2는 일요일이라 20:00 또는 21:00 중 선택.</span></li></ul>
 <div class="note">🌌 참고: Borealis(보레알리스)는 현재 토·일·월 <b>20:00~20:30</b> Supertree Grove에서 진행. DAY 2에도 가능하지만 Garden Rhapsody·Spectra와 시간이 겹치므로 보너스 후보.</div>
-   <details><summary>체력이 남는다면</summary><div class="details-body">Sands SkyPark Observation Deck(샌즈 스카이파크 전망대). Singapore Flyer와 전망 콘텐츠가 겹치므로 필수 아님.</div></details></div></div></div>
-  </div>
-  <aside>
-   <div class="panel knowledge"><h3>아이들에게 설명하기</h3>
-    <div class="fact"><b>Marina Bay는 원래부터 이런 땅이 아니야.</b><br>싱가포르는 바다를 메우는 간척으로 도시 공간을 넓혀 왔다. 지금의 마리나 베이는 독립 이후 국가가 계획해 만든 ‘새로운 싱가포르’의 상징이다.</div>
-    <div class="fact"><b>Merlion(머라이언)</b><br>물고기 몸은 항구도시의 뿌리, 사자 머리는 ‘싱가푸라(사자의 도시)’ 전설을 상징한다.</div>
-    <div class="fact"><b>Supertree</b><br>단순 조형물이 아니라 식물·도시 기술·친환경 이미지를 결합한 싱가포르식 미래도시 상징이다.</div>
-   </div>
-  </aside>
- </div>
+<details><summary>체력이 남는다면</summary><div class="details-body">Sands SkyPark Observation Deck(샌즈 스카이파크 전망대). Singapore Flyer와 전망 콘텐츠가 겹치므로 필수 아님.</div></details></div></div></div>
+</div>
+<aside>
+<div class="panel knowledge"><h3>아이들에게 설명하기</h3>
+<div class="fact"><b>Marina Bay는 원래부터 이런 땅이 아니야.</b><br/>싱가포르는 바다를 메우는 간척으로 도시 공간을 넓혀 왔다. 지금의 마리나 베이는 독립 이후 국가가 계획해 만든 ‘새로운 싱가포르’의 상징이다.</div>
+<div class="fact"><b>Merlion(머라이언)</b><br/>물고기 몸은 항구도시의 뿌리, 사자 머리는 ‘싱가푸라(사자의 도시)’ 전설을 상징한다.</div>
+<div class="fact"><b>Supertree</b><br/>단순 조형물이 아니라 식물·도시 기술·친환경 이미지를 결합한 싱가포르식 미래도시 상징이다.</div>
+</div>
+</aside>
+</div>
 </section>
-<section id="d3" class="day">
- <div class="panel dayhead"><h2>DAY 3 · FUN SINGAPORE</h2><div class="theme">센토사 자체를 오늘의 큰 틀로 잡고, USS는 가족별 취향·대기시간·휴장 상황에 따라 유연하게 선택. 아이들이 여행의 주인공이 되는 날.</div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d3-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d3-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d3-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d3-memo" class="editorbox" hidden>
-          <textarea id="d3-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d3')">메모 저장</button></div>
-          <div id="d3-memo-view"></div>
-        </div>
-        <div id="d3-food" class="editorbox" hidden>
-          <input id="d3-food-name" placeholder="식당 이름">
-          <input id="d3-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d3','food')">식당 추가</button></div>
-          <ul id="d3-food-list" class="userlist"></ul>
-        </div>
-        <div id="d3-candidate" class="editorbox" hidden>
-          <input id="d3-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d3-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d3','candidate')">후보 추가</button></div>
-          <ul id="d3-candidate-list" class="userlist"></ul>
-        </div>
-        <div class="detailhint">탭하면 일정 상세 보기</div></div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:30</div><div class="activity"><b>호텔 출발 → VivoCity(비보시티)</b><div class="meta"><strong>🚇 MRT</strong> Orchard NS22 → Dhoby Ghaut NS24 → North East Line 환승 → HarbourFront NE1 → VivoCity.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:15~10:00</div><div class="activity"><b>Sentosa Express(센토사 익스프레스) → Resorts World Sentosa</b><div class="note">화장실·간식·유모차 정비 후 입장.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:00~오후</div><div class="activity"><b>Sentosa 메인 선택 · USS 중심 또는 그룹 분리</b><span class="placeinfo">최근 후기에서는 인기 어트랙션 대기·기술 점검·휴장으로 체감 효율이 떨어졌다는 사례가 있었음. 따라서 ‘무조건 종일 USS’보다 당일 운영상황을 보고 선택.</span><ul class="steps"><li><b>USS TEAM</b> · 오픈런 → 인기 어트랙션 + Minion Land + 캐릭터/쇼를 섞어 즐기기</li><li><b>EASY TEAM</b> · 3세 아이+어른 중심 → Singapore Oceanarium · 카페 · 산책</li><li>점심/오후에 다시 합류 가능</li><li>9/21 직전 공식 휴장·운영시간·키 제한 반드시 재확인</li></ul><div class="meta"><strong>🎟 판단 기준</strong> 놀이기구를 거의 안 탈 예정이면 USS 입장권 가성비는 낮음. ‘놀이기구+캐릭터+쇼+산책’을 섞거나 그룹 분리가 더 현실적.</div><div class="foodmeta meta"><strong>🍽 USS 내부</strong> Burger · Fried Chicken · Fries · Pasta 등. 1인 약 S$20~30 예상.</div>
-   <details><summary>센토사 오후 확장 후보</summary><div class="details-body"><ol><li><b>Singapore Oceanarium(싱가포르 오셔너리움)</b><span class="placeinfo">3세 아이들과 실내에서 쉬며 보기 좋은 우선 후보. 해양생태·보전 중심.</span></li><li><b>Skyline Luge Sentosa(스카이라인 루지)</b><span class="placeinfo">활동적인 어른·7세 아이 후보.</span></li><li><b>Siloso Beach(실로소 비치)</b><span class="placeinfo">관광보다 휴식이 필요할 때.</span></li><li><b>Wings of Time Fireworks Symphony(윙스 오브 타임 파이어웍스 심포니)</b><span class="placeinfo">저녁까지 체력이 남을 때 야간 마무리 후보.</span></li></ol><div class="note">추천 연결 순서: Oceanarium → Luge → Siloso → Wings. 모두 할 필요는 없고 1~2개만 선택.</div></div></details></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">저녁 / 귀가</div><div class="activity"><b>Sentosa 또는 VivoCity 저녁 → 호텔</b><div class="foodmeta meta"><strong>🍽 추천</strong> Xiao Long Bao(샤오롱바오) · Fried Rice(볶음밥) · Noodles(면) · Dim Sum(딤섬). VivoCity에서 1인 S$20~40 예상.</div><div class="meta"><strong>🚕 귀가</strong> 아이들이 지치면 MRT보다 Grab/택시 우선.</div></div></div></div>
-  </div>
-  <aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
-   <div class="fact"><b>Sentosa는 왜 관광섬이 됐을까?</b><br>원래 군사·방어 기능이 있던 섬을 국가가 대규모 휴양·관광지로 개발했다. 싱가포르가 ‘무역도시’에서 ‘관광도시’까지 확장한 모습을 보여준다.</div>
-   <div class="fact"><b>Oceanarium</b><br>기존 S.E.A. Aquarium을 크게 확장한 해양 교육·보전형 시설이다.</div>
-  </aside>
- </div>
+<section class="day" id="d3">
+<div class="panel dayhead"><h2>DAY 3 · FUN SINGAPORE</h2><div class="theme">센토사 자체를 오늘의 큰 틀로 잡고, USS는 가족별 취향·대기시간·휴장 상황에 따라 유연하게 선택. 아이들이 여행의 주인공이 되는 날.</div>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d3-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d3-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d3-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d3-memo">
+<textarea id="d3-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d3')">메모 저장</button></div>
+<div id="d3-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d3-food">
+<input id="d3-food-name" placeholder="식당 이름"/>
+<input id="d3-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d3','food')">식당 추가</button></div>
+<ul class="userlist" id="d3-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d3-candidate">
+<input id="d3-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d3-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d3','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d3-candidate-list"></ul>
+</div>
+<div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:30</div><div class="activity"><b>호텔 출발 → VivoCity(비보시티)</b><div class="meta"><strong>🚇 MRT</strong> Orchard NS22 → Dhoby Ghaut NS24 → North East Line 환승 → HarbourFront NE1 → VivoCity.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:15~10:00</div><div class="activity"><b>Sentosa Express(센토사 익스프레스) → Resorts World Sentosa</b><div class="note">화장실·간식·유모차 정비 후 입장.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:00~오후</div><div class="activity"><b>Sentosa 메인 선택 · USS 중심 또는 그룹 분리</b><span class="placeinfo">최근 후기에서는 인기 어트랙션 대기·기술 점검·휴장으로 체감 효율이 떨어졌다는 사례가 있었음. 따라서 ‘무조건 종일 USS’보다 당일 운영상황을 보고 선택.</span><ul class="steps"><li><b>USS TEAM</b> · 오픈런 → 인기 어트랙션 + Minion Land + 캐릭터/쇼를 섞어 즐기기</li><li><b>EASY TEAM</b> · 3세 아이+어른 중심 → Singapore Oceanarium · 카페 · 산책</li><li>점심/오후에 다시 합류 가능</li><li>9/21 직전 공식 휴장·운영시간·키 제한 반드시 재확인</li></ul><div class="meta"><strong>🎟 판단 기준</strong> 놀이기구를 거의 안 탈 예정이면 USS 입장권 가성비는 낮음. ‘놀이기구+캐릭터+쇼+산책’을 섞거나 그룹 분리가 더 현실적.</div><div class="foodmeta meta"><strong>🍽 USS 내부</strong> Burger · Fried Chicken · Fries · Pasta 등. 1인 약 S$20~30 예상.</div>
+<details><summary>센토사 오후 확장 후보</summary><div class="details-body"><ol><li><b>Singapore Oceanarium(싱가포르 오셔너리움)</b><span class="placeinfo">3세 아이들과 실내에서 쉬며 보기 좋은 우선 후보. 해양생태·보전 중심.</span></li><li><b>Skyline Luge Sentosa(스카이라인 루지)</b><span class="placeinfo">활동적인 어른·7세 아이 후보.</span></li><li><b>Siloso Beach(실로소 비치)</b><span class="placeinfo">관광보다 휴식이 필요할 때.</span></li><li><b>Wings of Time Fireworks Symphony(윙스 오브 타임 파이어웍스 심포니)</b><span class="placeinfo">저녁까지 체력이 남을 때 야간 마무리 후보.</span></li></ol><div class="note">추천 연결 순서: Oceanarium → Luge → Siloso → Wings. 모두 할 필요는 없고 1~2개만 선택.</div></div></details></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">저녁 / 귀가</div><div class="activity"><b>Sentosa 또는 VivoCity 저녁 → 호텔</b><div class="foodmeta meta"><strong>🍽 추천</strong> Xiao Long Bao(샤오롱바오) · Fried Rice(볶음밥) · Noodles(면) · Dim Sum(딤섬). VivoCity에서 1인 S$20~40 예상.</div><div class="meta"><strong>🚕 귀가</strong> 아이들이 지치면 MRT보다 Grab/택시 우선.</div></div></div></div>
+</div>
+<aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
+<div class="fact"><b>Sentosa는 왜 관광섬이 됐을까?</b><br/>원래 군사·방어 기능이 있던 섬을 국가가 대규모 휴양·관광지로 개발했다. 싱가포르가 ‘무역도시’에서 ‘관광도시’까지 확장한 모습을 보여준다.</div>
+<div class="fact"><b>Oceanarium</b><br/>기존 S.E.A. Aquarium을 크게 확장한 해양 교육·보전형 시설이다.</div>
+</aside>
+</div>
 </section>
-<section id="d4" class="day">
- <div class="panel dayhead"><h2>DAY 4 · OLD SINGAPORE</h2><div class="theme">싱가포르의 과거를 시간순으로 걷는 날. 식민지 행정도시→이민자 생활공간→무역항으로 이어지는 “옛 싱가포르”의 구조를 읽는 일정.</div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d4-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d4-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d4-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d4-memo" class="editorbox" hidden>
-          <textarea id="d4-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d4')">메모 저장</button></div>
-          <div id="d4-memo-view"></div>
-        </div>
-        <div id="d4-food" class="editorbox" hidden>
-          <input id="d4-food-name" placeholder="식당 이름">
-          <input id="d4-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d4','food')">식당 추가</button></div>
-          <ul id="d4-food-list" class="userlist"></ul>
-        </div>
-        <div id="d4-candidate" class="editorbox" hidden>
-          <input id="d4-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d4-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d4','candidate')">후보 추가</button></div>
-          <ul id="d4-candidate-list" class="userlist"></ul>
-        </div>
-        <button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:00 전후</div><div class="activity"><b>호텔 → Fort Canning Tree Tunnel(포트 캐닝 트리 터널)</b><div class="meta"><strong>🚕 추천</strong> 11명이라 택시/Grab 3대가 효율적.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:30~12:30</div><div class="activity"><ul class="steps"><li>Fort Canning Tree Tunnel</li><li>National Museum of Singapore(싱가포르 국립박물관)<span class="placeinfo">싱가포르 역사의 전체 줄거리를 잡기 가장 좋은 박물관. 전부보다 역사 전시 중심.</span></li><li>CHIJMES(차임스)<span class="placeinfo">옛 가톨릭 수녀원·학교를 보존해 식당·상업공간으로 바꾼 사례. 건축과 재생에 주목.</span></li><li>Raffles Hotel Singapore(래플스 호텔)<span class="placeinfo">식민지 시대의 고급호텔 상징. 건물 외관과 식민지 시대 분위기를 보는 정도.</span></li><li>St Andrew’s Cathedral(세인트 앤드루 대성당)<span class="placeinfo">영국 식민지 시기 성공회 대성당. 주변 Civic District와 함께 보기.</span></li><li>Padang(파당 광장)<span class="placeinfo">식민지 행정 중심의 큰 잔디광장. 주변 국가기관 건물과 공간 배치를 함께 보기.</span></li></ul>
-   <details><summary>올드시티 운영 팁</summary><div class="details-body"><b>Fort Canning Tree Tunnel은 가능한 한 이른 시간</b>이 유리. National Museum은 한낮 더위에 AC 휴식 겸 역사 이해용으로 좋고, National Gallery는 미술·건축 관심이 있을 때만 선택. Raffles Hotel은 숙박하지 않아도 외관·공용공간을 짧게 보는 후보. CHIJMES는 야간 분위기가 더 좋지만 이번 일정에서는 동선상 가볍게 통과.</div></details></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~15:30</div><div class="activity"><b>Chinatown(차이나타운)</b><ul class="steps"><li>Pagoda Street(파고다 스트리트)<span class="placeinfo">차이나타운의 관광 중심 거리. Shophouse 형태와 골목 폭을 관찰.</span></li><li>Sri Mariamman Temple(스리 마리암만 사원)<span class="placeinfo">싱가포르에서 가장 오래된 힌두 사원. ‘차이나타운 안의 인도 사원’이라는 점이 중요.</span></li><li>Buddha Tooth Relic Temple(불아사)<span class="placeinfo">2007년에 문을 연 비교적 새로운 불교사원. 오래된 유적이라고 오해하지 않기.</span></li><li>Maxwell Food Centre(맥스웰 푸드센터)<span class="placeinfo">노점 음식이 제도화된 Hawker Centre 문화를 직접 경험하는 장소.</span></li></ul><div class="foodmeta meta"><strong>🍽 Maxwell 현지 메뉴</strong> Hainanese Chicken Rice(하이난식 치킨라이스) · Char Kway Teow(차퀘이테오) · Popiah(포피아) · Hokkien Mee(호키엔 미) · Sugar Cane Juice. 1인 약 S$8~18 예상.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">15:30~17:30</div><div class="activity"><b>호텔 휴식 권장</b><div class="meta"><strong>🚇 MRT</strong> Maxwell TE18 → Orchard TE14 직통. 환승 없이 복귀 가능.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">18:00 이후</div><div class="activity"><ul class="steps"><li>Old Hill Street Police Station(올드 힐 스트리트 경찰서)<span class="placeinfo">무지개색 창문으로 유명한 옛 경찰서 건물. 낮·해질 무렵 사진 포인트.</span></li><li>Clarke Quay(클락키)<span class="placeinfo">옛 창고·부두 지역을 식당과 야간 상권으로 재생한 곳.</span></li><li>Singapore River Cruise(싱가포르 리버 크루즈)<span class="placeinfo">옛 무역항에서 현대 Marina Bay까지 도시 변화가 한 번에 이어지는 약 40분 코스.</span></li><li>JUMBO Seafood Riverside Point 저녁</li></ul><div class="meta"><strong>🎟 River Cruise 공식</strong> 약 40분 · 성인 S$28 / 아동 3~11세 S$18. 현장구매 가능하지만 11명은 사전확보 권장.</div><div class="foodmeta meta"><strong>🍽 JUMBO 실전 주문</strong> Chilli Crab(칠리크랩) · Cereal Prawn(시리얼 프론) · Supreme Seafood Fried Rice(해산물 볶음밥) · Man Tou(만터우) 조합 우선. 11명은 게를 인원수대로 단순 배수하지 말고 사이드와 함께 나눠 주문. 가족식 총 S$550~800 정도 넉넉히 예산.</div><div class="meta"><strong>📌 후기 참고</strong> 7~8시와 점심 피크는 예약 권장. 11명 단체는 특히 사전확보. 어린아이·더위 고려 시 <b>실내 AC 좌석</b>이 편하고, 야간 분위기를 원하면 테라스. 게는 중량·시가 방식이라 주문 전 크기와 가격 확인. T Membership 할인 여부는 출발 직전 재확인.</div></div></div></div>
-  </div>
-  <aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
-   <div class="fact"><b>왜 Chinatown에 힌두 사원과 모스크도 있을까?</b><br>싱가포르는 처음부터 한 민족만 살던 도시가 아니라 항구를 중심으로 중국·인도·말레이·아랍 상인과 노동자가 섞여 살던 도시였다.</div>
-   <div class="fact"><b>Singapore River</b><br>옛날에는 배·창고·시장·노동자가 몰리던 ‘도시의 일터’였다. 지금의 야경을 보면서 옛 무역항을 상상하면 된다.</div>
-   <div class="fact"><b>Raffles</b><br>1819년 영국의 교역 거점 구축과 연결되는 이름. 현대 싱가포르에서는 식민지 역사로서 비판적·복합적으로 보는 대상이다.</div>
-  </aside>
- </div>
+<section class="day" id="d4">
+<div class="panel dayhead"><h2>DAY 4 · OLD SINGAPORE</h2><div class="theme">싱가포르의 과거를 시간순으로 걷는 날. 식민지 행정도시→이민자 생활공간→무역항으로 이어지는 “옛 싱가포르”의 구조를 읽는 일정.</div>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d4-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d4-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d4-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d4-memo">
+<textarea id="d4-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d4')">메모 저장</button></div>
+<div id="d4-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d4-food">
+<input id="d4-food-name" placeholder="식당 이름"/>
+<input id="d4-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d4','food')">식당 추가</button></div>
+<ul class="userlist" id="d4-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d4-candidate">
+<input id="d4-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d4-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d4','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d4-candidate-list"></ul>
+</div>
+<button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:00 전후</div><div class="activity"><b>호텔 → Fort Canning Tree Tunnel(포트 캐닝 트리 터널)</b><div class="meta"><strong>🚕 추천</strong> 11명이라 택시/Grab 3대가 효율적.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:30~12:30</div><div class="activity"><ul class="steps"><li>Fort Canning Tree Tunnel</li><li>National Museum of Singapore(싱가포르 국립박물관)<span class="placeinfo">싱가포르 역사의 전체 줄거리를 잡기 가장 좋은 박물관. 전부보다 역사 전시 중심.</span></li><li>CHIJMES(차임스)<span class="placeinfo">옛 가톨릭 수녀원·학교를 보존해 식당·상업공간으로 바꾼 사례. 건축과 재생에 주목.</span></li><li>Raffles Hotel Singapore(래플스 호텔)<span class="placeinfo">식민지 시대의 고급호텔 상징. 건물 외관과 식민지 시대 분위기를 보는 정도.</span></li><li>St Andrew’s Cathedral(세인트 앤드루 대성당)<span class="placeinfo">영국 식민지 시기 성공회 대성당. 주변 Civic District와 함께 보기.</span></li><li>Padang(파당 광장)<span class="placeinfo">식민지 행정 중심의 큰 잔디광장. 주변 국가기관 건물과 공간 배치를 함께 보기.</span></li></ul>
+<details><summary>올드시티 운영 팁</summary><div class="details-body"><b>Fort Canning Tree Tunnel은 가능한 한 이른 시간</b>이 유리. National Museum은 한낮 더위에 AC 휴식 겸 역사 이해용으로 좋고, National Gallery는 미술·건축 관심이 있을 때만 선택. Raffles Hotel은 숙박하지 않아도 외관·공용공간을 짧게 보는 후보. CHIJMES는 야간 분위기가 더 좋지만 이번 일정에서는 동선상 가볍게 통과.</div></details></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~15:30</div><div class="activity"><b>Chinatown(차이나타운)</b><ul class="steps"><li>Pagoda Street(파고다 스트리트)<span class="placeinfo">차이나타운의 관광 중심 거리. Shophouse 형태와 골목 폭을 관찰.</span></li><li>Sri Mariamman Temple(스리 마리암만 사원)<span class="placeinfo">싱가포르에서 가장 오래된 힌두 사원. ‘차이나타운 안의 인도 사원’이라는 점이 중요.</span></li><li>Buddha Tooth Relic Temple(불아사)<span class="placeinfo">2007년에 문을 연 비교적 새로운 불교사원. 오래된 유적이라고 오해하지 않기.</span></li><li>Maxwell Food Centre(맥스웰 푸드센터)<span class="placeinfo">노점 음식이 제도화된 Hawker Centre 문화를 직접 경험하는 장소.</span></li></ul><div class="foodmeta meta"><strong>🍽 Maxwell 현지 메뉴</strong> Hainanese Chicken Rice(하이난식 치킨라이스) · Char Kway Teow(차퀘이테오) · Popiah(포피아) · Hokkien Mee(호키엔 미) · Sugar Cane Juice. 1인 약 S$8~18 예상.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">15:30~17:30</div><div class="activity"><b>호텔 휴식 권장</b><div class="meta"><strong>🚇 MRT</strong> Maxwell TE18 → Orchard TE14 직통. 환승 없이 복귀 가능.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">18:00 이후</div><div class="activity"><ul class="steps"><li>Old Hill Street Police Station(올드 힐 스트리트 경찰서)<span class="placeinfo">무지개색 창문으로 유명한 옛 경찰서 건물. 낮·해질 무렵 사진 포인트.</span></li><li>Clarke Quay(클락키)<span class="placeinfo">옛 창고·부두 지역을 식당과 야간 상권으로 재생한 곳.</span></li><li>Singapore River Cruise(싱가포르 리버 크루즈)<span class="placeinfo">옛 무역항에서 현대 Marina Bay까지 도시 변화가 한 번에 이어지는 약 40분 코스.</span></li><li>JUMBO Seafood Riverside Point 저녁</li></ul><div class="meta"><strong>🎟 River Cruise 공식</strong> 약 40분 · 성인 S$28 / 아동 3~11세 S$18. 현장구매 가능하지만 11명은 사전확보 권장.</div><div class="foodmeta meta"><strong>🍽 JUMBO 실전 주문</strong> Chilli Crab(칠리크랩) · Cereal Prawn(시리얼 프론) · Supreme Seafood Fried Rice(해산물 볶음밥) · Man Tou(만터우) 조합 우선. 11명은 게를 인원수대로 단순 배수하지 말고 사이드와 함께 나눠 주문. 가족식 총 S$550~800 정도 넉넉히 예산.</div><div class="meta"><strong>📌 후기 참고</strong> 7~8시와 점심 피크는 예약 권장. 11명 단체는 특히 사전확보. 어린아이·더위 고려 시 <b>실내 AC 좌석</b>이 편하고, 야간 분위기를 원하면 테라스. 게는 중량·시가 방식이라 주문 전 크기와 가격 확인. T Membership 할인 여부는 출발 직전 재확인.</div></div></div></div>
+</div>
+<aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
+<div class="fact"><b>왜 Chinatown에 힌두 사원과 모스크도 있을까?</b><br/>싱가포르는 처음부터 한 민족만 살던 도시가 아니라 항구를 중심으로 중국·인도·말레이·아랍 상인과 노동자가 섞여 살던 도시였다.</div>
+<div class="fact"><b>Singapore River</b><br/>옛날에는 배·창고·시장·노동자가 몰리던 ‘도시의 일터’였다. 지금의 야경을 보면서 옛 무역항을 상상하면 된다.</div>
+<div class="fact"><b>Raffles</b><br/>1819년 영국의 교역 거점 구축과 연결되는 이름. 현대 싱가포르에서는 식민지 역사로서 비판적·복합적으로 보는 대상이다.</div>
+</aside>
+</div>
 </section>
-<section id="d5" class="day">
- <div class="panel dayhead"><h2>DAY 5 · WILD SINGAPORE</h2><div class="theme">도심을 벗어나 자연과 동물을 보는 날. 리버 원더스와 동물원을 중심으로 하고, 나이트 사파리는 체력에 따라 선택하는 느슨한 일정.</div><div class="sidefact"><b>Mandai(만다이)가 뭐지?</b><br>Mandai(만다이)는 싱가포르 북부의 지역 이름이고, <b>Mandai Wildlife Reserve(만다이 야생동물 보호구역)</b>는 이 일대에 Singapore Zoo(싱가포르 동물원), River Wonders(리버 원더스), Night Safari(나이트 사파리), Bird Paradise(버드 파라다이스), Rainforest Wild Adventure(레인포레스트 와일드 어드벤처) 등을 모아 운영하는 통합 야생동물·자연 관광지다. 우리 일정에서는 River Wonders + Singapore Zoo를 기본으로 보고 Night Safari는 선택한다.</div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d5-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d5-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d5-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d5-memo" class="editorbox" hidden>
-          <textarea id="d5-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d5')">메모 저장</button></div>
-          <div id="d5-memo-view"></div>
-        </div>
-        <div id="d5-food" class="editorbox" hidden>
-          <input id="d5-food-name" placeholder="식당 이름">
-          <input id="d5-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d5','food')">식당 추가</button></div>
-          <ul id="d5-food-list" class="userlist"></ul>
-        </div>
-        <div id="d5-candidate" class="editorbox" hidden>
-          <input id="d5-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d5-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d5','candidate')">후보 추가</button></div>
-          <ul id="d5-candidate-list" class="userlist"></ul>
-        </div>
-        <button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:00 전후</div><div class="activity"><b>호텔 → Mandai</b><div class="meta"><strong>🚕 추천</strong> Grab/택시 3대. MRT+버스 환승보다 체력 절약 가치가 큼.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:00~11:30</div><div class="activity"><b>River Wonders(리버 원더스)</b><span class="placeinfo">세계의 강 생태계를 주제로 한 동물원. 판다와 실내·반실내 동선이 강점.</span><div class="meta"><strong>🎟 공식 비거주자</strong> 성인 S$45 / 아동 3~12세 S$33.</div><div class="note">Amazon River Quest는 2026.08.31~09.30 정비 휴장 예정 → 이번 여행에서는 제외.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:30~12:30</div><div class="activity"><b>점심 + 에어컨 휴식</b><div class="foodmeta meta"><strong>🍽 추천 방식</strong> Mandai 내 캐주얼 식당에서 Rice · Noodles · Chicken 등. 1인 약 S$15~25 예상. 맛집보다 체력 우선.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~17:00</div><div class="activity"><b>Singapore Zoo(싱가포르 동물원)</b><span class="placeinfo">철창보다 자연 지형을 활용한 오픈형 전시가 특징. 완주보다 핵심 동물 위주.</span><div class="meta"><strong>🎟 공식 비거주자</strong> 성인 S$49 / 아동 3~12세 S$34 · 트램 포함.</div><div class="note">전 구역 완주보다 보고 싶은 동물·프레젠테이션 중심.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00~18:30</div><div class="activity"><b>저녁 + 휴식</b><details><summary>저녁 이후 후보 일정</summary><div class="details-body"><b>Night Safari(나이트 사파리)</b><span class="placeinfo">야행성 동물을 밤에 관찰하도록 만든 야간 동물원. 낮 일정 뒤 체력 부담은 큼.</span> — 체력 충분한 가족만. 공식 비거주자 성인 S$58 / 아동 3~12세 S$41. <span class="placeinfo"><b>Creatures of the Night(크리처스 오브 더 나이트)</b> 프레젠테이션은 현재 <b>19:30 / 20:30 / 21:30</b>. 좌석 예약은 각 공연 2시간 전부터 가능.</span> 부모님·3세 가족은 호텔 선귀가 가능.</div></details></div></div></div>
-  </div>
-  <aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
-   <div class="fact"><b>Singapore Zoo의 특징</b><br>철창보다 지형·수로 등을 활용한 ‘오픈 콘셉트’ 전시로 유명하다.</div>
-   <div class="fact"><b>Night Safari</b><br>세계 최초의 야간 동물원으로 알려져 있다. 낮에 자고 밤에 활동하는 동물의 생활을 보도록 설계했다.</div>
-   <div class="fact"><b>River Wonders</b><br>강 생태계를 주제로 한 동물원. 단순 수족관이 아니라 세계 여러 강의 생태계를 연결해 보여주는 곳이다.</div>
-  </aside>
- </div>
+<section class="day" id="d5">
+<div class="panel dayhead"><h2>DAY 5 · WILD SINGAPORE</h2><div class="theme">도심을 벗어나 자연과 동물을 보는 날. 리버 원더스와 동물원을 중심으로 하고, 나이트 사파리는 체력에 따라 선택하는 느슨한 일정.</div><div class="sidefact"><b>Mandai(만다이)가 뭐지?</b><br/>Mandai(만다이)는 싱가포르 북부의 지역 이름이고, <b>Mandai Wildlife Reserve(만다이 야생동물 보호구역)</b>는 이 일대에 Singapore Zoo(싱가포르 동물원), River Wonders(리버 원더스), Night Safari(나이트 사파리), Bird Paradise(버드 파라다이스), Rainforest Wild Adventure(레인포레스트 와일드 어드벤처) 등을 모아 운영하는 통합 야생동물·자연 관광지다. 우리 일정에서는 River Wonders + Singapore Zoo를 기본으로 보고 Night Safari는 선택한다.</div>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d5-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d5-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d5-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d5-memo">
+<textarea id="d5-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d5')">메모 저장</button></div>
+<div id="d5-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d5-food">
+<input id="d5-food-name" placeholder="식당 이름"/>
+<input id="d5-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d5','food')">식당 추가</button></div>
+<ul class="userlist" id="d5-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d5-candidate">
+<input id="d5-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d5-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d5','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d5-candidate-list"></ul>
+</div>
+<button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:00 전후</div><div class="activity"><b>호텔 → Mandai</b><div class="meta"><strong>🚕 추천</strong> Grab/택시 3대. MRT+버스 환승보다 체력 절약 가치가 큼.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:00~11:30</div><div class="activity"><b>River Wonders(리버 원더스)</b><span class="placeinfo">세계의 강 생태계를 주제로 한 동물원. 판다와 실내·반실내 동선이 강점.</span><div class="meta"><strong>🎟 공식 비거주자</strong> 성인 S$45 / 아동 3~12세 S$33.</div><div class="note">Amazon River Quest는 2026.08.31~09.30 정비 휴장 예정 → 이번 여행에서는 제외.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:30~12:30</div><div class="activity"><b>점심 + 에어컨 휴식</b><div class="foodmeta meta"><strong>🍽 추천 방식</strong> Mandai 내 캐주얼 식당에서 Rice · Noodles · Chicken 등. 1인 약 S$15~25 예상. 맛집보다 체력 우선.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~17:00</div><div class="activity"><b>Singapore Zoo(싱가포르 동물원)</b><span class="placeinfo">철창보다 자연 지형을 활용한 오픈형 전시가 특징. 완주보다 핵심 동물 위주.</span><div class="meta"><strong>🎟 공식 비거주자</strong> 성인 S$49 / 아동 3~12세 S$34 · 트램 포함.</div><div class="note">전 구역 완주보다 보고 싶은 동물·프레젠테이션 중심.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00~18:30</div><div class="activity"><b>저녁 + 휴식</b><details><summary>저녁 이후 후보 일정</summary><div class="details-body"><b>Night Safari(나이트 사파리)</b><span class="placeinfo">야행성 동물을 밤에 관찰하도록 만든 야간 동물원. 낮 일정 뒤 체력 부담은 큼.</span> — 체력 충분한 가족만. 공식 비거주자 성인 S$58 / 아동 3~12세 S$41. <span class="placeinfo"><b>Creatures of the Night(크리처스 오브 더 나이트)</b> 프레젠테이션은 현재 <b>19:30 / 20:30 / 21:30</b>. 좌석 예약은 각 공연 2시간 전부터 가능.</span> 부모님·3세 가족은 호텔 선귀가 가능.</div></details></div></div></div>
+</div>
+<aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
+<div class="fact"><b>Singapore Zoo의 특징</b><br/>철창보다 지형·수로 등을 활용한 ‘오픈 콘셉트’ 전시로 유명하다.</div>
+<div class="fact"><b>Night Safari</b><br/>세계 최초의 야간 동물원으로 알려져 있다. 낮에 자고 밤에 활동하는 동물의 생활을 보도록 설계했다.</div>
+<div class="fact"><b>River Wonders</b><br/>강 생태계를 주제로 한 동물원. 단순 수족관이 아니라 세계 여러 강의 생태계를 연결해 보여주는 곳이다.</div>
+</aside>
+</div>
 </section>
-<section id="d6" class="day">
- <div class="panel dayhead"><h2>DAY 6 · LOCAL & GOODBYE</h2><div class="theme">마지막 날은 싱가포르의 다문화성을 보고 공항 자체를 관광지로 즐기는 날. 인도·말레이 문화에서 시작해 “글로벌 허브” Jewel로 마무리.</div>
-<div class="flightlive" data-flight-card="644"><div class="flightlivehead"><div class="flightlivetitle">✈️ KE644 · SIN → ICN · 22:00</div><span class="flightlivebadge">귀국일 LIVE</span></div><div class="flightlivegrid"><div class="flightliveitem"><small>터미널</small><b id="flightTerminal644">—</b></div><div class="flightliveitem"><small>체크인</small><b id="flightCounter644">—</b></div><div class="flightliveitem"><small>Gate</small><b id="flightGate644">아직 미정</b></div><div class="flightliveitem"><small>상태</small><b id="flightStatus644">확인 전</b></div></div><div class="flightlivemeta" id="flightUpdated644">업데이트 정보 없음 · Changi/대한항공 현장 정보가 최종 기준</div><div class="flightliveactions"><button type="button" onclick="refreshFlightCard('644')">↻ 새로고침</button> <a href="https://www.changiairport.com/en/fly/flight-information.html" target="_blank" rel="noopener">Changi 공식 확인 ↗</a></div></div>
-        <div class="editbar">
-          <button class="smallbtn" onclick="toggleEditor('d6-memo')">✏️ 오늘 메모</button>
-          <button class="smallbtn" onclick="toggleEditor('d6-food')">🍽 식당 추가</button>
-          <button class="smallbtn" onclick="toggleEditor('d6-candidate')">＋ 후보 일정 추가</button>
-        </div>
-        <div id="d6-memo" class="editorbox" hidden>
-          <textarea id="d6-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d6')">메모 저장</button></div>
-          <div id="d6-memo-view"></div>
-        </div>
-        <div id="d6-food" class="editorbox" hidden>
-          <input id="d6-food-name" placeholder="식당 이름">
-          <input id="d6-food-info" style="margin-top:7px" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d6','food')">식당 추가</button></div>
-          <ul id="d6-food-list" class="userlist"></ul>
-        </div>
-        <div id="d6-candidate" class="editorbox" hidden>
-          <input id="d6-candidate-name" placeholder="후보 일정 또는 장소">
-          <input id="d6-candidate-info" style="margin-top:7px" placeholder="언제 넣을지 / 조건 / 간단 메모">
-          <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d6','candidate')">후보 추가</button></div>
-          <ul id="d6-candidate-list" class="userlist"></ul>
-        </div>
-        <button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
- <div class="layout">
-  <div class="panel timeline">
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:00~09:30</div><div class="activity"><b>느긋한 조식 · 체크아웃 · 짐 보관</b></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:30~11:15</div><div class="activity"><b>Little India · 짧고 굵게</b><ul class="steps"><li>Tekka Centre(테카 센터)<span class="placeinfo">시장+호커센터. 로컬 생활감이 가장 강한 핵심.</span></li><li>Former House of Tan Teng Niah(탄텡니아 하우스)<span class="placeinfo">알록달록한 헤리티지 건물. 짧은 사진 스팟.</span></li><li>Sri Veeramakaliamman Temple(스리 비라마칼리암만 사원)<span class="placeinfo">리틀인디아의 대표 힌두 사원. 내부 관람시간은 출발 직전 재확인.</span></li></ul><div class="meta"><strong>🚇</strong> Orchard NS22 → Dhoby Ghaut NS24 → North East Line → Little India NE7.</div><details><summary>시간이 남으면</summary><div class="details-body">Indian Heritage Centre는 문화 이해용 선택지. Mustafa Centre는 대량 쇼핑 목적이 있을 때만. 출국일에는 둘 다 필수 아님.</div></details></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:15~14:00</div><div class="activity"><b>Kampong Glam · Arab Street · Bugis</b><ul class="steps"><li>Sultan Mosque(술탄 모스크)<span class="placeinfo">황금 돔이 상징인 핵심. 내부 입장 가능시간과 복장 규정은 직전 확인.</span></li><li>Bussorah Street · Muscat Street Murals<span class="placeinfo">모스크 정면 거리와 벽화 포토스팟.</span></li><li>Haji Lane(하지 레인)<span class="placeinfo">짧은 골목이라 30~60분 정도 산책·소품샵이면 충분.</span></li><li>Bugis Junction / Bugis Street<span class="placeinfo">식사·휴식·간단 쇼핑 후 호텔로 돌아가기 좋은 마무리 거점.</span></li></ul><div class="meta"><strong>🚕</strong> Little India → Kampong Glam은 짧은 택시/Grab 추천. 한낮 더위가 강하면 걷는 구간을 줄인다.</div><div class="foodmeta meta"><strong>🍽 후보</strong> Singapore Zam Zam(무르타박·비리야니) · Blanco Court Prawn Mee(새우국수, 후기 기준 현금 결제) · Fatt Choy Eating House(락사 등) · Ah Chew Desserts(부기스 디저트) · Mr. Coconut.</div><details><summary>쇼핑·성인 옵션</summary><div class="details-body">Haji Lane의 소품샵·Beryl’s Chocolate, Bugis Junction/Bugis Street는 짧은 기념품 쇼핑 후보. ATLAS Bar는 예약·드레스코드가 있는 성인 중심 공간이라 가족 메인 일정에서는 제외.</div></details></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">14:00~15:30</div><div class="activity"><b>호텔 복귀 · 짐 수령 → 공항 이동</b><div class="meta"><strong>🚐</strong> 11명+짐 → 대형차량 사전예약 우선.</div>
-   <details><summary>오전 컨디션이 다르면 대체 후보</summary><div class="details-body">Botanic Gardens(싱가포르 보타닉 가든)+Dempsey Hill(뎀시 힐), 또는 <b>호텔 생활권인 Orchard Road</b>에서 ION Orchard · TANGS · Ngee Ann City/Takashimaya 중심 실내 쇼핑. 오차드는 별도 관광일보다 비·더위·자유시간의 플랜B로 활용. Orchard Library가 2026년 하반기 재개했는지도 직전 확인.</div></details></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">16:00~18:30</div><div class="activity"><ul class="steps"><li>Jewel Changi Airport(쥬얼 창이공항)<span class="placeinfo">공항을 단순 교통시설이 아니라 관광·쇼핑 목적지로 만든 사례.</span></li><li>HSBC Rain Vortex(레인 보텍스)<span class="placeinfo">Jewel 중앙의 대형 실내 폭포. 위층과 아래층에서 시야가 달라 한 번씩 보기.</span></li><li>마지막 쇼핑</li><li>이른 저녁</li></ul><div class="foodmeta meta"><strong>🍽 추천</strong> Bak Kut Teh(바쿠테) · Kaya Toast(카야 토스트) 또는 가족식. 쇼핑: Kaya Jam · Pandan 제품 · TWG · Bacha Coffee · Salted Egg Snack.</div><div class="meta"><strong>🧳 수하물 포인트</strong> 2026년 2월 후기 기준 대한항공은 Jewel Early Check-in 대상이 아니었음. 우리 KE644도 출발 직전 Changi 공식 참여항공사·카운터 오픈시간을 다시 확인. 얼리체크인이 안 되면 짐 처리 방법을 먼저 정하고 Jewel 동선을 잡는다.</div></div></div><button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:00 전후</div><div class="activity"><b>터미널 이동 · 체크인</b></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-   <div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">21:00 전후</div><div class="activity"><b>✈️ Gate 도착 · 탑승 준비</b><div class="meta"><strong>인지 기준</strong> 22:00 출발 기준 약 60분 전에는 Gate 앞에 도착해 있기. <b>실제 Boarding Time은 탑승권·Changi 안내가 최우선.</b></div><div class="note">Jewel에서 터미널로 넘어온 뒤 쇼핑을 길게 끌지 않는 기준점.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<section class="day" id="d6">
+<div class="panel dayhead"><h2>DAY 6 · LOCAL &amp; GOODBYE</h2><div class="theme">마지막 날은 싱가포르의 다문화성을 보고 공항 자체를 관광지로 즐기는 날. 인도·말레이 문화에서 시작해 “글로벌 허브” Jewel로 마무리.</div>
+<details class="flightlive flightfold" data-flight-card="644"><summary class="flightfoldsummary"><span class="flightfoldtitle">✈️ 대한항공 · SIN → ICN · 22:00</span><span class="flightlivebadge">귀국일 LIVE</span><span class="flightchev">⌄</span></summary><div class="flightfoldbody"><div class="flightverify">항공편 번호는 예약내역 기준으로 최종 확인</div><div class="flightlivegrid"><div class="flightliveitem"><small>터미널</small><b id="flightTerminal644">—</b></div><div class="flightliveitem"><small>체크인</small><b id="flightCounter644">—</b></div><div class="flightliveitem"><small>Gate</small><b id="flightGate644">아직 미정</b></div><div class="flightliveitem"><small>상태</small><b id="flightStatus644">확인 전</b></div></div><div class="flightlivemeta" id="flightUpdated644">업데이트 정보 없음 · Changi/대한항공 현장 정보가 최종 기준</div><div class="flightliveactions"><button onclick="refreshFlightCard('644')" type="button">↻ 새로고침</button> <a href="https://www.changiairport.com/en/fly/flight-information.html" rel="noopener" target="_blank">Changi 공식 확인 ↗</a></div></div></details>
+<div class="editbar">
+<button class="smallbtn" onclick="toggleEditor('d6-memo')">✏️ 오늘 메모</button>
+<button class="smallbtn" onclick="toggleEditor('d6-food')">🍽 식당 추가</button>
+<button class="smallbtn" onclick="toggleEditor('d6-candidate')">＋ 후보 일정 추가</button>
+</div>
+<div class="editorbox" hidden="" id="d6-memo">
+<textarea id="d6-memo-input" placeholder="가족과 공유할 메모, 예약시간, 주의사항 등을 적어두세요."></textarea>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="saveMemo('d6')">메모 저장</button></div>
+<div id="d6-memo-view"></div>
+</div>
+<div class="editorbox" hidden="" id="d6-food">
+<input id="d6-food-name" placeholder="식당 이름"/>
+<input id="d6-food-info" placeholder="메뉴 / 가격 / 예약시간 / 위치 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d6','food')">식당 추가</button></div>
+<ul class="userlist" id="d6-food-list"></ul>
+</div>
+<div class="editorbox" hidden="" id="d6-candidate">
+<input id="d6-candidate-name" placeholder="후보 일정 또는 장소"/>
+<input id="d6-candidate-info" placeholder="언제 넣을지 / 조건 / 간단 메모" style="margin-top:7px"/>
+<div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d6','candidate')">후보 추가</button></div>
+<ul class="userlist" id="d6-candidate-list"></ul>
+</div>
+<button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="layout">
+<div class="panel timeline">
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:00~09:30</div><div class="activity"><b>느긋한 조식 · 체크아웃 · 짐 보관</b></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:30~11:15</div><div class="activity"><b>Little India · 짧고 굵게</b><ul class="steps"><li>Tekka Centre(테카 센터)<span class="placeinfo">시장+호커센터. 로컬 생활감이 가장 강한 핵심.</span></li><li>Former House of Tan Teng Niah(탄텡니아 하우스)<span class="placeinfo">알록달록한 헤리티지 건물. 짧은 사진 스팟.</span></li><li>Sri Veeramakaliamman Temple(스리 비라마칼리암만 사원)<span class="placeinfo">리틀인디아의 대표 힌두 사원. 내부 관람시간은 출발 직전 재확인.</span></li></ul><div class="meta"><strong>🚇</strong> Orchard NS22 → Dhoby Ghaut NS24 → North East Line → Little India NE7.</div><details><summary>시간이 남으면</summary><div class="details-body">Indian Heritage Centre는 문화 이해용 선택지. Mustafa Centre는 대량 쇼핑 목적이 있을 때만. 출국일에는 둘 다 필수 아님.</div></details></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:15~14:00</div><div class="activity"><b>Kampong Glam · Arab Street · Bugis</b><ul class="steps"><li>Sultan Mosque(술탄 모스크)<span class="placeinfo">황금 돔이 상징인 핵심. 내부 입장 가능시간과 복장 규정은 직전 확인.</span></li><li>Bussorah Street · Muscat Street Murals<span class="placeinfo">모스크 정면 거리와 벽화 포토스팟.</span></li><li>Haji Lane(하지 레인)<span class="placeinfo">짧은 골목이라 30~60분 정도 산책·소품샵이면 충분.</span></li><li>Bugis Junction / Bugis Street<span class="placeinfo">식사·휴식·간단 쇼핑 후 호텔로 돌아가기 좋은 마무리 거점.</span></li></ul><div class="meta"><strong>🚕</strong> Little India → Kampong Glam은 짧은 택시/Grab 추천. 한낮 더위가 강하면 걷는 구간을 줄인다.</div><div class="foodmeta meta"><strong>🍽 후보</strong> Singapore Zam Zam(무르타박·비리야니) · Blanco Court Prawn Mee(새우국수, 후기 기준 현금 결제) · Fatt Choy Eating House(락사 등) · Ah Chew Desserts(부기스 디저트) · Mr. Coconut.</div><details><summary>쇼핑·성인 옵션</summary><div class="details-body">Haji Lane의 소품샵·Beryl’s Chocolate, Bugis Junction/Bugis Street는 짧은 기념품 쇼핑 후보. ATLAS Bar는 예약·드레스코드가 있는 성인 중심 공간이라 가족 메인 일정에서는 제외.</div></details></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">14:00~15:30</div><div class="activity"><b>호텔 복귀 · 짐 수령 → 공항 이동</b><div class="meta"><strong>🚐</strong> 11명+짐 → 대형차량 사전예약 우선.</div>
+<details><summary>오전 컨디션이 다르면 대체 후보</summary><div class="details-body">Botanic Gardens(싱가포르 보타닉 가든)+Dempsey Hill(뎀시 힐), 또는 <b>호텔 생활권인 Orchard Road</b>에서 ION Orchard · TANGS · Ngee Ann City/Takashimaya 중심 실내 쇼핑. 오차드는 별도 관광일보다 비·더위·자유시간의 플랜B로 활용. Orchard Library가 2026년 하반기 재개했는지도 직전 확인.</div></details></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">16:00~18:30</div><div class="activity"><ul class="steps"><li>Jewel Changi Airport(쥬얼 창이공항)<span class="placeinfo">공항을 단순 교통시설이 아니라 관광·쇼핑 목적지로 만든 사례.</span></li><li>HSBC Rain Vortex(레인 보텍스)<span class="placeinfo">Jewel 중앙의 대형 실내 폭포. 위층과 아래층에서 시야가 달라 한 번씩 보기.</span></li><li>마지막 쇼핑</li><li>이른 저녁</li></ul><div class="foodmeta meta"><strong>🍽 추천</strong> Bak Kut Teh(바쿠테) · Kaya Toast(카야 토스트) 또는 가족식. 쇼핑: Kaya Jam · Pandan 제품 · TWG · Bacha Coffee · Salted Egg Snack.</div><div class="meta"><strong>🧳 수하물 포인트</strong> 2026년 2월 후기 기준 대한항공은 Jewel Early Check-in 대상이 아니었음. 우리 KE644도 출발 직전 Changi 공식 참여항공사·카운터 오픈시간을 다시 확인. 얼리체크인이 안 되면 짐 처리 방법을 먼저 정하고 Jewel 동선을 잡는다.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:00 전후</div><div class="activity"><b>터미널 이동 · 체크인</b></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">21:00 전후</div><div class="activity"><b>✈️ Gate 도착 · 탑승 준비</b><div class="meta"><strong>인지 기준</strong> 22:00 출발 기준 약 60분 전에는 Gate 앞에 도착해 있기. <b>실제 Boarding Time은 탑승권·Changi 안내가 최우선.</b></div><div class="note">Jewel에서 터미널로 넘어온 뒤 쇼핑을 길게 끌지 않는 기준점.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
 <div class="slot boardingcue"><div class="slot-top" data-detail="1"><div class="when">21:20 전후</div><div class="activity"><b>🛫 탑승 예상 구간</b><div class="note">계획용 예상치. 실제 탑승 개시·마감 시각은 당일 KE644 탑승권과 Gate 안내를 따름.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">22:00</div><div class="activity"><b>KE644 출발</b></div></div></div>
-  </div>
-  <aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
-   <div class="fact"><b>Little India</b><br>영국 식민지 시기 인도계 노동자·상인·군인 등이 모여 살며 형성된 지역. 향신료·꽃·힌두 사원에서 문화가 드러난다.</div>
-   <div class="fact"><b>Kampong Glam</b><br>말레이 왕실과 무슬림 공동체의 중심지였던 곳. Sultan Mosque가 핵심 상징이다.</div>
-   <div class="fact"><b>왜 마지막에 Jewel?</b><br>공항 자체를 쇼핑·식사·관광 공간으로 만든 싱가포르의 ‘허브 도시’ 전략을 보여준다.</div>
-  </aside>
- <button class="mealbtn" type="button" data-meal-nearby>🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+</div>
+<aside class="panel knowledge"><h3>아이들에게 설명하기</h3>
+<div class="fact"><b>Little India</b><br/>영국 식민지 시기 인도계 노동자·상인·군인 등이 모여 살며 형성된 지역. 향신료·꽃·힌두 사원에서 문화가 드러난다.</div>
+<div class="fact"><b>Kampong Glam</b><br/>말레이 왕실과 무슬림 공동체의 중심지였던 곳. Sultan Mosque가 핵심 상징이다.</div>
+<div class="fact"><b>왜 마지막에 Jewel?</b><br/>공항 자체를 쇼핑·식사·관광 공간으로 만든 싱가포르의 ‘허브 도시’ 전략을 보여준다.</div>
+</aside>
+<button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
 </section>
 <div class="panel mini" style="margin-top:12px">
- <h3>🍽 싱가포르 대표 메뉴 · QUICK GUIDE</h3>
- <div class="note">일정에 들어간 식사는 각 DAY 안에 표시. 아래는 현장에서 메뉴판을 볼 때 참고하는 범용 목록.</div>
-  <ul><li>Chilli Crab · 칠리크랩</li><li>Cereal Prawn · 시리얼 프론</li><li>Hainanese Chicken Rice</li><li>Bak Kut Teh · 바쿠테</li><li>Satay · 사테</li><li>Hokkien Mee</li><li>Murtabak · 무르타박</li><li>Kaya Toast · 카야 토스트</li></ul>
+<h3>🍽 싱가포르 대표 메뉴 · QUICK GUIDE</h3>
+<div class="note">일정에 들어간 식사는 각 DAY 안에 표시. 아래는 현장에서 메뉴판을 볼 때 참고하는 범용 목록.</div>
+<ul><li>Chilli Crab · 칠리크랩</li><li>Cereal Prawn · 시리얼 프론</li><li>Hainanese Chicken Rice</li><li>Bak Kut Teh · 바쿠테</li><li>Satay · 사테</li><li>Hokkien Mee</li><li>Murtabak · 무르타박</li><li>Kaya Toast · 카야 토스트</li></ul>
 </div>
 <section class="panel prepsection">
 <h3 style="margin-top:0">🔤 처음 나오는 약어·이름</h3>
 <div class="prepgrid">
- <div class="studybox"><b>MBS</b> · Marina Bay Sands(마리나 베이 샌즈)<br><span class="note">호텔·쇼핑몰·전망대·카지노·컨벤션이 결합된 Marina Bay 대표 복합리조트.</span></div>
- <div class="studybox"><b>USS</b> · Universal Studios Singapore(유니버설 스튜디오 싱가포르)<br><span class="note">Sentosa(센토사)의 테마파크. DAY 3의 핵심 일정.</span></div>
- <div class="studybox"><b>Mandai</b> · Mandai Wildlife Reserve(만다이 야생동물 보호구역)<br><span class="note">동물원 하나의 이름이 아니라 북부 야생동물 관광지 전체를 묶는 이름.</span></div>
- <div class="studybox"><b>SGAC</b> · SG Arrival Card(싱가포르 입국신고서)<br><span class="note">비자가 아니라 입국정보·건강신고. 도착일 포함 3일 이내에 공식 ICA에서 무료 제출.</span></div>
- <div class="studybox"><b>MRT</b> · Mass Rapid Transit(대중고속철도)<br><span class="note">싱가포르의 도시철도. 우리 호텔은 Orchard(오차드) MRT와 바로 연결되는 위치.</span></div>
- <div class="studybox"><b>ICA</b> · Immigration & Checkpoints Authority(싱가포르 이민국)<br><span class="note">SG Arrival Card와 입국 관련 공식 기관.</span></div>
+<div class="studybox"><b>MBS</b> · Marina Bay Sands(마리나 베이 샌즈)<br/><span class="note">호텔·쇼핑몰·전망대·카지노·컨벤션이 결합된 Marina Bay 대표 복합리조트.</span></div>
+<div class="studybox"><b>USS</b> · Universal Studios Singapore(유니버설 스튜디오 싱가포르)<br/><span class="note">Sentosa(센토사)의 테마파크. DAY 3의 핵심 일정.</span></div>
+<div class="studybox"><b>Mandai</b> · Mandai Wildlife Reserve(만다이 야생동물 보호구역)<br/><span class="note">동물원 하나의 이름이 아니라 북부 야생동물 관광지 전체를 묶는 이름.</span></div>
+<div class="studybox"><b>SGAC</b> · SG Arrival Card(싱가포르 입국신고서)<br/><span class="note">비자가 아니라 입국정보·건강신고. 도착일 포함 3일 이내에 공식 ICA에서 무료 제출.</span></div>
+<div class="studybox"><b>MRT</b> · Mass Rapid Transit(대중고속철도)<br/><span class="note">싱가포르의 도시철도. 우리 호텔은 Orchard(오차드) MRT와 바로 연결되는 위치.</span></div>
+<div class="studybox"><b>ICA</b> · Immigration &amp; Checkpoints Authority(싱가포르 이민국)<br/><span class="note">SG Arrival Card와 입국 관련 공식 기관.</span></div>
 </div>
 </section>
 <section class="panel datatools">
-  <h3 style="margin-top:0">💾 여행 데이터 · 공용 JSON + 내 브라우저</h3>
-  <div class="mini">
+<h3 style="margin-top:0">💾 여행 데이터 · 공용 JSON + 내 브라우저</h3>
+<div class="mini">
     GitHub Pages에 <b>trip-data.json</b>이 있으면 페이지를 열 때 자동으로 불러옵니다.
     내가 이 페이지에서 수정한 내용은 현재 브라우저에 우선 저장되며, <b>JSON 내보내기</b>를 하면
     공용 데이터와 내 수정 내용을 합친 최신본을 받을 수 있습니다. 그 파일을 GitHub에 <b>trip-data.json</b> 이름으로 올리면 가족 모두에게 반영됩니다.
   </div>
-  <div id="sharedDataStatus" class="sharedstatus warn">공용 데이터 확인 중…</div>
-  <div class="editbar">
-    <button class="editbtn primary" onclick="exportData()">최신 여행 데이터 JSON 내보내기</button>
-    <label class="editbtn" style="cursor:pointer">내 JSON 불러오기<input id="importFile" type="file" accept=".json,application/json" hidden onchange="importData(event)"></label>
-    <button class="editbtn" onclick="reloadSharedData()">공용 JSON 다시 불러오기</button>
-    <button class="editbtn" onclick="clearAllData()">이 브라우저 수정내용 초기화</button>
-  </div>
-  <div id="dataStatus" class="statusmsg"></div>
-</section>
-<div class="footer">v14.1 · 일정 상세팝업·식당버튼 수정</div>
+<div class="sharedstatus warn" id="sharedDataStatus">공용 데이터 확인 중…</div>
+<div class="editbar">
+<button class="editbtn primary" onclick="exportData()">최신 여행 데이터 JSON 내보내기</button>
+<label class="editbtn" style="cursor:pointer">내 JSON 불러오기<input accept=".json,application/json" hidden="" id="importFile" onchange="importData(event)" type="file"/></label>
+<button class="editbtn" onclick="reloadSharedData()">공용 JSON 다시 불러오기</button>
+<button class="editbtn" onclick="clearAllData()">이 브라우저 수정내용 초기화</button>
 </div>
-<div id="prepview" class="prepview">
+<div class="statusmsg" id="dataStatus"></div>
+</section>
+<div class="footer">v14.2 · 항공정보 접기 · 일정 다중위치 지도</div>
+</div>
+<div class="prepview" id="prepview">
 <section class="panel studyintro">
- <div class="kicker">PRE-TRIP CHECKLIST · LOCAL SAVE</div>
- <h2 style="margin:0">🧳 싱가포르 가족여행 준비물 & 출발 전 체크리스트</h2>
- <div class="sub">체크 상태는 이 기기의 브라우저에만 저장됩니다. 출국 후에는 이 준비 탭이 자동으로 숨겨집니다.</div>
+<div class="kicker">PRE-TRIP CHECKLIST · LOCAL SAVE</div>
+<h2 style="margin:0">🧳 싱가포르 가족여행 준비물 &amp; 출발 전 체크리스트</h2>
+<div class="sub">체크 상태는 이 기기의 브라우저에만 저장됩니다. 출국 후에는 이 준비 탭이 자동으로 숨겨집니다.</div>
 </section>
 <section class="panel prepsection">
 <h2>1. 출발 전에 미리 확인 · 확정할 일</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>🛂 여권 · 입국</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="passport_all"><span><b>온 가족 여권 확인</b> — 만료일(입국일 기준 6개월 이상) · 영문명 · 여권번호 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="visa_check"><span><b>싱가포르 비자 필요 여부 확인</b> — 가족 전원 국적/여권 기준으로 최종 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="sgac_all"><span><b>SG Arrival Card(입국신고서) 확인·제출</b> <span class="deadline">9/17~9/19</span><br><span class="note">11명 전원 · 공식 ICA에서 무료 제출 · 도착일 포함 3일 이내</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="passport_copy"><span>여권 사본/사진을 휴대폰 또는 가족 공유공간에 보관</span></label>
- </div>
-
- <div class="checkgroup"><h3>✈️ 항공 · 숙소</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="flight_status"><span><b>항공권 예약 상태 확인</b> — 11명 영문명 · 항공편 · 출도착 시간 · 터미널</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="flight_baggage"><span>좌석 지정 여부 · 기내/위탁 수하물 규정 및 허용량 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="hotel_detail"><span><b>숙소 예약 상세내역 확인</b> — Singapore Marriott Tang Plaza Hotel · 4객실 · 투숙자명 · 체크인/아웃 · 객실/조식 조건</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="booking_capture"><span>항공권·숙소 예약번호/바우처를 대표자 휴대폰에 캡처</span></label>
- </div>
-
- <div class="checkgroup"><h3>🗓 일정 · 관광지</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="attraction_closed"><span><b>여행 일정 내 관광지 휴무일·운영시간 확인</b><br><span class="note">9/20~9/24 실제 방문일 기준 · 임시휴장/정비/쇼 시간 포함</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="attraction_booking"><span><b>관광지별 사전예약 필요 여부 확인</b> — 날짜지정/시간지정 여부 포함</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="attraction_site"><span><b>관광지 예약·결제 사이트와 방법 확인</b> — 공식사이트/공식판매처 우선, 11명 결제·취소조건 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="attraction_pay"><span>USS · Gardens by the Bay · Mandai · River Cruise 등 예약/결제 완료 여부 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="restaurant_res"><span>JUMBO 등 인원 많은 식당 사전예약 필요 여부 확인</span></label>
- </div>
-
- <div class="checkgroup"><h3>🚕 공항 · 현지 이동</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="home_airport"><span><b>집 → 인천공항 이동 방식 확정 및 예약</b> — 픽업시간 · 차량 · 기사 연락처 · 가족별 탑승차량 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="changi_hotel"><span><b>창이공항 → 숙소 이동 방식 확정 및 예약</b> — 11명+캐리어+유모차 고려, 대형차량/택시·Grab 분산 비교</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="grab_method"><span><b>싱가포르 Grab 사용방법 확인</b> — 앱 설치 · 가입 · 카드등록 · 차량 호출/탑승 위치 · 결제방법</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kids_transport"><span>3세 아이 2명 차량 탑승/카시트 규정 및 대중교통 이용 방식 최종 확인</span></label>
- </div>
-
- <div class="checkgroup"><h3>💳 카드 · 통신 · 보험</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="card_overseas"><span><b>신용카드 해외사용 확인</b> — 해외결제 차단 여부 · 비밀번호 · 예비카드 준비</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="roaming"><span><b>휴대폰 로밍/eSIM/유심 확인</b> — 가족별 사용할 방식과 개통방법 확정</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="insurance"><span><b>여행자보험 확인</b> — 가족 전원 가입 여부 · 보장기간/내용 · 보험사 연락처 · 증권 저장</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="payment_backup"><span>현지 결제용 카드 2장 이상 + 소액 SGD 준비 여부 확인</span></label>
- </div>
-
- <div class="checkgroup"><h3>📱 출발 전 디지털 보관</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="offline_docs"><span>여권 사본 · 항공 · 호텔 · 보험 · 관광지 바우처를 오프라인에서도 열 수 있게 저장</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="family_share"><span>가족 단톡방에 항공편 · 호텔 주소 · 공항차량 연락처 · 주요 예약시간 공유</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="apps_ready"><span>Grab · 항공사 · 지도 등 여행 중 사용할 앱 로그인/업데이트 확인</span></label>
- </div>
+<div class="checkgroup"><h3>🛂 여권 · 입국</h3>
+<label class="localcheck"><input data-prep="passport_all" type="checkbox"/><span><b>온 가족 여권 확인</b> — 만료일(입국일 기준 6개월 이상) · 영문명 · 여권번호 확인</span></label>
+<label class="localcheck"><input data-prep="visa_check" type="checkbox"/><span><b>싱가포르 비자 필요 여부 확인</b> — 가족 전원 국적/여권 기준으로 최종 확인</span></label>
+<label class="localcheck"><input data-prep="sgac_all" type="checkbox"/><span><b>SG Arrival Card(입국신고서) 확인·제출</b> <span class="deadline">9/17~9/19</span><br/><span class="note">11명 전원 · 공식 ICA에서 무료 제출 · 도착일 포함 3일 이내</span></span></label>
+<label class="localcheck"><input data-prep="passport_copy" type="checkbox"/><span>여권 사본/사진을 휴대폰 또는 가족 공유공간에 보관</span></label>
+</div>
+<div class="checkgroup"><h3>✈️ 항공 · 숙소</h3>
+<label class="localcheck"><input data-prep="flight_status" type="checkbox"/><span><b>항공권 예약 상태 확인</b> — 11명 영문명 · 항공편 · 출도착 시간 · 터미널</span></label>
+<label class="localcheck"><input data-prep="flight_baggage" type="checkbox"/><span>좌석 지정 여부 · 기내/위탁 수하물 규정 및 허용량 확인</span></label>
+<label class="localcheck"><input data-prep="hotel_detail" type="checkbox"/><span><b>숙소 예약 상세내역 확인</b> — Singapore Marriott Tang Plaza Hotel · 4객실 · 투숙자명 · 체크인/아웃 · 객실/조식 조건</span></label>
+<label class="localcheck"><input data-prep="booking_capture" type="checkbox"/><span>항공권·숙소 예약번호/바우처를 대표자 휴대폰에 캡처</span></label>
+</div>
+<div class="checkgroup"><h3>🗓 일정 · 관광지</h3>
+<label class="localcheck"><input data-prep="attraction_closed" type="checkbox"/><span><b>여행 일정 내 관광지 휴무일·운영시간 확인</b><br/><span class="note">9/20~9/24 실제 방문일 기준 · 임시휴장/정비/쇼 시간 포함</span></span></label>
+<label class="localcheck"><input data-prep="attraction_booking" type="checkbox"/><span><b>관광지별 사전예약 필요 여부 확인</b> — 날짜지정/시간지정 여부 포함</span></label>
+<label class="localcheck"><input data-prep="attraction_site" type="checkbox"/><span><b>관광지 예약·결제 사이트와 방법 확인</b> — 공식사이트/공식판매처 우선, 11명 결제·취소조건 확인</span></label>
+<label class="localcheck"><input data-prep="attraction_pay" type="checkbox"/><span>USS · Gardens by the Bay · Mandai · River Cruise 등 예약/결제 완료 여부 확인</span></label>
+<label class="localcheck"><input data-prep="restaurant_res" type="checkbox"/><span>JUMBO 등 인원 많은 식당 사전예약 필요 여부 확인</span></label>
+</div>
+<div class="checkgroup"><h3>🚕 공항 · 현지 이동</h3>
+<label class="localcheck"><input data-prep="home_airport" type="checkbox"/><span><b>집 → 인천공항 이동 방식 확정 및 예약</b> — 픽업시간 · 차량 · 기사 연락처 · 가족별 탑승차량 확인</span></label>
+<label class="localcheck"><input data-prep="changi_hotel" type="checkbox"/><span><b>창이공항 → 숙소 이동 방식 확정 및 예약</b> — 11명+캐리어+유모차 고려, 대형차량/택시·Grab 분산 비교</span></label>
+<label class="localcheck"><input data-prep="grab_method" type="checkbox"/><span><b>싱가포르 Grab 사용방법 확인</b> — 앱 설치 · 가입 · 카드등록 · 차량 호출/탑승 위치 · 결제방법</span></label>
+<label class="localcheck"><input data-prep="kids_transport" type="checkbox"/><span>3세 아이 2명 차량 탑승/카시트 규정 및 대중교통 이용 방식 최종 확인</span></label>
+</div>
+<div class="checkgroup"><h3>💳 카드 · 통신 · 보험</h3>
+<label class="localcheck"><input data-prep="card_overseas" type="checkbox"/><span><b>신용카드 해외사용 확인</b> — 해외결제 차단 여부 · 비밀번호 · 예비카드 준비</span></label>
+<label class="localcheck"><input data-prep="roaming" type="checkbox"/><span><b>휴대폰 로밍/eSIM/유심 확인</b> — 가족별 사용할 방식과 개통방법 확정</span></label>
+<label class="localcheck"><input data-prep="insurance" type="checkbox"/><span><b>여행자보험 확인</b> — 가족 전원 가입 여부 · 보장기간/내용 · 보험사 연락처 · 증권 저장</span></label>
+<label class="localcheck"><input data-prep="payment_backup" type="checkbox"/><span>현지 결제용 카드 2장 이상 + 소액 SGD 준비 여부 확인</span></label>
+</div>
+<div class="checkgroup"><h3>📱 출발 전 디지털 보관</h3>
+<label class="localcheck"><input data-prep="offline_docs" type="checkbox"/><span>여권 사본 · 항공 · 호텔 · 보험 · 관광지 바우처를 오프라인에서도 열 수 있게 저장</span></label>
+<label class="localcheck"><input data-prep="family_share" type="checkbox"/><span>가족 단톡방에 항공편 · 호텔 주소 · 공항차량 연락처 · 주요 예약시간 공유</span></label>
+<label class="localcheck"><input data-prep="apps_ready" type="checkbox"/><span>Grab · 항공사 · 지도 등 여행 중 사용할 앱 로그인/업데이트 확인</span></label>
+</div>
 </div>
 </section>
-
 <section class="panel prepsection">
 <h2>2. 돈 · 통신 · 휴대폰</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>결제</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="sgdcash"><span>SGD(싱가포르 달러) 소액 현금 준비</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cards"><span>해외결제 카드 2종 이상 분산 보관</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cardsetting"><span>해외결제 차단 여부·수수료·비밀번호 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="commonfund"><span>가족 공금 운영 방식/대표 결제자 정하기</span></label>
- </div>
- <div class="checkgroup"><h3>통신·앱</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="esim"><span>eSIM 또는 로밍 준비/설치</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="grab"><span>Grab(그랩) 설치·로그인·카드 등록 + 한국에서 호출 화면 한번 연습</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="grabpromo"><span>Grab 혜택/Travel Pass/카드 프로모션은 출발 직전 확인 <span class="note">호출 전 ‘혜택’ 적용 여부, Standard/Premium 차량 종류 확인</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="maps"><span>Google Maps(구글 지도) 주요 장소 저장</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="offline"><span>여행 HTML + 최신 JSON을 휴대폰에 오프라인 저장</span></label>
- </div>
+<div class="checkgroup"><h3>결제</h3>
+<label class="localcheck"><input data-prep="sgdcash" type="checkbox"/><span>SGD(싱가포르 달러) 소액 현금 준비</span></label>
+<label class="localcheck"><input data-prep="cards" type="checkbox"/><span>해외결제 카드 2종 이상 분산 보관</span></label>
+<label class="localcheck"><input data-prep="cardsetting" type="checkbox"/><span>해외결제 차단 여부·수수료·비밀번호 확인</span></label>
+<label class="localcheck"><input data-prep="commonfund" type="checkbox"/><span>가족 공금 운영 방식/대표 결제자 정하기</span></label>
+</div>
+<div class="checkgroup"><h3>통신·앱</h3>
+<label class="localcheck"><input data-prep="esim" type="checkbox"/><span>eSIM 또는 로밍 준비/설치</span></label>
+<label class="localcheck"><input data-prep="grab" type="checkbox"/><span>Grab(그랩) 설치·로그인·카드 등록 + 한국에서 호출 화면 한번 연습</span></label>
+<label class="localcheck"><input data-prep="grabpromo" type="checkbox"/><span>Grab 혜택/Travel Pass/카드 프로모션은 출발 직전 확인 <span class="note">호출 전 ‘혜택’ 적용 여부, Standard/Premium 차량 종류 확인</span></span></label>
+<label class="localcheck"><input data-prep="maps" type="checkbox"/><span>Google Maps(구글 지도) 주요 장소 저장</span></label>
+<label class="localcheck"><input data-prep="offline" type="checkbox"/><span>여행 HTML + 최신 JSON을 휴대폰에 오프라인 저장</span></label>
+</div>
 </div>
 </section>
 <section class="panel prepsection">
 <h2>3. 가방별 준비물</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>🎒 배낭 / 개인 휴대가방</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_passport"><span>여권 / 지갑 / 신용카드·트래블카드 / 소액 현금</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_phone"><span>휴대폰 / 이어폰 / 충전케이블</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_power"><span>보조배터리 <span class="note">위탁하지 않고 기내 휴대. 항공사 규정 재확인</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_docs"><span>항공·호텔·보험·관광지 예약 바우처 및 호텔 주소 캡처</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_daily"><span>물티슈 / 휴지 / 손소독제 / 작은 우산 / 선글라스 / 얇은 겉옷</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="carry_kids"><span>아이 간식 / 물병 / 당일 필요한 기저귀·물티슈</span></label>
- </div>
- <div class="checkgroup"><h3>🧳 기내 캐리어</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_clothes"><span>가족별 갈아입을 옷 1벌 + 아이 여벌옷 1~2벌</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_toiletry"><span>기내용 세면도구 소량 <span class="note">액체류 기내 반입 기준 확인</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_medicine"><span>필수약 / 개인 처방약 / 안경·렌즈</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_kids"><span>아이 장난감·태블릿·이어폰 / 기내 간식 / 작은 담요·목베개</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_elec"><span>충전기 / 멀티충전기 / Type G 여행용 어댑터</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="cabin_swim"><span>필요 시 수영복 등 도착 직후 사용할 물품</span></label>
- </div>
- <div class="checkgroup"><h3>🛄 위탁수하물 캐리어</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="check_clothes"><span>옷 / 속옷 / 양말 / 잠옷 / 신발·샌들</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="check_toiletry"><span>큰 용량 세면도구 / 화장품 / 선크림 / 샴푸·바디용품</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="check_kids"><span>여분 기저귀 / 아이 여벌옷 / 수영용품</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="check_laundry"><span>빨래망 / 지퍼백 / 비닐봉투 / 세탁세제 소량</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="check_space"><span>접이식 여분가방 + 기념품·쇼핑용 여유 공간</span></label>
- </div>
- <div class="checkgroup"><h3>🔌 전자기기 파우치</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="elec_multi"><span>멀티충전기 / USB-C 등 가족별 충전케이블</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="elec_adapter"><span>싱가포르 Type G(영국식 3핀) 어댑터</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="elec_devices"><span>태블릿 / 스마트워치 / 카메라 등 충전기</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="elec_powerbank"><span>보조배터리·예비배터리는 기내 휴대 위치로 이동</span></label>
- </div>
+<div class="checkgroup"><h3>🎒 배낭 / 개인 휴대가방</h3>
+<label class="localcheck"><input data-prep="carry_passport" type="checkbox"/><span>여권 / 지갑 / 신용카드·트래블카드 / 소액 현금</span></label>
+<label class="localcheck"><input data-prep="carry_phone" type="checkbox"/><span>휴대폰 / 이어폰 / 충전케이블</span></label>
+<label class="localcheck"><input data-prep="carry_power" type="checkbox"/><span>보조배터리 <span class="note">위탁하지 않고 기내 휴대. 항공사 규정 재확인</span></span></label>
+<label class="localcheck"><input data-prep="carry_docs" type="checkbox"/><span>항공·호텔·보험·관광지 예약 바우처 및 호텔 주소 캡처</span></label>
+<label class="localcheck"><input data-prep="carry_daily" type="checkbox"/><span>물티슈 / 휴지 / 손소독제 / 작은 우산 / 선글라스 / 얇은 겉옷</span></label>
+<label class="localcheck"><input data-prep="carry_kids" type="checkbox"/><span>아이 간식 / 물병 / 당일 필요한 기저귀·물티슈</span></label>
+</div>
+<div class="checkgroup"><h3>🧳 기내 캐리어</h3>
+<label class="localcheck"><input data-prep="cabin_clothes" type="checkbox"/><span>가족별 갈아입을 옷 1벌 + 아이 여벌옷 1~2벌</span></label>
+<label class="localcheck"><input data-prep="cabin_toiletry" type="checkbox"/><span>기내용 세면도구 소량 <span class="note">액체류 기내 반입 기준 확인</span></span></label>
+<label class="localcheck"><input data-prep="cabin_medicine" type="checkbox"/><span>필수약 / 개인 처방약 / 안경·렌즈</span></label>
+<label class="localcheck"><input data-prep="cabin_kids" type="checkbox"/><span>아이 장난감·태블릿·이어폰 / 기내 간식 / 작은 담요·목베개</span></label>
+<label class="localcheck"><input data-prep="cabin_elec" type="checkbox"/><span>충전기 / 멀티충전기 / Type G 여행용 어댑터</span></label>
+<label class="localcheck"><input data-prep="cabin_swim" type="checkbox"/><span>필요 시 수영복 등 도착 직후 사용할 물품</span></label>
+</div>
+<div class="checkgroup"><h3>🛄 위탁수하물 캐리어</h3>
+<label class="localcheck"><input data-prep="check_clothes" type="checkbox"/><span>옷 / 속옷 / 양말 / 잠옷 / 신발·샌들</span></label>
+<label class="localcheck"><input data-prep="check_toiletry" type="checkbox"/><span>큰 용량 세면도구 / 화장품 / 선크림 / 샴푸·바디용품</span></label>
+<label class="localcheck"><input data-prep="check_kids" type="checkbox"/><span>여분 기저귀 / 아이 여벌옷 / 수영용품</span></label>
+<label class="localcheck"><input data-prep="check_laundry" type="checkbox"/><span>빨래망 / 지퍼백 / 비닐봉투 / 세탁세제 소량</span></label>
+<label class="localcheck"><input data-prep="check_space" type="checkbox"/><span>접이식 여분가방 + 기념품·쇼핑용 여유 공간</span></label>
+</div>
+<div class="checkgroup"><h3>🔌 전자기기 파우치</h3>
+<label class="localcheck"><input data-prep="elec_multi" type="checkbox"/><span>멀티충전기 / USB-C 등 가족별 충전케이블</span></label>
+<label class="localcheck"><input data-prep="elec_adapter" type="checkbox"/><span>싱가포르 Type G(영국식 3핀) 어댑터</span></label>
+<label class="localcheck"><input data-prep="elec_devices" type="checkbox"/><span>태블릿 / 스마트워치 / 카메라 등 충전기</span></label>
+<label class="localcheck"><input data-prep="elec_powerbank" type="checkbox"/><span>보조배터리·예비배터리는 기내 휴대 위치로 이동</span></label>
+</div>
 </div>
 </section>
-
 <section class="panel prepsection">
 <h2>4. 아이 · 상비약 · 더위/비 대비</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>👧 아이 전용</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="stroller1"><span>유모차 1</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="stroller2"><span>유모차 2 <span class="note">3세 2명이므로 현실적으로 2대 권장</span></span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidclothes"><span>아이 여벌옷 / 속옷 / 얇은 겉옷</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidsnack"><span>아이 간식 / 물병 / 물티슈 / 필요 시 기저귀</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidplay"><span>태블릿 / 이어폰 / 작은 장난감</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="kidmed"><span>아이 상비약 / 체온계 <span class="note">성인 약과 구분해 보관</span></span></label>
- </div>
- <div class="checkgroup"><h3>💊 상비약</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="med_fever"><span>해열제 / 진통제 / 감기약</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="med_stomach"><span>소화제 / 지사제 / 멀미약</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="med_firstaid"><span>밴드 / 연고 / 모기기피제 / 벌레물림약</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="med_personal"><span>개인 처방약 및 평소 복용약</span></label>
- </div>
- <div class="checkgroup"><h3>☀️ 더위 · 비 · 냉방</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="umbrella"><span>접이식 우산 또는 가벼운 우비</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="sun"><span>선크림 / 모자 / 선글라스</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="bottle"><span>물병 / 작은 손수건 / 휴지·물티슈 / 지퍼백</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="layer"><span>실내 냉방 대비 얇은 겉옷</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="shoes"><span>오래 걸어도 편한 신발</span></label>
- </div>
- <div class="checkgroup"><h3>👨‍👩‍👧‍👦 가족 공용</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="docs"><span>호텔·항공·예약 바우처 대표자 휴대폰 저장</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="contacts"><span>가족 단톡방에 항공편/호텔 주소/대표 연락처 고정</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="lounge"><span>인천공항 라운지 카드·동반자 조건·잔여 이용횟수 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="dutyfree"><span>면세점 주문/수령할 물품 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="bagcount"><span>캐리어·유모차 등 위탁/휴대 짐 개수 기록</span></label>
- </div>
+<div class="checkgroup"><h3>👧 아이 전용</h3>
+<label class="localcheck"><input data-prep="stroller1" type="checkbox"/><span>유모차 1</span></label>
+<label class="localcheck"><input data-prep="stroller2" type="checkbox"/><span>유모차 2 <span class="note">3세 2명이므로 현실적으로 2대 권장</span></span></label>
+<label class="localcheck"><input data-prep="kidclothes" type="checkbox"/><span>아이 여벌옷 / 속옷 / 얇은 겉옷</span></label>
+<label class="localcheck"><input data-prep="kidsnack" type="checkbox"/><span>아이 간식 / 물병 / 물티슈 / 필요 시 기저귀</span></label>
+<label class="localcheck"><input data-prep="kidplay" type="checkbox"/><span>태블릿 / 이어폰 / 작은 장난감</span></label>
+<label class="localcheck"><input data-prep="kidmed" type="checkbox"/><span>아이 상비약 / 체온계 <span class="note">성인 약과 구분해 보관</span></span></label>
+</div>
+<div class="checkgroup"><h3>💊 상비약</h3>
+<label class="localcheck"><input data-prep="med_fever" type="checkbox"/><span>해열제 / 진통제 / 감기약</span></label>
+<label class="localcheck"><input data-prep="med_stomach" type="checkbox"/><span>소화제 / 지사제 / 멀미약</span></label>
+<label class="localcheck"><input data-prep="med_firstaid" type="checkbox"/><span>밴드 / 연고 / 모기기피제 / 벌레물림약</span></label>
+<label class="localcheck"><input data-prep="med_personal" type="checkbox"/><span>개인 처방약 및 평소 복용약</span></label>
+</div>
+<div class="checkgroup"><h3>☀️ 더위 · 비 · 냉방</h3>
+<label class="localcheck"><input data-prep="umbrella" type="checkbox"/><span>접이식 우산 또는 가벼운 우비</span></label>
+<label class="localcheck"><input data-prep="sun" type="checkbox"/><span>선크림 / 모자 / 선글라스</span></label>
+<label class="localcheck"><input data-prep="bottle" type="checkbox"/><span>물병 / 작은 손수건 / 휴지·물티슈 / 지퍼백</span></label>
+<label class="localcheck"><input data-prep="layer" type="checkbox"/><span>실내 냉방 대비 얇은 겉옷</span></label>
+<label class="localcheck"><input data-prep="shoes" type="checkbox"/><span>오래 걸어도 편한 신발</span></label>
+</div>
+<div class="checkgroup"><h3>👨‍👩‍👧‍👦 가족 공용</h3>
+<label class="localcheck"><input data-prep="docs" type="checkbox"/><span>호텔·항공·예약 바우처 대표자 휴대폰 저장</span></label>
+<label class="localcheck"><input data-prep="contacts" type="checkbox"/><span>가족 단톡방에 항공편/호텔 주소/대표 연락처 고정</span></label>
+<label class="localcheck"><input data-prep="lounge" type="checkbox"/><span>인천공항 라운지 카드·동반자 조건·잔여 이용횟수 확인</span></label>
+<label class="localcheck"><input data-prep="dutyfree" type="checkbox"/><span>면세점 주문/수령할 물품 확인</span></label>
+<label class="localcheck"><input data-prep="bagcount" type="checkbox"/><span>캐리어·유모차 등 위탁/휴대 짐 개수 기록</span></label>
+</div>
 </div>
 </section>
-
 <section class="panel prepsection">
 <h2>5. 출발 전날 · 수하물 최종 점검</h2>
 <div class="prepgrid">
- <div class="checkgroup"><h3>✈️ 기내/위탁 분리</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="liquid"><span>기내 액체류 용량·포장 기준 확인, 초과 물품은 위탁수하물로 분리</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="powercarry"><span>보조배터리·예비배터리 기내 휴대, 항공사 용량/포장 규정 재확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="sharp"><span>가위·칼 등 날카로운 물품은 위탁 여부 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="restrictedfood"><span>육가공품 등 출입국 반입 제한 식품 없는지 확인</span></label>
- </div>
- <div class="checkgroup"><h3>☑️ 출발 전날 마지막 확인</h3>
-  <label class="localcheck"><input type="checkbox" data-prep="final_passport"><span>온 가족 여권 실제로 다시 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="final_power"><span>보조배터리를 배낭/기내가방으로 이동</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="bagweight"><span>항공사 위탁/기내 수하물 규격·무게 최종 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="baglabel"><span>캐리어 이름표·연락처 및 가족별 짐 개수 확인</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="final_charge"><span>휴대폰 / 태블릿 / 보조배터리 충전 완료</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="final_kids"><span>아이 약·간식·기저귀·여벌옷 기내가방에 충분히 준비</span></label>
-  <label class="localcheck"><input type="checkbox" data-prep="final_docs"><span>SG Arrival Card / 항공 / 호텔 / 보험 / 예약 바우처 최종 확인</span></label>
- </div>
+<div class="checkgroup"><h3>✈️ 기내/위탁 분리</h3>
+<label class="localcheck"><input data-prep="liquid" type="checkbox"/><span>기내 액체류 용량·포장 기준 확인, 초과 물품은 위탁수하물로 분리</span></label>
+<label class="localcheck"><input data-prep="powercarry" type="checkbox"/><span>보조배터리·예비배터리 기내 휴대, 항공사 용량/포장 규정 재확인</span></label>
+<label class="localcheck"><input data-prep="sharp" type="checkbox"/><span>가위·칼 등 날카로운 물품은 위탁 여부 확인</span></label>
+<label class="localcheck"><input data-prep="restrictedfood" type="checkbox"/><span>육가공품 등 출입국 반입 제한 식품 없는지 확인</span></label>
+</div>
+<div class="checkgroup"><h3>☑️ 출발 전날 마지막 확인</h3>
+<label class="localcheck"><input data-prep="final_passport" type="checkbox"/><span>온 가족 여권 실제로 다시 확인</span></label>
+<label class="localcheck"><input data-prep="final_power" type="checkbox"/><span>보조배터리를 배낭/기내가방으로 이동</span></label>
+<label class="localcheck"><input data-prep="bagweight" type="checkbox"/><span>항공사 위탁/기내 수하물 규격·무게 최종 확인</span></label>
+<label class="localcheck"><input data-prep="baglabel" type="checkbox"/><span>캐리어 이름표·연락처 및 가족별 짐 개수 확인</span></label>
+<label class="localcheck"><input data-prep="final_charge" type="checkbox"/><span>휴대폰 / 태블릿 / 보조배터리 충전 완료</span></label>
+<label class="localcheck"><input data-prep="final_kids" type="checkbox"/><span>아이 약·간식·기저귀·여벌옷 기내가방에 충분히 준비</span></label>
+<label class="localcheck"><input data-prep="final_docs" type="checkbox"/><span>SG Arrival Card / 항공 / 호텔 / 보험 / 예약 바우처 최종 확인</span></label>
+</div>
 </div>
 </section>
 <section class="panel prepsection">
 <h2>6. 인천공항에서 마지막으로</h2>
 <div class="checkgroup">
- <label class="localcheck"><input type="checkbox" data-prep="airportall"><span>11명 전원 도착 확인</span></label>
- <label class="localcheck"><input type="checkbox" data-prep="checkin"><span>체크인·위탁수하물 완료 / 탑승권 확인</span></label>
- <label class="localcheck"><input type="checkbox" data-prep="gate"><span>탑승구와 Boarding Time(탑승 시작시간) 먼저 확인</span></label>
- <label class="localcheck"><input type="checkbox" data-prep="dutyreceive"><span>예약 면세품 수령</span></label>
- <label class="localcheck"><input type="checkbox" data-prep="loungeuse"><span>시간 여유 있을 때 라운지 이용</span></label>
- <label class="localcheck"><input type="checkbox" data-prep="arrivalready"><span>도착 후 사용할 Grab/차량 연락처 + Singapore Marriott Tang Plaza Hotel 주소 준비</span></label>
+<label class="localcheck"><input data-prep="airportall" type="checkbox"/><span>11명 전원 도착 확인</span></label>
+<label class="localcheck"><input data-prep="checkin" type="checkbox"/><span>체크인·위탁수하물 완료 / 탑승권 확인</span></label>
+<label class="localcheck"><input data-prep="gate" type="checkbox"/><span>탑승구와 Boarding Time(탑승 시작시간) 먼저 확인</span></label>
+<label class="localcheck"><input data-prep="dutyreceive" type="checkbox"/><span>예약 면세품 수령</span></label>
+<label class="localcheck"><input data-prep="loungeuse" type="checkbox"/><span>시간 여유 있을 때 라운지 이용</span></label>
+<label class="localcheck"><input data-prep="arrivalready" type="checkbox"/><span>도착 후 사용할 Grab/차량 연락처 + Singapore Marriott Tang Plaza Hotel 주소 준비</span></label>
 </div>
 <div class="childline"><b>운영 팁:</b> 11명이므로 “각자 챙기기”보다 가족 단위 책임자를 두는 게 편하다. 각 가족이 자기 여권·아이·짐을 확인하고, 대표 1명이 전체 인원과 차량/예약만 최종 확인.</div>
 </section>
 <div class="footer">PREP · 체크 상태는 현재 기기의 localStorage에만 저장</div>
 </div>
-<div id="phraseview" class="phraseview">
+<div class="phraseview" id="phraseview">
 <section class="panel studyintro">
- <div class="kicker">LOCAL PHRASES · 4 LANGUAGES · TAP TO SHOW</div>
- <h2 style="margin:0">💬 싱가포르 여행에서 바로 쓰는 표현</h2>
- <div class="sub">같은 여행 표현을 영어 · 중국어(간체) · 말레이어 · 타밀어로 모두 제공합니다. 언어를 고른 뒤 표현을 누르면 원어가 크게 뜹니다.</div>
- <div class="langswitch" id="langSwitch">
-  <button class="langbtn active" data-lang="en">🇬🇧 English</button>
-  <button class="langbtn" data-lang="zh">🇨🇳 中文</button>
-  <button class="langbtn" data-lang="ms">🇲🇾 Bahasa Melayu</button>
-  <button class="langbtn" data-lang="ta">🇮🇳 தமிழ்</button>
- </div>
- <div class="phrasehint">💡 팝업은 <b>원어 → 발음 → 한국어 뜻</b> 순서. 영어는 발음 표기를 생략합니다. 중국어는 보통화 기준 간체/병음, 타밀어는 실제 타밀 문자로 표시합니다.</div>
+<div class="kicker">LOCAL PHRASES · 4 LANGUAGES · TAP TO SHOW</div>
+<h2 style="margin:0">💬 싱가포르 여행에서 바로 쓰는 표현</h2>
+<div class="sub">같은 여행 표현을 영어 · 중국어(간체) · 말레이어 · 타밀어로 모두 제공합니다. 언어를 고른 뒤 표현을 누르면 원어가 크게 뜹니다.</div>
+<div class="langswitch" id="langSwitch">
+<button class="langbtn active" data-lang="en">🇬🇧 English</button>
+<button class="langbtn" data-lang="zh">🇨🇳 中文</button>
+<button class="langbtn" data-lang="ms">🇲🇾 Bahasa Melayu</button>
+<button class="langbtn" data-lang="ta">🇮🇳 தமிழ்</button>
+</div>
+<div class="phrasehint">💡 팝업은 <b>원어 → 발음 → 한국어 뜻</b> 순서. 영어는 발음 표기를 생략합니다. 중국어는 보통화 기준 간체/병음, 타밀어는 실제 타밀 문자로 표시합니다.</div>
 </section>
 <div class="phrasegrid" id="phraseGrid"></div>
 <section class="phrasecard">
- <h3>🇸🇬 Singlish · 알아들으면 재미있는 말</h3>
- <div class="phrase" data-static-show data-icon="👌" data-pron="캔 / 캔 라"><b>Can / Can lah</b><small>돼요 / 좋아요. 현지에서는 “Can”만으로도 자주 답합니다.</small></div>
- <div class="phrase" data-static-show data-icon="🚫" data-pron="캐낫"><b>Cannot</b><small>안 돼요 / 불가능해요.</small></div>
- <div class="phrase" data-static-show data-icon="😋" data-pron="시옥!"><b>Shiok!</b><small>맛있다·시원하다·끝내준다 같은 만족감.</small></div>
- <div class="phrase" data-static-show data-icon="😅" data-pron="파이세"><b>Paiseh</b><small>미안하다·민망하다·실례했다는 느낌의 구어.</small></div>
- <div class="note" style="margin-top:8px">Singlish는 현지에서 들었을 때 알아보는 정도면 충분합니다.</div>
+<h3>🇸🇬 Singlish · 알아들으면 재미있는 말</h3>
+<div class="phrase" data-icon="👌" data-pron="캔 / 캔 라" data-static-show=""><b>Can / Can lah</b><small>돼요 / 좋아요. 현지에서는 “Can”만으로도 자주 답합니다.</small></div>
+<div class="phrase" data-icon="🚫" data-pron="캐낫" data-static-show=""><b>Cannot</b><small>안 돼요 / 불가능해요.</small></div>
+<div class="phrase" data-icon="😋" data-pron="시옥!" data-static-show=""><b>Shiok!</b><small>맛있다·시원하다·끝내준다 같은 만족감.</small></div>
+<div class="phrase" data-icon="😅" data-pron="파이세" data-static-show=""><b>Paiseh</b><small>미안하다·민망하다·실례했다는 느낌의 구어.</small></div>
+<div class="note" style="margin-top:8px">Singlish는 현지에서 들었을 때 알아보는 정도면 충분합니다.</div>
 </section>
-<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v14.1</div>
+<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v14.2</div>
 </div>
-
-<div id="showModal" class="showmodal" aria-hidden="true">
- <div class="showcard" role="dialog" aria-modal="true" aria-labelledby="showEnglish">
-  <button class="showclose" id="showClose" aria-label="닫기">×</button>
-  <div class="showicon" id="showIcon">💬</div>
-  <div class="showen" id="showEnglish"></div>
-  <div class="showpron" id="showPronunciation" style="display:none"></div>
-  <div class="showko" id="showKorean"></div>
-  <div class="showref" id="showReference" style="display:none"></div>
-  <div class="shownote" id="showNote">원어를 가장 크게 표시합니다. 발음이 있는 표현은 그 아래에 함께 표시됩니다.</div>
-  <div class="showlabel">PLEASE SHOW THIS SCREEN</div>
-  <div class="showactions">
-    <button type="button" id="showBigger">＋ 더 크게</button>
-    <button type="button" id="showCloseBottom">닫기</button>
-  </div>
- </div>
+<div aria-hidden="true" class="showmodal" id="showModal">
+<div aria-labelledby="showEnglish" aria-modal="true" class="showcard" role="dialog">
+<button aria-label="닫기" class="showclose" id="showClose">×</button>
+<div class="showicon" id="showIcon">💬</div>
+<div class="showen" id="showEnglish"></div>
+<div class="showpron" id="showPronunciation" style="display:none"></div>
+<div class="showko" id="showKorean"></div>
+<div class="showref" id="showReference" style="display:none"></div>
+<div class="shownote" id="showNote">원어를 가장 크게 표시합니다. 발음이 있는 표현은 그 아래에 함께 표시됩니다.</div>
+<div class="showlabel">PLEASE SHOW THIS SCREEN</div>
+<div class="showactions">
+<button id="showBigger" type="button">＋ 더 크게</button>
+<button id="showCloseBottom" type="button">닫기</button>
 </div>
-
-<div id="studyview" class="studyview">
+</div>
+</div>
+<div class="studyview" id="studyview">
 <section class="panel studyintro">
- <div class="kicker">TRAVEL STUDY · STORY OF SINGAPORE</div>
- <h2 style="margin:0">처음 가는 사람도 이해하는 싱가포르 이야기</h2>
- <div class="sub">연도와 이름을 외우는 공부가 아니라, “왜 이런 나라가 되었을까?”를 시간순으로 따라갑니다. 여행지에서는 그 역사의 흔적을 직접 찾아보세요.</div>
+<div class="kicker">TRAVEL STUDY · STORY OF SINGAPORE</div>
+<h2 style="margin:0">처음 가는 사람도 이해하는 싱가포르 이야기</h2>
+<div class="sub">연도와 이름을 외우는 공부가 아니라, “왜 이런 나라가 되었을까?”를 시간순으로 따라갑니다. 여행지에서는 그 역사의 흔적을 직접 찾아보세요.</div>
 </section>
 <nav class="studytabs">
- <button class="studytab active" data-study="s1">1. 항구의 시작</button>
- <button class="studytab" data-study="s2">2. 영국이 오다</button>
- <button class="studytab" data-study="s3">3. 이민자의 도시</button>
- <button class="studytab" data-study="s4">4. 일본 점령</button>
- <button class="studytab" data-study="s5">5. 독립의 과정</button>
- <button class="studytab" data-study="s6">6. 살아남기</button>
- <button class="studytab" data-study="s7">7. 세계도시로</button>
- <button class="studytab" data-study="s8">8. 오늘의 고민</button>
+<button class="studytab active" data-study="s1">1. 항구의 시작</button>
+<button class="studytab" data-study="s2">2. 영국이 오다</button>
+<button class="studytab" data-study="s3">3. 이민자의 도시</button>
+<button class="studytab" data-study="s4">4. 일본 점령</button>
+<button class="studytab" data-study="s5">5. 독립의 과정</button>
+<button class="studytab" data-study="s6">6. 살아남기</button>
+<button class="studytab" data-study="s7">7. 세계도시로</button>
+<button class="studytab" data-study="s8">8. 오늘의 고민</button>
 </nav>
-<section id="s1" class="study active panel studycard story">
+<section class="study active panel studycard story" id="s1">
 <div class="kicker">CHAPTER 1 · 1819년 이전</div>
 <h2>① 작은 섬인데, 왜 사람들이 모였을까?</h2>
 <div class="bigline">먼저 지도부터 · 싱가포르의 가장 큰 자원은 석유도 땅도 아니라 <b>위치</b>였다.</div>
 <p>싱가포르는 말레이반도 가장 아래쪽에 있는 작은 섬이다. 그런데 바로 옆에 <b>Strait of Malacca(말라카 해협)</b>가 있다. 중국과 동남아시아에서 인도·중동·유럽 쪽으로 배가 오가려면 지나가기 좋은 길목이다.</p>
 <p>쉽게 말하면 옛날부터 <b>“세계 해상무역의 고속도로 옆 휴게소가 될 수 있는 자리”</b>였던 셈이다. 땅은 작아도 배가 계속 지나간다면 물건을 사고팔고, 배를 고치고, 쉬어가는 항구가 성장할 수 있다.</p>
 <p>그리고 1819년 이전에도 사람이 살고 있었다. 주변 Malay(말레이) 세계와 연결된 항구와 정착지가 있었기 때문에, 영국인이 아무것도 없는 섬을 처음 발견했다는 식으로 이해하면 안 된다.</p>
-<div class="sidefact"><b>이름 이야기 · Singapura(싱가푸라)</b><br>‘Singapore(싱가포르)’라는 이름은 Malay(말레이어)의 Singapura에서 이어진다. 흔히 ‘사자의 도시’라는 뜻으로 설명한다. 오늘날 Merlion(머라이언)의 사자 머리도 이 이야기를 활용한 현대적 상징이다.</div>
+<div class="sidefact"><b>이름 이야기 · Singapura(싱가푸라)</b><br/>‘Singapore(싱가포르)’라는 이름은 Malay(말레이어)의 Singapura에서 이어진다. 흔히 ‘사자의 도시’라는 뜻으로 설명한다. 오늘날 Merlion(머라이언)의 사자 머리도 이 이야기를 활용한 현대적 상징이다.</div>
 <div class="triplink"><b>여행에서 연결:</b> Merlion Park(머라이언 파크), Kampong Glam(캄퐁 글램), Sultan Mosque(술탄 모스크).</div>
 <div class="childline"><b>아이에게 쉽게:</b> “싱가포르는 땅은 작은데 배가 엄청 많이 지나가는 좋은 자리에 있었어. 그래서 사람들이 여기서 장사하기 시작한 거야.”</div>
 </section>
-<section id="s2" class="study panel studycard story">
+<section class="study panel studycard story" id="s2">
 <div class="kicker">CHAPTER 2 · 1819년 이후</div>
 <h2>② 영국은 왜 싱가포르에 들어왔을까?</h2>
 <div class="bigline">좋은 위치 + 자유로운 무역 = 항구가 폭발적으로 성장한다.</div>
@@ -897,21 +903,21 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <p><b>1819년</b>, 영국 동인도회사 측 인물인 <b>Stamford Raffles(스탬퍼드 래플스)</b>가 싱가포르에 영국의 교역 거점을 마련했다. 그래서 싱가포르 곳곳에 지금도 ‘Raffles(래플스)’라는 이름이 남아 있다.</p>
 <p>중요한 것은 단순히 영국이 왔다는 사실보다 <b>자유항</b> 정책이다. 세금과 무역 장벽을 낮춰 세계의 상인에게 “여기 와서 장사하세요”라고 한 것이다. 위치가 좋은데 장사까지 편하니 중국·인도·동남아·중동 등에서 배와 사람이 빠르게 몰려왔다.</p>
 <p>도시는 커졌지만 동시에 영국의 식민지 도시가 되었다. 행정기관, 군사시설, 교회, 상업지구가 만들어졌고 도시의 공간도 식민지 정부가 계획했다.</p>
-<div class="sidefact"><b>질문 · Raffles(래플스)는 싱가포르를 만든 영웅일까?</b><br><b>한쪽 관점:</b> 국제 무역항으로 성장하는 중요한 계기를 만들었다.<br><b>다른 관점:</b> 이미 사람이 살던 지역을 영국 식민지 체제에 편입시킨 인물이기도 하다.<br>그래서 오늘날에는 ‘건국의 영웅’ 하나로만 보기보다 식민지 역사까지 함께 보는 편이 더 정확하다.</div>
+<div class="sidefact"><b>질문 · Raffles(래플스)는 싱가포르를 만든 영웅일까?</b><br/><b>한쪽 관점:</b> 국제 무역항으로 성장하는 중요한 계기를 만들었다.<br/><b>다른 관점:</b> 이미 사람이 살던 지역을 영국 식민지 체제에 편입시킨 인물이기도 하다.<br/>그래서 오늘날에는 ‘건국의 영웅’ 하나로만 보기보다 식민지 역사까지 함께 보는 편이 더 정확하다.</div>
 <div class="triplink"><b>여행에서 연결:</b> Fort Canning(포트 캐닝), Padang(파당 광장), St Andrew’s Cathedral(세인트 앤드루 대성당), Raffles Hotel Singapore(래플스 호텔 싱가포르).</div>
 </section>
-<section id="s3" class="study panel studycard story">
+<section class="study panel studycard story" id="s3">
 <div class="kicker">CHAPTER 3 · 19세기~20세기 초</div>
 <h2>③ 항구가 커지자 ‘다문화 싱가포르’가 만들어졌다</h2>
 <div class="bigline">배가 모이면 물건이 모이고, 물건이 모이면 일자리가 생기고, 일자리가 생기면 사람이 모인다.</div>
 <p>항구가 빠르게 성장하면서 엄청난 노동력이 필요해졌다. 배에서 짐을 내릴 사람, 창고에서 일할 사람, 건물을 지을 사람, 장사할 사람, 음식을 만들 사람이 필요했다.</p>
 <p>중국 남부에서 많은 중국계 이민자가 들어왔고, 인도계 노동자와 상인도 왔다. 원래 이 지역과 연결되어 있던 Malay(말레이) 공동체와 Arab(아랍) 상인, 유럽인까지 함께 살았다. 지금 싱가포르에서 <b>Chinese(중국계)·Malay(말레이계)·Indian(인도계)</b> 문화가 함께 보이는 이유가 여기서 시작된다.</p>
 <p>하지만 당시 이민자의 삶은 지금의 예쁜 관광거리와는 달랐다. 좁은 <b>Shophouse(숍하우스)</b>에 많은 사람이 함께 살았고 위생·빈곤·아편·도박·범죄 문제도 있었다. 절·사원·모스크와 씨족단체는 종교시설인 동시에 낯선 도시에서 서로 돕는 공동체 역할을 했다.</p>
-<div class="sidefact"><b>음식도 이때 함께 들어왔다.</b><br>중국계의 Chicken Rice(치킨라이스)와 Bak Kut Teh(바쿠테), Malay권의 Satay(사테), 인도계의 Roti Prata(로티 프라타) 등이 한 도시에 모였다. 서로 영향을 주고 현지화되면서 오늘의 ‘싱가포르 음식’이 만들어졌다.</div>
-<div class="sidefact"><b>질문 · 그런데 왜 Chinatown(차이나타운)에 힌두 사원이 있지?</b><br>민족별 생활권은 있었지만 실제 항구도시는 사람과 장사가 계속 섞이는 곳이었다. 그래서 Chinatown 안에서도 Sri Mariamman Temple(스리 마리암만 사원) 같은 힌두 사원을 만난다. 오히려 이 모습이 싱가포르의 진짜 역사에 가깝다.</div>
+<div class="sidefact"><b>음식도 이때 함께 들어왔다.</b><br/>중국계의 Chicken Rice(치킨라이스)와 Bak Kut Teh(바쿠테), Malay권의 Satay(사테), 인도계의 Roti Prata(로티 프라타) 등이 한 도시에 모였다. 서로 영향을 주고 현지화되면서 오늘의 ‘싱가포르 음식’이 만들어졌다.</div>
+<div class="sidefact"><b>질문 · 그런데 왜 Chinatown(차이나타운)에 힌두 사원이 있지?</b><br/>민족별 생활권은 있었지만 실제 항구도시는 사람과 장사가 계속 섞이는 곳이었다. 그래서 Chinatown 안에서도 Sri Mariamman Temple(스리 마리암만 사원) 같은 힌두 사원을 만난다. 오히려 이 모습이 싱가포르의 진짜 역사에 가깝다.</div>
 <div class="triplink"><b>여행에서 연결:</b> Chinatown(차이나타운), Sri Mariamman Temple(스리 마리암만 사원), Maxwell Food Centre(맥스웰 푸드센터), Little India(리틀 인디아), Kampong Glam(캄퐁 글램).</div>
 </section>
-<section id="s4" class="study panel studycard story">
+<section class="study panel studycard story" id="s4">
 <div class="kicker">CHAPTER 4 · 1942~1945</div>
 <h2>④ “영국이 우리를 지켜줄 것”이라는 믿음이 무너졌다</h2>
 <div class="bigline">Japanese Occupation(일본 점령)은 싱가포르 역사에서 큰 단절점이다.</div>
@@ -919,10 +925,10 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <p>하지만 <b>1942년</b> 영국군이 일본군에 항복했다. 영국의 강력함을 믿었던 사람들에게는 엄청난 충격이었다. 이후 약 3년 반 동안 싱가포르는 일본의 지배를 받았다.</p>
 <p>점령기에는 식량 부족과 강압적인 통치가 이어졌고, 특히 중국계 주민들을 대상으로 한 <b>Sook Ching(숙칭) 학살</b> 등 심각한 폭력이 있었다.</p>
 <p>1945년 일본이 패전하면서 영국이 다시 돌아왔지만 사람들의 생각은 이미 달라져 있었다. “영국이라는 큰 나라가 영원히 우리를 보호해주는 것은 아니구나.” 전후 아시아의 탈식민지 흐름과 함께 싱가포르에서도 스스로 정치적 미래를 결정하려는 움직임이 강해졌다.</p>
-<div class="sidefact"><b>질문 · 이 경험이 지금 싱가포르에도 영향을 줬을까?</b><br>한 가지 원인으로 모든 것을 설명할 수는 없지만, 이후 싱가포르가 <b>국방·물·식량·경제처럼 ‘남에게 완전히 의존하면 위험한 것’</b>을 중요하게 보는 역사적 배경 중 하나로 이해할 수 있다.</div>
+<div class="sidefact"><b>질문 · 이 경험이 지금 싱가포르에도 영향을 줬을까?</b><br/>한 가지 원인으로 모든 것을 설명할 수는 없지만, 이후 싱가포르가 <b>국방·물·식량·경제처럼 ‘남에게 완전히 의존하면 위험한 것’</b>을 중요하게 보는 역사적 배경 중 하나로 이해할 수 있다.</div>
 <div class="triplink"><b>여행에서 연결:</b> Fort Canning(포트 캐닝)의 군사 역사, National Museum of Singapore(싱가포르 국립박물관)의 전쟁 관련 전시.</div>
 </section>
-<section id="s5" class="study panel studycard story">
+<section class="study panel studycard story" id="s5">
 <div class="kicker">CHAPTER 5 · 1945~1965</div>
 <h2>⑤ 싱가포르는 왜 Malaysia(말레이시아)에 들어갔다가 다시 나왔을까?</h2>
 <div class="bigline">독립의 흐름 · 영국 식민지 → 자치정부 → Malaysia 합류 → 갈등 → 1965년 독립</div>
@@ -930,33 +936,33 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <p>그런데 당시 지도부는 싱가포르가 혼자 독립하는 것을 반드시 최선이라고 생각하지 않았다. 작은 섬이고 내수시장도 작았기 때문이다. 더 큰 경제권과 함께하는 편이 생존에 유리하다고 판단해 <b>1963년 Malaysia(말레이시아)에 합류</b>했다.</p>
 <p>하지만 경제정책, 정치적 영향력, 민족 문제 등을 놓고 Malaysia 중앙정부와 싱가포르 지도부의 갈등이 커졌다. 1964년에는 심각한 인종 폭동까지 발생했다.</p>
 <p>결국 <b>1965년 8월 9일</b>, 싱가포르는 Malaysia에서 분리되어 독립국가가 되었다. 지금은 National Day(국경일)로 크게 기념하지만 당시 분위기는 단순한 축제와는 달랐다. “이 작은 도시가 정말 혼자 국가로 살아남을 수 있을까?”라는 걱정이 컸다.</p>
-<div class="sidefact"><b>질문 · 그럼 Malaysia가 싱가포르를 쫓아낸 건가?</b><br>결과적으로 Malaysia 의회가 싱가포르의 분리를 결정했다는 점에서 그렇게 표현하기도 한다. 다만 실제 과정은 양측 지도부 사이의 정치·경제·민족 갈등이 누적된 결과라서 단순히 한쪽이 싫어서 내보냈다고 이해하면 지나치게 단순하다.</div>
-<div class="sidefact"><b>PAP는 여기서 등장한다.</b><br><b>People’s Action Party(인민행동당, PAP)</b>는 1954년 창당됐고 리콴유와 함께 자치·독립 과정에서 집권했다. 이후 장기간 집권하면서 ‘국가를 만든 정당’과 ‘현재의 집권당’이라는 두 성격이 겹치게 된다.</div>
+<div class="sidefact"><b>질문 · 그럼 Malaysia가 싱가포르를 쫓아낸 건가?</b><br/>결과적으로 Malaysia 의회가 싱가포르의 분리를 결정했다는 점에서 그렇게 표현하기도 한다. 다만 실제 과정은 양측 지도부 사이의 정치·경제·민족 갈등이 누적된 결과라서 단순히 한쪽이 싫어서 내보냈다고 이해하면 지나치게 단순하다.</div>
+<div class="sidefact"><b>PAP는 여기서 등장한다.</b><br/><b>People’s Action Party(인민행동당, PAP)</b>는 1954년 창당됐고 리콴유와 함께 자치·독립 과정에서 집권했다. 이후 장기간 집권하면서 ‘국가를 만든 정당’과 ‘현재의 집권당’이라는 두 성격이 겹치게 된다.</div>
 </section>
-<section id="s6" class="study panel studycard story">
+<section class="study panel studycard story" id="s6">
 <div class="kicker">CHAPTER 6 · 1965~1980s</div>
 <h2>⑥ 독립했는데, 이제 뭘 먹고살지?</h2>
 <div class="bigline">싱가포르식 답 · “자원이 없다면 사람·도시·제도를 자원으로 만들자.”</div>
 <p>독립 당시 싱가포르는 지금처럼 부유한 나라가 아니었다. 국토는 작고 천연자원은 거의 없으며 실업과 주거 문제도 컸다. 주변에 거대한 내수시장도 없었다.</p>
 <p><b>Lee Kuan Yew(리콴유)</b> 정부가 선택한 핵심 방향은 세계 경제와 적극적으로 연결되는 것이었다. 외국기업에게 “싱가포르에 공장을 세우고 투자하면 안정적으로 사업할 수 있습니다”라고 제안했다. 그러려면 좋은 항만, 전기와 도로, 교육받은 노동력, 예측 가능한 법과 행정이 필요했다.</p>
-<p>주거 문제에는 <b>HDB, Housing & Development Board(주택개발청)</b>의 공공주택을 대규모로 공급했다. 그래서 오늘날에도 주민의 약 80%가 HDB 주택에 산다. 싱가포르에서 HDB는 ‘가난한 사람만 사는 임대주택’이라는 이미지와는 상당히 다르다.</p>
+<p>주거 문제에는 <b>HDB, Housing &amp; Development Board(주택개발청)</b>의 공공주택을 대규모로 공급했다. 그래서 오늘날에도 주민의 약 80%가 HDB 주택에 산다. 싱가포르에서 HDB는 ‘가난한 사람만 사는 임대주택’이라는 이미지와는 상당히 다르다.</p>
 <p>또 <b>CPF, Central Provident Fund(중앙적립기금)</b>라는 의무저축 성격의 제도를 통해 근로자가 돈을 적립하고 주택·노후·의료 등에 활용하게 했다.</p>
-<div class="sidefact"><b>질문 · 왜 영어를 그렇게 많이 쓸까?</b><br>① 중국계·Malay계·인도계가 함께 사용할 공통 언어가 필요했고, ② 세계 비즈니스와 연결하기에도 영어가 유리했다. 동시에 Malay·Mandarin Chinese(중국어)·Tamil(타밀어)도 공식 언어로 인정한다.</div>
-<div class="sidefact"><b>질문 · 정부가 너무 많이 개입하는 것 아닌가?</b><br><b>긍정적 관점:</b> 작은 나라가 주택·교육·교통·산업을 빠르게 정비하는 데 강한 정부가 효과적이었다.<br><b>비판적 관점:</b> 국가가 개인의 삶과 정치·사회 영역에 지나치게 많이 개입할 위험도 있다.<br>싱가포르를 이해할 때 계속 등장하는 ‘효율성과 자유의 균형’ 문제다.</div>
+<div class="sidefact"><b>질문 · 왜 영어를 그렇게 많이 쓸까?</b><br/>① 중국계·Malay계·인도계가 함께 사용할 공통 언어가 필요했고, ② 세계 비즈니스와 연결하기에도 영어가 유리했다. 동시에 Malay·Mandarin Chinese(중국어)·Tamil(타밀어)도 공식 언어로 인정한다.</div>
+<div class="sidefact"><b>질문 · 정부가 너무 많이 개입하는 것 아닌가?</b><br/><b>긍정적 관점:</b> 작은 나라가 주택·교육·교통·산업을 빠르게 정비하는 데 강한 정부가 효과적이었다.<br/><b>비판적 관점:</b> 국가가 개인의 삶과 정치·사회 영역에 지나치게 많이 개입할 위험도 있다.<br/>싱가포르를 이해할 때 계속 등장하는 ‘효율성과 자유의 균형’ 문제다.</div>
 <div class="triplink"><b>여행 중 찾아보기:</b> HDB(공공주택), MRT(도시철도), 깨끗한 공공공간. 모두 그냥 자연스럽게 생긴 것이 아니라 국가정책과 연결돼 있다.</div>
 </section>
-<section id="s7" class="study panel studycard story">
+<section class="study panel studycard story" id="s7">
 <div class="kicker">CHAPTER 7 · 1980s~2010s</div>
 <h2>⑦ 살아남은 도시가 이제 ‘세계가 찾아오는 도시’가 된다</h2>
 <div class="bigline">항구와 제조업에서 시작해 금융·항공·첨단산업·관광까지 확장한다.</div>
 <p>경제가 성장하면서 싱가포르는 단순히 값싼 노동력으로 물건을 만드는 나라에 머물 수 없었다. 임금이 오르면 더 높은 부가가치를 만드는 산업으로 이동해야 했기 때문이다.</p>
 <p>금융, 물류, 항공, 전자·반도체, 제약·바이오 같은 산업을 키웠고 <b>Changi Airport(창이공항)</b>와 항만을 세계적인 허브로 발전시켰다. 작은 나라가 모든 것을 자체 생산하기보다 <b>“세계의 사람·돈·물건이 싱가포르를 거쳐가게 만들자”</b>는 전략이다.</p>
 <p>땅이 부족하면 바다를 메워 국토를 늘렸다. <b>Marina Bay(마리나 베이)</b>는 그 결과를 가장 화려하게 볼 수 있는 장소다. <b>Marina Barrage(마리나 배라지)</b>는 물과 홍수 문제를, <b>Gardens by the Bay(가든스 바이 더 베이)</b>는 정원도시 이미지를, <b>Marina Bay Sands(마리나 베이 샌즈)</b>는 관광·컨벤션·카지노 산업을 보여준다.</p>
-<div class="sidefact"><b>질문 · 자동차는 왜 그렇게 비쌀까?</b><br>국토와 도로가 좁은데 자동차가 무한정 늘어나면 도시가 감당하기 어렵다. 그래서 <b>COE, Certificate of Entitlement(차량소유권 증서)</b> 등으로 자동차 소유 자체에 높은 비용을 부과하고 MRT·버스 같은 대중교통을 강화한다. 환경 문제도 있지만 핵심에는 ‘좁은 공간을 어떻게 배분할 것인가’가 있다.</div>
-<div class="sidefact"><b>질문 · Marina Bay가 왜 중요한가?</b><br>그냥 예쁜 야경이 아니라 싱가포르의 문제 해결 방식을 한곳에서 볼 수 있기 때문이다. <b>땅이 부족하면 간척하고, 물이 부족하면 저수공간을 만들고, 관광자원이 필요하면 세계적인 건축과 정원을 만든다.</b></div>
+<div class="sidefact"><b>질문 · 자동차는 왜 그렇게 비쌀까?</b><br/>국토와 도로가 좁은데 자동차가 무한정 늘어나면 도시가 감당하기 어렵다. 그래서 <b>COE, Certificate of Entitlement(차량소유권 증서)</b> 등으로 자동차 소유 자체에 높은 비용을 부과하고 MRT·버스 같은 대중교통을 강화한다. 환경 문제도 있지만 핵심에는 ‘좁은 공간을 어떻게 배분할 것인가’가 있다.</div>
+<div class="sidefact"><b>질문 · Marina Bay가 왜 중요한가?</b><br/>그냥 예쁜 야경이 아니라 싱가포르의 문제 해결 방식을 한곳에서 볼 수 있기 때문이다. <b>땅이 부족하면 간척하고, 물이 부족하면 저수공간을 만들고, 관광자원이 필요하면 세계적인 건축과 정원을 만든다.</b></div>
 <div class="triplink"><b>DAY 2에서 직접 보기:</b> Merlion Park(머라이언 파크) → Singapore Flyer(싱가포르 플라이어) → Marina Bay Sands(마리나 베이 샌즈) → Gardens by the Bay(가든스 바이 더 베이) → Supertree Grove(슈퍼트리 그로브).</div>
 </section>
-<section id="s8" class="study panel studycard story">
+<section class="study panel studycard story" id="s8">
 <div class="kicker">CHAPTER 8 · 오늘</div>
 <h2>⑧ 잘사는 나라가 됐으면 이제 모든 문제가 해결된 걸까?</h2>
 <div class="bigline">싱가포르의 다음 문제 · ‘생존과 성장’에 성공한 시스템을 다음 세대에는 어떻게 바꿀까?</div>
@@ -964,21 +970,21 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <p>주택과 생활비 부담, 치열한 교육·직장 경쟁, 낮은 출산율과 고령화, 외국인 노동력 의존, 소득 격차 등이 대표적이다. 과거에는 “나라가 살아남고 성장해야 한다”가 매우 강력한 공통 목표였다면, 지금 세대는 삶의 질·공정성·다양성 같은 문제도 더 많이 묻는다.</p>
 <p>정치에서는 <b>People’s Action Party(인민행동당, PAP)</b>가 오랫동안 집권해 왔다. 총리는 <b>Lee Kuan Yew(리콴유) → Goh Chok Tong(고촉통) → Lee Hsien Loong(리셴룽) → Lawrence Wong(로런스 웡)</b>으로 이어졌다.</p>
 <p>선거와 의회, 야당이 존재하지만 한 정당이 매우 오랫동안 강한 위치를 유지했다. 정부의 경제성과·치안·행정능력을 높게 평가하는 시각이 있는 반면, 정치적 경쟁환경·언론·집회와 표현의 자유 등에 더 많은 공간이 필요하다는 비판도 있다.</p>
-<div class="sidefact"><b>질문 · 싱가포르는 민주주의야, 독재야?</b><br>둘 중 하나의 단어만 붙이면 실제 모습을 놓치기 쉽다. 선거와 의회가 있는 <b>의회민주주의 제도</b>를 갖고 있지만, PAP가 장기간 지배적인 위치를 유지하고 국가의 통제력이 강한 체제다. 그래서 학계와 국제사회에서도 민주주의의 정도와 정치적 자유를 두고 여러 평가가 존재한다.</div>
-<div class="sidefact"><b>질문 · 그러면 싱가포르 방식이 좋은 거야?</b><br>정답 하나는 없다. <b>성과를 중시하면</b> 주택·교통·치안·경제성장과 장기계획이 눈에 들어온다. <b>자유와 다양성을 중시하면</b> 강한 국가권력과 정치적 경쟁의 한계를 질문하게 된다. 두 면을 함께 보는 것이 중요하다.</div>
-<div class="sidefact"><b>여행하면서 생각해볼 5가지 + 짧은 답</b><br>
-① <b>왜 자동차가 비쌀까?</b> → 좁은 도로를 한정된 자원처럼 관리하기 위해.<br>
-② <b>왜 HDB에 많이 살까?</b> → 독립 초기 심각했던 주택 문제를 국가가 대규모로 해결했기 때문에.<br>
-③ <b>왜 영어를 많이 쓸까?</b> → 다민족 공통언어이자 세계경제와 연결되는 언어라서.<br>
-④ <b>왜 여러 민족의 동네가 남아 있을까?</b> → 항구도시 시절 형성된 이민자 생활권의 역사가 이어지기 때문에.<br>
+<div class="sidefact"><b>질문 · 싱가포르는 민주주의야, 독재야?</b><br/>둘 중 하나의 단어만 붙이면 실제 모습을 놓치기 쉽다. 선거와 의회가 있는 <b>의회민주주의 제도</b>를 갖고 있지만, PAP가 장기간 지배적인 위치를 유지하고 국가의 통제력이 강한 체제다. 그래서 학계와 국제사회에서도 민주주의의 정도와 정치적 자유를 두고 여러 평가가 존재한다.</div>
+<div class="sidefact"><b>질문 · 그러면 싱가포르 방식이 좋은 거야?</b><br/>정답 하나는 없다. <b>성과를 중시하면</b> 주택·교통·치안·경제성장과 장기계획이 눈에 들어온다. <b>자유와 다양성을 중시하면</b> 강한 국가권력과 정치적 경쟁의 한계를 질문하게 된다. 두 면을 함께 보는 것이 중요하다.</div>
+<div class="sidefact"><b>여행하면서 생각해볼 5가지 + 짧은 답</b><br/>
+① <b>왜 자동차가 비쌀까?</b> → 좁은 도로를 한정된 자원처럼 관리하기 위해.<br/>
+② <b>왜 HDB에 많이 살까?</b> → 독립 초기 심각했던 주택 문제를 국가가 대규모로 해결했기 때문에.<br/>
+③ <b>왜 영어를 많이 쓸까?</b> → 다민족 공통언어이자 세계경제와 연결되는 언어라서.<br/>
+④ <b>왜 여러 민족의 동네가 남아 있을까?</b> → 항구도시 시절 형성된 이민자 생활권의 역사가 이어지기 때문에.<br/>
 ⑤ <b>왜 도시가 이렇게 계획적으로 보일까?</b> → 작은 국토의 주택·교통·물·산업 문제를 국가가 장기계획으로 관리해왔기 때문에.
 </div>
 <div class="childline"><b>여행 마지막에 아이에게:</b> “우리가 본 MRT, 아파트, 호커센터, Marina Bay, Jewel은 서로 다른 관광지가 아니야. 작은 항구도시가 어떻게 살아남을지 고민하면서 하나씩 만든 결과들이야.”</div>
 </section>
-<div class="footer">STUDY v14.1 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
+<div class="footer">STUDY v14.2 · 쉬운 시간순 이야기 + 인물 한글표기 + 질문과 여러 관점의 짧은 답</div>
 </div>
-</div>
-<div id="infoModal" class="infomodal" aria-hidden="true"><div class="infocard" role="dialog" aria-modal="true"><button class="infoclose" id="infoClose" aria-label="닫기">×</button><div class="infokicker" id="infoKicker"></div><div class="infoh" id="infoTitle"></div><div class="infobody" id="infoBody"></div></div></div>
+
+<div aria-hidden="true" class="infomodal" id="infoModal"><div aria-modal="true" class="infocard" role="dialog"><button aria-label="닫기" class="infoclose" id="infoClose">×</button><div class="infokicker" id="infoKicker"></div><div class="infoh" id="infoTitle"></div><div class="infobody" id="infoBody"></div></div></div>
 <script>
 const STORAGE_KEY='sg_family_trip_2026_v6';   // 기존 v6~v8 로컬 데이터 호환 유지
 const PREP_KEY='sg_family_trip_2026_prep';
@@ -1069,7 +1075,7 @@ function exportData(){
   const data=getData();
   const payload={
     title:'Singapore Family Trip 2026',
-    version:'v14.1',
+    version:'v14.2',
     exportedAt:new Date().toISOString(),
     data
   };
@@ -1144,7 +1150,7 @@ tabs.forEach(btn=>btn.addEventListener('click',()=>{
   window.scrollTo({top:document.querySelector('.tabs').offsetTop-8,behavior:'smooth'});
 }));
 
-// ---------- v14.1 phrase fullscreen popup ----------
+// ---------- v14.2 phrase fullscreen popup ----------
 (function(){
   const modal=document.getElementById('showModal');
   const en=document.getElementById('showEnglish');
@@ -1201,7 +1207,7 @@ tabs.forEach(btn=>btn.addEventListener('click',()=>{
 })();
 
 
-// ---------- v14.1 multilingual phrase library ----------
+// ---------- v14.2 multilingual phrase library ----------
 const PHRASE_CATS=[{"id":"airport","title":"✈️ 공항 · 입국","items":[{"icon":"✈️","ko":"입국심사장은 어디인가요?","en":{"text":"Where is immigration?","pron":""},"zh":{"text":"入境审查在哪里？","pron":"Rùjìng shěnchá zài nǎlǐ?"},"ms":{"text":"Di manakah imigresen?","pron":"디 마나까 이미그레센?"},"ta":{"text":"குடிவரவு சோதனை எங்கே?","pron":"쿠디바라부 소다나이 엥게?"}},{"icon":"🧳","ko":"수하물 찾는 곳이 어디인가요?","en":{"text":"Where is the baggage claim?","pron":""},"zh":{"text":"行李领取处在哪里？","pron":"Xínglǐ lǐngqǔ chù zài nǎlǐ?"},"ms":{"text":"Di manakah tempat tuntutan bagasi?","pron":"디 마나까 뜸팟 뚠뚜딴 바가시?"},"ta":{"text":"பயணப்பெட்டி பெறும் இடம் எங்கே?","pron":"파야납뻬띠 뻬룸 이담 엥게?"}},{"icon":"🧳","ko":"저희 짐 하나가 나오지 않았어요.","en":{"text":"One of our bags is missing.","pron":""},"zh":{"text":"我们有一件行李不见了。","pron":"Wǒmen yǒu yí jiàn xínglǐ bú jiàn le."},"ms":{"text":"Salah satu beg kami hilang.","pron":"살라 사뚜 벡 카미 힐랑."},"ta":{"text":"எங்களுடைய ஒரு பை காணவில்லை.","pron":"엥갈루다이야 오루 파이 카나빌라이."}},{"icon":"🚕","ko":"택시 또는 Grab 탑승 장소가 어디인가요?","en":{"text":"Where is the taxi or Grab pickup point?","pron":""},"zh":{"text":"出租车或 Grab 上车点在哪里？","pron":"Chūzūchē huò Grab shàngchē diǎn zài nǎlǐ?"},"ms":{"text":"Di manakah tempat naik teksi atau Grab?","pron":"디 마나까 뜸팟 나익 떽시 아따우 그랩?"},"ta":{"text":"டாக்ஸி அல்லது Grab ஏறும் இடம் எங்கே?","pron":"닥시 알라두 그랩 에룸 이담 엥게?"}},{"icon":"👨‍👩‍👧‍👦","ko":"저희는 11명입니다.","en":{"text":"We are a group of eleven.","pron":""},"zh":{"text":"我们一共有十一位。","pron":"Wǒmen yígòng yǒu shíyī wèi."},"ms":{"text":"Kami seramai sebelas orang.","pron":"카미 스라마이 스블라스 오랑."},"ta":{"text":"நாங்கள் பதினொன்று பேர்.","pron":"낭갈 파디논드루 페르."}},{"icon":"🛫","ko":"이 항공편 체크인 카운터가 어디인가요?","en":{"text":"Where is the check-in counter for this flight?","pron":""},"zh":{"text":"这个航班的值机柜台在哪里？","pron":"Zhège hángbān de zhíjī guìtái zài nǎlǐ?"},"ms":{"text":"Di manakah kaunter daftar masuk untuk penerbangan ini?","pron":"디 마나까 카운터 다프타르 마숙 운뚝 프느르방안 이니?"},"ta":{"text":"இந்த விமானத்திற்கான செக்-இன் கவுண்டர் எங்கே?","pron":"인다 비마나띠르까나 체크인 카운터 엥게?"}},{"icon":"🧳","ko":"이 유모차들을 위탁할 수 있나요?","en":{"text":"Can we check in these strollers?","pron":""},"zh":{"text":"这些婴儿车可以托运吗？","pron":"Zhèxiē yīng'érchē kěyǐ tuōyùn ma?"},"ms":{"text":"Boleh kami daftar masuk kereta sorong ini?","pron":"볼레 카미 다프타르 마숙 크레따 소롱 이니?"},"ta":{"text":"இந்த குழந்தை வண்டிகளை செக்-இன் செய்யலாமா?","pron":"인다 쿨란다이 반디갈라이 체크인 세이얄라마?"}}]},{"id":"transport","title":"🚕 Grab · 택시 · 차량","items":[{"icon":"🏨","ko":"싱가포르 메리어트 탕 플라자 호텔로 가주세요.","en":{"text":"Please take us to Singapore Marriott Tang Plaza Hotel.","pron":""},"zh":{"text":"请带我们去新加坡万豪董厦酒店。","pron":"Qǐng dài wǒmen qù Xīnjiāpō Wànháo Dǒngshà Jiǔdiàn."},"ms":{"text":"Tolong bawa kami ke Singapore Marriott Tang Plaza Hotel.","pron":"똘롱 바와 카미 끄 Singapore Marriott Tang Plaza Hotel."},"ta":{"text":"எங்களை Singapore Marriott Tang Plaza Hotel-க்கு அழைத்துச் செல்லுங்கள்.","pron":"엥갈라이 Singapore Marriott Tang Plaza Hotel-쿠 알라이뚜 셀룽갈."}},{"icon":"📍","ko":"이 주소로 가주세요.","en":{"text":"Please take us to this address.","pron":""},"zh":{"text":"请带我们去这个地址。","pron":"Qǐng dài wǒmen qù zhège dìzhǐ."},"ms":{"text":"Tolong bawa kami ke alamat ini.","pron":"똘롱 바와 카미 끄 알라맛 이니."},"ta":{"text":"இந்த முகவரிக்கு எங்களை அழைத்துச் செல்லுங்கள்.","pron":"인다 무가바리쿠 엥갈라이 알라이뚜 셀룽갈."}},{"icon":"📱","ko":"Grab으로 이 차량을 예약했습니다.","en":{"text":"We booked this ride on Grab.","pron":""},"zh":{"text":"我们在 Grab 上预订了这辆车。","pron":"Wǒmen zài Grab shàng yùdìng le zhè liàng chē."},"ms":{"text":"Kami tempah perjalanan ini melalui Grab.","pron":"카미 뜸빠 프르잘라난 이니 믈랄루이 그랩."},"ta":{"text":"இந்த பயணத்தை Grab மூலம் முன்பதிவு செய்தோம்.","pron":"인다 파야나띠 그랩 물람 문빠디부 세이돔."}},{"icon":"🚐","ko":"짐 때문에 더 큰 차량이 필요합니다.","en":{"text":"We need a larger vehicle for our luggage.","pron":""},"zh":{"text":"因为行李很多，我们需要一辆更大的车。","pron":"Yīnwèi xínglǐ hěn duō, wǒmen xūyào yí liàng gèng dà de chē."},"ms":{"text":"Kami perlukan kenderaan lebih besar untuk bagasi kami.","pron":"카미 플룰루깐 끈드라안 르비 브사르 운뚝 바가시 카미."},"ta":{"text":"எங்கள் சாமான்களுக்கு பெரிய வாகனம் தேவை.","pron":"엥갈 사마낭갈루쿠 페리야 바가남 데바이."}},{"icon":"👶","ko":"3살 아이가 두 명 있습니다.","en":{"text":"We have two three-year-old children.","pron":""},"zh":{"text":"我们有两个三岁的孩子。","pron":"Wǒmen yǒu liǎng gè sān suì de háizi."},"ms":{"text":"Kami ada dua orang kanak-kanak berumur tiga tahun.","pron":"카미 아다 두아 오랑 까낙까낙 브루무르 띠가 따훈."},"ta":{"text":"எங்களுடன் மூன்று வயது குழந்தைகள் இருவர் உள்ளனர்.","pron":"엥갈루단 문드루 바야두 쿨란다이갈 이루바르 울라나르."}},{"icon":"🛑","ko":"여기서 세워주세요.","en":{"text":"Could you stop here, please?","pron":""},"zh":{"text":"请在这里停车。","pron":"Qǐng zài zhèlǐ tíngchē."},"ms":{"text":"Boleh berhenti di sini?","pron":"볼레 브르헨띠 디 시니?"},"ta":{"text":"இங்கே நிறுத்த முடியுமா?","pron":"잉게 니루따 무디유마?"}},{"icon":"⏱️","ko":"대략 얼마나 걸리나요?","en":{"text":"About how long will it take?","pron":""},"zh":{"text":"大概要多久？","pron":"Dàgài yào duō jiǔ?"},"ms":{"text":"Lebih kurang berapa lama?","pron":"르비 꾸랑 브라빠 라마?"},"ta":{"text":"சுமார் எவ்வளவு நேரம் ஆகும்?","pron":"수마르 에발라부 네람 아굼?"}},{"icon":"💳","ko":"카드로 결제할 수 있나요?","en":{"text":"Can I pay by card?","pron":""},"zh":{"text":"可以刷卡吗？","pron":"Kěyǐ shuākǎ ma?"},"ms":{"text":"Boleh bayar dengan kad?","pron":"볼레 바야르 드응안 카드?"},"ta":{"text":"கார்டில் பணம் செலுத்தலாமா?","pron":"카르딜 파남 셀루딸라마?"}}]},{"id":"hotel","title":"🏨 호텔","items":[{"icon":"🛎️","ko":"이 이름으로 예약했습니다.","en":{"text":"We have a reservation under this name.","pron":""},"zh":{"text":"我们用这个名字预订了房间。","pron":"Wǒmen yòng zhège míngzi yùdìng le fángjiān."},"ms":{"text":"Kami ada tempahan atas nama ini.","pron":"카미 아다 뜸빠한 아따스 나마 이니."},"ta":{"text":"இந்த பெயரில் எங்களுக்கு முன்பதிவு உள்ளது.","pron":"인다 페야릴 엥갈루쿠 문빠디부 울라두."}},{"icon":"🧳","ko":"체크인 전에 짐을 맡길 수 있나요?","en":{"text":"Can you store our luggage before check-in?","pron":""},"zh":{"text":"入住前可以寄存行李吗？","pron":"Rùzhù qián kěyǐ jìcún xínglǐ ma?"},"ms":{"text":"Boleh simpan bagasi kami sebelum daftar masuk?","pron":"볼레 심빤 바가시 카미 스블룸 다프타르 마숙?"},"ta":{"text":"செக்-இன் முன் எங்கள் சாமான்களை வைக்கலாமா?","pron":"체크인 문 엥갈 사마낭갈라이 바이칼라마?"}},{"icon":"🧳","ko":"체크아웃 후에 짐을 맡길 수 있나요?","en":{"text":"Can you store our luggage after check-out?","pron":""},"zh":{"text":"退房后可以寄存行李吗？","pron":"Tuìfáng hòu kěyǐ jìcún xínglǐ ma?"},"ms":{"text":"Boleh simpan bagasi kami selepas daftar keluar?","pron":"볼레 심빤 바가시 카미 슬르빠스 다프타르 클루아르?"},"ta":{"text":"செக்-அவுட் பிறகு எங்கள் சாமான்களை வைக்கலாமா?","pron":"체크아웃 피라구 엥갈 사마낭갈라이 바이칼라마?"}},{"icon":"🚪","ko":"객실을 서로 가까운 곳으로 배정해 주실 수 있나요?","en":{"text":"Could our rooms be close to each other?","pron":""},"zh":{"text":"我们的房间可以安排得近一点吗？","pron":"Wǒmen de fángjiān kěyǐ ānpái de jìn yìdiǎn ma?"},"ms":{"text":"Boleh bilik kami ditempatkan berdekatan?","pron":"볼레 빌릭 카미 디뜸빳깐 브르드까딴?"},"ta":{"text":"எங்கள் அறைகள் ஒன்றுக்கொன்று அருகில் இருக்குமா?","pron":"엥갈 아라이갈 온드루꼬온드루 아루길 이루꾸마?"}},{"icon":"💧","ko":"생수를 조금 더 받을 수 있을까요?","en":{"text":"Could we have some more bottled water?","pron":""},"zh":{"text":"可以再给我们一些瓶装水吗？","pron":"Kěyǐ zài gěi wǒmen yìxiē píngzhuāng shuǐ ma?"},"ms":{"text":"Boleh beri kami lebih banyak air botol?","pron":"볼레 브리 카미 르비 바냑 아이르 보똘?"},"ta":{"text":"இன்னும் கொஞ்சம் பாட்டில் தண்ணீர் கிடைக்குமா?","pron":"인눔 꼰잠 바띨 딴니르 끼다이꾸마?"}},{"icon":"🧺","ko":"수건을 더 가져다주세요.","en":{"text":"Could we have more towels, please?","pron":""},"zh":{"text":"请再给我们一些毛巾。","pron":"Qǐng zài gěi wǒmen yìxiē máojīn."},"ms":{"text":"Boleh beri kami lebih banyak tuala?","pron":"볼레 브리 카미 르비 바냑 뚜알라?"},"ta":{"text":"இன்னும் சில துண்டுகள் தர முடியுமா?","pron":"인눔 실 툰두갈 다라 무디유마?"}},{"icon":"🔧","ko":"에어컨에 문제가 있습니다.","en":{"text":"There is a problem with the air conditioner.","pron":""},"zh":{"text":"空调有问题。","pron":"Kōngtiáo yǒu wèntí."},"ms":{"text":"Penghawa dingin ada masalah.","pron":"펭하와 딩인 아다 마살라."},"ta":{"text":"ஏர் கண்டிஷனரில் பிரச்சனை உள்ளது.","pron":"에어 컨디셔너릴 프라차나이 울라두."}},{"icon":"🕐","ko":"체크아웃 시간이 몇 시인가요?","en":{"text":"What time is check-out?","pron":""},"zh":{"text":"退房时间是几点？","pron":"Tuìfáng shíjiān shì jǐ diǎn?"},"ms":{"text":"Pukul berapa waktu daftar keluar?","pron":"뿌꿀 브라빠 왁뚜 다프타르 클루아르?"},"ta":{"text":"செக்-அவுட் நேரம் எத்தனை மணி?","pron":"체크아웃 네람 에따나이 마니?"}}]},{"id":"food","title":"🍽 식당 · 호커센터","items":[{"icon":"🍽️","ko":"11명 자리 가능할까요?","en":{"text":"Can we have a table for eleven?","pron":""},"zh":{"text":"可以安排十一位的桌子吗？","pron":"Kěyǐ ānpái shíyī wèi de zhuōzi ma?"},"ms":{"text":"Boleh sediakan meja untuk sebelas orang?","pron":"볼레 스디아깐 메자 운뚝 스블라스 오랑?"},"ta":{"text":"பதினொன்று பேருக்கு மேசை கிடைக்குமா?","pron":"파디논드루 페루쿠 메사이 끼다이꾸마?"}},{"icon":"🪑","ko":"서로 붙어 있는 테이블에 앉을 수 있을까요?","en":{"text":"Can we sit at tables next to each other?","pron":""},"zh":{"text":"我们可以坐在相邻的桌子吗？","pron":"Wǒmen kěyǐ zuò zài xiānglín de zhuōzi ma?"},"ms":{"text":"Boleh kami duduk di meja yang bersebelahan?","pron":"볼레 카미 두둑 디 메자 양 브르스블라한?"},"ta":{"text":"அருகருகே உள்ள மேசைகளில் உட்காரலாமா?","pron":"아루가루게 울라 메사이갈릴 욷까랄라마?"}},{"icon":"📋","ko":"메뉴판을 볼 수 있을까요?","en":{"text":"Could we see the menu, please?","pron":""},"zh":{"text":"可以给我们看菜单吗？","pron":"Kěyǐ gěi wǒmen kàn càidān ma?"},"ms":{"text":"Boleh kami lihat menu?","pron":"볼레 카미 리핫 메뉴?"},"ta":{"text":"மெனுவைப் பார்க்கலாமா?","pron":"메누바이 파르깔라마?"}},{"icon":"⭐","ko":"추천 메뉴가 무엇인가요?","en":{"text":"What do you recommend?","pron":""},"zh":{"text":"你推荐什么？","pron":"Nǐ tuījiàn shénme?"},"ms":{"text":"Apa yang anda cadangkan?","pron":"아빠 양 안다 차당깐?"},"ta":{"text":"நீங்கள் என்ன பரிந்துரைக்கிறீர்கள்?","pron":"닝갈 엔나 파린두라이끼리르갈?"}},{"icon":"🌶️","ko":"덜 맵게 해주세요.","en":{"text":"Less spicy, please.","pron":""},"zh":{"text":"请少辣。","pron":"Qǐng shǎo là."},"ms":{"text":"Kurang pedas, tolong.","pron":"꾸랑 쁘다스, 똘롱."},"ta":{"text":"காரம் குறைவாக, தயவு செய்து.","pron":"까람 꾸라이바가, 다야부 세이두."}},{"icon":"🌿","ko":"고수 빼주세요.","en":{"text":"No coriander, please.","pron":""},"zh":{"text":"请不要香菜。","pron":"Qǐng bú yào xiāngcài."},"ms":{"text":"Tanpa daun ketumbar, tolong.","pron":"딴빠 다운 끄뚬바르, 똘롱."},"ta":{"text":"கொத்தமல்லி வேண்டாம்.","pron":"꼬따말리 벤담."}},{"icon":"👶","ko":"이 음식은 3살 아이가 먹기에 괜찮나요?","en":{"text":"Is this suitable for a three-year-old child?","pron":""},"zh":{"text":"这个适合三岁的孩子吃吗？","pron":"Zhège shìhé sān suì de háizi chī ma?"},"ms":{"text":"Adakah ini sesuai untuk kanak-kanak berumur tiga tahun?","pron":"아다까 이니 스수아이 운뚝 까낙까낙 브루무르 띠가 따훈?"},"ta":{"text":"இது மூன்று வயது குழந்தைக்கு ஏற்றதா?","pron":"이두 문드루 바야두 쿨란다이쿠 에뜨라다?"}},{"icon":"🥜","ko":"견과류가 들어 있나요?","en":{"text":"Does this contain nuts?","pron":""},"zh":{"text":"这里面有坚果吗？","pron":"Zhèlǐmiàn yǒu jiānguǒ ma?"},"ms":{"text":"Adakah ini mengandungi kekacang?","pron":"아다까 이니 멍안둥이 끄까창?"},"ta":{"text":"இதில் கொட்டைகள் உள்ளதா?","pron":"이딜 꼬따이갈 울라다?"}},{"icon":"🥡","ko":"포장해 주실 수 있나요?","en":{"text":"Can we get this to take away?","pron":""},"zh":{"text":"这个可以打包吗？","pron":"Zhège kěyǐ dǎbāo ma?"},"ms":{"text":"Boleh bungkus untuk dibawa pulang?","pron":"볼레 붕꾸스 운뚝 디바와 뿔랑?"},"ta":{"text":"இதை எடுத்துச் செல்லப் பொதி செய்யலாமா?","pron":"이다이 에두뚜 셀라 포디 세이얄라마?"}},{"icon":"💧","ko":"물 좀 주세요.","en":{"text":"Can we have some water, please?","pron":""},"zh":{"text":"请给我们一些水。","pron":"Qǐng gěi wǒmen yìxiē shuǐ."},"ms":{"text":"Boleh beri kami air?","pron":"볼레 브리 카미 아이르?"},"ta":{"text":"கொஞ்சம் தண்ணீர் தர முடியுமா?","pron":"꼰잠 딴니르 다라 무디유마?"}},{"icon":"🧾","ko":"계산서 부탁드립니다.","en":{"text":"Could we have the bill, please?","pron":""},"zh":{"text":"请给我们账单。","pron":"Qǐng gěi wǒmen zhàngdān."},"ms":{"text":"Boleh beri bil, tolong?","pron":"볼레 브리 빌, 똘롱?"},"ta":{"text":"பில் தர முடியுமா?","pron":"빌 다라 무디유마?"}},{"icon":"💳","ko":"나눠서 결제할 수 있나요?","en":{"text":"Can we pay separately?","pron":""},"zh":{"text":"可以分开付款吗？","pron":"Kěyǐ fēnkāi fùkuǎn ma?"},"ms":{"text":"Boleh bayar secara berasingan?","pron":"볼레 바야르 스차라 브라싱안?"},"ta":{"text":"தனித்தனியாக பணம் செலுத்தலாமா?","pron":"타니타니야가 파남 셀루딸라마?"}}]},{"id":"attraction","title":"🎟 관광지 · 티켓","items":[{"icon":"🎟️","ko":"티켓은 이미 구매했습니다.","en":{"text":"We already have tickets.","pron":""},"zh":{"text":"我们已经有票了。","pron":"Wǒmen yǐjīng yǒu piào le."},"ms":{"text":"Kami sudah ada tiket.","pron":"카미 수다 아다 띠껫."},"ta":{"text":"எங்களிடம் ஏற்கனவே டிக்கெட்டுகள் உள்ளன.","pron":"엥갈리담 에르까나베 티껫갈 울라나."}},{"icon":"📱","ko":"휴대폰으로 티켓을 보여드려도 되나요?","en":{"text":"Can I show the ticket on my phone?","pron":""},"zh":{"text":"可以在手机上出示票吗？","pron":"Kěyǐ zài shǒujī shàng chūshì piào ma?"},"ms":{"text":"Boleh saya tunjuk tiket di telefon?","pron":"볼레 사야 뚠죽 띠껫 디 뗄레폰?"},"ta":{"text":"டிக்கெட்டை தொலைபேசியில் காட்டலாமா?","pron":"티껫타이 똘라이페시일 까따랄라마?"}},{"icon":"🚪","ko":"입구가 어디인가요?","en":{"text":"Where is the entrance?","pron":""},"zh":{"text":"入口在哪里？","pron":"Rùkǒu zài nǎlǐ?"},"ms":{"text":"Di manakah pintu masuk?","pron":"디 마나까 삔뚜 마숙?"},"ta":{"text":"நுழைவாயில் எங்கே?","pron":"눌라이바일 엥게?"}},{"icon":"🚶","ko":"출구가 어디인가요?","en":{"text":"Where is the exit?","pron":""},"zh":{"text":"出口在哪里？","pron":"Chūkǒu zài nǎlǐ?"},"ms":{"text":"Di manakah pintu keluar?","pron":"디 마나까 삔뚜 클루아르?"},"ta":{"text":"வெளியேறும் வழி எங்கே?","pron":"벨리에룸 발리 엥게?"}},{"icon":"⏰","ko":"다음 공연은 몇 시인가요?","en":{"text":"What time is the next show?","pron":""},"zh":{"text":"下一场表演几点开始？","pron":"Xià yì chǎng biǎoyǎn jǐ diǎn kāishǐ?"},"ms":{"text":"Pukul berapa pertunjukan seterusnya?","pron":"뿌꿀 브라빠 프르뚠주깐 스뜨루스냐?"},"ta":{"text":"அடுத்த நிகழ்ச்சி எத்தனை மணிக்கு?","pron":"아두따 니갈치 에따나이 마니쿠?"}},{"icon":"📏","ko":"이 놀이기구의 최소 키 제한이 얼마인가요?","en":{"text":"What is the minimum height for this ride?","pron":""},"zh":{"text":"这个项目的最低身高要求是多少？","pron":"Zhège xiàngmù de zuìdī shēngāo yāoqiú shì duōshǎo?"},"ms":{"text":"Berapakah ketinggian minimum untuk permainan ini?","pron":"브라빠까 끄띵기안 미니뭄 운뚝 프르마이난 이니?"},"ta":{"text":"இந்த ரைடிற்கான குறைந்தபட்ச உயரம் என்ன?","pron":"인다 라이드카나 꾸라인다밧차 우야람 엔나?"}},{"icon":"👶","ko":"3살 아이도 입장할 수 있나요?","en":{"text":"Can a three-year-old child enter?","pron":""},"zh":{"text":"三岁的孩子可以进去吗？","pron":"Sān suì de háizi kěyǐ jìnqù ma?"},"ms":{"text":"Bolehkah kanak-kanak berumur tiga tahun masuk?","pron":"볼레까 까낙까낙 브루무르 띠가 따훈 마숙?"},"ta":{"text":"மூன்று வயது குழந்தை உள்ளே செல்லலாமா?","pron":"문드루 바야두 쿨란다이 울레 셀랄라마?"}},{"icon":"♿","ko":"엘리베이터나 유모차로 가기 편한 길이 있나요?","en":{"text":"Is there an elevator or stroller-friendly route?","pron":""},"zh":{"text":"有电梯或适合婴儿车的路线吗？","pron":"Yǒu diàntī huò shìhé yīng'érchē de lùxiàn ma?"},"ms":{"text":"Adakah terdapat lif atau laluan mesra kereta sorong?","pron":"아다까 뜨르다빳 리프 아따우 라루안 메스라 크레따 소롱?"},"ta":{"text":"லிப்ட் அல்லது குழந்தை வண்டிக்கு ஏற்ற வழி உள்ளதா?","pron":"리프트 알라두 쿨란다이 반디쿠 에뜨라 발리 울라다?"}},{"icon":"🔁","ko":"나갔다가 다시 들어올 수 있나요?","en":{"text":"Can we leave and re-enter later?","pron":""},"zh":{"text":"出去后可以再入场吗？","pron":"Chūqù hòu kěyǐ zài rùchǎng ma?"},"ms":{"text":"Boleh kami keluar dan masuk semula kemudian?","pron":"볼레 카미 클루아르 단 마숙 스물라 끄무디안?"},"ta":{"text":"வெளியே சென்று பிறகு மீண்டும் உள்ளே வரலாமா?","pron":"벨리에 센드루 피라구 민둠 울레 바라라마?"}},{"icon":"🧳","ko":"짐을 보관할 곳이 있나요?","en":{"text":"Is there a place to store our bags?","pron":""},"zh":{"text":"有寄存行李的地方吗？","pron":"Yǒu jìcún xínglǐ de dìfang ma?"},"ms":{"text":"Ada tempat untuk simpan beg kami?","pron":"아다 뜸팟 운뚝 심빤 벡 카미?"},"ta":{"text":"பைகளை வைக்க இடம் உள்ளதா?","pron":"파이갈라이 바이까 이담 울라다?"}}]},{"id":"mrt","title":"🚇 MRT · 길 찾기","items":[{"icon":"🚇","ko":"어느 노선을 타야 하나요?","en":{"text":"Which line should we take?","pron":""},"zh":{"text":"我们应该坐哪条线？","pron":"Wǒmen yīnggāi zuò nǎ tiáo xiàn?"},"ms":{"text":"Kami perlu naik laluan yang mana?","pron":"카미 플룰루 나익 라루안 양 마나?"},"ta":{"text":"எந்த லைனை எடுக்க வேண்டும்?","pron":"엔다 라이나이 에두까 벤둠?"}},{"icon":"🔄","ko":"어디에서 환승하나요?","en":{"text":"Where do we transfer?","pron":""},"zh":{"text":"我们在哪里换乘？","pron":"Wǒmen zài nǎlǐ huànchéng?"},"ms":{"text":"Di mana kami perlu tukar laluan?","pron":"디 마나 카미 플룰루 뚜까르 라루안?"},"ta":{"text":"எங்கே மாறி ஏற வேண்டும்?","pron":"엥게 마리 에라 벤둠?"}},{"icon":"🚪","ko":"몇 번 출구로 나가야 하나요?","en":{"text":"Which exit should we use?","pron":""},"zh":{"text":"我们应该走哪个出口？","pron":"Wǒmen yīnggāi zǒu nǎge chūkǒu?"},"ms":{"text":"Pintu keluar yang mana patut kami gunakan?","pron":"삔뚜 클루아르 양 마나 빠뚯 카미 구나깐?"},"ta":{"text":"எந்த வெளியேறும் வாயிலை பயன்படுத்த வேண்டும்?","pron":"엔다 벨리에룸 바일라이 파얀빠두따 벤둠?"}},{"icon":"📍","ko":"이곳으로 가는 길이 맞나요?","en":{"text":"Is this the right way to this place?","pron":""},"zh":{"text":"去这个地方是这条路吗？","pron":"Qù zhège dìfang shì zhè tiáo lù ma?"},"ms":{"text":"Adakah ini jalan yang betul ke tempat ini?","pron":"아다까 이니 잘란 양 브뚤 끄 뜸팟 이니?"},"ta":{"text":"இந்த இடத்திற்குச் செல்லும் சரியான வழி இதுதானா?","pron":"인다 이다띠르쿠 셀룸 사리야나 발리 이두다나?"}},{"icon":"🚶","ko":"걸어서 갈 수 있는 거리인가요?","en":{"text":"Is it within walking distance?","pron":""},"zh":{"text":"走路可以到吗？","pron":"Zǒulù kěyǐ dào ma?"},"ms":{"text":"Boleh berjalan kaki ke sana?","pron":"볼레 브르잘란 까끼 끄 사나?"},"ta":{"text":"நடந்து செல்லக்கூடிய தூரமா?","pron":"나다두 셀라꾸디야 두라마?"}},{"icon":"🛗","ko":"엘리베이터가 어디인가요?","en":{"text":"Where is the elevator?","pron":""},"zh":{"text":"电梯在哪里？","pron":"Diàntī zài nǎlǐ?"},"ms":{"text":"Di manakah lif?","pron":"디 마나까 리프?"},"ta":{"text":"லிப்ட் எங்கே?","pron":"리프트 엥게?"}},{"icon":"🚻","ko":"가장 가까운 화장실이 어디인가요?","en":{"text":"Where is the nearest toilet?","pron":""},"zh":{"text":"最近的洗手间在哪里？","pron":"Zuìjìn de xǐshǒujiān zài nǎlǐ?"},"ms":{"text":"Di manakah tandas terdekat?","pron":"디 마나까 딴다스 뜨르드깟?"},"ta":{"text":"அருகிலுள்ள கழிப்பறை எங்கே?","pron":"아루길울라 깔리빠라이 엥게?"}}]},{"id":"shopping","title":"🛍 쇼핑 · 결제","items":[{"icon":"💰","ko":"이거 얼마인가요?","en":{"text":"How much is this?","pron":""},"zh":{"text":"这个多少钱？","pron":"Zhège duōshao qián?"},"ms":{"text":"Berapa harga ini?","pron":"브라빠 하르가 이니?"},"ta":{"text":"இது எவ்வளவு?","pron":"이두 에발라부?"}},{"icon":"💳","ko":"신용카드 결제 되나요?","en":{"text":"Do you accept credit cards?","pron":""},"zh":{"text":"可以用信用卡吗？","pron":"Kěyǐ yòng xìnyòngkǎ ma?"},"ms":{"text":"Boleh bayar dengan kad kredit?","pron":"볼레 바야르 드응안 카드 크레딧?"},"ta":{"text":"கிரெடிட் கார்டு ஏற்கிறீர்களா?","pron":"크레딧 카르두 에르끼리르갈라?"}},{"icon":"📦","ko":"더 작은 사이즈가 있나요?","en":{"text":"Do you have a smaller one?","pron":""},"zh":{"text":"有小一点的吗？","pron":"Yǒu xiǎo yìdiǎn de ma?"},"ms":{"text":"Ada saiz yang lebih kecil?","pron":"아다 사이즈 양 르비 끄칠?"},"ta":{"text":"இதைவிட சிறிய அளவு உள்ளதா?","pron":"이다이비다 시리야 알라부 울라다?"}},{"icon":"📦","ko":"더 큰 사이즈가 있나요?","en":{"text":"Do you have a larger one?","pron":""},"zh":{"text":"有大一点的吗？","pron":"Yǒu dà yìdiǎn de ma?"},"ms":{"text":"Ada saiz yang lebih besar?","pron":"아다 사이즈 양 르비 브사르?"},"ta":{"text":"இதைவிட பெரிய அளவு உள்ளதா?","pron":"이다이비다 페리야 알라부 울라다?"}},{"icon":"🎁","ko":"선물용으로 포장해 주실 수 있나요?","en":{"text":"Could you pack this as a gift?","pron":""},"zh":{"text":"可以帮我包装成礼物吗？","pron":"Kěyǐ bāng wǒ bāozhuāng chéng lǐwù ma?"},"ms":{"text":"Boleh bungkus ini sebagai hadiah?","pron":"볼레 붕꾸스 이니 스바가이 하디아?"},"ta":{"text":"இதை பரிசாகப் பொதி செய்ய முடியுமா?","pron":"이다이 파리사가 포디 세이야 무디유마?"}},{"icon":"🧾","ko":"영수증 받을 수 있을까요?","en":{"text":"Can I get a receipt?","pron":""},"zh":{"text":"可以给我收据吗？","pron":"Kěyǐ gěi wǒ shōujù ma?"},"ms":{"text":"Boleh saya dapat resit?","pron":"볼레 사야 다빳 레싯?"},"ta":{"text":"ரசீது கிடைக்குமா?","pron":"라시두 끼다이꾸마?"}},{"icon":"↩️","ko":"교환이나 환불이 가능한가요?","en":{"text":"Can I exchange or return this?","pron":""},"zh":{"text":"这个可以换货或退货吗？","pron":"Zhège kěyǐ huànhuò huò tuìhuò ma?"},"ms":{"text":"Boleh tukar atau pulangkan barang ini?","pron":"볼레 뚜까르 아따우 뿔랑깐 바랑 이니?"},"ta":{"text":"இதை மாற்றவோ திருப்பிக் கொடுக்கவோ முடியுமா?","pron":"이다이 마뜨라보 띠루삐 꼬두까보 무디유마?"}}]},{"id":"kids","title":"👨‍👩‍👧‍👦 아이와 함께","items":[{"icon":"👶","ko":"3살 아이 두 명과 7살 아이 한 명이 있습니다.","en":{"text":"We have two three-year-old children and one seven-year-old child.","pron":""},"zh":{"text":"我们有两个三岁的孩子和一个七岁的孩子。","pron":"Wǒmen yǒu liǎng gè sān suì de háizi hé yí gè qī suì de háizi."},"ms":{"text":"Kami ada dua kanak-kanak berumur tiga tahun dan seorang berumur tujuh tahun.","pron":"카미 아다 두아 까낙까낙 브루무르 띠가 따훈 단 스오랑 브루무르 뚜주 따훈."},"ta":{"text":"எங்களுடன் மூன்று வயது குழந்தைகள் இருவரும் ஏழு வயது குழந்தை ஒருவரும் உள்ளனர்.","pron":"엥갈루단 문드루 바야두 쿨란다이갈 이루바룸 엘루 바야두 쿨란다이 오루바룸 울라나르."}},{"icon":"🍼","ko":"기저귀 교환실이 있나요?","en":{"text":"Is there a baby changing room?","pron":""},"zh":{"text":"有婴儿换尿布室吗？","pron":"Yǒu yīng'ér huàn niàobù shì ma?"},"ms":{"text":"Ada bilik menukar lampin bayi?","pron":"아다 빌릭 므누까르 람삔 바예?"},"ta":{"text":"குழந்தை டயப்பர் மாற்றும் அறை உள்ளதா?","pron":"쿨란다이 다야빠르 마뜨룸 아라이 울라다?"}},{"icon":"🛒","ko":"유모차를 안으로 가져갈 수 있나요?","en":{"text":"Can we bring the stroller inside?","pron":""},"zh":{"text":"婴儿车可以带进去吗？","pron":"Yīng'érchē kěyǐ dài jìnqù ma?"},"ms":{"text":"Boleh bawa kereta sorong masuk?","pron":"볼레 바와 크레따 소롱 마숙?"},"ta":{"text":"குழந்தை வண்டியை உள்ளே கொண்டு செல்லலாமா?","pron":"쿨란다이 반디야이 울레 꼰두 셀랄라마?"}},{"icon":"🥛","ko":"아이를 위해 따뜻한 물을 받을 수 있을까요?","en":{"text":"Can I get some warm water for the child?","pron":""},"zh":{"text":"可以给孩子一些温水吗？","pron":"Kěyǐ gěi háizi yìxiē wēnshuǐ ma?"},"ms":{"text":"Boleh beri sedikit air suam untuk kanak-kanak?","pron":"볼레 브리 스디낏 아이르 수암 운뚝 까낙까낙?"},"ta":{"text":"குழந்தைக்காக கொஞ்சம் வெந்நீர் கிடைக்குமா?","pron":"쿨란다이까가 꼰잠 벤니르 끼다이꾸마?"}},{"icon":"🪑","ko":"아동용 의자나 하이체어가 있나요?","en":{"text":"Do you have a child seat or high chair?","pron":""},"zh":{"text":"有儿童椅或高脚椅吗？","pron":"Yǒu értóng yǐ huò gāojiǎoyǐ ma?"},"ms":{"text":"Ada kerusi kanak-kanak atau kerusi tinggi?","pron":"아다 크루시 까낙까낙 아따우 크루시 띵기?"},"ta":{"text":"குழந்தை இருக்கை அல்லது உயர நாற்காலி உள்ளதா?","pron":"쿨란다이 이룩까이 알라두 우야르 나르깔리 울라다?"}},{"icon":"😴","ko":"아이가 잠깐 쉴 수 있는 조용한 곳이 있나요?","en":{"text":"Is there somewhere quiet where the child can rest?","pron":""},"zh":{"text":"有安静一点让孩子休息的地方吗？","pron":"Yǒu ānjìng yìdiǎn ràng háizi xiūxi de dìfang ma?"},"ms":{"text":"Ada tempat yang tenang untuk kanak-kanak berehat?","pron":"아다 뜸팟 양 뜨낭 운뚝 까낙까낙 브르레핫?"},"ta":{"text":"குழந்தை ஓய்வெடுக்க அமைதியான இடம் உள்ளதா?","pron":"쿨란다이 오이베두까 아마디야나 이담 울라다?"}},{"icon":"🧒","ko":"아이를 잃어버렸습니다. 도와주세요.","en":{"text":"My child is lost. Please help us.","pron":""},"zh":{"text":"我的孩子走丢了，请帮帮我们。","pron":"Wǒ de háizi zǒu diū le, qǐng bāngbang wǒmen."},"ms":{"text":"Anak saya hilang. Tolong bantu kami.","pron":"아낙 사야 힐랑. 똘롱 반뚜 카미."},"ta":{"text":"என் குழந்தை காணவில்லை. தயவு செய்து உதவுங்கள்.","pron":"엔 쿨란다이 카나빌라이. 다야부 세이두 우다붕갈."}}]},{"id":"emergency","title":"🆘 문제 · 건강 · 긴급상황","items":[{"icon":"🆘","ko":"도와주세요.","en":{"text":"Please help me.","pron":""},"zh":{"text":"请帮帮我。","pron":"Qǐng bāngbang wǒ."},"ms":{"text":"Tolong bantu saya.","pron":"똘롱 반뚜 사야."},"ta":{"text":"தயவு செய்து உதவுங்கள்.","pron":"다야부 세이두 우다붕갈."}},{"icon":"💊","ko":"가장 가까운 약국이 어디인가요?","en":{"text":"Where is the nearest pharmacy?","pron":""},"zh":{"text":"最近的药房在哪里？","pron":"Zuìjìn de yàofáng zài nǎlǐ?"},"ms":{"text":"Di manakah farmasi terdekat?","pron":"디 마나까 파르마시 뜨르드깟?"},"ta":{"text":"அருகிலுள்ள மருந்தகம் எங்கே?","pron":"아루길울라 마룬다가 엥게?"}},{"icon":"🏥","ko":"진료를 받아야 합니다.","en":{"text":"We need to see a doctor.","pron":""},"zh":{"text":"我们需要看医生。","pron":"Wǒmen xūyào kàn yīshēng."},"ms":{"text":"Kami perlu jumpa doktor.","pron":"카미 플룰루 줌빠 독또르."},"ta":{"text":"நாங்கள் மருத்துவரை பார்க்க வேண்டும்.","pron":"낭갈 마루뚜바라이 파르까 벤둠."}},{"icon":"🤒","ko":"아이가 열이 납니다.","en":{"text":"My child has a fever.","pron":""},"zh":{"text":"我的孩子发烧了。","pron":"Wǒ de háizi fāshāo le."},"ms":{"text":"Anak saya demam.","pron":"아낙 사야 드맘."},"ta":{"text":"என் குழந்தைக்கு காய்ச்சல் உள்ளது.","pron":"엔 쿨란다이쿠 까이찰 울라두."}},{"icon":"🤢","ko":"아이가 몸이 좋지 않습니다.","en":{"text":"My child is feeling sick.","pron":""},"zh":{"text":"我的孩子不舒服。","pron":"Wǒ de háizi bù shūfu."},"ms":{"text":"Anak saya tidak sihat.","pron":"아낙 사야 띠닥 시핫."},"ta":{"text":"என் குழந்தைக்கு உடம்பு சரியில்லை.","pron":"엔 쿨란다이쿠 우담부 사리일라이."}},{"icon":"🚑","ko":"구급차를 불러주세요.","en":{"text":"Please call an ambulance.","pron":""},"zh":{"text":"请叫救护车。","pron":"Qǐng jiào jiùhùchē."},"ms":{"text":"Tolong panggil ambulans.","pron":"똘롱 빵길 암불란스."},"ta":{"text":"தயவு செய்து ஆம்புலன்ஸ் அழைக்கவும்.","pron":"다야부 세이두 암불란스 알라이까붐."}},{"icon":"📱","ko":"휴대폰을 잃어버렸어요.","en":{"text":"I lost my phone.","pron":""},"zh":{"text":"我的手机丢了。","pron":"Wǒ de shǒujī diū le."},"ms":{"text":"Telefon saya hilang.","pron":"뗄레폰 사야 힐랑."},"ta":{"text":"என் தொலைபேசி காணவில்லை.","pron":"엔 똘라이페시 카나빌라이."}},{"icon":"👛","ko":"지갑을 잃어버렸어요.","en":{"text":"I lost my wallet.","pron":""},"zh":{"text":"我的钱包丢了。","pron":"Wǒ de qiánbāo diū le."},"ms":{"text":"Dompet saya hilang.","pron":"돔뻿 사야 힐랑."},"ta":{"text":"என் பணப்பை காணவில்லை.","pron":"엔 파나파이 카나빌라이."}},{"icon":"❓","ko":"잘 이해하지 못했습니다. 천천히 다시 말씀해 주세요.","en":{"text":"I don't understand. Could you say that again slowly?","pron":""},"zh":{"text":"我听不懂，可以慢一点再说一次吗？","pron":"Wǒ tīng bù dǒng, kěyǐ màn yìdiǎn zài shuō yí cì ma?"},"ms":{"text":"Saya tidak faham. Boleh cakap sekali lagi dengan perlahan?","pron":"사야 띠닥 파함. 볼레 차깝 스깔리 라기 드응안 쁘를라한?"},"ta":{"text":"எனக்கு புரியவில்லை. மெதுவாக மீண்டும் சொல்ல முடியுமா?","pron":"에나쿠 푸리야빌라이. 메두바가 민둠 솔라 무디유마?"}},{"icon":"📱","ko":"제 휴대폰에 입력해 주실 수 있나요?","en":{"text":"Could you type it on my phone?","pron":""},"zh":{"text":"可以在我的手机上打字吗？","pron":"Kěyǐ zài wǒ de shǒujī shàng dǎzì ma?"},"ms":{"text":"Boleh taip pada telefon saya?","pron":"볼레 타입 빠다 뗄레폰 사야?"},"ta":{"text":"என் தொலைபேசியில் தட்டச்சு செய்து காட்ட முடியுமா?","pron":"엔 똘라이페시일 따따추 세이두 까따 무디유마?"}}]},{"id":"basic","title":"🙏 기본적으로 제일 많이 쓰는 말","items":[{"icon":"👋","ko":"안녕하세요.","en":{"text":"Hello.","pron":""},"zh":{"text":"你好。","pron":"Nǐ hǎo."},"ms":{"text":"Helo.","pron":"헬로."},"ta":{"text":"வணக்கம்.","pron":"바나깜."}},{"icon":"🙏","ko":"감사합니다.","en":{"text":"Thank you.","pron":""},"zh":{"text":"谢谢。","pron":"Xièxie."},"ms":{"text":"Terima kasih.","pron":"뜨리마 까시."},"ta":{"text":"நன்றி.","pron":"난드리."}},{"icon":"🙂","ko":"실례합니다 / 잠시만요.","en":{"text":"Excuse me.","pron":""},"zh":{"text":"不好意思。","pron":"Bù hǎoyìsi."},"ms":{"text":"Maaf / Tumpang tanya.","pron":"마아프 / 뚬빵 따냐."},"ta":{"text":"மன்னிக்கவும்.","pron":"만닉까붐."}},{"icon":"🙇","ko":"미안합니다.","en":{"text":"Sorry.","pron":""},"zh":{"text":"对不起。","pron":"Duìbuqǐ."},"ms":{"text":"Maaf.","pron":"마아프."},"ta":{"text":"மன்னிக்கவும்.","pron":"만닉까붐."}},{"icon":"✅","ko":"괜찮습니다.","en":{"text":"That's okay.","pron":""},"zh":{"text":"没关系。","pron":"Méi guānxi."},"ms":{"text":"Tak apa.","pron":"딱 아빠."},"ta":{"text":"பரவாயில்லை.","pron":"파라바일라이."}},{"icon":"❓","ko":"보여주실 수 있나요?","en":{"text":"Could you show me?","pron":""},"zh":{"text":"可以给我看一下吗？","pron":"Kěyǐ gěi wǒ kàn yíxià ma?"},"ms":{"text":"Boleh tunjuk kepada saya?","pron":"볼레 뚠죽 끄빠다 사야?"},"ta":{"text":"எனக்கு காட்ட முடியுமா?","pron":"에나쿠 까따 무디유마?"}},{"icon":"⏳","ko":"잠시만 기다려주세요.","en":{"text":"Just a moment, please.","pron":""},"zh":{"text":"请稍等一下。","pron":"Qǐng shāo děng yíxià."},"ms":{"text":"Tunggu sebentar, tolong.","pron":"뚱구 스븐따르, 똘롱."},"ta":{"text":"ஒரு நிமிடம் காத்திருக்கவும்.","pron":"오루 니미담 까띠루까붐."}}]}];
 const PHRASE_LANGS={
   en:{label:'English',ref:''},
@@ -1301,7 +1307,7 @@ function getPhraseItem(catId,idx){
 })();
 
 
-// ---------- v14.1 flight LIVE card shell ----------
+// ---------- v14.2 flight LIVE card shell ----------
 const FLIGHT_LIVE_KEY='sg_family_trip_2026_flight_live_v13_8';
 function readFlightCache(){try{return JSON.parse(localStorage.getItem(FLIGHT_LIVE_KEY)||'{}')}catch(e){return {}}}
 function paintFlightCard(no){
@@ -1316,7 +1322,7 @@ paintFlightCard('677');paintFlightCard('644');
 
 
 
-// ---------- v14.1 data mode + fixed interactive itinerary ----------
+// ---------- v14.2 data mode + fixed interactive itinerary ----------
 const DATA_MODE_KEY='sg_family_trip_2026_data_mode_v14';
 const DETAIL_KNOWLEDGE=[{"keys":["출발 전날","공항 이동·여행서류"],"intro":"실제 여행의 첫 일정은 공항에 가기 전부터 시작됩니다. 11명이 움직이므로 ‘무엇을 챙겼는가’보다 ‘누가 무엇을 들고 어느 차에 타는가’를 마지막으로 맞추는 시간이 중요합니다.","see":"여권 11명, 항공권, 호텔 예약, SG Arrival Card, 위탁/기내수하물, 유모차, 보조배터리 위치를 한 번에 확인.","tip":"대표자 한 명이 인원·여권·짐 개수를 소리 내어 체크하고, 차량별 탑승 인원을 가족 단톡방에 남겨두면 공항 집결이 편합니다.","kid":"아이들 기내용 가방에는 간식·물티슈·여벌옷·작은 장난감/태블릿을 따로 두는 편이 좋습니다.","move":"택시 기사·차량·픽업 시간을 전날 재확인. 공항 도착 목표시간에서 역산해 여유 있게 출발.","map":""},{"keys":["집에서 출발","인천공항 이동"],"intro":"출국일에는 집에서 공항까지의 이동을 하나의 일정으로 취급하는 게 좋습니다. 가족 수가 많아 중간에 빠뜨린 물건을 되찾으러 가기 어렵습니다.","see":"출발 직전 인원 11명, 여권, 휴대폰, 지갑, 캐리어/유모차 개수를 다시 셉니다.","tip":"차량 출발 후에는 ‘여권 확인’보다 각자 좌석·짐 배치를 안정시키고 공항 도착 후 집결 지점을 정해두는 게 실용적입니다.","kid":"3세 아이들은 공항 도착 직후 화장실·간식 타이밍을 먼저 잡아주면 체크인 과정이 훨씬 수월합니다.","move":"사전예약 택시 기준. 차량이 여러 대라면 먼저 도착한 팀이 체크인 카운터 위치를 공유.","map":"Incheon International Airport"},{"keys":["체크인 → 출국심사","면세/라운지"],"intro":"공항에서 가장 중요한 건 ‘탑승구와 Boarding Time을 먼저 확인하고 나머지를 하는 것’입니다. 면세·라운지는 그다음입니다.","see":"체크인 카운터 → 위탁수하물 → 출국심사 → Gate/Boarding Time 확인 → 면세/라운지 순서.","tip":"11명이 한꺼번에 움직이면 탑승구 이동에 시간이 더 걸립니다. 라운지에서 나오는 시각을 미리 정해두는 편이 좋습니다.","kid":"아이와 함께라면 출국심사 후 화장실 위치와 간식 시간을 먼저 잡고, 탑승 직전 과도하게 뛰어놀지 않도록 합니다.","move":"Gate가 먼 탑승동이면 이동시간이 크게 늘 수 있으므로 전광판을 먼저 확인.","map":"Incheon International Airport"},{"keys":["창이공항","Changi Airport 도착"],"intro":"도착 직후에는 관광보다 입국·수하물·가족 재집결이 우선입니다. 첫날 Jewel은 넣지 않고 호텔로 바로 이동하는 일정이 안정적입니다.","see":"입국심사 → 수하물 → 화장실/유모차 정비 → 차량 승차 위치 확인.","tip":"수하물 벨트 앞에서 11명이 흩어지지 않도록 한쪽에 대기 기준점을 정해두면 좋습니다.","kid":"아이들이 가장 지칠 시간대라 한 명은 아이, 한 명은 수하물처럼 역할을 나누는 편이 효율적입니다.","move":"11명+짐은 대형차량 2대 또는 택시/Grab 분산. 호텔까지 바로 이동.","map":"Singapore Changi Airport"},{"keys":["Marriott Tang Plaza Hotel 체크인"],"intro":"Orchard 한가운데 있는 이번 여행의 베이스캠프입니다. 이후 일정에서도 한낮 휴식과 재출발의 기준점으로 사용합니다.","see":"객실 배정, 조식/시설 조건, 객실 간 거리, 다음 날 집결 위치를 확인.","tip":"11명이라 객실번호와 가족별 방 배정을 단톡방에 한 번 적어두면 이후 매일 집결이 편합니다.","kid":"아이들 잠자리를 먼저 만들고 다음 날 필요한 옷·유모차만 밖에 꺼내두면 첫날 피로를 줄일 수 있습니다.","move":"Orchard MRT NS22 / TE14 인접. 대부분의 일정 출발점.","map":"Singapore Marriott Tang Plaza Hotel"},{"keys":["Merlion Park","머라이언"],"intro":"싱가포르를 처음 보는 날의 대표적인 ‘도시 소개 장면’입니다. 머라이언 자체보다 Marina Bay 전체가 한눈에 들어오는 위치라는 점이 핵심입니다.","see":"Merlion, Marina Bay Sands 방향 가족사진, Fullerton 쪽 강변 풍경.","tip":"그늘이 적어 오래 머무르기보다 사진과 주변 풍경을 보고 다음 코스로 이동하는 편이 좋습니다.","kid":"유모차 이동은 어렵지 않지만 한낮에는 체감온도가 높습니다. 물과 모자 준비.","move":"Orchard→Raffles Place 직통 후 도보. 오전 시작 추천.","map":"Merlion Park Singapore"},{"keys":["Esplanade","Singapore Flyer"],"intro":"Marina Bay의 동쪽을 따라 걸으며 도시 스카이라인을 보는 구간입니다. Flyer는 약 30분 동안 앉아서 전경을 볼 수 있어 가족 여행에서 휴식 효과도 있습니다.","see":"Esplanade 외관, 강변 산책, Singapore Flyer에서 Marina Bay·간척지 조망.","tip":"모두 탑승하지 않아도 됩니다. 더위나 아이 컨디션에 따라 Flyer를 휴식형 콘텐츠로 선택.","kid":"관람차 안에서는 이동 부담이 적어 어린아이와 함께하기 편한 편입니다.","move":"Merlion에서 강변 방향으로 이어서 이동. 더우면 택시로 Flyer만 바로 이동해도 됨.","map":"Singapore Flyer"},{"keys":["점심 + 에어컨 휴식","Marina Bay/MBS"],"intro":"DAY2의 핵심은 점심 자체보다 오전 야외 일정과 오후 Gardens 사이에 체온과 체력을 낮추는 것입니다.","see":"MBS/The Shoppes 안에서 식사·화장실·카페를 한 번에 해결.","tip":"11명이 한 식당에 바로 들어가기 어렵다면 2개 테이블 또는 2팀으로 나눠도 일정에는 문제가 없습니다.","kid":"3세 아이들은 식사 후 유모차 낮잠이 가능하도록 이동을 짧게 잡는 것이 좋습니다.","move":"오후 Helix/MBS/Gardens로 이어지므로 Marina Bay 안에서 해결하는 게 효율적.","map":"The Shoppes at Marina Bay Sands"},{"keys":["Helix Bridge","The Shoppes"],"intro":"싱가포르의 현대적인 도시 이미지를 가장 잘 느끼는 구간입니다. 다만 ‘다 보는 것’보다 더위를 피하면서 MBS를 통과하는 이동 구간으로 생각해도 충분합니다.","see":"Helix Bridge 구조, MBS 외관, The Shoppes 실내 공간.","tip":"Helix는 야간이 더 예쁘지만 DAY2에서는 이동 동선상 오후에 지나가고, 필요하면 밤에 다시 보는 정도로 생각합니다.","kid":"쇼핑몰을 화장실·냉방·간식 거점으로 적극 활용.","move":"기본 도보. 더위가 심하면 짧은 차량 이동 허용.","map":"Marina Bay Sands Singapore"},{"keys":["Gardens by the Bay","Cloud Forest","Flower Dome"],"intro":"싱가포르가 말하는 ‘정원도시’를 가장 직관적으로 보여주는 곳입니다. 실내 온실이라 오후 더위와 소나기를 피하기에도 좋습니다.","see":"Cloud Forest의 실내 폭포와 고산식생, Flower Dome의 대형 온실, 이후 Supertree Grove.","tip":"두 온실을 모두 완주하려고 서두르지 말고 아이 체력에 따라 Cloud Forest 중심으로 봐도 됩니다.","kid":"실내 냉방이 강할 수 있어 얇은 겉옷이 유용합니다. 유모차 이동도 비교적 편합니다.","move":"MBS에서 연결통로/도보. 관람 후 Supertree 쪽으로 이동.","map":"Gardens by the Bay Singapore"},{"keys":["Garden Rhapsody","Spectra","Supertree"],"intro":"DAY2의 피날레입니다. 두 무료 야간쇼를 모두 보려면 이동시간과 시작시각을 맞추는 것이 핵심입니다.","see":"Supertree 조명·음악쇼와 MBS 앞 Spectra 수상쇼.","tip":"Garden Rhapsody 19:45 또는 20:45, Spectra 일요일 20:00/21:00 중 현실적인 조합 하나만 잡아도 충분합니다.","kid":"늦은 시간이므로 아이가 잠들면 한 쇼만 보고 호텔로 복귀해도 성공한 일정입니다.","move":"Gardens↔MBS 이동시간을 감안해 쇼 사이를 너무 빡빡하게 잡지 않기.","map":"Supertree Grove Singapore"},{"keys":["VivoCity"],"intro":"센토사로 들어가기 전 마지막 대형 실내 거점입니다. 화장실·간식·유모차·식사를 정비하기 좋은 곳입니다.","see":"HarbourFront MRT에서 VivoCity로 연결 후 Sentosa Express 탑승.","tip":"USS 입장 전에 필요한 물과 간식을 정리하고, 가족별 팀 분리 계획을 다시 확인.","kid":"3세 아이 팀은 여기서 무리하게 서두르지 않는 것이 DAY3 전체 컨디션에 도움이 됩니다.","move":"Orchard→Dhoby Ghaut 환승→HarbourFront→VivoCity.","map":"VivoCity Singapore"},{"keys":["Sentosa Express","Resorts World Sentosa"],"intro":"센토사 섬으로 진입하는 구간입니다. 오늘은 USS 한 곳을 ‘완주’하는 날이 아니라 센토사 안에서 가족별로 즐기는 날로 설계했습니다.","see":"Resorts World Sentosa 도착 후 USS팀과 EASY팀 동선 분리 가능.","tip":"대기시간과 휴장 정보를 보고 당일 유연하게 팀을 나누는 것이 핵심.","kid":"유모차, 화장실, 간식 위치를 입장 전에 한 번 확인.","move":"VivoCity에서 Sentosa Express 이용.","map":"Resorts World Sentosa"},{"keys":["Universal Studios","USS"],"intro":"놀이기구·캐릭터·쇼를 섞어서 즐기는 것이 좋습니다. 최근 후기처럼 대기·기술점검 변수가 있으므로 특정 어트랙션 하나에 긴 시간을 걸지 않는 편이 안전합니다.","see":"Transformers, Minion Land, 캐릭터 미팅/쇼 등 가족별 선호 콘텐츠.","tip":"앱/현장 대기시간을 보고 30~40분 이상이면 다른 콘텐츠로 돌리는 유연한 운영이 좋습니다.","kid":"3세 아이는 키 제한 때문에 이용 가능한 시설이 크게 달라질 수 있어 성인 교대·팀 분리가 현실적입니다.","move":"USS팀과 EASY팀이 점심 또는 오후에 재집결하도록 시간/장소 하나만 정해두기.","map":"Universal Studios Singapore"},{"keys":["Oceanarium"],"intro":"어린아이와 함께하는 가족팀의 안정적인 센토사 대안입니다. 실내라 폭염·비·낮잠 변수에 강합니다.","see":"대형 수조와 해양생물 전시, 실내 휴식.","tip":"USS가 너무 붐비거나 아이들이 지치면 Oceanarium 비중을 늘리는 방식으로 당일 조정.","kid":"3세 아이에게 놀이기구보다 관람 난도가 낮고 유모차 운영도 쉬운 편입니다.","move":"Resorts World Sentosa 안에서 이동.","map":"Singapore Oceanarium"},{"keys":["Luge","Siloso","Wings"],"intro":"센토사 오후·저녁의 선택 콘텐츠입니다. 모두 넣기보다 가족이 가장 원하는 1~2개를 골라야 일정이 편합니다.","see":"Skyline Luge, Siloso Beach, Wings of Time 야간쇼.","tip":"낮에 USS/Oceanarium을 충분히 즐겼다면 Wings만 남기고 나머지는 생략해도 좋습니다.","kid":"Luge는 키/동반 규정을 확인하고, 해변은 아이들이 젖을 가능성을 고려.","move":"센토사 내부 이동 시간이 은근히 걸리므로 쇼 시작 전 여유 확보.","map":"Wings of Time Singapore"},{"keys":["Fort Canning"],"intro":"DAY4는 싱가포르의 과거를 읽는 날입니다. Fort Canning은 식민지 이전부터 영국 식민 행정·군사 역사까지 이어지는 출발점입니다.","see":"Fort Canning Tree Tunnel, 공원과 언덕 주변 역사 흔적.","tip":"Tree Tunnel 사진 대기가 생길 수 있어 가능하면 이른 시간 방문.","kid":"언덕·계단 구간이 있어 유모차 동선은 현장에서 편한 길로 우회.","move":"오전 첫 코스로 배치해 더위를 피함.","map":"Fort Canning Tree Tunnel Singapore"},{"keys":["National Museum"],"intro":"싱가포르 역사를 한 번에 정리하면서 한낮 냉방 휴식을 할 수 있는 장소입니다. DAY4 전체 맥락을 잡아주는 역할입니다.","see":"식민지, 독립, 현대국가 형성 과정 관련 전시.","tip":"모든 전시를 자세히 보기보다 가족이 흥미 있어 하는 핵심 전시만 골라도 충분합니다.","kid":"실내 휴식 장소로 생각하면 좋고, 아이가 지루해하면 빠르게 다음 코스로 이동.","move":"Fort Canning과 Civic District 사이에 자연스럽게 연결.","map":"National Museum of Singapore"},{"keys":["CHIJMES","Raffles Hotel","St Andrew"],"intro":"영국 식민지 시기의 종교·행정·상업도시 분위기를 압축해서 보는 구간입니다. 건물 내부를 모두 볼 필요는 없습니다.","see":"CHIJMES 외관, Raffles Hotel, St Andrew’s Cathedral, Padang 주변.","tip":"사진과 건축 분위기 중심으로 짧게 이동하고 체력이 남으면 National Gallery를 추가.","kid":"걷는 시간이 길어지면 중간 카페/실내 휴식 활용.","move":"Civic District 일대라 도보 연결이 가능하지만 더우면 짧은 Grab 사용.","map":"CHIJMES Singapore"},{"keys":["Chinatown","Sri Mariamman","Buddha Tooth"],"intro":"중국계 이민자 생활공간과 종교가 가까이 공존하는 싱가포르 다문화성을 보는 구간입니다.","see":"Pagoda Street, Sri Mariamman Temple, Buddha Tooth Relic Temple, Chinatown 거리.","tip":"사원은 실제 종교시설이므로 복장·예배 동선을 방해하지 않도록 짧게 관람.","kid":"거리 상점과 간식이 있어 박물관보다 아이들이 지루해하지 않을 수 있습니다.","move":"Maxwell과 묶어서 식사까지 한 번에 처리.","map":"Chinatown Singapore"},{"keys":["Maxwell"],"intro":"싱가포르 호커 문화를 직접 경험하는 점심 장소입니다. 유명한 한 가게만 고집하기보다 여러 메뉴를 나눠 먹는 편이 11명 가족에게 잘 맞습니다.","see":"치킨라이스, 현지 국수·주스 등 여러 호커 메뉴.","tip":"자리 확보팀과 주문팀을 나누면 효율적입니다. 현금/카드 가능 여부는 점포별로 다를 수 있습니다.","kid":"덜 맵고 익숙한 메뉴를 한두 개 먼저 확보해두면 좋습니다.","move":"식사 후 Maxwell TE18→Orchard TE14 직통으로 호텔 휴식 가능.","map":"Maxwell Food Centre Singapore"},{"keys":["Old Hill Street","Clarke Quay","River Cruise"],"intro":"낮에 본 식민지 도시가 저녁의 강변 상업지구로 이어지는 흐름을 보는 구간입니다. River Cruise는 걷다가 앉아서 쉬는 역할도 합니다.","see":"Old Hill Street Police Station 외관, Clarke Quay 강변, 약 40분 River Cruise.","tip":"크루즈는 해질 무렵~야간이 분위기가 좋지만 식당 예약시간과 충돌하지 않게 조정.","kid":"배에 앉아서 이동하는 시간이 있어 DAY4 후반 체력 회복에 도움이 됩니다.","move":"River Cruise 하선 후 JUMBO Riverside 저녁으로 연결하기 좋음.","map":"Clarke Quay Singapore"},{"keys":["JUMBO","칠리크랩"],"intro":"DAY4의 대표 식사입니다. 11명이므로 메뉴 선택보다 예약·테이블·게 무게 확인이 더 중요합니다.","see":"Chili Crab, Cereal Prawns, Supreme Seafood Fried Rice, Mantou 조합.","tip":"게는 무게/시가 방식이므로 주문 전에 크기와 예상가격을 확인. 실내는 아이·더위에 유리하고 테라스는 야경이 좋습니다.","kid":"게 요리는 손이 많이 가므로 아이용 볶음밥/면을 먼저 주문하면 편합니다.","move":"River Cruise 뒤 Riverside Point 지점으로 이어지는 동선.","map":"JUMBO Seafood Riverside Point Singapore"},{"keys":["River Wonders"],"intro":"Mandai에서 오전에 보기 좋은 비교적 압축된 동물원입니다. 강·담수 생태계 중심으로 구성돼 Zoo와 성격이 다릅니다.","see":"수생·담수 동물 전시와 대표 구역을 중심으로 관람.","tip":"Amazon River Quest는 여행기간 운휴 예정이므로 이 시설을 전제로 동선을 짜지 않습니다.","kid":"Zoo보다 실내/그늘 구간을 활용하기 쉬워 오전 스타트로 안정적입니다.","move":"호텔에서 Grab/택시 3대 정도로 Mandai 이동 권장.","map":"River Wonders Singapore"},{"keys":["Singapore Zoo"],"intro":"넓은 야외형 동물원이라 ‘많이 보는 것’보다 보고 싶은 동물을 골라 이동하는 것이 좋습니다.","see":"가족이 원하는 대표 동물 구역과 쇼/먹이주기 시간표를 당일 확인.","tip":"오후 더위가 강하면 트램과 실내 휴식공간을 적극 활용.","kid":"3세 아이들이 걸어서 완주하기 어려워 유모차를 기본으로 생각.","move":"River Wonders 점심 후 Zoo로 이동. 같은 Mandai 권역.","map":"Singapore Zoo"},{"keys":["Night Safari"],"intro":"DAY5의 선택 옵션입니다. 세계 최초 야간 동물원이라는 상징성은 크지만, 이미 하루 종일 Mandai를 본 뒤라 체력 부담도 큽니다.","see":"트램과 야간 동물 관찰, Creatures of the Night 공연.","tip":"아이 컨디션이 좋을 때만 진행. ‘여기까지 봐야 성공’인 일정은 아닙니다.","kid":"늦은 시간과 어두운 환경을 불편해할 수 있어 낮잠 여부를 보고 결정.","move":"Zoo 종료 후 Mandai 안에서 이어갈 수 있으나 호텔 귀가가 늦어짐.","map":"Night Safari Singapore"},{"keys":["Little India","Tekka"],"intro":"싱가포르의 인도계 문화와 생활공간을 짧게 보는 출국일 오전 코스입니다. 오래 머무르기보다 색·향·시장 분위기를 경험하는 것이 목적입니다.","see":"Tekka Centre, Tan Teng Niah, Sri Veeramakaliamman Temple 주변.","tip":"출국일이므로 쇼핑을 크게 벌이지 않고 1~1.5시간 안에 정리.","kid":"시장 혼잡 구간에서는 유모차와 아이 손잡기 역할을 미리 나눕니다.","move":"이후 Kampong Glam으로 이동.","map":"Tekka Centre Singapore"},{"keys":["Sultan Mosque","Haji Lane","Kampong"],"intro":"말레이·무슬림 문화권과 현대적인 Haji Lane이 붙어 있어 싱가포르의 다문화성을 체감하기 좋은 구간입니다.","see":"Sultan Mosque, Bussorah Street, Muscat Street 벽화, Haji Lane.","tip":"모스크는 예배시간·방문 가능시간을 당일 확인. Haji Lane은 1시간 안팎이면 충분합니다.","kid":"좁고 사람이 많은 구간에서는 유모차가 불편할 수 있어 천천히 이동.","move":"Little India에서 짧은 차량 또는 MRT로 연결 가능.","map":"Sultan Mosque Singapore"},{"keys":["Bugis"],"intro":"출국일 점심·간식·마지막 소소한 쇼핑을 해결하는 실용적인 구간입니다.","see":"Bugis Junction, Bugis Street, 디저트/현지 음식 후보.","tip":"호텔로 돌아가 짐을 찾고 Jewel로 가야 하므로 종료시간을 먼저 정해두는 게 중요합니다.","kid":"냉방이 필요한 경우 Bugis Junction을 거점으로 활용.","move":"점심 후 호텔 복귀→짐 픽업→공항 이동.","map":"Bugis Junction Singapore"},{"keys":["Jewel"],"intro":"공항이면서 마지막 관광지 역할을 하는 곳입니다. Rain Vortex, 식사, 선물 쇼핑을 한 번에 끝낼 수 있습니다.","see":"Rain Vortex, 쇼핑, 저녁식사, 마지막 기념품 구매.","tip":"Jewel에 오래 머무는 것보다 ‘몇 시에 터미널로 이동할지’를 먼저 정해두는 것이 중요합니다.","kid":"비행 전 아이들에게 식사·화장실을 충분히 해결해두기 좋습니다.","move":"KE644 체크인/수하물 처리 가능시간을 확인하고 21:00 전후에는 Gate 도착을 목표로 합니다.","map":"Jewel Changi Airport"}];
 let dataMode='saving';
@@ -1380,6 +1386,88 @@ function extractPlaces(slot){
    return {name:clone.textContent.trim(),desc:p?.textContent.trim()||''};
  }).filter(x=>x.name);
 }
+
+const ITINERARY_ROUTE_GROUPS=[{"match":["Merlion Park","Esplanade","Singapore Flyer"],"points":[["Merlion Park",1.2868,103.8545],["Esplanade",1.2897,103.8558],["Singapore Flyer",1.2893,103.8631]]},{"match":["Helix Bridge","Marina Bay Sands","The Shoppes"],"points":[["Helix Bridge",1.2875,103.86],["Marina Bay Sands",1.2834,103.8607],["The Shoppes at Marina Bay Sands",1.2837,103.8593]]},{"match":["Gardens by the Bay","Cloud Forest","Flower Dome"],"points":[["Gardens by the Bay",1.2816,103.8636],["Cloud Forest",1.2846,103.8642],["Flower Dome",1.284,103.8641]]},{"match":["Supertree Grove","Garden Rhapsody","Spectra"],"points":[["Supertree Grove · Garden Rhapsody",1.2816,103.8636],["Marina Bay Sands",1.2834,103.8607],["Spectra",1.2841,103.8604]]},{"match":["VivoCity","호텔 출발"],"points":[["Singapore Marriott Tang Plaza Hotel",1.3054,103.832],["VivoCity",1.2644,103.8222]]},{"match":["Sentosa Express","Resorts World Sentosa"],"points":[["VivoCity",1.2644,103.8222],["Resorts World Sentosa",1.2567,103.8203]]},{"match":["USS TEAM","EASY TEAM"],"points":[["Universal Studios Singapore",1.254,103.8238],["Singapore Oceanarium",1.2582,103.82]]},{"match":["Fort Canning Tree Tunnel","National Museum","CHIJMES","Raffles Hotel"],"points":[["Fort Canning Tree Tunnel",1.2975,103.845],["National Museum of Singapore",1.2966,103.8485],["CHIJMES",1.2941,103.8514],["Raffles Hotel Singapore",1.2949,103.8545],["St Andrew’s Cathedral",1.2927,103.8523],["Padang",1.2907,103.852]]},{"match":["Chinatown","Pagoda Street","Sri Mariamman","Maxwell"],"points":[["Chinatown",1.2836,103.8435],["Pagoda Street",1.2839,103.844],["Sri Mariamman Temple",1.2827,103.845],["Buddha Tooth Relic Temple",1.2816,103.8442],["Maxwell Food Centre",1.2804,103.844]]},{"match":["Old Hill Street","Clarke Quay","River Cruise","JUMBO"],"points":[["Old Hill Street Police Station",1.2906,103.8488],["Clarke Quay",1.2906,103.8465],["Singapore River Cruise",1.2899,103.8458],["JUMBO Seafood Riverside Point",1.2894,103.8448]]},{"match":["Little India","Tekka Centre","Tan Teng Niah"],"points":[["Tekka Centre",1.3067,103.85],["Former House of Tan Teng Niah",1.3076,103.8521],["Sri Veeramakaliamman Temple",1.3075,103.8524]]},{"match":["Kampong Glam","Sultan Mosque","Haji Lane","Bugis"],"points":[["Sultan Mosque",1.3023,103.859],["Bussorah Street",1.3019,103.8592],["Haji Lane",1.3007,103.8596],["Bugis Street",1.3008,103.8545],["Bugis Junction",1.2993,103.8557]]},{"match":["Jewel Changi Airport","Rain Vortex"],"points":[["Jewel Changi Airport",1.3602,103.9897],["HSBC Rain Vortex",1.3602,103.9897]]}];
+const ITINERARY_SINGLE_POINTS={"Merlion Park":[1.2868,103.8545],"Singapore Marriott Tang Plaza Hotel":[1.3054,103.832],"Singapore Changi Airport":[1.3644,103.9915],"Incheon International Airport":[37.4602,126.4407],"Universal Studios Singapore":[1.254,103.8238],"Singapore Oceanarium":[1.2582,103.82],"VivoCity":[1.2644,103.8222],"Fort Canning Tree Tunnel":[1.2975,103.845],"National Museum of Singapore":[1.2966,103.8485],"Maxwell Food Centre":[1.2804,103.844],"River Wonders Singapore":[1.4045,103.7907],"Singapore Zoo":[1.4043,103.793],"Night Safari":[1.4022,103.7884],"Jewel Changi Airport":[1.3602,103.9897],"Sultan Mosque Singapore":[1.3023,103.859],"Tekka Centre Singapore":[1.3067,103.85],"Bugis Junction Singapore":[1.2993,103.8557],"Gardens by the Bay Singapore":[1.2816,103.8636],"Marina Bay Sands Singapore":[1.2834,103.8607],"Singapore Flyer":[1.2893,103.8631],"Clarke Quay Singapore":[1.2906,103.8465],"JUMBO Seafood Riverside Point Singapore":[1.2894,103.8448]};
+const ROUTE_MAP_PENDING={};
+let routeMapSeq=0, leafletLoader=null;
+
+function routePointsForSlot(slot,k){
+  const text=slotText(slot);
+  const group=ITINERARY_ROUTE_GROUPS.find(g=>g.match.every(x=>text.includes(x)));
+  if(group) return group.points.map(p=>({name:p[0],lat:p[1],lng:p[2]}));
+
+  if(k?.map && ITINERARY_SINGLE_POINTS[k.map]){
+    const p=ITINERARY_SINGLE_POINTS[k.map];
+    return [{name:k.map,lat:p[0],lng:p[1]}];
+  }
+  for(const [name,p] of Object.entries(ITINERARY_SINGLE_POINTS)){
+    if(text.includes(name.replace(' Singapore','')) || text.includes(name)){
+      return [{name,lat:p[0],lng:p[1]}];
+    }
+  }
+  return [];
+}
+
+function itineraryMapBlock(points){
+  if(!points?.length) return '';
+  const stops=points.map((p,i)=>`<div class="route-stop"><span class="route-num">${i+1}</span><span>${p.name}</span></div>`).join('');
+  if(!isDataMode()){
+    return `<div class="route-map-wrap"><div class="route-map-head"><b>🗺️ 이 일정의 위치</b><small>지도 데이터 미사용 · 장소 순서만 표시</small></div><div class="route-map-offline">🌱 데이터 절약모드에서는 지도 타일을 불러오지 않습니다.</div><div class="route-stop-list">${stops}</div></div>`;
+  }
+  const id='routeMap'+(++routeMapSeq);
+  ROUTE_MAP_PENDING[id]=points;
+  return `<div class="route-map-wrap"><div class="route-map-head"><b>🗺️ 이 일정의 위치</b><small>번호 = 일정 순서 · 선은 실제 보행경로가 아닌 순서선</small></div><div class="route-map" id="${id}"></div><div class="route-stop-list">${stops}</div></div>`;
+}
+
+function ensureLeaflet(){
+  if(window.L) return Promise.resolve(window.L);
+  if(leafletLoader) return leafletLoader;
+  leafletLoader=new Promise((resolve,reject)=>{
+    if(!document.getElementById('leafletCss')){
+      const link=document.createElement('link'); link.id='leafletCss'; link.rel='stylesheet';
+      link.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(link);
+    }
+    const s=document.createElement('script'); s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    s.onload=()=>resolve(window.L); s.onerror=reject; document.head.appendChild(s);
+  });
+  return leafletLoader;
+}
+
+async function renderRouteMap(id,points){
+  const el=document.getElementById(id);
+  if(!el || el.dataset.ready==='1' || !points?.length || !isDataMode()) return;
+  try{
+    const L=await ensureLeaflet();
+    if(!document.getElementById(id)) return;
+    el.dataset.ready='1';
+    const map=L.map(id,{zoomControl:true,attributionControl:true});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:19, attribution:'&copy; OpenStreetMap'
+    }).addTo(map);
+    const latlngs=[];
+    points.forEach((p,i)=>{
+      const ll=[p.lat,p.lng]; latlngs.push(ll);
+      const icon=L.divIcon({className:'',html:`<div class="route-marker">${i+1}</div>`,iconSize:[26,26],iconAnchor:[13,13]});
+      L.marker(ll,{icon}).addTo(map).bindPopup(`<b>${i+1}. ${p.name}</b>`);
+    });
+    if(points.length>1){
+      L.polyline(latlngs,{color:'#222',weight:3,opacity:.65,dashArray:'7 6'}).addTo(map);
+      map.fitBounds(latlngs,{padding:[30,30],maxZoom:16});
+    }else{
+      map.setView(latlngs[0],16);
+    }
+  }catch(err){
+    el.innerHTML='<div class="route-map-offline">지도를 불러오지 못했습니다. 장소 목록은 아래에서 확인할 수 있습니다.</div>';
+  }
+}
+
+function renderPendingRouteMaps(){
+  for(const [id,points] of Object.entries(ROUTE_MAP_PENDING)){
+    if(document.getElementById(id)) renderRouteMap(id,points);
+  }
+}
+
 function openSlotDetail(slot){
  const text=slotText(slot);
  const title=slot.querySelector('.activity b')?.textContent.trim() || slot.querySelector('.steps li')?.childNodes[0]?.textContent.trim() || '일정 상세';
@@ -1405,8 +1493,10 @@ function openSlotDetail(slot){
    places.map(p=>`<div class="detailplace"><b>${p.name}</b><span>${p.desc||'일정 흐름에 맞춰 짧게 보고 다음 장소로 이동.'}</span></div>`).join('')+`</div></div>`;
  }
  if(notes.length) body+=`<div class="detailsection"><h4>📝 일정표에 적어둔 참고사항</h4><div class="detailtip">${notes.join('<br><br>')}</div></div>`;
- body+=googleMapEmbed(k?.map||'');
+ const routePoints=routePointsForSlot(slot,k);
+ body+=itineraryMapBlock(routePoints);
  openInfoModal('ITINERARY DETAIL',title,body);
+ if(isDataMode()) setTimeout(renderPendingRouteMaps,30);
 }
 
 const RESTAURANT_DATA={
@@ -1559,7 +1649,7 @@ function toggleTripMap(){
   });
 })();
 
-// ---------- v14.1 current DAY / current slot autofocus ----------
+// ---------- v14.2 current DAY / current slot autofocus ----------
 const TRIP_DATES={
   '2026-09-19':'d1','2026-09-20':'d2','2026-09-21':'d3',
   '2026-09-22':'d4','2026-09-23':'d5','2026-09-24':'d6'
@@ -1654,7 +1744,7 @@ function focusCurrentTripTime(){
   }
 }
 
-// ---------- v14.1 online weather + offline cache ----------
+// ---------- v14.2 online weather + offline cache ----------
 const LIVE_CACHE_KEY='sg_family_trip_2026_live_v13_3';
 const LIVE_CACHE_MAX_AGE=1000*60*60*12;
 const WEATHER_CODES={
@@ -1795,4 +1885,4 @@ setTimeout(focusCurrentTripTime,250);
 applyTripPhase();
 loadSharedData(true);
 </script></body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </html>
+</html>
