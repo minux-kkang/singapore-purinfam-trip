@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Singapore Family Trip 2026 · v15.5</title>
+<title>Singapore Family Trip 2026 · v15.6</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -58,7 +58,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .mastergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}
 .mini{font-size:13px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 34px}
-/* v15.5 · compact mobile header + itinerary travel log */
+/* v15.6 · compact mobile header + itinerary travel log */
 .logbtn{margin-top:9px;border:1px solid #cfdedb;background:#f2fbf8;color:var(--accent);border-radius:9px;padding:7px 10px;font-weight:850;cursor:pointer;font-size:12px}
 .logbtn.haslog{background:#dff4ee;border-color:#9bcfc2;color:#075e56}
 .logcount{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--accent);color:#fff;font-size:10px;vertical-align:1px}
@@ -341,7 +341,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .route-map-offline{padding:14px;border:1px dashed var(--line);border-radius:12px;background:#fafafa;font-size:11px;line-height:1.55;color:#5e6368}
 
 
-/* v15.5 · compact header/layout override (mobile first, no feature removal) */
+/* v15.6 · compact header/layout override (mobile first, no feature removal) */
 .wrap{position:relative}
 .hero{padding:14px 16px}
 .hero h1{font-size:27px;padding-right:54px}
@@ -413,7 +413,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 }
 
 
-/* v15.5 · 시간+날씨 통합 1줄 / 환율 계산기 별도 1줄 */
+/* v15.6 · 시간+날씨 통합 1줄 / 환율 계산기 별도 1줄 */
 .timeweatherrow{margin-top:7px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
 .timeweatherrow .clockrow{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;white-space:nowrap;min-width:0}
 .timeweatherrow .weatherbox{border:0;background:transparent;padding:0;display:flex;align-items:center;gap:3px;flex:0 1 auto;min-width:0;font-size:9.5px}
@@ -431,7 +431,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 @media(max-width:390px){.timeweatherrow .clockdiff{display:none}.timeweatherrow .weatherbox{font-size:8px}}
 
 
-/* v15.5 · responsive live strip / centered FX */
+/* v15.6 · responsive live strip / centered FX */
 .timeweatherrow{padding:6px 8px!important;overflow:hidden}
 .timeweatherrow .clockrow{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;align-items:center;gap:7px!important;width:100%;min-width:0}
 .countrylive{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;white-space:nowrap}
@@ -466,7 +466,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 }
 
 
-/* v15.5 · main page navigation: distinct from DAY tabs */
+/* v15.6 · main page navigation: distinct from DAY tabs */
 .modebar{
   display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
   gap:0!important;margin:9px 0 2px!important;padding:3px!important;
@@ -493,6 +493,26 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
  .modebar .modebtn{font-size:9px!important;padding:8px 0 7px!important}
 }
 
+
+/* v15.6 · DAY3 signal → DAY5 plan switch */
+.day5decision{margin-top:10px;padding:10px 11px;border:1px solid #d8ddd9;border-radius:12px;background:#f8faf9}
+.day5decision-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.day5decision b{font-size:12px;color:var(--ink)}
+.day5decision-actions{display:flex;gap:6px;flex-wrap:wrap}
+.planpick{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:850;cursor:pointer}
+.planpick.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.day5decision-status{margin-top:6px;color:var(--muted);font-size:10px;line-height:1.4}
+.day5plan[hidden]{display:none!important}
+.day5planswitch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0 2px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:#fafafa}
+.day5planswitch .current{font-size:11px;font-weight:850;color:var(--ink)}
+.day5planswitch button{border:0;background:transparent;color:var(--blue);font:inherit;font-size:10px;font-weight:850;cursor:pointer;padding:4px}
+@media(max-width:520px){
+ .day5decision{padding:9px}
+ .day5decision-top{align-items:flex-start}
+ .day5decision-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}
+ .planpick{width:100%;padding:7px 5px}
+ .day5planswitch{padding:7px 8px}
+}
 </style>
 </head>
 <body>
@@ -648,6 +668,13 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </section>
 <section class="day" id="d3">
 <div class="panel dayhead"><h2>DAY 3 · USS DAY</h2><div class="theme">오늘의 디폴트는 Universal Studios Singapore 종일. 오픈런부터 충분히 즐기고, 생각보다 일찍 만족했다면 오후 후반부터 센토사 관광으로 자연스럽게 확장한다. 오늘 센토사를 얼마나 봤는지가 DAY 5의 Mandai 대체 여부를 결정한다.</div><div class="sidefact"><b>🔀 오늘의 핵심 규칙</b><br/><b>기본</b> · USS를 종일 즐겼다 → DAY 5는 USS를 제외한 <b>Sentosa EASY DAY</b> 그대로 진행.<br/><b>대체 조건</b> · USS를 일찍 마치고 Oceanarium·Luge·해변·야간까지 센토사를 충분히 즐겼다 → DAY 5의 <b>Mandai WILD OPTION</b>으로 변경 가능.</div>
+<div class="day5decision" id="day3PlanDecision">
+  <div class="day5decision-top"><b>DAY 5는 어떻게 할까요?</b><div class="day5decision-actions">
+    <button class="planpick" data-day5-pick="sentosa" onclick="setDay5Plan('sentosa',true)" type="button">🏝️ 센토사 더 보기</button>
+    <button class="planpick" data-day5-pick="mandai" onclick="setDay5Plan('mandai',true)" type="button">🦁 충분해요 → 동물원</button>
+  </div></div>
+  <div class="day5decision-status" id="day3PlanStatus">기본값은 Sentosa EASY입니다. DAY 3이 끝난 뒤 한 번만 선택하면 됩니다.</div>
+</div>
 <div class="editbar">
 <button class="smallbtn" onclick="toggleEditor('d3-memo')">✏️ 오늘 메모</button>
 <button class="smallbtn" onclick="toggleEditor('d3-food')">🍽 식당 추가</button>
@@ -728,7 +755,8 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 </section>
 <section class="day" id="d5">
-<div class="panel dayhead"><h2>DAY 5 · SENTOSA EASY</h2><div class="theme">오늘의 기본 일정은 USS를 제외한 센토사 나머지를 느긋하게 즐기는 날. DAY 3에서 센토사 주요 콘텐츠까지 이미 충분히 경험했을 때만 오늘 전체를 Mandai WILD DAY로 교체한다.</div><div class="sidefact"><b>🔀 DAY 3 결과로 한 번만 판단</b><br/><b>기본</b> · DAY 3에서 USS를 종일 즐겼다 → 🏝️ <b>오늘 Sentosa EASY 그대로 진행</b><br/><b>OPTION</b> · DAY 3에서 USS + Oceanarium/루지/해변/야간 중 주요 콘텐츠까지 충분히 해결했다 → 🦁 <b>오늘 전체를 Mandai WILD DAY로 변경 가능</b><br/>센토사와 Mandai를 같은 날 반씩 섞지는 않는다.</div>
+<div class="panel dayhead"><h2 id="day5Heading">DAY 5 · SENTOSA EASY</h2><div class="theme" id="day5Theme">DAY 3에서 센토사를 더 보고 싶다면 느긋하게 마무리하는 날. 기본값은 Sentosa EASY.</div>
+<div class="day5planswitch"><span class="current" id="day5CurrentPlan">🏝️ 현재 계획 · Sentosa EASY</span><button type="button" id="day5QuickSwitch" onclick="toggleDay5Plan()">🦁 Mandai로 변경</button></div>
 <div class="editbar">
 <button class="smallbtn" onclick="toggleEditor('d5-memo')">✏️ 오늘 메모</button>
 <button class="smallbtn" onclick="toggleEditor('d5-food')">🍽 식당 추가</button>
@@ -751,46 +779,38 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="editrow"><div></div><button class="editbtn primary" onclick="addListItem('d5','candidate')">후보 추가</button></div>
 <ul class="userlist" id="d5-candidate-list"></ul>
 </div>
-<button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+</div>
 <div class="layout">
 <div class="panel timeline">
 
+<div class="day5plan" id="day5SentosaPlan">
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">10:00 전후</div><div class="activity"><b>호텔 출발 → Resorts World Sentosa</b><span class="placeinfo">DAY 3처럼 오픈런할 필요가 없는 날. 아침을 조금 늦게 시작하고, USS는 다시 들어가지 않는다.</span><div class="meta"><strong>🚇 이동</strong> Orchard → Dhoby Ghaut → HarbourFront → VivoCity → Sentosa Express. 11명 컨디션에 따라 Grab/택시 조합도 가능.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:00~13:00</div><div class="activity"><b>Singapore Oceanarium</b><span class="placeinfo">3세 아이부터 어른까지 함께 보기 좋고, 한낮 더위·비를 피하기 좋은 오늘의 메인 실내 콘텐츠.</span><div class="meta"><strong>💡 운영</strong> DAY 3에서 이미 Oceanarium을 봤다면 이 시간은 센토사 다른 콘텐츠나 늦은 출발로 바꾼다.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">13:00~14:30</div><div class="activity"><b>점심 + 충분한 휴식</b><div class="foodmeta meta"><strong>🍽 추천 방식</strong> Resorts World Sentosa / WEAVE / VivoCity 중 동선 좋은 곳. 맛집 욕심보다 냉방·좌석·아이 메뉴 우선.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">15:00~17:00</div><div class="activity"><b>Skyline Luge 또는 센토사 산책</b><ul class="steps"><li><b>활동팀</b> · Skyline Luge Sentosa</li><li><b>휴식팀</b> · 카페 · Sensoryscape · 해변 방향 천천히 이동</li><li>11명이 반드시 같은 콘텐츠를 할 필요는 없음. 30~60분 정도 짧게 나뉘었다가 다시 합류.</li></ul><div class="note">3세 아이의 실제 탑승·동반 기준은 출발 직전 공식 규정 재확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
 <div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00~19:20</div><div class="activity"><b>Siloso Beach · Sensoryscape · 저녁</b><span class="placeinfo">오늘은 ‘관광지 정복’보다 센토사에서 해 질 무렵 분위기를 느끼는 구간. 아이들이 지치면 해변을 짧게 보고 식사·카페 비중을 늘린다.</span><div class="meta"><strong>🌇 야경 포인트</strong> 해가 내려가면서 Sensoryscape와 센토사 조명이 켜지는 시간대가 낮과 분위기가 크게 달라진다. Wings를 볼 경우 공연장 이동 시간을 넉넉히 둔다.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
-<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:40 / 20:40</div><div class="activity"><b>Wings of Time · 야간 피날레</b><span class="placeinfo">해변을 배경으로 조명·분수·불꽃이 이어지는 센토사 야간 마무리 후보. DAY 3에서 이미 봤다면 반복하지 않고 일찍 호텔로 돌아가도 좋다.</span><div class="meta"><strong>💡 오늘의 우선순위</strong> Oceanarium → 가족 취향 1개(Luge/해변/산책) → Wings. 전부 채우는 것보다 DAY 3에서 못한 것만 골라 완성한다.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
-
-<details><summary>🦁 OPTION · DAY 3에서 센토사를 충분히 봤다면 오늘 전체를 Mandai WILD DAY로 변경</summary><div class="details-body">
-<div class="sidefact"><b>이 옵션을 고르는 조건</b><br/>DAY 3에서 USS를 일찍 마친 뒤 Oceanarium·Luge·해변·Sensoryscape·Wings 등 센토사 핵심 경험을 이미 충분히 했다면 선택. “센토사를 또 갈 필요가 없겠다”는 판단이 들 때만 바꾼다.</div>
-<ul>
-<li><b>08:00</b> 호텔 → Mandai · Grab/택시 3대 권장</li>
-<li><b>09:00~11:30 River Wonders</b> · 강 생태계·판다·실내/반실내 동선</li>
-<li><b>11:30~12:30</b> 점심 + 에어컨 휴식</li>
-<li><b>12:30~17:00 Singapore Zoo</b> · 완주보다 핵심 동물·프레젠테이션 중심, 트램 적극 활용</li>
-<li><b>17:00 이후</b> 저녁 + 휴식 → 체력이 충분한 가족만 Night Safari</li>
-</ul>
-<div class="meta"><strong>🎟 참고</strong> 기존 계획 기준 River Wonders 성인 S$45/아동 S$33, Zoo 성인 S$49/아동 S$34. 실제 방문 직전 공식 가격·운영시간 재확인.</div>
-<div class="note">Amazon River Quest는 이번 여행기간 정비 휴장 예정으로 기존처럼 제외.</div>
-<details><summary>Night Safari까지 갈까?</summary><div class="details-body">DAY 5까지 일정이 누적된 상태이므로 Night Safari는 필수가 아니다. 아이 낮잠·부모님 체력·다음 날 출국일을 보고 결정. 진행한다면 공연·트램·입장시간을 당일 공식 정보로 다시 확인하고, 부모님·3세 가족 일부는 먼저 호텔로 돌아가도 된다.</div></details>
-</div></details>
-
-<div class="slot"><div class="slot-top"><div class="when">오늘의 원칙</div><div class="activity"><b>기본은 Sentosa, Mandai는 대체안</b><div class="meta">페이지를 열었을 때는 센토사 일정 그대로 따라가면 된다. DAY 3에서 센토사를 이미 충분히 해결했을 때만 Mandai 옵션을 펼쳐 전체 일정을 교체한다.</div></div></div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">19:40 / 20:40</div><div class="activity"><b>Wings of Time · 야간 피날레</b><span class="placeinfo">DAY 3에서 이미 봤다면 반복하지 않고 일찍 호텔로 돌아가도 좋다.</span><div class="meta"><strong>💡 우선순위</strong> Oceanarium → 가족 취향 1개 → Wings. DAY 3에서 못한 것만 골라 완성한다.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot"><div class="slot-top"><div class="when">오늘의 원칙</div><div class="activity"><b>센토사에서 못한 것만 완성</b><div class="meta">DAY 3에서 이미 한 콘텐츠는 과감히 빼고, 느긋한 속도로 마무리한다.</div></div></div></div>
 </div>
 
-<aside class="panel knowledge"><h3>오늘은 센토사를 완성하는 날</h3>
-<div class="fact"><b>🏝️ 기본 · Sentosa</b><br/>USS 바깥의 Oceanarium·Luge·해변·Sensoryscape·야간쇼를 느긋하게 즐긴다. DAY 3에서 이미 본 것은 과감히 뺀다.</div>
-<div class="fact"><b>🦁 대체 · Mandai</b><br/>DAY 3에서 센토사를 충분히 본 경우에만 선택하는 완전 대체 일정. River Wonders + Zoo가 기본이고 Night Safari는 체력 옵션.</div>
-<div class="fact"><b>아이에게 질문</b><br/>“우리가 센토사에서 아직 못 본 게 더 많을까, 아니면 오늘은 완전히 다른 동물을 만나러 갈까?” DAY 3 경험을 바탕으로 가족이 함께 고른다.</div>
+<div class="day5plan" id="day5MandaiPlan" hidden>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">08:00</div><div class="activity"><b>호텔 출발 → Mandai Wildlife Reserve</b><span class="placeinfo">센토사와 섞지 않고 오늘 하루 전체를 Mandai로 사용한다.</span><div class="meta"><strong>🚕 이동</strong> 11명은 Grab/택시 3대 권장. 아침 일찍 이동해 더위가 강해지기 전 River Wonders부터 시작.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">09:00~11:30</div><div class="activity"><b>River Wonders</b><span class="placeinfo">강 생태계·판다·실내/반실내 동선 중심이라 오전 가족 일정으로 운영하기 좋다.</span><div class="note">Amazon River Quest는 이번 여행기간 정비 휴장 예정으로 기존처럼 제외.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">11:30~12:30</div><div class="activity"><b>점심 + 에어컨 휴식</b><div class="foodmeta meta"><strong>🍽 운영</strong> 메뉴보다 좌석·냉방·아이 식사 해결을 우선. 오후 Zoo 전에 충분히 쉰다.</div></div></div><button class="mealbtn" data-meal-nearby="" type="button">🍽 주변 식당 보기</button><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">12:30~17:00</div><div class="activity"><b>Singapore Zoo</b><span class="placeinfo">완주보다 핵심 동물·프레젠테이션 위주. 트램을 적극 활용해 걷는 양을 줄인다.</span><div class="meta"><strong>🎟 참고</strong> 기존 계획 기준 River Wonders 성인 S$45/아동 S$33, Zoo 성인 S$49/아동 S$34. 방문 직전 공식 가격·운영시간 재확인.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot" data-detail="1"><div class="slot-top" data-detail="1"><div class="when">17:00 이후</div><div class="activity"><b>저녁 + 휴식 → Night Safari 선택</b><span class="placeinfo">DAY 5까지 일정이 누적된 상태라 Night Safari는 필수가 아니다.</span><div class="meta"><strong>🌙 선택 기준</strong> 아이 낮잠·부모님 체력·다음 날 출국일을 보고 결정. 일부 가족은 먼저 호텔로 돌아가도 된다.</div></div></div><div class="detailhint">탭하면 일정 상세 보기</div></div>
+<div class="slot"><div class="slot-top"><div class="when">오늘의 원칙</div><div class="activity"><b>River Wonders + Zoo가 본체</b><div class="meta">Night Safari는 체력이 남을 때만. Mandai와 Sentosa를 같은 날 반씩 섞지 않는다.</div></div></div></div>
+</div>
+</div>
+
+<aside class="panel knowledge" id="day5Knowledge"><h3>오늘은 센토사를 완성하는 날</h3>
+<div class="fact"><b>🏝️ 현재 계획 · Sentosa</b><br/>Oceanarium·Luge·해변·Sensoryscape·야간쇼 중 DAY 3에서 못한 것만 느긋하게 즐긴다.</div>
+<div class="fact"><b>🦁 바꾸고 싶다면</b><br/>위 ‘Mandai로 변경’을 누르면 DAY 5 전체가 River Wonders + Zoo 일정으로 즉시 바뀐다.</div>
+<div class="fact"><b>아이에게 질문</b><br/>“센토사를 조금 더 볼까, 아니면 오늘은 완전히 다른 동물을 만나러 갈까?”</div>
 </aside>
 </div>
 </section>
+
 <section class="day" id="d6">
 <div class="panel dayhead"><h2>DAY 6 · LOCAL &amp; GOODBYE</h2><div class="theme">마지막 날은 싱가포르의 다문화성을 보고 공항 자체를 관광지로 즐기는 날. 인도·말레이 문화에서 시작해 “글로벌 허브” Jewel로 마무리.</div>
 <details class="flightlive flightfold" data-flight-card="644"><summary class="flightfoldsummary"><span class="flightfoldtitle">✈️ 대한항공 · SIN → ICN · 22:00</span><span class="flightlivebadge">귀국일 LIVE</span><span class="flightchev">⌄</span></summary><div class="flightfoldbody"><div class="flightverify">항공편 번호는 예약내역 기준으로 최종 확인</div><div class="flightlivegrid"><div class="flightliveitem"><small>터미널</small><b id="flightTerminal644">—</b></div><div class="flightliveitem"><small>체크인</small><b id="flightCounter644">—</b></div><div class="flightliveitem"><small>Gate</small><b id="flightGate644">아직 미정</b></div><div class="flightliveitem"><small>상태</small><b id="flightStatus644">확인 전</b></div></div><div class="flightlivemeta" id="flightUpdated644">업데이트 정보 없음 · Changi/대한항공 현장 정보가 최종 기준</div><div class="flightliveactions"><button onclick="refreshFlightCard('644')" type="button">↻ 새로고침</button> <a href="https://www.changiairport.com/en/fly/flight-information.html" rel="noopener" target="_blank">Changi 공식 확인 ↗</a></div></div></details>
@@ -869,7 +889,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="statusmsg" id="dataStatus"></div>
 </section>
-<div class="footer">v15.5 · 상단 컴팩트 UI + 일정별 여행기록 · Sentosa EASY 기본</div>
+<div class="footer">v15.6 · 상단 컴팩트 UI + 일정별 여행기록 · Sentosa EASY 기본</div>
 </div>
 <div class="prepview" id="prepview">
 <section class="panel studyintro">
@@ -1208,7 +1228,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <details><summary>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</summary><div class="details-body"><b>👀 생각해보기</b> · 칼 같은 주둥이를 가진 물고기가 해안으로 계속 달려든다면 단단한 벽 말고 어떤 재료로 막을 수 있을까?<br/><br/><b>💡 이야기</b> · Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세우자는 아이디어를 내는 장면이 나온다. 물고기의 뾰족한 주둥이가 줄기에 박히게 만드는 방식이다. 전승의 뒤 이야기는 어둡기 때문에 아이와는 <b>힘으로 안 되는 문제를 관찰과 아이디어로 해결한 장면</b>까지만 보는 편이 좋다.<br/><br/><b>📍 여행 미션</b> · 여행 중 불편한 일이 생겼을 때 “황새치 소년이라면 어떻게 해결할까?” 하고 가족 해결책 하나 만들어보기.</div></details>
 <div class="sidefact"><b>💪 BONUS · Badang과 Singapore Stone</b><br/>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물인 Singapore Stone과 연결되는 전설도 전해진다. 중요한 포인트는 <b>전설 속 이야기와 실제 남아 있는 유물을 구분해서 보는 것</b>. DAY 4 National Museum에서 연결해보면 재미있다.</div>
 </section>
-<div class="footer">STUDY v15.5 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
+<div class="footer">STUDY v15.6 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
 </div>
 
 <div class="journalview" id="journalview">
@@ -1231,7 +1251,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="journalmap" id="travelLogMap"></div>
 </section>
 <div id="travelJournal"></div>
-<div class="footer">TRAVEL LOG v15.5 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
+<div class="footer">TRAVEL LOG v15.6 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
 </div>
 
 
@@ -1246,6 +1266,30 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div></div>
 <div aria-hidden="true" class="infomodal" id="infoModal"><div aria-modal="true" class="infocard" role="dialog"><button aria-label="닫기" class="infoclose" id="infoClose">×</button><div class="infokicker" id="infoKicker"></div><div class="infoh" id="infoTitle"></div><div class="infobody" id="infoBody"></div></div></div>
 <script>
+const DAY5_PLAN_KEY='sg_family_trip_2026_day5_plan_v15_6';
+let day5Plan='sentosa';
+function getDay5Plan(){try{return localStorage.getItem(DAY5_PLAN_KEY)==='mandai'?'mandai':'sentosa'}catch(e){return 'sentosa'}}
+function setDay5Plan(plan,userAction=false){
+  day5Plan=plan==='mandai'?'mandai':'sentosa';
+  try{localStorage.setItem(DAY5_PLAN_KEY,day5Plan)}catch(e){}
+  const mandai=day5Plan==='mandai';
+  const sp=document.getElementById('day5SentosaPlan'), mp=document.getElementById('day5MandaiPlan');
+  if(sp)sp.hidden=mandai;if(mp)mp.hidden=!mandai;
+  const h=document.getElementById('day5Heading'), th=document.getElementById('day5Theme');
+  if(h)h.textContent=mandai?'DAY 5 · MANDAI WILD':'DAY 5 · SENTOSA EASY';
+  if(th)th.textContent=mandai?'DAY 3에서 센토사를 충분히 즐겼으니 오늘은 완전히 다른 하루. River Wonders + Singapore Zoo가 기본이고 Night Safari는 체력 옵션.':'DAY 3에서 센토사를 더 보고 싶다면 느긋하게 마무리하는 날. 기본값은 Sentosa EASY.';
+  const current=document.getElementById('day5CurrentPlan'), quick=document.getElementById('day5QuickSwitch');
+  if(current)current.textContent=mandai?'🦁 현재 계획 · Mandai WILD':'🏝️ 현재 계획 · Sentosa EASY';
+  if(quick)quick.textContent=mandai?'🏝️ Sentosa로 되돌리기':'🦁 Mandai로 변경';
+  const tab=document.querySelector('.tab[data-day="d5"]');if(tab)tab.textContent=mandai?'DAY 5 · Mandai':'DAY 5 · Sentosa';
+  document.querySelectorAll('[data-day5-pick]').forEach(b=>b.classList.toggle('active',b.dataset.day5Pick===day5Plan));
+  const st=document.getElementById('day3PlanStatus');
+  if(st)st.textContent=mandai?'✓ DAY 5가 Mandai WILD로 저장되었습니다. 다시 눌러 언제든 Sentosa로 되돌릴 수 있어요.':'✓ DAY 5는 Sentosa EASY로 저장되었습니다. DAY 3에서 충분히 봤다면 동물원으로 바꿀 수 있어요.';
+  const k=document.getElementById('day5Knowledge');
+  if(k)k.innerHTML=mandai?'<h3>오늘은 완전히 다른 동물의 날</h3><div class="fact"><b>🦁 현재 계획 · Mandai</b><br/>River Wonders + Singapore Zoo가 기본. Night Safari는 체력이 남을 때만 선택.</div><div class="fact"><b>🏝️ 다시 바꾸고 싶다면</b><br/>위 ‘Sentosa로 되돌리기’를 누르면 원래 센토사 일정이 즉시 복원됩니다.</div><div class="fact"><b>운영 원칙</b><br/>Mandai와 Sentosa를 같은 날 반씩 섞지 않고 한 지역에 집중합니다.</div>':'<h3>오늘은 센토사를 완성하는 날</h3><div class="fact"><b>🏝️ 현재 계획 · Sentosa</b><br/>Oceanarium·Luge·해변·Sensoryscape·야간쇼 중 DAY 3에서 못한 것만 느긋하게 즐긴다.</div><div class="fact"><b>🦁 바꾸고 싶다면</b><br/>위 ‘Mandai로 변경’을 누르면 DAY 5 전체가 River Wonders + Zoo 일정으로 즉시 바뀐다.</div><div class="fact"><b>아이에게 질문</b><br/>“센토사를 조금 더 볼까, 아니면 오늘은 완전히 다른 동물을 만나러 갈까?”</div>';
+}
+function toggleDay5Plan(){setDay5Plan(day5Plan==='mandai'?'sentosa':'mandai',true)}
+day5Plan=getDay5Plan();
 const STORAGE_KEY='sg_family_trip_2026_v6';   // 기존 v6~v8 로컬 데이터 호환 유지
 const PREP_KEY='sg_family_trip_2026_prep';
 const SHARED_URL='./trip-data.json';
@@ -1610,14 +1654,14 @@ function sgNowParts(){
 }
 function getSlotLogInfo(slot){
  const day=slot.closest('.day')?.id||'';
- const slots=[...slot.closest('.timeline')?.querySelectorAll(':scope > .slot')||[]];
+ const slots=[...slot.closest('.timeline')?.querySelectorAll('.slot')||[]];
  const index=Math.max(0,slots.indexOf(slot));
  const planned=(slot.querySelector('.when')?.textContent||'').trim();
  const title=(slot.querySelector('.activity > b')?.textContent||slot.querySelector('.activity b')?.textContent||'일정 기록').trim();
  return {day,index,slotKey:`${day}-slot-${index}`,planned,title};
 }
 function initTravelLogButtons(){
- document.querySelectorAll('.day .timeline > .slot').forEach(slot=>{
+ document.querySelectorAll('.day .timeline .slot').forEach(slot=>{
    if(slot.querySelector(':scope > .logbtn'))return;
    const info=getSlotLogInfo(slot);
    if(!info.day||!info.title||info.planned==='오늘의 원칙')return;
@@ -2299,6 +2343,7 @@ initFx();
 refreshLiveInfo(false);
 setTimeout(focusCurrentTripTime,250);
 applyTripPhase();
+setDay5Plan(day5Plan,false);
 initTravelLogButtons();
 renderTravelJournal(false);
 
