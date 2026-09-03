@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Singapore Family Trip 2026 · v15.1</title>
+<title>Singapore Family Trip 2026 · v15.4</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -58,7 +58,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .mastergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}
 .mini{font-size:13px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 34px}
-/* v15.1 · itinerary travel log */
+/* v15.4 · compact mobile header + itinerary travel log */
 .logbtn{margin-top:9px;border:1px solid #cfdedb;background:#f2fbf8;color:var(--accent);border-radius:9px;padding:7px 10px;font-weight:850;cursor:pointer;font-size:12px}
 .logbtn.haslog{background:#dff4ee;border-color:#9bcfc2;color:#075e56}
 .logcount{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--accent);color:#fff;font-size:10px;vertical-align:1px}
@@ -340,6 +340,131 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .route-marker{width:26px;height:26px;border-radius:50%;background:#111;color:#fff;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}
 .route-map-offline{padding:14px;border:1px dashed var(--line);border-radius:12px;background:#fafafa;font-size:11px;line-height:1.55;color:#5e6368}
 
+
+/* v15.4 · compact header/layout override (mobile first, no feature removal) */
+.wrap{position:relative}
+.hero{padding:14px 16px}
+.hero h1{font-size:27px;padding-right:54px}
+.hero .sub{margin-top:4px;font-size:12px}
+
+/* 데이터 모드: 기존 별도 바를 제목 오른쪽의 토글 하나처럼 보이게 */
+.datamodebar{
+ position:absolute;top:15px;right:18px;z-index:95;
+ width:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none;
+ display:block;
+}
+.datamodebar .datamodeleft{display:none!important}
+.datamodebar .dataswitch{display:block;width:42px;height:24px}
+.datamodebar .dataslider:before{width:18px;height:18px}
+.datamodebar .dataswitch input:checked+.dataslider:before{transform:translateX(18px)}
+
+/* 숙소 + MRT 한 줄 */
+.badges{margin-top:7px;display:flex;gap:5px;flex-wrap:nowrap;align-items:center;overflow:hidden}
+.badge{padding:0;background:transparent;border-radius:0;font-size:10.5px;color:var(--muted);white-space:nowrap}
+.badge.hotelquick{color:var(--ink);font-weight:800;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.badges .badge:last-child{flex:0 0 auto}
+
+/* 시간 + 환율: 모바일에서도 2칸 한 줄 유지 */
+.headtools{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important;gap:6px;margin-top:7px}
+.headtool{padding:6px 8px;border-radius:9px;font-size:10px;line-height:1.2;min-width:0}
+.clockrow{gap:6px;flex-wrap:nowrap;white-space:nowrap}
+.clockitem{font-size:9.5px}.clockitem b{font-size:12px}
+.clockdiff{font-size:8px!important;color:var(--muted);margin-left:auto}
+.fxcalc{font-size:9.5px!important;gap:3px!important;white-space:nowrap!important;flex-wrap:nowrap!important}
+.fxcalc:before{margin-right:0!important}
+#fxRate{width:49px!important;padding:4px!important}
+#sgdAmount{width:41px!important;padding:4px!important}
+#krwAmount{width:62px!important;padding:4px!important}
+
+/* 날씨 한 줄 고정 */
+.livebar{margin-top:6px;display:flex;gap:4px;flex-wrap:nowrap;align-items:center;overflow:hidden}
+.weatherbox{padding:4px 6px;gap:4px;font-size:9.5px;line-height:1.1;white-space:nowrap;min-width:0;flex:1 1 0}
+.weatherbox b{font-size:11px}.weatherbox .wmeta{display:none!important}
+.refreshlive{flex:0 0 auto;padding:4px 6px!important;font-size:8.5px!important;white-space:nowrap}
+.livebadge{display:none!important}
+
+/* 메인 메뉴 5개: 모바일에서도 무조건 한 줄 */
+.modebar{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important;margin-top:7px!important;flex-wrap:nowrap!important}
+.modebar .modebtn{min-width:0!important;width:100%;padding:8px 2px!important;border-radius:8px!important;font-size:10px!important;line-height:1.05!important;white-space:nowrap!important;overflow:hidden;text-overflow:clip}
+
+@media(max-width:620px){
+ .wrap{padding:8px!important}
+ .hero{padding:11px 12px;border-radius:14px}
+ .hero h1{font-size:20px;padding-right:47px;white-space:nowrap}
+ .datamodebar{top:11px;right:12px}
+ .datamodebar .dataswitch{width:39px;height:22px}
+ .datamodebar .dataslider:before{width:16px;height:16px}
+ .datamodebar .dataswitch input:checked+.dataslider:before{transform:translateX(17px)}
+ .hero .sub{font-size:10px;margin-top:2px}
+ .badges{margin-top:5px;gap:4px}.badge{font-size:9px}
+ .headtools{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;margin-top:5px;gap:4px}
+ .headtool{padding:5px 6px}
+ .clockrow{gap:4px}.clockitem{font-size:8.5px}.clockitem b{font-size:10.5px}.clockdiff{font-size:7.5px!important}
+ .fxcalc{font-size:8.5px!important;gap:2px!important}
+ #fxRate{width:43px!important;padding:3px!important}#sgdAmount{width:36px!important;padding:3px!important}#krwAmount{width:56px!important;padding:3px!important}
+ .livebar{margin-top:4px;gap:3px}.weatherbox{padding:4px 5px;font-size:8.5px;gap:3px}.weatherbox b{font-size:10px}
+ .refreshlive{padding:4px 5px!important;font-size:7.5px!important}
+ .modebar{gap:3px!important;margin-top:6px!important}.modebar .modebtn{padding:7px 1px!important;font-size:9.5px!important}
+}
+@media(max-width:390px){
+ .hero h1{font-size:18px}
+ .weatherbox span:not(.wmeta){display:none}
+ .modebar .modebtn{font-size:9px!important}
+}
+
+
+/* v15.4 · 시간+날씨 통합 1줄 / 환율 계산기 별도 1줄 */
+.timeweatherrow{margin-top:7px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
+.timeweatherrow .clockrow{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;white-space:nowrap;min-width:0}
+.timeweatherrow .weatherbox{border:0;background:transparent;padding:0;display:flex;align-items:center;gap:3px;flex:0 1 auto;min-width:0;font-size:9.5px}
+.timeweatherrow .weatherbox b{font-size:11px}.timeweatherrow .weatherbox .wmeta{display:none!important}
+.timeweatherrow .twsep{color:var(--muted);margin:0 1px}.timeweatherrow .refreshlive{margin-left:auto;border:0;background:transparent;padding:2px 3px!important;font-size:11px!important}
+.fxline{margin-top:5px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
+.fxline .fxcalc{display:flex!important;align-items:center;gap:4px!important;white-space:nowrap!important;flex-wrap:nowrap!important;font-size:10px!important}
+.fxline .fxcalc:before{content:none!important}.fxline .fxsep{margin-left:4px;color:var(--muted)}
+@media(max-width:620px){
+ .timeweatherrow{margin-top:5px;padding:5px 6px}.timeweatherrow .clockrow{gap:3px}.timeweatherrow .clockitem{font-size:8.5px}.timeweatherrow .clockitem b{font-size:10.5px}
+ .timeweatherrow .weatherbox{font-size:8.5px;gap:2px}.timeweatherrow .weatherbox b{font-size:10px}.timeweatherrow .weatherbox span:not(.wmeta){display:none}
+ .timeweatherrow .clockdiff{font-size:7.5px!important}.timeweatherrow .refreshlive{font-size:10px!important;padding:1px 2px!important}
+ .fxline{margin-top:4px;padding:5px 6px}.fxline .fxcalc{font-size:8.5px!important;gap:2px!important}
+}
+@media(max-width:390px){.timeweatherrow .clockdiff{display:none}.timeweatherrow .weatherbox{font-size:8px}}
+
+
+/* v15.4 · responsive live strip / centered FX */
+.timeweatherrow{padding:6px 8px!important;overflow:hidden}
+.timeweatherrow .clockrow{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;align-items:center;gap:7px!important;width:100%;min-width:0}
+.countrylive{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;white-space:nowrap}
+.countrylive>.flag{flex:0 0 auto}
+.countrylive>#krTime,.countrylive>#sgTime{font-size:12px;font-variant-numeric:tabular-nums;flex:0 0 auto}
+.timeweatherrow .countrylive .weatherbox{display:flex!important;align-items:center;gap:3px!important;min-width:0;flex:0 1 auto;padding:0!important;border:0!important;background:transparent!important;white-space:nowrap}
+.timeweatherrow .countrylive .weatherbox>b{font-size:11px;flex:0 0 auto}
+.timeweatherrow .weathertext,.timeweatherrow .wmeta,.timeweatherrow .clockdiff{display:none!important}
+.timeweatherrow .twsep{margin:0!important}
+.timeweatherrow .refreshlive{margin:0!important;justify-self:end;flex:0 0 auto}
+.fxline{display:flex;justify-content:center;align-items:center;width:100%;box-sizing:border-box}
+.fxline .fxcalc{justify-content:center!important;width:auto;max-width:100%;margin:0 auto;gap:5px!important}
+.fxline .fxcalc input{box-sizing:border-box;text-align:center}
+#fxRate{width:clamp(46px,13vw,62px)!important}
+#sgdAmount{width:clamp(38px,11vw,54px)!important}
+#krwAmount{width:clamp(54px,17vw,78px)!important}
+@media(max-width:480px){
+ .timeweatherrow .clockrow{gap:4px!important}
+ .countrylive{gap:3px}
+ .countrylive>#krTime,.countrylive>#sgTime{font-size:10.5px}
+ .timeweatherrow .countrylive .weatherbox>b{font-size:10px}
+ .timeweatherrow .refreshlive{font-size:10px!important;padding:1px!important}
+ .fxline .fxcalc{font-size:9px!important;gap:3px!important}
+}
+@media(max-width:360px){
+ .timeweatherrow{padding-left:5px!important;padding-right:5px!important}
+ .timeweatherrow .clockrow{gap:2px!important}
+ .countrylive{gap:2px}.countrylive>#krTime,.countrylive>#sgTime{font-size:9.5px}
+ .timeweatherrow .countrylive .weatherbox>b{font-size:9.5px}
+ .fxline .fxcalc{font-size:8.5px!important;gap:2px!important}
+ #fxRate{width:43px!important}#sgdAmount{width:34px!important}#krwAmount{width:50px!important}
+}
+
 </style>
 </head>
 <body>
@@ -349,41 +474,34 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <h1>싱가포르 3대 가족여행</h1>
 <div class="sub">2026.09.19 SAT – 09.24 THU · 11명 · 5박 6일</div>
 <div class="badges">
-<span class="badge hotelquick" id="hotelQuick" title="호텔 위치 보기">Singapore Marriott Tang Plaza Hotel</span>
-<span class="badge">Orchard MRT · NS22 / TE14</span>
+<span class="badge hotelquick" id="hotelQuick" title="호텔 위치 보기">Singapore Marriott Tang Plaza Hotel · 320 Orchard Rd</span>
+<span class="badge">🚇 Orchard MRT · NS22 / TE14</span>
 </div>
-<div class="headtools">
-<div class="headtool">
+<div class="timeweatherrow">
 <div class="clockrow">
-<div class="clockitem">🇰🇷 한국 <b id="krTime">--:--</b></div>
-<div class="clockitem">🇸🇬 싱가포르 <b id="sgTime">--:--</b></div>
-<span class="note">싱가포르가 한국보다 1시간 느림</span>
+<div class="countrylive"><span class="flag">🇰🇷</span><b id="krTime">--:--</b><span class="weatherbox" id="weatherKR"><b>--°</b><span class="weathertext">날씨 확인중</span><span class="wmeta"></span></span></div>
+<span class="twsep">·</span>
+<div class="countrylive"><span class="flag">🇸🇬</span><b id="sgTime">--:--</b><span class="weatherbox" id="weatherSG"><b>--°</b><span class="weathertext">날씨 확인중</span><span class="wmeta"></span></span></div>
+<button class="refreshlive" onclick="refreshLiveInfo(true)" type="button" aria-label="날씨와 환율 새로고침">↻</button>
+<span class="livebadge" id="liveStatus">시간은 오프라인에서도 작동</span>
 </div>
-</div>
-<div class="headtool">
+<div class="fxline">
 <div class="fxcalc">
-<span class="fxlabel">1 SGD =</span>
+<span class="fxlabel">💱 1 SGD =</span>
 <input aria-label="환율" class="fxrate" id="fxRate" inputmode="decimal" value="1075.31"/>
 <span>₩</span>
-<span style="margin-left:6px">·</span>
+<span class="fxsep">·</span>
 <span>S$</span><input aria-label="싱가포르 달러" id="sgdAmount" inputmode="decimal" value="10"/>
 <span>= ₩</span><input aria-label="대한민국 원" id="krwAmount" inputmode="numeric"/>
 </div>
 </div>
-</div>
-<div class="livebar" id="liveBar">
-<div class="weatherbox" id="weatherKR">🇰🇷 서울 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
-<div class="weatherbox" id="weatherSG">🇸🇬 싱가포르 <b>--°</b><span>날씨 확인중</span><span class="wmeta"></span></div>
-<button class="refreshlive" onclick="refreshLiveInfo(true)" type="button">↻ 날씨·환율 새로고침</button>
-<span class="livebadge" id="liveStatus">시간은 오프라인에서도 작동</span>
-</div>
 </section></div>
 <div class="modebar">
-<button class="modebtn active" data-mode="trip">🗓 여행 일정</button>
-<button class="modebtn" data-mode="study">📚 싱가포르 공부</button>
-<button class="modebtn" data-mode="prep">🧳 체크리스트</button>
-<button class="modebtn" data-mode="phrase">💬 현지 표현</button>
-<button class="modebtn" data-mode="journal">📖 여행 기록</button>
+<button class="modebtn active" data-mode="trip">🗓 일정</button>
+<button class="modebtn" data-mode="study">📚 공부</button>
+<button class="modebtn" data-mode="prep">🧳 준비</button>
+<button class="modebtn" data-mode="phrase">💬 표현</button>
+<button class="modebtn" data-mode="journal">📖 기록</button>
 </div>
 
 <div class="tripview active" id="tripview">
@@ -723,7 +841,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="statusmsg" id="dataStatus"></div>
 </section>
-<div class="footer">v15.1 · 일정별 여행기록 + GPS 로그 · Sentosa EASY 기본</div>
+<div class="footer">v15.4 · 상단 컴팩트 UI + 일정별 여행기록 · Sentosa EASY 기본</div>
 </div>
 <div class="prepview" id="prepview">
 <section class="panel studyintro">
@@ -913,7 +1031,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="phrase" data-icon="😅" data-pron="파이세" data-static-show=""><b>Paiseh</b><small>미안하다·민망하다·실례했다는 느낌의 구어.</small></div>
 <div class="note" style="margin-top:8px">Singlish는 현지에서 들었을 때 알아보는 정도면 충분합니다.</div>
 </section>
-<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v15.1</div>
+<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v15.3</div>
 </div>
 <div aria-hidden="true" class="showmodal" id="showModal">
 <div aria-labelledby="showEnglish" aria-modal="true" class="showcard" role="dialog">
@@ -1062,7 +1180,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <details><summary>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</summary><div class="details-body"><b>👀 생각해보기</b> · 칼 같은 주둥이를 가진 물고기가 해안으로 계속 달려든다면 단단한 벽 말고 어떤 재료로 막을 수 있을까?<br/><br/><b>💡 이야기</b> · Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세우자는 아이디어를 내는 장면이 나온다. 물고기의 뾰족한 주둥이가 줄기에 박히게 만드는 방식이다. 전승의 뒤 이야기는 어둡기 때문에 아이와는 <b>힘으로 안 되는 문제를 관찰과 아이디어로 해결한 장면</b>까지만 보는 편이 좋다.<br/><br/><b>📍 여행 미션</b> · 여행 중 불편한 일이 생겼을 때 “황새치 소년이라면 어떻게 해결할까?” 하고 가족 해결책 하나 만들어보기.</div></details>
 <div class="sidefact"><b>💪 BONUS · Badang과 Singapore Stone</b><br/>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물인 Singapore Stone과 연결되는 전설도 전해진다. 중요한 포인트는 <b>전설 속 이야기와 실제 남아 있는 유물을 구분해서 보는 것</b>. DAY 4 National Museum에서 연결해보면 재미있다.</div>
 </section>
-<div class="footer">STUDY v15.1 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
+<div class="footer">STUDY v15.4 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
 </div>
 
 <div class="journalview" id="journalview">
@@ -1085,7 +1203,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="journalmap" id="travelLogMap"></div>
 </section>
 <div id="travelJournal"></div>
-<div class="footer">TRAVEL LOG v15.1 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
+<div class="footer">TRAVEL LOG v15.4 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
 </div>
 
 
