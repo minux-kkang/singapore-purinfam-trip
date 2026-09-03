@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Singapore Family Trip 2026 · v15.4</title>
+<title>Singapore Family Trip 2026 · v15.5</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -58,7 +58,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .mastergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}
 .mini{font-size:13px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 34px}
-/* v15.4 · compact mobile header + itinerary travel log */
+/* v15.5 · compact mobile header + itinerary travel log */
 .logbtn{margin-top:9px;border:1px solid #cfdedb;background:#f2fbf8;color:var(--accent);border-radius:9px;padding:7px 10px;font-weight:850;cursor:pointer;font-size:12px}
 .logbtn.haslog{background:#dff4ee;border-color:#9bcfc2;color:#075e56}
 .logcount{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--accent);color:#fff;font-size:10px;vertical-align:1px}
@@ -341,7 +341,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .route-map-offline{padding:14px;border:1px dashed var(--line);border-radius:12px;background:#fafafa;font-size:11px;line-height:1.55;color:#5e6368}
 
 
-/* v15.4 · compact header/layout override (mobile first, no feature removal) */
+/* v15.5 · compact header/layout override (mobile first, no feature removal) */
 .wrap{position:relative}
 .hero{padding:14px 16px}
 .hero h1{font-size:27px;padding-right:54px}
@@ -413,7 +413,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 }
 
 
-/* v15.4 · 시간+날씨 통합 1줄 / 환율 계산기 별도 1줄 */
+/* v15.5 · 시간+날씨 통합 1줄 / 환율 계산기 별도 1줄 */
 .timeweatherrow{margin-top:7px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
 .timeweatherrow .clockrow{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;white-space:nowrap;min-width:0}
 .timeweatherrow .weatherbox{border:0;background:transparent;padding:0;display:flex;align-items:center;gap:3px;flex:0 1 auto;min-width:0;font-size:9.5px}
@@ -431,7 +431,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 @media(max-width:390px){.timeweatherrow .clockdiff{display:none}.timeweatherrow .weatherbox{font-size:8px}}
 
 
-/* v15.4 · responsive live strip / centered FX */
+/* v15.5 · responsive live strip / centered FX */
 .timeweatherrow{padding:6px 8px!important;overflow:hidden}
 .timeweatherrow .clockrow{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;align-items:center;gap:7px!important;width:100%;min-width:0}
 .countrylive{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;white-space:nowrap}
@@ -463,6 +463,34 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
  .timeweatherrow .countrylive .weatherbox>b{font-size:9.5px}
  .fxline .fxcalc{font-size:8.5px!important;gap:2px!important}
  #fxRate{width:43px!important}#sgdAmount{width:34px!important}#krwAmount{width:50px!important}
+}
+
+
+/* v15.5 · main page navigation: distinct from DAY tabs */
+.modebar{
+  display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:0!important;margin:9px 0 2px!important;padding:3px!important;
+  background:#eef1f0;border:1px solid var(--line);border-radius:14px!important;
+}
+.modebar .modebtn{
+  position:relative;width:100%;min-width:0!important;padding:9px 2px 8px!important;
+  border:0!important;border-radius:11px!important;background:transparent!important;
+  color:var(--muted)!important;font-size:10px!important;font-weight:850!important;
+  line-height:1.05!important;box-shadow:none!important;white-space:nowrap!important;
+  transition:background .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.modebar .modebtn.active{
+  background:#fff!important;color:var(--accent)!important;
+  box-shadow:0 1px 5px rgba(22,48,43,.12)!important;
+}
+.modebar .modebtn.active:after{
+  content:"";position:absolute;left:32%;right:32%;bottom:3px;height:2px;
+  border-radius:99px;background:var(--accent);
+}
+.modebar .modebtn:active{transform:scale(.98)}
+@media(max-width:390px){
+ .modebar{padding:3px!important;border-radius:12px!important}
+ .modebar .modebtn{font-size:9px!important;padding:8px 0 7px!important}
 }
 
 </style>
@@ -841,7 +869,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="statusmsg" id="dataStatus"></div>
 </section>
-<div class="footer">v15.4 · 상단 컴팩트 UI + 일정별 여행기록 · Sentosa EASY 기본</div>
+<div class="footer">v15.5 · 상단 컴팩트 UI + 일정별 여행기록 · Sentosa EASY 기본</div>
 </div>
 <div class="prepview" id="prepview">
 <section class="panel studyintro">
@@ -1180,7 +1208,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <details><summary>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</summary><div class="details-body"><b>👀 생각해보기</b> · 칼 같은 주둥이를 가진 물고기가 해안으로 계속 달려든다면 단단한 벽 말고 어떤 재료로 막을 수 있을까?<br/><br/><b>💡 이야기</b> · Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세우자는 아이디어를 내는 장면이 나온다. 물고기의 뾰족한 주둥이가 줄기에 박히게 만드는 방식이다. 전승의 뒤 이야기는 어둡기 때문에 아이와는 <b>힘으로 안 되는 문제를 관찰과 아이디어로 해결한 장면</b>까지만 보는 편이 좋다.<br/><br/><b>📍 여행 미션</b> · 여행 중 불편한 일이 생겼을 때 “황새치 소년이라면 어떻게 해결할까?” 하고 가족 해결책 하나 만들어보기.</div></details>
 <div class="sidefact"><b>💪 BONUS · Badang과 Singapore Stone</b><br/>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물인 Singapore Stone과 연결되는 전설도 전해진다. 중요한 포인트는 <b>전설 속 이야기와 실제 남아 있는 유물을 구분해서 보는 것</b>. DAY 4 National Museum에서 연결해보면 재미있다.</div>
 </section>
-<div class="footer">STUDY v15.4 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
+<div class="footer">STUDY v15.5 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
 </div>
 
 <div class="journalview" id="journalview">
@@ -1203,7 +1231,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="journalmap" id="travelLogMap"></div>
 </section>
 <div id="travelJournal"></div>
-<div class="footer">TRAVEL LOG v15.4 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
+<div class="footer">TRAVEL LOG v15.5 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
 </div>
 
 
