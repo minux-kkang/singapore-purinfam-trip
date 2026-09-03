@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Singapore Family Trip 2026 · v15.0</title>
+<title>Singapore Family Trip 2026 · v15.1</title>
 <style>
 :root{
  --bg:#f7f5ef;--card:#fff;--ink:#16324f;--muted:#667085;--line:#dedbd2;
@@ -58,6 +58,43 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .mastergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}
 .mini{font-size:13px}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 34px}
+/* v15.1 · itinerary travel log */
+.logbtn{margin-top:9px;border:1px solid #cfdedb;background:#f2fbf8;color:var(--accent);border-radius:9px;padding:7px 10px;font-weight:850;cursor:pointer;font-size:12px}
+.logbtn.haslog{background:#dff4ee;border-color:#9bcfc2;color:#075e56}
+.logcount{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin-left:4px;padding:0 5px;border-radius:999px;background:var(--accent);color:#fff;font-size:10px;vertical-align:1px}
+.journalview{display:none}.journalview.active{display:block}
+.journalhero{padding:18px;margin-top:12px}
+.journaltools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.journalday{padding:18px;margin-top:12px}
+.journalday h2{margin:0 0 4px}
+.journalentry{padding:14px 0;border-bottom:1px dashed #ddd9cf}
+.journalentry:last-child{border-bottom:0}
+.journalmeta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:5px;font-size:12px;color:var(--muted)}
+.journalpill{display:inline-block;padding:3px 7px;border-radius:999px;background:#f1f4f6;color:var(--ink);font-weight:800}
+.journaltext{font-size:14px;white-space:pre-wrap;line-height:1.7}
+.journalplace{margin-top:7px;font-size:12px;color:var(--muted)}
+.journalplace a{color:var(--blue);font-weight:800;text-decoration:none}
+.journalempty{padding:28px 12px;text-align:center;color:var(--muted)}
+.journalmap{height:380px;border-radius:14px;overflow:hidden;background:#eef1f3;margin-top:12px;border:1px solid var(--line)}
+.logmodal{position:fixed;inset:0;z-index:10020;background:rgba(0,0,0,.58);display:none;align-items:center;justify-content:center;padding:16px}
+.logmodal.open{display:flex}
+.logcard{width:min(620px,96vw);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.28);position:relative}
+.logclose{position:absolute;right:12px;top:10px;border:0;background:#f1f2f3;width:36px;height:36px;border-radius:50%;font-size:22px;cursor:pointer}
+.logtitle{font-size:21px;font-weight:950;color:var(--ink);padding-right:42px}
+.logsub{font-size:12px;color:var(--muted);margin:3px 0 13px}
+.loggrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.logfield{margin-top:9px}
+.logfield label{display:block;font-size:12px;font-weight:850;color:var(--ink);margin-bottom:4px}
+.logfield input,.logfield textarea{width:100%;border:1px solid #cfd6d3;border-radius:9px;padding:9px;font:inherit;background:#fff}
+.logfield textarea{min-height:112px;resize:vertical}
+.gpsbox{margin-top:9px;padding:10px;border-radius:10px;background:#f5f8f8;font-size:12px;color:var(--muted)}
+.gpsok{color:#08766b;font-weight:800}
+.logactions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.logactions button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 12px;font-weight:850;cursor:pointer}
+.logactions .primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.logdelete{color:#a33!important}
+@media(max-width:620px){.loggrid{grid-template-columns:1fr}.journalmap{height:320px}.logcard{padding:18px 14px}}
+
 .modebar{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
 .modebtn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:10px 14px;font-weight:850;cursor:pointer}
 .modebtn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -346,6 +383,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <button class="modebtn" data-mode="study">📚 싱가포르 공부</button>
 <button class="modebtn" data-mode="prep">🧳 체크리스트</button>
 <button class="modebtn" data-mode="phrase">💬 현지 표현</button>
+<button class="modebtn" data-mode="journal">📖 여행 기록</button>
 </div>
 
 <div class="tripview active" id="tripview">
@@ -685,7 +723,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 </div>
 <div class="statusmsg" id="dataStatus"></div>
 </section>
-<div class="footer">v15.0 · USS 종일 기본 + DAY5 FLEX · 아이 호기심 STUDY</div>
+<div class="footer">v15.1 · 일정별 여행기록 + GPS 로그 · Sentosa EASY 기본</div>
 </div>
 <div class="prepview" id="prepview">
 <section class="panel studyintro">
@@ -875,7 +913,7 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="phrase" data-icon="😅" data-pron="파이세" data-static-show=""><b>Paiseh</b><small>미안하다·민망하다·실례했다는 느낌의 구어.</small></div>
 <div class="note" style="margin-top:8px">Singlish는 현지에서 들었을 때 알아보는 정도면 충분합니다.</div>
 </section>
-<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v15.0</div>
+<div class="footer">영어·중국어·말레이어·타밀어 동일 표현 세트 · 탭하면 큰 화면 표시 · v15.1</div>
 </div>
 <div aria-hidden="true" class="showmodal" id="showModal">
 <div aria-labelledby="showEnglish" aria-modal="true" class="showcard" role="dialog">
@@ -1024,9 +1062,42 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <details><summary>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</summary><div class="details-body"><b>👀 생각해보기</b> · 칼 같은 주둥이를 가진 물고기가 해안으로 계속 달려든다면 단단한 벽 말고 어떤 재료로 막을 수 있을까?<br/><br/><b>💡 이야기</b> · Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세우자는 아이디어를 내는 장면이 나온다. 물고기의 뾰족한 주둥이가 줄기에 박히게 만드는 방식이다. 전승의 뒤 이야기는 어둡기 때문에 아이와는 <b>힘으로 안 되는 문제를 관찰과 아이디어로 해결한 장면</b>까지만 보는 편이 좋다.<br/><br/><b>📍 여행 미션</b> · 여행 중 불편한 일이 생겼을 때 “황새치 소년이라면 어떻게 해결할까?” 하고 가족 해결책 하나 만들어보기.</div></details>
 <div class="sidefact"><b>💪 BONUS · Badang과 Singapore Stone</b><br/>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물인 Singapore Stone과 연결되는 전설도 전해진다. 중요한 포인트는 <b>전설 속 이야기와 실제 남아 있는 유물을 구분해서 보는 것</b>. DAY 4 National Museum에서 연결해보면 재미있다.</div>
 </section>
-<div class="footer">STUDY v15.0 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
+<div class="footer">STUDY v15.1 · 시간순 역사 + 아이와 함께 생각하는 10가지 호기심 미션</div>
 </div>
 
+<div class="journalview" id="journalview">
+<section class="panel journalhero">
+<div class="kicker">TRAVEL LOG · LOCAL SAVE</div>
+<h2 style="margin:0">📖 우리 가족 싱가포르 여행 기록</h2>
+<div class="sub">각 일정 카드의 <b>✍️ 기록</b> 버튼으로 남긴 실제 시간·GPS·메모를 DAY별로 자동 모읍니다. 기록은 현재 브라우저의 localStorage에 저장됩니다.</div>
+<div class="sidefact"><b>기록 방식</b><br/>일정에서 기록 버튼 → 현재 싱가포르 시간이 자동 입력 → GPS는 가능한 경우 현재 위치를 1회 가져오기 → 메모 작성. GPS 권한을 거부하거나 위치를 못 잡아도 메모는 그대로 저장할 수 있습니다.</div>
+<div class="journaltools">
+<button class="editbtn primary" type="button" onclick="renderTravelJournal(true)">↻ 여행기 새로고침</button>
+<button class="editbtn" type="button" onclick="exportTravelLogs()">💾 여행기 JSON 백업</button>
+<label class="editbtn" style="cursor:pointer">📂 여행기 JSON 복원<input accept=".json,application/json" hidden id="travelLogImport" onchange="importTravelLogs(event)" type="file"/></label>
+<button class="editbtn" type="button" onclick="copyTravelJournal()">📋 여행기 텍스트 복사</button>
+</div>
+<div class="statusmsg" id="travelLogStatus">여행기 기록은 공용 trip-data.json과 분리되어 이 기기에만 저장됩니다.</div>
+</section>
+<section class="panel journalday" id="travelMapPanel" hidden>
+<h2>🗺️ 기록 지도</h2>
+<div class="sub">GPS가 저장된 기록만 실제 위치에 표시합니다. 지도 타일은 인터넷 연결 시 불러옵니다.</div>
+<div class="journalmap" id="travelLogMap"></div>
+</section>
+<div id="travelJournal"></div>
+<div class="footer">TRAVEL LOG v15.1 · 실제 시간 + GPS + 메모 · localStorage 저장</div>
+</div>
+
+
+<div aria-hidden="true" class="logmodal" id="travelLogModal">
+<div aria-modal="true" class="logcard" role="dialog">
+<button aria-label="닫기" class="logclose" onclick="closeTravelLog()" type="button">×</button>
+<div class="logtitle" id="logModalTitle">일정 기록</div><div class="logsub" id="logModalSub"></div>
+<div class="loggrid"><div class="logfield"><label for="logDate">실제 날짜</label><input id="logDate" type="date"/></div><div class="logfield"><label for="logTime">실제 시간 · Singapore</label><input id="logTime" type="time"/></div></div>
+<div class="logfield"><label for="logText">오늘의 기록</label><textarea id="logText" placeholder="여기서 있었던 일, 아이들 반응, 맛있었던 것, 예상과 달랐던 것… 짧게 한두 줄만 남겨도 됩니다."></textarea></div>
+<div class="gpsbox" id="gpsStatus">📍 위치 없음</div>
+<div class="logactions"><button type="button" onclick="requestCurrentGps(false)">📍 현재 위치 다시 잡기</button><button class="logdelete" hidden id="logDeleteBtn" type="button" onclick="deleteTravelLog()">삭제</button><button class="primary" type="button" onclick="saveTravelLog()">기록 저장</button></div>
+</div></div>
 <div aria-hidden="true" class="infomodal" id="infoModal"><div aria-modal="true" class="infocard" role="dialog"><button aria-label="닫기" class="infoclose" id="infoClose">×</button><div class="infokicker" id="infoKicker"></div><div class="infoh" id="infoTitle"></div><div class="infobody" id="infoBody"></div></div></div>
 <script>
 const STORAGE_KEY='sg_family_trip_2026_v6';   // 기존 v6~v8 로컬 데이터 호환 유지
@@ -1118,7 +1189,7 @@ function exportData(){
   const data=getData();
   const payload={
     title:'Singapore Family Trip 2026',
-    version:'v15.0',
+    version:'v15.1',
     exportedAt:new Date().toISOString(),
     data
   };
@@ -1365,7 +1436,160 @@ paintFlightCard('677');paintFlightCard('644');
 
 
 
-// ---------- v15.0 data mode + fixed interactive itinerary ----------
+
+// ---------- v15.1 itinerary travel log ----------
+const TRAVEL_LOG_KEY='sg_family_trip_2026_travel_log_v15_1';
+const TRIP_DAY_META={
+ d1:{date:'2026-09-19',title:'DAY 1 · HELLO, SINGAPORE'},
+ d2:{date:'2026-09-20',title:'DAY 2 · ICONIC SINGAPORE'},
+ d3:{date:'2026-09-21',title:'DAY 3 · USS DAY'},
+ d4:{date:'2026-09-22',title:'DAY 4 · OLD SINGAPORE'},
+ d5:{date:'2026-09-23',title:'DAY 5 · SENTOSA EASY'},
+ d6:{date:'2026-09-24',title:'DAY 6 · LOCAL & GOODBYE'}
+};
+let activeTravelSlot=null, activeTravelEntryId=null, pendingGps=null, travelLogMapInstance=null, travelLogMarkers=null;
+function readTravelLogs(){
+ try{const v=JSON.parse(localStorage.getItem(TRAVEL_LOG_KEY)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}
+}
+function writeTravelLogs(v){
+ localStorage.setItem(TRAVEL_LOG_KEY,JSON.stringify(v));
+ paintTravelLogButtons();
+ const s=document.getElementById('travelLogStatus');if(s)s.textContent='이 브라우저에 자동 저장됨 · '+new Date().toLocaleString('ko-KR');
+}
+function sgNowParts(){
+ const now=new Date();
+ const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(now);
+ const g=t=>parts.find(x=>x.type===t)?.value||'';
+ return {date:`${g('year')}-${g('month')}-${g('day')}`,time:`${g('hour')}:${g('minute')}`};
+}
+function getSlotLogInfo(slot){
+ const day=slot.closest('.day')?.id||'';
+ const slots=[...slot.closest('.timeline')?.querySelectorAll(':scope > .slot')||[]];
+ const index=Math.max(0,slots.indexOf(slot));
+ const planned=(slot.querySelector('.when')?.textContent||'').trim();
+ const title=(slot.querySelector('.activity > b')?.textContent||slot.querySelector('.activity b')?.textContent||'일정 기록').trim();
+ return {day,index,slotKey:`${day}-slot-${index}`,planned,title};
+}
+function initTravelLogButtons(){
+ document.querySelectorAll('.day .timeline > .slot').forEach(slot=>{
+   if(slot.querySelector(':scope > .logbtn'))return;
+   const info=getSlotLogInfo(slot);
+   if(!info.day||!info.title||info.planned==='오늘의 원칙')return;
+   const btn=document.createElement('button');btn.type='button';btn.className='logbtn';btn.dataset.travelLog='1';btn.innerHTML='✍️ 기록';
+   btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openTravelLog(slot)});
+   slot.appendChild(btn);
+ });
+ paintTravelLogButtons();
+}
+function paintTravelLogButtons(){
+ const logs=readTravelLogs();
+ document.querySelectorAll('[data-travel-log="1"]').forEach(btn=>{
+   const info=getSlotLogInfo(btn.closest('.slot'));
+   const n=logs.filter(x=>x.slotKey===info.slotKey).length;
+   btn.classList.toggle('haslog',n>0);
+   btn.innerHTML=n?`✍️ 기록 <span class="logcount">${n}</span>`:'✍️ 기록';
+ });
+}
+function openTravelLog(slot,entryId=null){
+ activeTravelSlot=slot;activeTravelEntryId=entryId;pendingGps=null;
+ const info=getSlotLogInfo(slot), meta=TRIP_DAY_META[info.day]||{};
+ const entry=entryId?readTravelLogs().find(x=>x.id===entryId):null;
+ const now=sgNowParts();
+ document.getElementById('logModalTitle').textContent=info.title;
+ document.getElementById('logModalSub').textContent=`${meta.title||info.day} · 계획 ${info.planned||'-'}`;
+ document.getElementById('logDate').value=entry?.actualDate||meta.date||now.date;
+ document.getElementById('logTime').value=entry?.actualTime||now.time;
+ document.getElementById('logText').value=entry?.text||'';
+ pendingGps=entry?.gps||null;paintGpsStatus();
+ document.getElementById('logDeleteBtn').hidden=!entry;
+ const modal=document.getElementById('travelLogModal');modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+ setTimeout(()=>document.getElementById('logText')?.focus(),80);
+ if(!entry)requestCurrentGps(true);
+}
+function closeTravelLog(){const m=document.getElementById('travelLogModal');m.classList.remove('open');m.setAttribute('aria-hidden','true');activeTravelSlot=null;activeTravelEntryId=null;pendingGps=null}
+function paintGpsStatus(msg=''){
+ const el=document.getElementById('gpsStatus');if(!el)return;
+ if(pendingGps){el.className='gpsbox gpsok';el.innerHTML=`📍 위치 저장됨 · ${Number(pendingGps.lat).toFixed(5)}, ${Number(pendingGps.lng).toFixed(5)} · 정확도 약 ${Math.round(pendingGps.accuracy||0)}m`}
+ else{el.className='gpsbox';el.textContent=msg||'📍 위치 없음 · GPS 없이도 기록을 저장할 수 있습니다.'}
+}
+function requestCurrentGps(silent=false){
+ if(!navigator.geolocation){paintGpsStatus('이 브라우저에서는 위치 기능을 사용할 수 없습니다.');return}
+ paintGpsStatus('📍 현재 위치 확인 중…');
+ navigator.geolocation.getCurrentPosition(pos=>{
+   pendingGps={lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy,capturedAt:new Date(pos.timestamp||Date.now()).toISOString()};paintGpsStatus();
+ },err=>{const msg=err.code===1?'위치 권한이 허용되지 않았습니다.':'현재 위치를 가져오지 못했습니다.';paintGpsStatus('📍 '+msg+' GPS 없이 저장 가능합니다.');if(!silent)alert(msg+' 메모는 위치 없이 저장할 수 있습니다.');},{enableHighAccuracy:true,timeout:9000,maximumAge:60000});
+}
+function saveTravelLog(){
+ if(!activeTravelSlot)return;
+ const text=document.getElementById('logText').value.trim();if(!text){alert('기록 내용을 한 줄이라도 남겨주세요.');return}
+ const info=getSlotLogInfo(activeTravelSlot),meta=TRIP_DAY_META[info.day]||{},logs=readTravelLogs();
+ const old=activeTravelEntryId?logs.find(x=>x.id===activeTravelEntryId):null;
+ const item={
+   id:old?.id||('log_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),day:info.day,dayTitle:meta.title||info.day,tripDate:meta.date||'',slotKey:info.slotKey,slotIndex:info.index,
+   plannedTime:info.planned,plannedTitle:info.title,actualDate:document.getElementById('logDate').value,actualTime:document.getElementById('logTime').value,text,gps:pendingGps||null,
+   createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()
+ };
+ const i=logs.findIndex(x=>x.id===item.id);if(i>=0)logs[i]=item;else logs.push(item);writeTravelLogs(logs);closeTravelLog();renderTravelJournal(false);
+}
+function deleteTravelLog(){
+ if(!activeTravelEntryId||!confirm('이 기록을 삭제할까요?'))return;
+ writeTravelLogs(readTravelLogs().filter(x=>x.id!==activeTravelEntryId));closeTravelLog();renderTravelJournal(false);
+}
+function sortTravelLogs(logs){return [...logs].sort((a,b)=>`${a.actualDate||a.tripDate} ${a.actualTime||'99:99'} ${String(a.slotIndex).padStart(3,'0')}`.localeCompare(`${b.actualDate||b.tripDate} ${b.actualTime||'99:99'} ${String(b.slotIndex).padStart(3,'0')}`))}
+function journalEntryHtml(x){
+ const gps=x.gps?`<div class="journalplace">📍 ${Number(x.gps.lat).toFixed(5)}, ${Number(x.gps.lng).toFixed(5)} · 약 ${Math.round(x.gps.accuracy||0)}m · <a href="https://www.google.com/maps?q=${encodeURIComponent(x.gps.lat+','+x.gps.lng)}" target="_blank" rel="noopener">지도에서 보기 ↗</a></div>`:'';
+ return `<div class="journalentry"><div class="journalmeta"><span class="journalpill">${escapeHtml(x.actualTime||'시간 미기록')}</span><span>계획 ${escapeHtml(x.plannedTime||'-')}</span></div><b>${escapeHtml(x.plannedTitle||'일정 기록')}</b><div class="journaltext">${escapeHtml(x.text||'')}</div>${gps}<div style="margin-top:8px"><button class="smallbtn" onclick="editTravelLog('${escapeHtml(x.id)}')">수정</button></div></div>`;
+}
+function editTravelLog(id){
+ const x=readTravelLogs().find(v=>v.id===id);if(!x)return;
+ const slot=[...document.querySelectorAll(`#${x.day} .timeline > .slot`)].find(s=>getSlotLogInfo(s).slotKey===x.slotKey);
+ if(slot)openTravelLog(slot,id);
+}
+async function renderTravelJournal(focus=false){
+ const root=document.getElementById('travelJournal');if(!root)return;
+ const logs=sortTravelLogs(readTravelLogs());
+ if(!logs.length){root.innerHTML='<section class="panel journalday"><div class="journalempty">아직 남긴 여행 기록이 없습니다.<br>여행 일정의 <b>✍️ 기록</b> 버튼에서 첫 기록을 남겨보세요.</div></section>';document.getElementById('travelMapPanel').hidden=true;return}
+ root.innerHTML=Object.keys(TRIP_DAY_META).map(day=>{
+   const arr=logs.filter(x=>x.day===day);if(!arr.length)return '';
+   const m=TRIP_DAY_META[day];return `<section class="panel journalday"><h2>${escapeHtml(m.title)}</h2><div class="sub">${escapeHtml(m.date)} · 기록 ${arr.length}개</div>${arr.map(journalEntryHtml).join('')}</section>`;
+ }).join('');
+ await renderTravelLogMap(logs);
+ if(focus)window.scrollTo({top:document.querySelector('.journalhero').offsetTop-8,behavior:'smooth'});
+}
+async function renderTravelLogMap(logs){
+ const pts=logs.filter(x=>x.gps&&Number.isFinite(Number(x.gps.lat))&&Number.isFinite(Number(x.gps.lng)));
+ const panel=document.getElementById('travelMapPanel');if(!pts.length){panel.hidden=true;return}panel.hidden=false;
+ try{
+   await loadLeaflet();
+   if(travelLogMapInstance){travelLogMapInstance.remove();travelLogMapInstance=null}
+   const el=document.getElementById('travelLogMap');el.innerHTML='';
+   const map=L.map(el,{zoomControl:true,attributionControl:true});travelLogMapInstance=map;
+   if(isDataMode())L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+   const bounds=[];
+   pts.forEach((x,i)=>{const ll=[Number(x.gps.lat),Number(x.gps.lng)];bounds.push(ll);L.marker(ll).addTo(map).bindPopup(`<b>${escapeHtml(x.actualTime||'')} · ${escapeHtml(x.plannedTitle||'기록')}</b><br>${escapeHtml((x.text||'').slice(0,120))}`)});
+   if(bounds.length===1)map.setView(bounds[0],15);else map.fitBounds(bounds,{padding:[28,28]});
+   setTimeout(()=>map.invalidateSize(),120);
+ }catch(e){panel.querySelector('.sub').textContent='GPS 기록은 저장되어 있습니다. 지도 모듈은 인터넷 연결 시 표시됩니다.'}
+}
+function exportTravelLogs(){
+ const payload={title:'Singapore Family Trip 2026 Travel Log',version:'v15.1',exportedAt:new Date().toISOString(),timezone:'Asia/Singapore',logs:readTravelLogs()};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='singapore-family-trip-travel-log.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+ const s=document.getElementById('travelLogStatus');if(s)s.textContent='여행기 JSON 백업 파일을 만들었습니다.';
+}
+function importTravelLogs(event){
+ const file=event.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result),arr=Array.isArray(obj)?obj:obj.logs;if(!Array.isArray(arr))throw new Error();if(!confirm(`여행 기록 ${arr.length}개를 이 브라우저 기록으로 복원할까요? 기존 기록은 교체됩니다.`))return;writeTravelLogs(arr);renderTravelJournal(false)}catch(e){alert('올바른 여행기 JSON 파일이 아닙니다.')}};r.readAsText(file);event.target.value='';
+}
+function buildTravelJournalText(){
+ const logs=sortTravelLogs(readTravelLogs());let out='싱가포르 가족여행 기록\n';
+ Object.keys(TRIP_DAY_META).forEach(day=>{const arr=logs.filter(x=>x.day===day);if(!arr.length)return;const m=TRIP_DAY_META[day];out+=`\n${m.title}\n${m.date}\n`;arr.forEach(x=>{out+=`\n${x.actualTime||''} · ${x.plannedTitle||''}`;if(x.plannedTime)out+=` (계획 ${x.plannedTime})`;out+=`\n${x.text||''}\n`;if(x.gps)out+=`📍 ${Number(x.gps.lat).toFixed(5)}, ${Number(x.gps.lng).toFixed(5)}\n`;});});return out.trim();
+}
+async function copyTravelJournal(){
+ const text=buildTravelJournalText();if(!readTravelLogs().length){alert('복사할 여행 기록이 없습니다.');return}
+ try{await navigator.clipboard.writeText(text);const s=document.getElementById('travelLogStatus');if(s)s.textContent='전체 여행기 텍스트를 클립보드에 복사했습니다.'}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}
+}
+
+// ---------- v15.1 data mode + fixed interactive itinerary ----------
 const DATA_MODE_KEY='sg_family_trip_2026_data_mode_v14';
 const DETAIL_KNOWLEDGE=[{"keys":["출발 전날","공항 이동·여행서류"],"intro":"실제 여행의 첫 일정은 공항에 가기 전부터 시작됩니다. 11명이 움직이므로 ‘무엇을 챙겼는가’보다 ‘누가 무엇을 들고 어느 차에 타는가’를 마지막으로 맞추는 시간이 중요합니다.","see":"여권 11명, 항공권, 호텔 예약, SG Arrival Card, 위탁/기내수하물, 유모차, 보조배터리 위치를 한 번에 확인.","tip":"대표자 한 명이 인원·여권·짐 개수를 소리 내어 체크하고, 차량별 탑승 인원을 가족 단톡방에 남겨두면 공항 집결이 편합니다.","kid":"아이들 기내용 가방에는 간식·물티슈·여벌옷·작은 장난감/태블릿을 따로 두는 편이 좋습니다.","move":"택시 기사·차량·픽업 시간을 전날 재확인. 공항 도착 목표시간에서 역산해 여유 있게 출발.","map":""},{"keys":["집에서 출발","인천공항 이동"],"intro":"출국일에는 집에서 공항까지의 이동을 하나의 일정으로 취급하는 게 좋습니다. 가족 수가 많아 중간에 빠뜨린 물건을 되찾으러 가기 어렵습니다.","see":"출발 직전 인원 11명, 여권, 휴대폰, 지갑, 캐리어/유모차 개수를 다시 셉니다.","tip":"차량 출발 후에는 ‘여권 확인’보다 각자 좌석·짐 배치를 안정시키고 공항 도착 후 집결 지점을 정해두는 게 실용적입니다.","kid":"3세 아이들은 공항 도착 직후 화장실·간식 타이밍을 먼저 잡아주면 체크인 과정이 훨씬 수월합니다.","move":"사전예약 택시 기준. 차량이 여러 대라면 먼저 도착한 팀이 체크인 카운터 위치를 공유.","map":"Incheon International Airport"},{"keys":["체크인 → 출국심사","면세/라운지"],"intro":"공항에서 가장 중요한 건 ‘탑승구와 Boarding Time을 먼저 확인하고 나머지를 하는 것’입니다. 면세·라운지는 그다음입니다.","see":"체크인 카운터 → 위탁수하물 → 출국심사 → Gate/Boarding Time 확인 → 면세/라운지 순서.","tip":"11명이 한꺼번에 움직이면 탑승구 이동에 시간이 더 걸립니다. 라운지에서 나오는 시각을 미리 정해두는 편이 좋습니다.","kid":"아이와 함께라면 출국심사 후 화장실 위치와 간식 시간을 먼저 잡고, 탑승 직전 과도하게 뛰어놀지 않도록 합니다.","move":"Gate가 먼 탑승동이면 이동시간이 크게 늘 수 있으므로 전광판을 먼저 확인.","map":"Incheon International Airport"},{"keys":["창이공항","Changi Airport 도착"],"intro":"도착 직후에는 관광보다 입국·수하물·가족 재집결이 우선입니다. 첫날 Jewel은 넣지 않고 호텔로 바로 이동하는 일정이 안정적입니다.","see":"입국심사 → 수하물 → 화장실/유모차 정비 → 차량 승차 위치 확인.","tip":"수하물 벨트 앞에서 11명이 흩어지지 않도록 한쪽에 대기 기준점을 정해두면 좋습니다.","kid":"아이들이 가장 지칠 시간대라 한 명은 아이, 한 명은 수하물처럼 역할을 나누는 편이 효율적입니다.","move":"11명+짐은 대형차량 2대 또는 택시/Grab 분산. 호텔까지 바로 이동.","map":"Singapore Changi Airport"},{"keys":["Marriott Tang Plaza Hotel 체크인"],"intro":"Orchard 한가운데 있는 이번 여행의 베이스캠프입니다. 이후 일정에서도 한낮 휴식과 재출발의 기준점으로 사용합니다.","see":"객실 배정, 조식/시설 조건, 객실 간 거리, 다음 날 집결 위치를 확인.","tip":"11명이라 객실번호와 가족별 방 배정을 단톡방에 한 번 적어두면 이후 매일 집결이 편합니다.","kid":"아이들 잠자리를 먼저 만들고 다음 날 필요한 옷·유모차만 밖에 꺼내두면 첫날 피로를 줄일 수 있습니다.","move":"Orchard MRT NS22 / TE14 인접. 대부분의 일정 출발점.","map":"Singapore Marriott Tang Plaza Hotel"},{"keys":["Merlion Park","머라이언"],"intro":"싱가포르를 처음 보는 날의 대표적인 ‘도시 소개 장면’입니다. 머라이언 자체보다 Marina Bay 전체가 한눈에 들어오는 위치라는 점이 핵심입니다.","see":"Merlion, Marina Bay Sands 방향 가족사진, Fullerton 쪽 강변 풍경.","tip":"그늘이 적어 오래 머무르기보다 사진과 주변 풍경을 보고 다음 코스로 이동하는 편이 좋습니다.","kid":"유모차 이동은 어렵지 않지만 한낮에는 체감온도가 높습니다. 물과 모자 준비.","move":"Orchard→Raffles Place 직통 후 도보. 오전 시작 추천.","map":"Merlion Park Singapore"},{"keys":["Esplanade","Singapore Flyer"],"intro":"Marina Bay의 동쪽을 따라 걸으며 도시 스카이라인을 보는 구간입니다. Flyer는 약 30분 동안 앉아서 전경을 볼 수 있어 가족 여행에서 휴식 효과도 있습니다.","see":"Esplanade 외관, 강변 산책, Singapore Flyer에서 Marina Bay·간척지 조망.","tip":"모두 탑승하지 않아도 됩니다. 더위나 아이 컨디션에 따라 Flyer를 휴식형 콘텐츠로 선택.","kid":"관람차 안에서는 이동 부담이 적어 어린아이와 함께하기 편한 편입니다.","move":"Merlion에서 강변 방향으로 이어서 이동. 더우면 택시로 Flyer만 바로 이동해도 됨.","map":"Singapore Flyer"},{"keys":["점심 + 에어컨 휴식","Marina Bay/MBS"],"intro":"DAY2의 핵심은 점심 자체보다 오전 야외 일정과 오후 Gardens 사이에 체온과 체력을 낮추는 것입니다.","see":"MBS/The Shoppes 안에서 식사·화장실·카페를 한 번에 해결.","tip":"11명이 한 식당에 바로 들어가기 어렵다면 2개 테이블 또는 2팀으로 나눠도 일정에는 문제가 없습니다.","kid":"3세 아이들은 식사 후 유모차 낮잠이 가능하도록 이동을 짧게 잡는 것이 좋습니다.","move":"오후 Helix/MBS/Gardens로 이어지므로 Marina Bay 안에서 해결하는 게 효율적.","map":"The Shoppes at Marina Bay Sands"},{"keys":["Helix Bridge","The Shoppes"],"intro":"싱가포르의 현대적인 도시 이미지를 가장 잘 느끼는 구간입니다. 다만 ‘다 보는 것’보다 더위를 피하면서 MBS를 통과하는 이동 구간으로 생각해도 충분합니다.","see":"Helix Bridge 구조, MBS 외관, The Shoppes 실내 공간.","tip":"Helix는 야간이 더 예쁘지만 DAY2에서는 이동 동선상 오후에 지나가고, 필요하면 밤에 다시 보는 정도로 생각합니다.","kid":"쇼핑몰을 화장실·냉방·간식 거점으로 적극 활용.","move":"기본 도보. 더위가 심하면 짧은 차량 이동 허용.","map":"Marina Bay Sands Singapore"},{"keys":["Gardens by the Bay","Cloud Forest","Flower Dome"],"intro":"싱가포르가 말하는 ‘정원도시’를 가장 직관적으로 보여주는 곳입니다. 실내 온실이라 오후 더위와 소나기를 피하기에도 좋습니다.","see":"Cloud Forest의 실내 폭포와 고산식생, Flower Dome의 대형 온실, 이후 Supertree Grove.","tip":"두 온실을 모두 완주하려고 서두르지 말고 아이 체력에 따라 Cloud Forest 중심으로 봐도 됩니다.","kid":"실내 냉방이 강할 수 있어 얇은 겉옷이 유용합니다. 유모차 이동도 비교적 편합니다.","move":"MBS에서 연결통로/도보. 관람 후 Supertree 쪽으로 이동.","map":"Gardens by the Bay Singapore"},{"keys":["Garden Rhapsody","Spectra","Supertree"],"intro":"DAY2의 피날레입니다. 두 무료 야간쇼를 모두 보려면 이동시간과 시작시각을 맞추는 것이 핵심입니다.","see":"Supertree 조명·음악쇼와 MBS 앞 Spectra 수상쇼.","tip":"Garden Rhapsody 19:45 또는 20:45, Spectra 일요일 20:00/21:00 중 현실적인 조합 하나만 잡아도 충분합니다.","kid":"늦은 시간이므로 아이가 잠들면 한 쇼만 보고 호텔로 복귀해도 성공한 일정입니다.","move":"Gardens↔MBS 이동시간을 감안해 쇼 사이를 너무 빡빡하게 잡지 않기.","map":"Supertree Grove Singapore"},{"keys":["VivoCity"],"intro":"센토사로 들어가기 전 마지막 대형 실내 거점입니다. 화장실·간식·유모차·식사를 정비하기 좋은 곳입니다.","see":"HarbourFront MRT에서 VivoCity로 연결 후 Sentosa Express 탑승.","tip":"USS 입장 전에 필요한 물과 간식을 정리하고, 가족별 팀 분리 계획을 다시 확인.","kid":"3세 아이 팀은 여기서 무리하게 서두르지 않는 것이 DAY3 전체 컨디션에 도움이 됩니다.","move":"Orchard→Dhoby Ghaut 환승→HarbourFront→VivoCity.","map":"VivoCity Singapore"},{"keys":["Sentosa Express","Resorts World Sentosa"],"intro":"센토사 섬으로 진입하는 구간입니다. 오늘의 기본은 USS 종일입니다. 다만 충분히 즐긴 시점이 빨리 오면 센토사 관광으로 확장하고, 그 결과가 DAY 5의 Mandai 대체 여부를 결정합니다.","see":"Resorts World Sentosa 도착 후 USS 오픈런. 필요할 때만 스릴라이드 탑승팀과 어린아이팀을 짧게 나눕니다.","tip":"대기시간과 휴장 정보를 보되, 기본 계획은 USS를 충분히 즐기는 것. 오후에 만족도가 높으면 센토사 확장 여부를 판단합니다.","kid":"유모차, 화장실, 간식 위치를 입장 전에 한 번 확인.","move":"VivoCity에서 Sentosa Express 이용.","map":"Resorts World Sentosa"},{"keys":["Universal Studios","USS"],"intro":"놀이기구·캐릭터·쇼를 섞어서 즐기는 것이 좋습니다. 최근 후기처럼 대기·기술점검 변수가 있으므로 특정 어트랙션 하나에 긴 시간을 걸지 않는 편이 안전합니다.","see":"Transformers, Minion Land, 캐릭터 미팅/쇼 등 가족별 선호 콘텐츠.","tip":"앱/현장 대기시간을 보고 30~40분 이상이면 다른 콘텐츠로 돌리는 유연한 운영이 좋습니다.","kid":"3세 아이는 키 제한 때문에 이용 가능한 시설이 크게 달라질 수 있어 성인 교대·팀 분리가 현실적입니다.","move":"스릴라이드 탑승 때문에 잠깐 나뉘더라도 재집결 시간/장소 하나를 정해두기.","map":"Universal Studios Singapore"},{"keys":["Oceanarium"],"intro":"어린아이와 함께하는 가족팀의 안정적인 센토사 대안입니다. 실내라 폭염·비·낮잠 변수에 강합니다.","see":"대형 수조와 해양생물 전시, 실내 휴식.","tip":"USS가 너무 붐비거나 아이들이 지치면 Oceanarium 비중을 늘리는 방식으로 당일 조정.","kid":"3세 아이에게 놀이기구보다 관람 난도가 낮고 유모차 운영도 쉬운 편입니다.","move":"Resorts World Sentosa 안에서 이동.","map":"Singapore Oceanarium"},{"keys":["Luge","Siloso","Wings"],"intro":"센토사 오후·저녁의 선택 콘텐츠입니다. 모두 넣기보다 가족이 가장 원하는 1~2개를 골라야 일정이 편합니다.","see":"Skyline Luge, Siloso Beach, Wings of Time 야간쇼.","tip":"낮에 USS/Oceanarium을 충분히 즐겼다면 Wings만 남기고 나머지는 생략해도 좋습니다.","kid":"Luge는 키/동반 규정을 확인하고, 해변은 아이들이 젖을 가능성을 고려.","move":"센토사 내부 이동 시간이 은근히 걸리므로 쇼 시작 전 여유 확보.","map":"Wings of Time Singapore"},{"keys":["Fort Canning"],"intro":"DAY4는 싱가포르의 과거를 읽는 날입니다. Fort Canning은 식민지 이전부터 영국 식민 행정·군사 역사까지 이어지는 출발점입니다.","see":"Fort Canning Tree Tunnel, 공원과 언덕 주변 역사 흔적.","tip":"Tree Tunnel 사진 대기가 생길 수 있어 가능하면 이른 시간 방문.","kid":"언덕·계단 구간이 있어 유모차 동선은 현장에서 편한 길로 우회.","move":"오전 첫 코스로 배치해 더위를 피함.","map":"Fort Canning Tree Tunnel Singapore"},{"keys":["National Museum"],"intro":"싱가포르 역사를 한 번에 정리하면서 한낮 냉방 휴식을 할 수 있는 장소입니다. DAY4 전체 맥락을 잡아주는 역할입니다.","see":"식민지, 독립, 현대국가 형성 과정 관련 전시.","tip":"모든 전시를 자세히 보기보다 가족이 흥미 있어 하는 핵심 전시만 골라도 충분합니다.","kid":"실내 휴식 장소로 생각하면 좋고, 아이가 지루해하면 빠르게 다음 코스로 이동.","move":"Fort Canning과 Civic District 사이에 자연스럽게 연결.","map":"National Museum of Singapore"},{"keys":["CHIJMES","Raffles Hotel","St Andrew"],"intro":"영국 식민지 시기의 종교·행정·상업도시 분위기를 압축해서 보는 구간입니다. 건물 내부를 모두 볼 필요는 없습니다.","see":"CHIJMES 외관, Raffles Hotel, St Andrew’s Cathedral, Padang 주변.","tip":"사진과 건축 분위기 중심으로 짧게 이동하고 체력이 남으면 National Gallery를 추가.","kid":"걷는 시간이 길어지면 중간 카페/실내 휴식 활용.","move":"Civic District 일대라 도보 연결이 가능하지만 더우면 짧은 Grab 사용.","map":"CHIJMES Singapore"},{"keys":["Chinatown","Sri Mariamman","Buddha Tooth"],"intro":"중국계 이민자 생활공간과 종교가 가까이 공존하는 싱가포르 다문화성을 보는 구간입니다.","see":"Pagoda Street, Sri Mariamman Temple, Buddha Tooth Relic Temple, Chinatown 거리.","tip":"사원은 실제 종교시설이므로 복장·예배 동선을 방해하지 않도록 짧게 관람.","kid":"거리 상점과 간식이 있어 박물관보다 아이들이 지루해하지 않을 수 있습니다.","move":"Maxwell과 묶어서 식사까지 한 번에 처리.","map":"Chinatown Singapore"},{"keys":["Maxwell"],"intro":"싱가포르 호커 문화를 직접 경험하는 점심 장소입니다. 유명한 한 가게만 고집하기보다 여러 메뉴를 나눠 먹는 편이 11명 가족에게 잘 맞습니다.","see":"치킨라이스, 현지 국수·주스 등 여러 호커 메뉴.","tip":"자리 확보팀과 주문팀을 나누면 효율적입니다. 현금/카드 가능 여부는 점포별로 다를 수 있습니다.","kid":"덜 맵고 익숙한 메뉴를 한두 개 먼저 확보해두면 좋습니다.","move":"식사 후 Maxwell TE18→Orchard TE14 직통으로 호텔 휴식 가능.","map":"Maxwell Food Centre Singapore"},{"keys":["Old Hill Street","Clarke Quay","River Cruise"],"intro":"낮에 본 식민지 도시가 저녁의 강변 상업지구로 이어지는 흐름을 보는 구간입니다. River Cruise는 걷다가 앉아서 쉬는 역할도 합니다.","see":"Old Hill Street Police Station 외관, Clarke Quay 강변, 약 40분 River Cruise.","tip":"크루즈는 해질 무렵~야간이 분위기가 좋지만 식당 예약시간과 충돌하지 않게 조정.","kid":"배에 앉아서 이동하는 시간이 있어 DAY4 후반 체력 회복에 도움이 됩니다.","move":"River Cruise 하선 후 JUMBO Riverside 저녁으로 연결하기 좋음.","map":"Clarke Quay Singapore"},{"keys":["JUMBO","칠리크랩"],"intro":"DAY4의 대표 식사입니다. 11명이므로 메뉴 선택보다 예약·테이블·게 무게 확인이 더 중요합니다.","see":"Chili Crab, Cereal Prawns, Supreme Seafood Fried Rice, Mantou 조합.","tip":"게는 무게/시가 방식이므로 주문 전에 크기와 예상가격을 확인. 실내는 아이·더위에 유리하고 테라스는 야경이 좋습니다.","kid":"게 요리는 손이 많이 가므로 아이용 볶음밥/면을 먼저 주문하면 편합니다.","move":"River Cruise 뒤 Riverside Point 지점으로 이어지는 동선.","map":"JUMBO Seafood Riverside Point Singapore"},{"keys":["River Wonders"],"intro":"Mandai에서 오전에 보기 좋은 비교적 압축된 동물원입니다. 강·담수 생태계 중심으로 구성돼 Zoo와 성격이 다릅니다.","see":"수생·담수 동물 전시와 대표 구역을 중심으로 관람.","tip":"Amazon River Quest는 여행기간 운휴 예정이므로 이 시설을 전제로 동선을 짜지 않습니다.","kid":"Zoo보다 실내/그늘 구간을 활용하기 쉬워 오전 스타트로 안정적입니다.","move":"호텔에서 Grab/택시 3대 정도로 Mandai 이동 권장.","map":"River Wonders Singapore"},{"keys":["Singapore Zoo"],"intro":"넓은 야외형 동물원이라 ‘많이 보는 것’보다 보고 싶은 동물을 골라 이동하는 것이 좋습니다.","see":"가족이 원하는 대표 동물 구역과 쇼/먹이주기 시간표를 당일 확인.","tip":"오후 더위가 강하면 트램과 실내 휴식공간을 적극 활용.","kid":"3세 아이들이 걸어서 완주하기 어려워 유모차를 기본으로 생각.","move":"River Wonders 점심 후 Zoo로 이동. 같은 Mandai 권역.","map":"Singapore Zoo"},{"keys":["Night Safari"],"intro":"DAY5의 선택 옵션입니다. 세계 최초 야간 동물원이라는 상징성은 크지만, 이미 하루 종일 Mandai를 본 뒤라 체력 부담도 큽니다.","see":"트램과 야간 동물 관찰, Creatures of the Night 공연.","tip":"아이 컨디션이 좋을 때만 진행. ‘여기까지 봐야 성공’인 일정은 아닙니다.","kid":"늦은 시간과 어두운 환경을 불편해할 수 있어 낮잠 여부를 보고 결정.","move":"Zoo 종료 후 Mandai 안에서 이어갈 수 있으나 호텔 귀가가 늦어짐.","map":"Night Safari Singapore"},{"keys":["Little India","Tekka"],"intro":"싱가포르의 인도계 문화와 생활공간을 짧게 보는 출국일 오전 코스입니다. 오래 머무르기보다 색·향·시장 분위기를 경험하는 것이 목적입니다.","see":"Tekka Centre, Tan Teng Niah, Sri Veeramakaliamman Temple 주변.","tip":"출국일이므로 쇼핑을 크게 벌이지 않고 1~1.5시간 안에 정리.","kid":"시장 혼잡 구간에서는 유모차와 아이 손잡기 역할을 미리 나눕니다.","move":"이후 Kampong Glam으로 이동.","map":"Tekka Centre Singapore"},{"keys":["Sultan Mosque","Haji Lane","Kampong"],"intro":"말레이·무슬림 문화권과 현대적인 Haji Lane이 붙어 있어 싱가포르의 다문화성을 체감하기 좋은 구간입니다.","see":"Sultan Mosque, Bussorah Street, Muscat Street 벽화, Haji Lane.","tip":"모스크는 예배시간·방문 가능시간을 당일 확인. Haji Lane은 1시간 안팎이면 충분합니다.","kid":"좁고 사람이 많은 구간에서는 유모차가 불편할 수 있어 천천히 이동.","move":"Little India에서 짧은 차량 또는 MRT로 연결 가능.","map":"Sultan Mosque Singapore"},{"keys":["Bugis"],"intro":"출국일 점심·간식·마지막 소소한 쇼핑을 해결하는 실용적인 구간입니다.","see":"Bugis Junction, Bugis Street, 디저트/현지 음식 후보.","tip":"호텔로 돌아가 짐을 찾고 Jewel로 가야 하므로 종료시간을 먼저 정해두는 게 중요합니다.","kid":"냉방이 필요한 경우 Bugis Junction을 거점으로 활용.","move":"점심 후 호텔 복귀→짐 픽업→공항 이동.","map":"Bugis Junction Singapore"},{"keys":["Jewel"],"intro":"공항이면서 마지막 관광지 역할을 하는 곳입니다. Rain Vortex, 식사, 선물 쇼핑을 한 번에 끝낼 수 있습니다.","see":"Rain Vortex, 쇼핑, 저녁식사, 마지막 기념품 구매.","tip":"Jewel에 오래 머무는 것보다 ‘몇 시에 터미널로 이동할지’를 먼저 정해두는 것이 중요합니다.","kid":"비행 전 아이들에게 식사·화장실을 충분히 해결해두기 좋습니다.","move":"KE644 체크인/수하물 처리 가능시간을 확인하고 21:00 전후에는 Gate 도착을 목표로 합니다.","map":"Jewel Changi Airport"}];
 let dataMode='saving';
@@ -1611,7 +1835,8 @@ const modeBtns=document.querySelectorAll('.modebtn');
 const tripView=document.getElementById('tripview'),
       studyView=document.getElementById('studyview'),
       prepView=document.getElementById('prepview'),
-      phraseView=document.getElementById('phraseview');
+      phraseView=document.getElementById('phraseview'),
+      journalView=document.getElementById('journalview');
 modeBtns.forEach(btn=>btn.addEventListener('click',()=>{
   modeBtns.forEach(x=>x.classList.remove('active'));btn.classList.add('active');
   const mode=btn.dataset.mode;
@@ -1619,6 +1844,8 @@ modeBtns.forEach(btn=>btn.addEventListener('click',()=>{
   studyView.classList.toggle('active',mode==='study');
   prepView.classList.toggle('active',mode==='prep');
   phraseView.classList.toggle('active',mode==='phrase');
+  journalView.classList.toggle('active',mode==='journal');
+  if(mode==='journal')renderTravelJournal(false);
   window.scrollTo({top:document.querySelector('.hero').offsetTop,behavior:'smooth'});
 }));
 const studyTabs=document.querySelectorAll('.studytab'),
@@ -1926,6 +2153,13 @@ initFx();
 refreshLiveInfo(false);
 setTimeout(focusCurrentTripTime,250);
 applyTripPhase();
+initTravelLogButtons();
+renderTravelJournal(false);
+
+// 여행 기록 모달 바깥 클릭 / ESC 닫기
+document.getElementById('travelLogModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeTravelLog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('travelLogModal')?.classList.contains('open'))closeTravelLog()});
+
 loadSharedData(true);
 </script></body>
 </html>
