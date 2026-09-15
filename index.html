@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.1</title>
+<title>Singapore Family Trip 2026 · v17.2</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -178,8 +178,8 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .detailhero .eyebrow{font-size:11px;color:var(--mintInk);font-weight:950}
 .detailhero h2{font-size:25px;margin:3px 0 5px;line-height:1.15}
 .detailhero p{margin:0;color:var(--muted);font-size:12px}
-.detaildaytabs{display:flex;gap:7px;overflow:auto;padding:1px 0 10px;scrollbar-width:none}
-.detaildaytabs::-webkit-scrollbar{display:none}
+.detaildaytabs{display:none!important}
+
 .detaildaybtn{border:1px solid var(--line);background:#fff;color:#526773;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
 .detaildaybtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .detail-list{display:grid;gap:10px}
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.1 · SINGLE FILE UNIFIED APP
+   v17.2 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v17.1 · stable detail scrolling */
+/* v17.2 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -306,12 +306,48 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .detailhero,.detail-list,.detail-card,.detail-mapbox{position:relative;z-index:1}
 body.detail-scroll-lock{overflow:hidden}
 
+
+/* v17.2 · sticky hierarchy fix
+   1) .top = primary sticky header (time / FX / real DAY buttons)
+   2) .detailsticky = secondary sticky menu directly below primary header
+   No duplicate DAY bar in detail mode.
+*/
+:root{--app-header-h:184px}
+.brandver{
+  display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;
+  background:#16324f;color:#fff;font-size:10px;font-weight:950;vertical-align:2px
+}
+.top{z-index:100!important}
+.detailsticky{
+  position:sticky!important;
+  top:var(--app-header-h)!important;
+  z-index:90!important;
+  background:rgba(247,249,250,.98)!important;
+  padding:5px 0 6px!important;
+  margin:0 0 9px!important;
+  border-bottom:1px solid rgba(208,220,225,.95)!important;
+  box-shadow:0 5px 10px rgba(28,48,60,.04);
+  backdrop-filter:blur(10px)
+}
+.detailsticky .detailnav{
+  position:static!important;
+  margin:0!important;
+  background:#eef3f5!important;
+  border:1px solid var(--line)!important;
+  border-radius:13px!important
+}
+.detailwrap{overflow:visible!important}
+@media(max-width:620px){
+  .brand{font-size:12px!important}
+  .brandver{font-size:9px;padding:2px 6px;margin-left:4px}
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <small>v17.1</small></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.2</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -359,7 +395,6 @@ body.detail-scroll-lock{overflow:hidden}
       <button class="detailnavbtn" data-detail-mode="study">📚 공부</button>
       <button class="detailnavbtn" data-detail-mode="journal">📖 기록</button>
     </nav>
-    <div id="detailDayTabs" class="detaildaytabs"></div>
   </div>
 
   <section class="detailpane" id="detailPaneItinerary">
@@ -397,7 +432,7 @@ body.detail-scroll-lock{overflow:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.1 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.2 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -471,7 +506,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.1 · unified single-file tools
+// v17.2 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -504,8 +539,6 @@ function setDetailMode(mode,save=true){
   document.querySelectorAll("[data-detail-mode]").forEach(b=>b.classList.toggle("on",b.dataset.detailMode===mode));
   const ids={itinerary:"detailPaneItinerary",prep:"detailPanePrep",phrase:"detailPanePhrase",message:"detailPaneMessage",study:"detailPaneStudy",journal:"detailPaneJournal"};
   Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.hidden=k!==mode});
-  const dayTabs=document.getElementById("detailDayTabs");
-  if(dayTabs)dayTabs.hidden=mode!=="itinerary";
   if(save)localStorage.setItem(DETAIL_MODE_KEY,mode);
   if(mode==="itinerary"){
     renderDetail();
@@ -1022,7 +1055,21 @@ function openItem(i){
  document.getElementById("memoToggle").onclick=()=>{const w=document.getElementById("memoWrap");w.style.display=w.style.display==="none"?"block":"none";if(w.style.display==="block"){const m=document.getElementById("memo");m.value=localStorage.getItem(noteKey)||"";m.oninput=()=>localStorage.setItem(noteKey,m.value)}};
  document.body.classList.add("open");
 }
-daysEl.onclick=e=>{const b=e.target.closest("[data-day]");if(!b)return;day=+b.dataset.day;render();if(currentView==="detail")renderDetail();scrollTo(0,0)};
+daysEl.onclick=e=>{
+ const b=e.target.closest("[data-day]");if(!b)return;
+ day=+b.dataset.day;render();
+ if(currentView==="detail"){
+   renderDetail();
+   requestAnimationFrame(()=>{
+     const target=document.getElementById("detailPaneItinerary");
+     const offset=(document.querySelector(".top")?.offsetHeight||0)+(document.getElementById("detailSticky")?.offsetHeight||0)+8;
+     const y=(target?.getBoundingClientRect().top||0)+window.scrollY-offset;
+     window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+   });
+ }else{
+   window.scrollTo({top:0,behavior:"smooth"});
+ }
+};
 timeline.onclick=e=>{const x=e.target.closest(".item");if(x)openItem(x.dataset.i)};
 document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");
 
@@ -1035,7 +1082,6 @@ const detailView=document.getElementById("detailView");
 const viewPamphlet=document.getElementById("viewPamphlet");
 const viewDetail=document.getElementById("viewDetail");
 const detailHero=document.getElementById("detailHero");
-const detailDayTabs=document.getElementById("detailDayTabs");
 const detailList=document.getElementById("detailList");
 const detailMapWrap=document.getElementById("detailMapWrap");
 
@@ -1078,7 +1124,6 @@ function renderDetail(){
       <div class="tripfact"><b>🦀 확정 예약</b>JUMBO 9/22 19:00 · 11명 · ${TRIP_META.dining.jumbo.reservationId}</div>
       <div class="tripfact"><b>👨‍👩‍👧‍👦 운영 기준</b>11명 · 3세 2명 · 7세 1명 · 부모님/아이 체력 우선</div>
     </div>`;
-  detailDayTabs.innerHTML=DAYS.map(x=>`<button class="detaildaybtn ${x.day===day?'on':''}" data-dday="${x.day}">DAY ${x.day}</button>`).join("");
   detailList.innerHTML=d.items.map((x,i)=>`
     <article class="detail-card">
       <div class="detail-card-head">
@@ -1096,12 +1141,6 @@ function renderDetail(){
     </article>`).join("");
   renderDetailMap();
 }
-detailDayTabs.onclick=e=>{
-  const b=e.target.closest("[data-dday]");if(!b)return;
-  day=+b.dataset.dday;
-  renderDetail();
-  window.scrollTo({top:0,behavior:"smooth"});
-};
 
 let detailMap=null;
 function renderDetailMap(){
@@ -1147,7 +1186,7 @@ function renderDetailMap(){
 }
 
 
-// v17.1 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v17.2 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
@@ -1163,9 +1202,13 @@ function renderDetailMap(){
     if(Math.abs(dx)<70||Math.abs(dx)<=Math.abs(dy)*1.4||dt>800)return;
     const next=day+(dx<0?1:-1);
     if(next<1||next>DAYS.length)return;
-    day=next;renderDetail();
-    const top=document.getElementById("detailSticky")?.offsetTop||0;
-    window.scrollTo({top,behavior:"smooth"});
+    day=next;
+    render();
+    renderDetail();
+    const target=document.getElementById("detailPaneItinerary");
+    const offset=(document.querySelector(".top")?.offsetHeight||0)+(document.getElementById("detailSticky")?.offsetHeight||0)+8;
+    const y=(target?.getBoundingClientRect().top||0)+window.scrollY-offset;
+    window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
   },{passive:true});
 })();
 
