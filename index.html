@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.1</title>
+<title>Singapore Family Trip 2026 · v18.2</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.1 · SINGLE FILE UNIFIED APP
+   v18.2 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v18.1 · stable detail scrolling */
+/* v18.2 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v18.1 · sticky hierarchy fix
+/* v18.2 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v18.1 · Pamphlet sheet + map layering fix */
+/* v18.2 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -385,7 +385,7 @@ body.open .sheet{touch-action:pan-y}
 }
 
 
-/* v18.1 · booking vault */
+/* v18.2 · booking vault */
 .bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
 .bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
@@ -413,7 +413,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 @media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
 
 
-/* v18.1 · reservation info inline */
+/* v18.2 · reservation info inline */
 .resbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
   background:#f8fbfc;font-size:11px;line-height:1.55
@@ -426,7 +426,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .respending{color:#8a5c00}
 
 
-/* v18.1 · multiple transport candidates */
+/* v18.2 · multiple transport candidates */
 .transportbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dce6eb;border-radius:12px;background:#f9fbfc
 }
@@ -441,7 +441,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .transporttag{display:inline-block;margin-left:4px;padding:2px 5px;border-radius:999px;background:#edf4f7;color:#48606f;font-size:8.5px;font-weight:900}
 
 
-/* v18.1 · keep original first-level cards, add one deeper info layer */
+/* v18.2 · keep original first-level cards, add one deeper info layer */
 .section.deepable,.transportbox.deepable,.resbox.deepable{
   position:relative;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease
 }
@@ -480,12 +480,60 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .deepempty{padding:10px;border-radius:10px;background:#f6f8f9;color:#819099;font-size:11px}
 body.deepopen{overflow:hidden!important}
 
+
+/* v18.2 · pamphlet tool launcher */
+.pamphlettools{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
+  margin:8px 0 10px;padding:7px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,255,255,.94);position:sticky;top:var(--app-header-h);z-index:88;
+  box-shadow:0 5px 14px rgba(20,43,57,.04)
+}
+.pamphlettools button{
+  min-width:0;border:0;border-radius:10px;background:#f5f8f9;color:#27414f;
+  padding:7px 2px 6px;font-size:15px;font-weight:900;line-height:1
+}
+.pamphlettools button span{display:block;margin-top:5px;font-size:8.5px;white-space:nowrap}
+.pamphlettools button:active{transform:scale(.97)}
+.pamtoolbackdrop{
+  display:none;position:fixed;inset:0;background:rgba(8,24,36,.64);z-index:2500
+}
+.pamtoolpanel{
+  display:none;position:fixed;left:50%;top:4dvh;transform:translateX(-50%);
+  width:min(95vw,780px);height:92dvh;background:#f7f9fa;border-radius:18px;
+  z-index:2510;overflow:hidden;box-shadow:0 28px 90px rgba(0,0,0,.34)
+}
+.pamtoolbackdrop.open,.pamtoolpanel.open{display:block}
+.pamtoolhead{
+  height:66px;display:flex;justify-content:space-between;gap:10px;align-items:center;
+  padding:10px 13px;background:#fff;border-bottom:1px solid #e3eaed
+}
+.pamtooleyebrow{font-size:9px;color:#7d8f98;font-weight:900;letter-spacing:.08em}
+.pamtooltitle{font-size:18px;font-weight:950;color:#17364f;margin-top:2px}
+.pamtoolclose{
+  width:42px;height:42px;border-radius:50%;border:1px solid #d8e1e5;
+  background:#fff;color:#17364f;font-size:24px;font-weight:900
+}
+.pamtoolbody{
+  height:calc(92dvh - 66px);overflow:auto;padding:12px 12px 28px;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain
+}
+.pamtoolbody .detailpane{display:block!important}
+.pamtoolbody .toolhero{margin-top:0}
+body.pamtoolopen{overflow:hidden!important}
+@media(max-width:620px){
+  .pamphlettools{grid-template-columns:repeat(7,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none;padding:6px}
+  .pamphlettools::-webkit-scrollbar{display:none}
+  .pamphlettools button{min-width:46px}
+  .pamtoolpanel{top:2dvh;height:96dvh;width:96vw;border-radius:16px}
+  .pamtoolbody{height:calc(96dvh - 66px)}
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.1</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.2</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -516,6 +564,16 @@ body.deepopen{overflow:hidden!important}
 </header>
 
 <main id="pamphletView" class="wrap">
+
+  <div class="pamphlettools" id="pamphletTools">
+    <button type="button" data-tool="itinerary">🗓<span>일정</span></button>
+    <button type="button" data-tool="booking">🎫<span>예약</span></button>
+    <button type="button" data-tool="prep">🧳<span>준비</span></button>
+    <button type="button" data-tool="phrase">💬<span>표현</span></button>
+    <button type="button" data-tool="message">📱<span>메시지</span></button>
+    <button type="button" data-tool="study">📚<span>공부</span></button>
+    <button type="button" data-tool="journal">📖<span>기록</span></button>
+  </div>
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
@@ -579,7 +637,7 @@ body.deepopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.1 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v18.2 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -590,6 +648,19 @@ body.deepopen{overflow:hidden!important}
     <button id="close" class="close" type="button">×</button>
   </div>
   <div id="body" class="body"></div>
+</section>
+
+
+<div id="pamToolBackdrop" class="pamtoolbackdrop" aria-hidden="true"></div>
+<section id="pamToolPanel" class="pamtoolpanel" aria-hidden="true">
+  <div class="pamtoolhead">
+    <div>
+      <div class="pamtooleyebrow">TRIP TOOL</div>
+      <div id="pamToolTitle" class="pamtooltitle"></div>
+    </div>
+    <button id="pamToolClose" class="pamtoolclose" type="button" aria-label="도구 닫기">×</button>
+  </div>
+  <div id="pamToolBody" class="pamtoolbody"></div>
 </section>
 
 <div id="deepBackdrop" class="deepbackdrop" aria-hidden="true"></div>
@@ -667,7 +738,7 @@ const DAYS=[
 
 
 // =========================================================
-// v18.1 · unified single-file tools
+// v18.2 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -1441,11 +1512,20 @@ function closePamphletSheet(){
 }
 document.getElementById("close").onclick=closePamphletSheet;
 document.getElementById("backdrop").onclick=closePamphletSheet;
+
+document.getElementById("pamphletTools")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-tool]");if(!b)return;
+  openPamTool(b.dataset.tool);
+});
+document.getElementById("pamToolClose").onclick=closePamTool;
+document.getElementById("pamToolBackdrop").onclick=closePamTool;
+
 document.getElementById("deepClose").onclick=closeDeep;
 document.getElementById("deepBackdrop").onclick=closeDeep;
 document.addEventListener("keydown",e=>{
   if(e.key!=="Escape")return;
   if(document.getElementById("deepModal").classList.contains("open"))closeDeep();
+  else if(document.getElementById("pamToolPanel").classList.contains("open"))closePamTool();
   else if(document.body.classList.contains("open"))closePamphletSheet();
 });
 
@@ -1565,7 +1645,131 @@ function renderDetailMap(){
 
 
 
-// v18.1 · Pamphlet DAY swipe
+
+// v18.2 · Pamphlet tools: use the same underlying content as Detail mode
+function toolTitle(mode){
+  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록"}[mode]||"도구";
+}
+function clonePaneForTool(mode){
+  const paneIds={
+    itinerary:"detailPaneItinerary",
+    booking:"detailPaneBooking",
+    prep:"detailPanePrep",
+    phrase:"detailPanePhrase",
+    message:"detailPaneMessage",
+    study:"detailPaneStudy",
+    journal:"detailPaneJournal"
+  };
+  if(mode==="itinerary") renderDetail();
+  if(mode==="booking") renderBookings();
+  if(mode==="prep") renderPrep();
+  if(mode==="phrase") renderPhrases();
+  if(mode==="message") renderMessages();
+  if(mode==="study") renderStudy();
+  if(mode==="journal") renderJournal();
+
+  const source=document.getElementById(paneIds[mode]);
+  if(!source)return '<div class="toolcard">내용을 불러오지 못했습니다.</div>';
+  const clone=source.cloneNode(true);
+  clone.removeAttribute("hidden");
+  clone.removeAttribute("id");
+  clone.querySelectorAll("[id]").forEach(el=>el.removeAttribute("id"));
+  return clone.outerHTML;
+}
+function rebindPamTool(mode){
+  const body=document.getElementById("pamToolBody");
+  if(!body)return;
+
+  if(mode==="phrase"){
+    let localCat=phraseCat;
+    const rebuild=()=>{
+      phraseCat=localCat;
+      renderPhrases();
+      body.innerHTML=clonePaneForTool("phrase");
+      rebindPamTool("phrase");
+    };
+    body.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{
+      localCat=b.dataset.pcat;
+      phraseCat=localCat;
+      rebuild();
+    });
+    const search=body.querySelector(".phrase-search");
+    if(search)search.addEventListener("input",()=>{
+      const q=search.value.toLowerCase();
+      body.querySelectorAll(".phrase-item").forEach(x=>{
+        const text=`${x.dataset.phraseKo||""} ${x.dataset.phraseEn||""}`.toLowerCase();
+        x.style.display=!q||text.includes(q)?"":"none";
+      });
+    });
+    body.querySelectorAll(".phrase-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.phraseIcon,x.dataset.phraseEn,x.dataset.phraseKo));
+  }
+
+  if(mode==="message"){
+    body.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{
+      msgCat=b.dataset.mcat;
+      renderMessages();
+      body.innerHTML=clonePaneForTool("message");
+      rebindPamTool("message");
+    });
+    const search=body.querySelector(".msg-search");
+    if(search)search.addEventListener("input",()=>{
+      const q=search.value.toLowerCase();
+      body.querySelectorAll(".msg-item").forEach(x=>{
+        const text=`${x.dataset.msgTitle||""} ${x.dataset.msgEn||""} ${x.dataset.msgKo||""}`.toLowerCase();
+        x.style.display=!q||text.includes(q)?"":"none";
+      });
+    });
+    body.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{
+      e.stopPropagation();
+      toggleMsgFav(b.dataset.fav);
+      renderMessages();
+      body.innerHTML=clonePaneForTool("message");
+      rebindPamTool("message");
+    });
+    body.querySelectorAll(".msg-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.msgIcon,x.dataset.msgEn,x.dataset.msgKo));
+  }
+
+  if(mode==="prep"){
+    body.querySelectorAll("[data-prep17]").forEach(cb=>cb.addEventListener("change",()=>{
+      const state=prepState();
+      state[cb.dataset.prep17]=cb.checked;
+      localStorage.setItem(PREP_STATE_KEY,JSON.stringify(state));
+    }));
+  }
+
+  if(mode==="journal"){
+    body.querySelectorAll("[data-jday]").forEach(t=>t.addEventListener("input",()=>{
+      const state=journalData();
+      state[t.dataset.jday]=t.value;
+      localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
+    }));
+  }
+}
+function openPamTool(mode){
+  if(mode==="itinerary"){
+    closePamTool();
+    window.scrollTo({top:0,behavior:"smooth"});
+    return;
+  }
+  document.getElementById("pamToolTitle").textContent=toolTitle(mode);
+  const body=document.getElementById("pamToolBody");
+  body.innerHTML=clonePaneForTool(mode);
+  rebindPamTool(mode);
+  document.getElementById("pamToolBackdrop").classList.add("open");
+  document.getElementById("pamToolPanel").classList.add("open");
+  document.getElementById("pamToolBackdrop").setAttribute("aria-hidden","false");
+  document.getElementById("pamToolPanel").setAttribute("aria-hidden","false");
+  document.body.classList.add("pamtoolopen");
+}
+function closePamTool(){
+  const bg=document.getElementById("pamToolBackdrop");
+  const panel=document.getElementById("pamToolPanel");
+  if(bg){bg.classList.remove("open");bg.setAttribute("aria-hidden","true")}
+  if(panel){panel.classList.remove("open");panel.setAttribute("aria-hidden","true")}
+  document.body.classList.remove("pamtoolopen");
+}
+
+// v18.2 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1591,7 +1795,7 @@ function renderDetailMap(){
   },{passive:true});
 })();
 
-// v18.1 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v18.2 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
