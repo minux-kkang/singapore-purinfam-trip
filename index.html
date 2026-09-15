@@ -383,8 +383,8 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 .refreshlive{flex:0 0 auto;padding:4px 6px!important;font-size:8.5px!important;white-space:nowrap}
 .livebadge{display:none!important}
 
-/* 메인 메뉴 5개: 모바일에서도 무조건 한 줄 */
-.modebar{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important;margin-top:7px!important;flex-wrap:nowrap!important}
+/* 메인 메뉴 6개: 모바일에서도 무조건 한 줄 */
+.modebar{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:4px!important;margin-top:7px!important;flex-wrap:nowrap!important}
 .modebar .modebtn{min-width:0!important;width:100%;padding:8px 2px!important;border-radius:8px!important;font-size:10px!important;line-height:1.05!important;white-space:nowrap!important;overflow:hidden;text-overflow:clip}
 
 @media(max-width:620px){
@@ -592,6 +592,9 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <button class="modebtn" data-mode="prep">🧳 준비</button>
 <button class="modebtn" data-mode="phrase">💬 표현</button>
 <button class="modebtn" data-mode="journal">📖 기록</button>
+
+<button class="modebtn" type="button" onclick="location.href='./message-cards.html'"> 💬 메시지 카드  </button>
+ 
 </div>
 
 <div class="tripview active" id="tripview">
