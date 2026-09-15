@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.0</title>
+<title>Singapore Family Trip 2026 · v18.1</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.0 · SINGLE FILE UNIFIED APP
+   v18.1 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v18.0 · stable detail scrolling */
+/* v18.1 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v18.0 · sticky hierarchy fix
+/* v18.1 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v18.0 · Pamphlet sheet + map layering fix */
+/* v18.1 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -385,7 +385,7 @@ body.open .sheet{touch-action:pan-y}
 }
 
 
-/* v18.0 · booking vault */
+/* v18.1 · booking vault */
 .bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
 .bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
@@ -413,7 +413,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 @media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
 
 
-/* v18.0 · reservation info inline */
+/* v18.1 · reservation info inline */
 .resbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
   background:#f8fbfc;font-size:11px;line-height:1.55
@@ -426,7 +426,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .respending{color:#8a5c00}
 
 
-/* v18.0 · multiple transport candidates */
+/* v18.1 · multiple transport candidates */
 .transportbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dce6eb;border-radius:12px;background:#f9fbfc
 }
@@ -441,68 +441,53 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .transporttag{display:inline-block;margin-left:4px;padding:2px 5px;border-radius:999px;background:#edf4f7;color:#48606f;font-size:8.5px;font-weight:900}
 
 
-/* v18.0 · pamphlet-first two-level detail */
-.quickmenu{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px
+/* v18.1 · keep original first-level cards, add one deeper info layer */
+.section.deepable,.transportbox.deepable,.resbox.deepable{
+  position:relative;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease
 }
-.quickmenu button{
-  min-height:58px;border:1px solid #dce5e9;border-radius:13px;background:#fff;
-  color:#203b4b;text-align:left;padding:10px 11px;font-weight:900;font-size:12px;
-  display:flex;flex-direction:column;justify-content:center;gap:3px
+.section.deepable:active,.transportbox.deepable:active,.resbox.deepable:active{transform:scale(.994)}
+.section.deepable::after,.transportbox.deepable::after,.resbox.deepable::after{
+  content:"자세히 ›";position:absolute;right:10px;top:9px;
+  font-size:9px;font-weight:900;color:#718690;background:#eef4f6;
+  border-radius:999px;padding:3px 6px
 }
-.quickmenu button small{font-size:9px;color:#7b8c95;font-weight:750;line-height:1.35}
-.quickmenu button:active{transform:scale(.985)}
-.sheet-summary{
-  background:#f7fafb;border:1px solid #e1e9ec;border-radius:13px;padding:11px 12px;
-  font-size:12px;line-height:1.55;color:#314956;margin-bottom:9px
-}
-.deepbackdrop{
-  display:none;position:fixed;inset:0;background:rgba(8,24,36,.68);z-index:3000
-}
+.deepbackdrop{display:none;position:fixed;inset:0;background:rgba(9,25,37,.7);z-index:3000}
 .deepmodal{
   display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:min(92vw,620px);max-height:86dvh;background:#fff;border-radius:18px;
-  z-index:3010;box-shadow:0 24px 70px rgba(0,0,0,.32);overflow:hidden
+  width:min(93vw,650px);max-height:88dvh;background:#fff;border-radius:18px;
+  z-index:3010;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.34)
 }
 .deepbackdrop.open,.deepmodal.open{display:block}
 .deephead{
-  display:flex;justify-content:space-between;gap:12px;align-items:flex-start;
-  padding:13px 14px;border-bottom:1px solid #e8eef1;background:#fff;
-  position:sticky;top:0;z-index:2
+  display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+  padding:13px 14px;border-bottom:1px solid #e7edef;background:#fff
 }
-.deepeyebrow{font-size:9px;letter-spacing:.08em;color:#7a8c96;font-weight:900}
-.deeptitle{margin-top:3px;font-size:18px;line-height:1.25;font-weight:950;color:#17364f}
+.deepeyebrow{font-size:9px;letter-spacing:.08em;color:#7d8e97;font-weight:900}
+.deeptitle{margin-top:3px;font-size:18px;font-weight:950;line-height:1.25;color:#17364f}
 .deepclose{
-  flex:0 0 42px;width:42px;height:42px;border:1px solid #d8e1e5;border-radius:50%;
+  width:42px;height:42px;flex:0 0 42px;border-radius:50%;border:1px solid #d9e1e5;
   background:#fff;font-size:24px;font-weight:900;color:#17364f
 }
-.deepbody{
-  overflow:auto;max-height:calc(86dvh - 70px);padding:14px 15px 24px;
-  -webkit-overflow-scrolling:touch;overscroll-behavior:contain
-}
+.deepbody{overflow:auto;max-height:calc(88dvh - 70px);padding:14px 15px 28px;-webkit-overflow-scrolling:touch}
 .deepintro{
-  padding:10px 11px;border-radius:12px;background:#f4f8fa;border:1px solid #e1e9ed;
-  font-size:11px;line-height:1.55;color:#455b67;margin-bottom:10px
+  padding:10px 11px;border:1px solid #e0e9ed;background:#f6f9fa;border-radius:11px;
+  color:#455b67;font-size:11px;line-height:1.55;margin-bottom:11px
 }
-.deepsection{margin:0 0 12px}
-.deepsection h4{margin:0 0 7px;font-size:12px;color:#17364f}
-.deepbullets{display:grid;gap:7px}
-.deepbullet{padding:9px 10px;border-radius:10px;background:#fffaf3;border:1px solid #f0dfca;font-size:11px;line-height:1.5}
-.deepempty{padding:12px;border-radius:10px;background:#f7f8fa;color:#82919a;font-size:11px}
+.deepsec{margin:0 0 13px}
+.deepsec h4{margin:0 0 7px;font-size:12px;color:#18384e}
+.deepnotes{display:grid;gap:7px}
+.deepnote{padding:9px 10px;border-radius:10px;background:#fffaf2;border:1px solid #f1dfc7;font-size:11px;line-height:1.52;color:#465b66}
+.deepempty{padding:10px;border-radius:10px;background:#f6f8f9;color:#819099;font-size:11px}
 body.deepopen{overflow:hidden!important}
-@media(max-width:620px){
-  .deepmodal{width:94vw;max-height:90dvh;border-radius:17px}
-  .deepbody{max-height:calc(90dvh - 70px)}
-}
 
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.0</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.1</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
-      <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛 · 기본</button>
+      <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
     </div>
   </div>
@@ -594,7 +579,7 @@ body.deepopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.0 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v18.1 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -682,7 +667,7 @@ const DAYS=[
 
 
 // =========================================================
-// v18.0 · unified single-file tools
+// v18.1 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -1326,51 +1311,82 @@ function routeHtml(r=[]){
 }
 function chips(arr=[]){return arr.map(x=>`<div class="check">${esc(x)}</div>`).join("")}
 
-function deepBullets(arr=[]){
-  return arr?.length?`<div class="deepbullets">${arr.map(x=>`<div class="deepbullet">${esc(x)}</div>`).join("")}</div>`:`<div class="deepempty">추가 정보 없음</div>`;
+function deepNotesFor(item,kind){
+  const t=((item?.title||"")+" "+(item?.detail||"")).toLowerCase();
+  const base={
+    route:["11명이 동시에 움직이므로 출발 전에 다음 집결 지점을 한 번 확인합니다.","아이·부모님 컨디션이 떨어지면 최단거리보다 Grab/택시 등 편한 이동을 우선합니다."],
+    see:["전부 다 하려 하기보다 이 장소에서 꼭 보고 싶은 1~2개를 먼저 처리합니다.","사진·화장실·휴식까지 포함해 다음 이동 시간을 너무 빡빡하게 잡지 않습니다."],
+    family:["아이 3명과 부모님이 함께 움직이므로 대기시간과 계단·더위를 먼저 봅니다.","그룹이 갈라질 경우 재집결 위치를 먼저 정하고 이동합니다."],
+    food:["11명은 바로 착석이 어려울 수 있으므로 식사시간이 가까워지면 자리를 먼저 확인합니다.","아이들이 먹을 수 있는 메뉴와 맵지 않은 메뉴를 먼저 확보합니다."],
+    explain:["이 일정은 이동 효율보다 실제 가족여행의 체력과 대기시간을 줄이는 방향으로 구성했습니다."]
+  }[kind]||[];
+  const extra=[];
+  if(/changi|airport|공항/.test(t)){
+    extra.push("입국·수하물 수령 뒤에는 11명이 한 번에 모인 것을 확인한 후 차량 호출/픽업 위치로 이동합니다.");
+    extra.push("캐리어와 유모차가 많아 일반 승용차 기준보다 차량 수가 늘어날 수 있습니다.");
+  }
+  if(/marriott|체크인/.test(t)){
+    extra.push("4개 객실이 같은 일행임을 호텔이 알고 있으므로 체크인 시 가까운 객실 배정 요청을 다시 확인하면 됩니다.");
+    extra.push("Rollaway Bed, Step Stool, Twin Beds, Air Purifier 등은 실제 배정 여부를 프런트에서 확인합니다.");
+  }
+  if(/universal|uss/.test(t)){
+    extra.push("11명이 항상 같이 움직이기보다 탑승팀과 아이 동반팀으로 잠시 나눠 움직이는 편이 효율적일 수 있습니다.");
+    extra.push("재집결 장소와 시간을 먼저 정해두면 놀이기구 대기열 때문에 서로 찾는 시간을 줄일 수 있습니다.");
+  }
+  if(/gardens|supertree|cloud forest|flower dome/.test(t)){
+    extra.push("실내 돔은 더위 피하기 좋은 휴식 구간으로 활용하고, 야외 구간은 햇빛과 비에 따라 순서를 바꿔도 됩니다.");
+  }
+  if(/fort canning|national museum|chijmes|raffles/.test(t)){
+    extra.push("DAY4는 걷는 구간이 길어질 수 있으므로 중간에 더위나 피로가 누적되면 일부 구간을 Grab으로 잘라 이동해도 됩니다.");
+  }
+  if(/river cruise|clarke quay/.test(t)){
+    extra.push("11명이 같은 회차에 탈 수 있는지 먼저 확인하고, 어렵다면 바로 다음 회차까지 함께 비교합니다.");
+  }
+  if(/jumbo/.test(t)){
+    extra.push("19:00, 11명 예약이 확정되어 있으므로 River Cruise 종료 시간을 식당 도착 기준으로 역산합니다.");
+    extra.push("칠리크랩 등 시가 메뉴는 주문 전에 중량과 총 예상금액을 확인하면 좋습니다.");
+  }
+  if(/oceanarium/.test(t)){
+    extra.push("유모차 이동이 쉬운 실내 일정이라 DAY5의 더위·비 대비 일정으로 활용하기 좋습니다.");
+  }
+  if(/luge|siloso/.test(t)){
+    extra.push("Luge는 아이 키/연령 조건과 실제 탑승 인원을 현장에서 다시 확인하고, 대기시간이 길면 해변 일정으로 전환할 수 있습니다.");
+  }
+  if(/little india|kampong|haji|sultan/.test(t)){
+    extra.push("출국일 일정이므로 관광 욕심보다 호텔 복귀와 공항 이동 시간을 우선합니다.");
+  }
+  if(/jewel|ke644|터미널|출발/.test(t)){
+    extra.push("Jewel 관광과 실제 탑승 터미널 이동 시간을 분리해서 생각하고, 체크인·출국심사 시간을 충분히 확보합니다.");
+  }
+  return [...base,...extra];
+}
+function deepList(arr=[]){
+  return arr.length?`<div class="deepnotes">${arr.map(x=>`<div class="deepnote">${esc(x)}</div>`).join("")}</div>`:`<div class="deepempty">추가 정보 없음</div>`;
 }
 function openDeep(kind){
   if(!sel)return;
-  const titles={
-    route:["🚶","이동 · 동선"],
-    see:["👀","여기서 할 일"],
-    family:["👨‍👩‍👧","가족 체크"],
-    food:["🍽️","식사 · 간식"],
-    transport:["🚦","이동수단 후보"],
-    booking:["🎫","예약 · QR"],
-    explain:["📝","추가 설명"]
-  };
-  const meta=titles[kind]||["ℹ️","추가 정보"];
-  document.getElementById("deepEyebrow").textContent=`${meta[0]} ${sel.time||""}`;
-  document.getElementById("deepTitle").textContent=`${sel.title} · ${meta[1]}`;
-  let inner="";
-  if(kind==="route"){
-    inner=`<div class="deepintro">실제 여행 중에는 이 순서대로 움직이는 것을 기준으로 봅니다. 상황이 바뀌면 지도보다 현재 위치와 가족 컨디션을 우선하세요.</div>${routeHtml(sel.route)}`;
-  }else if(kind==="see"){
-    inner=`<div class="deepintro">이 장소에서 꼭 해야 할 것만 추려둔 목록입니다. 전부 하려 하기보다 아이·부모님 컨디션에 따라 핵심만 선택하면 됩니다.</div>${deepBullets(sel.see||[])}`;
-  }else if(kind==="family"){
-    inner=`<div class="deepintro">11명이 함께 움직일 때 놓치기 쉬운 포인트입니다. 이동 전·후 재집결과 아이 체력을 우선합니다.</div>${deepBullets(sel.family||[])}`;
-  }else if(kind==="food"){
-    inner=`<div class="deepintro">이 일정과 가까운 식사·간식 관련 메모입니다. 식사 시간이 밀리면 다음 일정보다 휴식을 우선해도 됩니다.</div>${deepBullets(sel.food||[])}`;
-  }else if(kind==="transport"){
-    inner=`<div class="deepintro">한 가지 이동수단을 고정하지 않고, 인원·날씨·체력에 따라 선택할 수 있는 후보입니다.</div>${transportInfoHtml(sel)||'<div class="deepempty">별도 이동 후보 없음</div>'}`;
-  }else if(kind==="booking"){
-    inner=`<div class="deepintro">이 일정에서 실제로 꺼내야 하는 예약정보만 표시합니다. 전체 예약은 디테일 모드의 예약 탭에서 확인할 수 있습니다.</div>${reservationInfoHtml(sel)||'<div class="deepempty">이 일정에서 필요한 예약정보 없음</div>'}`;
-  }else{
-    inner=`<div class="deepintro">왜 이 일정이 들어갔는지, 현장에서 무엇을 기준으로 판단할지 보는 설명입니다.</div><div class="detailsbox">${esc(sel.detail||"추가 설명 없음")}</div>`;
-  }
-  document.getElementById("deepBody").innerHTML=inner;
+  const names={route:"🚶 이동 · 동선",see:"👀 여기서 할 것",family:"👨‍👩‍👧 가족 체크",food:"🍽 식사",explain:"📝 추가 설명",transport:"🚦 이동 후보",booking:"🎫 예약 정보"};
+  document.getElementById("deepEyebrow").textContent=`${sel.time||""} · 추가정보`;
+  document.getElementById("deepTitle").textContent=`${sel.title} · ${names[kind]||"상세"}`;
+  let core="";
+  if(kind==="route") core=routeHtml(sel.route);
+  else if(kind==="see") core=deepList(sel.see||[]);
+  else if(kind==="family") core=deepList(sel.family||[]);
+  else if(kind==="food") core=deepList(sel.food||[]);
+  else if(kind==="transport") core=transportInfoHtml(sel)||'<div class="deepempty">별도 이동 후보 없음</div>';
+  else if(kind==="booking") core=reservationInfoHtml(sel)||'<div class="deepempty">이 일정에서 필요한 예약정보 없음</div>';
+  else core=`<div class="detailsbox">${esc(sel.detail||"추가 설명 없음")}</div>`;
+  document.getElementById("deepBody").innerHTML=`
+    <div class="deepintro">첫 화면의 정보를 그대로 유지하면서, 현장에서 판단할 때 도움이 되는 설명을 한 단계 더 붙였습니다.</div>
+    <div class="deepsec"><h4>기본 정보</h4>${core}</div>
+    <div class="deepsec"><h4>조금 더 알아두기</h4>${deepList(deepNotesFor(sel,kind))}</div>`;
   document.getElementById("deepBackdrop").classList.add("open");
   document.getElementById("deepModal").classList.add("open");
-  document.getElementById("deepBackdrop").setAttribute("aria-hidden","false");
-  document.getElementById("deepModal").setAttribute("aria-hidden","false");
   document.body.classList.add("deepopen");
 }
 function closeDeep(){
   document.getElementById("deepBackdrop").classList.remove("open");
   document.getElementById("deepModal").classList.remove("open");
-  document.getElementById("deepBackdrop").setAttribute("aria-hidden","true");
-  document.getElementById("deepModal").setAttribute("aria-hidden","true");
   document.body.classList.remove("deepopen");
 }
 
@@ -1379,22 +1395,19 @@ function openItem(i){
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
  const noteKey=`sg_pamphlet_v18_${day}_${i}`;
- const hasFood=!!sel.food?.length;
- const hasTransport=!!sel.transportOptions?.length;
- const hasBooking=!!sel.bookingIds?.length;
  body.innerHTML=`
-  <div class="sheet-summary">${esc(sel.detail||"일정 상세")}</div>
-  <div class="quickmenu">
-    <button type="button" data-deep="route">🚶 이동 · 동선<small>실제 이동 순서 보기</small></button>
-    <button type="button" data-deep="see">👀 여기서 할 일<small>현장에서 할 것만 보기</small></button>
-    <button type="button" data-deep="family">👨‍👩‍👧 가족 체크<small>아이·부모님·11명 이동</small></button>
-    ${hasFood?`<button type="button" data-deep="food">🍽️ 식사 · 간식<small>메뉴와 식사 포인트</small></button>`:""}
-    ${hasTransport?`<button type="button" data-deep="transport">🚦 이동수단 후보<small>대안까지 비교</small></button>`:""}
-    ${hasBooking?`<button type="button" data-deep="booking">🎫 예약 · QR<small>예약번호와 바우처</small></button>`:""}
-    <button type="button" data-deep="explain">📝 추가 설명<small>일정 의도와 참고사항</small></button>
-  </div>
+  <section class="section deepable" data-deep="route"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
+  <section class="section deepable" data-deep="see"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
+  <section class="section deepable" data-deep="family"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
+  ${sel.food?.length?`<section class="section deepable" data-deep="food"><h3>🍽 식사</h3><div class="checklist">${chips(sel.food)}</div></section>`:""}
+  <section class="section deepable" data-deep="explain"><h3>📝 한 줄 설명</h3><div class="detailsbox">${esc(sel.detail||"")}</div></section>
+  ${sel.transportOptions?.length?`<div class="deepable" data-deep="transport">${transportInfoHtml(sel)}</div>`:""}
+  ${sel.bookingIds?.length?`<div class="deepable" data-deep="booking">${reservationInfoHtml(sel)}</div>`:""}
   <section class="section"><h3>빠른 기능</h3><div class="actions"><a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">📍 실제지도</a><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
- body.querySelectorAll("[data-deep]").forEach(b=>b.onclick=()=>openDeep(b.dataset.deep));
+ body.querySelectorAll("[data-deep]").forEach(el=>el.onclick=e=>{
+   if(e.target.closest("a,button,input,textarea"))return;
+   openDeep(el.dataset.deep);
+ });
  document.getElementById("memoToggle").onclick=()=>{
    const w=document.getElementById("memoWrap");
    w.style.display=w.style.display==="none"?"block":"none";
@@ -1552,7 +1565,7 @@ function renderDetailMap(){
 
 
 
-// v18.0 · Pamphlet DAY swipe
+// v18.1 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1578,7 +1591,7 @@ function renderDetailMap(){
   },{passive:true});
 })();
 
-// v18.0 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v18.1 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
