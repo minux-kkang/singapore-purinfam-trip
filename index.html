@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.2</title>
+<title>Singapore Family Trip 2026 · v18.4</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.2 · SINGLE FILE UNIFIED APP
+   v18.4 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v18.2 · stable detail scrolling */
+/* v18.3 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v18.2 · sticky hierarchy fix
+/* v18.3 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v18.2 · Pamphlet sheet + map layering fix */
+/* v18.3 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -385,7 +385,7 @@ body.open .sheet{touch-action:pan-y}
 }
 
 
-/* v18.2 · booking vault */
+/* v18.3 · booking vault */
 .bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
 .bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
@@ -413,7 +413,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 @media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
 
 
-/* v18.2 · reservation info inline */
+/* v18.3 · reservation info inline */
 .resbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
   background:#f8fbfc;font-size:11px;line-height:1.55
@@ -426,7 +426,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .respending{color:#8a5c00}
 
 
-/* v18.2 · multiple transport candidates */
+/* v18.3 · multiple transport candidates */
 .transportbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dce6eb;border-radius:12px;background:#f9fbfc
 }
@@ -441,7 +441,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .transporttag{display:inline-block;margin-left:4px;padding:2px 5px;border-radius:999px;background:#edf4f7;color:#48606f;font-size:8.5px;font-weight:900}
 
 
-/* v18.2 · keep original first-level cards, add one deeper info layer */
+/* v18.3 · keep original first-level cards, add one deeper info layer */
 .section.deepable,.transportbox.deepable,.resbox.deepable{
   position:relative;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease
 }
@@ -481,7 +481,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 body.deepopen{overflow:hidden!important}
 
 
-/* v18.2 · pamphlet tool launcher */
+/* v18.3 · pamphlet tool launcher */
 .pamphlettools{
   display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
   margin:8px 0 10px;padding:7px;border:1px solid var(--line);border-radius:14px;
@@ -528,12 +528,72 @@ body.pamtoolopen{overflow:hidden!important}
   .pamtoolbody{height:calc(96dvh - 66px)}
 }
 
+
+/* v18.3 · study stories / multilingual phrases / readable message cards */
+.phraselangs{display:flex;gap:6px;overflow-x:auto;margin:8px 0 10px;padding-bottom:2px;scrollbar-width:none}
+.phraselangs::-webkit-scrollbar{display:none}
+.langchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;white-space:nowrap;color:#314b59}
+.langchip.on{background:#17364f;color:#fff;border-color:#17364f}
+.phrase-item{cursor:default!important}
+.phrase-item .native{font-size:16px;font-weight:950;line-height:1.45;margin-top:6px;color:#17364f;word-break:keep-word}
+.phrase-item .pron{font-size:10px;color:#7c8b93;margin-top:3px;line-height:1.45}
+.inline-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.inline-actions button{
+ border:1px solid #dbe3e7;background:#fff;border-radius:8px;padding:6px 8px;
+ font-size:9px;font-weight:900;color:#36505e
+}
+.msg-item{cursor:default!important}
+.msgen{margin-top:8px!important}
+.msgsentence{
+ display:block;padding:2px 0;font-size:13px;line-height:1.52;font-weight:850;color:#1b374a
+}
+.msgsentence + .msgsentence{margin-top:4px}
+.msgko{margin-top:8px!important;padding-top:7px;border-top:1px dashed #e3e8ea;line-height:1.55!important}
+.msgmeta{font-size:9px;color:#809099;margin-top:6px}
+.studygrid-v18{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.study-story-card{
+ position:relative;border:1px solid var(--line);border-radius:14px;background:#fff;
+ padding:13px;cursor:pointer;min-height:122px
+}
+.study-story-card:after{
+ content:"이야기 열기 ›";position:absolute;right:10px;bottom:9px;
+ font-size:9px;font-weight:900;color:#6f8490
+}
+.study-story-card .chapter{font-size:9px;color:#0f766e;font-weight:950;letter-spacing:.04em}
+.study-story-card h3{font-size:14px;margin:4px 0 6px;line-height:1.35;color:#17364f}
+.study-story-card p{font-size:10.5px;line-height:1.5;color:#62747e;margin:0 0 18px}
+.storypopup{font-size:13px;line-height:1.78;color:#304955}
+.storypopup p{margin:0 0 13px}
+.storylead{font-size:16px;font-weight:900;color:#17364f;background:#edf8f5;border-radius:11px;padding:10px 11px;margin-bottom:13px}
+.storyfact,.storytrip,.storychild{
+ margin:10px 0;padding:10px 11px;border-radius:10px;font-size:11px;line-height:1.6
+}
+.storyfact{background:#faf9f5;border:1px solid #e7e2d8}
+.storytrip{background:#f3f7fb;border-left:4px solid #315b8a}
+.storychild{background:#f2fbf8;border-left:4px solid #0f766e}
+.curiosity{border:1px solid #e3e8ea;border-radius:11px;padding:10px;margin:8px 0;background:#fff}
+.curiosity b{color:#17364f}
+@media(max-width:650px){.studygrid-v18{grid-template-columns:1fr}}
+
+
+/* v18.4 · representative image block in pamphlet sheet */
+.heroCard{margin:0 0 12px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.heroPhoto{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#eef3f8}
+.heroMeta{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;background:#f8fafc;color:#495160;font-size:12px}
+.heroMeta b{font-size:13px;color:#1f2937}
+.heroMeta span{flex:1;text-align:right}
+.heroCard.no-photo{display:flex;align-items:center;gap:14px;padding:14px}
+.heroFallback{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#eef4ff;font-size:28px;flex:0 0 auto}
+.heroCopy{display:flex;flex-direction:column;gap:3px;color:#556070}
+.heroCopy b{color:#1f2937}
+.heroCopy span{font-size:12px;line-height:1.45}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.2</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.4</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -614,21 +674,22 @@ body.pamtoolopen{overflow:hidden!important}
   </section>
 
   <section class="detailpane" id="detailPanePhrase" hidden>
-    <div class="toolhero"><div class="eyebrow">QUICK PHRASES</div><h2>💬 현지 표현</h2><p>짧게 말하거나 화면을 보여주기 위한 범용 표현입니다.</p></div>
+    <div class="toolhero"><div class="eyebrow">LOCAL PHRASES · 4 LANGUAGES</div><h2>💬 현지 표현</h2><p>영어 · 중국어(간체) · 말레이어 · 타밀어를 전환해서 봅니다. 카드 안에서 바로 읽고 복사할 수 있습니다.</p></div>
+    <div id="phraseLangs" class="phraselangs"></div>
     <input id="phraseSearch" class="phrase-search" placeholder="상황 또는 표현 검색">
     <div id="phraseCats" class="phrasecats"></div>
     <div id="phraseList" class="phrase-list"></div>
   </section>
 
   <section class="detailpane" id="detailPaneMessage" hidden>
-    <div class="toolhero"><div class="eyebrow">SHOW THIS SCREEN</div><h2>📱 여행 메시지 카드</h2><p>영어로 길게 설명하기 어려운 상황에서 상대방에게 휴대폰 화면을 그대로 보여주세요.</p></div>
+    <div class="toolhero"><div class="eyebrow">SITUATION MESSAGES</div><h2>📱 여행 메시지 카드</h2><p>상황별로 바로 읽거나 복사해서 보여줄 수 있는 문장입니다. 긴 문장은 문장 단위로 줄을 나눠 읽기 쉽게 표시합니다.</p></div>
     <input id="msgSearch" class="msg-search" placeholder="체크인, 11명, JUMBO, 아이…">
     <div id="msgCats" class="msgcats"></div>
     <div id="msgList" class="msg-list"></div>
   </section>
 
   <section class="detailpane" id="detailPaneStudy" hidden>
-    <div class="toolhero"><div class="eyebrow">STORY OF SINGAPORE</div><h2>📚 여행 공부</h2><p>관광지를 외우기보다 싱가포르가 왜 이런 도시가 되었는지를 연결해서 봅니다.</p></div>
+    <div class="toolhero"><div class="eyebrow">STORY OF SINGAPORE</div><h2>📚 여행 공부</h2><p>요약 카드만 먼저 보고, 궁금한 항목을 누르면 이전 버전의 자세한 스토리를 팝업으로 읽습니다.</p></div>
     <div id="studyContent"></div>
   </section>
 
@@ -637,7 +698,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.2 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v18.4 · 일정 클릭 시 대표 이미지가 함께 보이도록 확장했습니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -688,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
   <div class="presentactions">
     <button id="presentSpeak" type="button">🔊 읽어주기</button>
     <button id="presentCopy" type="button">📋 영어 복사</button>
-    <button id="presentFullscreen" type="button">⛶ 전체화면</button>
+    
   </div>
 </div>
 
@@ -697,7 +758,7 @@ body.pamtoolopen{overflow:hidden!important}
 const DAYS=[
 {day:1,icon:"✈️",title:"도착",sub:"싱가포르 도착 · 호텔 체크인 · 휴식",items:[
 {time:"출발 전",title:"공항 이동 · 여행서류 최종 확인",detail:"여권 11명, 항공권, 호텔 예약, SG Arrival Card, 짐과 유모차를 최종 확인.",route:[["🏠","집","가족별 최종 체크"],["🚕","사전예약 차량","기사·차량·픽업시간 확인"],["✈️","인천공항","집결 후 체크인"]],see:["여권 11명","항공권/호텔 예약","짐·유모차 개수"],family:["아이 기내용 간식·여벌옷 준비","가족별 차량 탑승 인원 공유"]},
-{time:"13:50",title:"인천 → 싱가포르",bookingIds:["flight-ke643"],detail:"대한항공 KE643 출국편.",route:[["✈️","ICN","13:50 출발"],["🛫","KE643","비행"],["🇸🇬","SIN","19:15 도착"]],see:["도착 후 차량 연락처","호텔 주소 캡처"],family:["비행 중 아이 컨디션 조절"]},
+{time:"KE643",title:"인천 → 싱가포르",bookingIds:["flight-ke643"],detail:"대한항공 KE643 출국편.",route:[["✈️","ICN","출국"],["🛫","KE643","비행"],["🇸🇬","SIN","19:15 도착"]],see:["도착 후 차량 연락처","호텔 주소 캡처"],family:["비행 중 아이 컨디션 조절"]},
 {time:"19:15",title:"Changi Airport 도착",bookingIds:["transfer-arrival"],detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",route:[["🛬","Changi Airport","도착"],["🛂","입국심사","수하물 수령"],["🚕","픽업","11명+짐"],["🏨","Marriott Tang Plaza","체크인"]],see:["수하물","유모차","가족 재집결"],family:["아이 우선 화장실·간식","대표자 1명은 차량 연락"]},
 {time:"20:30 전후",title:"Changi Airport → Marriott",bookingIds:["transfer-arrival"],transportOptions:[["🚐","사전예약 대형차","11명+캐리어+유모차를 한 번에 처리하기 가장 편한 후보","우선 검토"],["🚕","택시/Grab 분산","차량 2~3대로 나눠 이동. 호출과 짐 분산이 필요","대안"]],detail:"입국·수하물 수령 후 Singapore Marriott Tang Plaza Hotel로 이동.",route:[["🛬","Changi Airport","입국·수하물"],["🚐","공항 픽업","차량 탑승"],["🏨","Marriott Tang Plaza","호텔 도착"]],see:["입국 후 가족 11명 재집결","차량 탑승 위치 확인","호텔까지 바로 이동"],family:["3세 아이 2명 피로 고려","짐·유모차 수량 확인"]},
 {time:"21:30~",title:"Marriott Tang Plaza 체크인",bookingIds:["hotel-marriott"],detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",route:[["🏨","호텔 로비","체크인"],["🛏","4개 객실","가까운 객실 요청"],["😴","휴식","첫날 체력 보존"]],see:["객실번호 공유","Rollaway 요청 확인","Twin 요청 확인"],family:["아이 잠자리 먼저 세팅"]}]},
@@ -738,7 +799,7 @@ const DAYS=[
 
 
 // =========================================================
-// v18.2 · unified single-file tools
+// v18.3 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -997,17 +1058,109 @@ PHRASES.push(
  {cat:"긴급",icon:"🧒",ko:"아이를 잃어버렸습니다. 보안요원을 불러주세요.",en:"My child is lost. Please call security immediately."}
 );
 
+
+// v18.3 · 4-language phrase layer restored from the older trip app concept.
+const PHRASE_LANGS={
+ en:{label:"🇬🇧 English",field:"en",pron:""},
+ zh:{label:"🇨🇳 中文",field:"zh",pron:"zhPron"},
+ ms:{label:"🇲🇾 Bahasa Melayu",field:"ms",pron:""},
+ ta:{label:"🇮🇳 தமிழ்",field:"ta",pron:"taPron"}
+};
+const PHRASE_I18N={
+"감사합니다.":{zh:"谢谢。",zhPron:"Xièxie.",ms:"Terima kasih.",ta:"நன்றி.",taPron:"Naṉṟi."},
+"실례합니다.":{zh:"不好意思。",zhPron:"Bù hǎoyìsi.",ms:"Maaf / Tumpang tanya.",ta:"மன்னிக்கவும்.",taPron:"Maṉṉikkavum."},
+"잘 이해하지 못했습니다. 천천히 다시 말씀해 주세요.":{zh:"我没听懂。请慢一点再说一次。",zhPron:"Wǒ méi tīng dǒng. Qǐng màn yìdiǎn zài shuō yí cì.",ms:"Saya tidak faham. Boleh cakap sekali lagi dengan perlahan?",ta:"எனக்கு புரியவில்லை. தயவுசெய்து மெதுவாக மீண்டும் சொல்லுங்கள்.",taPron:"Eṉakku puriyavillai. Tayavuceytu metuvāka mīṇṭum collunkaḷ."},
+"제 휴대폰에 입력해 주실 수 있나요?":{zh:"可以在我的手机上输入吗？",zhPron:"Kěyǐ zài wǒ de shǒujī shàng shūrù ma?",ms:"Boleh taip di telefon saya?",ta:"என் தொலைபேசியில் தட்டச்சு செய்து தர முடியுமா?",taPron:"Eṉ tolaipēciyil taṭṭaccu ceytu tara muṭiyumā?"},
+"이 화면을 잠시 봐주시겠어요?":{zh:"可以看一下这个画面吗？",zhPron:"Kěyǐ kàn yíxià zhège huàmiàn ma?",ms:"Boleh tengok skrin ini sebentar?",ta:"இந்த திரையை ஒரு நிமிடம் பார்க்க முடியுமா?",taPron:"Inta tiraiyai oru nimiṭam pārkka muṭiyumā?"},
+"잠시만 기다려주세요.":{zh:"请稍等一下。",zhPron:"Qǐng shāo děng yíxià.",ms:"Tunggu sebentar, ya.",ta:"ஒரு நிமிடம் காத்திருக்கவும்.",taPron:"Oru nimiṭam kāttirukkavum."},
+"이 주소로 가주세요.":{zh:"请带我们去这个地址。",zhPron:"Qǐng dài wǒmen qù zhège dìzhǐ.",ms:"Tolong bawa kami ke alamat ini.",ta:"இந்த முகவரிக்கு எங்களை அழைத்துச் செல்லுங்கள்.",taPron:"Inta mukavarikku eṅkaḷai aḻaittuc celluṅkaḷ."},
+"저희는 11명입니다.":{zh:"我们一共十一个人。",zhPron:"Wǒmen yígòng shíyī ge rén.",ms:"Kami seramai sebelas orang.",ta:"நாங்கள் மொத்தம் பதினொன்று பேர்.",taPron:"Nāṅkaḷ mottam patiṉoṉṟu pēr."},
+"짐 때문에 더 큰 차량이 필요합니다.":{zh:"我们行李很多，需要一辆大一点的车。",zhPron:"Wǒmen xíngli hěn duō, xūyào yí liàng dà yìdiǎn de chē.",ms:"Kami perlukan kenderaan yang lebih besar kerana banyak bagasi.",ta:"எங்களிடம் அதிக சாமான்கள் உள்ளதால் பெரிய வாகனம் தேவை.",taPron:"Eṅkaḷiṭam atika cāmāṉkaḷ uḷḷatāl periya vākaṉam tēvai."},
+"Grab 픽업 장소가 어디인가요?":{zh:"Grab 上车点在哪里？",zhPron:"Grab shàngchē diǎn zài nǎlǐ?",ms:"Di mana tempat pengambilan Grab?",ta:"Grab ஏறும் இடம் எங்கே?",taPron:"Grab ēṟum iṭam eṅkē?"},
+"캐리어가 많습니다. 트렁크 공간이 충분할까요?":{zh:"我们的行李很多。后备箱空间够吗？",zhPron:"Wǒmen de xíngli hěn duō. Hòubèixiāng kōngjiān gòu ma?",ms:"Kami ada banyak bagasi. Cukupkah ruang but?",ta:"எங்களிடம் நிறைய சாமான்கள் உள்ளன. டிக்கியில் போதுமான இடமா?",taPron:"Eṅkaḷiṭam niṟaiya cāmāṉkaḷ uḷḷaṉa. Ṭikkiyil pōtumāṉa iṭamā?"},
+"어느 노선을 타야 하나요?":{zh:"我们应该坐哪一条地铁线？",zhPron:"Wǒmen yīnggāi zuò nǎ yì tiáo dìtiě xiàn?",ms:"Laluan MRT yang mana patut kami ambil?",ta:"எந்த MRT வழித்தடத்தை எடுக்க வேண்டும்?",taPron:"Enta MRT vaḻittaṭattai eṭukka vēṇṭum?"},
+"어디에서 환승해야 하나요?":{zh:"我们应该在哪里换乘？",zhPron:"Wǒmen yīnggāi zài nǎlǐ huànchéng?",ms:"Di mana kami perlu tukar laluan?",ta:"நாங்கள் எங்கே மாறி ஏற வேண்டும்?",taPron:"Nāṅkaḷ eṅkē māṟi ēṟa vēṇṭum?"},
+"몇 번 출구로 나가야 하나요?":{zh:"我们应该从几号出口出去？",zhPron:"Wǒmen yīnggāi cóng jǐ hào chūkǒu chūqù?",ms:"Kami perlu keluar melalui pintu keluar nombor berapa?",ta:"எந்த எண் வெளியேறும் வாயிலை பயன்படுத்த வேண்டும்?",taPron:"Enta eṇ veḷiyēṟum vāyilai payaṉpaṭutta vēṇṭum?"},
+"유모차로 이동하기 편한 엘리베이터가 어디인가요?":{zh:"适合推婴儿车的电梯在哪里？",zhPron:"Shìhé tuī yīng'érchē de diàntī zài nǎlǐ?",ms:"Di mana lif yang sesuai untuk kereta sorong bayi?",ta:"குழந்தை வண்டியுடன் செல்ல ஏற்ற லிப்ட் எங்கே?",taPron:"Kuḻantai vaṇṭiyuṭaṉ cella ēṟṟa lipṭ eṅkē?"},
+"이 이름으로 예약했습니다.":{zh:"我们用这个名字预订了。",zhPron:"Wǒmen yòng zhège míngzi yùdìng le.",ms:"Kami ada tempahan atas nama ini.",ta:"இந்த பெயரில் முன்பதிவு செய்துள்ளோம்.",taPron:"Inta peyaril muṉpativu ceytuḷḷōm."},
+"체크아웃 후에 짐을 맡길 수 있나요?":{zh:"退房后可以寄存行李吗？",zhPron:"Tuìfáng hòu kěyǐ jìcún xíngli ma?",ms:"Boleh kami simpan bagasi selepas daftar keluar?",ta:"செக்-அவுட் செய்த பிறகு சாமான்களை வைத்திருக்க முடியுமா?",taPron:"Check-out ceyta piṟaku cāmāṉkaḷai vaittirukka muṭiyumā?"},
+"객실을 서로 가까운 곳으로 배정해 주실 수 있나요?":{zh:"可以把我们的房间安排得靠近一些吗？",zhPron:"Kěyǐ bǎ wǒmen de fángjiān ānpái de kàojìn yìxiē ma?",ms:"Boleh tempatkan bilik kami berdekatan antara satu sama lain?",ta:"எங்கள் அறைகளை ஒன்றுக்கொன்று அருகில் ஒதுக்க முடியுமா?",taPron:"Eṅkaḷ aṟaikaḷai oṉṟukkoṉṟu arukil otukka muṭiyumā?"},
+"체크인 시간이 몇 시인가요?":{zh:"几点可以入住？",zhPron:"Jǐ diǎn kěyǐ rùzhù?",ms:"Pukul berapa waktu daftar masuk?",ta:"செக்-இன் நேரம் எத்தனை மணி?",taPron:"Check-in nēram ettaṉai maṇi?"},
+"레이트 체크아웃이 가능한가요?":{zh:"可以延迟退房吗？",zhPron:"Kěyǐ yánchí tuìfáng ma?",ms:"Adakah daftar keluar lewat tersedia?",ta:"தாமதமான செக்-அவுட் கிடைக்குமா?",taPron:"Tāmatamāṉa check-out kiṭaikkumā?"},
+"조식은 어디에서 먹나요?":{zh:"早餐在哪里用餐？",zhPron:"Zǎocān zài nǎlǐ yòngcān?",ms:"Sarapan disajikan di mana?",ta:"காலை உணவு எங்கே வழங்கப்படுகிறது?",taPron:"Kālai uṇavu eṅkē vaḻaṅkappaṭukiṟatu?"},
+"롤어웨이 베드 요청이 등록되어 있나요?":{zh:"可以确认我们的加床要求已经登记了吗？",zhPron:"Kěyǐ quèrèn wǒmen de jiāchuáng yāoqiú yǐjīng dēngjì le ma?",ms:"Boleh semak sama ada permintaan katil tambahan kami telah direkodkan?",ta:"கூடுதல் படுக்கை கோரிக்கை பதிவு செய்யப்பட்டதா என்று பார்க்க முடியுமா?",taPron:"Kūṭutal paṭukkai kōrikkai pativu ceyyappaṭṭatā eṉṟu pārkka muṭiyumā?"},
+"아이용 발판을 받을 수 있을까요?":{zh:"可以给孩子一个脚踏凳吗？",zhPron:"Kěyǐ gěi háizi yí ge jiǎotàdèng ma?",ms:"Boleh kami dapatkan bangku pijak untuk kanak-kanak?",ta:"குழந்தைக்காக ஒரு படிக்கட்டுப் பலகை கிடைக்குமா?",taPron:"Kuḻantaikkāka oru paṭikkaṭṭup palakai kiṭaikkumā?"},
+"11명 자리 가능할까요?":{zh:"有十一个人的座位吗？",zhPron:"Yǒu shíyī ge rén de zuòwèi ma?",ms:"Ada meja untuk sebelas orang?",ta:"பதினொன்று பேருக்கு மேசை கிடைக்குமா?",taPron:"Patiṉoṉṟu pērukku mēcai kiṭaikkumā?"},
+"덜 맵게 해주세요.":{zh:"请做得不那么辣。",zhPron:"Qǐng zuò de bú nàme là.",ms:"Tolong kurangkan pedas.",ta:"காரத்தை குறைத்து செய்யுங்கள்.",taPron:"Kārattai kuṟaittu ceyyuṅkaḷ."},
+"이 음식은 3살 아이가 먹기에 괜찮나요?":{zh:"这个适合三岁的孩子吃吗？",zhPron:"Zhège shìhé sān suì de háizi chī ma?",ms:"Adakah ini sesuai untuk kanak-kanak berumur tiga tahun?",ta:"இது மூன்று வயது குழந்தைக்கு ஏற்றதா?",taPron:"Itu mūṉṟu vayatu kuḻantaikku ēṟṟatā?"},
+"가능하면 실내 좌석으로 부탁드립니다.":{zh:"如果可以，我们想坐室内。",zhPron:"Rúguǒ kěyǐ, wǒmen xiǎng zuò shìnèi.",ms:"Jika boleh, kami mahu tempat duduk di dalam.",ta:"முடிந்தால் உள்ளே இருக்கை வேண்டும்.",taPron:"Muṭintāl uḷḷē irukkai vēṇṭum."},
+"아동용 의자가 있나요?":{zh:"有儿童高脚椅吗？",zhPron:"Yǒu értóng gāojiǎoyǐ ma?",ms:"Ada kerusi tinggi untuk kanak-kanak?",ta:"குழந்தைக்கான உயர்ந்த நாற்காலி உள்ளதா?",taPron:"Kuḻantaikkāṉa uyarnta nāṟkāli uḷḷatā?"},
+"견과류가 들어 있나요?":{zh:"这里面有坚果吗？",zhPron:"Zhèlǐmiàn yǒu jiānguǒ ma?",ms:"Adakah ini mengandungi kekacang?",ta:"இதில் கொட்டைகள் உள்ளதா?",taPron:"Itil koṭṭaikaḷ uḷḷatā?"},
+"고수는 빼주세요.":{zh:"请不要放香菜。",zhPron:"Qǐng búyào fàng xiāngcài.",ms:"Tanpa ketumbar, ya.",ta:"கொத்தமல்லி வேண்டாம்.",taPron:"Kottamalli vēṇṭām."},
+"남은 음식 포장 가능할까요?":{zh:"剩下的食物可以打包吗？",zhPron:"Shèngxià de shíwù kěyǐ dǎbāo ma?",ms:"Boleh bungkus makanan yang tinggal?",ta:"மீதமுள்ள உணவை எடுத்துச் செல்லப் பொதி செய்ய முடியுமா?",taPron:"Mītamuḷḷa uṇavai eṭuttuc cellap poti ceyya muṭiyumā?"},
+"티켓은 이미 구매했습니다.":{zh:"我们已经买票了。",zhPron:"Wǒmen yǐjīng mǎi piào le.",ms:"Kami sudah membeli tiket.",ta:"நாங்கள் ஏற்கனவே டிக்கெட் வாங்கியுள்ளோம்.",taPron:"Nāṅkaḷ ēṟkaṉavē ṭikkeṭ vāṅkiyuḷḷōm."},
+"이 놀이기구의 최소 키 제한이 얼마인가요?":{zh:"这个项目的最低身高要求是多少？",zhPron:"Zhège xiàngmù de zuìdī shēngāo yāoqiú shì duōshao?",ms:"Berapakah ketinggian minimum untuk permainan ini?",ta:"இந்த சவாரிக்கான குறைந்தபட்ச உயரம் என்ன?",taPron:"Inta cavārikkāṉa kuṟaintapaṭca uyaram eṉṉa?"},
+"유모차를 안으로 가져갈 수 있나요?":{zh:"婴儿车可以带进去吗？",zhPron:"Yīng'érchē kěyǐ dài jìnqù ma?",ms:"Boleh bawa kereta sorong masuk?",ta:"குழந்தை வண்டியை உள்ளே கொண்டு செல்லலாமா?",taPron:"Kuḻantai vaṇṭiyai uḷḷē koṇṭu cellalāmā?"},
+"11명이 함께 입장할 수 있나요?":{zh:"我们十一个人可以一起进去吗？",zhPron:"Wǒmen shíyī ge rén kěyǐ yìqǐ jìnqù ma?",ms:"Bolehkah kesemua sebelas orang masuk bersama?",ta:"நாங்கள் பதினொன்று பேரும் ஒன்றாக உள்ளே செல்ல முடியுமா?",taPron:"Nāṅkaḷ patiṉoṉṟu pērum oṉṟāka uḷḷē cella muṭiyumā?"},
+"모바일 티켓만 보여드려도 되나요?":{zh:"只出示手机上的电子票可以吗？",zhPron:"Zhǐ chūshì shǒujī shàng de diànzǐpiào kěyǐ ma?",ms:"Boleh tunjuk tiket digital di telefon sahaja?",ta:"தொலைபேசியில் உள்ள டிஜிட்டல் டிக்கெட்டை மட்டும் காட்டலாமா?",taPron:"Tolaipēciyil uḷḷa digital ṭikkeṭṭai maṭṭum kāṭṭalāmā?"},
+"도와주세요.":{zh:"请帮帮我们。",zhPron:"Qǐng bāngbang wǒmen.",ms:"Tolong bantu kami.",ta:"தயவுசெய்து எங்களுக்கு உதவுங்கள்.",taPron:"Tayavuceytu eṅkaḷukku utavuṅkaḷ."},
+"진료를 받아야 합니다.":{zh:"我们需要看医生。",zhPron:"Wǒmen xūyào kàn yīshēng.",ms:"Kami perlu berjumpa doktor.",ta:"நாங்கள் மருத்துவரை பார்க்க வேண்டும்.",taPron:"Nāṅkaḷ maruttuvarai pārkka vēṇṭum."},
+"아이가 열이 납니다.":{zh:"我的孩子发烧了。",zhPron:"Wǒ de háizi fāshāo le.",ms:"Anak saya demam.",ta:"என் குழந்தைக்கு காய்ச்சல் உள்ளது.",taPron:"Eṉ kuḻantaikku kāyccal uḷḷatu."},
+"가장 가까운 약국이 어디인가요?":{zh:"最近的药店在哪里？",zhPron:"Zuìjìn de yàodiàn zài nǎlǐ?",ms:"Di mana farmasi yang paling dekat?",ta:"அருகிலுள்ள மருந்தகம் எங்கே?",taPron:"Arukiluḷḷa maruntakam eṅkē?"},
+"구급차를 불러주세요.":{zh:"请叫救护车。",zhPron:"Qǐng jiào jiùhùchē.",ms:"Tolong panggil ambulans.",ta:"தயவுசெய்து ஆம்புலன்ஸ் அழைக்கவும்.",taPron:"Tayavuceytu āmpulaṉs aḻaikkavum."},
+"아이를 잃어버렸습니다. 보안요원을 불러주세요.":{zh:"我的孩子走失了。请马上叫保安。",zhPron:"Wǒ de háizi zǒushī le. Qǐng mǎshàng jiào bǎo'ān.",ms:"Anak saya hilang. Tolong panggil keselamatan segera.",ta:"என் குழந்தை காணவில்லை. உடனே பாதுகாப்பு அதிகாரியை அழைக்கவும்.",taPron:"Eṉ kuḻantai kāṇavillai. Uṭaṉē pātukāppu atikāriyai aḻaikkavum."}
+};
+for(const p of PHRASES){ if(PHRASE_I18N[p.ko]) Object.assign(p,PHRASE_I18N[p.ko]); }
+let phraseLang=localStorage.getItem("sg_phrase_lang")||"en";
+
+function phraseValue(x){
+ const cfg=PHRASE_LANGS[phraseLang]||PHRASE_LANGS.en;
+ return x[cfg.field]||x.en;
+}
+function phrasePron(x){
+ const cfg=PHRASE_LANGS[phraseLang]||PHRASE_LANGS.en;
+ return cfg.pron?x[cfg.pron]||"":"";
+}
+function phraseSpeak(text){
+ if(!("speechSynthesis" in window)||!text)return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);
+ u.lang={en:"en-US",zh:"zh-CN",ms:"ms-MY",ta:"ta-IN"}[phraseLang]||"en-US";
+ u.rate=.86;speechSynthesis.speak(u);
+}
+async function copyText(text){
+ try{await navigator.clipboard.writeText(text)}catch(e){
+  const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();
+ }
+}
+
 let phraseCat="전체";
 function renderPhrases(){
  const cats=["전체",...new Set(PHRASES.map(x=>x.cat))];
- const c=document.getElementById("phraseCats"),root=document.getElementById("phraseList"),q=(document.getElementById("phraseSearch")?.value||"").toLowerCase();
+ const langs=document.getElementById("phraseLangs"),c=document.getElementById("phraseCats"),root=document.getElementById("phraseList");
+ const q=(document.getElementById("phraseSearch")?.value||"").toLowerCase();
  if(!c||!root)return;
+ if(langs)langs.innerHTML=Object.entries(PHRASE_LANGS).map(([k,v])=>`<button class="langchip ${k===phraseLang?"on":""}" data-plang="${k}">${v.label}</button>`).join("");
  c.innerHTML=cats.map(x=>`<button class="chipbtn ${x===phraseCat?"on":""}" data-pcat="${x}">${x}</button>`).join("");
- const rows=PHRASES.filter(x=>(phraseCat==="전체"||x.cat===phraseCat)&&(!q||`${x.ko} ${x.en} ${x.cat}`.toLowerCase().includes(q)));
- root.innerHTML=rows.map((x,i)=>`<article class="phrase-item" data-phrase-en="${escapeAttr(x.en)}" data-phrase-ko="${escapeAttr(x.ko)}" data-phrase-icon="${x.icon}">
-   <b>${x.icon} ${x.cat}</b><div class="en">${x.en}</div><div class="ko">${x.ko}</div></article>`).join("");
+ const rows=PHRASES.filter(x=>(phraseCat==="전체"||x.cat===phraseCat)&&(!q||`${x.ko} ${x.en} ${x.zh||""} ${x.ms||""} ${x.ta||""} ${x.cat}`.toLowerCase().includes(q)));
+ root.innerHTML=rows.map(x=>{
+   const native=phraseValue(x),pron=phrasePron(x),translated=phraseLang!=="en"&&!x[PHRASE_LANGS[phraseLang].field];
+   return `<article class="phrase-item">
+    <b>${x.icon} ${x.cat}</b>
+    <div class="native">${escapeHtml(native)}</div>
+    ${pron?`<div class="pron">${escapeHtml(pron)}</div>`:""}
+    <div class="ko">${escapeHtml(x.ko)}</div>
+    ${translated?`<div class="pron">※ 이 표현은 현재 영어 원문으로 표시</div>`:""}
+    <div class="inline-actions">
+      <button type="button" data-phrase-copy="${escapeAttr(native)}">📋 복사</button>
+      <button type="button" data-phrase-speak="${escapeAttr(native)}">🔊 듣기</button>
+    </div>
+   </article>`;
+ }).join("");
+ langs?.querySelectorAll("[data-plang]").forEach(b=>b.onclick=()=>{phraseLang=b.dataset.plang;localStorage.setItem("sg_phrase_lang",phraseLang);renderPhrases()});
  c.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{phraseCat=b.dataset.pcat;renderPhrases()});
- root.querySelectorAll(".phrase-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.phraseIcon,x.dataset.phraseEn,x.dataset.phraseKo));
+ root.querySelectorAll("[data-phrase-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.phraseCopy));
+ root.querySelectorAll("[data-phrase-speak]").forEach(b=>b.onclick=()=>phraseSpeak(b.dataset.phraseSpeak));
 }
 document.getElementById("phraseSearch")?.addEventListener("input",renderPhrases);
 
@@ -1084,24 +1237,68 @@ MESSAGE_CARDS.push(
  {cat:"🆘 긴급/도움",icon:"📞",title:"한국어 도움",en:"Is there anyone who speaks Korean, or could you help us contact someone who does?",ko:"한국어 가능한 직원 또는 통역 도움 요청."}
 );
 
+
+MESSAGE_CARDS.push(
+ {cat:"✈️ 공항",icon:"🧳",title:"수하물이 나오지 않음",en:"One of our checked bags has not arrived on the baggage belt. We are a group of eleven and have already collected the other luggage. Could you please help us check the missing bag?",ko:"위탁수하물 하나가 나오지 않았을 때 분실수하물 확인."},
+ {cat:"✈️ 공항",icon:"🛒",title:"유모차 수령 위치",en:"We checked in a stroller for the flight. Where should we collect it after arrival?",ko:"비행기에서 위탁한 유모차 수령 장소 확인."},
+ {cat:"✈️ 공항",icon:"🛫",title:"KE644 체크인 카운터",en:"We are flying on Korean Air KE644 to Seoul at 10:00 PM. Could you tell us where the check-in counters are and when they open?",ko:"KE644 체크인 카운터 위치와 오픈 시간 확인."},
+ {cat:"✈️ 공항",icon:"🧭",title:"탑승구까지 시간",en:"How long does it take to get from here to our departure gate? We are traveling with young children.",ko:"아이 동반 상태에서 현재 위치→탑승구 예상 이동시간 확인."},
+ {cat:"🏨 호텔",icon:"⏳",title:"객실 아직 준비 안 됨",en:"We understand that the room is not ready yet. Could you please store our luggage and let us know the estimated time when the room will be available?",ko:"객실 미준비 시 짐 보관과 예상 준비시간 문의."},
+ {cat:"🏨 호텔",icon:"🚪",title:"객실이 멀리 떨어짐",en:"Our four rooms are in the same family group, but they seem to be far apart. Is there any possibility of moving some of the rooms closer together?",ko:"4개 객실 배정이 너무 멀 때 가까운 객실로 변경 가능 여부."},
+ {cat:"🏨 호텔",icon:"🧹",title:"청소는 나중에",en:"The children are resting now. Could housekeeping please come back later today?",ko:"아이 휴식 중이라 객실 청소를 뒤로 미루는 요청."},
+ {cat:"🏨 호텔",icon:"🧾",title:"객실별 비용 확인",en:"Could you please show us the charges for each of our four rooms separately before we check out?",ko:"체크아웃 전 4개 객실별 비용 내역 확인."},
+ {cat:"🚕 교통",icon:"🚕",title:"차량 여러 대 같은 목적지",en:"We will need two or three vehicles for our group. Could all drivers please go to the same destination and leave at about the same time?",ko:"11명이 여러 차량으로 나눠 탈 때 동일 목적지·비슷한 출발시간 요청."},
+ {cat:"🚕 교통",icon:"⏸️",title:"다른 차량 기다리기",en:"Our family is in another vehicle just behind us. Could we wait here for a few minutes so we can meet together?",ko:"분산 이동 후 다른 가족 차량을 잠시 기다려 재집결."},
+ {cat:"🚕 교통",icon:"📍",title:"픽업 위치 다시 확인",en:"We are at the pickup point shown in the app. Could you tell us exactly where your vehicle is waiting?",ko:"Grab/기사와 픽업 위치가 엇갈릴 때 위치 확인."},
+ {cat:"🍽️ 식당",icon:"👧",title:"아이 음식 먼저",en:"If possible, could you bring the children's food first? The young children are getting hungry.",ko:"3세 아이들 때문에 아이 음식 우선 제공 요청."},
+ {cat:"🍽️ 식당",icon:"🥣",title:"아이용 그릇",en:"Could we have a few small bowls, plates, and spoons for the children, please?",ko:"아이용 작은 그릇·접시·스푼 요청."},
+ {cat:"🍽️ 식당",icon:"💧",title:"물 먼저",en:"Could we have some drinking water for the table first, please?",ko:"11명 착석 후 우선 물 요청."},
+ {cat:"🍽️ 식당",icon:"🦀",title:"게 중량과 총가격 재확인",en:"Before we confirm the crab order, could you show us the weight and the estimated total price? We would like to know the total before cooking.",ko:"칠리크랩 조리 전 중량과 예상 총액 재확인."},
+ {cat:"🎢 관광지",icon:"👨‍👩‍👧‍👦",title:"11명 같은 회차",en:"There are eleven of us. Is it possible for all of us to enter or ride in the same time slot?",ko:"11명이 같은 입장시간/회차 이용 가능한지 확인."},
+ {cat:"🎢 관광지",icon:"🌧️",title:"비로 운영 중단",en:"Is this attraction temporarily closed because of the rain? If so, can we use our ticket later today?",ko:"비로 운휴 시 당일 재이용 가능 여부."},
+ {cat:"🎢 관광지",icon:"↩️",title:"재입장 확인",en:"If we leave this area for a break, can we come back in later with the same ticket?",ko:"휴식 후 같은 티켓으로 재입장 가능한지 확인."},
+ {cat:"🆘 긴급/도움",icon:"🤢",title:"아이 구토",en:"My young child has been vomiting and is feeling weak. Could you tell us where we can get medical help nearby?",ko:"어린아이 구토와 기력저하 시 가까운 의료 도움 요청."},
+ {cat:"🆘 긴급/도움",icon:"🛂",title:"여권 분실",en:"I cannot find my passport. Could you please tell me where I should report a lost passport and what I should do next?",ko:"여권 분실 시 신고 장소와 다음 절차 문의."}
+);
+
 const MSG_FAV_KEY="sg_trip_message_favs_v17";
 let msgCat="⭐ 이번 여행";
 function msgFavs(){try{return JSON.parse(localStorage.getItem(MSG_FAV_KEY)||"[]")}catch(e){return []}}
 function toggleMsgFav(title){
  const s=new Set(msgFavs());s.has(title)?s.delete(title):s.add(title);localStorage.setItem(MSG_FAV_KEY,JSON.stringify([...s]));renderMessages();
 }
+
+function messageSentences(text){
+ const s=String(text||"").trim();
+ if(!s)return "";
+ const parts=s.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[s];
+ return parts.map(x=>`<span class="msgsentence">${escapeHtml(x.trim())}</span>`).join("");
+}
+function speakEnglish(text){
+ if(!("speechSynthesis" in window)||!text)return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.86;speechSynthesis.speak(u);
+}
+
 function renderMessages(){
  const cats=["⭐ 즐겨찾기",...new Set(MESSAGE_CARDS.map(x=>x.cat))];
  const c=document.getElementById("msgCats"),root=document.getElementById("msgList"),q=(document.getElementById("msgSearch")?.value||"").toLowerCase(),favs=new Set(msgFavs());
  if(!c||!root)return;
  c.innerHTML=cats.map(x=>`<button class="chipbtn ${x===msgCat?"on":""}" data-mcat="${x}">${x}</button>`).join("");
- let rows=MESSAGE_CARDS.filter(x=>(msgCat==="⭐ 즐겨찾기"?favs.has(x.title):x.cat===msgCat)&&(!q||`${x.title} ${x.en} ${x.ko}`.toLowerCase().includes(q)));
- root.innerHTML=rows.length?rows.map(x=>`<article class="msg-item" data-msg-title="${escapeAttr(x.title)}" data-msg-en="${escapeAttr(x.en)}" data-msg-ko="${escapeAttr(x.ko)}" data-msg-icon="${x.icon}">
+ const rows=MESSAGE_CARDS.filter(x=>(msgCat==="⭐ 즐겨찾기"?favs.has(x.title):x.cat===msgCat)&&(!q||`${x.title} ${x.en} ${x.ko}`.toLowerCase().includes(q)));
+ root.innerHTML=rows.length?rows.map(x=>`<article class="msg-item">
    <button class="favbtn ${favs.has(x.title)?"on":""}" type="button" data-fav="${escapeAttr(x.title)}">${favs.has(x.title)?"★":"☆"}</button>
-   <div class="msgtitle">${x.icon} ${x.title}</div><div class="msgen">${x.en}</div><div class="msgko">${x.ko}</div></article>`).join(""):`<div class="toolcard">표시할 카드가 없습니다.</div>`;
+   <div class="msgtitle">${x.icon} ${escapeHtml(x.title)}</div>
+   <div class="msgen">${messageSentences(x.en)}</div>
+   <div class="msgko">${escapeHtml(x.ko)}</div>
+   <div class="inline-actions">
+     <button type="button" data-msg-copy="${escapeAttr(x.en)}">📋 영어 복사</button>
+     <button type="button" data-msg-speak="${escapeAttr(x.en)}">🔊 영어 듣기</button>
+   </div>
+ </article>`).join(""):`<div class="toolcard">표시할 카드가 없습니다.</div>`;
  c.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{msgCat=b.dataset.mcat;renderMessages()});
  root.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{e.stopPropagation();toggleMsgFav(b.dataset.fav)});
- root.querySelectorAll(".msg-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.msgIcon,x.dataset.msgEn,x.dataset.msgKo));
+ root.querySelectorAll("[data-msg-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.msgCopy));
+ root.querySelectorAll("[data-msg-speak]").forEach(b=>b.onclick=()=>speakEnglish(b.dataset.msgSpeak));
 }
 document.getElementById("msgSearch")?.addEventListener("input",renderMessages);
 
@@ -1124,19 +1321,107 @@ document.getElementById("presentSpeak")?.addEventListener("click",()=>{
 document.getElementById("presentCopy")?.addEventListener("click",async()=>{
  try{await navigator.clipboard.writeText(presentText)}catch(e){const ta=document.createElement("textarea");ta.value=presentText;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}
 });
-document.getElementById("presentFullscreen")?.addEventListener("click",async()=>{const el=document.getElementById("messagePresent");try{if(!document.fullscreenElement)await el.requestFullscreen?.();else await document.exitFullscreen?.()}catch(e){}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closePresent()});
+
+
+const STUDY_STORIES=[
+ {id:"s1",chapter:"CHAPTER 1 · 1819년 이전",title:"① 작은 섬인데, 왜 사람들이 모였을까?",summary:"싱가포르의 첫 번째 자원은 땅이나 광물이 아니라 ‘위치’였다.",html:`
+  <div class="storylead">먼저 지도부터 · 싱가포르의 가장 큰 자원은 석유도 땅도 아니라 <b>위치</b>였다.</div>
+  <p>싱가포르는 말레이반도 가장 아래쪽의 작은 섬이다. 바로 옆에는 말라카 해협으로 이어지는 해상교통의 길목이 있다. 중국과 동남아시아에서 인도·중동·유럽으로 오가는 배에게 매우 중요한 위치였다.</p>
+  <p>쉽게 말하면 옛날부터 <b>세계 해상무역 고속도로 옆의 휴게소가 될 수 있는 자리</b>였다. 땅이 작아도 배가 계속 지나간다면 물건을 사고팔고, 물과 식량을 보충하고, 배를 고치는 항구가 성장할 수 있다.</p>
+  <p>1819년 이전에도 이 섬은 빈 땅이 아니었다. 말레이 세계의 교역망 안에 있었고, Temasek 같은 옛 이름도 전해진다. ‘1819년에 싱가포르가 갑자기 생겼다’고 생각하면 그 이전의 역사가 빠진다.</p>
+  <div class="storyfact"><b>🦁 이름 이야기</b><br>전승에는 Sang Nila Utama가 사자라고 생각한 동물을 보고 Singapura, 즉 ‘사자의 도시’라는 이름을 붙였다는 이야기가 있다. 오늘날 Merlion의 사자 머리도 이 전승을 활용한 현대적 상징이다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Merlion Park · Kampong Glam · Sultan Mosque</div>
+  <div class="storychild"><b>👧 아이에게 쉽게</b><br>“싱가포르는 땅은 작은데 배가 엄청 많이 지나가는 좋은 자리에 있었어. 그래서 사람들이 여기서 장사하기 시작한 거야.”</div>`},
+ {id:"s2",chapter:"CHAPTER 2 · 1819년 이후",title:"② 영국은 왜 싱가포르에 들어왔을까?",summary:"좋은 위치에 자유항 정책이 더해지면서 항구가 폭발적으로 성장했다.",html:`
+  <div class="storylead">좋은 위치 + 자유로운 무역 = 항구가 폭발적으로 성장한다.</div>
+  <p>19세기 초 영국은 아시아 무역을 늘리고 있었고, 이 지역에서 강한 영향력을 가진 네덜란드와 경쟁하고 있었다. 영국 상선이 편하게 들를 새로운 교역 거점이 필요했다.</p>
+  <p><b>1819년 Stamford Raffles</b>가 싱가포르에 영국의 교역 거점을 마련했다. 지금도 Raffles Hotel, Raffles Place처럼 도시 곳곳에서 그 이름을 볼 수 있다.</p>
+  <p>핵심은 단순히 영국인이 왔다는 사실보다 <b>자유항</b> 정책이었다. 무역 장벽을 낮추고 여러 지역의 상인에게 ‘여기 와서 장사하세요’라는 환경을 만들자 배와 사람이 빠르게 몰려왔다.</p>
+  <p>하지만 동시에 영국 식민지 도시가 되어가는 과정이기도 했다. 행정기관, 군사시설, 교회와 상업지구가 만들어졌고 도시 공간도 식민지 정부의 계획 아래 재편되었다.</p>
+  <div class="storyfact"><b>🤔 Raffles는 영웅일까?</b><br>국제 무역항 성장의 계기를 만든 인물이지만, 이미 사람이 살던 지역을 영국 식민지 체제에 편입시킨 인물이기도 하다. 두 관점을 함께 보는 편이 정확하다.</div>
+  <div class="storytrip"><b>📍 DAY 4 연결</b><br>Fort Canning · Padang · St Andrew’s Cathedral · Raffles Hotel · Civic District</div>`},
+ {id:"s3",chapter:"CHAPTER 3 · 19세기~20세기 초",title:"③ 항구가 커지자 다문화 도시가 만들어졌다",summary:"배가 모이고 일자리가 생기자 중국·인도·말레이·아랍계 사람들이 한 도시에 모였다.",html:`
+  <div class="storylead">배가 모이면 물건이 모이고, 물건이 모이면 일자리가 생기고, 일자리가 생기면 사람이 모인다.</div>
+  <p>항구가 빠르게 성장하면서 부두 노동자, 상인, 운송업자, 장인과 서비스 인력이 대량으로 필요해졌다. 중국 남부, 인도, 말레이 세계와 중동 등 여러 지역에서 사람들이 이동해 왔다.</p>
+  <p>오늘날 Chinatown, Little India, Kampong Glam 같은 지역은 이런 이민과 상업의 역사를 보여준다. 다만 실제 도시는 민족별로 완전히 분리되어 있지 않았다. 장사와 생활은 계속 섞였다.</p>
+  <p>절·사원·모스크와 씨족단체는 종교시설만이 아니라 낯선 도시에서 서로 돕는 공동체 역할도 했다.</p>
+  <div class="storyfact"><b>🍜 음식도 함께 이동했다</b><br>Chicken Rice, Bak Kut Teh, Satay, Roti Prata처럼 서로 다른 지역의 음식이 한 도시에 모였고, 현지화되면서 지금의 싱가포르 음식문화가 만들어졌다.</div>
+  <div class="storyfact"><b>🛕 왜 Chinatown에 힌두 사원이 있을까?</b><br>민족별 생활권은 있었지만 항구도시는 사람과 장사가 계속 섞이는 곳이었다. Sri Mariamman Temple이 Chinatown 안에 있는 모습 자체가 그 역사를 보여준다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Chinatown · Sri Mariamman Temple · Maxwell Food Centre · Little India · Kampong Glam</div>`},
+ {id:"s4",chapter:"CHAPTER 4 · 1942~1945",title:"④ ‘영국이 지켜줄 것’이라는 믿음이 무너졌다",summary:"일본 점령은 식민지 권력에 대한 믿음을 뒤흔든 큰 단절점이었다.",html:`
+  <div class="storylead">Japanese Occupation은 싱가포르 역사에서 큰 단절점이다.</div>
+  <p>제2차 세계대전이 아시아로 확대되면서 일본군은 말레이반도를 빠르게 남하했다. 영국은 싱가포르를 강력한 군사기지로 만들었기 때문에 쉽게 무너지지 않을 것이라 생각했다.</p>
+  <p>하지만 <b>1942년 영국군이 일본군에 항복</b>했다. 강력한 제국이라고 믿었던 영국이 무너지는 장면은 주민들에게 큰 충격이었다.</p>
+  <p>이후 약 3년 반 동안 일본의 지배가 이어졌고 식량 부족과 강압적 통치가 심했다. 특히 중국계 주민을 대상으로 한 Sook Ching 학살 등 심각한 폭력이 있었다.</p>
+  <p>1945년 일본 패전 뒤 영국이 돌아왔지만, ‘유럽 식민정부가 언제나 우리를 지켜준다’는 믿음은 이미 흔들렸다. 이후 자치와 독립 요구가 커지는 배경 중 하나가 되었다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>National Museum · Fort Canning의 전쟁 관련 흔적</div>`},
+ {id:"s5",chapter:"CHAPTER 5 · 1945~1965",title:"⑤ 영국 식민지에서 어떻게 독립국가가 되었을까?",summary:"자치 → Malaysia 합병 → 갈등 → 1965년 분리독립으로 이어졌다.",html:`
+  <div class="storylead">독립은 하루아침에 선언한 한 사건이 아니라 여러 단계가 이어진 과정이었다.</div>
+  <p>전쟁 뒤 식민지 체제에 대한 신뢰가 약해지고 정치 참여와 자치 요구가 커졌다. <b>People’s Action Party(PAP)</b>는 1954년 창당됐고, Lee Kuan Yew와 함께 자치·독립 과정에서 중심 세력이 되었다.</p>
+  <p>1959년 싱가포르는 내부 자치권을 크게 확보했다. 이후 1963년 Malaysia에 합류했지만 중앙정부와 싱가포르 지도부 사이에서 정치·경제·민족 문제를 둘러싼 갈등이 이어졌다.</p>
+  <p><b>1965년 8월 9일</b> 싱가포르는 Malaysia에서 분리돼 독립국가가 되었다. 지금은 National Day로 크게 기념하지만 당시에는 ‘이 작은 도시가 정말 혼자 살아남을 수 있을까?’라는 걱정이 컸다.</p>
+  <div class="storyfact"><b>🤔 Malaysia가 그냥 쫓아낸 건가?</b><br>Malaysia 의회가 분리를 결정한 것은 맞지만, 실제 과정은 양측의 정치·경제·민족 갈등이 누적된 결과라 단순히 한쪽이 싫어서 내보냈다고 보는 것은 지나치게 단순하다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>National Museum에서 전후 정치·독립 흐름을 연결해 보기</div>`},
+ {id:"s6",chapter:"CHAPTER 6 · 1965~1980s",title:"⑥ 독립했는데, 이제 뭘 먹고살지?",summary:"자원이 없다면 사람·도시·제도를 자원으로 만들자는 전략을 택했다.",html:`
+  <div class="storylead">싱가포르식 답 · “자원이 없다면 사람·도시·제도를 자원으로 만들자.”</div>
+  <p>독립 당시 국토는 작고 천연자원은 거의 없었으며 실업과 주거 문제도 컸다. 거대한 내수시장도 없었다.</p>
+  <p>정부는 세계 경제와 적극적으로 연결되는 방향을 택했다. 외국기업이 안심하고 투자할 수 있도록 항만, 전력, 행정, 교육과 산업기반을 정비했다.</p>
+  <p><b>HDB 공공주택</b>은 단순히 아파트를 많이 짓는 정책이 아니었다. 열악한 주거환경을 개선하고 도시를 체계적으로 재편하는 국가 프로젝트였다. CPF 같은 제도도 주택·노후·생활 안정과 연결되었다.</p>
+  <p>영어 중심의 교육과 다언어 환경, 효율적인 항만과 공항, 법과 행정의 예측 가능성도 외국기업과 세계 인재를 끌어들이는 기반이 되었다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>HDB 주거지역 · MRT · 항만/도심 인프라를 ‘생존전략’ 관점으로 보기</div>
+  <div class="storychild"><b>👧 아이에게</b><br>“없는 것을 불평하기보다, 사람들이 잘 공부하고 도시를 편하게 만들어 그걸 장점으로 만든 거야.”</div>`},
+ {id:"s7",chapter:"CHAPTER 7 · 1980s~2000s",title:"⑦ 제조업 도시에서 세계도시로",summary:"항만·제조업을 넘어 금융·항공·서비스·관광·첨단산업으로 확장했다.",html:`
+  <div class="storylead">살아남는 단계에서 ‘세계가 찾아오는 도시’를 만드는 단계로 넘어간다.</div>
+  <p>초기 산업화에 성공한 뒤 싱가포르는 단순한 저비용 생산기지만으로는 오래 경쟁하기 어렵다는 문제를 만났다. 그래서 더 높은 부가가치의 제조업, 금융, 물류, 항공, 서비스와 지식산업을 키웠다.</p>
+  <p>Changi Airport, Singapore Airlines, 세계적인 항만과 금융센터는 서로 따로 떨어진 성공이 아니라 ‘작은 나라가 세계와 최대한 연결된다’는 같은 전략의 결과로 볼 수 있다.</p>
+  <p>도시 이미지도 중요해졌다. 깨끗하고 안전하며 이동이 편하고, 기업과 관광객이 쉽게 사용할 수 있는 도시를 만들었다.</p>
+  <div class="storyfact"><b>🌏 작은 내수시장의 역설</b><br>국내시장만 바라보면 한계가 크기 때문에 처음부터 해외기업·관광객·물류·금융이 드나드는 국제도시를 지향해야 했다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Orchard Road · Changi Airport · CBD · 항만과 공항의 규모를 관찰하기</div>`},
+ {id:"s8",chapter:"CHAPTER 8 · 2000s~현재",title:"⑧ 오늘의 싱가포르는 무엇을 고민할까?",summary:"Marina Bay와 Jewel 같은 화려함 뒤에는 좁은 국토·인구·물·주거 문제를 관리하는 국가전략이 있다.",html:`
+  <div class="storylead">‘완성된 도시’가 아니라 계속 공간과 생존방식을 다시 설계하는 도시다.</div>
+  <p>Marina Bay의 많은 공간은 간척과 장기 도시계획의 결과다. 좁은 국토를 그냥 받아들이기보다 새 땅을 만들고 필요한 기능을 다시 배치했다.</p>
+  <p>물도 중요한 문제였다. Singapore는 집수, 수입수, NEWater, 해수담수화 등을 함께 사용하며 공급원을 다변화해 왔다. 작은 국토와 자원 부족을 기술과 시스템으로 대응한 사례다.</p>
+  <p>반면 높은 생활비, 주거비, 저출생·고령화, 외국인 노동력과 이민, 사회적 격차 같은 고민도 존재한다. 효율적인 국가라고 해서 문제가 없는 것은 아니다.</p>
+  <p>다문화 사회를 유지하기 위한 언어·교육·주거 정책도 계속 조정된다. 영어가 공통언어 역할을 하지만 Malay, Mandarin Chinese, Tamil까지 네 개의 공식언어를 둔다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Marina Bay · Gardens by the Bay · Jewel · MRT · HDB · 다양한 언어 표지판</div>
+  <div class="storychild"><b>👧 여행 마지막에</b><br>“우리가 본 MRT, 아파트, 호커센터, Marina Bay, Jewel은 서로 다른 관광지가 아니야. 작은 항구도시가 어떻게 살아남을지 고민하면서 하나씩 만든 결과들이야.”</div>`},
+ {id:"s9",chapter:"CHAPTER 9 · 아빠랑 같이 생각해보기",title:"💡 싱가포르의 신기한 이야기",summary:"질문 → 아이의 추측 → 이야기 → 여행 미션 순서로 보는 호기심 이야기.",html:`
+  <div class="storylead">답부터 읽지 말고 <b>질문 → 아이의 추측 → 이야기 → 현장에서 찾아보기</b> 순서로 해보세요.</div>
+  <div class="storyfact"><b>👨‍👩‍👧‍👦 진행법</b><br>정답을 외우는 공부보다 새로운 나라를 관찰하고 ‘왜 그럴까?’를 생각하는 연습이 목표입니다.</div>
+  <div class="curiosity"><b>🦁 1. 싱가포르에는 정말 사자가 살았을까?</b><br><br><b>👀 생각해보기</b> · ‘사자의 도시’라면 옛날에 사자가 많았을까?<br><br><b>💡 이야기</b> · Sang Nila Utama가 사자라고 생각한 동물을 보고 Singapura라는 이름을 붙였다는 전승이 있지만, 야생 사자가 살았다는 확실한 증거는 알려져 있지 않다.<br><br><b>📍 미션</b> · Merlion 앞에서 ‘전설과 증거’가 어떻게 다른지 말해보기.</div>
+  <div class="curiosity"><b>🐟 2. Merlion은 진짜 옛날 동물일까?</b><br><br>Merlion은 사자 머리와 물고기 몸을 합친 현대의 관광 상징이다. 물고기 몸은 항구도시의 기원을, 사자 머리는 Singapura 전승을 연결한다.<br><br><b>📍 미션</b> · Merlion에서 물고기와 사자가 각각 무엇을 뜻하는지 맞혀보기.</div>
+  <div class="curiosity"><b>🏙️ 3. 바다였던 곳에 도시를 만들 수 있을까?</b><br><br>Marina Bay 일대의 상당 부분은 간척과 장기 도시계획으로 만들어졌다. 작은 국토라는 약점을 ‘공간을 다시 설계하는 능력’으로 대응한 셈이다.<br><br><b>📍 미션</b> · Marina Bay를 보며 어느 쪽이 옛 해안선이었을지 상상해보기.</div>
+  <div class="curiosity"><b>🚰 4. 비가 많이 오는데 왜 물이 국가문제였을까?</b><br><br>비가 많이 와도 저장할 땅과 안정적인 수원이 충분한 것은 아니다. 그래서 집수·수입수·NEWater·담수화를 함께 사용한다.<br><br><b>📍 미션</b> · 여행 중 NEWater 표시나 물 관리 시설 흔적 찾아보기.</div>
+  <div class="curiosity"><b>🏢 5. 왜 아파트가 국가전략일까?</b><br><br>HDB는 주택 공급을 넘어 위생, 주거 안정, 도시계획과 공동체 구성까지 연결된 정책이었다.<br><br><b>📍 미션</b> · 이동 중 HDB 단지를 보며 한국 아파트와 비슷한 점·다른 점 하나씩 찾기.</div>
+  <div class="curiosity"><b>🍜 6. ‘싱가포르 음식’은 어느 민족 음식일까?</b><br><br>항구도시에 여러 이주민이 모이며 각 지역 음식이 함께 들어왔고 서로 영향을 주며 현지화됐다. 하나의 정답보다 ‘섞이면서 생긴 도시의 음식’에 가깝다.<br><br><b>📍 미션</b> · 호커센터에서 중국계·말레이계·인도계 메뉴 하나씩 찾아보기.</div>
+  <div class="curiosity"><b>🏁 7. 나라가 작은데 왜 세계적인 공항과 항구가 필요할까?</b><br><br>국내시장만으로 성장하기 어렵기 때문에 사람·물건·돈이 지나가는 연결점을 만드는 것이 중요했다.<br><br><b>📍 미션</b> · Jewel에서 ‘공항인데 왜 쇼핑몰과 정원까지 만들었을까?’ 생각해보기.</div>
+  <div class="curiosity"><b>🔤 8. 왜 한 나라에서 말이 이렇게 많이 들릴까?</b><br><br>English, Malay, Mandarin Chinese, Tamil이 공식언어다. 항구도시의 이민 역사와 오늘의 다문화 정책이 함께 남아 있다.<br><br><b>📍 미션</b> · Chinatown·Little India·Kampong Glam에서 서로 다른 글자 3종 찾아보기.</div>
+  <div class="curiosity"><b>🐅 9. 사자의 도시인데 진짜 호랑이는 있었다</b><br><br>야생 사자의 확실한 증거와 달리, 호랑이는 과거 싱가포르 섬에 실제로 살았고 사람과 충돌한 기록도 있다. ‘사자는 이름의 전설, 호랑이는 실제 자연사’라는 대비가 재미있다.<br><br><b>📍 미션</b> · National Museum이나 Mandai에서 전설과 실제 자연사를 구분해보기.</div>
+  <div class="curiosity"><b>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</b><br><br>Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세워 물고기의 주둥이가 박히게 하자는 아이디어를 낸다. 아이와는 문제를 관찰하고 아이디어로 해결한 장면에 초점을 맞춰보면 좋다.<br><br><b>📍 미션</b> · 여행 중 불편한 일이 생기면 ‘황새치 소년이라면 어떻게 해결할까?’ 가족 해결책 만들기.</div>
+  <div class="storyfact"><b>💪 BONUS · Badang과 Singapore Stone</b><br>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물 Singapore Stone과 연결되는 전설도 전해진다.</div>`}
+];
+
+function openStudyStory(id){
+ const s=STUDY_STORIES.find(x=>x.id===id);if(!s)return;
+ document.getElementById("deepEyebrow").textContent=s.chapter;
+ document.getElementById("deepTitle").textContent=s.title;
+ document.getElementById("deepBody").innerHTML=`<div class="storypopup">${s.html}</div>`;
+ document.getElementById("deepBackdrop").classList.add("open");
+ document.getElementById("deepModal").classList.add("open");
+ document.body.classList.add("deepopen");
+}
 
 // ---------- Study ----------
 function renderStudy(){
  const root=document.getElementById("studyContent");if(!root)return;
- root.innerHTML=`
-  <article class="studyblock"><h3>1. 왜 싱가포르가 여기 생겼을까?</h3><p>말라카 해협과 연결되는 해상무역의 길목이라는 <b>위치</b>가 가장 큰 자원이었다. 땅은 작지만 배와 사람이 계속 지나는 곳이어서 항구가 성장할 수 있었다.</p></article>
-  <article class="studyblock"><h3>2. 1819년 이후</h3><p>영국의 교역 거점과 자유항 정책을 계기로 무역이 급성장했다. 동시에 식민지 도시가 되었고, 지금의 Civic District 곳곳에 흔적이 남아 있다.</p></article>
-  <article class="studyblock"><h3>3. 다문화 도시가 된 이유</h3><p>항구의 일자리를 따라 중국계·인도계·말레이계·아랍 상인 등 다양한 사람들이 모였다. Chinatown 안에 힌두 사원이 있는 모습도 이런 항구도시의 역사를 보여준다.</p></article>
-  <article class="studyblock"><h3>4. 1965년 독립 이후</h3><p>작은 국토와 부족한 자원을 극복하기 위해 항만·교육·주택·대중교통·외국인 투자·도시계획을 국가 전략으로 키웠다.</p></article>
-  <article class="studyblock"><h3>5. 여행하면서 찾을 증거</h3><p><b>Marina Bay</b>에서는 간척과 국가계획, <b>HDB/MRT</b>에서는 좁은 국토의 효율, <b>Little India·Kampong Glam·Chinatown</b>에서는 이민자 도시의 역사를 찾아보면 된다.</p></article>
-  <article class="studyblock"><h3>아이와 이야기하기</h3><p>“싱가포르는 땅도 작고 자원도 많지 않은데, 무엇을 자기 장점으로 바꿨을까?”를 여행 내내 질문해보면 각 관광지가 하나의 이야기로 연결된다.</p></article>`;
+ root.innerHTML=`<div class="studygrid-v18">${STUDY_STORIES.map(s=>`
+   <article class="study-story-card" data-study-story="${s.id}">
+    <div class="chapter">${s.chapter}</div>
+    <h3>${s.title}</h3>
+    <p>${s.summary}</p>
+   </article>`).join("")}</div>`;
+ root.querySelectorAll("[data-study-story]").forEach(x=>x.onclick=()=>openStudyStory(x.dataset.studyStory));
 }
 
 // ---------- Journal ----------
@@ -1461,12 +1746,62 @@ function closeDeep(){
   document.body.classList.remove("deepopen");
 }
 
+
+const PLACE_IMAGE_LIBRARY={
+  merlion:{name:"Merlion Park",file:"Merlion (4071283426).jpg",alt:"Merlion Park, Singapore"},
+  marina:{name:"Marina Bay Sands",file:"2011-12-17 Singapore 05.JPG",alt:"Marina Bay Sands, Singapore"},
+  gardens:{name:"Gardens by the Bay",file:"At Singapore 2023 132.jpg",alt:"Gardens by the Bay, Singapore"},
+  uss:{name:"Universal Studios Singapore",file:"Universal Studios Singapore Gate.jpg",alt:"Universal Studios Singapore"},
+  fort:{name:"Fort Canning Park",file:"Fort Canning Park 09-11-2023(30).jpg",alt:"Fort Canning Park, Singapore"},
+  museum:{name:"National Museum of Singapore",file:"At National Museum of Singapore 2023 003.jpg",alt:"National Museum of Singapore"},
+  chinatown:{name:"Chinatown",file:"2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg",alt:"Chinatown, Singapore"},
+  clarke:{name:"Clarke Quay",file:"Clarke Quay 09-11-2023(1).jpg",alt:"Clarke Quay, Singapore"},
+  littleindia:{name:"Little India",file:"Campbell Lane, Singapore.jpg",alt:"Little India, Singapore"},
+  kampong:{name:"Kampong Glam",file:"Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg",alt:"Kampong Glam, Singapore"},
+  jewel:{name:"Jewel Changi",file:"Jewel Mall - Near.Singapore.Terminal 1.jpg",alt:"Jewel Changi Airport"},
+  sentosa:{name:"Sentosa",file:"2016-04-04 Beach at Sentosa with ships.jpg",alt:"Sentosa, Singapore"},
+  siloso:{name:"Siloso Beach",file:"Siloso Beach 20.JPG",alt:"Siloso Beach, Sentosa"},
+  oceanarium:{name:"Singapore Oceanarium",file:"Singapore Oceanarium.jpg",alt:"Singapore Oceanarium"},
+  changi:{name:"Changi Airport",file:"Changi Airport Wonderfall.jpg",alt:"Changi Airport, Singapore"}
+};
+function commonsImageUrl(file,width=1200){
+  return `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=${width}`;
+}
+function itemImageMeta(sel){
+  const t=`${sel.title||""} ${sel.detail||""}`.toLowerCase();
+  if(/merlion/.test(t)) return PLACE_IMAGE_LIBRARY.merlion;
+  if(/marina bay sands/.test(t)) return PLACE_IMAGE_LIBRARY.marina;
+  if(/marina bay/.test(t)) return PLACE_IMAGE_LIBRARY.marina;
+  if(/supertree|gardens by the bay/.test(t)) return PLACE_IMAGE_LIBRARY.gardens;
+  if(/universal studios|uss/.test(t)) return PLACE_IMAGE_LIBRARY.uss;
+  if(/fort canning/.test(t)) return PLACE_IMAGE_LIBRARY.fort;
+  if(/national museum|old singapore/.test(t)) return PLACE_IMAGE_LIBRARY.museum;
+  if(/chinatown/.test(t)) return PLACE_IMAGE_LIBRARY.chinatown;
+  if(/clarke quay|river cruise|jumbo seafood|jumbo/.test(t)) return PLACE_IMAGE_LIBRARY.clarke;
+  if(/oceanarium|s\.e\.a\.|sea aquarium/.test(t)) return PLACE_IMAGE_LIBRARY.oceanarium;
+  if(/siloso|wings of time/.test(t)) return PLACE_IMAGE_LIBRARY.siloso;
+  if(/sentosa|luge/.test(t)) return PLACE_IMAGE_LIBRARY.sentosa;
+  if(/little india/.test(t)) return PLACE_IMAGE_LIBRARY.littleindia;
+  if(/kampong glam|bugis/.test(t)) return PLACE_IMAGE_LIBRARY.kampong;
+  if(/jewel/.test(t)) return PLACE_IMAGE_LIBRARY.jewel;
+  if(/changi|terminal|ke644|ke643|공항|인천/.test(t)) return PLACE_IMAGE_LIBRARY.changi;
+  return null;
+}
+function itemImageHtml(sel){
+  const meta=itemImageMeta(sel);
+  if(!meta){
+    return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
+  }
+  return `<section class="heroCard"><img class="heroPhoto" src="${commonsImageUrl(meta.file,1400)}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · 온라인 연결 시 표시</span></div></section>`;
+}
+
 function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
  const noteKey=`sg_pamphlet_v18_${day}_${i}`;
  body.innerHTML=`
+  ${itemImageHtml(sel)}
   <section class="section deepable" data-deep="route"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
   <section class="section deepable" data-deep="see"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
   <section class="section deepable" data-deep="family"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
@@ -1646,7 +1981,7 @@ function renderDetailMap(){
 
 
 
-// v18.2 · Pamphlet tools: use the same underlying content as Detail mode
+// v18.3 · Pamphlet tools: use the same underlying content as Detail mode
 function toolTitle(mode){
   return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록"}[mode]||"도구";
 }
@@ -1677,73 +2012,46 @@ function clonePaneForTool(mode){
   return clone.outerHTML;
 }
 function rebindPamTool(mode){
-  const body=document.getElementById("pamToolBody");
-  if(!body)return;
+ const body=document.getElementById("pamToolBody");if(!body)return;
 
-  if(mode==="phrase"){
-    let localCat=phraseCat;
-    const rebuild=()=>{
-      phraseCat=localCat;
-      renderPhrases();
-      body.innerHTML=clonePaneForTool("phrase");
-      rebindPamTool("phrase");
-    };
-    body.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{
-      localCat=b.dataset.pcat;
-      phraseCat=localCat;
-      rebuild();
-    });
-    const search=body.querySelector(".phrase-search");
-    if(search)search.addEventListener("input",()=>{
-      const q=search.value.toLowerCase();
-      body.querySelectorAll(".phrase-item").forEach(x=>{
-        const text=`${x.dataset.phraseKo||""} ${x.dataset.phraseEn||""}`.toLowerCase();
-        x.style.display=!q||text.includes(q)?"":"none";
-      });
-    });
-    body.querySelectorAll(".phrase-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.phraseIcon,x.dataset.phraseEn,x.dataset.phraseKo));
-  }
-
-  if(mode==="message"){
-    body.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{
-      msgCat=b.dataset.mcat;
-      renderMessages();
-      body.innerHTML=clonePaneForTool("message");
-      rebindPamTool("message");
-    });
-    const search=body.querySelector(".msg-search");
-    if(search)search.addEventListener("input",()=>{
-      const q=search.value.toLowerCase();
-      body.querySelectorAll(".msg-item").forEach(x=>{
-        const text=`${x.dataset.msgTitle||""} ${x.dataset.msgEn||""} ${x.dataset.msgKo||""}`.toLowerCase();
-        x.style.display=!q||text.includes(q)?"":"none";
-      });
-    });
-    body.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{
-      e.stopPropagation();
-      toggleMsgFav(b.dataset.fav);
-      renderMessages();
-      body.innerHTML=clonePaneForTool("message");
-      rebindPamTool("message");
-    });
-    body.querySelectorAll(".msg-item").forEach(x=>x.onclick=()=>openPresent(x.dataset.msgIcon,x.dataset.msgEn,x.dataset.msgKo));
-  }
-
-  if(mode==="prep"){
-    body.querySelectorAll("[data-prep17]").forEach(cb=>cb.addEventListener("change",()=>{
-      const state=prepState();
-      state[cb.dataset.prep17]=cb.checked;
-      localStorage.setItem(PREP_STATE_KEY,JSON.stringify(state));
-    }));
-  }
-
-  if(mode==="journal"){
-    body.querySelectorAll("[data-jday]").forEach(t=>t.addEventListener("input",()=>{
-      const state=journalData();
-      state[t.dataset.jday]=t.value;
-      localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
-    }));
-  }
+ if(mode==="phrase"){
+  body.querySelectorAll("[data-plang]").forEach(b=>b.onclick=()=>{
+   phraseLang=b.dataset.plang;localStorage.setItem("sg_phrase_lang",phraseLang);
+   renderPhrases();body.innerHTML=clonePaneForTool("phrase");rebindPamTool("phrase");
+  });
+  body.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{
+   phraseCat=b.dataset.pcat;renderPhrases();body.innerHTML=clonePaneForTool("phrase");rebindPamTool("phrase");
+  });
+  const s=body.querySelector(".phrase-search");
+  if(s)s.oninput=()=>{const q=s.value.toLowerCase();body.querySelectorAll(".phrase-item").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?"":"none")};
+  body.querySelectorAll("[data-phrase-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.phraseCopy));
+  body.querySelectorAll("[data-phrase-speak]").forEach(b=>b.onclick=()=>phraseSpeak(b.dataset.phraseSpeak));
+ }
+ if(mode==="message"){
+  body.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{
+   msgCat=b.dataset.mcat;renderMessages();body.innerHTML=clonePaneForTool("message");rebindPamTool("message");
+  });
+  const s=body.querySelector(".msg-search");
+  if(s)s.oninput=()=>{const q=s.value.toLowerCase();body.querySelectorAll(".msg-item").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?"":"none")};
+  body.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{
+   e.stopPropagation();toggleMsgFav(b.dataset.fav);renderMessages();body.innerHTML=clonePaneForTool("message");rebindPamTool("message");
+  });
+  body.querySelectorAll("[data-msg-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.msgCopy));
+  body.querySelectorAll("[data-msg-speak]").forEach(b=>b.onclick=()=>speakEnglish(b.dataset.msgSpeak));
+ }
+ if(mode==="study"){
+  body.querySelectorAll("[data-study-story]").forEach(x=>x.onclick=()=>openStudyStory(x.dataset.studyStory));
+ }
+ if(mode==="prep"){
+  body.querySelectorAll("[data-prep17]").forEach(cb=>cb.onchange=()=>{
+   const state=prepState();state[cb.dataset.prep17]=cb.checked;localStorage.setItem(PREP_STATE_KEY,JSON.stringify(state));
+  });
+ }
+ if(mode==="journal"){
+  body.querySelectorAll("[data-jday]").forEach(t=>t.oninput=()=>{
+   const state=journalData();state[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
+  });
+ }
 }
 function openPamTool(mode){
   if(mode==="itinerary"){
@@ -1769,7 +2077,7 @@ function closePamTool(){
   document.body.classList.remove("pamtoolopen");
 }
 
-// v18.2 · Pamphlet DAY swipe
+// v18.3 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1795,7 +2103,7 @@ function closePamTool(){
   },{passive:true});
 })();
 
-// v18.2 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v18.3 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
