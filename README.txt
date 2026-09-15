@@ -1,11 +1,18 @@
-# Singapore Family Trip v19.4 — GitHub 개발용
+# Singapore Family Trip v19.5 — GitHub 개발용
 
-업로드 구조:
+업로드 구조
 - index.html
 - assets/images/*.webp
 
-GitHub 저장소 루트에 index.html을 두고,
-assets/images 폴더를 그대로 함께 업로드하세요.
+이번 버전 추가 반영 이미지
+- Chinatown
+- JUMBO Seafood
+- Clarke Quay / River Cruise
+- Little India
+- Kampong Glam
+- Jewel Changi
 
-이 버전은 개발 중 편집/교체를 쉽게 하기 위해 이미지를 HTML 밖으로 분리했습니다.
-최종 배포 직전에는 이미지 확정 후 다시 단일 HTML 완전 내장판으로 묶을 수 있습니다.
+업로드 방법
+1. ZIP 압축 해제
+2. index.html 과 assets 폴더를 저장소 루트에 그대로 업로드
+3. 기존 파일을 교체하면 됨

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.4</title>
+<title>Singapore Family Trip 2026 · v19.5</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.4 · SINGLE FILE UNIFIED APP
+   v19.5 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.4 · offline-first controls */
+/* v19.5 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.4 · explicit online/offline mode */
+/* v19.5 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -636,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.4</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.5</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -688,7 +688,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.4 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
+  <div class="footer">v19.5 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
 </main>
 
 
@@ -749,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.4 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.5 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -868,7 +868,7 @@ const TRIP_META={
     breakfast:"성인 S$25++ / 1인 / 1일 · 만 5세 이하 무료 · 만 7세는 paying adult 동반 시 무료"
   },
   dining:{
-    jumbo:{name:"JUMBO Seafood - Riverside Point",date:"2026-09-22",time:"19:00",party:11,reservationId:"6V5D9N"}
+  jumbo:{key:"jumbo",name:'JUMBO Seafood',file:'jumbo.webp',alt:'JUMBO Seafood restaurant exterior',remote:'./assets/images/jumbo.webp' },
   }
 };
 
@@ -1831,7 +1831,7 @@ function closeDeep(){
 }
 
 
-// v19.4 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.5 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'user-incheon-airport.jpg',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'-i---i- (31762043234).jpg',alt:'Airplane in the sky',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/-i---i-%20%2831762043234%29.jpg' },
@@ -1847,17 +1847,17 @@ const PLACE_IMAGE_LIBRARY={
   uss:{key:"uss",name:'Universal Studios Singapore',file:'user-universal-studios-singapore.png',alt:'Universal Studios Singapore globe entrance',remote:'./assets/images/uss.webp' },
   fort:{key:"fort",name:'Fort Canning Tree Tunnel',file:'user-fort-canning.jpg',alt:'Fort Canning spiral staircase photo spot',remote:'./assets/images/fort.webp' },
   museum:{key:"museum",name:'National Museum of Singapore',file:'At National Museum of Singapore 2023 004.jpg',alt:'National Museum of Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/At%20National%20Museum%20of%20Singapore%202023%20004.jpg' },
-  chinatown:{key:"chinatown",name:'Chinatown',file:'Alleys of Chinatown Singapore.jpg',alt:'Chinatown street view, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Alleys%20of%20Chinatown%20Singapore.jpg' },
-  clarke:{key:"clarke",name:'Clarke Quay',file:'Clarke Quay 09-11-2023(19).jpg',alt:'Clarke Quay, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Clarke%20Quay%2009-11-2023%2819%29.jpg' },
+  chinatown:{key:"chinatown",name:'Chinatown',file:'chinatown.webp',alt:'Chinatown street view, Singapore',remote:'./assets/images/chinatown.webp' },
+  clarke:{key:"clarke",name:'Clarke Quay / River Cruise',file:'clarke.webp',alt:'Clarke Quay riverside at dusk',remote:'./assets/images/clarke.webp' },
   jumbo:{key:"jumbo",name:'JUMBO Seafood',file:'embedded-jumbo.png',alt:'JUMBO Seafood / seafood dish',remote:'./assets/images/museum.webp' },
-  littleindia:{key:"littleindia",name:'Little India',file:'Little India at Night, Singapore (9005264852).jpg',alt:'Little India, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Little%20India%20at%20Night%2C%20Singapore%20%289005264852%29.jpg' },
-  kampong:{key:"kampong",name:'Kampong Glam',file:'Kampong Glam - panoramio (2).jpg',alt:'Kampong Glam, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Kampong%20Glam%20-%20panoramio%20%282%29.jpg' },
-  jewel:{key:"jewel",name:'Jewel Changi / Rain Vortex',file:'Jewel Changi user.jpg',alt:'Jewel Changi Airport Rain Vortex',remote:'./assets/images/littleindia.webp' },
+  littleindia:{key:"littleindia",name:'Little India',file:'littleindia.webp',alt:'Little India street corner, Singapore',remote:'./assets/images/littleindia.webp' },
+  kampong:{key:"kampong",name:'Kampong Glam',file:'kampong.webp',alt:'Kampong Glam / heritage district street scene',remote:'./assets/images/kampong.webp' },
+  jewel:{key:"jewel",name:'Jewel Changi / Rain Vortex',file:'jewel.webp',alt:'Jewel Changi interior view',remote:'./assets/images/jewel.webp' },
   siloso:{key:"siloso",name:'Siloso Beach',file:'Siloso Beach 23.JPG',alt:'Siloso Beach, Sentosa',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Siloso%20Beach%2023.JPG' },
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Singapore%20Oceanarium.jpg' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v194";
+const REP_DB_NAME="sg_trip_rep_images_v195";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2386,7 +2386,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_4";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_5";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
