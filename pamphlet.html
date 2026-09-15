@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v11</title>
+<title>Singapore Family Trip · Pamphlet v12</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ integrity="sha256-p4NxAoJBhIINfQ3ynHTfQjMZbKMs0xG9R+snXkV8Lwc=" crossorigin="">
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -18,8 +20,14 @@ body{padding-bottom:80px}
 .practical{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:900}
 .livebar{padding:0 12px 9px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .livebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
-.livebox b{font-size:11px}.livebox span{font-size:11px;color:#647581}.fxrow{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:5px;font-size:11px}
-.fxrow input{width:72px;border:1px solid #d4dee3;border-radius:8px;padding:5px 7px;text-align:center;font:inherit}
+.livebox b{font-size:11px}.livebox span{font-size:11px;color:#647581}
+.weatherline{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:2px}
+.weatherline .temp{font-weight:950;color:var(--ink)}
+.weatherline .desc{color:#647581}
+.fxrow{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:6px;font-size:11px;flex-wrap:wrap}
+.fxrow input{width:86px;border:1px solid #d4dee3;border-radius:8px;padding:6px 7px;text-align:center;font:inherit;background:#fff}
+.fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
+.fxarrow{font-weight:900;color:#82919a}
 .days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
 .daybtn{border:0;background:#edf2f4;color:#526773;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
 .daybtn.on{background:var(--ink);color:#fff}
@@ -34,8 +42,8 @@ body{padding-bottom:80px}
 .daymapwrap{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
 .daymaphead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
 .daymaphead b{font-size:13px;color:var(--ink)}.daymaphead small{font-size:10px;color:#87959e;text-align:right}
-.daymap{width:100%;aspect-ratio:1.38/1;border-radius:14px;background:#f8fbfd;overflow:hidden;border:1px solid #e4ecef}
-.daymap svg{width:100%;height:100%;display:block}
+.daymap{width:100%;height:390px;border-radius:14px;background:#eef3f5;overflow:hidden;border:1px solid #e4ecef}
+.daymap .leaflet-container{font-family:inherit}
 .map-water{fill:#e9f7ff}
 .map-land{fill:#fbfcfd}
 .map-park{fill:#edf7ef}
@@ -60,6 +68,23 @@ body{padding-bottom:80px}
 .maplegend span{display:flex;align-items:center;gap:4px}.maplegend i{display:inline-block;width:20px;height:0;border-top:3px solid #17364f}
 .maplegend i.walk{border-top-style:dashed;border-top-width:2px}.maplegend i.taxi{border-top-style:dashed}.maplegend i.option{border-top-color:#8ba0ad;border-top-style:dashed}
 .mapnote{margin-top:7px;font-size:10px;color:#819099}
+
+.route-num-icon{background:transparent;border:0}
+.route-num-icon .bubble{
+  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#101820;color:#fff;border:3px solid #fff;box-shadow:0 2px 8px #0005;
+  font-size:13px;font-weight:950
+}
+.route-num-icon.hotel .bubble{background:#0f766e}
+.route-label{
+  background:#fff;border:1px solid #d9e2e6;border-radius:8px;padding:3px 6px;
+  box-shadow:0 2px 7px #0002;color:#17364f;font-size:11px;font-weight:850;white-space:nowrap
+}
+.maplegend .mrtline{border-top:4px solid #315b8a}
+.maplegend .walkline{border-top:3px dashed #0f766e}
+.maplegend .taxiline{border-top:4px solid #7d5200}
+.maplegend .optionline{border-top:3px dashed #8ba0ad}
+
 .footer{text-align:center;font-size:11px;color:#98a4ab;padding:18px 0}
 
 .backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:50;transition:.2s}
@@ -81,13 +106,29 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v11</small></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v12</small></div>
     <a class="practical" href="./index.html">🛠 실전 화면</a>
   </div>
   <div class="livebar">
-    <div class="livebox"><b>🇰🇷 서울</b><br><span id="krTime">--:--</span> · <span>날씨는 실전모드에서 확인</span></div>
-    <div class="livebox"><b>🇸🇬 싱가포르</b><br><span id="sgTime">--:--</span> · <span>Marriott Tang Plaza</span></div>
-    <div class="livebox fxrow">💱 1 SGD = <input id="fx" value="1080"> ₩</div>
+    <div class="livebox">
+      <b>🇰🇷 서울</b><br>
+      <span id="krTime">--:--</span>
+      <div class="weatherline"><span id="krWeatherIcon">⛅</span><span id="krTemp" class="temp">--°</span><span id="krWeather" class="desc">불러오는 중</span></div>
+    </div>
+    <div class="livebox">
+      <b>🇸🇬 싱가포르</b><br>
+      <span id="sgTime">--:--</span>
+      <div class="weatherline"><span id="sgWeatherIcon">⛅</span><span id="sgTemp" class="temp">--°</span><span id="sgWeather" class="desc">불러오는 중</span></div>
+    </div>
+    <div class="livebox fxrow">
+      <span>💱</span>
+      <input id="sgdAmount" inputmode="decimal" value="100" aria-label="SGD 금액">
+      <b>SGD</b>
+      <span class="fxarrow">↔</span>
+      <input id="krwAmount" inputmode="numeric" aria-label="KRW 금액">
+      <b>KRW</b>
+      <div id="fxRateInfo" class="fxrateinfo">환율 불러오는 중…</div>
+    </div>
   </div>
   <div id="days" class="days"></div>
 </header>
@@ -109,6 +150,8 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
   <div id="body" class="body"></div>
 </section>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const DAYS=[
 {day:1,icon:"✈️",title:"도착",sub:"싱가포르 도착 · 호텔 체크인 · 휴식",items:[
@@ -151,165 +194,179 @@ const DAYS=[
 
 const DAY_MAPS={
 1:{
- title:"DAY 1 ROUTE MAP", subtitle:"Incheon → Changi → Orchard",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-water"/>
-  <path d="M390 110 C465 92 553 128 592 197 C622 253 613 327 547 366 C484 403 381 392 334 329 C283 260 297 170 390 110Z" class="map-land"/>
-  <path d="M425 148 C482 135 540 165 561 214 C583 266 559 325 510 351 C461 376 390 368 357 324 C327 284 329 225 356 188 C373 166 395 154 425 148Z" class="map-road" opacity=".25"/>
-  <path d="M0 90 C120 75 205 65 270 95 C320 118 325 158 310 210 C286 289 201 332 78 328 L0 328 Z" class="map-land"/>
-  <path d="M418 175 L455 160" class="map-road minor"/><path d="M408 196 L443 182" class="map-road minor"/>
- `,
- roads:[
-  "M 58 205 C 144 176 225 160 298 175",
-  "M 502 220 C 485 248 468 276 449 304",
-  "M 450 304 C 445 319 437 330 430 340"
- ],
- routes:[
-  ["mrt","M 60 205 C 148 175 232 162 300 176"],
-  ["taxi","M 502 220 C 486 247 470 276 452 304 C 445 317 437 329 430 340"]
- ],
- labels:[
-  ["Incheon Airport",36,196],["Flight KE643",188,160],["Changi Airport",474,210],["Orchard",408,353],["Marriott",448,347],["Singapore Island",394,110,"small"]
- ],
- pins:[[1,60,205],[2,502,220],[3,430,340,"hotel"]]
+  title:"DAY 1 ROUTE MAP",subtitle:"Changi Airport → Marriott Tang Plaza",
+  places:[
+    {n:1,name:"Changi Airport",lat:1.3644,lng:103.9915,type:"airport"},
+    {n:2,name:"Singapore Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"}
+  ],
+  segments:[
+    {mode:"taxi",from:0,to:1,route:true}
+  ]
 },
 2:{
- title:"DAY 2 ROUTE MAP", subtitle:"Orchard → Merlion → Esplanade → MBS → Gardens",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-land"/>
-  <path d="M0 0 H640 V430 H0 Z" class="map-land"/>
-  <path d="M295 168 C347 147 414 148 455 181 C489 208 494 242 471 264 C441 294 375 312 306 307 C242 302 190 279 177 242 C166 208 211 181 295 168Z" class="map-bay"/>
-  <path d="M144 88 C206 86 249 111 266 143" class="map-road"/>
-  <path d="M266 143 C276 160 283 176 289 194" class="map-road"/>
-  <path d="M289 194 C305 187 321 184 337 184 C354 184 368 188 380 195" class="map-road"/>
-  <path d="M380 195 C394 200 412 200 430 195 C452 188 466 182 483 176" class="map-road"/>
-  <path d="M430 195 C425 219 421 242 419 262" class="map-road"/>
-  <path d="M419 262 C452 279 493 293 529 306" class="map-road"/>
-  <path d="M468 169 C492 175 515 187 540 207" class="map-road minor"/>
-  <path d="M535 208 C548 229 553 252 551 278" class="map-road minor"/>
-  <text x="100" y="98" class="map-line-label">NS LINE</text>
-  <text x="500" y="200" class="map-line-label">Bayfront</text>
- `,
- roads:[],
- routes:[
-  ["mrt","M 150 96 C 208 95 247 120 266 143"],
-  ["walk","M 266 143 C 274 157 282 176 289 194 C 310 185 330 181 350 184 C 360 185 370 189 380 195 C 400 202 425 198 483 176"],
-  ["walk","M 483 176 C 456 194 434 223 419 262"],
-  ["walk","M 419 262 C 450 280 488 294 529 306"],
-  ["walk","M 529 306 C 537 291 542 274 544 254"]
- ],
- labels:[
-  ["Orchard",130,90],["Raffles Place",250,148],["Merlion",278,211],["Esplanade",372,208],["Flyer",490,170],["MBS",398,282],["Gardens",522,322],["Supertree",541,251]
- ],
- pins:[[1,278,211],[2,372,208],[3,398,282],[4,522,322],[5,541,251]]
+  title:"DAY 2 ROUTE MAP",subtitle:"Orchard → Merlion → Marina Bay → Gardens",
+  places:[
+    {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:2,name:"Merlion Park",lat:1.2868,lng:103.8545},
+    {n:3,name:"Esplanade",lat:1.2897,lng:103.8559},
+    {n:4,name:"Singapore Flyer",lat:1.2893,lng:103.8631},
+    {n:5,name:"Marina Bay Sands",lat:1.2834,lng:103.8607},
+    {n:6,name:"Gardens by the Bay",lat:1.2816,lng:103.8636},
+    {n:7,name:"Supertree Grove",lat:1.2816,lng:103.8639}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.3055,103.8322],[1.3006,103.8389],[1.2966,103.8451],[1.2931,103.8520],[1.2841,103.8515],[1.2868,103.8545]]},
+    {mode:"walk",path:[[1.2868,103.8545],[1.2882,103.8552],[1.2897,103.8559],[1.2900,103.8585],[1.2893,103.8631]]},
+    {mode:"walk",path:[[1.2893,103.8631],[1.2874,103.8624],[1.2855,103.8614],[1.2834,103.8607]]},
+    {mode:"walk",path:[[1.2834,103.8607],[1.2827,103.8618],[1.2817,103.8626],[1.2816,103.8636],[1.2816,103.8639]]}
+  ]
 },
 3:{
- title:"DAY 3 ROUTE MAP", subtitle:"HarbourFront → VivoCity → Sentosa Express → USS → Option",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-water"/>
-  <path d="M0 0 H640 V170 C610 173 582 176 550 180 C462 190 386 199 310 200 C221 201 145 195 70 181 C47 177 24 174 0 172 Z" class="map-land"/>
-  <path d="M270 232 C316 225 369 230 422 249 C478 269 528 300 566 334 C585 351 587 375 565 389 C536 407 472 408 403 392 C315 371 237 329 203 287 C181 261 207 241 270 232Z" class="map-island"/>
-  <path d="M235 190 C254 202 268 216 280 232" class="map-road"/>
-  <path d="M297 244 C330 249 359 255 385 267" class="map-road"/>
-  <path d="M405 275 C447 296 476 314 509 343" class="map-road"/>
-  <path d="M509 343 C527 337 540 329 554 318" class="map-road minor"/>
-  <text x="145" y="179" class="map-line-label">NE / CC LINE</text>
-  <text x="282" y="218" class="map-line-label">Sentosa Express</text>
- `,
- roads:[],
- routes:[
-  ["mrt","M 110 170 C 170 178 215 183 235 190"],
-  ["walk","M 235 190 C 253 202 267 216 280 232"],
-  ["mrt","M 280 232 C 310 246 347 256 385 267"],
-  ["option","M 385 267 C 431 287 475 313 509 343 C 526 337 542 329 554 318"]
- ],
- labels:[
-  ["HarbourFront",85,166],["VivoCity",235,209],["USS",382,286],["Oceanarium",445,300],["Luge",507,353],["Siloso",555,314]
- ],
- pins:[[1,235,209],[2,382,286],[3,445,300],[4,507,353],[5,555,314]]
+  title:"DAY 3 ROUTE MAP",subtitle:"Orchard → HarbourFront → VivoCity → USS",
+  places:[
+    {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:2,name:"HarbourFront MRT",lat:1.2654,lng:103.8216},
+    {n:3,name:"VivoCity",lat:1.2644,lng:103.8223},
+    {n:4,name:"Universal Studios Singapore",lat:1.2540,lng:103.8238},
+    {n:5,name:"Singapore Oceanarium",lat:1.2583,lng:103.8200,option:true},
+    {n:6,name:"Skyline Luge Sentosa",lat:1.2521,lng:103.8174,option:true},
+    {n:7,name:"Siloso Beach",lat:1.2507,lng:103.8168,option:true}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.3055,103.8322],[1.3006,103.8389],[1.2930,103.8465],[1.2764,103.8450],[1.2654,103.8216]]},
+    {mode:"walk",path:[[1.2654,103.8216],[1.2644,103.8223]]},
+    {mode:"mrt",path:[[1.2644,103.8223],[1.2620,103.8232],[1.2588,103.8236],[1.2540,103.8238]]},
+    {mode:"option",path:[[1.2540,103.8238],[1.2583,103.8200],[1.2521,103.8174],[1.2507,103.8168]]}
+  ]
 },
 4:{
- title:"DAY 4 ROUTE MAP", subtitle:"Fort Canning → Chinatown → Hotel → Clarke Quay → JUMBO",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-land"/>
-  <path d="M137 35 C188 35 221 60 237 94 C250 121 243 154 220 173 C190 197 135 201 94 183 C53 164 28 126 42 88 C57 51 95 35 137 35Z" class="map-park"/>
-  <path d="M195 159 C257 160 315 188 354 232 C376 256 387 285 391 315" class="map-river"/>
-  <path d="M170 93 C205 102 234 113 267 135" class="map-road"/>
-  <path d="M267 135 C293 152 317 173 337 197" class="map-road"/>
-  <path d="M337 197 C307 212 289 228 280 248" class="map-road"/>
-  <path d="M280 248 C237 271 186 289 134 304" class="map-road"/>
-  <path d="M280 248 C314 269 345 293 372 320" class="map-road"/>
-  <path d="M372 320 C390 327 409 331 430 333" class="map-road"/>
-  <path d="M350 210 C378 212 406 219 431 231" class="map-road minor"/>
-  <text x="88" y="55" class="map-line-label">Fort Canning Park</text>
-  <text x="323" y="188" class="map-line-label">Singapore River</text>
-  <text x="123" y="291" class="map-line-label">TE LINE</text>
- `,
- roads:[],
- routes:[
-  ["walk","M 171 96 C 207 105 237 117 267 135 C 291 152 314 172 337 197"],
-  ["taxi","M 337 197 C 309 212 290 227 280 248"],
-  ["mrt","M 280 248 C 239 272 188 290 134 304"],
-  ["taxi","M 134 304 C 202 298 284 302 372 320"],
-  ["walk","M 372 320 C 390 327 408 331 430 333"]
- ],
- labels:[
-  ["Fort Canning",156,90],["Museum/CHIJMES",332,194],["Chinatown",271,263],["Hotel",110,320],["Clarke Quay",355,329],["JUMBO",423,348]
- ],
- pins:[[1,171,96],[2,332,194],[3,271,263],[4,110,320,"hotel"],[5,355,329],[6,423,348]]
+  title:"DAY 4 ROUTE MAP",subtitle:"Fort Canning → Civic District → Chinatown → Hotel → Clarke Quay",
+  places:[
+    {n:1,name:"Fort Canning Tree Tunnel",lat:1.2978,lng:103.8452},
+    {n:2,name:"National Museum",lat:1.2966,lng:103.8485},
+    {n:3,name:"CHIJMES",lat:1.2952,lng:103.8511},
+    {n:4,name:"Raffles Hotel",lat:1.2948,lng:103.8545},
+    {n:5,name:"Chinatown",lat:1.2838,lng:103.8444},
+    {n:6,name:"Maxwell Food Centre",lat:1.2803,lng:103.8441},
+    {n:7,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:8,name:"Old Hill Street Police Station",lat:1.2906,lng:103.8484},
+    {n:9,name:"Clarke Quay",lat:1.2890,lng:103.8466},
+    {n:10,name:"JUMBO Riverside Point",lat:1.2896,lng:103.8448}
+  ],
+  segments:[
+    {mode:"walk",path:[[1.2978,103.8452],[1.2973,103.8468],[1.2966,103.8485],[1.2958,103.8498],[1.2952,103.8511],[1.2948,103.8545]]},
+    {mode:"taxi",route:true,from:3,to:4},
+    {mode:"walk",path:[[1.2838,103.8444],[1.2822,103.8442],[1.2803,103.8441]]},
+    {mode:"mrt",path:[[1.2803,103.8441],[1.2827,103.8438],[1.2940,103.8490],[1.3055,103.8322]]},
+    {mode:"taxi",route:true,from:6,to:7},
+    {mode:"walk",path:[[1.2906,103.8484],[1.2897,103.8476],[1.2890,103.8466],[1.2893,103.8456],[1.2896,103.8448]]}
+  ]
 },
 5:{
- title:"DAY 5 ROUTE MAP", subtitle:"Sentosa EASY · 옵션은 점선",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-water"/>
-  <path d="M0 0 H640 V175 C607 179 572 182 540 184 C458 188 391 193 316 195 C223 198 140 190 65 180 C42 177 22 175 0 173 Z" class="map-land"/>
-  <path d="M224 236 C278 220 342 223 408 241 C486 263 556 305 589 350 C602 368 595 387 575 398 C538 420 454 414 362 390 C269 366 190 321 164 280 C147 253 169 239 224 236Z" class="map-island"/>
-  <path d="M132 181 C179 193 214 206 240 222" class="map-road"/>
-  <path d="M260 233 C291 236 321 240 350 247" class="map-road"/>
-  <path d="M350 247 C392 261 433 282 470 310" class="map-road"/>
-  <path d="M470 310 C498 322 524 329 548 323" class="map-road"/>
-  <path d="M548 323 C558 312 565 302 572 291" class="map-road minor"/>
-  <text x="142" y="172" class="map-line-label">Sentosa Express</text>
- `,
- roads:[],
- routes:[
-  ["mrt","M 120 182 C 170 192 210 206 240 222"],
-  ["walk","M 240 222 C 275 232 312 239 350 247"],
-  ["option","M 350 247 C 392 261 433 282 470 310"],
-  ["walk","M 470 310 C 498 322 524 329 548 323 C 558 312 565 302 572 291"]
- ],
- labels:[
-  ["Sentosa",225,214],["Oceanarium",342,236],["Luge",469,314],["Siloso",539,336],["Wings",579,286]
- ],
- pins:[[1,225,214],[2,342,236],[3,469,314],[4,539,336],[5,579,286]]
+  title:"DAY 5 ROUTE MAP",subtitle:"Sentosa EASY · Oceanarium → Luge → Siloso",
+  places:[
+    {n:1,name:"HarbourFront / VivoCity",lat:1.2644,lng:103.8223},
+    {n:2,name:"Singapore Oceanarium",lat:1.2583,lng:103.8200},
+    {n:3,name:"Skyline Luge Sentosa",lat:1.2521,lng:103.8174,option:true},
+    {n:4,name:"Siloso Beach",lat:1.2507,lng:103.8168},
+    {n:5,name:"Wings of Time",lat:1.2516,lng:103.8160,option:true}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.2644,103.8223],[1.2620,103.8232],[1.2591,103.8220],[1.2583,103.8200]]},
+    {mode:"option",path:[[1.2583,103.8200],[1.2564,103.8188],[1.2540,103.8179],[1.2521,103.8174]]},
+    {mode:"walk",path:[[1.2521,103.8174],[1.2515,103.8170],[1.2507,103.8168],[1.2516,103.8160]]}
+  ]
 },
 6:{
- title:"DAY 6 ROUTE MAP", subtitle:"Little India → Kampong Glam → Hotel → Jewel → Gate",
- bg:`
-  <rect x="0" y="0" width="640" height="430" class="map-land"/>
-  <path d="M146 75 C194 72 236 88 273 115 C287 125 298 138 307 154" class="map-road"/>
-  <path d="M307 154 C283 189 253 220 218 248 C191 270 160 289 123 307" class="map-road"/>
-  <path d="M123 307 C208 312 300 313 392 309 C442 307 485 304 528 299" class="map-road"/>
-  <path d="M528 299 C543 291 554 283 563 270" class="map-road"/>
-  <path d="M563 270 C575 276 586 284 597 295" class="map-road minor"/>
-  <path d="M120 63 C154 55 189 56 224 68" class="map-road minor"/>
-  <text x="136" y="63" class="map-line-label">Little India</text>
-  <text x="532" y="287" class="map-line-label">Changi Airport</text>
- `,
- roads:[],
- routes:[
-  ["taxi","M 146 75 C 194 72 236 88 273 115 C 287 125 298 138 307 154"],
-  ["taxi","M 307 154 C 283 189 253 220 218 248 C 191 270 160 289 123 307"],
-  ["taxi","M 123 307 C 208 312 300 313 392 309 C 442 307 485 304 528 299"],
-  ["walk","M 528 299 C 543 291 554 283 563 270 C 575 276 586 284 597 295"]
- ],
- labels:[
-  ["Little India",123,71],["Kampong Glam",271,109],["Hotel",96,320],["Jewel",553,267],["Gate",597,310]
- ],
- pins:[[1,123,71],[2,271,109],[3,96,320,"hotel"],[4,553,267],[5,597,310]]
+  title:"DAY 6 ROUTE MAP",subtitle:"Little India → Kampong Glam → Hotel → Jewel Changi",
+  places:[
+    {n:1,name:"Little India / Tekka Centre",lat:1.3067,lng:103.8510},
+    {n:2,name:"Sultan Mosque",lat:1.3023,lng:103.8590},
+    {n:3,name:"Haji Lane",lat:1.3006,lng:103.8594},
+    {n:4,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:5,name:"Jewel Changi Airport",lat:1.3602,lng:103.9897},
+    {n:6,name:"Changi Terminal / Gate",lat:1.3570,lng:103.9880}
+  ],
+  segments:[
+    {mode:"taxi",route:true,from:0,to:1},
+    {mode:"walk",path:[[1.3023,103.8590],[1.3016,103.8593],[1.3006,103.8594]]},
+    {mode:"taxi",route:true,from:2,to:3},
+    {mode:"taxi",route:true,from:3,to:4},
+    {mode:"walk",path:[[1.3602,103.9897],[1.3590,103.9890],[1.3570,103.9880]]}
+  ]
 }
 };
 
+let dayMap=null;
+let routeLayers=[];
+
+function markerIcon(n,type,option){
+  return L.divIcon({
+    className:"route-num-icon "+(type==="hotel"?"hotel":""),
+    html:`<div class="bubble" style="${option?'background:#7d8d97':''}">${n}</div>`,
+    iconSize:[30,30],iconAnchor:[15,15]
+  });
+}
+function modeStyle(mode){
+  if(mode==="walk") return {color:"#0f766e",weight:5,dashArray:"6 8",opacity:.92};
+  if(mode==="mrt") return {color:"#315b8a",weight:6,opacity:.9};
+  if(mode==="taxi") return {color:"#7d5200",weight:5,opacity:.9};
+  return {color:"#8ba0ad",weight:4,dashArray:"7 8",opacity:.85};
+}
+async function addRoadRoute(map,a,b,mode){
+  const style=modeStyle(mode);
+  const fallback=L.polyline([[a.lat,a.lng],[b.lat,b.lng]],style).addTo(map);
+  try{
+    const url=`https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
+    const r=await fetch(url);
+    if(!r.ok) throw new Error("route");
+    const j=await r.json();
+    const coords=j.routes?.[0]?.geometry?.coordinates?.map(x=>[x[1],x[0]]);
+    if(coords?.length){
+      map.removeLayer(fallback);
+      L.polyline(coords,style).addTo(map);
+    }
+  }catch(e){}
+}
+function renderDayMap(){
+  const m=DAY_MAPS[day];
+  dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
+    <div id="leafletDayMap" class="daymap"></div>
+    <div class="maplegend">
+      <span><i class="mrtline"></i>MRT/모노레일</span>
+      <span><i class="walkline"></i>도보</span>
+      <span><i class="taxiline"></i>Grab/차량</span>
+      <span><i class="optionline"></i>OPTION</span>
+    </div>
+    <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>`;
+
+  if(dayMap){dayMap.remove();dayMap=null;}
+  dayMap=L.map("leafletDayMap",{zoomControl:true,scrollWheelZoom:false});
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19,
+    attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(dayMap);
+
+  const bounds=[];
+  m.places.forEach((p,idx)=>{
+    bounds.push([p.lat,p.lng]);
+    const mk=L.marker([p.lat,p.lng],{icon:markerIcon(p.n,p.type,p.option)}).addTo(dayMap);
+    mk.bindTooltip(`<div class="route-label">${esc(p.name)}</div>`,{direction:"top",offset:[0,-14],opacity:1});
+    mk.on("click",()=>{ const cardIndex=Math.min(idx,current().items.length-1); if(current().items[cardIndex]) openItem(cardIndex); });
+  });
+
+  m.segments.forEach(s=>{
+    if(s.route){
+      const a=m.places[s.from],b=m.places[s.to];
+      addRoadRoute(dayMap,a,b,s.mode);
+    }else if(s.path){
+      L.polyline(s.path,modeStyle(s.mode)).addTo(dayMap);
+    }
+  });
+
+  dayMap.fitBounds(bounds,{padding:[28,28],maxZoom:15});
+  setTimeout(()=>dayMap.invalidateSize(),100);
+}
 let day=1,sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
@@ -357,8 +414,106 @@ function openItem(i){
 daysEl.onclick=e=>{const b=e.target.closest("[data-day]");if(!b)return;day=+b.dataset.day;render();scrollTo(0,0)};
 timeline.onclick=e=>{const x=e.target.closest(".item");if(x)openItem(x.dataset.i)};
 document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");
-function clocks(){const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);document.getElementById("krTime").textContent=f("Asia/Seoul");document.getElementById("sgTime").textContent=f("Asia/Singapore")}
-clocks();setInterval(clocks,60000);render();
+function clocks(){
+ const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);
+ document.getElementById("krTime").textContent=f("Asia/Seoul");
+ document.getElementById("sgTime").textContent=f("Asia/Singapore");
+}
+
+function weatherText(code){
+ const c=Number(code);
+ if(c===0)return["☀️","맑음"];
+ if(c===1)return["🌤️","대체로 맑음"];
+ if(c===2)return["⛅","구름 조금"];
+ if(c===3)return["☁️","흐림"];
+ if(c===45||c===48)return["🌫️","안개"];
+ if([51,53,55,56,57].includes(c))return["🌦️","이슬비"];
+ if([61,63,65,66,67].includes(c))return["🌧️","비"];
+ if([71,73,75,77].includes(c))return["🌨️","눈"];
+ if([80,81,82].includes(c))return["🌦️","소나기"];
+ if([85,86].includes(c))return["🌨️","눈 소나기"];
+ if([95,96,99].includes(c))return["⛈️","뇌우"];
+ return["🌡️","날씨"];
+}
+
+async function loadWeather(key,lat,lon,tempId,textId,iconId){
+ const cacheKey="pamphlet_weather_"+key;
+ try{
+   const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+   const r=await fetch(url,{cache:"no-store"});
+   if(!r.ok)throw new Error("weather");
+   const j=await r.json();
+   const data={temp:Math.round(j.current.temperature_2m),code:j.current.weather_code,ts:Date.now()};
+   localStorage.setItem(cacheKey,JSON.stringify(data));
+   paintWeather(data,tempId,textId,iconId);
+ }catch(e){
+   try{
+     const cached=JSON.parse(localStorage.getItem(cacheKey)||"null");
+     if(cached){paintWeather(cached,tempId,textId,iconId,true);return;}
+   }catch(_){}
+   document.getElementById(textId).textContent="날씨 확인 실패";
+ }
+}
+function paintWeather(data,tempId,textId,iconId,cached=false){
+ const [icon,text]=weatherText(data.code);
+ document.getElementById(tempId).textContent=`${data.temp}°`;
+ document.getElementById(textId).textContent=text+(cached?" · 저장값":"");
+ document.getElementById(iconId).textContent=icon;
+}
+
+let fxRate=1080;
+const sgdInput=document.getElementById("sgdAmount");
+const krwInput=document.getElementById("krwAmount");
+const fxInfo=document.getElementById("fxRateInfo");
+
+function fmtKRW(v){return Math.round(v).toLocaleString("ko-KR")}
+function parseNumber(v){return Number(String(v).replace(/,/g,"").trim())||0}
+function fromSGD(){
+ const s=parseNumber(sgdInput.value);
+ krwInput.value=fmtKRW(s*fxRate);
+}
+function fromKRW(){
+ const k=parseNumber(krwInput.value);
+ const s=fxRate?k/fxRate:0;
+ sgdInput.value=(Math.round(s*100)/100).toString();
+}
+sgdInput.addEventListener("input",fromSGD);
+krwInput.addEventListener("input",fromKRW);
+krwInput.addEventListener("focus",()=>{krwInput.value=String(parseNumber(krwInput.value)||"")});
+krwInput.addEventListener("blur",()=>{krwInput.value=fmtKRW(parseNumber(krwInput.value));});
+
+async function loadFx(){
+ const cacheKey="pamphlet_fx_sgd_krw";
+ try{
+   const r=await fetch("https://api.frankfurter.app/latest?from=SGD&to=KRW",{cache:"no-store"});
+   if(!r.ok)throw new Error("fx");
+   const j=await r.json();
+   if(!j.rates?.KRW)throw new Error("fx");
+   fxRate=Number(j.rates.KRW);
+   localStorage.setItem(cacheKey,JSON.stringify({rate:fxRate,date:j.date||"",ts:Date.now()}));
+   fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · ${j.date||"최신"}`;
+ }catch(e){
+   try{
+     const cached=JSON.parse(localStorage.getItem(cacheKey)||"null");
+     if(cached?.rate){
+       fxRate=Number(cached.rate);
+       fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · 저장된 환율`;
+     }else{
+       fxInfo.textContent=`1 SGD = ${fxRate.toLocaleString("ko-KR")} KRW · 임시값`;
+     }
+   }catch(_){
+     fxInfo.textContent=`1 SGD = ${fxRate.toLocaleString("ko-KR")} KRW · 임시값`;
+   }
+ }
+ fromSGD();
+}
+
+clocks();
+setInterval(clocks,60000);
+loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon");
+loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon");
+loadFx();
+render();
 </script>
 </body>
 </html>
