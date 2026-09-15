@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.5</title>
+<title>Singapore Family Trip 2026 · v17.6</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.5 · SINGLE FILE UNIFIED APP
+   v17.6 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v17.5 · stable detail scrolling */
+/* v17.6 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v17.5 · sticky hierarchy fix
+/* v17.6 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v17.5 · Pamphlet sheet + map layering fix */
+/* v17.6 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -385,7 +385,7 @@ body.open .sheet{touch-action:pan-y}
 }
 
 
-/* v17.5 · booking vault */
+/* v17.6 · booking vault */
 .bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
 .bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
@@ -413,7 +413,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 @media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
 
 
-/* v17.5 · reservation info inline */
+/* v17.6 · reservation info inline */
 .resbox{
   margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
   background:#f8fbfc;font-size:11px;line-height:1.55
@@ -430,7 +430,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.5</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.6</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -524,7 +524,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.5 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.6 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -564,31 +564,33 @@ const DAYS=[
 {time:"19:15",title:"Changi Airport 도착",detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",route:[["🛬","Changi Airport","도착"],["🛂","입국심사","수하물 수령"],["🚕","픽업","11명+짐"],["🏨","Marriott Tang Plaza","체크인"]],see:["수하물","유모차","가족 재집결"],family:["아이 우선 화장실·간식","대표자 1명은 차량 연락"]},
 {time:"21:30~",title:"Marriott Tang Plaza 체크인",detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",route:[["🏨","호텔 로비","체크인"],["🛏","4개 객실","가까운 객실 요청"],["😴","휴식","첫날 체력 보존"]],see:["객실번호 공유","Rollaway 요청 확인","Twin 요청 확인"],family:["아이 잠자리 먼저 세팅"]}]},
 {day:2,icon:"🌆",title:"Marina Bay",sub:"싱가포르의 대표 풍경을 보는 날",items:[
-{time:"10:00",title:"호텔 → Merlion Park",detail:"머라이언과 Marina Bay 풍경으로 여행의 첫 대표사진.",route:[["🏨","Marriott Tang Plaza","출발"],["🚇","Orchard NS22","MRT 탑승"],["🚇","Raffles Place NS26","하차"],["🦁","Merlion Park","도보 약 10분"]],see:["Merlion","MBS 방향 가족사진","Marina Bay 전경"],family:["그늘 적음","유모차 이동 가능","30~40분이면 충분"],food:["근처 식사는 다음 구간에서 해결"]},
+{time:"10:00",title:"Marriott → Merlion Park",detail:"머라이언과 Marina Bay 풍경으로 여행의 첫 대표사진.",route:[["🏨","Marriott Tang Plaza","출발"],["🚇","Orchard NS22","MRT 탑승"],["🚇","Raffles Place NS26","하차"],["🦁","Merlion Park","도보 약 10분"]],see:["Merlion","MBS 방향 가족사진","Marina Bay 전경"],family:["그늘 적음","유모차 이동 가능","30~40분이면 충분"],food:["근처 식사는 다음 구간에서 해결"]},
 {time:"10:30",title:"Marina Bay 산책",detail:"Merlion Park · Esplanade · Singapore Flyer를 흐름대로 본다.",route:[["🦁","Merlion Park","출발"],["🎭","Esplanade","강변 산책"],["🎡","Singapore Flyer","선택 관람"]],see:["Esplanade 외관","강변 풍경","Flyer 전망"],family:["더우면 Flyer를 휴식형 콘텐츠로 활용"]},
 {time:"12:30",title:"점심 · 에어컨 휴식",detail:"오전 야외 일정 뒤 체온과 체력을 낮추는 핵심 휴식.",route:[["🍽","Marina Bay/MBS","식사"],["❄️","실내 휴식","에어컨"],["👶","아이 낮잠","가능하면 확보"]],see:["식사","화장실","냉방"],family:["3세 아이 낮잠 우선"],food:["MBS / The Shoppes","가족 좌석 편한 곳","1인 S$15~30 예상"]},
 {time:"14:00",title:"Marina Bay Sands",detail:"Helix Bridge · MBS · The Shoppes를 천천히 통과.",route:[["🌉","Helix Bridge","사진"],["🏨","MBS","외관/실내"],["🛍","The Shoppes","휴식"]],see:["Helix 구조","MBS 스카이라인","쇼핑몰 실내"],family:["걷기 길면 짧은 Grab 허용"]},
 {time:"17:00",title:"Gardens by the Bay",detail:"Cloud Forest · Flower Dome 중심.",route:[["🌿","Gardens by the Bay","진입"],["🌧","Cloud Forest","실내 폭포"],["🌸","Flower Dome","대형 온실"],["🌳","Supertree Grove","야경 준비"]],see:["Cloud Forest","Flower Dome","Supertree"],family:["실내 냉방 강할 수 있음","유모차 이동 편함"]},
 {time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동","체력 봐서"],["💦","Spectra","선택"]],see:["Garden Rhapsody","Spectra"],family:["아이 졸리면 한 쇼만 보고 귀가"]}]},
 {day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",items:[
-{time:"08:15",title:"호텔 → Sentosa",detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
+{time:"08:15",title:"Marriott → Sentosa",detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
 {time:"10:00~",title:"Universal Studios Singapore",detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",route:[["🎢","USS","오픈런"],["⭐","인기 어트랙션","우선"],["🍽","점심","피크 회피"],["🎭","캐릭터/쇼","중간 휴식"]],see:["Transformers","Minion Land","캐릭터/쇼"],family:["3세 아이팀/스릴팀 짧게 분리","대기 길면 바로 다음 후보"],food:["USS 내부 식사","아이 메뉴 먼저 확보"]},
 {time:"15:00~",title:"충분히 놀았다면 Sentosa 확장",detail:"Oceanarium · Luge · Siloso Beach 등에서 1~2개 선택.",route:[["🎢","USS","만족도 판단"],["🐠","Oceanarium","실내"],["🛷","Luge","선택"],["🏖","Siloso Beach","휴식"]],see:["1~2개만 선택"],family:["DAY5와 중복되지 않게 오늘 한 것 기억"]}]},
 {day:4,icon:"🏛️",title:"Old Singapore",sub:"역사 · Chinatown · River Cruise · JUMBO",items:[
-{time:"09:00",title:"Fort Canning",detail:"Tree Tunnel을 시작으로 옛 싱가포르를 걷기 시작.",route:[["🌳","Fort Canning","Tree Tunnel"],["🏛","National Museum","역사"],["⛪","CHIJMES","건축"],["🏨","Raffles Hotel","외관"]],see:["Tree Tunnel","National Museum","Civic District"],family:["언덕/계단 주의","더우면 Grab 활용"]},
+{time:"09:00",title:"호텔 → Fort Canning",detail:"Singapore Marriott Tang Plaza Hotel에서 Fort Canning Tree Tunnel로 이동하며 DAY 4를 시작.",route:[["🏨","Marriott Tang Plaza","출발"],["🚕","Grab/택시","11명은 3대 분산 권장"],["🌳","Fort Canning Tree Tunnel","도착"]],see:["호텔 로비에서 11명 집결","차량별 인원 확인","Tree Tunnel 도착 후 재집결"],family:["아침 첫 이동은 걷기보다 차량 권장","유모차·부모님 체력 보존"]},
+{time:"09:30",title:"Fort Canning · National Museum",detail:"Tree Tunnel을 시작으로 옛 싱가포르를 걷기 시작.",route:[["🌳","Fort Canning","Tree Tunnel"],["🏛","National Museum","역사"],["⛪","CHIJMES","건축"],["🏨","Raffles Hotel","외관"]],see:["Tree Tunnel","National Museum","Civic District"],family:["언덕/계단 주의","더우면 Grab 활용"]},
 {time:"12:30",title:"Chinatown · 점심",detail:"Pagoda Street · Sri Mariamman Temple · Buddha Tooth Relic Temple.",route:[["🏮","Chinatown","골목"],["🛕","Sri Mariamman","사원"],["🛕","Buddha Tooth Relic","사원"],["🍜","Maxwell","점심"]],see:["다문화 종교공간","Shophouse","호커센터"],family:["자리 확보팀/주문팀 분리"],food:["Maxwell Food Centre","치킨라이스·호키엔미·주스"]},
 {time:"15:30",title:"호텔 휴식",detail:"저녁 일정 전 체력 회복.",route:[["🍜","Maxwell","출발"],["🚇","TE18","탑승"],["🚇","Orchard TE14","하차"],["🏨","호텔","휴식"]],see:["1~2시간 휴식"],family:["아이 낮잠","부모님 체력 회복"]},
 {time:"18:00",title:"Clarke Quay · River Cruise",detail:"Old Hill Street Police Station → Clarke Quay → Singapore River Cruise.",route:[["🌈","Old Hill Street","사진"],["🌉","Clarke Quay","강변"],["🚤","River Cruise","약 40분"],["🦀","JUMBO","저녁"]],see:["Old Hill Street","Clarke Quay","River Cruise"],family:["걷는 대신 배에서 휴식 가능"]},
 {time:"19:00",title:"JUMBO Seafood",detail:"Riverside Point · 11명 예약 확정.",route:[["🚤","River Cruise","하선"],["🦀","JUMBO Riverside Point","19:00 예약"]],see:["Reservation ID 6V5D9N"],family:["실내 좌석이 아이/부모님에 편함"],food:["Chilli Crab","Cereal Prawn","Fried Rice","Mantou"]}]},
 {day:5,icon:"🏝️",title:"Sentosa EASY",sub:"Oceanarium · 휴식 · 해변 · 선택 액티비티",items:[
-{time:"10:00",title:"호텔 → Sentosa",detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",route:[["🏨","호텔","늦은 출발"],["🚇","HarbourFront","이동"],["🏝","Sentosa","도착"]],see:["DAY3 미완료 일정만"],family:["오픈런 불필요"]},
+{time:"10:00",title:"Marriott → Sentosa",detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",route:[["🏨","호텔","늦은 출발"],["🚇","HarbourFront","이동"],["🏝","Sentosa","도착"]],see:["DAY3 미완료 일정만"],family:["오픈런 불필요"]},
 {time:"11:00",title:"Singapore Oceanarium",detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠.",route:[["🐠","Oceanarium","메인 관람"],["❄️","실내","더위 회피"]],see:["대형 수조","해양생물 전시"],family:["아이/부모님 모두 부담 적음"]},
 {time:"13:00",title:"점심 · 충분한 휴식",detail:"맛집 욕심보다 냉방·좌석·아이 메뉴 우선.",route:[["🍽","RWS/WEAVE/VivoCity","식사"],["😴","휴식","충분히"]],see:["좌석","냉방","아이 메뉴"],food:["동선 좋은 곳 우선"]},
 {time:"15:00",title:"Luge 또는 Sentosa 산책",detail:"활동팀과 휴식팀으로 잠깐 나뉘어도 됨.",route:[["🛷","Luge","활동팀"],["☕","카페","휴식팀"],["🌿","Sensoryscape","재합류"]],see:["가족 취향 1개"],family:["30~60분 짧게 분리 후 재합류"]},
 {time:"17:00",title:"Siloso Beach · 저녁",detail:"해질 무렵 센토사 분위기를 느긋하게 즐긴다.",route:[["🏖","Siloso Beach","산책"],["🌿","Sensoryscape","조명"],["🍽","저녁","느긋하게"]],see:["해질 무렵 분위기"],family:["아이 지치면 카페/식사 비중 확대"]},
 {time:"19:40~",title:"Wings of Time",detail:"DAY3에서 이미 봤다면 생략하고 일찍 호텔 복귀.",route:[["🌅","Beach Station","이동"],["🎆","Wings of Time","선택"],["🏨","호텔","복귀"]],see:["야간 피날레"],family:["반복이면 과감히 생략"]}]},
 {day:6,icon:"🛫",title:"Goodbye",sub:"Little India · Kampong Glam · Jewel Changi",items:[
-{time:"09:30",title:"Little India",detail:"Tekka Centre · Tan Teng Niah · Sri Veeramakaliamman Temple.",route:[["🛍","Tekka Centre","시장"],["🏠","Tan Teng Niah","사진"],["🛕","Sri Veeramakaliamman","사원"]],see:["시장","색감","힌두 문화"],family:["출국일이라 짧고 굵게"]},
+{time:"09:30",title:"호텔 → Little India",detail:"체크아웃과 짐 보관을 마친 뒤 Singapore Marriott Tang Plaza Hotel에서 Little India로 이동.",route:[["🏨","Marriott Tang Plaza","체크아웃·짐 보관"],["🚇","Orchard → Little India","MRT 또는 Grab"],["🛍","Tekka Centre","도착"]],see:["체크아웃 완료","호텔 짐 보관 확인","Little India 첫 집결점 Tekka Centre"],family:["출국일이라 짐은 호텔에 두고 가볍게 이동","아이·부모님 컨디션 따라 Grab 사용"]},
+{time:"10:00",title:"Little India",detail:"Tekka Centre · Tan Teng Niah · Sri Veeramakaliamman Temple.",route:[["🛍","Tekka Centre","시장"],["🏠","Tan Teng Niah","사진"],["🛕","Sri Veeramakaliamman","사원"]],see:["시장","색감","힌두 문화"],family:["출국일이라 짧고 굵게"]},
 {time:"11:15",title:"Kampong Glam · Bugis",detail:"Sultan Mosque · Haji Lane · Bugis.",route:[["🕌","Sultan Mosque","핵심"],["🎨","Haji Lane","골목"],["🛍","Bugis","점심/쇼핑"]],see:["모스크","벽화","골목"],food:["Zam Zam","Prawn Mee","디저트"]},
 {time:"14:00",title:"호텔 복귀 · 짐 수령",detail:"공항으로 이동 준비.",route:[["🛍","Bugis","출발"],["🏨","호텔","짐 수령"],["🚐","공항 이동","대형차량"]],see:["짐 개수 최종 확인"],family:["11명+짐 이동"]},
 {time:"16:00",title:"Jewel Changi",detail:"Rain Vortex · 마지막 쇼핑 · 이른 저녁.",route:[["✈️","Changi","도착"],["💦","Rain Vortex","관람"],["🛍","Jewel","쇼핑"],["🍽","저녁","이른 식사"]],see:["Rain Vortex","마지막 쇼핑"],food:["Bak Kut Teh","Kaya Toast"]},
@@ -598,7 +600,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.5 · unified single-file tools
+// v17.6 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -1399,7 +1401,7 @@ function renderDetailMap(){
 
 
 
-// v17.5 · Pamphlet DAY swipe
+// v17.6 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1425,7 +1427,7 @@ function renderDetailMap(){
   },{passive:true});
 })();
 
-// v17.5 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v17.6 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
