@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.5</title>
+<title>Singapore Family Trip 2026 · v19.6</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.5 · SINGLE FILE UNIFIED APP
+   v19.6 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.5 · offline-first controls */
+/* v19.6 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.5 · explicit online/offline mode */
+/* v19.6 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -636,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.5</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.6</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -688,7 +688,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.5 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
+  <div class="footer">v19.6 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
 </main>
 
 
@@ -749,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.5 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.6 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1831,7 +1831,7 @@ function closeDeep(){
 }
 
 
-// v19.5 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.6 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'user-incheon-airport.jpg',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'-i---i- (31762043234).jpg',alt:'Airplane in the sky',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/-i---i-%20%2831762043234%29.jpg' },
@@ -1839,7 +1839,7 @@ const PLACE_IMAGE_LIBRARY={
   changiTransfer:{key:"changiTransfer",name:'Changi Airport → Marriott',file:'user-changi-transfer.jpg',alt:'Pickup / transfer area from Changi Airport',remote:'./assets/images/changiTransfer.webp' },
   marriott:{key:"marriott",name:'Marriott Tang Plaza Hotel',file:'user-marriott-tang-plaza.jpg',alt:'Singapore Marriott Tang Plaza Hotel exterior',remote:'./assets/images/marriott.webp' },
   merlion:{key:"merlion",name:'Merlion Park',file:'user-merlion.jpg',alt:'Merlion Park, Singapore',remote:'./assets/images/merlion.webp' },
-  marina:{key:"marina",name:'Marina Bay',file:'At Singapore 2023 132.jpg',alt:'Marina Bay, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/At%20Singapore%202023%20132.jpg' },
+  marina:{key:"marina",name:'Marina Bay',file:'marina-bay.webp',alt:'Marina Bay waterfront, Singapore',remote:'./assets/images/marina-bay.webp' },
   mbs:{key:"mbs",name:'Marina Bay Sands',file:'user-marina-bay-sands.jpg',alt:'Marina Bay Sands viewed across the bay',remote:'./assets/images/marina.webp' },
   gardens:{key:"gardens",name:'Gardens by the Bay',file:'user-gardens-by-the-bay.jpg',alt:'Gardens by the Bay conservatory interior',remote:'./assets/images/gardens.webp' },
   supertree:{key:"supertree",name:'Supertree Grove',file:'user-supertree-grove.jpg',alt:'Supertree Grove illuminated at night',remote:'./assets/images/supertree.webp' },
@@ -1857,7 +1857,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Singapore%20Oceanarium.jpg' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v195";
+const REP_DB_NAME="sg_trip_rep_images_v196";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -1918,6 +1918,7 @@ async function loadCachedRepresentativeImages(){
   let count=0;
   try{
     for(const meta of Object.values(PLACE_IMAGE_LIBRARY)){
+      if(meta.remote?.startsWith("./assets/")) continue;
       const blob=await repDbGet(meta.key);
       if(blob){
         if(REP_IMAGE_URLS[meta.key])URL.revokeObjectURL(REP_IMAGE_URLS[meta.key]);
@@ -1930,9 +1931,10 @@ async function loadCachedRepresentativeImages(){
 }
 function getCachedRepresentativeSrc(key){return REP_IMAGE_URLS[key]||"";}
 function heroSrcFor(meta){
+  // Packaged local assets are the source of truth.
+  if(meta.remote?.startsWith("./assets/")) return meta.remote;
   const cached=getCachedRepresentativeSrc(meta.key);
   if(cached)return cached;
-  if(meta.remote?.startsWith("./assets/")) return meta.remote;
   return networkModeState==="online"?meta.remote:"";
 }
 async function cacheRepresentativeImage(meta){
@@ -1958,7 +1960,7 @@ async function cacheRepresentativeImage(meta){
 }
 async function warmRepresentativeImages(){
   const metas=Object.values(PLACE_IMAGE_LIBRARY);
-  const targets=metas.filter(meta=>!REP_IMAGE_URLS[meta.key]);
+  const targets=metas.filter(meta=>!meta.remote?.startsWith("./assets/")&&!REP_IMAGE_URLS[meta.key]);
   if(!targets.length)return {ok:0,fail:0,skipped:metas.length};
   // 3 at a time to avoid mobile/browser connection limits.
   let ok=0,fail=0;
@@ -1979,13 +1981,16 @@ function refreshRepresentativeImages(){
   document.querySelectorAll(".heroPhoto[data-place-key]").forEach(img=>{
     const key=img.dataset.placeKey,meta=PLACE_IMAGE_LIBRARY[key];
     const cached=REP_IMAGE_URLS[key];
-    if(cached){
+    if(meta?.remote?.startsWith("./assets/")){
+      img.src=meta.remote;
+      img.closest(".heroCard")?.classList.remove("image-missing");
+      const s=img.closest(".heroCard")?.querySelector(".heroMeta span");
+      if(s)s.textContent=`${meta.name} · 앱 이미지`;
+    }else if(cached){
       img.src=cached;
       img.closest(".heroCard")?.classList.remove("image-missing");
       const s=img.closest(".heroCard")?.querySelector(".heroMeta span");
       if(s)s.textContent=`${meta.name} · 기기 저장 완료`;
-    }else if(meta?.remote?.startsWith("./assets/")){
-      img.src=meta.remote;
     }else if(networkModeState==="online" && meta?.remote){
       img.src=meta.remote;
     }
@@ -2386,7 +2391,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_5";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_6";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
