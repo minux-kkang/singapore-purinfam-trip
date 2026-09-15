@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.9</title>
+<title>Singapore Family Trip 2026 · v19.0</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.9 · SINGLE FILE UNIFIED APP
+   v19.0 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v18.9 · offline-first controls */
+/* v19.0 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v18.9 · explicit online/offline mode */
+/* v19.0 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -636,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.9</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.0</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -749,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.9 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.0 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1523,7 +1523,7 @@ const DAY_MAPS={
 1:{
   title:"DAY 1 ROUTE MAP",subtitle:"Changi Airport → Marriott Tang Plaza",
   places:[
-    {n:1,name:"Changi Airport",lat:1.3644,lng:103.9915,type:"airport"},
+    {n:1,name:"Changi Airport / Jewel",lat:1.3644,lng:103.9915,type:"airport"},
     {n:2,name:"Singapore Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"}
   ],
   segments:[
@@ -1831,25 +1831,26 @@ function closeDeep(){
 }
 
 
+// v19.0 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
-  merlion:{key:"merlion",name:'Merlion Park',file:'Merlion (4071283426).jpg',alt:'Merlion Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Merlion_(4071283426).jpg/960px-Merlion_(4071283426).jpg'},
-  marina:{key:"marina",name:'Marina Bay Sands',file:'2011-12-17 Singapore 05.JPG',alt:'Marina Bay Sands, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/2011-12-17_Singapore_05.JPG/960px-2011-12-17_Singapore_05.JPG'},
+  merlion:{key:"merlion",name:'Merlion Park',file:'Merlion Park 12-05-2024(16).jpg',alt:'Merlion Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Merlion_(4071283426).jpg/960px-Merlion_(4071283426).jpg'},
+  marina:{key:"marina",name:'Marina Bay Sands',file:'20150512 Blue hour MBS.jpg',alt:'Marina Bay Sands, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/2011-12-17_Singapore_05.JPG/960px-2011-12-17_Singapore_05.JPG'},
   gardens:{key:"gardens",name:'Gardens by the Bay',file:'At Singapore 2023 132.jpg',alt:'Gardens by the Bay, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/At_Singapore_2023_132.jpg/960px-At_Singapore_2023_132.jpg'},
   uss:{key:"uss",name:'Universal Studios Singapore',file:'Universal Studios Singapore Gate.jpg',alt:'Universal Studios Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Universal_Studios_Singapore_Gate.jpg/960px-Universal_Studios_Singapore_Gate.jpg'},
-  fort:{key:"fort",name:'Fort Canning Park',file:'Fort Canning Park 09-11-2023(30).jpg',alt:'Fort Canning Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fort_Canning_Park_09-11-2023(30).jpg/960px-Fort_Canning_Park_09-11-2023(30).jpg'},
-  museum:{key:"museum",name:'National Museum of Singapore',file:'At National Museum of Singapore 2023 003.jpg',alt:'National Museum of Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/At_National_Museum_of_Singapore_2023_003.jpg/960px-At_National_Museum_of_Singapore_2023_003.jpg'},
-  chinatown:{key:"chinatown",name:'Chinatown',file:'2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg',alt:'Chinatown, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg/960px-2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg'},
-  clarke:{key:"clarke",name:'Clarke Quay',file:'Clarke Quay 09-11-2023(1).jpg',alt:'Clarke Quay, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Clarke_Quay_09-11-2023(1).jpg/960px-Clarke_Quay_09-11-2023(1).jpg'},
-  littleindia:{key:"littleindia",name:'Little India',file:'Campbell Lane, Singapore.jpg',alt:'Little India, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Campbell_Lane,_Singapore.jpg/960px-Campbell_Lane,_Singapore.jpg'},
-  kampong:{key:"kampong",name:'Kampong Glam',file:'Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg',alt:'Kampong Glam, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg/960px-Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg'},
-  jewel:{key:"jewel",name:'Jewel Changi',file:'Jewel Mall - Near.Singapore.Terminal 1.jpg',alt:'Jewel Changi Airport',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Jewel_Mall_-_Near.Singapore.Terminal_1.jpg/960px-Jewel_Mall_-_Near.Singapore.Terminal_1.jpg'},
-  sentosa:{key:"sentosa",name:'Sentosa',file:'2016-04-04 Beach at Sentosa with ships.jpg',alt:'Sentosa, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/2016-04-04_Beach_at_Sentosa_with_ships.jpg/960px-2016-04-04_Beach_at_Sentosa_with_ships.jpg'},
-  siloso:{key:"siloso",name:'Siloso Beach',file:'Siloso Beach 20.JPG',alt:'Siloso Beach, Sentosa',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Siloso_Beach_20.JPG/960px-Siloso_Beach_20.JPG'},
+  fort:{key:"fort",name:'Fort Canning Park',file:'Fort Canning Park 09-11-2023(42).jpg',alt:'Fort Canning Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fort_Canning_Park_09-11-2023(30).jpg/960px-Fort_Canning_Park_09-11-2023(30).jpg'},
+  museum:{key:"museum",name:'National Museum of Singapore',file:'At National Museum of Singapore 2023 004.jpg',alt:'National Museum of Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/At_National_Museum_of_Singapore_2023_003.jpg/960px-At_National_Museum_of_Singapore_2023_003.jpg'},
+  chinatown:{key:"chinatown",name:'Chinatown',file:'Alleys of Chinatown Singapore.jpg',alt:'Chinatown, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg/960px-2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg'},
+  clarke:{key:"clarke",name:'Clarke Quay',file:'Clarke Quay 09-11-2023(19).jpg',alt:'Clarke Quay, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Clarke_Quay_09-11-2023(1).jpg/960px-Clarke_Quay_09-11-2023(1).jpg'},
+  littleindia:{key:"littleindia",name:'Little India',file:'Little India at Night, Singapore (9005264852).jpg',alt:'Little India, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Campbell_Lane,_Singapore.jpg/960px-Campbell_Lane,_Singapore.jpg'},
+  kampong:{key:"kampong",name:'Kampong Glam',file:'Kampong Glam - panoramio (2).jpg',alt:'Kampong Glam, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg/960px-Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg'},
+  jewel:{key:"jewel",name:'Jewel Changi',file:'At Jewel Changi, Singapore 2023 56.jpg',alt:'Jewel Changi Airport Rain Vortex',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Jewel_Mall_-_Near.Singapore.Terminal_1.jpg/960px-Jewel_Mall_-_Near.Singapore.Terminal_1.jpg'},
+  sentosa:{key:"sentosa",name:'Sentosa',file:'2016-04-04 Sentosa 5.jpg',alt:'Sentosa, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/2016-04-04_Beach_at_Sentosa_with_ships.jpg/960px-2016-04-04_Beach_at_Sentosa_with_ships.jpg'},
+  siloso:{key:"siloso",name:'Siloso Beach',file:'Siloso Beach 23.JPG',alt:'Siloso Beach, Sentosa',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Siloso_Beach_20.JPG/960px-Siloso_Beach_20.JPG'},
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Singapore_Oceanarium.jpg/960px-Singapore_Oceanarium.jpg'},
-  changi:{key:"changi",name:'Changi Airport',file:'Changi Airport Wonderfall.jpg',alt:'Changi Airport, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Changi_Airport_Wonderfall.jpg/960px-Changi_Airport_Wonderfall.jpg'}
+  changi:{key:"changi",name:'Changi Airport',file:'At Jewel Changi, Singapore 2023 65.jpg',alt:'Changi Airport / Jewel Changi, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Changi_Airport_Wonderfall.jpg/960px-Changi_Airport_Wonderfall.jpg'}
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v189";
+const REP_DB_NAME="sg_trip_rep_images_v190";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2350,7 +2351,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v18_9";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_0";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
