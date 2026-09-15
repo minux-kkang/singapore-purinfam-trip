@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.4</title>
+<title>Singapore Family Trip 2026 · v18.5</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.4 · SINGLE FILE UNIFIED APP
+   v18.5 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -593,7 +593,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.4</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.5</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -698,7 +698,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.4 · 일정 클릭 시 대표 이미지가 함께 보이도록 확장했습니다.</div>
+  <div class="footer">v18.5 · 대표 이미지를 첫 접속 시 자동 저장해 이후 오프라인에서도 다시 보이도록 확장했습니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1748,24 +1748,91 @@ function closeDeep(){
 
 
 const PLACE_IMAGE_LIBRARY={
-  merlion:{name:"Merlion Park",file:"Merlion (4071283426).jpg",alt:"Merlion Park, Singapore"},
-  marina:{name:"Marina Bay Sands",file:"2011-12-17 Singapore 05.JPG",alt:"Marina Bay Sands, Singapore"},
-  gardens:{name:"Gardens by the Bay",file:"At Singapore 2023 132.jpg",alt:"Gardens by the Bay, Singapore"},
-  uss:{name:"Universal Studios Singapore",file:"Universal Studios Singapore Gate.jpg",alt:"Universal Studios Singapore"},
-  fort:{name:"Fort Canning Park",file:"Fort Canning Park 09-11-2023(30).jpg",alt:"Fort Canning Park, Singapore"},
-  museum:{name:"National Museum of Singapore",file:"At National Museum of Singapore 2023 003.jpg",alt:"National Museum of Singapore"},
-  chinatown:{name:"Chinatown",file:"2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg",alt:"Chinatown, Singapore"},
-  clarke:{name:"Clarke Quay",file:"Clarke Quay 09-11-2023(1).jpg",alt:"Clarke Quay, Singapore"},
-  littleindia:{name:"Little India",file:"Campbell Lane, Singapore.jpg",alt:"Little India, Singapore"},
-  kampong:{name:"Kampong Glam",file:"Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg",alt:"Kampong Glam, Singapore"},
-  jewel:{name:"Jewel Changi",file:"Jewel Mall - Near.Singapore.Terminal 1.jpg",alt:"Jewel Changi Airport"},
-  sentosa:{name:"Sentosa",file:"2016-04-04 Beach at Sentosa with ships.jpg",alt:"Sentosa, Singapore"},
-  siloso:{name:"Siloso Beach",file:"Siloso Beach 20.JPG",alt:"Siloso Beach, Sentosa"},
-  oceanarium:{name:"Singapore Oceanarium",file:"Singapore Oceanarium.jpg",alt:"Singapore Oceanarium"},
-  changi:{name:"Changi Airport",file:"Changi Airport Wonderfall.jpg",alt:"Changi Airport, Singapore"}
+  merlion:{key:"merlion",name:"Merlion Park",file:"Merlion (4071283426).jpg",alt:"Merlion Park, Singapore"},
+  marina:{key:"marina",name:"Marina Bay Sands",file:"2011-12-17 Singapore 05.JPG",alt:"Marina Bay Sands, Singapore"},
+  gardens:{key:"gardens",name:"Gardens by the Bay",file:"At Singapore 2023 132.jpg",alt:"Gardens by the Bay, Singapore"},
+  uss:{key:"uss",name:"Universal Studios Singapore",file:"Universal Studios Singapore Gate.jpg",alt:"Universal Studios Singapore"},
+  fort:{key:"fort",name:"Fort Canning Park",file:"Fort Canning Park 09-11-2023(30).jpg",alt:"Fort Canning Park, Singapore"},
+  museum:{key:"museum",name:"National Museum of Singapore",file:"At National Museum of Singapore 2023 003.jpg",alt:"National Museum of Singapore"},
+  chinatown:{key:"chinatown",name:"Chinatown",file:"2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg",alt:"Chinatown, Singapore"},
+  clarke:{key:"clarke",name:"Clarke Quay",file:"Clarke Quay 09-11-2023(1).jpg",alt:"Clarke Quay, Singapore"},
+  littleindia:{key:"littleindia",name:"Little India",file:"Campbell Lane, Singapore.jpg",alt:"Little India, Singapore"},
+  kampong:{key:"kampong",name:"Kampong Glam",file:"Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg",alt:"Kampong Glam, Singapore"},
+  jewel:{key:"jewel",name:"Jewel Changi",file:"Jewel Mall - Near.Singapore.Terminal 1.jpg",alt:"Jewel Changi Airport"},
+  sentosa:{key:"sentosa",name:"Sentosa",file:"2016-04-04 Beach at Sentosa with ships.jpg",alt:"Sentosa, Singapore"},
+  siloso:{key:"siloso",name:"Siloso Beach",file:"Siloso Beach 20.JPG",alt:"Siloso Beach, Sentosa"},
+  oceanarium:{key:"oceanarium",name:"Singapore Oceanarium",file:"Singapore Oceanarium.jpg",alt:"Singapore Oceanarium"},
+  changi:{key:"changi",name:"Changi Airport",file:"Changi Airport Wonderfall.jpg",alt:"Changi Airport, Singapore"}
 };
 function commonsImageUrl(file,width=1200){
   return `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=${width}`;
+}
+Object.values(PLACE_IMAGE_LIBRARY).forEach(meta=>{meta.remote=commonsImageUrl(meta.file,1400);});
+function imageStorageKey(key){return `sgtrip_repimg_${key}_v185`;}
+function getCachedRepresentativeSrc(key){
+  try{return localStorage.getItem(imageStorageKey(key))||"";}catch(e){return "";}
+}
+function heroSrcFor(meta){
+  return getCachedRepresentativeSrc(meta.key)||meta.remote;
+}
+function fileToDataUrl(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+async function compressImageBlob(blob,maxWidth=960,quality=0.72){
+  const objectUrl=URL.createObjectURL(blob);
+  try{
+    const img=await new Promise((resolve,reject)=>{
+      const im=new Image();
+      im.onload=()=>resolve(im);
+      im.onerror=reject;
+      im.src=objectUrl;
+    });
+    const ratio=Math.min(1,maxWidth/(img.naturalWidth||maxWidth));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round((img.naturalWidth||maxWidth)*ratio));
+    canvas.height=Math.max(1,Math.round((img.naturalHeight||maxWidth*0.5625)*ratio));
+    const ctx=canvas.getContext('2d',{alpha:false});
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    let dataUrl=canvas.toDataURL('image/webp',quality);
+    if(dataUrl.length>450000){
+      dataUrl=canvas.toDataURL('image/jpeg',0.72);
+    }
+    return dataUrl;
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+async function cacheRepresentativeImage(meta){
+  if(!meta?.key || getCachedRepresentativeSrc(meta.key)) return true;
+  try{
+    const res=await fetch(meta.remote,{mode:'cors',cache:'force-cache'});
+    if(!res.ok) throw new Error('image fetch failed');
+    const blob=await res.blob();
+    const dataUrl=await compressImageBlob(blob,960,0.72);
+    localStorage.setItem(imageStorageKey(meta.key),dataUrl);
+    refreshRepresentativeImages();
+    return true;
+  }catch(e){
+    console.log('representative image cache fail',meta.key,e);
+    return false;
+  }
+}
+async function warmRepresentativeImages(){
+  const metas=Object.values(PLACE_IMAGE_LIBRARY);
+  for(const meta of metas){
+    await cacheRepresentativeImage(meta);
+  }
+}
+function refreshRepresentativeImages(){
+  document.querySelectorAll('.heroPhoto[data-place-key]').forEach(img=>{
+    const src=getCachedRepresentativeSrc(img.dataset.placeKey);
+    if(src) img.src=src;
+  });
 }
 function itemImageMeta(sel){
   const t=`${sel.title||""} ${sel.detail||""}`.toLowerCase();
@@ -1792,7 +1859,8 @@ function itemImageHtml(sel){
   if(!meta){
     return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
   }
-  return `<section class="heroCard"><img class="heroPhoto" src="${commonsImageUrl(meta.file,1400)}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · 온라인 연결 시 표시</span></div></section>`;
+  const cached=!!getCachedRepresentativeSrc(meta.key);
+  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${heroSrcFor(meta)}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"첫 접속 시 자동 저장"}</span></div></section>`;
 }
 
 function openItem(i){
@@ -2231,6 +2299,7 @@ loadFx();
 render();
 setDetailMode(detailMode,false);
 setView(currentView,false);
+setTimeout(()=>{warmRepresentativeImages().then(refreshRepresentativeImages);},1200);
 </script>
 </body>
 </html>
