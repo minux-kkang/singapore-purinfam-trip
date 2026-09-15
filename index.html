@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.2</title>
+<title>Singapore Family Trip 2026 · v17.3</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.2 · SINGLE FILE UNIFIED APP
+   v17.3 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v17.2 · stable detail scrolling */
+/* v17.3 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v17.2 · sticky hierarchy fix
+/* v17.3 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -342,12 +342,54 @@ body.detail-scroll-lock{overflow:hidden}
   .brandver{font-size:9px;padding:2px 6px;margin-left:4px}
 }
 
+
+/* v17.3 · Pamphlet sheet + map layering fix */
+.backdrop{
+  z-index:2000!important;
+  background:rgba(13,34,50,.62)!important;
+}
+.sheet{
+  z-index:2010!important;
+  max-height:min(90dvh,820px)!important;
+  overscroll-behavior:contain;
+  box-shadow:0 -18px 50px rgba(10,30,45,.28);
+}
+body.open{overflow:hidden!important;touch-action:none}
+body.open .sheet{touch-action:pan-y}
+.sheethead{
+  position:sticky;top:0;z-index:4;
+  background:#fff;
+  border-bottom:1px solid #edf1f3;
+  padding-top:8px!important;
+}
+.handle{
+  position:sticky;top:0;z-index:5;
+  background:#d2dbe0;
+}
+.close{
+  flex:0 0 42px!important;width:42px!important;height:42px!important;
+  font-size:24px!important;font-weight:800!important;
+  cursor:pointer;touch-action:manipulation
+}
+.body{
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:calc(34px + env(safe-area-inset-bottom))!important
+}
+/* Leaflet must always remain below app overlays */
+.leaflet-container,.daymap,.daymapwrap{z-index:1!important}
+.leaflet-control-container{position:relative;z-index:10!important}
+@media(max-width:620px){
+  .sheet{max-height:92dvh!important}
+  .stitle{font-size:19px!important}
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.2</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.3</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -432,7 +474,7 @@ body.detail-scroll-lock{overflow:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.2 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.3 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -506,7 +548,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.2 · unified single-file tools
+// v17.3 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -940,21 +982,28 @@ function modeStyle(mode){
 }
 async function addRoadRoute(map,a,b,mode){
   const style=modeStyle(mode);
-  const fallback=L.polyline([[a.lat,a.lng],[b.lat,b.lng]],style).addTo(map);
+  let fallback;
   try{
+    if(!map || !map._container || !map._container.isConnected) return;
+    fallback=L.polyline([[a.lat,a.lng],[b.lat,b.lng]],style).addTo(map);
     const url=`https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
     const r=await fetch(url);
     if(!r.ok) throw new Error("route");
     const j=await r.json();
     const coords=j.routes?.[0]?.geometry?.coordinates?.map(x=>[x[1],x[0]]);
-    if(coords?.length){
-      map.removeLayer(fallback);
+    if(coords?.length && map && map._container && map._container.isConnected){
+      if(fallback && map.hasLayer(fallback)) map.removeLayer(fallback);
       L.polyline(coords,style).addTo(map);
     }
   }catch(e){}
 }
 function renderDayMap(){
   const m=DAY_MAPS[day];
+  if(dayMap){
+    try{dayMap.off();dayMap.remove();}catch(e){}
+    dayMap=null;
+  }
+  dayMapWrap.classList.remove("tile-load-error");
   dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
     <div id="leafletDayMap" class="daymap"></div>
     <div class="maplegend">
@@ -971,7 +1020,6 @@ function renderDayMap(){
     if(mapEl)mapEl.innerHTML='<div class="offlinemap">🗺️ 일정과 장소는 오프라인에서도 확인할 수 있습니다.<br>실제 지도 배경은 인터넷 연결 시 표시됩니다.</div>';
     return;
   }
-  if(dayMap){dayMap.remove();dayMap=null;}
   dayMap=L.map("leafletDayMap",{
     zoomControl:true,
     scrollWheelZoom:false,
@@ -1071,7 +1119,12 @@ daysEl.onclick=e=>{
  }
 };
 timeline.onclick=e=>{const x=e.target.closest(".item");if(x)openItem(x.dataset.i)};
-document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");
+function closePamphletSheet(){
+  document.body.classList.remove("open");
+}
+document.getElementById("close").onclick=closePamphletSheet;
+document.getElementById("backdrop").onclick=closePamphletSheet;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.body.classList.contains("open"))closePamphletSheet()});
 
 const VIEW_KEY="sg_trip_view_mode_v17";
 let currentView=localStorage.getItem(VIEW_KEY)||"pamphlet";
@@ -1186,7 +1239,34 @@ function renderDetailMap(){
 }
 
 
-// v17.2 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+
+// v17.3 · Pamphlet DAY swipe
+(function initPamphletSwipe(){
+  const area=document.getElementById("pamphletView");
+  if(!area)return;
+  const ignore="button,a,input,textarea,select,label,.item,.leaflet-container,.daymapwrap,.sheet,.backdrop";
+  let sx=0,sy=0,st=0,tracking=false;
+  area.addEventListener("touchstart",e=>{
+    if(currentView!=="pamphlet" || document.body.classList.contains("open") || e.touches.length!==1 || e.target.closest(ignore)){
+      tracking=false;return;
+    }
+    const t=e.touches[0];
+    sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;
+  },{passive:true});
+  area.addEventListener("touchend",e=>{
+    if(!tracking||!e.changedTouches.length){tracking=false;return;}
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
+    tracking=false;
+    if(Math.abs(dx)<65 || Math.abs(dx)<=Math.abs(dy)*1.35 || dt>850)return;
+    const next=day+(dx<0?1:-1);
+    if(next<1||next>DAYS.length)return;
+    day=next;
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  },{passive:true});
+})();
+
+// v17.3 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
