@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.7</title>
+<title>Singapore Family Trip 2026 · v18.8</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.7 · SINGLE FILE UNIFIED APP
+   v18.8 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v18.7 · offline-first controls */
+/* v18.8 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v18.7 · explicit online/offline mode */
+/* v18.8 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -633,7 +633,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.7</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.8</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -665,7 +665,7 @@ body.pamtoolopen{overflow:hidden!important}
       <button type="button" data-netmode="online">🌐 온라인</button>
       <button type="button" data-netmode="offline">📴 오프라인</button>
     </div>
-    <button id="onlineUpdateBtn" class="onlineUpdateBtn" type="button">↻ 온라인 정보 업데이트</button>
+    <button id="onlineUpdateBtn" class="onlineUpdateBtn" type="button">↻ 지금 정보 새로고침</button>
     <span id="onlineStatus" class="onlineStatus">네트워크 모드 확인 중</span>
   </div>
   <div id="days" class="days"></div>
@@ -746,7 +746,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.7 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v18.8 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1497,14 +1497,23 @@ function loadLeafletOnline(){
 }
 function mapRouteSummary(m){return m.places.map(p=>`${p.n}. ${p.name}`).join(' → ');}
 async function enableOnlineMap(which='day'){
-  if(networkModeState!=="online"){
-    const status=document.getElementById("onlineStatus");
-    if(status)status.textContent="📴 오프라인 모드 · 온라인 지도를 쓰려면 온라인으로 전환하세요.";
-    return;
+  const btn=document.querySelector(`[data-enable-map="${which}"]`);
+  const status=document.getElementById("onlineStatus");
+  if(btn){btn.disabled=true;btn.textContent='지도 불러오는 중…';}
+  if(status && networkModeState==="offline")status.textContent="📴 오프라인 모드 · 요청한 지도만 일시적으로 온라인에서 불러오는 중";
+  try{
+    await loadLeafletOnline();
+    onlineMapAllowed=true;
+    if(which==='detail')renderDetailMap();else renderDayMap();
+    if(networkModeState==="offline"){
+      // Explicit user action only. The next DAY render returns to offline summary.
+      setTimeout(()=>{onlineMapAllowed=false;},0);
+      if(status)status.textContent="📴 오프라인 모드 · 요청한 지도만 온라인으로 불러왔습니다.";
+    }
+  }catch(e){
+    if(btn){btn.disabled=false;btn.textContent='온라인 지도 다시 시도';}
+    if(status)status.textContent="지도 연결 실패 · 네트워크를 확인해주세요.";
   }
-  const btn=document.querySelector(`[data-enable-map="${which}"]`);if(btn){btn.disabled=true;btn.textContent='지도 불러오는 중…';}
-  try{await loadLeafletOnline();onlineMapAllowed=true;if(which==='detail')renderDetailMap();else renderDayMap();}
-  catch(e){if(btn){btn.disabled=false;btn.textContent='온라인 지도 다시 시도';}}
 }
 
 const DAY_MAPS={
@@ -1896,9 +1905,11 @@ async function cacheRepresentativeImage(meta){
 }
 async function warmRepresentativeImages(){
   const metas=Object.values(PLACE_IMAGE_LIBRARY);
-  for(const meta of metas){
-    await cacheRepresentativeImage(meta);
-  }
+  const targets=metas.filter(meta=>!getCachedRepresentativeSrc(meta.key));
+  if(!targets.length)return {ok:0,fail:0,skipped:metas.length};
+  const results=await Promise.allSettled(targets.map(meta=>cacheRepresentativeImage(meta)));
+  const ok=results.filter(r=>r.status==="fulfilled"&&r.value===true).length;
+  return {ok,fail:targets.length-ok,skipped:metas.length-targets.length};
 }
 function refreshRepresentativeImages(){
   document.querySelectorAll('.heroPhoto[data-place-key]').forEach(img=>{
@@ -2272,36 +2283,67 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v18_7";
-// 개발/출발 전 기본값. 최종 배포 직전 "offline"으로 바꾸면 된다.
+const NETWORK_MODE_KEY="sg_trip_network_mode_v18_8";
+// 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
+let onlineRefreshTimer=null;
 
 function updateNetworkModeUI(){
   const online=networkModeState==="online";
   document.querySelectorAll("[data-netmode]").forEach(b=>b.classList.toggle("on",b.dataset.netmode===networkModeState));
   const updateBtn=document.getElementById("onlineUpdateBtn");
-  if(updateBtn)updateBtn.disabled=!online;
+  if(updateBtn){
+    updateBtn.disabled=false;
+    updateBtn.textContent=online?"↻ 지금 정보 새로고침":"↻ 수동 정보 가져오기";
+    updateBtn.title=online
+      ?"날씨·환율·대표이미지를 즉시 다시 가져옵니다."
+      :"오프라인 모드를 유지한 채 이번 한 번만 인터넷으로 날씨·환율·대표이미지를 가져옵니다.";
+  }
   const status=document.getElementById("onlineStatus");
   if(status){
     status.innerHTML=online
-      ? `🌐 온라인 모드 <span class="netmodeBadge online">AUTO</span> · 날씨/환율 자동 갱신 · 지도는 필요할 때 로드`
-      : `📴 오프라인 모드 <span class="netmodeBadge offline">DATA SAVE</span> · 저장된 날씨/환율/이미지만 사용`;
+      ? `🌐 온라인 모드 <span class="netmodeBadge online">AUTO</span> · 날씨/환율 자동 갱신 · 지도 온라인 사용`
+      : `📴 오프라인 모드 <span class="netmodeBadge offline">MANUAL</span> · 자동 통신 없음 · 필요할 때 버튼으로 1회 갱신`;
   }
 }
+
+async function activateOnlineMode({autoUpdate=true}={}){
+  clearInterval(onlineRefreshTimer);
+  if(autoUpdate) updateOnlineInfo({manual:false});
+  try{
+    await loadLeafletOnline();
+    if(networkModeState!=="online")return;
+    onlineMapAllowed=true;
+    renderDayMap();
+    if(typeof renderDetailMap==="function")renderDetailMap();
+  }catch(e){
+    console.log("online map init failed",e);
+  }
+  // Weather/FX only refresh periodically; already-cached images are not redownloaded.
+  onlineRefreshTimer=setInterval(()=>{
+    if(networkModeState==="online")updateLiveDataOnly(false);
+  },30*60*1000);
+}
+
 function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
   if(!["online","offline"].includes(mode))return;
   networkModeState=mode;
   if(persist)localStorage.setItem(NETWORK_MODE_KEY,mode);
+  clearInterval(onlineRefreshTimer);
+  onlineRefreshTimer=null;
+
   if(mode==="offline"){
     onlineMapAllowed=false;
     try{if(dayMap){dayMap.off();dayMap.remove();dayMap=null}}catch(e){}
     try{if(detailMap){detailMap.off();detailMap.remove();detailMap=null}}catch(e){}
     renderDayMap();
     if(typeof renderDetailMap==="function")renderDetailMap();
+    updateNetworkModeUI();
+  }else{
+    updateNetworkModeUI();
+    activateOnlineMode({autoUpdate});
   }
-  updateNetworkModeUI();
-  if(mode==="online"&&autoUpdate)updateOnlineInfo();
 }
 document.getElementById("networkMode")?.addEventListener("click",e=>{
   const b=e.target.closest("[data-netmode]");if(!b)return;
@@ -2314,19 +2356,53 @@ function loadCachedLiveInfo(){
   }
   try{const cached=JSON.parse(localStorage.getItem("pamphlet_fx_sgd_krw")||"null");if(cached?.rate){fxRate=Number(cached.rate);fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · 저장된 환율`;fromSGD();}}catch(e){}
 }
-async function updateOnlineInfo(){
+async function updateLiveDataOnly(showStatus=true){
+  const status=document.getElementById("onlineStatus");
+  if(showStatus && status)status.textContent="날씨 · 환율 가져오는 중…";
+  const results=await Promise.allSettled([
+    loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon"),
+    loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon"),
+    loadFx()
+  ]);
+  return results;
+}
+
+async function updateOnlineInfo({manual=true}={}){
   const btn=document.getElementById("onlineUpdateBtn"),status=document.getElementById("onlineStatus");
-  if(networkModeState!=="online"){
-    if(status)status.textContent="📴 오프라인 모드 · 온라인으로 전환하면 업데이트할 수 있습니다.";
-    return;
-  }
-  btn?.classList.add('busy');if(btn)btn.textContent='업데이트 중…';if(status)status.textContent='날씨 · 환율 · 대표이미지 업데이트 중';
+  const offlineManual=networkModeState==="offline";
+  btn?.classList.add('busy');
+  if(btn)btn.textContent=offlineManual?'수동으로 가져오는 중…':'업데이트 중…';
+  if(status)status.textContent=offlineManual
+    ?"📴 오프라인 모드 유지 · 이번 한 번만 온라인 정보 가져오는 중…"
+    :"🌐 온라인 정보 업데이트 중…";
   try{
-    await Promise.all([loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon"),loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon"),loadFx()]);
-    await warmRepresentativeImages();
+    await updateLiveDataOnly(false);
+
+    // Representative images: only missing images are downloaded/cached.
+    // Weather/FX result is not held up if some image hosts fail.
+    const imageResult=await Promise.race([
+      warmRepresentativeImages(),
+      new Promise(resolve=>setTimeout(()=>resolve({ok:0,fail:0,timeout:true}),8000))
+    ]);
     refreshRepresentativeImages();
-    if(status)status.textContent=`업데이트 완료 · ${new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date())}`;
-  }finally{if(btn){btn.classList.remove('busy');btn.textContent='↻ 온라인 정보 업데이트';}}
+
+    const now=new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date());
+    if(status){
+      const imageMsg=imageResult?.timeout?" · 이미지는 백그라운드 저장 계속":imageResult?.ok?` · 새 이미지 ${imageResult.ok}장 저장`:"";
+      status.textContent=offlineManual
+        ? `📴 수동 갱신 완료 ${now}${imageMsg} · 오프라인 모드 유지`
+        : `🌐 최신 정보 ${now}${imageMsg}`;
+    }
+    // Timeout으로 먼저 끝난 경우에도 뒤에서 이미지 저장은 계속 시도.
+    if(imageResult?.timeout)warmRepresentativeImages().then(refreshRepresentativeImages);
+  }catch(e){
+    if(status)status.textContent="정보 업데이트 실패 · 인터넷 연결을 확인해주세요.";
+  }finally{
+    if(btn){
+      btn.classList.remove('busy');
+      btn.textContent=networkModeState==="online"?"↻ 지금 정보 새로고침":"↻ 수동 정보 가져오기";
+    }
+  }
 }
 function clocks(){
  const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);
@@ -2430,7 +2506,11 @@ render();
 setDetailMode(detailMode,false);
 setView(currentView,false);
 updateNetworkModeUI();
-if(networkModeState==="online")setTimeout(updateOnlineInfo,700);
+if(networkModeState==="online"){
+  setTimeout(()=>activateOnlineMode({autoUpdate:true}),500);
+}else{
+  onlineMapAllowed=false;
+}
 </script>
 </body>
 </html>
