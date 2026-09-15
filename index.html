@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.0</title>
+<title>Singapore Family Trip 2026 · v17.1</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.0 · SINGLE FILE UNIFIED APP
+   v17.1 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -287,12 +287,31 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
  .presentactions{grid-template-columns:1fr}
 }
 
+
+/* v17.1 · stable detail scrolling */
+.detailsticky{
+  position:sticky;top:0;z-index:80;background:var(--bg);
+  padding:5px 0 4px;margin:-2px 0 8px;
+  border-bottom:1px solid rgba(215,225,229,.78)
+}
+.detailsticky .detailnav{
+  position:static!important;top:auto!important;z-index:auto!important;
+  margin:0 0 5px!important;backdrop-filter:none!important
+}
+.detailsticky .detaildaytabs{
+  margin:0!important;padding:3px 1px 4px!important;background:var(--bg);
+  border-radius:0
+}
+.detaildaybtn{touch-action:manipulation}
+.detailhero,.detail-list,.detail-card,.detail-mapbox{position:relative;z-index:1}
+body.detail-scroll-lock{overflow:hidden}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <small>v17.0</small></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <small>v17.1</small></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -331,18 +350,20 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 <main id="detailView" class="detailwrap" hidden>
-  <nav class="detailnav" id="detailNav">
-    <button class="detailnavbtn on" data-detail-mode="itinerary">🗓 일정</button>
-    <button class="detailnavbtn" data-detail-mode="prep">🧳 준비</button>
-    <button class="detailnavbtn" data-detail-mode="phrase">💬 표현</button>
-    <button class="detailnavbtn" data-detail-mode="message">📱 메시지</button>
-    <button class="detailnavbtn" data-detail-mode="study">📚 공부</button>
-    <button class="detailnavbtn" data-detail-mode="journal">📖 기록</button>
-  </nav>
+  <div class="detailsticky" id="detailSticky">
+    <nav class="detailnav" id="detailNav">
+      <button class="detailnavbtn on" data-detail-mode="itinerary">🗓 일정</button>
+      <button class="detailnavbtn" data-detail-mode="prep">🧳 준비</button>
+      <button class="detailnavbtn" data-detail-mode="phrase">💬 표현</button>
+      <button class="detailnavbtn" data-detail-mode="message">📱 메시지</button>
+      <button class="detailnavbtn" data-detail-mode="study">📚 공부</button>
+      <button class="detailnavbtn" data-detail-mode="journal">📖 기록</button>
+    </nav>
+    <div id="detailDayTabs" class="detaildaytabs"></div>
+  </div>
 
   <section class="detailpane" id="detailPaneItinerary">
     <section id="detailHero" class="detailhero"></section>
-    <div id="detailDayTabs" class="detaildaytabs"></div>
     <section id="detailList" class="detail-list"></section>
     <section id="detailMapWrap" class="daymapwrap detail-mapbox"></section>
   </section>
@@ -376,7 +397,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.0 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.1 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -450,7 +471,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.0 · unified single-file tools
+// v17.1 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -483,6 +504,8 @@ function setDetailMode(mode,save=true){
   document.querySelectorAll("[data-detail-mode]").forEach(b=>b.classList.toggle("on",b.dataset.detailMode===mode));
   const ids={itinerary:"detailPaneItinerary",prep:"detailPanePrep",phrase:"detailPanePhrase",message:"detailPaneMessage",study:"detailPaneStudy",journal:"detailPaneJournal"};
   Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.hidden=k!==mode});
+  const dayTabs=document.getElementById("detailDayTabs");
+  if(dayTabs)dayTabs.hidden=mode!=="itinerary";
   if(save)localStorage.setItem(DETAIL_MODE_KEY,mode);
   if(mode==="itinerary"){
     renderDetail();
@@ -526,6 +549,14 @@ function renderPrep(){
     <section class="toolcard"><h3>${g}</h3>
     ${items.map(x=>`<label class="checkrow"><input type="checkbox" data-prep17="${x.i}" ${state[x.i]?"checked":""}>
       <span><span class="statuspill status-${x[2]}">${statusName(x[2])}</span>${x[1]}</span></label>`).join("")}</section>`).join("")}</div>
+    <section class="toolcard" style="margin-top:9px"><h3>🔎 출발 전 정보 점검</h3>
+      <div class="tripfacts">
+        <div class="tripfact"><b>DAY 5</b>Sentosa EASY 기본 · Mandai 대안. 최종 선택 후 티켓 구매 연동 필요.</div>
+        <div class="tripfact"><b>공항 → 호텔</b>아직 이동수단 확정 필요. 11명+짐+유모차 기준으로 차량 용량 확인.</div>
+        <div class="tripfact"><b>USS</b>미예약 상태. 11명 동시입장 가능 수량과 날짜 조건 우선 확인.</div>
+        <div class="tripfact"><b>실시간 정보</b>날씨·환율·지도 타일은 인터넷 필요. 나머지 핵심 내용은 파일 하나로 사용 가능.</div>
+      </div>
+    </section>
     <section class="toolcard" style="margin-top:9px"><h3>🏨 숙소 확정정보</h3>
       <div class="tripfacts">
         <div class="tripfact"><b>${TRIP_META.hotel.name}</b>${TRIP_META.hotel.dates} · ${TRIP_META.hotel.nights}박 · ${TRIP_META.hotel.rooms}객실</div>
@@ -560,6 +591,44 @@ const PHRASES=[
  {cat:"긴급",icon:"🏥",ko:"진료를 받아야 합니다.",en:"We need to see a doctor."},
  {cat:"긴급",icon:"🤒",ko:"아이가 열이 납니다.",en:"My child has a fever."}
 ];
+
+PHRASES.push(
+ {cat:"기본",icon:"📱",ko:"제 휴대폰에 입력해 주실 수 있나요?",en:"Could you type it on my phone, please?"},
+ {cat:"기본",icon:"👀",ko:"이 화면을 잠시 봐주시겠어요?",en:"Could you please look at this screen for a moment?"},
+ {cat:"기본",icon:"⏳",ko:"잠시만 기다려주세요.",en:"Just a moment, please."},
+ {cat:"교통",icon:"🚕",ko:"Grab 픽업 장소가 어디인가요?",en:"Where is the Grab pickup point?"},
+ {cat:"교통",icon:"🧳",ko:"캐리어가 많습니다. 트렁크 공간이 충분할까요?",en:"We have a lot of luggage. Is there enough trunk space?"},
+ {cat:"교통",icon:"👶",ko:"어린아이가 두 명 있습니다. 가장 편한 승차 위치가 어디인가요?",en:"We have two young children. Where is the easiest pickup point for us?"},
+ {cat:"교통",icon:"🚇",ko:"어느 노선을 타야 하나요?",en:"Which MRT line should we take?"},
+ {cat:"교통",icon:"🔄",ko:"어디에서 환승해야 하나요?",en:"Where should we transfer?"},
+ {cat:"교통",icon:"🚪",ko:"몇 번 출구로 나가야 하나요?",en:"Which exit should we use?"},
+ {cat:"교통",icon:"🛗",ko:"유모차로 이동하기 편한 엘리베이터가 어디인가요?",en:"Where is the elevator for strollers?"},
+ {cat:"호텔",icon:"🕐",ko:"체크인 시간이 몇 시인가요?",en:"What time is check-in?"},
+ {cat:"호텔",icon:"🕓",ko:"레이트 체크아웃이 가능한가요?",en:"Would late check-out be available?"},
+ {cat:"호텔",icon:"🍳",ko:"조식은 어디에서 먹나요?",en:"Where is breakfast served?"},
+ {cat:"호텔",icon:"🍳",ko:"오늘만 조식을 추가할 수 있나요?",en:"Can we add breakfast for today only?"},
+ {cat:"호텔",icon:"🛏️",ko:"롤어웨이 베드 요청이 등록되어 있나요?",en:"Could you check whether our rollaway bed request is on the reservation?"},
+ {cat:"호텔",icon:"🪜",ko:"아이용 발판을 받을 수 있을까요?",en:"Could we have a step stool for the child?"},
+ {cat:"호텔",icon:"🌬️",ko:"공기청정기가 있으면 부탁드립니다.",en:"If an air purifier is available, could we have one, please?"},
+ {cat:"식당",icon:"🪑",ko:"가능하면 실내 좌석으로 부탁드립니다.",en:"If possible, could we have an indoor table, please?"},
+ {cat:"식당",icon:"👶",ko:"아동용 의자가 있나요?",en:"Do you have a high chair for a child?"},
+ {cat:"식당",icon:"🥜",ko:"견과류가 들어 있나요?",en:"Does this contain nuts?"},
+ {cat:"식당",icon:"🌿",ko:"고수는 빼주세요.",en:"No coriander, please."},
+ {cat:"식당",icon:"🥡",ko:"남은 음식 포장 가능할까요?",en:"Could we have the leftovers packed to take away?"},
+ {cat:"식당",icon:"💳",ko:"각 가족별로 나눠 결제할 수 있나요?",en:"Can we split the bill between families?"},
+ {cat:"식당",icon:"⭐",ko:"아이들과 먹기 좋은 메뉴를 추천해 주세요.",en:"What would you recommend for young children?"},
+ {cat:"관광",icon:"⏰",ko:"다음 공연은 몇 시인가요?",en:"What time is the next show?"},
+ {cat:"관광",icon:"🔁",ko:"나갔다가 다시 들어올 수 있나요?",en:"Can we leave and re-enter later?"},
+ {cat:"관광",icon:"🧳",ko:"짐이나 유모차를 보관할 곳이 있나요?",en:"Is there a place to store bags or strollers?"},
+ {cat:"관광",icon:"👨‍👩‍👧‍👦",ko:"11명이 함께 입장할 수 있나요?",en:"Can all eleven of us enter together?"},
+ {cat:"관광",icon:"📱",ko:"모바일 티켓만 보여드려도 되나요?",en:"Is it okay to show the tickets only on my phone?"},
+ {cat:"긴급",icon:"💊",ko:"가장 가까운 약국이 어디인가요?",en:"Where is the nearest pharmacy?"},
+ {cat:"긴급",icon:"🚑",ko:"구급차를 불러주세요.",en:"Please call an ambulance."},
+ {cat:"긴급",icon:"📱",ko:"휴대폰을 잃어버렸습니다.",en:"I lost my phone."},
+ {cat:"긴급",icon:"👛",ko:"지갑을 잃어버렸습니다.",en:"I lost my wallet."},
+ {cat:"긴급",icon:"🧒",ko:"아이를 잃어버렸습니다. 보안요원을 불러주세요.",en:"My child is lost. Please call security immediately."}
+);
+
 let phraseCat="전체";
 function renderPhrases(){
  const cats=["전체",...new Set(PHRASES.map(x=>x.cat))];
@@ -606,6 +675,47 @@ const MESSAGE_CARDS=[
  {cat:"🆘 긴급/도움",icon:"🤒",title:"아이 열",en:"My child has a fever and is not feeling well. Could you please help us?",ko:"아이가 열이 나고 몸이 좋지 않을 때."},
  {cat:"🆘 긴급/도움",icon:"🧒",title:"아이를 잃어버림",en:"My child is lost. Please help us contact security immediately.",ko:"아이를 잃어버렸을 때 즉시 보안요원 도움 요청."}
 ];
+
+MESSAGE_CARDS.push(
+ {cat:"⭐ 이번 여행",icon:"🛬",title:"창이 도착 후 픽업",en:"We are a family group of eleven arriving on Korean Air KE643. We have children, strollers, and several suitcases. Could you please tell us exactly where our pickup point is?",ko:"KE643 도착 후 11명 + 아이 + 유모차 + 캐리어 픽업 위치 확인."},
+ {cat:"⭐ 이번 여행",icon:"🧳",title:"체크아웃 후 짐 보관",en:"We are checking out today, but our flight KE644 departs at 10:00 PM. Could you please store all of our luggage until we leave for the airport?",ko:"9/24 KE644 22:00 출발. 체크아웃 후 공항 이동 전까지 전체 짐 보관 요청."},
+ {cat:"⭐ 이번 여행",icon:"🍳",title:"특별 조식가 적용",en:"We were offered a special breakfast rate of S$25++ per adult per day. Could you please confirm which dates we can use this rate for our rooms?",ko:"성인 S$25++ 특별 조식가 적용 날짜 확인."},
+ {cat:"⭐ 이번 여행",icon:"👧",title:"7세 조식 확인",en:"We are traveling with a seven-year-old child. Could you please confirm whether breakfast is complimentary when the child is dining with a paying adult?",ko:"7세 아동이 paying adult와 동반 시 무료 조식인지 확인."},
+ {cat:"⭐ 이번 여행",icon:"🛏️",title:"Twin Beds 확인",en:"Some of our rooms requested twin beds. Could you please check which rooms have been assigned twin beds?",ko:"일부 객실 Twin Beds 요청 반영 객실 확인."},
+ {cat:"⭐ 이번 여행",icon:"🌬️",title:"Air Purifier 확인",en:"We understand that an air purifier is subject to availability. Could you please check whether one is available for our group?",ko:"재고 상황에 따른 Air Purifier 제공 가능 여부 확인."},
+ {cat:"⭐ 이번 여행",icon:"🦀",title:"JUMBO 실내석 문의",en:`We have a reservation for eleven people at ${TRIP_META.dining.jumbo.name} at 7:00 PM. If possible, could we have indoor air-conditioned seating because we are traveling with young children?`,ko:"JUMBO 11명 예약. 어린아이 동반이라 가능하면 실내 에어컨 좌석 요청."},
+ {cat:"⭐ 이번 여행",icon:"🦀",title:"JUMBO 게 가격 확인",en:"Before we order the crab, could you please tell us the weight and the total price for this crab?",ko:"칠리크랩 주문 전 게 중량과 총 가격 확인."},
+ {cat:"⭐ 이번 여행",icon:"🎢",title:"USS 가족 분리 입장",en:"Our family group has adults and young children. Some adults may take the rides while others stay with the children. Where is the easiest place for us to meet again?",ko:"USS에서 놀이기구팀/아이팀 잠시 분리 후 재집결 장소 문의."},
+ {cat:"⭐ 이번 여행",icon:"🛒",title:"USS 유모차",en:"We have two three-year-old children. Can we bring our strollers inside, and where should we park them when we go on a ride?",ko:"3세 2명 유모차 반입 및 어트랙션 이용 시 보관 장소 문의."},
+ {cat:"⭐ 이번 여행",icon:"🐠",title:"Oceanarium 11명",en:"We are a group of eleven with three children. Can we enter together, and is there a stroller-friendly route throughout the attraction?",ko:"Oceanarium 11명 동시입장 및 유모차 동선 확인."},
+ {cat:"⭐ 이번 여행",icon:"🚤",title:"River Cruise 11명",en:"We are eleven people. Is there space for all of us on the same river cruise departure, or should we take two boats?",ko:"리버크루즈 같은 회차에 11명 탑승 가능한지 확인."},
+ {cat:"⭐ 이번 여행",icon:"✈️",title:"KE644 체크인",en:"We are flying to Seoul on Korean Air KE644 at 10:00 PM. Could you please tell us where and when check-in opens?",ko:"KE644 22:00 귀국편 체크인 카운터 및 오픈시간 확인."},
+ {cat:"⭐ 이번 여행",icon:"💼",title:"Jewel 짐 처리",en:"We would like to visit Jewel before our flight. What is the best way to handle our luggage before Korean Air check-in opens?",ko:"대한항공 체크인 전 Jewel 관광 시 짐 처리 방법 문의."},
+
+ {cat:"🏨 호텔",icon:"🔑",title:"객실 키 추가",en:"Could we have one additional key card for this room, please?",ko:"객실 키 카드 추가 요청."},
+ {cat:"🏨 호텔",icon:"🔧",title:"에어컨 문제",en:"The air conditioner in our room is not working properly. Could someone please check it?",ko:"객실 에어컨 점검 요청."},
+ {cat:"🏨 호텔",icon:"🚿",title:"욕실 문제",en:"There is a problem in the bathroom. Could someone please come and check it?",ko:"욕실 문제 점검 요청."},
+ {cat:"🏨 호텔",icon:"🧹",title:"청소 시간 조정",en:"The children are sleeping now. Could housekeeping please come back later?",ko:"아이 낮잠 중이라 객실 청소를 나중에 요청."},
+
+ {cat:"🚕 교통",icon:"👨‍👩‍👧‍👦",title:"차량 두 대로 나눔",en:"There are eleven of us. If one vehicle is not enough, could you help us arrange two or three vehicles to leave together?",ko:"11명이라 한 차량이 어렵다면 2~3대 동시 출발 요청."},
+ {cat:"🚕 교통",icon:"🧳",title:"짐 많은 차량",en:"We have several large suitcases and two strollers. Please make sure there is enough luggage space.",ko:"대형 캐리어 여러 개 + 유모차 2대 수납 공간 확인."},
+ {cat:"🚕 교통",icon:"📍",title:"기사 만나기",en:"We are at the pickup point now. Could you tell us exactly where you are waiting?",ko:"픽업장소에서 기사 위치 확인."},
+
+ {cat:"🍽️ 식당",icon:"👶",title:"아이 먼저 음식",en:"Could you please bring the children's food first if possible?",ko:"가능하면 아이 음식 먼저 제공 요청."},
+ {cat:"🍽️ 식당",icon:"🪑",title:"붙은 테이블",en:"We are one family group. Could you please place our tables next to each other?",ko:"여러 테이블이어도 서로 붙여달라고 요청."},
+ {cat:"🍽️ 식당",icon:"🌶️",title:"소스 별도",en:"Could you please serve the spicy sauce on the side?",ko:"매운 소스를 따로 요청."},
+ {cat:"🍽️ 식당",icon:"💳",title:"카드 결제",en:"Can we pay by credit card?",ko:"신용카드 결제 가능 여부."},
+
+ {cat:"🎢 관광지",icon:"👶",title:"부모 교대 탑승",en:"We have young children who cannot ride. Is there a parent swap or rider switch option?",ko:"어린아이 때문에 부모 교대 탑승 제도 문의."},
+ {cat:"🎢 관광지",icon:"🌧️",title:"비 때문에 일정 변경",en:"Because of the rain, can we change our entry time or return later today?",ko:"비로 인해 입장시간 변경 또는 당일 재입장 가능 여부."},
+ {cat:"🎢 관광지",icon:"♿",title:"유모차 편한 길",en:"Could you show us the easiest stroller-friendly route from here?",ko:"현재 위치에서 유모차로 가장 편한 동선 문의."},
+
+ {cat:"🆘 긴급/도움",icon:"🌡️",title:"아이 고열",en:"My young child has a high fever. We need medical advice as soon as possible.",ko:"어린아이 고열로 빠른 의료 도움 필요."},
+ {cat:"🆘 긴급/도움",icon:"🤢",title:"아이가 구토",en:"My child has been vomiting and is feeling weak. Where can we get medical help?",ko:"아이 구토/기력저하 시 의료기관 문의."},
+ {cat:"🆘 긴급/도움",icon:"🧾",title:"분실물 신고",en:"I lost an item here. Where can I report lost property?",ko:"시설 내 분실물 신고 장소 문의."},
+ {cat:"🆘 긴급/도움",icon:"📞",title:"한국어 도움",en:"Is there anyone who speaks Korean, or could you help us contact someone who does?",ko:"한국어 가능한 직원 또는 통역 도움 요청."}
+);
+
 const MSG_FAV_KEY="sg_trip_message_favs_v17";
 let msgCat="⭐ 이번 여행";
 function msgFavs(){try{return JSON.parse(localStorage.getItem(MSG_FAV_KEY)||"[]")}catch(e){return []}}
@@ -961,7 +1071,13 @@ function detailListHtml(title,items=[]){
 }
 function renderDetail(){
   const d=current();
-  detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day}</div><h2>${d.icon} ${esc(d.title)}</h2><p>${esc(d.sub)}</p>`;
+  detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day} · 공통 일정 데이터</div><h2>${d.icon} ${esc(d.title)}</h2><p>${esc(d.sub)}</p>
+    <div class="tripfacts" style="margin-top:10px">
+      <div class="tripfact"><b>✈️ 항공</b>${TRIP_META.flights.outbound.no} 도착 19:15 · ${TRIP_META.flights.return.no} 9/24 22:00 출발</div>
+      <div class="tripfact"><b>🏨 숙소</b>${TRIP_META.hotel.name} · 4객실 · 5박</div>
+      <div class="tripfact"><b>🦀 확정 예약</b>JUMBO 9/22 19:00 · 11명 · ${TRIP_META.dining.jumbo.reservationId}</div>
+      <div class="tripfact"><b>👨‍👩‍👧‍👦 운영 기준</b>11명 · 3세 2명 · 7세 1명 · 부모님/아이 체력 우선</div>
+    </div>`;
   detailDayTabs.innerHTML=DAYS.map(x=>`<button class="detaildaybtn ${x.day===day?'on':''}" data-dday="${x.day}">DAY ${x.day}</button>`).join("");
   detailList.innerHTML=d.items.map((x,i)=>`
     <article class="detail-card">
@@ -1029,6 +1145,29 @@ function renderDetailMap(){
     setTimeout(()=>detailMap.invalidateSize({pan:false}),180);
   });
 }
+
+
+// v17.1 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+(function initDetailSwipe(){
+  const area=document.getElementById("detailPaneItinerary");
+  if(!area)return;
+  const ignore="button,a,input,textarea,select,label,[contenteditable='true'],.leaflet-container";
+  let sx=0,sy=0,st=0,tracking=false;
+  area.addEventListener("touchstart",e=>{
+    if(e.touches.length!==1||e.target.closest(ignore)){tracking=false;return;}
+    const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;
+  },{passive:true});
+  area.addEventListener("touchend",e=>{
+    if(!tracking||!e.changedTouches.length){tracking=false;return;}
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;tracking=false;
+    if(Math.abs(dx)<70||Math.abs(dx)<=Math.abs(dy)*1.4||dt>800)return;
+    const next=day+(dx<0?1:-1);
+    if(next<1||next>DAYS.length)return;
+    day=next;renderDetail();
+    const top=document.getElementById("detailSticky")?.offsetTop||0;
+    window.scrollTo({top,behavior:"smooth"});
+  },{passive:true});
+})();
 
 function clocks(){
  const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);
