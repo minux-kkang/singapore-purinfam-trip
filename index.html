@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.5</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>Singapore Family Trip 2026 · v18.7</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -207,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.5 · SINGLE FILE UNIFIED APP
+   v18.7 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,12 +587,53 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy b{color:#1f2937}
 .heroCopy span{font-size:12px;line-height:1.45}
 
+
+/* v18.7 · offline-first controls */
+.netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
+.onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
+.onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
+.onlineStatus{font-size:9px;color:#748690;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.offlineMapCard{border:1px solid #dbe5e9;border-radius:14px;padding:13px;background:#f8fbfc;text-align:left}
+.offlineMapCard b{display:block;font-size:12px;color:#17364f;margin-bottom:7px}
+.offlineMapRoute{font-size:10px;line-height:1.6;color:#526874;margin-bottom:10px}
+.loadMapBtn{border:1px solid #c7d8df;background:#fff;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;color:#214557}
+.heroPhotoPending{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#eef5f8,#f8fbfc);color:#5f7480;font-size:12px;text-align:center;padding:18px}
+@media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
+
+
+/* v18.7 · explicit online/offline mode */
+.netrow{gap:7px;flex-wrap:wrap}
+.networkMode{
+  display:inline-flex;align-items:center;gap:2px;padding:3px;
+  border:1px solid #cbd9df;border-radius:11px;background:#eef3f5;
+  flex:0 0 auto
+}
+.networkMode button{
+  border:0;background:transparent;color:#60727c;border-radius:8px;
+  padding:6px 9px;font-size:9px;font-weight:950;white-space:nowrap
+}
+.networkMode button.on{background:#fff;color:#17364f;box-shadow:0 1px 5px rgba(22,52,73,.12)}
+.networkMode button[data-netmode="offline"].on{background:#17364f;color:#fff}
+.onlineUpdateBtn:disabled{opacity:.45;cursor:not-allowed}
+.netmodeBadge{
+  display:inline-flex;align-items:center;border-radius:999px;padding:2px 6px;
+  font-size:8px;font-weight:950;margin-left:4px
+}
+.netmodeBadge.online{background:#e8f8ef;color:#16794a}
+.netmodeBadge.offline{background:#edf1f3;color:#455963}
+@media(max-width:620px){
+  .netrow{display:grid;grid-template-columns:auto 1fr;align-items:center}
+  .networkMode{grid-column:1}
+  .onlineUpdateBtn{grid-column:2}
+  .onlineStatus{grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.5</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.7</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -603,12 +643,12 @@ body.pamtoolopen{overflow:hidden!important}
     <div class="livebox">
       <b>🇰🇷 서울</b><br>
       <span id="krTime">--:--</span>
-      <div class="weatherline"><span id="krWeatherIcon">⛅</span><span id="krTemp" class="temp">--°</span><span id="krWeather" class="desc">불러오는 중</span></div>
+      <div class="weatherline"><span id="krWeatherIcon">⛅</span><span id="krTemp" class="temp">--°</span><span id="krWeather" class="desc">저장값 없음</span></div>
     </div>
     <div class="livebox">
       <b>🇸🇬 싱가포르</b><br>
       <span id="sgTime">--:--</span>
-      <div class="weatherline"><span id="sgWeatherIcon">⛅</span><span id="sgTemp" class="temp">--°</span><span id="sgWeather" class="desc">불러오는 중</span></div>
+      <div class="weatherline"><span id="sgWeatherIcon">⛅</span><span id="sgTemp" class="temp">--°</span><span id="sgWeather" class="desc">저장값 없음</span></div>
     </div>
     <div class="livebox fxrow">
       <span>💱</span>
@@ -617,8 +657,16 @@ body.pamtoolopen{overflow:hidden!important}
       <span class="fxarrow">↔</span>
       <input id="krwAmount" inputmode="numeric" aria-label="KRW 금액">
       <b>KRW</b>
-      <div id="fxRateInfo" class="fxrateinfo">환율 불러오는 중…</div>
+      <div id="fxRateInfo" class="fxrateinfo">저장된 환율 없음 · 임시값 사용</div>
     </div>
+  </div>
+  <div class="netrow">
+    <div class="networkMode" id="networkMode" role="group" aria-label="네트워크 모드">
+      <button type="button" data-netmode="online">🌐 온라인</button>
+      <button type="button" data-netmode="offline">📴 오프라인</button>
+    </div>
+    <button id="onlineUpdateBtn" class="onlineUpdateBtn" type="button">↻ 온라인 정보 업데이트</button>
+    <span id="onlineStatus" class="onlineStatus">네트워크 모드 확인 중</span>
   </div>
   <div id="days" class="days"></div>
 </header>
@@ -698,7 +746,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.5 · 대표 이미지를 첫 접속 시 자동 저장해 이후 오프라인에서도 다시 보이도록 확장했습니다.</div>
+  <div class="footer">v18.7 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -753,7 +801,6 @@ body.pamtoolopen{overflow:hidden!important}
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const DAYS=[
 {day:1,icon:"✈️",title:"도착",sub:"싱가포르 도착 · 호텔 체크인 · 휴식",items:[
@@ -1435,7 +1482,30 @@ function renderJournal(){
 }
 
 // Leaflet is an online enhancement. Core app still works if unavailable.
+let onlineMapAllowed=false;
 function leafletAvailable(){return typeof window.L!=="undefined";}
+function loadLeafletOnline(){
+  if(leafletAvailable()) return Promise.resolve();
+  return new Promise((resolve,reject)=>{
+    if(!document.querySelector('link[data-leaflet-online]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';link.dataset.leafletOnline='1';document.head.appendChild(link);
+    }
+    const existing=document.querySelector('script[data-leaflet-online]');
+    if(existing){existing.addEventListener('load',resolve,{once:true});existing.addEventListener('error',reject,{once:true});return;}
+    const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.dataset.leafletOnline='1';s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
+  });
+}
+function mapRouteSummary(m){return m.places.map(p=>`${p.n}. ${p.name}`).join(' → ');}
+async function enableOnlineMap(which='day'){
+  if(networkModeState!=="online"){
+    const status=document.getElementById("onlineStatus");
+    if(status)status.textContent="📴 오프라인 모드 · 온라인 지도를 쓰려면 온라인으로 전환하세요.";
+    return;
+  }
+  const btn=document.querySelector(`[data-enable-map="${which}"]`);if(btn){btn.disabled=true;btn.textContent='지도 불러오는 중…';}
+  try{await loadLeafletOnline();onlineMapAllowed=true;if(which==='detail')renderDetailMap();else renderDayMap();}
+  catch(e){if(btn){btn.disabled=false;btn.textContent='온라인 지도 다시 시도';}}
+}
 
 const DAY_MAPS={
 1:{
@@ -1593,11 +1663,13 @@ function renderDayMap(){
     <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>
     <div class="tile-error-note" style="display:none;margin-top:7px;font-size:10px;color:#9a6700">지도 타일을 불러오지 못했습니다. 네트워크 연결 후 다시 열어주세요.</div>`;
 
-  if(!leafletAvailable()){
+  if(!onlineMapAllowed){
     const mapEl=document.getElementById("leafletDayMap");
-    if(mapEl)mapEl.innerHTML='<div class="offlinemap">🗺️ 일정과 장소는 오프라인에서도 확인할 수 있습니다.<br>실제 지도 배경은 인터넷 연결 시 표시됩니다.</div>';
+    if(mapEl)mapEl.innerHTML=`<div class="offlineMapCard"><b>🗺️ 오프라인 경로 요약</b><div class="offlineMapRoute">${esc(mapRouteSummary(m))}</div><button class="loadMapBtn" type="button" data-enable-map="day">온라인 지도 불러오기</button></div>`;
+    mapEl?.querySelector('[data-enable-map="day"]')?.addEventListener('click',()=>enableOnlineMap('day'));
     return;
   }
+  if(!leafletAvailable()){return;}
   dayMap=L.map("leafletDayMap",{
     zoomControl:true,
     scrollWheelZoom:false,
@@ -1748,19 +1820,19 @@ function closeDeep(){
 
 
 const PLACE_IMAGE_LIBRARY={
-  merlion:{key:"merlion",name:"Merlion Park",file:"Merlion (4071283426).jpg",alt:"Merlion Park, Singapore"},
-  marina:{key:"marina",name:"Marina Bay Sands",file:"2011-12-17 Singapore 05.JPG",alt:"Marina Bay Sands, Singapore"},
-  gardens:{key:"gardens",name:"Gardens by the Bay",file:"At Singapore 2023 132.jpg",alt:"Gardens by the Bay, Singapore"},
+  merlion:{key:"merlion",name:"Merlion Park",file:"Marina Bay Sands and Merlion.jpg",alt:"Merlion Park, Singapore"},
+  marina:{key:"marina",name:"Marina Bay Sands",file:"Marina Bay Sands View from Merlion Park 20160716.jpg",alt:"Marina Bay Sands, Singapore"},
+  gardens:{key:"gardens",name:"Gardens by the Bay",file:"Supertrees at Night.jpg",alt:"Gardens by the Bay, Singapore"},
   uss:{key:"uss",name:"Universal Studios Singapore",file:"Universal Studios Singapore Gate.jpg",alt:"Universal Studios Singapore"},
-  fort:{key:"fort",name:"Fort Canning Park",file:"Fort Canning Park 09-11-2023(30).jpg",alt:"Fort Canning Park, Singapore"},
-  museum:{key:"museum",name:"National Museum of Singapore",file:"At National Museum of Singapore 2023 003.jpg",alt:"National Museum of Singapore"},
+  fort:{key:"fort",name:"Fort Canning Park",file:"Tree Tunnel in Fort Canning Park.jpg",alt:"Fort Canning Park, Singapore"},
+  museum:{key:"museum",name:"National Museum of Singapore",file:"National Museum Singapore.jpg",alt:"National Museum of Singapore"},
   chinatown:{key:"chinatown",name:"Chinatown",file:"2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg",alt:"Chinatown, Singapore"},
-  clarke:{key:"clarke",name:"Clarke Quay",file:"Clarke Quay 09-11-2023(1).jpg",alt:"Clarke Quay, Singapore"},
-  littleindia:{key:"littleindia",name:"Little India",file:"Campbell Lane, Singapore.jpg",alt:"Little India, Singapore"},
-  kampong:{key:"kampong",name:"Kampong Glam",file:"Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg",alt:"Kampong Glam, Singapore"},
-  jewel:{key:"jewel",name:"Jewel Changi",file:"Jewel Mall - Near.Singapore.Terminal 1.jpg",alt:"Jewel Changi Airport"},
+  clarke:{key:"clarke",name:"Clarke Quay",file:"Clarke quay night z.JPG",alt:"Clarke Quay, Singapore"},
+  littleindia:{key:"littleindia",name:"Little India",file:"Wikimania 2023-Singapore today-Little India-02578.jpg",alt:"Little India, Singapore"},
+  kampong:{key:"kampong",name:"Kampong Glam",file:"The Sultan Mosque at Kampong Glam, Singapore (8125148933).jpg",alt:"Kampong Glam, Singapore"},
+  jewel:{key:"jewel",name:"Jewel Changi",file:"Rain Vortex Jewel Changi Airport.jpg",alt:"Jewel Changi Airport"},
   sentosa:{key:"sentosa",name:"Sentosa",file:"2016-04-04 Beach at Sentosa with ships.jpg",alt:"Sentosa, Singapore"},
-  siloso:{key:"siloso",name:"Siloso Beach",file:"Siloso Beach 20.JPG",alt:"Siloso Beach, Sentosa"},
+  siloso:{key:"siloso",name:"Siloso Beach",file:"Siloso Beach.jpg",alt:"Siloso Beach, Sentosa"},
   oceanarium:{key:"oceanarium",name:"Singapore Oceanarium",file:"Singapore Oceanarium.jpg",alt:"Singapore Oceanarium"},
   changi:{key:"changi",name:"Changi Airport",file:"Changi Airport Wonderfall.jpg",alt:"Changi Airport, Singapore"}
 };
@@ -1773,7 +1845,7 @@ function getCachedRepresentativeSrc(key){
   try{return localStorage.getItem(imageStorageKey(key))||"";}catch(e){return "";}
 }
 function heroSrcFor(meta){
-  return getCachedRepresentativeSrc(meta.key)||meta.remote;
+  return getCachedRepresentativeSrc(meta.key)||"";
 }
 function fileToDataUrl(file){
   return new Promise((resolve,reject)=>{
@@ -1859,8 +1931,8 @@ function itemImageHtml(sel){
   if(!meta){
     return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
   }
-  const cached=!!getCachedRepresentativeSrc(meta.key);
-  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${heroSrcFor(meta)}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"첫 접속 시 자동 저장"}</span></div></section>`;
+  const src=heroSrcFor(meta),cached=!!src;
+  return `<section class="heroCard">${cached?`<img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager">`:`<div class="heroPhotoPending">🖼️ ${esc(meta.name)}<br><small>상단 ‘온라인 정보 업데이트’를 누르면 대표사진을 저장합니다.</small></div>`}<div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"미다운로드"}</span></div></section>`;
 }
 
 function openItem(i){
@@ -2015,11 +2087,13 @@ function renderDetailMap(){
       <span><i class="taxiline"></i>Grab/차량</span>
       <span><i class="optionline"></i>OPTION</span>
     </div>`;
-  if(!leafletAvailable()){
+  if(!onlineMapAllowed){
     const mapEl=document.getElementById("leafletDetailMap");
-    if(mapEl)mapEl.innerHTML='<div class="offlinemap">🗺️ 오프라인에서는 지도 타일을 표시하지 않습니다.<br>일정 내용과 장소 정보는 그대로 사용할 수 있습니다.</div>';
+    if(mapEl)mapEl.innerHTML=`<div class="offlineMapCard"><b>🗺️ 오프라인 경로 요약</b><div class="offlineMapRoute">${esc(mapRouteSummary(m))}</div><button class="loadMapBtn" type="button" data-enable-map="detail">온라인 지도 불러오기</button></div>`;
+    mapEl?.querySelector('[data-enable-map="detail"]')?.addEventListener('click',()=>enableOnlineMap('detail'));
     return;
   }
+  if(!leafletAvailable()){return;}
   if(detailMap){detailMap.remove();detailMap=null;}
   detailMap=L.map("leafletDetailMap",{zoomControl:true,scrollWheelZoom:false,touchZoom:true,dragging:true});
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
@@ -2197,6 +2271,63 @@ function closePamTool(){
   },{passive:true});
 })();
 
+
+const NETWORK_MODE_KEY="sg_trip_network_mode_v18_7";
+// 개발/출발 전 기본값. 최종 배포 직전 "offline"으로 바꾸면 된다.
+const DEFAULT_NETWORK_MODE="online";
+let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
+
+function updateNetworkModeUI(){
+  const online=networkModeState==="online";
+  document.querySelectorAll("[data-netmode]").forEach(b=>b.classList.toggle("on",b.dataset.netmode===networkModeState));
+  const updateBtn=document.getElementById("onlineUpdateBtn");
+  if(updateBtn)updateBtn.disabled=!online;
+  const status=document.getElementById("onlineStatus");
+  if(status){
+    status.innerHTML=online
+      ? `🌐 온라인 모드 <span class="netmodeBadge online">AUTO</span> · 날씨/환율 자동 갱신 · 지도는 필요할 때 로드`
+      : `📴 오프라인 모드 <span class="netmodeBadge offline">DATA SAVE</span> · 저장된 날씨/환율/이미지만 사용`;
+  }
+}
+function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
+  if(!["online","offline"].includes(mode))return;
+  networkModeState=mode;
+  if(persist)localStorage.setItem(NETWORK_MODE_KEY,mode);
+  if(mode==="offline"){
+    onlineMapAllowed=false;
+    try{if(dayMap){dayMap.off();dayMap.remove();dayMap=null}}catch(e){}
+    try{if(detailMap){detailMap.off();detailMap.remove();detailMap=null}}catch(e){}
+    renderDayMap();
+    if(typeof renderDetailMap==="function")renderDetailMap();
+  }
+  updateNetworkModeUI();
+  if(mode==="online"&&autoUpdate)updateOnlineInfo();
+}
+document.getElementById("networkMode")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-netmode]");if(!b)return;
+  setNetworkMode(b.dataset.netmode);
+});
+
+function loadCachedLiveInfo(){
+  for(const [key,tempId,textId,iconId] of [["seoul","krTemp","krWeather","krWeatherIcon"],["singapore","sgTemp","sgWeather","sgWeatherIcon"]]){
+    try{const cached=JSON.parse(localStorage.getItem("pamphlet_weather_"+key)||"null");if(cached)paintWeather(cached,tempId,textId,iconId,true);}catch(e){}
+  }
+  try{const cached=JSON.parse(localStorage.getItem("pamphlet_fx_sgd_krw")||"null");if(cached?.rate){fxRate=Number(cached.rate);fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · 저장된 환율`;fromSGD();}}catch(e){}
+}
+async function updateOnlineInfo(){
+  const btn=document.getElementById("onlineUpdateBtn"),status=document.getElementById("onlineStatus");
+  if(networkModeState!=="online"){
+    if(status)status.textContent="📴 오프라인 모드 · 온라인으로 전환하면 업데이트할 수 있습니다.";
+    return;
+  }
+  btn?.classList.add('busy');if(btn)btn.textContent='업데이트 중…';if(status)status.textContent='날씨 · 환율 · 대표이미지 업데이트 중';
+  try{
+    await Promise.all([loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon"),loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon"),loadFx()]);
+    await warmRepresentativeImages();
+    refreshRepresentativeImages();
+    if(status)status.textContent=`업데이트 완료 · ${new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date())}`;
+  }finally{if(btn){btn.classList.remove('busy');btn.textContent='↻ 온라인 정보 업데이트';}}
+}
 function clocks(){
  const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);
  document.getElementById("krTime").textContent=f("Asia/Seoul");
@@ -2293,13 +2424,13 @@ async function loadFx(){
 
 clocks();
 setInterval(clocks,60000);
-loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon");
-loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon");
-loadFx();
+loadCachedLiveInfo();
+document.getElementById("onlineUpdateBtn")?.addEventListener("click",updateOnlineInfo);
 render();
 setDetailMode(detailMode,false);
 setView(currentView,false);
-setTimeout(()=>{warmRepresentativeImages().then(refreshRepresentativeImages);},1200);
+updateNetworkModeUI();
+if(networkModeState==="online")setTimeout(updateOnlineInfo,700);
 </script>
 </body>
 </html>
