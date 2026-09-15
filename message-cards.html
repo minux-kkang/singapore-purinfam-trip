@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Singapore Family Trip · 메시지 카드</title>
+<link rel="stylesheet" href="./assets/css/message-cards.css">
+</head>
+<body>
+<main class="mc-wrap">
+  <div class="mc-top">
+    <div class="mc-titlebar">
+      <div>
+        <div class="mc-title">💬 메시지 카드</div>
+        <div class="mc-sub">영어 학습이 아니라, 현장에서 화면을 그대로 보여주는 커뮤니케이션 도구</div>
+      </div>
+      <a class="mc-back" href="./index.html">← 여행 앱</a>
+    </div>
+    <div class="mc-search">
+      <input id="mcSearch" type="search" placeholder="상황 검색 · 예: 체크인, 아이, 예약, 택시">
+    </div>
+    <div id="mcCats" class="mc-cats"></div>
+  </div>
+
+  <div class="mc-section-title">카드를 누르거나 ‘크게 보기’를 선택하세요.</div>
+  <section id="mcGrid" class="mc-grid"></section>
+</main>
+
+<section id="mcPresent" class="mc-present" aria-hidden="true">
+  <div class="mc-present-head">
+    <div id="mcPresentTitle" class="mc-present-title"></div>
+    <button id="mcClose" class="mc-present-close" type="button">×</button>
+  </div>
+  <div class="mc-present-body">
+    <div id="mcPresentEn" class="mc-present-en"></div>
+    <div id="mcPresentKo" class="mc-present-ko"></div>
+  </div>
+  <div class="mc-present-actions">
+    <button id="mcPresentCopy" type="button">📋 복사</button>
+    <button id="mcPresentTts" class="tts" type="button">🔊 읽기</button>
+    <button id="mcPresentFull" type="button">⛶ 전체화면</button>
+  </div>
+</section>
+
+<div id="mcToast" class="mc-toast"></div>
+
+<script src="./assets/js/trip-data.js"></script>
+<script src="./assets/js/message-cards.js"></script>
+</body>
+</html>
