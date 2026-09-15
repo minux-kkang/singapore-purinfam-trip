@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v09</title>
+<title>Singapore Family Trip · Pamphlet v11</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -30,7 +30,38 @@ body{padding-bottom:80px}
 .timeline{display:grid;gap:9px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 19px;gap:10px;align-items:center;box-shadow:0 4px 14px rgba(23,54,79,.035);cursor:pointer}
 .time{background:var(--mint);color:var(--mintInk);border-radius:999px;padding:8px 5px;text-align:center;font-size:12px;font-weight:950;line-height:1.15}
 .title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.35px;word-break:keep-all}.arrow{font-size:23px;color:#a5b0b7}
+
+.daymapwrap{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
+.daymaphead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
+.daymaphead b{font-size:13px;color:var(--ink)}.daymaphead small{font-size:10px;color:#87959e;text-align:right}
+.daymap{width:100%;aspect-ratio:1.38/1;border-radius:14px;background:#f8fbfd;overflow:hidden;border:1px solid #e4ecef}
+.daymap svg{width:100%;height:100%;display:block}
+.map-water{fill:#e9f7ff}
+.map-land{fill:#fbfcfd}
+.map-park{fill:#edf7ef}
+.map-island{fill:#f8fbfc;stroke:#d6e1e6;stroke-width:1.5}
+.map-river{fill:none;stroke:#cfe8f6;stroke-width:18;stroke-linecap:round;stroke-linejoin:round}
+.map-bay{fill:#e6f5ff;stroke:#d3eaf5;stroke-width:2}
+.map-road{fill:none;stroke:#d3dde3;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.map-road.minor{stroke-width:4;opacity:.7}
+.map-line{fill:none;stroke:#adbfc9;stroke-width:2.2;stroke-dasharray:3 5}
+.map-route{fill:none;stroke:#17364f;stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+.map-route.walk{stroke-dasharray:4 5;stroke-width:3.1}
+.map-route.mrt{stroke-width:5.3}
+.map-route.taxi{stroke-dasharray:10 7}
+.map-route.option{stroke:#8ba0ad;stroke-dasharray:6 6}
+.map-label{font-size:10.6px;font-weight:850;fill:#284050}
+.map-small{font-size:8.8px;fill:#7e8d96}
+.map-line-label{font-size:8.4px;font-weight:700;fill:#315b8a}
+.pin circle{fill:#17364f;stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-size:10px;font-weight:950;text-anchor:middle;dominant-baseline:middle}
+.pin.hotel circle{fill:#0b7d73}
+.maplegend{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:10px;color:#6f808b}
+.maplegend span{display:flex;align-items:center;gap:4px}.maplegend i{display:inline-block;width:20px;height:0;border-top:3px solid #17364f}
+.maplegend i.walk{border-top-style:dashed;border-top-width:2px}.maplegend i.taxi{border-top-style:dashed}.maplegend i.option{border-top-color:#8ba0ad;border-top-style:dashed}
+.mapnote{margin-top:7px;font-size:10px;color:#819099}
 .footer{text-align:center;font-size:11px;color:#98a4ab;padding:18px 0}
+
 .backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:50;transition:.2s}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-radius:24px 24px 0 0;max-height:88dvh;transform:translateY(105%);transition:.22s;display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
 body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:translateY(0)}
@@ -41,31 +72,16 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .section h3{font-size:13px;margin:0 0 8px;color:#17364f}.route{background:#f7fbfc;border:1px solid #dde9ed;border-radius:14px;padding:12px}
 .route-line{display:grid;gap:7px}.stop{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;align-items:start}.dot{width:24px;height:24px;border-radius:50%;background:#17364f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}.stop b{display:block}.stop small{display:block;color:#7a8a94;margin-top:2px}
 .connector{width:2px;height:18px;background:#b9c8cf;margin-left:11px}
-.quickgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.quick{background:#f6f8f9;border-radius:12px;padding:10px}.quick b{display:block;font-size:11px}.quick span{font-size:12px;color:#596b76}
 .checklist{display:grid;gap:7px}.check{background:#fffaf3;border:1px solid #f1dfc8;border-radius:12px;padding:9px 10px;font-size:12px}
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.actions button,.actions a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:11px 8px;text-align:center;text-decoration:none;font-weight:900;font-size:12px}.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .detailsbox{background:#f7f8fa;border-radius:12px;padding:11px;font-size:12px}.memo{width:100%;min-height:120px;border:1px solid #d5e0e5;border-radius:12px;padding:11px;font:inherit}
 @media(min-width:700px){.timeline{grid-template-columns:1fr 1fr}}
-
-.daymapwrap{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
-.daymaphead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:9px}
-.daymaphead b{font-size:13px;color:var(--ink)}.daymaphead small{font-size:10px;color:#87959e;text-align:right}
-.daymap{width:100%;aspect-ratio:1.55/1;border-radius:14px;background:linear-gradient(180deg,#f8fbfc,#f4f8fa);overflow:hidden;border:1px solid #e4ecef}
-.daymap svg{width:100%;height:100%;display:block}.maplabel{font-size:11px;font-weight:850;fill:#2c4253}
-.maproad{fill:none;stroke:#b7c7cf;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;opacity:.42}
-.maproute{fill:none;stroke:#17364f;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.maproute.walk{stroke-dasharray:4 5;stroke-width:3}
-.maproute.mrt{stroke-width:5}.maproute.taxi{stroke-dasharray:10 6}.maproute.option{stroke:#8ba0ad;stroke-dasharray:5 6}
-.pin circle{fill:#17364f;stroke:#fff;stroke-width:3}.pin text{fill:#fff;font-size:10px;font-weight:950;text-anchor:middle;dominant-baseline:middle}
-.maplegend{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:10px;color:#6f808b}.maplegend span{display:flex;align-items:center;gap:4px}
-.maplegend i{display:inline-block;width:20px;height:0;border-top:3px solid #17364f}.maplegend i.walk{border-top-style:dashed;border-top-width:2px}.maplegend i.taxi{border-top-style:dashed}.maplegend i.option{border-top-color:#8ba0ad;border-top-style:dashed}
-.mapnote{margin-top:7px;font-size:10px;color:#819099}
-
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v09</small></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v11</small></div>
     <a class="practical" href="./index.html">🛠 실전 화면</a>
   </div>
   <div class="livebar">
@@ -133,40 +149,190 @@ const DAYS=[
 {time:"22:00",title:"KE644 출발",detail:"싱가포르 → 인천 귀국편.",route:[["🛫","SIN","22:00"],["✈️","KE644","귀국"]],see:["탑승권·Gate 안내 최우선"]}]}
 ];
 
+const DAY_MAPS={
+1:{
+ title:"DAY 1 ROUTE MAP", subtitle:"Incheon → Changi → Orchard",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-water"/>
+  <path d="M390 110 C465 92 553 128 592 197 C622 253 613 327 547 366 C484 403 381 392 334 329 C283 260 297 170 390 110Z" class="map-land"/>
+  <path d="M425 148 C482 135 540 165 561 214 C583 266 559 325 510 351 C461 376 390 368 357 324 C327 284 329 225 356 188 C373 166 395 154 425 148Z" class="map-road" opacity=".25"/>
+  <path d="M0 90 C120 75 205 65 270 95 C320 118 325 158 310 210 C286 289 201 332 78 328 L0 328 Z" class="map-land"/>
+  <path d="M418 175 L455 160" class="map-road minor"/><path d="M408 196 L443 182" class="map-road minor"/>
+ `,
+ roads:[
+  "M 58 205 C 144 176 225 160 298 175",
+  "M 502 220 C 485 248 468 276 449 304",
+  "M 450 304 C 445 319 437 330 430 340"
+ ],
+ routes:[
+  ["mrt","M 60 205 C 148 175 232 162 300 176"],
+  ["taxi","M 502 220 C 486 247 470 276 452 304 C 445 317 437 329 430 340"]
+ ],
+ labels:[
+  ["Incheon Airport",36,196],["Flight KE643",188,160],["Changi Airport",474,210],["Orchard",408,353],["Marriott",448,347],["Singapore Island",394,110,"small"]
+ ],
+ pins:[[1,60,205],[2,502,220],[3,430,340,"hotel"]]
+},
+2:{
+ title:"DAY 2 ROUTE MAP", subtitle:"Orchard → Merlion → Esplanade → MBS → Gardens",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-land"/>
+  <path d="M0 0 H640 V430 H0 Z" class="map-land"/>
+  <path d="M295 168 C347 147 414 148 455 181 C489 208 494 242 471 264 C441 294 375 312 306 307 C242 302 190 279 177 242 C166 208 211 181 295 168Z" class="map-bay"/>
+  <path d="M144 88 C206 86 249 111 266 143" class="map-road"/>
+  <path d="M266 143 C276 160 283 176 289 194" class="map-road"/>
+  <path d="M289 194 C305 187 321 184 337 184 C354 184 368 188 380 195" class="map-road"/>
+  <path d="M380 195 C394 200 412 200 430 195 C452 188 466 182 483 176" class="map-road"/>
+  <path d="M430 195 C425 219 421 242 419 262" class="map-road"/>
+  <path d="M419 262 C452 279 493 293 529 306" class="map-road"/>
+  <path d="M468 169 C492 175 515 187 540 207" class="map-road minor"/>
+  <path d="M535 208 C548 229 553 252 551 278" class="map-road minor"/>
+  <text x="100" y="98" class="map-line-label">NS LINE</text>
+  <text x="500" y="200" class="map-line-label">Bayfront</text>
+ `,
+ roads:[],
+ routes:[
+  ["mrt","M 150 96 C 208 95 247 120 266 143"],
+  ["walk","M 266 143 C 274 157 282 176 289 194 C 310 185 330 181 350 184 C 360 185 370 189 380 195 C 400 202 425 198 483 176"],
+  ["walk","M 483 176 C 456 194 434 223 419 262"],
+  ["walk","M 419 262 C 450 280 488 294 529 306"],
+  ["walk","M 529 306 C 537 291 542 274 544 254"]
+ ],
+ labels:[
+  ["Orchard",130,90],["Raffles Place",250,148],["Merlion",278,211],["Esplanade",372,208],["Flyer",490,170],["MBS",398,282],["Gardens",522,322],["Supertree",541,251]
+ ],
+ pins:[[1,278,211],[2,372,208],[3,398,282],[4,522,322],[5,541,251]]
+},
+3:{
+ title:"DAY 3 ROUTE MAP", subtitle:"HarbourFront → VivoCity → Sentosa Express → USS → Option",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-water"/>
+  <path d="M0 0 H640 V170 C610 173 582 176 550 180 C462 190 386 199 310 200 C221 201 145 195 70 181 C47 177 24 174 0 172 Z" class="map-land"/>
+  <path d="M270 232 C316 225 369 230 422 249 C478 269 528 300 566 334 C585 351 587 375 565 389 C536 407 472 408 403 392 C315 371 237 329 203 287 C181 261 207 241 270 232Z" class="map-island"/>
+  <path d="M235 190 C254 202 268 216 280 232" class="map-road"/>
+  <path d="M297 244 C330 249 359 255 385 267" class="map-road"/>
+  <path d="M405 275 C447 296 476 314 509 343" class="map-road"/>
+  <path d="M509 343 C527 337 540 329 554 318" class="map-road minor"/>
+  <text x="145" y="179" class="map-line-label">NE / CC LINE</text>
+  <text x="282" y="218" class="map-line-label">Sentosa Express</text>
+ `,
+ roads:[],
+ routes:[
+  ["mrt","M 110 170 C 170 178 215 183 235 190"],
+  ["walk","M 235 190 C 253 202 267 216 280 232"],
+  ["mrt","M 280 232 C 310 246 347 256 385 267"],
+  ["option","M 385 267 C 431 287 475 313 509 343 C 526 337 542 329 554 318"]
+ ],
+ labels:[
+  ["HarbourFront",85,166],["VivoCity",235,209],["USS",382,286],["Oceanarium",445,300],["Luge",507,353],["Siloso",555,314]
+ ],
+ pins:[[1,235,209],[2,382,286],[3,445,300],[4,507,353],[5,555,314]]
+},
+4:{
+ title:"DAY 4 ROUTE MAP", subtitle:"Fort Canning → Chinatown → Hotel → Clarke Quay → JUMBO",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-land"/>
+  <path d="M137 35 C188 35 221 60 237 94 C250 121 243 154 220 173 C190 197 135 201 94 183 C53 164 28 126 42 88 C57 51 95 35 137 35Z" class="map-park"/>
+  <path d="M195 159 C257 160 315 188 354 232 C376 256 387 285 391 315" class="map-river"/>
+  <path d="M170 93 C205 102 234 113 267 135" class="map-road"/>
+  <path d="M267 135 C293 152 317 173 337 197" class="map-road"/>
+  <path d="M337 197 C307 212 289 228 280 248" class="map-road"/>
+  <path d="M280 248 C237 271 186 289 134 304" class="map-road"/>
+  <path d="M280 248 C314 269 345 293 372 320" class="map-road"/>
+  <path d="M372 320 C390 327 409 331 430 333" class="map-road"/>
+  <path d="M350 210 C378 212 406 219 431 231" class="map-road minor"/>
+  <text x="88" y="55" class="map-line-label">Fort Canning Park</text>
+  <text x="323" y="188" class="map-line-label">Singapore River</text>
+  <text x="123" y="291" class="map-line-label">TE LINE</text>
+ `,
+ roads:[],
+ routes:[
+  ["walk","M 171 96 C 207 105 237 117 267 135 C 291 152 314 172 337 197"],
+  ["taxi","M 337 197 C 309 212 290 227 280 248"],
+  ["mrt","M 280 248 C 239 272 188 290 134 304"],
+  ["taxi","M 134 304 C 202 298 284 302 372 320"],
+  ["walk","M 372 320 C 390 327 408 331 430 333"]
+ ],
+ labels:[
+  ["Fort Canning",156,90],["Museum/CHIJMES",332,194],["Chinatown",271,263],["Hotel",110,320],["Clarke Quay",355,329],["JUMBO",423,348]
+ ],
+ pins:[[1,171,96],[2,332,194],[3,271,263],[4,110,320,"hotel"],[5,355,329],[6,423,348]]
+},
+5:{
+ title:"DAY 5 ROUTE MAP", subtitle:"Sentosa EASY · 옵션은 점선",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-water"/>
+  <path d="M0 0 H640 V175 C607 179 572 182 540 184 C458 188 391 193 316 195 C223 198 140 190 65 180 C42 177 22 175 0 173 Z" class="map-land"/>
+  <path d="M224 236 C278 220 342 223 408 241 C486 263 556 305 589 350 C602 368 595 387 575 398 C538 420 454 414 362 390 C269 366 190 321 164 280 C147 253 169 239 224 236Z" class="map-island"/>
+  <path d="M132 181 C179 193 214 206 240 222" class="map-road"/>
+  <path d="M260 233 C291 236 321 240 350 247" class="map-road"/>
+  <path d="M350 247 C392 261 433 282 470 310" class="map-road"/>
+  <path d="M470 310 C498 322 524 329 548 323" class="map-road"/>
+  <path d="M548 323 C558 312 565 302 572 291" class="map-road minor"/>
+  <text x="142" y="172" class="map-line-label">Sentosa Express</text>
+ `,
+ roads:[],
+ routes:[
+  ["mrt","M 120 182 C 170 192 210 206 240 222"],
+  ["walk","M 240 222 C 275 232 312 239 350 247"],
+  ["option","M 350 247 C 392 261 433 282 470 310"],
+  ["walk","M 470 310 C 498 322 524 329 548 323 C 558 312 565 302 572 291"]
+ ],
+ labels:[
+  ["Sentosa",225,214],["Oceanarium",342,236],["Luge",469,314],["Siloso",539,336],["Wings",579,286]
+ ],
+ pins:[[1,225,214],[2,342,236],[3,469,314],[4,539,336],[5,579,286]]
+},
+6:{
+ title:"DAY 6 ROUTE MAP", subtitle:"Little India → Kampong Glam → Hotel → Jewel → Gate",
+ bg:`
+  <rect x="0" y="0" width="640" height="430" class="map-land"/>
+  <path d="M146 75 C194 72 236 88 273 115 C287 125 298 138 307 154" class="map-road"/>
+  <path d="M307 154 C283 189 253 220 218 248 C191 270 160 289 123 307" class="map-road"/>
+  <path d="M123 307 C208 312 300 313 392 309 C442 307 485 304 528 299" class="map-road"/>
+  <path d="M528 299 C543 291 554 283 563 270" class="map-road"/>
+  <path d="M563 270 C575 276 586 284 597 295" class="map-road minor"/>
+  <path d="M120 63 C154 55 189 56 224 68" class="map-road minor"/>
+  <text x="136" y="63" class="map-line-label">Little India</text>
+  <text x="532" y="287" class="map-line-label">Changi Airport</text>
+ `,
+ roads:[],
+ routes:[
+  ["taxi","M 146 75 C 194 72 236 88 273 115 C 287 125 298 138 307 154"],
+  ["taxi","M 307 154 C 283 189 253 220 218 248 C 191 270 160 289 123 307"],
+  ["taxi","M 123 307 C 208 312 300 313 392 309 C 442 307 485 304 528 299"],
+  ["walk","M 528 299 C 543 291 554 283 563 270 C 575 276 586 284 597 295"]
+ ],
+ labels:[
+  ["Little India",123,71],["Kampong Glam",271,109],["Hotel",96,320],["Jewel",553,267],["Gate",597,310]
+ ],
+ pins:[[1,123,71],[2,271,109],[3,96,320,"hotel"],[4,553,267],[5,597,310]]
+}
+};
+
 let day=1,sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 function current(){return DAYS.find(x=>x.day===day)}
-
-const DAY_MAPS={
-1:{title:"DAY 1 전체 이동",subtitle:"집 → ICN → Changi → Hotel",roads:["M 55 110 C 130 80 215 90 300 120","M 485 165 C 450 215 425 270 400 315"],routes:[["mrt","M 75 110 C 185 85 330 95 485 165"],["taxi","M 485 165 C 455 215 425 270 400 315"]],labels:[["ICN",85,95],["Changi",485,145],["Hotel",390,340]],pins:[[1,75,110],[2,485,165],[3,400,315]]},
-2:{title:"DAY 2 전체 동선",subtitle:"Orchard → Marina Bay → Gardens",roads:["M 85 320 C 170 300 245 255 315 235 C 390 220 455 245 520 315","M 315 235 C 345 275 380 292 410 300"],routes:[["mrt","M 85 320 C 145 300 200 275 245 252"],["walk","M 245 252 C 280 238 300 235 315 235 C 350 232 370 233 385 235 C 420 230 440 220 455 215"],["walk","M 455 215 C 445 250 430 280 410 300 C 455 307 490 316 505 320 C 520 315 535 300 540 285"]],labels:[["Orchard",70,345],["Merlion",300,220],["Esplanade",370,220],["Flyer",445,195],["MBS",395,325],["Gardens",490,345],["Supertree",530,270]],pins:[[1,315,235],[2,385,235],[3,410,300],[4,505,320],[5,540,285]]},
-3:{title:"DAY 3 전체 동선",subtitle:"Orchard → VivoCity → USS → Sentosa Option",roads:["M 100 95 C 160 130 205 170 250 210 C 280 235 330 255 380 270","M 380 270 C 430 258 470 278 540 325"],routes:[["mrt","M 100 95 C 160 130 205 170 250 210"],["walk","M 250 210 C 265 220 272 230 280 235"],["mrt","M 280 235 C 315 250 350 260 380 270"],["option","M 380 270 C 430 258 470 278 540 325"]],labels:[["Orchard",85,80],["VivoCity",250,235],["USS",365,255],["Oceanarium",410,240],["Luge",475,295],["Siloso",525,350]],pins:[[1,280,235],[2,380,270],[3,430,255],[4,500,300],[5,545,325]]},
-4:{title:"DAY 4 전체 동선",subtitle:"Old Singapore → Chinatown → Hotel → Clarke Quay → JUMBO",roads:["M 180 95 C 225 95 270 105 315 125 C 330 170 325 215 320 245 C 335 255 350 265 360 270","M 360 270 C 300 295 220 320 95 320","M 95 320 C 170 318 245 322 320 325 C 350 323 380 322 405 320"],routes:[["walk","M 180 95 C 225 95 270 105 315 125"],["taxi","M 315 125 C 330 170 325 215 320 245"],["mrt","M 320 245 C 270 275 210 305 95 320"],["taxi","M 95 320 C 170 318 245 322 320 325"],["walk","M 320 325 C 350 323 380 322 405 320"]],labels:[["Fort Canning",155,80],["Civic",300,110],["Chinatown",300,230],["Hotel",70,345],["Clarke Quay",290,350],["JUMBO",390,345]],pins:[[1,180,95],[2,315,125],[3,320,245],[4,95,320],[5,320,325],[6,405,320]]},
-5:{title:"DAY 5 전체 동선",subtitle:"Sentosa EASY · 옵션은 점선",roads:["M 120 180 C 175 195 215 210 250 220 C 280 215 305 212 325 210","M 325 210 C 360 225 395 250 430 275 C 455 290 480 300 500 300 C 515 290 525 280 535 270"],routes:[["mrt","M 120 180 C 175 195 215 210 250 220"],["walk","M 250 220 C 275 215 305 212 325 210"],["option","M 325 210 C 360 225 395 250 430 275"],["walk","M 430 275 C 455 290 480 300 500 300 C 515 290 525 280 535 270"]],labels:[["HarbourFront",95,165],["Sentosa",220,210],["Oceanarium",300,195],["Luge",405,260],["Siloso",475,325],["Wings",520,250]],pins:[[1,250,220],[2,325,210],[3,430,275],[4,500,300],[5,535,270]]},
-6:{title:"DAY 6 전체 동선",subtitle:"Little India → Kampong Glam → Hotel → Jewel → Gate",roads:["M 150 115 C 205 115 245 120 285 125 C 300 135 312 145 320 150","M 320 150 C 245 200 170 250 100 285","M 100 285 C 220 300 350 300 470 285 C 485 278 495 268 500 260 C 520 270 540 286 555 300"],routes:[["taxi","M 150 115 C 205 115 245 120 285 125 C 300 135 312 145 320 150"],["taxi","M 320 150 C 245 200 170 250 100 285"],["taxi","M 100 285 C 220 300 350 300 470 285"],["walk","M 470 285 C 485 278 495 268 500 260 C 520 270 540 286 555 300"]],labels:[["Little India",120,100],["Kampong Glam",250,110],["Bugis",300,170],["Hotel",75,310],["Jewel",475,245],["Gate",540,330]],pins:[[1,150,115],[2,285,125],[3,100,285],[4,500,260],[5,555,300]]}
-};
-
-function renderDayMap(){
- const m=DAY_MAPS[day]; if(!m){dayMapWrap.innerHTML="";return;}
- const roads=m.roads.map(d=>`<path d="${d}" class="maproad"/>`).join("");
- const routes=m.routes.map(r=>`<path d="${r[1]}" class="maproute ${r[0]}"/>`).join("");
- const labels=m.labels.map(l=>`<text x="${l[1]}" y="${l[2]}" class="maplabel">${esc(l[0])}</text>`).join("");
- const pins=m.pins.map(p=>`<g class="pin" data-pin="${p[0]}" transform="translate(${p[1]} ${p[2]})"><circle r="14"></circle><text x="0" y="1">${p[0]}</text></g>`).join("");
- dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
- <div class="daymap"><svg viewBox="0 0 640 410" preserveAspectRatio="xMidYMid meet">
- <path d="M 0 350 C 130 330 250 360 390 350 C 500 340 570 360 640 345 L640 410 L0 410 Z" fill="#eaf4f6"/>
- ${roads}${routes}${labels}${pins}</svg></div>
- <div class="maplegend"><span><i></i> 주요 이동</span><span><i class="walk"></i> 도보</span><span><i class="taxi"></i> Grab/택시</span><span><i class="option"></i> OPTION</span></div>
- <div class="mapnote">핀 번호는 위 일정 번호와 연결됩니다. 실제 도로/이동 흐름이 연상되도록 단순화한 오프라인 지도입니다.</div>`;
- dayMapWrap.querySelectorAll(".pin").forEach(pin=>pin.onclick=()=>{const idx=+pin.dataset.pin-1;if(current().items[idx])openItem(idx)});
-}
 function render(){
  const d=current();
  daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}</button>`).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div><div class="heroday">DAY ${d.day}</div><div class="herotitle">${esc(d.title)}</div><div class="herosub">${esc(d.sub)}</div>`;
  timeline.innerHTML=d.items.map((x,i)=>`<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="title">${esc(x.title)}</div><div class="arrow">›</div></article>`).join("");
  renderDayMap();
+}
+function renderDayMap(){
+ const m=DAY_MAPS[day];
+ if(!m){dayMapWrap.innerHTML="";return;}
+ const roads=(m.roads||[]).map(d=>`<path d="${d}" class="map-road"/>`).join("");
+ const routes=(m.routes||[]).map(r=>`<path d="${r[1]}" class="map-route ${r[0]}"/>`).join("");
+ const labels=(m.labels||[]).map(l=>`<text x="${l[1]}" y="${l[2]}" class="${l[3]==='small'?'map-small':'map-label'}">${esc(l[0])}</text>`).join("");
+ const pins=(m.pins||[]).map(p=>`<g class="pin ${p[3]==='hotel'?'hotel':''}" data-pin="${p[0]}" transform="translate(${p[1]} ${p[2]})"><circle r="14"></circle><text x="0" y="1">${p[0]}</text></g>`).join("");
+ dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
+ <div class="daymap"><svg viewBox="0 0 640 430" preserveAspectRatio="xMidYMid meet">${m.bg||''}${roads}${routes}${labels}${pins}</svg></div>
+ <div class="maplegend"><span><i></i> 주요 이동</span><span><i class="walk"></i> 도보</span><span><i class="taxi"></i> Grab/택시</span><span><i class="option"></i> OPTION</span></div>
+ <div class="mapnote">배경 지형과 주요 지역 윤곽을 넣고, 실제 이동 흐름을 연상하도록 단순화했습니다. 핀 번호는 위 일정 번호와 연결됩니다.</div>`;
+ dayMapWrap.querySelectorAll(".pin").forEach(pin=>pin.onclick=()=>{const idx=+pin.dataset.pin-1;if(current().items[idx])openItem(idx)});
 }
 function routeHtml(r=[]){
  if(!r.length)return "";
@@ -177,7 +343,7 @@ function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
- const noteKey=`sg_pamphlet_v09_${day}_${i}`;
+ const noteKey=`sg_pamphlet_v11_${day}_${i}`;
  body.innerHTML=`
   <section class="section"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
   <section class="section"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
