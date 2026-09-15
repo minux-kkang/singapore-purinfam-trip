@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.4</title>
+<title>Singapore Family Trip 2026 · v17.5</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,7 +207,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.4 · SINGLE FILE UNIFIED APP
+   v17.5 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -288,7 +288,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 }
 
 
-/* v17.4 · stable detail scrolling */
+/* v17.5 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v17.4 · sticky hierarchy fix
+/* v17.5 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v17.4 · Pamphlet sheet + map layering fix */
+/* v17.5 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -385,7 +385,7 @@ body.open .sheet{touch-action:pan-y}
 }
 
 
-/* v17.4 · booking vault */
+/* v17.5 · booking vault */
 .bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
 .bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
@@ -412,12 +412,25 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .bookingsectiontitle{margin:15px 0 7px;font-size:13px;font-weight:950;color:var(--ink)}
 @media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
 
+
+/* v17.5 · reservation info inline */
+.resbox{
+  margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
+  background:#f8fbfc;font-size:11px;line-height:1.55
+}
+.resbox h4{margin:0 0 6px;font-size:11px;color:var(--ink)}
+.resrow{display:grid;grid-template-columns:72px minmax(0,1fr);gap:6px;margin:3px 0}
+.resrow .rlabel{color:var(--muted);font-weight:850}
+.resnums{display:flex;flex-wrap:wrap;gap:4px}
+.resnum{display:inline-block;padding:4px 6px;border-radius:7px;background:#fff;border:1px solid #dfe7ea;font-weight:900}
+.respending{color:#8a5c00}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.4</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.5</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -511,7 +524,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.4 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.5 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -585,7 +598,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.4 · unified single-file tools
+// v17.5 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -640,7 +653,7 @@ const BOOKINGS=[
  {group:"숙소",type:"HOTEL",icon:"🏨",title:"Singapore Marriott Tang Plaza Hotel",status:"confirmed",
   date:"2026-09-19 ~ 2026-09-24",people:"11명 · 4객실 · 5박",
   numbers:["86404986","86404965","86404979","86393926"],
-  detail:"4개 객실 동일 일행 전달 완료 · 가능한 가까운 객실 · 일부 Twin Beds · Rollaway Bed · Step Stool 요청 · Air Purifier 재고 시 제공",
+  detail:"4개 객실 동일 일행 전달 완료 · 가능한 가까운 객실 · 일부 Twin Beds · Rollaway Bed · Step Stool 요청 · Air Purifier 재고 시 제공 · 조식 특별가 성인 S$25++ / 1인 / 1일 · 만 5세 이하 무료 · 만 7세는 paying adult 동반 시 무료",
   qr:"",note:"Humidifier 없음 · Bed Guard 없음 · 객실 요청은 availability 기준"},
  {group:"항공",type:"FLIGHT",icon:"✈️",title:"대한항공 KE643 · ICN → SIN",status:"confirmed",
   date:"2026-09-19 · Singapore 19:15 도착",people:"11명",
@@ -679,6 +692,38 @@ const BOOKINGS=[
   date:"2026-09-22 · 19:00",people:"11명",
   numbers:["6V5D9N"],detail:"Reservation ID · Riverside Point",qr:"",note:"확정 예약 · 임의 변경 금지"}
 ];
+
+
+function bookingForItem(item){
+  const t=((item?.title||"")+" "+(item?.detail||"")).toLowerCase();
+  const matches=[];
+  const add=(title)=>{const b=BOOKINGS.find(x=>x.title===title);if(b&&!matches.includes(b))matches.push(b)};
+  if(/marriott|hotel|체크인|숙소/.test(t)) add("Singapore Marriott Tang Plaza Hotel");
+  if(/ke643|인천.*싱가포르|changi airport 도착/.test(t)) add("대한항공 KE643 · ICN → SIN");
+  if(/ke644|귀국|22:00/.test(t)) add("대한항공 KE644 · SIN → ICN");
+  if(/jumbo|칠리크랩|riverside/.test(t)) add("JUMBO Seafood - Riverside Point");
+  if(/universal studios|uss/.test(t)) add("Universal Studios Singapore");
+  if(/gardens by the bay|cloud forest|flower dome/.test(t)) add("Gardens by the Bay");
+  if(/oceanarium/.test(t)) add("Singapore Oceanarium");
+  if(/luge/.test(t)) add("Skyline Luge Sentosa");
+  if(/river cruise/.test(t)) add("Singapore River Cruise");
+  if(/river wonders|singapore zoo|mandai/.test(t)) add("Mandai · Zoo / River Wonders");
+  if(/changi.*hotel|pickup|픽업/.test(t)) add("창이공항 → 호텔 픽업");
+  return matches;
+}
+function reservationInfoHtml(item){
+  const list=bookingForItem(item);
+  if(!list.length)return "";
+  return list.map(b=>`
+    <div class="resbox">
+      <h4>🎫 예약 정보 · ${b.title}</h4>
+      <div class="resrow"><span class="rlabel">상태</span><span>${bookingStatusLabel(b.status)}</span></div>
+      ${b.date?`<div class="resrow"><span class="rlabel">일정</span><span>${b.date}</span></div>`:""}
+      <div class="resrow"><span class="rlabel">예약번호</span><span>${b.numbers?.length?`<span class="resnums">${b.numbers.map(n=>`<span class="resnum">${n}</span>`).join("")}</span>`:`<span class="respending">미등록</span>`}</span></div>
+      ${b.detail?`<div class="resrow"><span class="rlabel">상세</span><span>${b.detail}</span></div>`:""}
+      <div class="resrow"><span class="rlabel">QR/바우처</span><span>${b.qr?"등록됨":"미등록"}</span></div>
+    </div>`).join("");
+}
 
 function bookingStatusLabel(s){return {confirmed:"확정",pending:"미예약",optional:"후보"}[s]||s}
 function renderBookings(){
@@ -1211,6 +1256,7 @@ function openItem(i){
   <section class="section"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
   ${sel.food?.length?`<section class="section"><h3>🍽 식사</h3><div class="checklist">${chips(sel.food)}</div></section>`:""}
   <section class="section"><h3>📝 한 줄 설명</h3><div class="detailsbox">${esc(sel.detail||"")}</div></section>
+  ${reservationInfoHtml(sel)}
   <section class="section"><h3>빠른 기능</h3><div class="actions"><a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">📍 실제지도</a><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
  document.getElementById("memoToggle").onclick=()=>{const w=document.getElementById("memoWrap");w.style.display=w.style.display==="none"?"block":"none";if(w.style.display==="block"){const m=document.getElementById("memo");m.value=localStorage.getItem(noteKey)||"";m.oninput=()=>localStorage.setItem(noteKey,m.value)}};
  document.body.classList.add("open");
@@ -1285,7 +1331,7 @@ function renderDetail(){
   detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day} · 공통 일정 데이터</div><h2>${d.icon} ${esc(d.title)}</h2><p>${esc(d.sub)}</p>
     <div class="tripfacts" style="margin-top:10px">
       <div class="tripfact"><b>✈️ 항공</b>${TRIP_META.flights.outbound.no} 도착 19:15 · ${TRIP_META.flights.return.no} 9/24 22:00 출발</div>
-      <div class="tripfact"><b>🏨 숙소</b>${TRIP_META.hotel.name} · 4객실 · 5박</div>
+      <div class="tripfact"><b>🏨 숙소</b>${TRIP_META.hotel.name} · 4객실 · 5박<br><span style="font-size:10px;color:var(--muted)">예약번호 ${TRIP_META.hotel.reservationNumbers.join(" · ")}</span></div>
       <div class="tripfact"><b>🦀 확정 예약</b>JUMBO 9/22 19:00 · 11명 · ${TRIP_META.dining.jumbo.reservationId}</div>
       <div class="tripfact"><b>👨‍👩‍👧‍👦 운영 기준</b>11명 · 3세 2명 · 7세 1명 · 부모님/아이 체력 우선</div>
     </div>`;
@@ -1303,6 +1349,7 @@ function renderDetail(){
         ${detailListHtml("👨‍👩‍👧 가족 체크",x.family||[])}
         ${detailListHtml("🍽 식사",x.food||[])}
       </div>
+      ${reservationInfoHtml(x)}
     </article>`).join("");
   renderDetailMap();
 }
@@ -1352,7 +1399,7 @@ function renderDetailMap(){
 
 
 
-// v17.4 · Pamphlet DAY swipe
+// v17.5 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1378,7 +1425,7 @@ function renderDetailMap(){
   },{passive:true});
 })();
 
-// v17.4 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v17.5 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
