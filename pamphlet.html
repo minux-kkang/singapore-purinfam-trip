@@ -3,105 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v06</title>
+<title>Singapore Family Trip · Pamphlet v08</title>
 <style>
-*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;background:#f5f9fb;color:#17364f}body{overflow:hidden}
-.top{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;border-bottom:1px solid #dce6ec}
-.brand{font-weight:950}.brand small{font-size:11px;color:#82929c}.live{border:1px solid #d3dee4;border-radius:999px;padding:8px 11px;color:#17364f;text-decoration:none;font-size:12px;font-weight:900}
-.frame{width:100%;height:calc(100dvh - 58px);border:0}.backdrop{position:fixed;inset:0;background:#10233175;opacity:0;pointer-events:none;transition:.2s;z-index:90}
-.sheet{position:fixed;left:0;right:0;bottom:0;max-height:82dvh;background:#fff;border-radius:24px 24px 0 0;transform:translateY(105%);transition:.24s;z-index:100;display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
-.open .backdrop{opacity:1;pointer-events:auto}.open .sheet{transform:translateY(0)}.handle{width:42px;height:5px;background:#ced9df;border-radius:8px;margin:9px auto}
-.head{display:flex;justify-content:space-between;gap:12px;padding:8px 18px}.time{font-size:13px;font-weight:900;color:#078177}.title{font-size:22px;font-weight:950;line-height:1.25}.close{border:0;background:#eef3f5;border-radius:50%;width:36px;height:36px;font-size:20px}
-.tabs{display:flex;gap:6px;padding:8px 14px 10px;overflow:auto;border-bottom:1px solid #e6edf1}.tabs button{border:0;border-radius:999px;padding:9px 13px;background:#eef3f5;font-weight:900;white-space:nowrap}.tabs button.on{background:#173a57;color:#fff}
-.body{overflow:auto;padding:16px 18px 28px;line-height:1.6;font-size:15px}.body img{display:none!important}.action{display:block;width:100%;border:0;border-radius:14px;padding:14px;margin:9px 0;background:#173a57;color:#fff;text-align:center;text-decoration:none;font-weight:900}.note{width:100%;min-height:150px;border:1px solid #d4e0e6;border-radius:15px;padding:13px;font:inherit}
+*{box-sizing:border-box}body{margin:0;background:#f5f8fa;color:#17364f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;padding-bottom:80px}#source{display:none!important}
+header{position:sticky;top:0;z-index:20;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid #dfe7eb}
+.bar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}.brand{font-weight:950}.brand small{font-size:10px;color:#93a0a8}.live{border:1px solid #dfe7eb;border-radius:999px;padding:8px 11px;text-decoration:none;color:#17364f;font-size:11px;font-weight:900;background:white}
+.days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px}.days button{border:0;border-radius:999px;padding:9px 12px;white-space:nowrap;font-weight:900;background:#edf2f4;color:#566b78}.days button.on{background:#17364f;color:white}
+main{max-width:760px;margin:auto;padding:12px}.hero{min-height:155px;border:1px solid #dfe7eb;border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 65%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}.emoji{position:absolute;right:18px;top:15px;font-size:48px}.kick{font-size:12px;color:#0b7d73;font-weight:950}.hero h1{font-size:30px;line-height:1.05;margin:4px 0 7px;letter-spacing:-1px}.hero p{margin:0;color:#71818c;font-size:13px;font-weight:700}
+.list{display:grid;gap:9px}.item{background:white;border:1px solid #dfe7eb;border-radius:18px;min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 18px;gap:10px;align-items:center}.time{background:#e8f6f3;color:#0b7d73;border-radius:999px;padding:8px 5px;text-align:center;font-size:12px;font-weight:950}.title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.3px}.arrow{font-size:23px;color:#a6b1b8}
+.backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:40;transition:.2s}.sheet{position:fixed;left:0;right:0;bottom:0;max-height:84dvh;background:#fff;border-radius:24px 24px 0 0;transform:translateY(105%);transition:.22s;z-index:50;display:flex;flex-direction:column}.open .backdrop{opacity:1;pointer-events:auto}.open .sheet{transform:translateY(0)}.handle{width:42px;height:5px;background:#d2dbe0;border-radius:99px;margin:9px auto}.sheethead{display:flex;justify-content:space-between;padding:6px 17px 10px;gap:12px}.stime{font-size:12px;color:#0b7d73;font-weight:950}.stitle{font-size:21px;font-weight:950}.close{border:0;width:36px;height:36px;border-radius:50%;font-size:21px;background:#eef3f5}.tabs{display:flex;gap:6px;overflow:auto;padding:8px 13px 10px;border-bottom:1px solid #e9eef1}.tabs button{border:0;background:#eef3f5;border-radius:999px;padding:9px 13px;font-weight:900;color:#526672}.tabs button.on{background:#17364f;color:white}.body{overflow:auto;padding:16px 18px 28px;font-size:14px;line-height:1.65;color:#314956}.body .when{display:none!important}.action{display:block;background:#17364f;color:#fff;text-align:center;text-decoration:none;padding:14px;border-radius:14px;font-weight:900}.memo{width:100%;min-height:150px;border:1px solid #d5e0e5;border-radius:14px;padding:12px;font:inherit}
 </style>
 </head>
 <body>
-<header class="top"><div class="brand">🇸🇬 Singapore Family Trip <small>Pamphlet v06</small></div><a class="live" href="./index.html">실전 화면</a></header>
-<iframe id="app" class="frame" src="./index.html" title="Singapore Family Trip"></iframe>
-
-<div class="backdrop" id="backdrop"></div>
-<section class="sheet" id="sheet">
-  <div class="handle"></div>
-  <div class="head"><div><div class="time" id="stime"></div><div class="title" id="stitle"></div></div><button class="close" id="close">×</button></div>
-  <div class="tabs"><button class="on" data-v="detail">상세</button><button data-v="map">지도</button><button data-v="move">이동</button><button data-v="food">식사</button><button data-v="memo">메모</button></div>
-  <div class="body" id="sbody"></div>
-</section>
-
+<iframe id="source" src="./index.html" aria-hidden="true"></iframe>
+<header><div class="bar"><div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v08</small></div><a class="live" href="./index.html">실전 화면</a></div><div id="days" class="days"></div></header>
+<main><section id="hero" class="hero"></section><section id="list" class="list">일정 불러오는 중…</section></main>
+<div id="backdrop" class="backdrop"></div>
+<section class="sheet"><div class="handle"></div><div class="sheethead"><div><div id="stime" class="stime"></div><div id="stitle" class="stitle"></div></div><button id="close" class="close">×</button></div><div id="tabs" class="tabs"><button class="on" data-v="detail">상세</button><button data-v="map">지도</button><button data-v="move">이동</button><button data-v="food">식사</button><button data-v="memo">메모</button></div><div id="body" class="body"></div></section>
 <script>
-const F=document.getElementById('app'),B=document.getElementById('sbody');let C=null,V='detail';
-const D={
-1:['✈️','도착 · Singapore','인천에서 싱가포르, 체크인과 휴식'],
-2:['🌆','Marina Bay','마리나베이와 Gardens by the Bay'],
-3:['🎢','Universal Studios','USS 중심, 체력에 따라 센토사 확장'],
-4:['🏛️','Old Singapore','Fort Canning · Chinatown · River Cruise'],
-5:['🏝️','Sentosa EASY','Oceanarium · 휴식 · 해변'],
-6:['🛫','Goodbye Singapore','Little India · Kampong Glam · Jewel Changi']
-};
-const T=e=>(e?.textContent||'').replace(/\s+/g,' ').trim();
-const E=s=>(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function day(doc){const a=[...doc.querySelectorAll('.tab.active,.tab.on,[aria-selected="true"],.day-tab.active,.daytab.active')].find(x=>/DAY\s*[1-6]/i.test(T(x)));return +(T(a).match(/DAY\s*([1-6])/i)?.[1]||1)}
-function info(c){const raw=T(c),time=T(c.querySelector('.when,.time,.slot-time'))||(raw.match(/\d{1,2}:\d{2}[^ ]{0,8}/)||[''])[0];let title=T(c.querySelector('.activity,h3,h4,strong,b'));if(!title)title=T(c.querySelector('li'));if(!title)title=raw.replace(time,'').slice(0,70);return{raw,time,title}}
-
-function inject(doc){
- if(doc.getElementById('pv6'))return;
- const s=doc.createElement('style');s.id='pv6';
- s.textContent=`
-html,body{background:#f5f9fb!important;color:#17364f!important}.hero{display:none!important}.app-shell{max-width:900px!important;margin:auto!important}
-.modebar{position:sticky!important;top:0!important;z-index:50!important;background:#f5f9fbf2!important;backdrop-filter:blur(10px)!important}
-#schedule .layout,#schedule .panel{background:transparent!important;box-shadow:none!important;border:0!important}
-#schedule .timeline{display:grid!important;gap:12px!important;padding:10px!important}
-#schedule .slot{display:block!important;min-height:106px!important;padding:0!important;border:1px solid #dce7ec!important;border-radius:20px!important;background:#fff!important;overflow:hidden!important;cursor:pointer!important;box-shadow:0 5px 18px #1937490b!important}
-#schedule .slot>*:not(.pv6sum){display:none!important}
-.pv6sum{min-height:106px;display:grid;grid-template-columns:78px minmax(0,1fr) 24px;align-items:center;gap:10px;padding:17px 14px}
-.pv6time{font-size:15px;font-weight:950;color:#078177;background:#eaf7f5;border-radius:999px;padding:9px 6px;text-align:center}
-.pv6title{font-size:20px;line-height:1.3;font-weight:950;letter-spacing:-.45px;word-break:keep-all}
-.pv6hint{font-size:11px;color:#8798a2;font-weight:750;margin-top:6px}.pv6arrow{font-size:23px;color:#a1afb7}
-.pv6hero{margin:10px;border:1px solid #dce9ed;border-radius:25px;padding:28px 22px;min-height:168px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(145deg,#e9f7f6,#f3f8fd 58%,#fff5e9);position:relative;overflow:hidden}
-.pv6hero .em{position:absolute;right:20px;top:18px;font-size:52px}.pv6kick{font-size:13px;color:#078177;font-weight:950}
-.pv6day{font-size:30px;line-height:1.08;font-weight:1000;letter-spacing:-1px;margin-top:5px;max-width:80%}.pv6sub{font-size:14px;color:#6b7e8a;font-weight:700;margin-top:9px;max-width:82%}
-#schedule .pamphlet-thumb,#schedule img.pamphlet-thumb,#schedule .quick-guide{display:none!important}`;
- doc.head.appendChild(s)
-}
-function hero(doc){
- const n=day(doc),d=D[n];let h=doc.getElementById('pv6hero');
- if(!h){h=doc.createElement('div');h.id='pv6hero';h.className='pv6hero';const a=doc.querySelector('#schedule .timeline,#schedule .layout,#schedule .panel');a?.parentNode.insertBefore(h,a)}
- if(h)h.innerHTML='<div class="em">'+d[0]+'</div><div class="pv6kick">DAY '+n+'</div><div class="pv6day">'+d[1]+'</div><div class="pv6sub">'+d[2]+'</div>'
-}
-function apply(){
- const doc=F.contentDocument;if(!doc?.body)return;inject(doc);hero(doc);
- doc.querySelectorAll('#schedule .slot,.timeline .slot').forEach(c=>{
-   if(c.dataset.pv6)return;c.dataset.pv6='1';const i=info(c),x=doc.createElement('div');x.className='pv6sum';
-   x.innerHTML='<div class="pv6time">'+E(i.time||'일정')+'</div><div><div class="pv6title">'+E(i.title||'일정 보기')+'</div><div class="pv6hint">눌러서 상세 · 지도 · 이동 · 식사 · 메모</div></div><div class="pv6arrow">›</div>';
-   c.appendChild(x);c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();open(c)},true)
- })
-}
-function open(c){
- const i=info(c),cl=c.cloneNode(true);cl.querySelectorAll('.pv6sum,.pamphlet-thumb,script,style').forEach(x=>x.remove());
- cl.querySelectorAll('*').forEach(x=>{x.style?.removeProperty('display');x.removeAttribute('onclick')});
- C={i,html:cl.innerHTML,d:day(c.ownerDocument),idx:[...c.ownerDocument.querySelectorAll('#schedule .slot,.timeline .slot')].indexOf(c)};
- document.getElementById('stime').textContent=i.time||'오늘 일정';document.getElementById('stitle').textContent=i.title||'일정 상세';V='detail';
- document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===V));render();document.body.classList.add('open')
-}
-function render(){
- if(!C)return;
- if(V==='detail'){B.innerHTML=C.html;return}
- if(V==='map'){B.innerHTML='<a class="action" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(C.i.title+' Singapore')+'">Google Maps에서 보기</a>';return}
- if(V==='move'||V==='food'){
-   const re=V==='move'?/(MRT|Grab|이동|도보|택시|버스|출발|도착|VivoCity|Sentosa)/i:/(식사|점심|저녁|식당|레스토랑|JUMBO|Seafood|Cafe|카페|메뉴)/i;
-   const a=C.i.raw.split(/[•·]|\s{2,}/).filter(x=>re.test(x));
-   B.innerHTML=a.length?'<ul>'+[...new Set(a)].map(x=>'<li>'+E(x.trim())+'</li>').join('')+'</ul>':'<p>이 카드에 별도 '+(V==='move'?'이동':'식사')+' 메모가 없습니다.</p>';return
- }
- const k='sg_pv6_note_'+C.d+'_'+Math.max(0,C.idx);B.innerHTML='<textarea id="memo" class="note" placeholder="우리 가족 메모"></textarea><p style="color:#788b96;font-size:13px">이 기기에 자동 저장됩니다.</p>';
- const m=document.getElementById('memo');m.value=localStorage.getItem(k)||'';m.oninput=()=>localStorage.setItem(k,m.value)
-}
-F.onload=()=>{
- apply();new MutationObserver(()=>setTimeout(apply,80)).observe(F.contentDocument.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','aria-selected']});
- F.contentDocument.addEventListener('click',e=>{if(e.target.closest('.tab,.day-tab,.daytab,[data-day]'))setTimeout(()=>{hero(F.contentDocument);apply()},120)},true)
-};
-document.getElementById('close').onclick=()=>document.body.classList.remove('open');
-document.getElementById('backdrop').onclick=()=>document.body.classList.remove('open');
-document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;V=b.dataset.v;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));render()};
+const META={1:["✈️","도착","싱가포르 도착 · 호텔 체크인 · 휴식"],2:["🌆","Marina Bay","마리나베이 · Gardens by the Bay"],3:["🎢","USS","Universal Studios Singapore 중심"],4:["🏛️","Old Singapore","Fort Canning · Chinatown · River Cruise"],5:["🏝️","Sentosa","Oceanarium · 해변 · Luge 옵션"],6:["🛫","Goodbye","Little India · Kampong Glam · Jewel Changi"]};
+const src=document.getElementById("source"),days=document.getElementById("days"),hero=document.getElementById("hero"),list=document.getElementById("list"),body=document.getElementById("body");let data=[],current=1,sel=null,view="detail";
+const T=e=>(e?.textContent||"").replace(/\s+/g," ").trim(),E=s=>(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function titleOf(s){const x=s.querySelector(".activity b,.activity strong,.activity h3,.activity h4");if(x&&T(x))return T(x);const a=s.querySelector(".activity");if(a){const c=a.cloneNode(true);c.querySelectorAll("ul,ol,.meta,.note,.placeinfo,details,.logbtn,small").forEach(n=>n.remove());let t=T(c);if(t)return t.slice(0,54)}return "일정 보기"}
+function extract(){const d=src.contentDocument;if(!d?.body)return false;const ds=[...d.querySelectorAll(".day")];if(!ds.length)return false;data=ds.map((n,i)=>({day:i+1,slots:[...n.querySelectorAll(".slot")].map((s,j)=>{const c=s.cloneNode(true);c.querySelectorAll(".logbtn,script,style").forEach(x=>x.remove());return{i:j,time:T(s.querySelector(".when")),title:titleOf(s),raw:T(s),html:c.innerHTML}})}));return true}
+function render(){const d=data.find(x=>x.day===current);if(!d)return;const m=META[current];hero.innerHTML=`<div class="emoji">${m[0]}</div><div class="kick">DAY ${current}</div><h1>${m[1]}</h1><p>${m[2]}</p>`;days.innerHTML=data.map(x=>`<button class="${x.day===current?"on":""}" data-day="${x.day}">DAY ${x.day}</button>`).join("");list.innerHTML=d.slots.map(s=>`<article class="item" data-i="${s.i}"><div class="time">${E(s.time||"일정")}</div><div class="title">${E(s.title)}</div><div class="arrow">›</div></article>`).join("")}
+function openSheet(i){const d=data.find(x=>x.day===current);sel=d.slots.find(x=>x.i===+i);document.getElementById("stime").textContent=sel.time;document.getElementById("stitle").textContent=sel.title;view="detail";tabs();renderSheet();document.body.classList.add("open")}
+function tabs(){document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.v===view))}
+function renderSheet(){if(view==="detail"){body.innerHTML=sel.html;return}if(view==="map"){body.innerHTML=`<a class="action" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">Google Maps 열기</a>`;return}if(view==="move"||view==="food"){const re=view==="move"?/(MRT|Grab|이동|도보|택시|버스|환승|출발|도착|역)/i:/(식사|점심|저녁|식당|레스토랑|JUMBO|Cafe|카페|메뉴|예약)/i;const h=sel.raw.split(/[•·]/).map(x=>x.trim()).filter(x=>re.test(x));body.innerHTML=h.length?"<ul>"+[...new Set(h)].map(x=>`<li>${E(x)}</li>`).join("")+"</ul>":"<p>별도 정보가 없습니다.</p>";return}const k=`sg_note_${current}_${sel.i}`;body.innerHTML='<textarea id="memo" class="memo" placeholder="우리 가족 메모"></textarea>';const m=document.getElementById("memo");m.value=localStorage.getItem(k)||"";m.oninput=()=>localStorage.setItem(k,m.value)}
+src.onload=()=>{let n=0,t=setInterval(()=>{n++;if(extract()){clearInterval(t);render()}else if(n>30){clearInterval(t);list.innerHTML="일정 데이터를 불러오지 못했습니다."}},100)};
+days.onclick=e=>{const b=e.target.closest("[data-day]");if(!b)return;current=+b.dataset.day;render();scrollTo(0,0)};list.onclick=e=>{const x=e.target.closest(".item");if(x)openSheet(x.dataset.i)};document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.v;tabs();renderSheet()};
 </script>
-</body>
-</html>
+</body></html>
