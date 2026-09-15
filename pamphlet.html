@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v14</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
- integrity="sha256-p4NxAoJBhIINfQ3ynHTfQjMZbKMs0xG9R+snXkV8Lwc=" crossorigin="">
+<title>Singapore Family Trip · Pamphlet v15</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -101,12 +100,80 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.actions button,.actions a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:11px 8px;text-align:center;text-decoration:none;font-weight:900;font-size:12px}.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .detailsbox{background:#f7f8fa;border-radius:12px;padding:11px;font-size:12px}.memo{width:100%;min-height:120px;border:1px solid #d5e0e5;border-radius:12px;padding:11px;font:inherit}
 @media(min-width:700px){.timeline{grid-template-columns:1fr 1fr}}
+
+/* v15 · Leaflet mobile stability / fallback core styles */
+.leaflet-container{
+  position:relative!important;
+  overflow:hidden!important;
+  -webkit-tap-highlight-color:transparent;
+  background:#ddd;
+  outline:0;
+  touch-action:pan-x pan-y;
+}
+.leaflet-map-pane,.leaflet-tile-pane,.leaflet-overlay-pane,.leaflet-shadow-pane,
+.leaflet-marker-pane,.leaflet-tooltip-pane,.leaflet-popup-pane,
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{
+  position:absolute;
+  left:0;
+  top:0;
+}
+.leaflet-pane{z-index:400}
+.leaflet-tile-pane{z-index:200}
+.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}
+.leaflet-marker-pane{z-index:600}
+.leaflet-tooltip-pane{z-index:650}
+.leaflet-popup-pane{z-index:700}
+.leaflet-control{position:relative;z-index:800;pointer-events:auto}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-control{float:left;clear:both}
+.leaflet-right .leaflet-control{float:right}
+.leaflet-top .leaflet-control{margin-top:10px}
+.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-left .leaflet-control{margin-left:10px}
+.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-tile{
+  user-select:none;
+  -webkit-user-drag:none;
+  visibility:hidden;
+  pointer-events:none;
+  max-width:none!important;
+  max-height:none!important;
+  width:256px!important;
+  height:256px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-zoom-hide{visibility:hidden}
+.leaflet-control-zoom a{
+  display:block;width:34px;height:34px;line-height:34px;text-align:center;
+  text-decoration:none;background:#fff;color:#111;font-size:22px;font-weight:700;
+  border-bottom:1px solid #ddd;
+}
+.leaflet-control-zoom{
+  border:2px solid rgba(0,0,0,.2);border-radius:6px;overflow:hidden;
+  box-shadow:0 1px 5px rgba(0,0,0,.3);
+}
+.leaflet-control-attribution{
+  background:rgba(255,255,255,.82);font-size:9px;padding:2px 5px;color:#555
+}
+.leaflet-control-attribution a{color:#315b8a;text-decoration:none}
+.leaflet-marker-icon,.leaflet-marker-shadow{display:block}
+.leaflet-container .leaflet-overlay-pane svg{
+  position:absolute!important;left:0!important;top:0!important;
+  max-width:none!important;max-height:none!important;
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v12</small></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v15</small></div>
     <a class="practical" href="./index.html">🛠 실전 화면</a>
   </div>
   <div class="livebar">
@@ -150,8 +217,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
   <div id="body" class="body"></div>
 </section>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
- integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const DAYS=[
 {day:1,icon:"✈️",title:"도착",sub:"싱가포르 도착 · 호텔 체크인 · 휴식",items:[
@@ -338,14 +404,37 @@ function renderDayMap(){
       <span><i class="taxiline"></i>Grab/차량</span>
       <span><i class="optionline"></i>OPTION</span>
     </div>
-    <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>`;
+    <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>
+    <div class="tile-error-note" style="display:none;margin-top:7px;font-size:10px;color:#9a6700">지도 타일을 불러오지 못했습니다. 네트워크 연결 후 다시 열어주세요.</div>`;
 
   if(dayMap){dayMap.remove();dayMap=null;}
-  dayMap=L.map("leafletDayMap",{zoomControl:true,scrollWheelZoom:false});
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+  dayMap=L.map("leafletDayMap",{
+    zoomControl:true,
+    scrollWheelZoom:false,
+    doubleClickZoom:true,
+    touchZoom:true,
+    dragging:true,
+    zoomAnimation:true,
+    fadeAnimation:false,
+    markerZoomAnimation:true
+  });
+
+  const tiles=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
     maxZoom:19,
+    minZoom:2,
+    tileSize:256,
+    zoomOffset:0,
+    updateWhenIdle:true,
+    keepBuffer:4,
+    crossOrigin:false,
     attribution:'&copy; OpenStreetMap contributors'
   }).addTo(dayMap);
+
+  tiles.on("tileerror",()=>{
+    dayMapWrap.classList.add("tile-load-error");
+    const note=dayMapWrap.querySelector(".tile-error-note");
+    if(note) note.style.display="block";
+  });
 
   const bounds=[];
   m.places.forEach((p,idx)=>{
@@ -364,8 +453,12 @@ function renderDayMap(){
     }
   });
 
-  dayMap.fitBounds(bounds,{padding:[28,28],maxZoom:15});
-  setTimeout(()=>dayMap.invalidateSize(),100);
+  requestAnimationFrame(()=>{
+    dayMap.invalidateSize({pan:false});
+    dayMap.fitBounds(bounds,{padding:[30,30],maxZoom:15,animate:false});
+    setTimeout(()=>dayMap.invalidateSize({pan:false}),180);
+    setTimeout(()=>dayMap.invalidateSize({pan:false}),650);
+  });
 }
 let day=1,sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
@@ -387,7 +480,7 @@ function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
- const noteKey=`sg_pamphlet_v14_${day}_${i}`;
+ const noteKey=`sg_pamphlet_v15_${day}_${i}`;
  body.innerHTML=`
   <section class="section"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
   <section class="section"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
