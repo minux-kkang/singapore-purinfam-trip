@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v12</title>
+<title>Singapore Family Trip · Pamphlet v14</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
  integrity="sha256-p4NxAoJBhIINfQ3ynHTfQjMZbKMs0xG9R+snXkV8Lwc=" crossorigin="">
 <style>
@@ -378,19 +378,6 @@ function render(){
  timeline.innerHTML=d.items.map((x,i)=>`<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="title">${esc(x.title)}</div><div class="arrow">›</div></article>`).join("");
  renderDayMap();
 }
-function renderDayMap(){
- const m=DAY_MAPS[day];
- if(!m){dayMapWrap.innerHTML="";return;}
- const roads=(m.roads||[]).map(d=>`<path d="${d}" class="map-road"/>`).join("");
- const routes=(m.routes||[]).map(r=>`<path d="${r[1]}" class="map-route ${r[0]}"/>`).join("");
- const labels=(m.labels||[]).map(l=>`<text x="${l[1]}" y="${l[2]}" class="${l[3]==='small'?'map-small':'map-label'}">${esc(l[0])}</text>`).join("");
- const pins=(m.pins||[]).map(p=>`<g class="pin ${p[3]==='hotel'?'hotel':''}" data-pin="${p[0]}" transform="translate(${p[1]} ${p[2]})"><circle r="14"></circle><text x="0" y="1">${p[0]}</text></g>`).join("");
- dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
- <div class="daymap"><svg viewBox="0 0 640 430" preserveAspectRatio="xMidYMid meet">${m.bg||''}${roads}${routes}${labels}${pins}</svg></div>
- <div class="maplegend"><span><i></i> 주요 이동</span><span><i class="walk"></i> 도보</span><span><i class="taxi"></i> Grab/택시</span><span><i class="option"></i> OPTION</span></div>
- <div class="mapnote">배경 지형과 주요 지역 윤곽을 넣고, 실제 이동 흐름을 연상하도록 단순화했습니다. 핀 번호는 위 일정 번호와 연결됩니다.</div>`;
- dayMapWrap.querySelectorAll(".pin").forEach(pin=>pin.onclick=()=>{const idx=+pin.dataset.pin-1;if(current().items[idx])openItem(idx)});
-}
 function routeHtml(r=[]){
  if(!r.length)return "";
  return `<div class="route"><div class="route-line">`+r.map((x,i)=>`<div class="stop"><div class="dot">${i+1}</div><div><b>${esc(x[0])} ${esc(x[1])}</b><small>${esc(x[2]||"")}</small></div></div>${i<r.length-1?'<div class="connector"></div>':''}`).join("")+`</div></div>`;
@@ -400,7 +387,7 @@ function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
- const noteKey=`sg_pamphlet_v11_${day}_${i}`;
+ const noteKey=`sg_pamphlet_v14_${day}_${i}`;
  body.innerHTML=`
   <section class="section"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
   <section class="section"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
