@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v18.8</title>
+<title>Singapore Family Trip 2026 · v18.9</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v18.8 · SINGLE FILE UNIFIED APP
+   v18.9 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v18.8 · offline-first controls */
+/* v18.9 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v18.8 · explicit online/offline mode */
+/* v18.9 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -628,12 +628,15 @@ body.pamtoolopen{overflow:hidden!important}
   .onlineStatus{grid-column:1/-1}
 }
 
+
+.heroCard.image-missing{border-style:dashed}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.8</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v18.9</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -746,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v18.8 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v18.9 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1829,94 +1832,154 @@ function closeDeep(){
 
 
 const PLACE_IMAGE_LIBRARY={
-  merlion:{key:"merlion",name:"Merlion Park",file:"Marina Bay Sands and Merlion.jpg",alt:"Merlion Park, Singapore"},
-  marina:{key:"marina",name:"Marina Bay Sands",file:"Marina Bay Sands View from Merlion Park 20160716.jpg",alt:"Marina Bay Sands, Singapore"},
-  gardens:{key:"gardens",name:"Gardens by the Bay",file:"Supertrees at Night.jpg",alt:"Gardens by the Bay, Singapore"},
-  uss:{key:"uss",name:"Universal Studios Singapore",file:"Universal Studios Singapore Gate.jpg",alt:"Universal Studios Singapore"},
-  fort:{key:"fort",name:"Fort Canning Park",file:"Tree Tunnel in Fort Canning Park.jpg",alt:"Fort Canning Park, Singapore"},
-  museum:{key:"museum",name:"National Museum of Singapore",file:"National Museum Singapore.jpg",alt:"National Museum of Singapore"},
-  chinatown:{key:"chinatown",name:"Chinatown",file:"2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg",alt:"Chinatown, Singapore"},
-  clarke:{key:"clarke",name:"Clarke Quay",file:"Clarke quay night z.JPG",alt:"Clarke Quay, Singapore"},
-  littleindia:{key:"littleindia",name:"Little India",file:"Wikimania 2023-Singapore today-Little India-02578.jpg",alt:"Little India, Singapore"},
-  kampong:{key:"kampong",name:"Kampong Glam",file:"The Sultan Mosque at Kampong Glam, Singapore (8125148933).jpg",alt:"Kampong Glam, Singapore"},
-  jewel:{key:"jewel",name:"Jewel Changi",file:"Rain Vortex Jewel Changi Airport.jpg",alt:"Jewel Changi Airport"},
-  sentosa:{key:"sentosa",name:"Sentosa",file:"2016-04-04 Beach at Sentosa with ships.jpg",alt:"Sentosa, Singapore"},
-  siloso:{key:"siloso",name:"Siloso Beach",file:"Siloso Beach.jpg",alt:"Siloso Beach, Sentosa"},
-  oceanarium:{key:"oceanarium",name:"Singapore Oceanarium",file:"Singapore Oceanarium.jpg",alt:"Singapore Oceanarium"},
-  changi:{key:"changi",name:"Changi Airport",file:"Changi Airport Wonderfall.jpg",alt:"Changi Airport, Singapore"}
+  merlion:{key:"merlion",name:'Merlion Park',file:'Merlion (4071283426).jpg',alt:'Merlion Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Merlion_(4071283426).jpg/960px-Merlion_(4071283426).jpg'},
+  marina:{key:"marina",name:'Marina Bay Sands',file:'2011-12-17 Singapore 05.JPG',alt:'Marina Bay Sands, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/2011-12-17_Singapore_05.JPG/960px-2011-12-17_Singapore_05.JPG'},
+  gardens:{key:"gardens",name:'Gardens by the Bay',file:'At Singapore 2023 132.jpg',alt:'Gardens by the Bay, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/At_Singapore_2023_132.jpg/960px-At_Singapore_2023_132.jpg'},
+  uss:{key:"uss",name:'Universal Studios Singapore',file:'Universal Studios Singapore Gate.jpg',alt:'Universal Studios Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Universal_Studios_Singapore_Gate.jpg/960px-Universal_Studios_Singapore_Gate.jpg'},
+  fort:{key:"fort",name:'Fort Canning Park',file:'Fort Canning Park 09-11-2023(30).jpg',alt:'Fort Canning Park, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fort_Canning_Park_09-11-2023(30).jpg/960px-Fort_Canning_Park_09-11-2023(30).jpg'},
+  museum:{key:"museum",name:'National Museum of Singapore',file:'At National Museum of Singapore 2023 003.jpg',alt:'National Museum of Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/At_National_Museum_of_Singapore_2023_003.jpg/960px-At_National_Museum_of_Singapore_2023_003.jpg'},
+  chinatown:{key:"chinatown",name:'Chinatown',file:'2016 Singapur, Chinatown, Dach nad Chinatown Food Street.jpg',alt:'Chinatown, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg/960px-2016_Singapur,_Chinatown,_Dach_nad_Chinatown_Food_Street.jpg'},
+  clarke:{key:"clarke",name:'Clarke Quay',file:'Clarke Quay 09-11-2023(1).jpg',alt:'Clarke Quay, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Clarke_Quay_09-11-2023(1).jpg/960px-Clarke_Quay_09-11-2023(1).jpg'},
+  littleindia:{key:"littleindia",name:'Little India',file:'Campbell Lane, Singapore.jpg',alt:'Little India, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Campbell_Lane,_Singapore.jpg/960px-Campbell_Lane,_Singapore.jpg'},
+  kampong:{key:"kampong",name:'Kampong Glam',file:'Evening Street Scene - Kampong Glam - Singapore - 01 (34807165234).jpg',alt:'Kampong Glam, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg/960px-Evening_Street_Scene_-_Kampong_Glam_-_Singapore_-_01_(34807165234).jpg'},
+  jewel:{key:"jewel",name:'Jewel Changi',file:'Jewel Mall - Near.Singapore.Terminal 1.jpg',alt:'Jewel Changi Airport',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Jewel_Mall_-_Near.Singapore.Terminal_1.jpg/960px-Jewel_Mall_-_Near.Singapore.Terminal_1.jpg'},
+  sentosa:{key:"sentosa",name:'Sentosa',file:'2016-04-04 Beach at Sentosa with ships.jpg',alt:'Sentosa, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/2016-04-04_Beach_at_Sentosa_with_ships.jpg/960px-2016-04-04_Beach_at_Sentosa_with_ships.jpg'},
+  siloso:{key:"siloso",name:'Siloso Beach',file:'Siloso Beach 20.JPG',alt:'Siloso Beach, Sentosa',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Siloso_Beach_20.JPG/960px-Siloso_Beach_20.JPG'},
+  oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Singapore_Oceanarium.jpg/960px-Singapore_Oceanarium.jpg'},
+  changi:{key:"changi",name:'Changi Airport',file:'Changi Airport Wonderfall.jpg',alt:'Changi Airport, Singapore',remote:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Changi_Airport_Wonderfall.jpg/960px-Changi_Airport_Wonderfall.jpg'}
 };
-function commonsImageUrl(file,width=1200){
-  return `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=${width}`;
+
+const REP_DB_NAME="sg_trip_rep_images_v189";
+const REP_DB_STORE="images";
+const REP_IMAGE_URLS={};
+let repDbPromise=null;
+
+function openRepDb(){
+  if(repDbPromise)return repDbPromise;
+  repDbPromise=new Promise((resolve,reject)=>{
+    if(!("indexedDB" in window)){reject(new Error("IndexedDB unavailable"));return;}
+    const req=indexedDB.open(REP_DB_NAME,1);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(REP_DB_STORE))db.createObjectStore(REP_DB_STORE);};
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+  return repDbPromise;
 }
-Object.values(PLACE_IMAGE_LIBRARY).forEach(meta=>{meta.remote=commonsImageUrl(meta.file,1400);});
-function imageStorageKey(key){return `sgtrip_repimg_${key}_v185`;}
-function getCachedRepresentativeSrc(key){
-  try{return localStorage.getItem(imageStorageKey(key))||"";}catch(e){return "";}
-}
-function heroSrcFor(meta){
-  return getCachedRepresentativeSrc(meta.key)||"";
-}
-function fileToDataUrl(file){
+async function repDbGet(key){
+  const db=await openRepDb();
   return new Promise((resolve,reject)=>{
-    const reader=new FileReader();
-    reader.onload=()=>resolve(reader.result);
-    reader.onerror=reject;
-    reader.readAsDataURL(file);
+    const tx=db.transaction(REP_DB_STORE,"readonly");
+    const req=tx.objectStore(REP_DB_STORE).get(key);
+    req.onsuccess=()=>resolve(req.result||null); req.onerror=()=>reject(req.error);
+  });
+}
+async function repDbPut(key,blob){
+  const db=await openRepDb();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(REP_DB_STORE,"readwrite");
+    tx.objectStore(REP_DB_STORE).put(blob,key);
+    tx.oncomplete=()=>resolve(true); tx.onerror=()=>reject(tx.error);
+  });
+}
+async function repDbDeleteAll(){
+  const db=await openRepDb();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(REP_DB_STORE,"readwrite");
+    tx.objectStore(REP_DB_STORE).clear();
+    tx.oncomplete=()=>resolve(true); tx.onerror=()=>reject(tx.error);
   });
 }
 async function compressImageBlob(blob,maxWidth=960,quality=0.72){
   const objectUrl=URL.createObjectURL(blob);
   try{
     const img=await new Promise((resolve,reject)=>{
-      const im=new Image();
-      im.onload=()=>resolve(im);
-      im.onerror=reject;
-      im.src=objectUrl;
+      const im=new Image(); im.onload=()=>resolve(im); im.onerror=reject; im.src=objectUrl;
     });
     const ratio=Math.min(1,maxWidth/(img.naturalWidth||maxWidth));
-    const canvas=document.createElement('canvas');
+    const canvas=document.createElement("canvas");
     canvas.width=Math.max(1,Math.round((img.naturalWidth||maxWidth)*ratio));
-    canvas.height=Math.max(1,Math.round((img.naturalHeight||maxWidth*0.5625)*ratio));
-    const ctx=canvas.getContext('2d',{alpha:false});
+    canvas.height=Math.max(1,Math.round((img.naturalHeight||maxWidth*.5625)*ratio));
+    const ctx=canvas.getContext("2d",{alpha:false});
     ctx.drawImage(img,0,0,canvas.width,canvas.height);
-    let dataUrl=canvas.toDataURL('image/webp',quality);
-    if(dataUrl.length>450000){
-      dataUrl=canvas.toDataURL('image/jpeg',0.72);
+    return await new Promise(resolve=>{
+      canvas.toBlob(b=>resolve(b||blob),"image/webp",quality);
+    });
+  }finally{URL.revokeObjectURL(objectUrl);}
+}
+async function loadCachedRepresentativeImages(){
+  let count=0;
+  try{
+    for(const meta of Object.values(PLACE_IMAGE_LIBRARY)){
+      const blob=await repDbGet(meta.key);
+      if(blob){
+        if(REP_IMAGE_URLS[meta.key])URL.revokeObjectURL(REP_IMAGE_URLS[meta.key]);
+        REP_IMAGE_URLS[meta.key]=URL.createObjectURL(blob); count++;
+      }
     }
-    return dataUrl;
-  } finally {
-    URL.revokeObjectURL(objectUrl);
-  }
+  }catch(e){console.log("image cache load failed",e);}
+  refreshRepresentativeImages();
+  return count;
+}
+function getCachedRepresentativeSrc(key){return REP_IMAGE_URLS[key]||"";}
+function heroSrcFor(meta){
+  const cached=getCachedRepresentativeSrc(meta.key);
+  if(cached)return cached;
+  return networkModeState==="online"?meta.remote:"";
 }
 async function cacheRepresentativeImage(meta){
-  if(!meta?.key || getCachedRepresentativeSrc(meta.key)) return true;
+  if(!meta?.key)return false;
+  if(REP_IMAGE_URLS[meta.key])return true;
   try{
-    const res=await fetch(meta.remote,{mode:'cors',cache:'force-cache'});
-    if(!res.ok) throw new Error('image fetch failed');
-    const blob=await res.blob();
-    const dataUrl=await compressImageBlob(blob,960,0.72);
-    localStorage.setItem(imageStorageKey(meta.key),dataUrl);
+    const res=await fetch(meta.remote,{mode:"cors",cache:"force-cache"});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const type=res.headers.get("content-type")||"";
+    if(!type.startsWith("image/"))throw new Error("not image");
+    const raw=await res.blob();
+    const blob=await compressImageBlob(raw,960,.72);
+    await repDbPut(meta.key,blob);
+    if(REP_IMAGE_URLS[meta.key])URL.revokeObjectURL(REP_IMAGE_URLS[meta.key]);
+    REP_IMAGE_URLS[meta.key]=URL.createObjectURL(blob);
     refreshRepresentativeImages();
     return true;
   }catch(e){
-    console.log('representative image cache fail',meta.key,e);
+    console.warn("representative image cache fail",meta.key,e);
     return false;
   }
 }
 async function warmRepresentativeImages(){
   const metas=Object.values(PLACE_IMAGE_LIBRARY);
-  const targets=metas.filter(meta=>!getCachedRepresentativeSrc(meta.key));
+  const targets=metas.filter(meta=>!REP_IMAGE_URLS[meta.key]);
   if(!targets.length)return {ok:0,fail:0,skipped:metas.length};
-  const results=await Promise.allSettled(targets.map(meta=>cacheRepresentativeImage(meta)));
-  const ok=results.filter(r=>r.status==="fulfilled"&&r.value===true).length;
-  return {ok,fail:targets.length-ok,skipped:metas.length-targets.length};
+  // 3 at a time to avoid mobile/browser connection limits.
+  let ok=0,fail=0;
+  for(let i=0;i<targets.length;i+=3){
+    const batch=targets.slice(i,i+3);
+    const results=await Promise.all(batch.map(cacheRepresentativeImage));
+    ok+=results.filter(Boolean).length;
+    fail+=results.filter(x=>!x).length;
+    updateImageDownloadStatus(ok,fail,targets.length);
+  }
+  return {ok,fail,skipped:metas.length-targets.length};
+}
+function updateImageDownloadStatus(ok,fail,total){
+  const status=document.getElementById("onlineStatus");
+  if(status && total)status.textContent=`대표 이미지 저장 중 · ${ok+fail}/${total} · 성공 ${ok}${fail?` · 실패 ${fail}`:""}`;
 }
 function refreshRepresentativeImages(){
-  document.querySelectorAll('.heroPhoto[data-place-key]').forEach(img=>{
-    const src=getCachedRepresentativeSrc(img.dataset.placeKey);
-    if(src) img.src=src;
+  document.querySelectorAll(".heroPhoto[data-place-key]").forEach(img=>{
+    const key=img.dataset.placeKey,meta=PLACE_IMAGE_LIBRARY[key];
+    const cached=REP_IMAGE_URLS[key];
+    if(cached){
+      img.src=cached;
+      img.closest(".heroCard")?.classList.remove("image-missing");
+      const s=img.closest(".heroCard")?.querySelector(".heroMeta span");
+      if(s)s.textContent=`${meta.name} · 기기 저장 완료`;
+    }else if(networkModeState==="online" && meta?.remote){
+      img.src=meta.remote;
+    }
   });
 }
+
 function itemImageMeta(sel){
   const t=`${sel.title||""} ${sel.detail||""}`.toLowerCase();
   if(/merlion/.test(t)) return PLACE_IMAGE_LIBRARY.merlion;
@@ -1942,8 +2005,12 @@ function itemImageHtml(sel){
   if(!meta){
     return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
   }
-  const src=heroSrcFor(meta),cached=!!src;
-  return `<section class="heroCard">${cached?`<img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager">`:`<div class="heroPhotoPending">🖼️ ${esc(meta.name)}<br><small>상단 ‘온라인 정보 업데이트’를 누르면 대표사진을 저장합니다.</small></div>`}<div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"미다운로드"}</span></div></section>`;
+  const cached=!!REP_IMAGE_URLS[meta.key];
+  const src=heroSrcFor(meta);
+  if(!src){
+    return `<section class="heroCard no-photo image-missing"><div class="heroFallback">🖼️</div><div class="heroCopy"><b>${esc(meta.name)}</b><span>이미지가 아직 저장되지 않았습니다. 상단의 ‘수동 정보 가져오기’를 누르면 저장합니다.</span></div></section>`;
+  }
+  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"온라인 표시 · 저장 대기"}</span></div></section>`;
 }
 
 function openItem(i){
@@ -2283,7 +2350,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v18_8";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v18_9";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -2310,6 +2377,7 @@ function updateNetworkModeUI(){
 
 async function activateOnlineMode({autoUpdate=true}={}){
   clearInterval(onlineRefreshTimer);
+  await loadCachedRepresentativeImages();
   if(autoUpdate) updateOnlineInfo({manual:false});
   try{
     await loadLeafletOnline();
@@ -2326,7 +2394,7 @@ async function activateOnlineMode({autoUpdate=true}={}){
   },30*60*1000);
 }
 
-function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
+async function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
   if(!["online","offline"].includes(mode))return;
   networkModeState=mode;
   if(persist)localStorage.setItem(NETWORK_MODE_KEY,mode);
@@ -2334,6 +2402,7 @@ function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
   onlineRefreshTimer=null;
 
   if(mode==="offline"){
+    await loadCachedRepresentativeImages();
     onlineMapAllowed=false;
     try{if(dayMap){dayMap.off();dayMap.remove();dayMap=null}}catch(e){}
     try{if(detailMap){detailMap.off();detailMap.remove();detailMap=null}}catch(e){}
@@ -2382,7 +2451,7 @@ async function updateOnlineInfo({manual=true}={}){
     // Weather/FX result is not held up if some image hosts fail.
     const imageResult=await Promise.race([
       warmRepresentativeImages(),
-      new Promise(resolve=>setTimeout(()=>resolve({ok:0,fail:0,timeout:true}),8000))
+      new Promise(resolve=>setTimeout(()=>resolve({ok:0,fail:0,timeout:true}),20000))
     ]);
     refreshRepresentativeImages();
 
@@ -2393,8 +2462,11 @@ async function updateOnlineInfo({manual=true}={}){
         ? `📴 수동 갱신 완료 ${now}${imageMsg} · 오프라인 모드 유지`
         : `🌐 최신 정보 ${now}${imageMsg}`;
     }
-    // Timeout으로 먼저 끝난 경우에도 뒤에서 이미지 저장은 계속 시도.
-    if(imageResult?.timeout)warmRepresentativeImages().then(refreshRepresentativeImages);
+    // Timeout이어도 다운로드는 계속 진행.
+    if(imageResult?.timeout)warmRepresentativeImages().then(r=>{
+      refreshRepresentativeImages();
+      if(status)status.textContent=`이미지 저장 완료 · 성공 ${r.ok} · 실패 ${r.fail}`;
+    });
   }catch(e){
     if(status)status.textContent="정보 업데이트 실패 · 인터넷 연결을 확인해주세요.";
   }finally{
@@ -2506,11 +2578,14 @@ render();
 setDetailMode(detailMode,false);
 setView(currentView,false);
 updateNetworkModeUI();
-if(networkModeState==="online"){
-  setTimeout(()=>activateOnlineMode({autoUpdate:true}),500);
-}else{
-  onlineMapAllowed=false;
-}
+loadCachedRepresentativeImages().then(()=>{
+  refreshRepresentativeImages();
+  if(networkModeState==="online"){
+    setTimeout(()=>activateOnlineMode({autoUpdate:true}),350);
+  }else{
+    onlineMapAllowed=false;
+  }
+});
 </script>
 </body>
 </html>
