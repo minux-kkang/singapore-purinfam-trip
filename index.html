@@ -1,0 +1,2627 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Singapore Family Trip 2026 · v19.4</title>
+<style>
+:root{
+  --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
+  --mint:#e9f7f4;--mintInk:#0b7d73;--blue:#315b8a;--warm:#fff4e6
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif}
+body{padding-bottom:80px}
+.top{position:sticky;top:0;z-index:30;background:#ffffffef;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.toprow{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.brand{font-size:15px;font-weight:950}.brand small{font-size:10px;color:#93a0a8;margin-left:4px}
+.practical{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:900}
+.livebar{padding:0 12px 9px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.livebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
+.livebox b{font-size:11px}.livebox span{font-size:11px;color:#647581}
+.weatherline{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:2px}
+.weatherline .temp{font-weight:950;color:var(--ink)}
+.weatherline .desc{color:#647581}
+.fxrow{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:6px;font-size:11px;flex-wrap:wrap}
+.fxrow input{width:86px;border:1px solid #d4dee3;border-radius:8px;padding:6px 7px;text-align:center;font:inherit;background:#fff}
+.fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
+.fxarrow{font-weight:900;color:#82919a}
+.days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
+.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
+.daybtn.on{background:var(--ink);color:#fff}
+.wrap{max-width:760px;margin:auto;padding:12px}
+.hero{min-height:155px;border:1px solid var(--line);border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}
+.heroemoji{position:absolute;right:20px;top:15px;font-size:49px}.heroday{font-size:12px;font-weight:950;color:var(--mintInk)}
+.herotitle{font-size:30px;font-weight:1000;line-height:1.05;letter-spacing:-1px;margin-top:4px}.herosub{font-size:13px;color:#71818c;font-weight:700;margin-top:8px}
+.timeline{display:grid;gap:9px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 19px;gap:10px;align-items:center;box-shadow:0 4px 14px rgba(23,54,79,.035);cursor:pointer}
+.time{background:var(--mint);color:var(--mintInk);border-radius:999px;padding:8px 5px;text-align:center;font-size:12px;font-weight:950;line-height:1.15}
+.title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.35px;word-break:keep-all}.arrow{font-size:23px;color:#a5b0b7}
+
+.daymapwrap{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
+.daymaphead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
+.daymaphead b{font-size:13px;color:var(--ink)}.daymaphead small{font-size:10px;color:#87959e;text-align:right}
+.daymap{width:100%;height:390px;border-radius:14px;background:#eef3f5;overflow:hidden;border:1px solid #e4ecef}
+.daymap .leaflet-container{font-family:inherit}
+.map-water{fill:#e9f7ff}
+.map-land{fill:#fbfcfd}
+.map-park{fill:#edf7ef}
+.map-island{fill:#f8fbfc;stroke:#d6e1e6;stroke-width:1.5}
+.map-river{fill:none;stroke:#cfe8f6;stroke-width:18;stroke-linecap:round;stroke-linejoin:round}
+.map-bay{fill:#e6f5ff;stroke:#d3eaf5;stroke-width:2}
+.map-road{fill:none;stroke:#d3dde3;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.map-road.minor{stroke-width:4;opacity:.7}
+.map-line{fill:none;stroke:#adbfc9;stroke-width:2.2;stroke-dasharray:3 5}
+.map-route{fill:none;stroke:#17364f;stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+.map-route.walk{stroke-dasharray:4 5;stroke-width:3.1}
+.map-route.mrt{stroke-width:5.3}
+.map-route.taxi{stroke-dasharray:10 7}
+.map-route.option{stroke:#8ba0ad;stroke-dasharray:6 6}
+.map-label{font-size:10.6px;font-weight:850;fill:#284050}
+.map-small{font-size:8.8px;fill:#7e8d96}
+.map-line-label{font-size:8.4px;font-weight:700;fill:#315b8a}
+.pin circle{fill:#17364f;stroke:#fff;stroke-width:3}
+.pin text{fill:#fff;font-size:10px;font-weight:950;text-anchor:middle;dominant-baseline:middle}
+.pin.hotel circle{fill:#0b7d73}
+.maplegend{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px;font-size:10px;color:#6f808b}
+.maplegend span{display:flex;align-items:center;gap:4px}.maplegend i{display:inline-block;width:20px;height:0;border-top:3px solid #17364f}
+.maplegend i.walk{border-top-style:dashed;border-top-width:2px}.maplegend i.taxi{border-top-style:dashed}.maplegend i.option{border-top-color:#8ba0ad;border-top-style:dashed}
+.mapnote{margin-top:7px;font-size:10px;color:#819099}
+
+.route-num-icon{background:transparent;border:0}
+.route-num-icon .bubble{
+  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:#101820;color:#fff;border:3px solid #fff;box-shadow:0 2px 8px #0005;
+  font-size:13px;font-weight:950
+}
+.route-num-icon.hotel .bubble{background:#0f766e}
+.route-label{
+  background:#fff;border:1px solid #d9e2e6;border-radius:8px;padding:3px 6px;
+  box-shadow:0 2px 7px #0002;color:#17364f;font-size:11px;font-weight:850;white-space:nowrap
+}
+.maplegend .mrtline{border-top:4px solid #315b8a}
+.maplegend .walkline{border-top:3px dashed #0f766e}
+.maplegend .taxiline{border-top:4px solid #7d5200}
+.maplegend .optionline{border-top:3px dashed #8ba0ad}
+
+.footer{text-align:center;font-size:11px;color:#98a4ab;padding:18px 0}
+
+.backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:50;transition:.2s}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-radius:24px 24px 0 0;max-height:88dvh;transform:translateY(105%);transition:.22s;display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:translateY(0)}
+.handle{width:42px;height:5px;background:#d2dbe0;border-radius:99px;margin:9px auto 5px}.sheethead{display:flex;justify-content:space-between;gap:12px;padding:7px 17px 10px}
+.stime{font-size:12px;color:var(--mintInk);font-weight:950}.stitle{font-size:21px;line-height:1.3;font-weight:950}.close{border:0;background:#eef3f5;width:36px;height:36px;border-radius:50%;font-size:21px}
+.body{overflow:auto;padding:0 16px 28px;font-size:14px;line-height:1.6;color:#314956}
+.section{padding:14px 0;border-bottom:1px solid #edf1f3}.section:last-child{border-bottom:0}
+.section h3{font-size:13px;margin:0 0 8px;color:#17364f}.route{background:#f7fbfc;border:1px solid #dde9ed;border-radius:14px;padding:12px}
+.route-line{display:grid;gap:7px}.stop{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;align-items:start}.dot{width:24px;height:24px;border-radius:50%;background:#17364f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}.stop b{display:block}.stop small{display:block;color:#7a8a94;margin-top:2px}
+.connector{width:2px;height:18px;background:#b9c8cf;margin-left:11px}
+.checklist{display:grid;gap:7px}.check{background:#fffaf3;border:1px solid #f1dfc8;border-radius:12px;padding:9px 10px;font-size:12px}
+.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.actions button,.actions a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:11px 8px;text-align:center;text-decoration:none;font-weight:900;font-size:12px}.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.detailsbox{background:#f7f8fa;border-radius:12px;padding:11px;font-size:12px}.memo{width:100%;min-height:120px;border:1px solid #d5e0e5;border-radius:12px;padding:11px;font:inherit}
+@media(min-width:700px){.timeline{grid-template-columns:1fr 1fr}}
+
+/* v15 · Leaflet mobile stability / fallback core styles */
+.leaflet-container{
+  position:relative!important;
+  overflow:hidden!important;
+  -webkit-tap-highlight-color:transparent;
+  background:#ddd;
+  outline:0;
+  touch-action:pan-x pan-y;
+}
+.leaflet-map-pane,.leaflet-tile-pane,.leaflet-overlay-pane,.leaflet-shadow-pane,
+.leaflet-marker-pane,.leaflet-tooltip-pane,.leaflet-popup-pane,
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{
+  position:absolute;
+  left:0;
+  top:0;
+}
+.leaflet-pane{z-index:400}
+.leaflet-tile-pane{z-index:200}
+.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}
+.leaflet-marker-pane{z-index:600}
+.leaflet-tooltip-pane{z-index:650}
+.leaflet-popup-pane{z-index:700}
+.leaflet-control{position:relative;z-index:800;pointer-events:auto}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-control{float:left;clear:both}
+.leaflet-right .leaflet-control{float:right}
+.leaflet-top .leaflet-control{margin-top:10px}
+.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-left .leaflet-control{margin-left:10px}
+.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-tile{
+  user-select:none;
+  -webkit-user-drag:none;
+  visibility:hidden;
+  pointer-events:none;
+  max-width:none!important;
+  max-height:none!important;
+  width:256px!important;
+  height:256px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-animated{transform-origin:0 0}
+.leaflet-zoom-hide{visibility:hidden}
+.leaflet-control-zoom a{
+  display:block;width:34px;height:34px;line-height:34px;text-align:center;
+  text-decoration:none;background:#fff;color:#111;font-size:22px;font-weight:700;
+  border-bottom:1px solid #ddd;
+}
+.leaflet-control-zoom{
+  border:2px solid rgba(0,0,0,.2);border-radius:6px;overflow:hidden;
+  box-shadow:0 1px 5px rgba(0,0,0,.3);
+}
+.leaflet-control-attribution{
+  background:rgba(255,255,255,.82);font-size:9px;padding:2px 5px;color:#555
+}
+.leaflet-control-attribution a{color:#315b8a;text-decoration:none}
+.leaflet-marker-icon,.leaflet-marker-shadow{display:block}
+.leaflet-container .leaflet-overlay-pane svg{
+  position:absolute!important;left:0!important;top:0!important;
+  max-width:none!important;max-height:none!important;
+}
+
+
+.viewtoggle{display:flex;gap:3px;background:#edf2f4;border:1px solid var(--line);border-radius:999px;padding:3px}
+.viewbtn{border:0;background:transparent;color:#60717c;border-radius:999px;padding:7px 9px;font-size:10px;font-weight:950;white-space:nowrap;cursor:pointer}
+.viewbtn.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(23,54,79,.12)}
+#pamphletView[hidden],#detailView[hidden]{display:none!important}
+.detailwrap{max-width:860px;margin:auto;padding:12px}
+.detailhero{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:10px}
+.detailhero .eyebrow{font-size:11px;color:var(--mintInk);font-weight:950}
+.detailhero h2{font-size:25px;margin:3px 0 5px;line-height:1.15}
+.detailhero p{margin:0;color:var(--muted);font-size:12px}
+.detaildaytabs{display:none!important}
+
+.detaildaybtn{border:1px solid var(--line);background:#fff;color:#526773;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
+.detaildaybtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.detail-list{display:grid;gap:10px}
+.detail-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}
+.detail-card-head{display:grid;grid-template-columns:52px 82px minmax(0,1fr);gap:9px;align-items:start}
+.detail-no{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:950}
+.detail-time{font-size:12px;color:var(--mintInk);font-weight:950;padding-top:8px}
+.detail-title{font-size:18px;line-height:1.3;font-weight:950;color:var(--ink);padding-top:4px}
+.detail-desc{margin:11px 0 0;padding:11px 12px;background:#f7f9fa;border-radius:12px;font-size:13px;color:#435a68}
+.detail-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.detail-box{background:#fbfcfd;border:1px solid #e8eef1;border-radius:12px;padding:10px}
+.detail-box b{display:block;font-size:11px;color:var(--ink);margin-bottom:5px}
+.detail-box ul{margin:0;padding-left:17px;font-size:12px;color:#526773}
+.detail-box li{margin:3px 0}
+.detail-route{margin-top:9px;display:flex;gap:5px;align-items:center;overflow:auto;padding-bottom:2px}
+.detail-route-step{white-space:nowrap;background:#eef5f7;border:1px solid #dbe8ed;border-radius:999px;padding:7px 9px;font-size:11px;font-weight:850}
+.detail-route-arrow{color:#9aa8b0;font-weight:900}
+.detail-mapbox{margin-top:14px}
+@media(max-width:620px){
+  .toprow{gap:8px}.brand{font-size:13px}.brand small{display:none}
+  .viewbtn{padding:7px 8px;font-size:9px}
+  .detail-card-head{grid-template-columns:40px 70px minmax(0,1fr)}
+  .detail-cols{grid-template-columns:1fr}
+}
+
+
+/* =========================================================
+   v19.4 · SINGLE FILE UNIFIED APP
+   Pamphlet + Detail tools + Message Cards
+========================================================= */
+.detailnav{
+  position:sticky;top:0;z-index:50;display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;
+  padding:4px;margin:0 0 12px;background:rgba(238,243,245,.96);
+  border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)
+}
+.detailnavbtn{
+  border:0;background:transparent;color:#687984;border-radius:10px;padding:9px 2px;
+  font:inherit;font-size:10px;font-weight:900;white-space:nowrap;cursor:pointer
+}
+.detailnavbtn.on{background:#fff;color:var(--mintInk);box-shadow:0 1px 5px #0001}
+.detailpane[hidden]{display:none!important}
+.toolhero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:10px}
+.toolhero h2{margin:2px 0 4px;font-size:22px;color:var(--ink)}
+.toolhero p{margin:0;color:var(--muted);font-size:12px}
+.toolgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.toolcard{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px}
+.toolcard h3{margin:0 0 8px;font-size:14px;color:var(--ink)}
+.toolcard p,.toolcard li{font-size:12px;line-height:1.55}
+.statuspill{display:inline-flex;align-items:center;padding:4px 7px;border-radius:999px;font-size:9px;font-weight:900;margin-right:4px}
+.status-confirmed{background:#e7f7f0;color:#086455}.status-plan{background:#edf3fa;color:#315b8a}
+.status-candidate{background:#f3eefc;color:#6842a3}.status-unbooked{background:#fff1dd;color:#8b5d00}
+.status-done{background:#e8f5eb;color:#2f6e3c}
+.checkrow{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed #e6eaec;font-size:12px}
+.checkrow:last-child{border-bottom:0}
+.checkrow input{width:18px;height:18px;margin:1px 0 0}
+.phrase-search,.msg-search{
+  width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+  font:inherit;background:#fff;margin-bottom:9px
+}
+.phrasecats,.msgcats{display:flex;gap:6px;overflow:auto;padding-bottom:8px;scrollbar-width:none}
+.phrasecats::-webkit-scrollbar,.msgcats::-webkit-scrollbar{display:none}
+.chipbtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font:inherit;font-size:10px;font-weight:900;white-space:nowrap}
+.chipbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.phrase-list,.msg-list{display:grid;gap:8px}
+.phrase-item,.msg-item{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;cursor:pointer}
+.phrase-item b,.msg-item .msgtitle{display:block;color:var(--ink);font-size:13px;margin-bottom:5px}
+.phrase-item .en{font-size:17px;font-weight:900;color:#182c3b}
+.phrase-item .ko,.msg-item .msgko{font-size:11px;color:var(--muted);margin-top:4px}
+.msg-item{position:relative;padding-right:44px}
+.msg-item .msgen{font-size:16px;line-height:1.35;font-weight:900;color:#162f42}
+.favbtn{position:absolute;right:8px;top:8px;width:32px;height:32px;border:0;border-radius:50%;background:#f4f6f7;font-size:16px}
+.favbtn.on{background:#fff3c4}
+.present{
+  position:fixed;inset:0;z-index:20000;background:#fff;display:none;flex-direction:column;
+  padding:18px;overflow:auto
+}
+.present.open{display:flex}
+.presenttop{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.presentclose{border:0;background:#f1f3f4;border-radius:50%;width:40px;height:40px;font-size:24px}
+.presentbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 5vw}
+.presenticon{font-size:54px}
+.presenten{font-size:clamp(34px,8vw,66px);line-height:1.12;font-weight:950;color:#102b3e;margin:18px 0;max-width:950px}
+.presentko{font-size:clamp(16px,3.5vw,24px);font-weight:800;color:#6c7880}
+.presentactions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(650px,100%);margin:18px auto 0}
+.presentactions button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px;font-weight:900}
+.studyblock{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:9px}
+.studyblock h3{margin:0 0 6px;color:var(--ink);font-size:15px}
+.studyblock p{font-size:12px;line-height:1.7;margin:5px 0}
+.journalday{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px;margin-bottom:9px}
+.journalday h3{margin:0 0 7px;font-size:14px}
+.journalday textarea{width:100%;min-height:100px;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;resize:vertical}
+.savehint{font-size:10px;color:var(--muted);margin-top:5px}
+.offlinemap{
+  border:1px dashed #cfdadd;background:#f7fafb;border-radius:12px;padding:18px;text-align:center;
+  color:#6b7a83;font-size:11px;line-height:1.55
+}
+.tripfacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tripfact{border:1px solid #e6ecef;background:#fbfcfd;border-radius:12px;padding:10px;font-size:11px}
+.tripfact b{display:block;color:var(--ink);margin-bottom:3px}
+@media(max-width:620px){
+ .detailnav{grid-template-columns:repeat(4,minmax(0,1fr));position:sticky;top:0}
+ .detailnavbtn{font-size:9.5px;padding:8px 2px}
+ .toolgrid,.tripfacts{grid-template-columns:1fr}
+ .presentactions{grid-template-columns:1fr}
+}
+
+
+/* v18.3 · stable detail scrolling */
+.detailsticky{
+  position:sticky;top:0;z-index:80;background:var(--bg);
+  padding:5px 0 4px;margin:-2px 0 8px;
+  border-bottom:1px solid rgba(215,225,229,.78)
+}
+.detailsticky .detailnav{
+  position:static!important;top:auto!important;z-index:auto!important;
+  margin:0 0 5px!important;backdrop-filter:none!important
+}
+.detailsticky .detaildaytabs{
+  margin:0!important;padding:3px 1px 4px!important;background:var(--bg);
+  border-radius:0
+}
+.detaildaybtn{touch-action:manipulation}
+.detailhero,.detail-list,.detail-card,.detail-mapbox{position:relative;z-index:1}
+body.detail-scroll-lock{overflow:hidden}
+
+
+/* v18.3 · sticky hierarchy fix
+   1) .top = primary sticky header (time / FX / real DAY buttons)
+   2) .detailsticky = secondary sticky menu directly below primary header
+   No duplicate DAY bar in detail mode.
+*/
+:root{--app-header-h:184px}
+.brandver{
+  display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;
+  background:#16324f;color:#fff;font-size:10px;font-weight:950;vertical-align:2px
+}
+.top{z-index:100!important}
+.detailsticky{
+  position:sticky!important;
+  top:var(--app-header-h)!important;
+  z-index:90!important;
+  background:rgba(247,249,250,.98)!important;
+  padding:5px 0 6px!important;
+  margin:0 0 9px!important;
+  border-bottom:1px solid rgba(208,220,225,.95)!important;
+  box-shadow:0 5px 10px rgba(28,48,60,.04);
+  backdrop-filter:blur(10px)
+}
+.detailsticky .detailnav{
+  position:static!important;
+  margin:0!important;
+  background:#eef3f5!important;
+  border:1px solid var(--line)!important;
+  border-radius:13px!important
+}
+.detailwrap{overflow:visible!important}
+@media(max-width:620px){
+  .brand{font-size:12px!important}
+  .brandver{font-size:9px;padding:2px 6px;margin-left:4px}
+}
+
+
+/* v18.3 · Pamphlet sheet + map layering fix */
+.backdrop{
+  z-index:2000!important;
+  background:rgba(13,34,50,.62)!important;
+}
+.sheet{
+  z-index:2010!important;
+  max-height:min(90dvh,820px)!important;
+  overscroll-behavior:contain;
+  box-shadow:0 -18px 50px rgba(10,30,45,.28);
+}
+body.open{overflow:hidden!important;touch-action:none}
+body.open .sheet{touch-action:pan-y}
+.sheethead{
+  position:sticky;top:0;z-index:4;
+  background:#fff;
+  border-bottom:1px solid #edf1f3;
+  padding-top:8px!important;
+}
+.handle{
+  position:sticky;top:0;z-index:5;
+  background:#d2dbe0;
+}
+.close{
+  flex:0 0 42px!important;width:42px!important;height:42px!important;
+  font-size:24px!important;font-weight:800!important;
+  cursor:pointer;touch-action:manipulation
+}
+.body{
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:calc(34px + env(safe-area-inset-bottom))!important
+}
+/* Leaflet must always remain below app overlays */
+.leaflet-container,.daymap,.daymapwrap{z-index:1!important}
+.leaflet-control-container{position:relative;z-index:10!important}
+@media(max-width:620px){
+  .sheet{max-height:92dvh!important}
+  .stitle{font-size:19px!important}
+}
+
+
+/* v18.3 · booking vault */
+.bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
+.bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
+.bookingtitle{font-size:15px;font-weight:950;color:var(--ink);line-height:1.3}
+.bookingtype{font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.05em}
+.bookingstatus{font-size:9px;font-weight:950;border-radius:999px;padding:5px 7px;white-space:nowrap}
+.bookingstatus.confirmed{background:#e6f6ef;color:#096657}
+.bookingstatus.pending{background:#fff1da;color:#8a5c00}
+.bookingstatus.optional{background:#f1ecfa;color:#6842a3}
+.bookingrows{display:grid;gap:6px}
+.bookingrow{display:grid;grid-template-columns:80px minmax(0,1fr);gap:7px;font-size:11px;line-height:1.45}
+.bookingrow .label{color:var(--muted);font-weight:850}
+.bookingrow .value{color:#263c49;word-break:break-word}
+.bookingnums{display:flex;flex-wrap:wrap;gap:5px}
+.bookingnum{display:inline-block;background:#f4f7f8;border:1px solid #e4eaed;border-radius:8px;padding:5px 7px;font-size:10px;font-weight:900}
+.qrslot{margin-top:9px;border:1px dashed #cbd6db;border-radius:12px;padding:11px;background:#fafcfd;display:flex;gap:10px;align-items:center}
+.qrplaceholder{width:54px;height:54px;border:1px solid #dfe6e9;border-radius:10px;background:
+linear-gradient(45deg,#eef2f4 25%,transparent 25%) 0 0/12px 12px,
+linear-gradient(-45deg,#eef2f4 25%,transparent 25%) 0 0/12px 12px,
+linear-gradient(45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px,
+linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
+.qrmeta{font-size:10px;color:var(--muted);line-height:1.45}
+.bookingnote{margin-top:8px;padding:8px 9px;border-radius:9px;background:#f8fafb;font-size:10px;color:#586a74;line-height:1.5}
+.bookingsectiontitle{margin:15px 0 7px;font-size:13px;font-weight:950;color:var(--ink)}
+@media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
+
+
+/* v18.3 · reservation info inline */
+.resbox{
+  margin-top:9px;padding:10px 11px;border:1px solid #dbe6e9;border-radius:12px;
+  background:#f8fbfc;font-size:11px;line-height:1.55
+}
+.resbox h4{margin:0 0 6px;font-size:11px;color:var(--ink)}
+.resrow{display:grid;grid-template-columns:72px minmax(0,1fr);gap:6px;margin:3px 0}
+.resrow .rlabel{color:var(--muted);font-weight:850}
+.resnums{display:flex;flex-wrap:wrap;gap:4px}
+.resnum{display:inline-block;padding:4px 6px;border-radius:7px;background:#fff;border:1px solid #dfe7ea;font-weight:900}
+.respending{color:#8a5c00}
+
+
+/* v18.3 · multiple transport candidates */
+.transportbox{
+  margin-top:9px;padding:10px 11px;border:1px solid #dce6eb;border-radius:12px;background:#f9fbfc
+}
+.transportbox h4{margin:0 0 7px;font-size:11px;color:var(--ink)}
+.transportopts{display:grid;gap:6px}
+.transportopt{
+  display:grid;grid-template-columns:54px minmax(0,1fr);gap:7px;align-items:start;
+  padding:7px 8px;border:1px solid #e6ecef;border-radius:9px;background:#fff;font-size:10.5px;line-height:1.45
+}
+.transportmode{font-weight:950;color:#27495f}
+.transportdesc{color:#53646f}
+.transporttag{display:inline-block;margin-left:4px;padding:2px 5px;border-radius:999px;background:#edf4f7;color:#48606f;font-size:8.5px;font-weight:900}
+
+
+/* v18.3 · keep original first-level cards, add one deeper info layer */
+.section.deepable,.transportbox.deepable,.resbox.deepable{
+  position:relative;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease
+}
+.section.deepable:active,.transportbox.deepable:active,.resbox.deepable:active{transform:scale(.994)}
+.section.deepable::after,.transportbox.deepable::after,.resbox.deepable::after{
+  content:"자세히 ›";position:absolute;right:10px;top:9px;
+  font-size:9px;font-weight:900;color:#718690;background:#eef4f6;
+  border-radius:999px;padding:3px 6px
+}
+.deepbackdrop{display:none;position:fixed;inset:0;background:rgba(9,25,37,.7);z-index:3000}
+.deepmodal{
+  display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(93vw,650px);max-height:88dvh;background:#fff;border-radius:18px;
+  z-index:3010;overflow:hidden;box-shadow:0 26px 80px rgba(0,0,0,.34)
+}
+.deepbackdrop.open,.deepmodal.open{display:block}
+.deephead{
+  display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+  padding:13px 14px;border-bottom:1px solid #e7edef;background:#fff
+}
+.deepeyebrow{font-size:9px;letter-spacing:.08em;color:#7d8e97;font-weight:900}
+.deeptitle{margin-top:3px;font-size:18px;font-weight:950;line-height:1.25;color:#17364f}
+.deepclose{
+  width:42px;height:42px;flex:0 0 42px;border-radius:50%;border:1px solid #d9e1e5;
+  background:#fff;font-size:24px;font-weight:900;color:#17364f
+}
+.deepbody{overflow:auto;max-height:calc(88dvh - 70px);padding:14px 15px 28px;-webkit-overflow-scrolling:touch}
+.deepintro{
+  padding:10px 11px;border:1px solid #e0e9ed;background:#f6f9fa;border-radius:11px;
+  color:#455b67;font-size:11px;line-height:1.55;margin-bottom:11px
+}
+.deepsec{margin:0 0 13px}
+.deepsec h4{margin:0 0 7px;font-size:12px;color:#18384e}
+.deepnotes{display:grid;gap:7px}
+.deepnote{padding:9px 10px;border-radius:10px;background:#fffaf2;border:1px solid #f1dfc7;font-size:11px;line-height:1.52;color:#465b66}
+.deepempty{padding:10px;border-radius:10px;background:#f6f8f9;color:#819099;font-size:11px}
+body.deepopen{overflow:hidden!important}
+
+
+/* v18.3 · pamphlet tool launcher */
+.pamphlettools{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
+  margin:8px 0 10px;padding:7px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,255,255,.94);position:sticky;top:var(--app-header-h);z-index:88;
+  box-shadow:0 5px 14px rgba(20,43,57,.04)
+}
+.pamphlettools button{
+  min-width:0;border:0;border-radius:10px;background:#f5f8f9;color:#27414f;
+  padding:7px 2px 6px;font-size:15px;font-weight:900;line-height:1
+}
+.pamphlettools button span{display:block;margin-top:5px;font-size:8.5px;white-space:nowrap}
+.pamphlettools button:active{transform:scale(.97)}
+.pamtoolbackdrop{
+  display:none;position:fixed;inset:0;background:rgba(8,24,36,.64);z-index:2500
+}
+.pamtoolpanel{
+  display:none;position:fixed;left:50%;top:4dvh;transform:translateX(-50%);
+  width:min(95vw,780px);height:92dvh;background:#f7f9fa;border-radius:18px;
+  z-index:2510;overflow:hidden;box-shadow:0 28px 90px rgba(0,0,0,.34)
+}
+.pamtoolbackdrop.open,.pamtoolpanel.open{display:block}
+.pamtoolhead{
+  height:66px;display:flex;justify-content:space-between;gap:10px;align-items:center;
+  padding:10px 13px;background:#fff;border-bottom:1px solid #e3eaed
+}
+.pamtooleyebrow{font-size:9px;color:#7d8f98;font-weight:900;letter-spacing:.08em}
+.pamtooltitle{font-size:18px;font-weight:950;color:#17364f;margin-top:2px}
+.pamtoolclose{
+  width:42px;height:42px;border-radius:50%;border:1px solid #d8e1e5;
+  background:#fff;color:#17364f;font-size:24px;font-weight:900
+}
+.pamtoolbody{
+  height:calc(92dvh - 66px);overflow:auto;padding:12px 12px 28px;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain
+}
+.pamtoolbody .detailpane{display:block!important}
+.pamtoolbody .toolhero{margin-top:0}
+body.pamtoolopen{overflow:hidden!important}
+@media(max-width:620px){
+  .pamphlettools{grid-template-columns:repeat(7,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none;padding:6px}
+  .pamphlettools::-webkit-scrollbar{display:none}
+  .pamphlettools button{min-width:46px}
+  .pamtoolpanel{top:2dvh;height:96dvh;width:96vw;border-radius:16px}
+  .pamtoolbody{height:calc(96dvh - 66px)}
+}
+
+
+/* v18.3 · study stories / multilingual phrases / readable message cards */
+.phraselangs{display:flex;gap:6px;overflow-x:auto;margin:8px 0 10px;padding-bottom:2px;scrollbar-width:none}
+.phraselangs::-webkit-scrollbar{display:none}
+.langchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;white-space:nowrap;color:#314b59}
+.langchip.on{background:#17364f;color:#fff;border-color:#17364f}
+.phrase-item{cursor:default!important}
+.phrase-item .native{font-size:16px;font-weight:950;line-height:1.45;margin-top:6px;color:#17364f;word-break:keep-word}
+.phrase-item .pron{font-size:10px;color:#7c8b93;margin-top:3px;line-height:1.45}
+.inline-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.inline-actions button{
+ border:1px solid #dbe3e7;background:#fff;border-radius:8px;padding:6px 8px;
+ font-size:9px;font-weight:900;color:#36505e
+}
+.msg-item{cursor:default!important}
+.msgen{margin-top:8px!important}
+.msgsentence{
+ display:block;padding:2px 0;font-size:13px;line-height:1.52;font-weight:850;color:#1b374a
+}
+.msgsentence + .msgsentence{margin-top:4px}
+.msgko{margin-top:8px!important;padding-top:7px;border-top:1px dashed #e3e8ea;line-height:1.55!important}
+.msgmeta{font-size:9px;color:#809099;margin-top:6px}
+.studygrid-v18{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.study-story-card{
+ position:relative;border:1px solid var(--line);border-radius:14px;background:#fff;
+ padding:13px;cursor:pointer;min-height:122px
+}
+.study-story-card:after{
+ content:"이야기 열기 ›";position:absolute;right:10px;bottom:9px;
+ font-size:9px;font-weight:900;color:#6f8490
+}
+.study-story-card .chapter{font-size:9px;color:#0f766e;font-weight:950;letter-spacing:.04em}
+.study-story-card h3{font-size:14px;margin:4px 0 6px;line-height:1.35;color:#17364f}
+.study-story-card p{font-size:10.5px;line-height:1.5;color:#62747e;margin:0 0 18px}
+.storypopup{font-size:13px;line-height:1.78;color:#304955}
+.storypopup p{margin:0 0 13px}
+.storylead{font-size:16px;font-weight:900;color:#17364f;background:#edf8f5;border-radius:11px;padding:10px 11px;margin-bottom:13px}
+.storyfact,.storytrip,.storychild{
+ margin:10px 0;padding:10px 11px;border-radius:10px;font-size:11px;line-height:1.6
+}
+.storyfact{background:#faf9f5;border:1px solid #e7e2d8}
+.storytrip{background:#f3f7fb;border-left:4px solid #315b8a}
+.storychild{background:#f2fbf8;border-left:4px solid #0f766e}
+.curiosity{border:1px solid #e3e8ea;border-radius:11px;padding:10px;margin:8px 0;background:#fff}
+.curiosity b{color:#17364f}
+@media(max-width:650px){.studygrid-v18{grid-template-columns:1fr}}
+
+
+/* v18.4 · representative image block in pamphlet sheet */
+.heroCard{margin:0 0 12px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.heroPhoto{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#eef3f8}
+.heroMeta{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;background:#f8fafc;color:#495160;font-size:12px}
+.heroMeta b{font-size:13px;color:#1f2937}
+.heroMeta span{flex:1;text-align:right}
+.heroCard.no-photo{display:flex;align-items:center;gap:14px;padding:14px}
+.heroFallback{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#eef4ff;font-size:28px;flex:0 0 auto}
+.heroCopy{display:flex;flex-direction:column;gap:3px;color:#556070}
+.heroCopy b{color:#1f2937}
+.heroCopy span{font-size:12px;line-height:1.45}
+
+
+/* v19.4 · offline-first controls */
+.netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
+.onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
+.onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
+.onlineStatus{font-size:9px;color:#748690;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.offlineMapCard{border:1px solid #dbe5e9;border-radius:14px;padding:13px;background:#f8fbfc;text-align:left}
+.offlineMapCard b{display:block;font-size:12px;color:#17364f;margin-bottom:7px}
+.offlineMapRoute{font-size:10px;line-height:1.6;color:#526874;margin-bottom:10px}
+.loadMapBtn{border:1px solid #c7d8df;background:#fff;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;color:#214557}
+.heroPhotoPending{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#eef5f8,#f8fbfc);color:#5f7480;font-size:12px;text-align:center;padding:18px}
+@media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
+
+
+/* v19.4 · explicit online/offline mode */
+.netrow{gap:7px;flex-wrap:wrap}
+.networkMode{
+  display:inline-flex;align-items:center;gap:2px;padding:3px;
+  border:1px solid #cbd9df;border-radius:11px;background:#eef3f5;
+  flex:0 0 auto
+}
+.networkMode button{
+  border:0;background:transparent;color:#60727c;border-radius:8px;
+  padding:6px 9px;font-size:9px;font-weight:950;white-space:nowrap
+}
+.networkMode button.on{background:#fff;color:#17364f;box-shadow:0 1px 5px rgba(22,52,73,.12)}
+.networkMode button[data-netmode="offline"].on{background:#17364f;color:#fff}
+.onlineUpdateBtn:disabled{opacity:.45;cursor:not-allowed}
+.netmodeBadge{
+  display:inline-flex;align-items:center;border-radius:999px;padding:2px 6px;
+  font-size:8px;font-weight:950;margin-left:4px
+}
+.netmodeBadge.online{background:#e8f8ef;color:#16794a}
+.netmodeBadge.offline{background:#edf1f3;color:#455963}
+@media(max-width:620px){
+  .netrow{display:grid;grid-template-columns:auto 1fr;align-items:center}
+  .networkMode{grid-column:1}
+  .onlineUpdateBtn{grid-column:2}
+  .onlineStatus{grid-column:1/-1}
+}
+
+
+.heroCard.image-missing{border-style:dashed}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="toprow">
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.4</b></div>
+    <div class="viewtoggle" role="group" aria-label="보기 모드">
+      <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
+      <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
+    </div>
+  </div>
+  <div class="livebar">
+    <div class="livebox">
+      <b>🇰🇷 서울</b><br>
+      <span id="krTime">--:--</span>
+      <div class="weatherline"><span id="krWeatherIcon">⛅</span><span id="krTemp" class="temp">--°</span><span id="krWeather" class="desc">저장값 없음</span></div>
+    </div>
+    <div class="livebox">
+      <b>🇸🇬 싱가포르</b><br>
+      <span id="sgTime">--:--</span>
+      <div class="weatherline"><span id="sgWeatherIcon">⛅</span><span id="sgTemp" class="temp">--°</span><span id="sgWeather" class="desc">저장값 없음</span></div>
+    </div>
+    <div class="livebox fxrow">
+      <span>💱</span>
+      <input id="sgdAmount" inputmode="decimal" value="100" aria-label="SGD 금액">
+      <b>SGD</b>
+      <span class="fxarrow">↔</span>
+      <input id="krwAmount" inputmode="numeric" aria-label="KRW 금액">
+      <b>KRW</b>
+      <div id="fxRateInfo" class="fxrateinfo">저장된 환율 없음 · 임시값 사용</div>
+    </div>
+  </div>
+  <div class="netrow">
+    <div class="networkMode" id="networkMode" role="group" aria-label="네트워크 모드">
+      <button type="button" data-netmode="online">🌐 온라인</button>
+      <button type="button" data-netmode="offline">📴 오프라인</button>
+    </div>
+    <button id="onlineUpdateBtn" class="onlineUpdateBtn" type="button">↻ 지금 정보 새로고침</button>
+    <span id="onlineStatus" class="onlineStatus">네트워크 모드 확인 중</span>
+  </div>
+  <div id="days" class="days"></div>
+</header>
+
+<main id="pamphletView" class="wrap">
+
+  <div class="pamphlettools" id="pamphletTools">
+    <button type="button" data-tool="itinerary">🗓<span>일정</span></button>
+    <button type="button" data-tool="booking">🎫<span>예약</span></button>
+    <button type="button" data-tool="prep">🧳<span>준비</span></button>
+    <button type="button" data-tool="phrase">💬<span>표현</span></button>
+    <button type="button" data-tool="message">📱<span>메시지</span></button>
+    <button type="button" data-tool="study">📚<span>공부</span></button>
+    <button type="button" data-tool="journal">📖<span>기록</span></button>
+  </div>
+  <section id="hero" class="hero"></section>
+  <section id="timeline" class="timeline"></section>
+  <section id="dayMapWrap" class="daymapwrap"></section>
+  <div class="footer">v19.4 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
+</main>
+
+
+<main id="detailView" class="detailwrap" hidden>
+  <div class="detailsticky" id="detailSticky">
+    <nav class="detailnav" id="detailNav">
+      <button class="detailnavbtn on" data-detail-mode="itinerary">🗓 일정</button>
+      <button class="detailnavbtn" data-detail-mode="booking">🎫 예약</button>
+      <button class="detailnavbtn" data-detail-mode="prep">🧳 준비</button>
+      <button class="detailnavbtn" data-detail-mode="phrase">💬 표현</button>
+      <button class="detailnavbtn" data-detail-mode="message">📱 메시지</button>
+      <button class="detailnavbtn" data-detail-mode="study">📚 공부</button>
+      <button class="detailnavbtn" data-detail-mode="journal">📖 기록</button>
+    </nav>
+  </div>
+
+  <section class="detailpane" id="detailPaneItinerary">
+    <section id="detailHero" class="detailhero"></section>
+    <section id="detailList" class="detail-list"></section>
+    <section id="detailMapWrap" class="daymapwrap detail-mapbox"></section>
+  </section>
+
+
+  <section class="detailpane" id="detailPaneBooking" hidden>
+    <div class="toolhero"><div class="eyebrow">BOOKINGS & VOUCHERS</div><h2>🎫 예약 · 바우처</h2>
+      <p>확정된 예약은 실제 번호를 표시하고, 아직 미예약인 항목은 자리만 미리 만들어둡니다. 일정 화면에서는 예약이 실제로 필요한 순간에만 해당 예약정보가 나타납니다. QR/바우처는 추후 파일을 받으면 이 단일 HTML 안에 직접 넣을 수 있습니다.</p>
+    </div>
+    <div id="bookingContent"></div>
+  </section>
+
+  <section class="detailpane" id="detailPanePrep" hidden>
+    <div class="toolhero"><div class="eyebrow">PRE-TRIP CHECK</div><h2>🧳 여행 준비</h2><p>완료 상태는 이 기기에 자동 저장됩니다.</p></div>
+    <div id="prepContent"></div>
+  </section>
+
+  <section class="detailpane" id="detailPanePhrase" hidden>
+    <div class="toolhero"><div class="eyebrow">LOCAL PHRASES · 4 LANGUAGES</div><h2>💬 현지 표현</h2><p>영어 · 중국어(간체) · 말레이어 · 타밀어를 전환해서 봅니다. 카드 안에서 바로 읽고 복사할 수 있습니다.</p></div>
+    <div id="phraseLangs" class="phraselangs"></div>
+    <input id="phraseSearch" class="phrase-search" placeholder="상황 또는 표현 검색">
+    <div id="phraseCats" class="phrasecats"></div>
+    <div id="phraseList" class="phrase-list"></div>
+  </section>
+
+  <section class="detailpane" id="detailPaneMessage" hidden>
+    <div class="toolhero"><div class="eyebrow">SITUATION MESSAGES</div><h2>📱 여행 메시지 카드</h2><p>상황별로 바로 읽거나 복사해서 보여줄 수 있는 문장입니다. 긴 문장은 문장 단위로 줄을 나눠 읽기 쉽게 표시합니다.</p></div>
+    <input id="msgSearch" class="msg-search" placeholder="체크인, 11명, JUMBO, 아이…">
+    <div id="msgCats" class="msgcats"></div>
+    <div id="msgList" class="msg-list"></div>
+  </section>
+
+  <section class="detailpane" id="detailPaneStudy" hidden>
+    <div class="toolhero"><div class="eyebrow">STORY OF SINGAPORE</div><h2>📚 여행 공부</h2><p>요약 카드만 먼저 보고, 궁금한 항목을 누르면 이전 버전의 자세한 스토리를 팝업으로 읽습니다.</p></div>
+    <div id="studyContent"></div>
+  </section>
+
+  <section class="detailpane" id="detailPaneJournal" hidden>
+    <div class="toolhero"><div class="eyebrow">TRAVEL LOG</div><h2>📖 가족 여행 기록</h2><p>DAY별 메모는 이 기기에 자동 저장됩니다.</p></div>
+    <div id="journalContent"></div>
+  </section>
+
+  <div class="footer">v19.4 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+</main>
+
+<div id="backdrop" class="backdrop"></div>
+<section class="sheet">
+  <div class="handle"></div>
+  <div class="sheethead">
+    <div><div id="stime" class="stime"></div><div id="stitle" class="stitle"></div></div>
+    <button id="close" class="close" type="button">×</button>
+  </div>
+  <div id="body" class="body"></div>
+</section>
+
+
+<div id="pamToolBackdrop" class="pamtoolbackdrop" aria-hidden="true"></div>
+<section id="pamToolPanel" class="pamtoolpanel" aria-hidden="true">
+  <div class="pamtoolhead">
+    <div>
+      <div class="pamtooleyebrow">TRIP TOOL</div>
+      <div id="pamToolTitle" class="pamtooltitle"></div>
+    </div>
+    <button id="pamToolClose" class="pamtoolclose" type="button" aria-label="도구 닫기">×</button>
+  </div>
+  <div id="pamToolBody" class="pamtoolbody"></div>
+</section>
+
+<div id="deepBackdrop" class="deepbackdrop" aria-hidden="true"></div>
+<section id="deepModal" class="deepmodal" aria-hidden="true">
+  <div class="deephead">
+    <div>
+      <div id="deepEyebrow" class="deepeyebrow">DETAIL</div>
+      <div id="deepTitle" class="deeptitle"></div>
+    </div>
+    <button id="deepClose" class="deepclose" type="button" aria-label="추가정보 닫기">×</button>
+  </div>
+  <div id="deepBody" class="deepbody"></div>
+</section>
+
+<div id="messagePresent" class="present" aria-hidden="true">
+  <div class="presenttop">
+    <b>💬 MESSAGE CARD</b>
+    <button id="presentClose" class="presentclose" type="button" aria-label="닫기">×</button>
+  </div>
+  <div class="presentbody">
+    <div id="presentIcon" class="presenticon">💬</div>
+    <div id="presentEn" class="presenten"></div>
+    <div id="presentKo" class="presentko"></div>
+  </div>
+  <div class="presentactions">
+    <button id="presentSpeak" type="button">🔊 읽어주기</button>
+    <button id="presentCopy" type="button">📋 영어 복사</button>
+    
+  </div>
+</div>
+
+<script>
+const DAYS=[
+{day:1,icon:"✈️",title:"도착",sub:"싱가포르 도착 · 호텔 체크인 · 휴식",items:[
+{time:"출발 전",title:"공항 이동 · 여행서류 최종 확인",detail:"여권 11명, 항공권, 호텔 예약, SG Arrival Card, 짐과 유모차를 최종 확인.",route:[["🏠","집","가족별 최종 체크"],["🚕","사전예약 차량","기사·차량·픽업시간 확인"],["✈️","인천공항","집결 후 체크인"]],see:["여권 11명","항공권/호텔 예약","짐·유모차 개수"],family:["아이 기내용 간식·여벌옷 준비","가족별 차량 탑승 인원 공유"]},
+{time:"KE643",title:"인천 → 싱가포르",bookingIds:["flight-ke643"],detail:"대한항공 KE643 출국편.",route:[["✈️","ICN","출국"],["🛫","KE643","비행"],["🇸🇬","SIN","19:15 도착"]],see:["도착 후 차량 연락처","호텔 주소 캡처"],family:["비행 중 아이 컨디션 조절"]},
+{time:"19:15",title:"Changi Airport 도착",bookingIds:["transfer-arrival"],detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",route:[["🛬","Changi Airport","도착"],["🛂","입국심사","수하물 수령"],["🚕","픽업","11명+짐"],["🏨","Marriott Tang Plaza","체크인"]],see:["수하물","유모차","가족 재집결"],family:["아이 우선 화장실·간식","대표자 1명은 차량 연락"]},
+{time:"20:30 전후",title:"Changi Airport → Marriott",bookingIds:["transfer-arrival"],transportOptions:[["🚐","사전예약 대형차","11명+캐리어+유모차를 한 번에 처리하기 가장 편한 후보","우선 검토"],["🚕","택시/Grab 분산","차량 2~3대로 나눠 이동. 호출과 짐 분산이 필요","대안"]],detail:"입국·수하물 수령 후 Singapore Marriott Tang Plaza Hotel로 이동.",route:[["🛬","Changi Airport","입국·수하물"],["🚐","공항 픽업","차량 탑승"],["🏨","Marriott Tang Plaza","호텔 도착"]],see:["입국 후 가족 11명 재집결","차량 탑승 위치 확인","호텔까지 바로 이동"],family:["3세 아이 2명 피로 고려","짐·유모차 수량 확인"]},
+{time:"21:30~",title:"Marriott Tang Plaza 체크인",bookingIds:["hotel-marriott"],detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",route:[["🏨","호텔 로비","체크인"],["🛏","4개 객실","가까운 객실 요청"],["😴","휴식","첫날 체력 보존"]],see:["객실번호 공유","Rollaway 요청 확인","Twin 요청 확인"],family:["아이 잠자리 먼저 세팅"]}]},
+{day:2,icon:"🌆",title:"Marina Bay",sub:"싱가포르의 대표 풍경을 보는 날",items:[
+{time:"10:00",title:"Marriott → Merlion Park",transportOptions:[["🚇","MRT","Orchard에서 Raffles Place 방향으로 이동 후 도보","기본"],["🚕","Grab/택시","11명은 2~3대로 나눠 바로 Merlion Park 인근까지 이동","체력 우선"]],detail:"머라이언과 Marina Bay 풍경으로 여행의 첫 대표사진.",route:[["🏨","Marriott Tang Plaza","출발"],["🚇","Orchard NS22","MRT 탑승"],["🚇","Raffles Place NS26","하차"],["🦁","Merlion Park","도보 약 10분"]],see:["Merlion","MBS 방향 가족사진","Marina Bay 전경"],family:["그늘 적음","유모차 이동 가능","30~40분이면 충분"],food:["근처 식사는 다음 구간에서 해결"]},
+{time:"10:30",title:"Marina Bay 산책",detail:"Merlion Park · Esplanade · Singapore Flyer를 흐름대로 본다.",route:[["🦁","Merlion Park","출발"],["🎭","Esplanade","강변 산책"],["🎡","Singapore Flyer","선택 관람"]],see:["Esplanade 외관","강변 풍경","Flyer 전망"],family:["더우면 Flyer를 휴식형 콘텐츠로 활용"]},
+{time:"12:30",title:"점심 · 에어컨 휴식",detail:"오전 야외 일정 뒤 체온과 체력을 낮추는 핵심 휴식.",route:[["🍽","Marina Bay/MBS","식사"],["❄️","실내 휴식","에어컨"],["👶","아이 낮잠","가능하면 확보"]],see:["식사","화장실","냉방"],family:["3세 아이 낮잠 우선"],food:["MBS / The Shoppes","가족 좌석 편한 곳","1인 S$15~30 예상"]},
+{time:"14:00",title:"Marina Bay Sands",detail:"Helix Bridge · MBS · The Shoppes를 천천히 통과.",route:[["🌉","Helix Bridge","사진"],["🏨","MBS","외관/실내"],["🛍","The Shoppes","휴식"]],see:["Helix 구조","MBS 스카이라인","쇼핑몰 실내"],family:["걷기 길면 짧은 Grab 허용"]},
+{time:"17:00",title:"Gardens by the Bay",bookingIds:["ticket-gbtb"],detail:"Cloud Forest · Flower Dome 중심.",route:[["🌿","Gardens by the Bay","진입"],["🌧","Cloud Forest","실내 폭포"],["🌸","Flower Dome","대형 온실"],["🌳","Supertree Grove","야경 준비"]],see:["Cloud Forest","Flower Dome","Supertree"],family:["실내 냉방 강할 수 있음","유모차 이동 편함"]},
+{time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동","체력 봐서"],["💦","Spectra","선택"]],see:["Garden Rhapsody","Spectra"],family:["아이 졸리면 한 쇼만 보고 귀가"]}]},
+{day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",items:[
+{time:"08:15",title:"Marriott → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","오픈런/체력 우선"]],detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
+{time:"10:00~",title:"Universal Studios Singapore",bookingIds:["ticket-uss"],detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",route:[["🎢","USS","오픈런"],["⭐","인기 어트랙션","우선"],["🍽","점심","피크 회피"],["🎭","캐릭터/쇼","중간 휴식"]],see:["Transformers","Minion Land","캐릭터/쇼"],family:["3세 아이팀/스릴팀 짧게 분리","대기 길면 바로 다음 후보"],food:["USS 내부 식사","아이 메뉴 먼저 확보"]},
+{time:"15:00~",title:"충분히 놀았다면 Sentosa 확장",bookingIds:["ticket-oceanarium","ticket-luge"],detail:"Oceanarium · Luge · Siloso Beach 등에서 1~2개 선택.",route:[["🎢","USS","만족도 판단"],["🐠","Oceanarium","실내"],["🛷","Luge","선택"],["🏖","Siloso Beach","휴식"]],see:["1~2개만 선택"],family:["DAY5와 중복되지 않게 오늘 한 것 기억"]}]},
+{day:4,icon:"🏛️",title:"Old Singapore",sub:"역사 · Chinatown · River Cruise · JUMBO",items:[
+{time:"09:00",title:"호텔 → Fort Canning",transportOptions:[["🚕","Grab/택시","Tree Tunnel 인근으로 바로 이동. 11명은 2~3대 분산","추천"],["🚇","MRT + 도보","Orchard에서 시내권 이동 후 도보 연결","대안"]],detail:"Singapore Marriott Tang Plaza Hotel에서 Fort Canning Tree Tunnel로 이동하며 DAY 4를 시작.",route:[["🏨","Marriott Tang Plaza","출발"],["🚕","Grab/택시","11명은 3대 분산 권장"],["🌳","Fort Canning Tree Tunnel","도착"]],see:["호텔 로비에서 11명 집결","차량별 인원 확인","Tree Tunnel 도착 후 재집결"],family:["아침 첫 이동은 걷기보다 차량 권장","유모차·부모님 체력 보존"]},
+{time:"09:30",title:"Fort Canning · National Museum",detail:"Tree Tunnel을 시작으로 옛 싱가포르를 걷기 시작.",route:[["🌳","Fort Canning","Tree Tunnel"],["🏛","National Museum","역사"],["⛪","CHIJMES","건축"],["🏨","Raffles Hotel","외관"]],see:["Tree Tunnel","National Museum","Civic District"],family:["언덕/계단 주의","더우면 Grab 활용"]},
+{time:"12:30",title:"Chinatown · 점심",detail:"Pagoda Street · Sri Mariamman Temple · Buddha Tooth Relic Temple.",route:[["🏮","Chinatown","골목"],["🛕","Sri Mariamman","사원"],["🛕","Buddha Tooth Relic","사원"],["🍜","Maxwell","점심"]],see:["다문화 종교공간","Shophouse","호커센터"],family:["자리 확보팀/주문팀 분리"],food:["Maxwell Food Centre","치킨라이스·호키엔미·주스"]},
+{time:"15:30",title:"호텔 휴식",detail:"저녁 일정 전 체력 회복.",route:[["🍜","Maxwell","출발"],["🚇","TE18","탑승"],["🚇","Orchard TE14","하차"],["🏨","호텔","휴식"]],see:["1~2시간 휴식"],family:["아이 낮잠","부모님 체력 회복"]},
+{time:"18:00",title:"Clarke Quay · River Cruise",bookingIds:["ticket-rivercruise"],detail:"Old Hill Street Police Station → Clarke Quay → Singapore River Cruise.",route:[["🌈","Old Hill Street","사진"],["🌉","Clarke Quay","강변"],["🚤","River Cruise","약 40분"],["🦀","JUMBO","저녁"]],see:["Old Hill Street","Clarke Quay","River Cruise"],family:["걷는 대신 배에서 휴식 가능"]},
+{time:"19:00",title:"JUMBO Seafood",bookingIds:["restaurant-jumbo"],detail:"Riverside Point · 11명 예약 확정.",route:[["🚤","River Cruise","하선"],["🦀","JUMBO Riverside Point","19:00 예약"]],see:["Reservation ID 6V5D9N"],family:["실내 좌석이 아이/부모님에 편함"],food:["Chilli Crab","Cereal Prawn","Fried Rice","Mantou"]}]},
+{day:5,icon:"🏝️",title:"Sentosa EASY",sub:"Oceanarium · 휴식 · 해변 · 선택 액티비티",items:[
+{time:"10:00",title:"Marriott → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","체력 우선"]],detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",route:[["🏨","호텔","늦은 출발"],["🚇","HarbourFront","이동"],["🏝","Sentosa","도착"]],see:["DAY3 미완료 일정만"],family:["오픈런 불필요"]},
+{time:"11:00",title:"Singapore Oceanarium",bookingIds:["ticket-oceanarium"],detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠.",route:[["🐠","Oceanarium","메인 관람"],["❄️","실내","더위 회피"]],see:["대형 수조","해양생물 전시"],family:["아이/부모님 모두 부담 적음"]},
+{time:"13:00",title:"점심 · 충분한 휴식",detail:"맛집 욕심보다 냉방·좌석·아이 메뉴 우선.",route:[["🍽","RWS/WEAVE/VivoCity","식사"],["😴","휴식","충분히"]],see:["좌석","냉방","아이 메뉴"],food:["동선 좋은 곳 우선"]},
+{time:"15:00",title:"Luge 또는 Sentosa 산책",bookingIds:["ticket-luge"],detail:"활동팀과 휴식팀으로 잠깐 나뉘어도 됨.",route:[["🛷","Luge","활동팀"],["☕","카페","휴식팀"],["🌿","Sensoryscape","재합류"]],see:["가족 취향 1개"],family:["30~60분 짧게 분리 후 재합류"]},
+{time:"17:00",title:"Siloso Beach · 저녁",detail:"해질 무렵 센토사 분위기를 느긋하게 즐긴다.",route:[["🏖","Siloso Beach","산책"],["🌿","Sensoryscape","조명"],["🍽","저녁","느긋하게"]],see:["해질 무렵 분위기"],family:["아이 지치면 카페/식사 비중 확대"]},
+{time:"19:40~",title:"Wings of Time",detail:"DAY3에서 이미 봤다면 생략하고 일찍 호텔 복귀.",route:[["🌅","Beach Station","이동"],["🎆","Wings of Time","선택"],["🏨","호텔","복귀"]],see:["야간 피날레"],family:["반복이면 과감히 생략"]}]},
+{day:6,icon:"🛫",title:"Goodbye",sub:"Little India · Kampong Glam · Jewel Changi",items:[
+{time:"09:30",title:"호텔 → Little India",transportOptions:[["🚇","MRT","Orchard → Little India 방면 이동","기본"],["🚕","Grab/택시","Tekka Centre 인근까지 바로 이동","아이/부모님 체력 우선"]],detail:"체크아웃과 짐 보관을 마친 뒤 Singapore Marriott Tang Plaza Hotel에서 Little India로 이동.",route:[["🏨","Marriott Tang Plaza","체크아웃·짐 보관"],["🚇","Orchard → Little India","MRT 또는 Grab"],["🛍","Tekka Centre","도착"]],see:["체크아웃 완료","호텔 짐 보관 확인","Little India 첫 집결점 Tekka Centre"],family:["출국일이라 짐은 호텔에 두고 가볍게 이동","아이·부모님 컨디션 따라 Grab 사용"]},
+{time:"10:00",title:"Little India",detail:"Tekka Centre · Tan Teng Niah · Sri Veeramakaliamman Temple.",route:[["🛍","Tekka Centre","시장"],["🏠","Tan Teng Niah","사진"],["🛕","Sri Veeramakaliamman","사원"]],see:["시장","색감","힌두 문화"],family:["출국일이라 짧고 굵게"]},
+{time:"11:15",title:"Kampong Glam · Bugis",detail:"Sultan Mosque · Haji Lane · Bugis.",route:[["🕌","Sultan Mosque","핵심"],["🎨","Haji Lane","골목"],["🛍","Bugis","점심/쇼핑"]],see:["모스크","벽화","골목"],food:["Zam Zam","Prawn Mee","디저트"]},
+{time:"14:00",title:"호텔 복귀 · 짐 수령",bookingIds:["transfer-departure"],transportOptions:[["🚐","사전예약 대형차","호텔에서 짐 수령 후 11명+짐을 한 번에 공항으로 이동","우선 검토"],["🚕","Grab/택시 분산","2~3대로 나눠 창이공항 이동","대안"]],detail:"공항으로 이동 준비.",route:[["🛍","Bugis","출발"],["🏨","호텔","짐 수령"],["🚐","공항 이동","대형차량"]],see:["짐 개수 최종 확인"],family:["11명+짐 이동"]},
+{time:"16:00",title:"Jewel Changi",detail:"Rain Vortex · 마지막 쇼핑 · 이른 저녁.",route:[["✈️","Changi","도착"],["💦","Rain Vortex","관람"],["🛍","Jewel","쇼핑"],["🍽","저녁","이른 식사"]],see:["Rain Vortex","마지막 쇼핑"],food:["Bak Kut Teh","Kaya Toast"]},
+{time:"19:00",title:"터미널 이동 · 체크인",bookingIds:["flight-ke644"],detail:"Jewel에서 너무 늦게 나오지 않도록 기준 시간으로 사용.",route:[["🛍","Jewel","종료"],["🛫","터미널","체크인"],["🚪","Gate","이동"]],see:["Boarding Time 먼저 확인"],family:["21:00 전 Gate 목표"]},
+{time:"22:00",title:"KE644 출발",bookingIds:["flight-ke644"],detail:"싱가포르 → 인천 귀국편.",route:[["🛫","SIN","22:00"],["✈️","KE644","귀국"]],see:["탑승권·Gate 안내 최우선"]}]}
+];
+
+
+// =========================================================
+// v18.3 · unified single-file tools
+// =========================================================
+const TRIP_META={
+  title:"Singapore Family Trip 2026",
+  dates:{start:"2026-09-19",end:"2026-09-24"},
+  travelers:{total:11,adults:8,child7:1,child3:2},
+  flights:{
+    outbound:{no:"KE643",from:"ICN",to:"SIN",date:"2026-09-19",depart:"13:50",arrive:"19:15"},
+    return:{no:"KE644",from:"SIN",to:"ICN",date:"2026-09-24",depart:"22:00"}
+  },
+  hotel:{
+    name:"Singapore Marriott Tang Plaza Hotel",
+    dates:"2026-09-19 ~ 2026-09-24",
+    nights:5,rooms:4,
+    reservationNumbers:["86404986","86404965","86404979","86393926"],
+    requests:["가능하면 4개 객실 가까이 배정","일부 객실 Twin Beds","아이 동반 객실 Step Stool","Rollaway Bed 요청","Air Purifier는 재고 시 제공"],
+    breakfast:"성인 S$25++ / 1인 / 1일 · 만 5세 이하 무료 · 만 7세는 paying adult 동반 시 무료"
+  },
+  dining:{
+    jumbo:{name:"JUMBO Seafood - Riverside Point",date:"2026-09-22",time:"19:00",party:11,reservationId:"6V5D9N"}
+  }
+};
+
+const DETAIL_MODE_KEY="sg_trip_detail_mode_v17";
+let detailMode=localStorage.getItem(DETAIL_MODE_KEY)||"itinerary";
+const detailModes=["itinerary","booking","prep","phrase","message","study","journal"];
+
+function setDetailMode(mode,save=true){
+  if(!detailModes.includes(mode))mode="itinerary";
+  detailMode=mode;
+  document.querySelectorAll("[data-detail-mode]").forEach(b=>b.classList.toggle("on",b.dataset.detailMode===mode));
+  const ids={itinerary:"detailPaneItinerary",booking:"detailPaneBooking",prep:"detailPanePrep",phrase:"detailPanePhrase",message:"detailPaneMessage",study:"detailPaneStudy",journal:"detailPaneJournal"};
+  Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.hidden=k!==mode});
+  if(save)localStorage.setItem(DETAIL_MODE_KEY,mode);
+  if(mode==="itinerary"){
+    renderDetail();
+    if(detailMap)setTimeout(()=>detailMap.invalidateSize({pan:false}),120);
+  }
+  if(mode==="booking")renderBookings();
+  if(mode==="prep")renderPrep();
+  if(mode==="phrase")renderPhrases();
+  if(mode==="message")renderMessages();
+  if(mode==="study")renderStudy();
+  if(mode==="journal")renderJournal();
+}
+document.getElementById("detailNav")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-detail-mode]");if(!b)return;setDetailMode(b.dataset.detailMode);
+});
+
+
+// ---------- Booking vault ----------
+const BOOKINGS=[
+ {id:"hotel-marriott",group:"숙소",type:"HOTEL",icon:"🏨",title:"Singapore Marriott Tang Plaza Hotel",status:"confirmed",
+  date:"2026-09-19 ~ 2026-09-24",people:"11명 · 4객실 · 5박",
+  numbers:["86404986","86404965","86404979","86393926"],
+  detail:"4개 객실 동일 일행 전달 완료 · 가능한 가까운 객실 · 일부 Twin Beds · Rollaway Bed · Step Stool 요청 · Air Purifier 재고 시 제공 · 조식 특별가 성인 S$25++ / 1인 / 1일 · 만 5세 이하 무료 · 만 7세는 paying adult 동반 시 무료",
+  qr:"",note:"Humidifier 없음 · Bed Guard 없음 · 객실 요청은 availability 기준"},
+ {id:"flight-ke643",group:"항공",type:"FLIGHT",icon:"✈️",title:"대한항공 KE643 · ICN → SIN",status:"confirmed",
+  date:"2026-09-19 · Singapore 19:15 도착",people:"11명",
+  numbers:[],detail:"출국편 KE643 확정 · 예약번호/바우처는 추후 입력",qr:"",note:"항공 예약번호가 확인되면 여기에 추가"},
+ {id:"flight-ke644",group:"항공",type:"FLIGHT",icon:"✈️",title:"대한항공 KE644 · SIN → ICN",status:"confirmed",
+  date:"2026-09-24 · 22:00 출발",people:"11명",
+  numbers:[],detail:"귀국편 KE644 확정 · 예약번호/바우처는 추후 입력",qr:"",note:"항공 예약번호가 확인되면 여기에 추가"},
+
+ {id:"transfer-arrival",group:"공항 이동",type:"TRANSFER",icon:"🚐",title:"창이공항 → 호텔 픽업",status:"pending",
+  date:"2026-09-19",people:"11명 + 캐리어 + 유모차",
+  numbers:[],detail:"업체 / 차량 / 기사 / 픽업 위치 / 예약번호",qr:"",note:"아직 미확정 · 예약 후 실제 정보 입력"},
+ {id:"transfer-departure",group:"공항 이동",type:"TRANSFER",icon:"🚐",title:"호텔 → 창이공항 샌딩",status:"pending",
+  date:"2026-09-24",people:"11명 + 캐리어 + 유모차",
+  numbers:[],detail:"업체 / 차량 / 기사 / 픽업 시간 / 예약번호",qr:"",note:"아직 미확정 · 예약 후 실제 정보 입력"},
+
+ {id:"ticket-uss",group:"입장권",type:"TICKET",icon:"🎢",title:"Universal Studios Singapore",status:"pending",
+  date:"2026-09-21 · DAY 3",people:"11명",
+  numbers:[],detail:"티켓 종류 / 주문번호 / QR / 입장조건",qr:"",note:"현재 중요 TODO · 미예약"},
+ {id:"ticket-gbtb",group:"입장권",type:"TICKET",icon:"🌿",title:"Gardens by the Bay",status:"pending",
+  date:"2026-09-20 · DAY 2",people:"11명",
+  numbers:[],detail:"Cloud Forest / Flower Dome 티켓 여부 · 주문번호 / QR",qr:"",note:"구매 여부 확정 후 입력"},
+ {id:"ticket-oceanarium",group:"입장권",type:"TICKET",icon:"🐠",title:"Singapore Oceanarium",status:"optional",
+  date:"DAY 3 또는 DAY 5",people:"11명",
+  numbers:[],detail:"DAY5 최종 결정 후 필요 시 구매 · 주문번호 / QR",qr:"",note:"후보 / 미예약"},
+ {id:"ticket-luge",group:"입장권",type:"TICKET",icon:"🛷",title:"Skyline Luge Sentosa",status:"optional",
+  date:"DAY 3 또는 DAY 5",people:"선택 인원",
+  numbers:[],detail:"탑승권 / 시간 / QR / 아동 조건",qr:"",note:"후보 / 미예약"},
+ {id:"ticket-rivercruise",group:"입장권",type:"TICKET",icon:"🚤",title:"Singapore River Cruise",bookingIds:["ticket-rivercruise"],status:"pending",
+  date:"2026-09-22 · DAY 4",people:"11명",
+  numbers:[],detail:"회차 / 예약번호 / QR",qr:"",note:"일정 포함 · 실제 구매 전"},
+ {id:"ticket-mandai",group:"입장권",type:"TICKET",icon:"🦁",title:"Mandai · Zoo / River Wonders",status:"optional",
+  date:"2026-09-23 · DAY 5 대안",people:"11명",
+  numbers:[],detail:"DAY5를 Mandai로 변경할 경우 티켓 정보 입력",qr:"",note:"대안 일정 후보"},
+
+ {id:"restaurant-jumbo",group:"식당",type:"RESTAURANT",icon:"🦀",title:"JUMBO Seafood - Riverside Point",status:"confirmed",
+  date:"2026-09-22 · 19:00",people:"11명",
+  numbers:["6V5D9N"],detail:"Reservation ID · Riverside Point",qr:"",note:"확정 예약 · 임의 변경 금지"}
+];
+
+
+function bookingForItem(item){
+  const ids=Array.isArray(item?.bookingIds)?item.bookingIds:[];
+  return ids.map(id=>BOOKINGS.find(x=>x.id===id)).filter(Boolean);
+}
+
+function transportInfoHtml(item){
+  const opts=Array.isArray(item?.transportOptions)?item.transportOptions:[];
+  if(!opts.length)return "";
+  return `<div class="transportbox"><h4>🚦 이동 후보</h4><div class="transportopts">${
+    opts.map(x=>`<div class="transportopt"><div class="transportmode">${x[0]} ${x[1]}</div><div class="transportdesc">${x[2]||""}${x[3]?` <span class="transporttag">${x[3]}</span>`:""}</div></div>`).join("")
+  }</div></div>`;
+}
+
+function reservationInfoHtml(item){
+  const list=bookingForItem(item);
+  if(!list.length)return "";
+  return list.map(b=>`
+    <div class="resbox">
+      <h4>🎫 예약 정보 · ${b.title}</h4>
+      <div class="resrow"><span class="rlabel">상태</span><span>${bookingStatusLabel(b.status)}</span></div>
+      ${b.date?`<div class="resrow"><span class="rlabel">일정</span><span>${b.date}</span></div>`:""}
+      <div class="resrow"><span class="rlabel">예약번호</span><span>${b.numbers?.length?`<span class="resnums">${b.numbers.map(n=>`<span class="resnum">${n}</span>`).join("")}</span>`:`<span class="respending">미등록</span>`}</span></div>
+      ${b.detail?`<div class="resrow"><span class="rlabel">상세</span><span>${b.detail}</span></div>`:""}
+      <div class="resrow"><span class="rlabel">QR/바우처</span><span>${b.qr?"등록됨":"미등록"}</span></div>
+    </div>`).join("");
+}
+
+function bookingStatusLabel(s){return {confirmed:"확정",pending:"미예약",optional:"후보"}[s]||s}
+function renderBookings(){
+  const root=document.getElementById("bookingContent");if(!root)return;
+  const groups=[...new Set(BOOKINGS.map(x=>x.group))];
+  root.innerHTML=groups.map(g=>`
+    <div class="bookingsectiontitle">${g}</div>
+    <div class="bookinggrid">
+      ${BOOKINGS.filter(x=>x.group===g).map(x=>`
+        <article class="bookingcard">
+          <div class="bookinghead">
+            <div><div class="bookingtype">${x.type}</div><div class="bookingtitle">${x.icon} ${x.title}</div></div>
+            <span class="bookingstatus ${x.status}">${bookingStatusLabel(x.status)}</span>
+          </div>
+          <div class="bookingrows">
+            <div class="bookingrow"><span class="label">일정</span><span class="value">${x.date||"—"}</span></div>
+            <div class="bookingrow"><span class="label">인원</span><span class="value">${x.people||"—"}</span></div>
+            <div class="bookingrow"><span class="label">예약번호</span><span class="value">${x.numbers?.length?`<span class="bookingnums">${x.numbers.map(n=>`<span class="bookingnum">${n}</span>`).join("")}</span>`:"—"}</span></div>
+            <div class="bookingrow"><span class="label">상세</span><span class="value">${x.detail||"—"}</span></div>
+          </div>
+          <div class="qrslot">
+            <div class="qrplaceholder" aria-hidden="true"></div>
+            <div class="qrmeta"><b>QR / 바우처</b><br>${x.qr?"등록됨":"미등록 · 추후 실제 QR/바우처 삽입 예정"}</div>
+          </div>
+          ${x.note?`<div class="bookingnote">${x.note}</div>`:""}
+        </article>`).join("")}
+    </div>`).join("");
+}
+
+// ---------- Prep ----------
+const PREP_ITEMS=[
+ ["예약/티켓","USS 티켓 예약","unbooked"],
+ ["예약/티켓","DAY5 일정 최종 판단","plan"],
+ ["예약/티켓","필요 시 Singapore Oceanarium 티켓","unbooked"],
+ ["예약/티켓","필요 시 Luge / Sentosa 액티비티","candidate"],
+ ["이동","창이공항 → 호텔 이동수단 확정","unbooked"],
+ ["이동","공항 이동 및 11명 단체 이동방법 확인","plan"],
+ ["통신/결제","eSIM 또는 로밍 준비","unbooked"],
+ ["통신/결제","여행자보험","unbooked"],
+ ["통신/결제","현지 결제수단 / 예비카드 / 소액 SGD","unbooked"],
+ ["서류","11명 여권 · 항공권 · 호텔 바우처 오프라인 저장","plan"],
+ ["서류","SG Arrival Card 제출","plan"],
+ ["확정","Singapore Marriott Tang Plaza Hotel · 4객실","done"],
+ ["확정","JUMBO Riverside Point · 9/22 19:00 · 11명","done"],
+ ["확정","귀국 KE644 · 9/24 22:00","done"]
+];
+const PREP_STATE_KEY="sg_trip_prep_v17";
+function prepState(){try{return JSON.parse(localStorage.getItem(PREP_STATE_KEY)||"{}")}catch(e){return {}}}
+function statusName(s){return {unbooked:"미예약",plan:"계획",candidate:"후보",done:"완료",confirmed:"확정"}[s]||s}
+function renderPrep(){
+  const root=document.getElementById("prepContent");if(!root)return;
+  const state=prepState(),groups={};
+  PREP_ITEMS.forEach((x,i)=>(groups[x[0]]??=[]).push({...x,i}));
+  root.innerHTML=`<div class="toolgrid">${Object.entries(groups).map(([g,items])=>`
+    <section class="toolcard"><h3>${g}</h3>
+    ${items.map(x=>`<label class="checkrow"><input type="checkbox" data-prep17="${x.i}" ${state[x.i]?"checked":""}>
+      <span><span class="statuspill status-${x[2]}">${statusName(x[2])}</span>${x[1]}</span></label>`).join("")}</section>`).join("")}</div>
+    <section class="toolcard" style="margin-top:9px"><h3>🔎 출발 전 정보 점검</h3>
+      <div class="tripfacts">
+        <div class="tripfact"><b>DAY 5</b>Sentosa EASY 기본 · Mandai 대안. 최종 선택 후 티켓 구매 연동 필요.</div>
+        <div class="tripfact"><b>공항 → 호텔</b>아직 이동수단 확정 필요. 11명+짐+유모차 기준으로 차량 용량 확인.</div>
+        <div class="tripfact"><b>USS</b>미예약 상태. 11명 동시입장 가능 수량과 날짜 조건 우선 확인.</div>
+        <div class="tripfact"><b>실시간 정보</b>날씨·환율·지도 타일은 인터넷 필요. 나머지 핵심 내용은 파일 하나로 사용 가능.</div>
+      </div>
+    </section>
+    <section class="toolcard" style="margin-top:9px"><h3>🏨 숙소 확정정보</h3>
+      <div class="tripfacts">
+        <div class="tripfact"><b>${TRIP_META.hotel.name}</b>${TRIP_META.hotel.dates} · ${TRIP_META.hotel.nights}박 · ${TRIP_META.hotel.rooms}객실</div>
+        <div class="tripfact"><b>예약번호</b>${TRIP_META.hotel.reservationNumbers.join(" · ")}</div>
+        <div class="tripfact"><b>객실 요청</b>${TRIP_META.hotel.requests.join(" · ")}</div>
+        <div class="tripfact"><b>조식 특별가</b>${TRIP_META.hotel.breakfast}</div>
+      </div>
+    </section>`;
+  root.querySelectorAll("[data-prep17]").forEach(cb=>cb.addEventListener("change",()=>{
+    const s=prepState();s[cb.dataset.prep17]=cb.checked;localStorage.setItem(PREP_STATE_KEY,JSON.stringify(s));
+  }));
+}
+
+// ---------- Generic phrase library ----------
+const PHRASES=[
+ {cat:"기본",icon:"🙏",ko:"감사합니다.",en:"Thank you."},
+ {cat:"기본",icon:"🙂",ko:"실례합니다.",en:"Excuse me."},
+ {cat:"기본",icon:"❓",ko:"잘 이해하지 못했습니다. 천천히 다시 말씀해 주세요.",en:"I don't understand. Could you say that again slowly?"},
+ {cat:"교통",icon:"🚕",ko:"이 주소로 가주세요.",en:"Please take us to this address."},
+ {cat:"교통",icon:"👨‍👩‍👧‍👦",ko:"저희는 11명입니다.",en:"We are a group of eleven."},
+ {cat:"교통",icon:"🚐",ko:"짐 때문에 더 큰 차량이 필요합니다.",en:"We need a larger vehicle for our luggage."},
+ {cat:"호텔",icon:"🛎️",ko:"이 이름으로 예약했습니다.",en:"We have a reservation under this name."},
+ {cat:"호텔",icon:"🧳",ko:"체크아웃 후에 짐을 맡길 수 있나요?",en:"Can you store our luggage after check-out?"},
+ {cat:"호텔",icon:"🚪",ko:"객실을 서로 가까운 곳으로 배정해 주실 수 있나요?",en:"Could our rooms be close to each other?"},
+ {cat:"식당",icon:"🍽️",ko:"11명 자리 가능할까요?",en:"Can we have a table for eleven?"},
+ {cat:"식당",icon:"🌶️",ko:"덜 맵게 해주세요.",en:"Less spicy, please."},
+ {cat:"식당",icon:"👶",ko:"이 음식은 3살 아이가 먹기에 괜찮나요?",en:"Is this suitable for a three-year-old child?"},
+ {cat:"관광",icon:"🎟️",ko:"티켓은 이미 구매했습니다.",en:"We already have tickets."},
+ {cat:"관광",icon:"📏",ko:"이 놀이기구의 최소 키 제한이 얼마인가요?",en:"What is the minimum height for this ride?"},
+ {cat:"관광",icon:"🛒",ko:"유모차를 안으로 가져갈 수 있나요?",en:"Can we bring the stroller inside?"},
+ {cat:"긴급",icon:"🆘",ko:"도와주세요.",en:"Please help us."},
+ {cat:"긴급",icon:"🏥",ko:"진료를 받아야 합니다.",en:"We need to see a doctor."},
+ {cat:"긴급",icon:"🤒",ko:"아이가 열이 납니다.",en:"My child has a fever."}
+];
+
+PHRASES.push(
+ {cat:"기본",icon:"📱",ko:"제 휴대폰에 입력해 주실 수 있나요?",en:"Could you type it on my phone, please?"},
+ {cat:"기본",icon:"👀",ko:"이 화면을 잠시 봐주시겠어요?",en:"Could you please look at this screen for a moment?"},
+ {cat:"기본",icon:"⏳",ko:"잠시만 기다려주세요.",en:"Just a moment, please."},
+ {cat:"교통",icon:"🚕",ko:"Grab 픽업 장소가 어디인가요?",en:"Where is the Grab pickup point?"},
+ {cat:"교통",icon:"🧳",ko:"캐리어가 많습니다. 트렁크 공간이 충분할까요?",en:"We have a lot of luggage. Is there enough trunk space?"},
+ {cat:"교통",icon:"👶",ko:"어린아이가 두 명 있습니다. 가장 편한 승차 위치가 어디인가요?",en:"We have two young children. Where is the easiest pickup point for us?"},
+ {cat:"교통",icon:"🚇",ko:"어느 노선을 타야 하나요?",en:"Which MRT line should we take?"},
+ {cat:"교통",icon:"🔄",ko:"어디에서 환승해야 하나요?",en:"Where should we transfer?"},
+ {cat:"교통",icon:"🚪",ko:"몇 번 출구로 나가야 하나요?",en:"Which exit should we use?"},
+ {cat:"교통",icon:"🛗",ko:"유모차로 이동하기 편한 엘리베이터가 어디인가요?",en:"Where is the elevator for strollers?"},
+ {cat:"호텔",icon:"🕐",ko:"체크인 시간이 몇 시인가요?",en:"What time is check-in?"},
+ {cat:"호텔",icon:"🕓",ko:"레이트 체크아웃이 가능한가요?",en:"Would late check-out be available?"},
+ {cat:"호텔",icon:"🍳",ko:"조식은 어디에서 먹나요?",en:"Where is breakfast served?"},
+ {cat:"호텔",icon:"🍳",ko:"오늘만 조식을 추가할 수 있나요?",en:"Can we add breakfast for today only?"},
+ {cat:"호텔",icon:"🛏️",ko:"롤어웨이 베드 요청이 등록되어 있나요?",en:"Could you check whether our rollaway bed request is on the reservation?"},
+ {cat:"호텔",icon:"🪜",ko:"아이용 발판을 받을 수 있을까요?",en:"Could we have a step stool for the child?"},
+ {cat:"호텔",icon:"🌬️",ko:"공기청정기가 있으면 부탁드립니다.",en:"If an air purifier is available, could we have one, please?"},
+ {cat:"식당",icon:"🪑",ko:"가능하면 실내 좌석으로 부탁드립니다.",en:"If possible, could we have an indoor table, please?"},
+ {cat:"식당",icon:"👶",ko:"아동용 의자가 있나요?",en:"Do you have a high chair for a child?"},
+ {cat:"식당",icon:"🥜",ko:"견과류가 들어 있나요?",en:"Does this contain nuts?"},
+ {cat:"식당",icon:"🌿",ko:"고수는 빼주세요.",en:"No coriander, please."},
+ {cat:"식당",icon:"🥡",ko:"남은 음식 포장 가능할까요?",en:"Could we have the leftovers packed to take away?"},
+ {cat:"식당",icon:"💳",ko:"각 가족별로 나눠 결제할 수 있나요?",en:"Can we split the bill between families?"},
+ {cat:"식당",icon:"⭐",ko:"아이들과 먹기 좋은 메뉴를 추천해 주세요.",en:"What would you recommend for young children?"},
+ {cat:"관광",icon:"⏰",ko:"다음 공연은 몇 시인가요?",en:"What time is the next show?"},
+ {cat:"관광",icon:"🔁",ko:"나갔다가 다시 들어올 수 있나요?",en:"Can we leave and re-enter later?"},
+ {cat:"관광",icon:"🧳",ko:"짐이나 유모차를 보관할 곳이 있나요?",en:"Is there a place to store bags or strollers?"},
+ {cat:"관광",icon:"👨‍👩‍👧‍👦",ko:"11명이 함께 입장할 수 있나요?",en:"Can all eleven of us enter together?"},
+ {cat:"관광",icon:"📱",ko:"모바일 티켓만 보여드려도 되나요?",en:"Is it okay to show the tickets only on my phone?"},
+ {cat:"긴급",icon:"💊",ko:"가장 가까운 약국이 어디인가요?",en:"Where is the nearest pharmacy?"},
+ {cat:"긴급",icon:"🚑",ko:"구급차를 불러주세요.",en:"Please call an ambulance."},
+ {cat:"긴급",icon:"📱",ko:"휴대폰을 잃어버렸습니다.",en:"I lost my phone."},
+ {cat:"긴급",icon:"👛",ko:"지갑을 잃어버렸습니다.",en:"I lost my wallet."},
+ {cat:"긴급",icon:"🧒",ko:"아이를 잃어버렸습니다. 보안요원을 불러주세요.",en:"My child is lost. Please call security immediately."}
+);
+
+
+// v18.3 · 4-language phrase layer restored from the older trip app concept.
+const PHRASE_LANGS={
+ en:{label:"🇬🇧 English",field:"en",pron:""},
+ zh:{label:"🇨🇳 中文",field:"zh",pron:"zhPron"},
+ ms:{label:"🇲🇾 Bahasa Melayu",field:"ms",pron:""},
+ ta:{label:"🇮🇳 தமிழ்",field:"ta",pron:"taPron"}
+};
+const PHRASE_I18N={
+"감사합니다.":{zh:"谢谢。",zhPron:"Xièxie.",ms:"Terima kasih.",ta:"நன்றி.",taPron:"Naṉṟi."},
+"실례합니다.":{zh:"不好意思。",zhPron:"Bù hǎoyìsi.",ms:"Maaf / Tumpang tanya.",ta:"மன்னிக்கவும்.",taPron:"Maṉṉikkavum."},
+"잘 이해하지 못했습니다. 천천히 다시 말씀해 주세요.":{zh:"我没听懂。请慢一点再说一次。",zhPron:"Wǒ méi tīng dǒng. Qǐng màn yìdiǎn zài shuō yí cì.",ms:"Saya tidak faham. Boleh cakap sekali lagi dengan perlahan?",ta:"எனக்கு புரியவில்லை. தயவுசெய்து மெதுவாக மீண்டும் சொல்லுங்கள்.",taPron:"Eṉakku puriyavillai. Tayavuceytu metuvāka mīṇṭum collunkaḷ."},
+"제 휴대폰에 입력해 주실 수 있나요?":{zh:"可以在我的手机上输入吗？",zhPron:"Kěyǐ zài wǒ de shǒujī shàng shūrù ma?",ms:"Boleh taip di telefon saya?",ta:"என் தொலைபேசியில் தட்டச்சு செய்து தர முடியுமா?",taPron:"Eṉ tolaipēciyil taṭṭaccu ceytu tara muṭiyumā?"},
+"이 화면을 잠시 봐주시겠어요?":{zh:"可以看一下这个画面吗？",zhPron:"Kěyǐ kàn yíxià zhège huàmiàn ma?",ms:"Boleh tengok skrin ini sebentar?",ta:"இந்த திரையை ஒரு நிமிடம் பார்க்க முடியுமா?",taPron:"Inta tiraiyai oru nimiṭam pārkka muṭiyumā?"},
+"잠시만 기다려주세요.":{zh:"请稍等一下。",zhPron:"Qǐng shāo děng yíxià.",ms:"Tunggu sebentar, ya.",ta:"ஒரு நிமிடம் காத்திருக்கவும்.",taPron:"Oru nimiṭam kāttirukkavum."},
+"이 주소로 가주세요.":{zh:"请带我们去这个地址。",zhPron:"Qǐng dài wǒmen qù zhège dìzhǐ.",ms:"Tolong bawa kami ke alamat ini.",ta:"இந்த முகவரிக்கு எங்களை அழைத்துச் செல்லுங்கள்.",taPron:"Inta mukavarikku eṅkaḷai aḻaittuc celluṅkaḷ."},
+"저희는 11명입니다.":{zh:"我们一共十一个人。",zhPron:"Wǒmen yígòng shíyī ge rén.",ms:"Kami seramai sebelas orang.",ta:"நாங்கள் மொத்தம் பதினொன்று பேர்.",taPron:"Nāṅkaḷ mottam patiṉoṉṟu pēr."},
+"짐 때문에 더 큰 차량이 필요합니다.":{zh:"我们行李很多，需要一辆大一点的车。",zhPron:"Wǒmen xíngli hěn duō, xūyào yí liàng dà yìdiǎn de chē.",ms:"Kami perlukan kenderaan yang lebih besar kerana banyak bagasi.",ta:"எங்களிடம் அதிக சாமான்கள் உள்ளதால் பெரிய வாகனம் தேவை.",taPron:"Eṅkaḷiṭam atika cāmāṉkaḷ uḷḷatāl periya vākaṉam tēvai."},
+"Grab 픽업 장소가 어디인가요?":{zh:"Grab 上车点在哪里？",zhPron:"Grab shàngchē diǎn zài nǎlǐ?",ms:"Di mana tempat pengambilan Grab?",ta:"Grab ஏறும் இடம் எங்கே?",taPron:"Grab ēṟum iṭam eṅkē?"},
+"캐리어가 많습니다. 트렁크 공간이 충분할까요?":{zh:"我们的行李很多。后备箱空间够吗？",zhPron:"Wǒmen de xíngli hěn duō. Hòubèixiāng kōngjiān gòu ma?",ms:"Kami ada banyak bagasi. Cukupkah ruang but?",ta:"எங்களிடம் நிறைய சாமான்கள் உள்ளன. டிக்கியில் போதுமான இடமா?",taPron:"Eṅkaḷiṭam niṟaiya cāmāṉkaḷ uḷḷaṉa. Ṭikkiyil pōtumāṉa iṭamā?"},
+"어느 노선을 타야 하나요?":{zh:"我们应该坐哪一条地铁线？",zhPron:"Wǒmen yīnggāi zuò nǎ yì tiáo dìtiě xiàn?",ms:"Laluan MRT yang mana patut kami ambil?",ta:"எந்த MRT வழித்தடத்தை எடுக்க வேண்டும்?",taPron:"Enta MRT vaḻittaṭattai eṭukka vēṇṭum?"},
+"어디에서 환승해야 하나요?":{zh:"我们应该在哪里换乘？",zhPron:"Wǒmen yīnggāi zài nǎlǐ huànchéng?",ms:"Di mana kami perlu tukar laluan?",ta:"நாங்கள் எங்கே மாறி ஏற வேண்டும்?",taPron:"Nāṅkaḷ eṅkē māṟi ēṟa vēṇṭum?"},
+"몇 번 출구로 나가야 하나요?":{zh:"我们应该从几号出口出去？",zhPron:"Wǒmen yīnggāi cóng jǐ hào chūkǒu chūqù?",ms:"Kami perlu keluar melalui pintu keluar nombor berapa?",ta:"எந்த எண் வெளியேறும் வாயிலை பயன்படுத்த வேண்டும்?",taPron:"Enta eṇ veḷiyēṟum vāyilai payaṉpaṭutta vēṇṭum?"},
+"유모차로 이동하기 편한 엘리베이터가 어디인가요?":{zh:"适合推婴儿车的电梯在哪里？",zhPron:"Shìhé tuī yīng'érchē de diàntī zài nǎlǐ?",ms:"Di mana lif yang sesuai untuk kereta sorong bayi?",ta:"குழந்தை வண்டியுடன் செல்ல ஏற்ற லிப்ட் எங்கே?",taPron:"Kuḻantai vaṇṭiyuṭaṉ cella ēṟṟa lipṭ eṅkē?"},
+"이 이름으로 예약했습니다.":{zh:"我们用这个名字预订了。",zhPron:"Wǒmen yòng zhège míngzi yùdìng le.",ms:"Kami ada tempahan atas nama ini.",ta:"இந்த பெயரில் முன்பதிவு செய்துள்ளோம்.",taPron:"Inta peyaril muṉpativu ceytuḷḷōm."},
+"체크아웃 후에 짐을 맡길 수 있나요?":{zh:"退房后可以寄存行李吗？",zhPron:"Tuìfáng hòu kěyǐ jìcún xíngli ma?",ms:"Boleh kami simpan bagasi selepas daftar keluar?",ta:"செக்-அவுட் செய்த பிறகு சாமான்களை வைத்திருக்க முடியுமா?",taPron:"Check-out ceyta piṟaku cāmāṉkaḷai vaittirukka muṭiyumā?"},
+"객실을 서로 가까운 곳으로 배정해 주실 수 있나요?":{zh:"可以把我们的房间安排得靠近一些吗？",zhPron:"Kěyǐ bǎ wǒmen de fángjiān ānpái de kàojìn yìxiē ma?",ms:"Boleh tempatkan bilik kami berdekatan antara satu sama lain?",ta:"எங்கள் அறைகளை ஒன்றுக்கொன்று அருகில் ஒதுக்க முடியுமா?",taPron:"Eṅkaḷ aṟaikaḷai oṉṟukkoṉṟu arukil otukka muṭiyumā?"},
+"체크인 시간이 몇 시인가요?":{zh:"几点可以入住？",zhPron:"Jǐ diǎn kěyǐ rùzhù?",ms:"Pukul berapa waktu daftar masuk?",ta:"செக்-இன் நேரம் எத்தனை மணி?",taPron:"Check-in nēram ettaṉai maṇi?"},
+"레이트 체크아웃이 가능한가요?":{zh:"可以延迟退房吗？",zhPron:"Kěyǐ yánchí tuìfáng ma?",ms:"Adakah daftar keluar lewat tersedia?",ta:"தாமதமான செக்-அவுட் கிடைக்குமா?",taPron:"Tāmatamāṉa check-out kiṭaikkumā?"},
+"조식은 어디에서 먹나요?":{zh:"早餐在哪里用餐？",zhPron:"Zǎocān zài nǎlǐ yòngcān?",ms:"Sarapan disajikan di mana?",ta:"காலை உணவு எங்கே வழங்கப்படுகிறது?",taPron:"Kālai uṇavu eṅkē vaḻaṅkappaṭukiṟatu?"},
+"롤어웨이 베드 요청이 등록되어 있나요?":{zh:"可以确认我们的加床要求已经登记了吗？",zhPron:"Kěyǐ quèrèn wǒmen de jiāchuáng yāoqiú yǐjīng dēngjì le ma?",ms:"Boleh semak sama ada permintaan katil tambahan kami telah direkodkan?",ta:"கூடுதல் படுக்கை கோரிக்கை பதிவு செய்யப்பட்டதா என்று பார்க்க முடியுமா?",taPron:"Kūṭutal paṭukkai kōrikkai pativu ceyyappaṭṭatā eṉṟu pārkka muṭiyumā?"},
+"아이용 발판을 받을 수 있을까요?":{zh:"可以给孩子一个脚踏凳吗？",zhPron:"Kěyǐ gěi háizi yí ge jiǎotàdèng ma?",ms:"Boleh kami dapatkan bangku pijak untuk kanak-kanak?",ta:"குழந்தைக்காக ஒரு படிக்கட்டுப் பலகை கிடைக்குமா?",taPron:"Kuḻantaikkāka oru paṭikkaṭṭup palakai kiṭaikkumā?"},
+"11명 자리 가능할까요?":{zh:"有十一个人的座位吗？",zhPron:"Yǒu shíyī ge rén de zuòwèi ma?",ms:"Ada meja untuk sebelas orang?",ta:"பதினொன்று பேருக்கு மேசை கிடைக்குமா?",taPron:"Patiṉoṉṟu pērukku mēcai kiṭaikkumā?"},
+"덜 맵게 해주세요.":{zh:"请做得不那么辣。",zhPron:"Qǐng zuò de bú nàme là.",ms:"Tolong kurangkan pedas.",ta:"காரத்தை குறைத்து செய்யுங்கள்.",taPron:"Kārattai kuṟaittu ceyyuṅkaḷ."},
+"이 음식은 3살 아이가 먹기에 괜찮나요?":{zh:"这个适合三岁的孩子吃吗？",zhPron:"Zhège shìhé sān suì de háizi chī ma?",ms:"Adakah ini sesuai untuk kanak-kanak berumur tiga tahun?",ta:"இது மூன்று வயது குழந்தைக்கு ஏற்றதா?",taPron:"Itu mūṉṟu vayatu kuḻantaikku ēṟṟatā?"},
+"가능하면 실내 좌석으로 부탁드립니다.":{zh:"如果可以，我们想坐室内。",zhPron:"Rúguǒ kěyǐ, wǒmen xiǎng zuò shìnèi.",ms:"Jika boleh, kami mahu tempat duduk di dalam.",ta:"முடிந்தால் உள்ளே இருக்கை வேண்டும்.",taPron:"Muṭintāl uḷḷē irukkai vēṇṭum."},
+"아동용 의자가 있나요?":{zh:"有儿童高脚椅吗？",zhPron:"Yǒu értóng gāojiǎoyǐ ma?",ms:"Ada kerusi tinggi untuk kanak-kanak?",ta:"குழந்தைக்கான உயர்ந்த நாற்காலி உள்ளதா?",taPron:"Kuḻantaikkāṉa uyarnta nāṟkāli uḷḷatā?"},
+"견과류가 들어 있나요?":{zh:"这里面有坚果吗？",zhPron:"Zhèlǐmiàn yǒu jiānguǒ ma?",ms:"Adakah ini mengandungi kekacang?",ta:"இதில் கொட்டைகள் உள்ளதா?",taPron:"Itil koṭṭaikaḷ uḷḷatā?"},
+"고수는 빼주세요.":{zh:"请不要放香菜。",zhPron:"Qǐng búyào fàng xiāngcài.",ms:"Tanpa ketumbar, ya.",ta:"கொத்தமல்லி வேண்டாம்.",taPron:"Kottamalli vēṇṭām."},
+"남은 음식 포장 가능할까요?":{zh:"剩下的食物可以打包吗？",zhPron:"Shèngxià de shíwù kěyǐ dǎbāo ma?",ms:"Boleh bungkus makanan yang tinggal?",ta:"மீதமுள்ள உணவை எடுத்துச் செல்லப் பொதி செய்ய முடியுமா?",taPron:"Mītamuḷḷa uṇavai eṭuttuc cellap poti ceyya muṭiyumā?"},
+"티켓은 이미 구매했습니다.":{zh:"我们已经买票了。",zhPron:"Wǒmen yǐjīng mǎi piào le.",ms:"Kami sudah membeli tiket.",ta:"நாங்கள் ஏற்கனவே டிக்கெட் வாங்கியுள்ளோம்.",taPron:"Nāṅkaḷ ēṟkaṉavē ṭikkeṭ vāṅkiyuḷḷōm."},
+"이 놀이기구의 최소 키 제한이 얼마인가요?":{zh:"这个项目的最低身高要求是多少？",zhPron:"Zhège xiàngmù de zuìdī shēngāo yāoqiú shì duōshao?",ms:"Berapakah ketinggian minimum untuk permainan ini?",ta:"இந்த சவாரிக்கான குறைந்தபட்ச உயரம் என்ன?",taPron:"Inta cavārikkāṉa kuṟaintapaṭca uyaram eṉṉa?"},
+"유모차를 안으로 가져갈 수 있나요?":{zh:"婴儿车可以带进去吗？",zhPron:"Yīng'érchē kěyǐ dài jìnqù ma?",ms:"Boleh bawa kereta sorong masuk?",ta:"குழந்தை வண்டியை உள்ளே கொண்டு செல்லலாமா?",taPron:"Kuḻantai vaṇṭiyai uḷḷē koṇṭu cellalāmā?"},
+"11명이 함께 입장할 수 있나요?":{zh:"我们十一个人可以一起进去吗？",zhPron:"Wǒmen shíyī ge rén kěyǐ yìqǐ jìnqù ma?",ms:"Bolehkah kesemua sebelas orang masuk bersama?",ta:"நாங்கள் பதினொன்று பேரும் ஒன்றாக உள்ளே செல்ல முடியுமா?",taPron:"Nāṅkaḷ patiṉoṉṟu pērum oṉṟāka uḷḷē cella muṭiyumā?"},
+"모바일 티켓만 보여드려도 되나요?":{zh:"只出示手机上的电子票可以吗？",zhPron:"Zhǐ chūshì shǒujī shàng de diànzǐpiào kěyǐ ma?",ms:"Boleh tunjuk tiket digital di telefon sahaja?",ta:"தொலைபேசியில் உள்ள டிஜிட்டல் டிக்கெட்டை மட்டும் காட்டலாமா?",taPron:"Tolaipēciyil uḷḷa digital ṭikkeṭṭai maṭṭum kāṭṭalāmā?"},
+"도와주세요.":{zh:"请帮帮我们。",zhPron:"Qǐng bāngbang wǒmen.",ms:"Tolong bantu kami.",ta:"தயவுசெய்து எங்களுக்கு உதவுங்கள்.",taPron:"Tayavuceytu eṅkaḷukku utavuṅkaḷ."},
+"진료를 받아야 합니다.":{zh:"我们需要看医生。",zhPron:"Wǒmen xūyào kàn yīshēng.",ms:"Kami perlu berjumpa doktor.",ta:"நாங்கள் மருத்துவரை பார்க்க வேண்டும்.",taPron:"Nāṅkaḷ maruttuvarai pārkka vēṇṭum."},
+"아이가 열이 납니다.":{zh:"我的孩子发烧了。",zhPron:"Wǒ de háizi fāshāo le.",ms:"Anak saya demam.",ta:"என் குழந்தைக்கு காய்ச்சல் உள்ளது.",taPron:"Eṉ kuḻantaikku kāyccal uḷḷatu."},
+"가장 가까운 약국이 어디인가요?":{zh:"最近的药店在哪里？",zhPron:"Zuìjìn de yàodiàn zài nǎlǐ?",ms:"Di mana farmasi yang paling dekat?",ta:"அருகிலுள்ள மருந்தகம் எங்கே?",taPron:"Arukiluḷḷa maruntakam eṅkē?"},
+"구급차를 불러주세요.":{zh:"请叫救护车。",zhPron:"Qǐng jiào jiùhùchē.",ms:"Tolong panggil ambulans.",ta:"தயவுசெய்து ஆம்புலன்ஸ் அழைக்கவும்.",taPron:"Tayavuceytu āmpulaṉs aḻaikkavum."},
+"아이를 잃어버렸습니다. 보안요원을 불러주세요.":{zh:"我的孩子走失了。请马上叫保安。",zhPron:"Wǒ de háizi zǒushī le. Qǐng mǎshàng jiào bǎo'ān.",ms:"Anak saya hilang. Tolong panggil keselamatan segera.",ta:"என் குழந்தை காணவில்லை. உடனே பாதுகாப்பு அதிகாரியை அழைக்கவும்.",taPron:"Eṉ kuḻantai kāṇavillai. Uṭaṉē pātukāppu atikāriyai aḻaikkavum."}
+};
+for(const p of PHRASES){ if(PHRASE_I18N[p.ko]) Object.assign(p,PHRASE_I18N[p.ko]); }
+let phraseLang=localStorage.getItem("sg_phrase_lang")||"en";
+
+function phraseValue(x){
+ const cfg=PHRASE_LANGS[phraseLang]||PHRASE_LANGS.en;
+ return x[cfg.field]||x.en;
+}
+function phrasePron(x){
+ const cfg=PHRASE_LANGS[phraseLang]||PHRASE_LANGS.en;
+ return cfg.pron?x[cfg.pron]||"":"";
+}
+function phraseSpeak(text){
+ if(!("speechSynthesis" in window)||!text)return;
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(text);
+ u.lang={en:"en-US",zh:"zh-CN",ms:"ms-MY",ta:"ta-IN"}[phraseLang]||"en-US";
+ u.rate=.86;speechSynthesis.speak(u);
+}
+async function copyText(text){
+ try{await navigator.clipboard.writeText(text)}catch(e){
+  const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();
+ }
+}
+
+let phraseCat="전체";
+function renderPhrases(){
+ const cats=["전체",...new Set(PHRASES.map(x=>x.cat))];
+ const langs=document.getElementById("phraseLangs"),c=document.getElementById("phraseCats"),root=document.getElementById("phraseList");
+ const q=(document.getElementById("phraseSearch")?.value||"").toLowerCase();
+ if(!c||!root)return;
+ if(langs)langs.innerHTML=Object.entries(PHRASE_LANGS).map(([k,v])=>`<button class="langchip ${k===phraseLang?"on":""}" data-plang="${k}">${v.label}</button>`).join("");
+ c.innerHTML=cats.map(x=>`<button class="chipbtn ${x===phraseCat?"on":""}" data-pcat="${x}">${x}</button>`).join("");
+ const rows=PHRASES.filter(x=>(phraseCat==="전체"||x.cat===phraseCat)&&(!q||`${x.ko} ${x.en} ${x.zh||""} ${x.ms||""} ${x.ta||""} ${x.cat}`.toLowerCase().includes(q)));
+ root.innerHTML=rows.map(x=>{
+   const native=phraseValue(x),pron=phrasePron(x),translated=phraseLang!=="en"&&!x[PHRASE_LANGS[phraseLang].field];
+   return `<article class="phrase-item">
+    <b>${x.icon} ${x.cat}</b>
+    <div class="native">${escapeHtml(native)}</div>
+    ${pron?`<div class="pron">${escapeHtml(pron)}</div>`:""}
+    <div class="ko">${escapeHtml(x.ko)}</div>
+    ${translated?`<div class="pron">※ 이 표현은 현재 영어 원문으로 표시</div>`:""}
+    <div class="inline-actions">
+      <button type="button" data-phrase-copy="${escapeAttr(native)}">📋 복사</button>
+      <button type="button" data-phrase-speak="${escapeAttr(native)}">🔊 듣기</button>
+    </div>
+   </article>`;
+ }).join("");
+ langs?.querySelectorAll("[data-plang]").forEach(b=>b.onclick=()=>{phraseLang=b.dataset.plang;localStorage.setItem("sg_phrase_lang",phraseLang);renderPhrases()});
+ c.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{phraseCat=b.dataset.pcat;renderPhrases()});
+ root.querySelectorAll("[data-phrase-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.phraseCopy));
+ root.querySelectorAll("[data-phrase-speak]").forEach(b=>b.onclick=()=>phraseSpeak(b.dataset.phraseSpeak));
+}
+document.getElementById("phraseSearch")?.addEventListener("input",renderPhrases);
+
+// ---------- Message cards ----------
+const MESSAGE_CARDS=[
+ {cat:"⭐ 이번 여행",icon:"🏨",title:"Marriott 종합 체크인",en:`Hello. We are a family group of eleven checking in for four rooms at ${TRIP_META.hotel.name}. Our stay is from September 19 to September 24. The reservation numbers are ${TRIP_META.hotel.reservationNumbers.join(", ")}. We previously asked for the rooms to be as close to each other as possible, some twin-bed rooms, a rollaway bed, and a step stool for the room with young children. Could you please check these requests for us?`,ko:"11명 가족 · 4객실 체크인. 예약번호와 기존 객실 요청사항을 한 번에 확인하는 카드."},
+ {cat:"⭐ 이번 여행",icon:"🚪",title:"4개 객실 가까이",en:"We have four rooms in the same family group. If possible, could you please assign the rooms close to each other?",ko:"같은 일행 4개 객실을 가능한 가까이 배정 요청."},
+ {cat:"⭐ 이번 여행",icon:"⬆️",title:"객실 업그레이드 문의",en:"Could you please check whether any complimentary room upgrade is available for our stay?",ko:"가능한 무료 객실 업그레이드가 있는지 확인."},
+ {cat:"⭐ 이번 여행",icon:"🛏️",title:"Rollaway / Step Stool",en:"Could you please confirm whether the rollaway bed and the step stool requested for our rooms are available?",ko:"요청해둔 Rollaway Bed와 Step Stool 제공 여부 확인."},
+ {cat:"⭐ 이번 여행",icon:"🍳",title:"조식 / M Club 문의",en:"Could you please explain our breakfast options and whether we have access to the M Club? We were offered a special breakfast rate of S$25++ per adult per day.",ko:"조식 옵션과 M Club 이용 가능 여부 확인."},
+ {cat:"⭐ 이번 여행",icon:"🕓",title:"4PM Late Checkout",en:"Would a 4:00 PM late check-out be available for any of our rooms on September 24?",ko:"9월 24일 일부 객실이라도 오후 4시 레이트 체크아웃 가능한지 문의."},
+ {cat:"⭐ 이번 여행",icon:"🦀",title:"JUMBO 예약 확인",en:`Hello. We have a reservation at ${TRIP_META.dining.jumbo.name} on September 22 at 7:00 PM for eleven people. The reservation ID is ${TRIP_META.dining.jumbo.reservationId}. Could you please confirm our reservation?`,ko:"9/22 19:00 · 11명 · JUMBO Riverside Point · 예약번호 확인."},
+ {cat:"⭐ 이번 여행",icon:"🚐",title:"11명 단체 이동",en:"We are a group of eleven, including three children, and we also have luggage and strollers. Could you help us arrange suitable transportation?",ko:"11명 + 아이 3명 + 짐/유모차에 맞는 차량 요청."},
+ {cat:"⭐ 이번 여행",icon:"👶",title:"아이 동반 안내",en:"We are traveling with two three-year-old children and one seven-year-old child. Could you please let us know the easiest option for families with young children?",ko:"3세 2명, 7세 1명 동반. 어린아이 가족에게 가장 편한 방법 문의."},
+
+ {cat:"🏨 호텔",icon:"🧳",title:"짐 보관",en:"Could you please store our luggage after check-out until we leave for the airport?",ko:"체크아웃 후 공항 가기 전까지 짐 보관 요청."},
+ {cat:"🏨 호텔",icon:"💧",title:"생수 추가",en:"Could we have some more bottled water, please?",ko:"생수 추가 요청."},
+ {cat:"🏨 호텔",icon:"🧺",title:"수건 추가",en:"Could we have more towels, please?",ko:"수건 추가 요청."},
+
+ {cat:"🚕 교통",icon:"📍",title:"이 주소로",en:"Please take us to this address.",ko:"휴대폰에 주소를 함께 보여주면서 사용."},
+ {cat:"🚕 교통",icon:"🚐",title:"큰 차량 필요",en:"We need a larger vehicle because we have eleven people, luggage, and strollers.",ko:"11명 + 짐 + 유모차 때문에 큰 차량 필요."},
+ {cat:"🚕 교통",icon:"🛑",title:"여기 세워주세요",en:"Could you stop here, please?",ko:"여기에서 내려달라고 요청."},
+
+ {cat:"🍽️ 식당",icon:"🍽️",title:"11명 자리",en:"We are eleven people. Could we sit together, or at tables next to each other?",ko:"11명이 함께 또는 붙은 테이블 요청."},
+ {cat:"🍽️ 식당",icon:"🌶️",title:"안 맵게",en:"Could you make this less spicy for the children, please?",ko:"아이용으로 덜 맵게 요청."},
+ {cat:"🍽️ 식당",icon:"🧾",title:"계산서",en:"Could we have the bill, please?",ko:"계산서 요청."},
+
+ {cat:"🎢 관광지",icon:"🎟️",title:"티켓 있음",en:"We already have tickets. Can I show them on my phone?",ko:"모바일 티켓 제시."},
+ {cat:"🎢 관광지",icon:"📏",title:"아이 탑승 기준",en:"What is the minimum height or age requirement for this ride?",ko:"놀이기구 키/나이 제한 문의."},
+ {cat:"🎢 관광지",icon:"🛒",title:"유모차",en:"Can we bring the stroller inside, or is there a stroller parking area?",ko:"유모차 반입 또는 보관 장소 문의."},
+
+ {cat:"🆘 긴급/도움",icon:"🏥",title:"진료 필요",en:"We need medical help. Where is the nearest clinic or hospital?",ko:"가까운 병원/클리닉 문의."},
+ {cat:"🆘 긴급/도움",icon:"🤒",title:"아이 열",en:"My child has a fever and is not feeling well. Could you please help us?",ko:"아이가 열이 나고 몸이 좋지 않을 때."},
+ {cat:"🆘 긴급/도움",icon:"🧒",title:"아이를 잃어버림",en:"My child is lost. Please help us contact security immediately.",ko:"아이를 잃어버렸을 때 즉시 보안요원 도움 요청."}
+];
+
+MESSAGE_CARDS.push(
+ {cat:"⭐ 이번 여행",icon:"🛬",title:"창이 도착 후 픽업",en:"We are a family group of eleven arriving on Korean Air KE643. We have children, strollers, and several suitcases. Could you please tell us exactly where our pickup point is?",ko:"KE643 도착 후 11명 + 아이 + 유모차 + 캐리어 픽업 위치 확인."},
+ {cat:"⭐ 이번 여행",icon:"🧳",title:"체크아웃 후 짐 보관",en:"We are checking out today, but our flight KE644 departs at 10:00 PM. Could you please store all of our luggage until we leave for the airport?",ko:"9/24 KE644 22:00 출발. 체크아웃 후 공항 이동 전까지 전체 짐 보관 요청."},
+ {cat:"⭐ 이번 여행",icon:"🍳",title:"특별 조식가 적용",en:"We were offered a special breakfast rate of S$25++ per adult per day. Could you please confirm which dates we can use this rate for our rooms?",ko:"성인 S$25++ 특별 조식가 적용 날짜 확인."},
+ {cat:"⭐ 이번 여행",icon:"👧",title:"7세 조식 확인",en:"We are traveling with a seven-year-old child. Could you please confirm whether breakfast is complimentary when the child is dining with a paying adult?",ko:"7세 아동이 paying adult와 동반 시 무료 조식인지 확인."},
+ {cat:"⭐ 이번 여행",icon:"🛏️",title:"Twin Beds 확인",en:"Some of our rooms requested twin beds. Could you please check which rooms have been assigned twin beds?",ko:"일부 객실 Twin Beds 요청 반영 객실 확인."},
+ {cat:"⭐ 이번 여행",icon:"🌬️",title:"Air Purifier 확인",en:"We understand that an air purifier is subject to availability. Could you please check whether one is available for our group?",ko:"재고 상황에 따른 Air Purifier 제공 가능 여부 확인."},
+ {cat:"⭐ 이번 여행",icon:"🦀",title:"JUMBO 실내석 문의",en:`We have a reservation for eleven people at ${TRIP_META.dining.jumbo.name} at 7:00 PM. If possible, could we have indoor air-conditioned seating because we are traveling with young children?`,ko:"JUMBO 11명 예약. 어린아이 동반이라 가능하면 실내 에어컨 좌석 요청."},
+ {cat:"⭐ 이번 여행",icon:"🦀",title:"JUMBO 게 가격 확인",en:"Before we order the crab, could you please tell us the weight and the total price for this crab?",ko:"칠리크랩 주문 전 게 중량과 총 가격 확인."},
+ {cat:"⭐ 이번 여행",icon:"🎢",title:"USS 가족 분리 입장",en:"Our family group has adults and young children. Some adults may take the rides while others stay with the children. Where is the easiest place for us to meet again?",ko:"USS에서 놀이기구팀/아이팀 잠시 분리 후 재집결 장소 문의."},
+ {cat:"⭐ 이번 여행",icon:"🛒",title:"USS 유모차",en:"We have two three-year-old children. Can we bring our strollers inside, and where should we park them when we go on a ride?",ko:"3세 2명 유모차 반입 및 어트랙션 이용 시 보관 장소 문의."},
+ {cat:"⭐ 이번 여행",icon:"🐠",title:"Oceanarium 11명",en:"We are a group of eleven with three children. Can we enter together, and is there a stroller-friendly route throughout the attraction?",ko:"Oceanarium 11명 동시입장 및 유모차 동선 확인."},
+ {cat:"⭐ 이번 여행",icon:"🚤",title:"River Cruise 11명",en:"We are eleven people. Is there space for all of us on the same river cruise departure, or should we take two boats?",ko:"리버크루즈 같은 회차에 11명 탑승 가능한지 확인."},
+ {cat:"⭐ 이번 여행",icon:"✈️",title:"KE644 체크인",en:"We are flying to Seoul on Korean Air KE644 at 10:00 PM. Could you please tell us where and when check-in opens?",ko:"KE644 22:00 귀국편 체크인 카운터 및 오픈시간 확인."},
+ {cat:"⭐ 이번 여행",icon:"💼",title:"Jewel 짐 처리",en:"We would like to visit Jewel before our flight. What is the best way to handle our luggage before Korean Air check-in opens?",ko:"대한항공 체크인 전 Jewel 관광 시 짐 처리 방법 문의."},
+
+ {cat:"🏨 호텔",icon:"🔑",title:"객실 키 추가",en:"Could we have one additional key card for this room, please?",ko:"객실 키 카드 추가 요청."},
+ {cat:"🏨 호텔",icon:"🔧",title:"에어컨 문제",en:"The air conditioner in our room is not working properly. Could someone please check it?",ko:"객실 에어컨 점검 요청."},
+ {cat:"🏨 호텔",icon:"🚿",title:"욕실 문제",en:"There is a problem in the bathroom. Could someone please come and check it?",ko:"욕실 문제 점검 요청."},
+ {cat:"🏨 호텔",icon:"🧹",title:"청소 시간 조정",en:"The children are sleeping now. Could housekeeping please come back later?",ko:"아이 낮잠 중이라 객실 청소를 나중에 요청."},
+
+ {cat:"🚕 교통",icon:"👨‍👩‍👧‍👦",title:"차량 두 대로 나눔",en:"There are eleven of us. If one vehicle is not enough, could you help us arrange two or three vehicles to leave together?",ko:"11명이라 한 차량이 어렵다면 2~3대 동시 출발 요청."},
+ {cat:"🚕 교통",icon:"🧳",title:"짐 많은 차량",en:"We have several large suitcases and two strollers. Please make sure there is enough luggage space.",ko:"대형 캐리어 여러 개 + 유모차 2대 수납 공간 확인."},
+ {cat:"🚕 교통",icon:"📍",title:"기사 만나기",en:"We are at the pickup point now. Could you tell us exactly where you are waiting?",ko:"픽업장소에서 기사 위치 확인."},
+
+ {cat:"🍽️ 식당",icon:"👶",title:"아이 먼저 음식",en:"Could you please bring the children's food first if possible?",ko:"가능하면 아이 음식 먼저 제공 요청."},
+ {cat:"🍽️ 식당",icon:"🪑",title:"붙은 테이블",en:"We are one family group. Could you please place our tables next to each other?",ko:"여러 테이블이어도 서로 붙여달라고 요청."},
+ {cat:"🍽️ 식당",icon:"🌶️",title:"소스 별도",en:"Could you please serve the spicy sauce on the side?",ko:"매운 소스를 따로 요청."},
+ {cat:"🍽️ 식당",icon:"💳",title:"카드 결제",en:"Can we pay by credit card?",ko:"신용카드 결제 가능 여부."},
+
+ {cat:"🎢 관광지",icon:"👶",title:"부모 교대 탑승",en:"We have young children who cannot ride. Is there a parent swap or rider switch option?",ko:"어린아이 때문에 부모 교대 탑승 제도 문의."},
+ {cat:"🎢 관광지",icon:"🌧️",title:"비 때문에 일정 변경",en:"Because of the rain, can we change our entry time or return later today?",ko:"비로 인해 입장시간 변경 또는 당일 재입장 가능 여부."},
+ {cat:"🎢 관광지",icon:"♿",title:"유모차 편한 길",en:"Could you show us the easiest stroller-friendly route from here?",ko:"현재 위치에서 유모차로 가장 편한 동선 문의."},
+
+ {cat:"🆘 긴급/도움",icon:"🌡️",title:"아이 고열",en:"My young child has a high fever. We need medical advice as soon as possible.",ko:"어린아이 고열로 빠른 의료 도움 필요."},
+ {cat:"🆘 긴급/도움",icon:"🤢",title:"아이가 구토",en:"My child has been vomiting and is feeling weak. Where can we get medical help?",ko:"아이 구토/기력저하 시 의료기관 문의."},
+ {cat:"🆘 긴급/도움",icon:"🧾",title:"분실물 신고",en:"I lost an item here. Where can I report lost property?",ko:"시설 내 분실물 신고 장소 문의."},
+ {cat:"🆘 긴급/도움",icon:"📞",title:"한국어 도움",en:"Is there anyone who speaks Korean, or could you help us contact someone who does?",ko:"한국어 가능한 직원 또는 통역 도움 요청."}
+);
+
+
+MESSAGE_CARDS.push(
+ {cat:"✈️ 공항",icon:"🧳",title:"수하물이 나오지 않음",en:"One of our checked bags has not arrived on the baggage belt. We are a group of eleven and have already collected the other luggage. Could you please help us check the missing bag?",ko:"위탁수하물 하나가 나오지 않았을 때 분실수하물 확인."},
+ {cat:"✈️ 공항",icon:"🛒",title:"유모차 수령 위치",en:"We checked in a stroller for the flight. Where should we collect it after arrival?",ko:"비행기에서 위탁한 유모차 수령 장소 확인."},
+ {cat:"✈️ 공항",icon:"🛫",title:"KE644 체크인 카운터",en:"We are flying on Korean Air KE644 to Seoul at 10:00 PM. Could you tell us where the check-in counters are and when they open?",ko:"KE644 체크인 카운터 위치와 오픈 시간 확인."},
+ {cat:"✈️ 공항",icon:"🧭",title:"탑승구까지 시간",en:"How long does it take to get from here to our departure gate? We are traveling with young children.",ko:"아이 동반 상태에서 현재 위치→탑승구 예상 이동시간 확인."},
+ {cat:"🏨 호텔",icon:"⏳",title:"객실 아직 준비 안 됨",en:"We understand that the room is not ready yet. Could you please store our luggage and let us know the estimated time when the room will be available?",ko:"객실 미준비 시 짐 보관과 예상 준비시간 문의."},
+ {cat:"🏨 호텔",icon:"🚪",title:"객실이 멀리 떨어짐",en:"Our four rooms are in the same family group, but they seem to be far apart. Is there any possibility of moving some of the rooms closer together?",ko:"4개 객실 배정이 너무 멀 때 가까운 객실로 변경 가능 여부."},
+ {cat:"🏨 호텔",icon:"🧹",title:"청소는 나중에",en:"The children are resting now. Could housekeeping please come back later today?",ko:"아이 휴식 중이라 객실 청소를 뒤로 미루는 요청."},
+ {cat:"🏨 호텔",icon:"🧾",title:"객실별 비용 확인",en:"Could you please show us the charges for each of our four rooms separately before we check out?",ko:"체크아웃 전 4개 객실별 비용 내역 확인."},
+ {cat:"🚕 교통",icon:"🚕",title:"차량 여러 대 같은 목적지",en:"We will need two or three vehicles for our group. Could all drivers please go to the same destination and leave at about the same time?",ko:"11명이 여러 차량으로 나눠 탈 때 동일 목적지·비슷한 출발시간 요청."},
+ {cat:"🚕 교통",icon:"⏸️",title:"다른 차량 기다리기",en:"Our family is in another vehicle just behind us. Could we wait here for a few minutes so we can meet together?",ko:"분산 이동 후 다른 가족 차량을 잠시 기다려 재집결."},
+ {cat:"🚕 교통",icon:"📍",title:"픽업 위치 다시 확인",en:"We are at the pickup point shown in the app. Could you tell us exactly where your vehicle is waiting?",ko:"Grab/기사와 픽업 위치가 엇갈릴 때 위치 확인."},
+ {cat:"🍽️ 식당",icon:"👧",title:"아이 음식 먼저",en:"If possible, could you bring the children's food first? The young children are getting hungry.",ko:"3세 아이들 때문에 아이 음식 우선 제공 요청."},
+ {cat:"🍽️ 식당",icon:"🥣",title:"아이용 그릇",en:"Could we have a few small bowls, plates, and spoons for the children, please?",ko:"아이용 작은 그릇·접시·스푼 요청."},
+ {cat:"🍽️ 식당",icon:"💧",title:"물 먼저",en:"Could we have some drinking water for the table first, please?",ko:"11명 착석 후 우선 물 요청."},
+ {cat:"🍽️ 식당",icon:"🦀",title:"게 중량과 총가격 재확인",en:"Before we confirm the crab order, could you show us the weight and the estimated total price? We would like to know the total before cooking.",ko:"칠리크랩 조리 전 중량과 예상 총액 재확인."},
+ {cat:"🎢 관광지",icon:"👨‍👩‍👧‍👦",title:"11명 같은 회차",en:"There are eleven of us. Is it possible for all of us to enter or ride in the same time slot?",ko:"11명이 같은 입장시간/회차 이용 가능한지 확인."},
+ {cat:"🎢 관광지",icon:"🌧️",title:"비로 운영 중단",en:"Is this attraction temporarily closed because of the rain? If so, can we use our ticket later today?",ko:"비로 운휴 시 당일 재이용 가능 여부."},
+ {cat:"🎢 관광지",icon:"↩️",title:"재입장 확인",en:"If we leave this area for a break, can we come back in later with the same ticket?",ko:"휴식 후 같은 티켓으로 재입장 가능한지 확인."},
+ {cat:"🆘 긴급/도움",icon:"🤢",title:"아이 구토",en:"My young child has been vomiting and is feeling weak. Could you tell us where we can get medical help nearby?",ko:"어린아이 구토와 기력저하 시 가까운 의료 도움 요청."},
+ {cat:"🆘 긴급/도움",icon:"🛂",title:"여권 분실",en:"I cannot find my passport. Could you please tell me where I should report a lost passport and what I should do next?",ko:"여권 분실 시 신고 장소와 다음 절차 문의."}
+);
+
+const MSG_FAV_KEY="sg_trip_message_favs_v17";
+let msgCat="⭐ 이번 여행";
+function msgFavs(){try{return JSON.parse(localStorage.getItem(MSG_FAV_KEY)||"[]")}catch(e){return []}}
+function toggleMsgFav(title){
+ const s=new Set(msgFavs());s.has(title)?s.delete(title):s.add(title);localStorage.setItem(MSG_FAV_KEY,JSON.stringify([...s]));renderMessages();
+}
+
+function messageSentences(text){
+ const s=String(text||"").trim();
+ if(!s)return "";
+ const parts=s.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[s];
+ return parts.map(x=>`<span class="msgsentence">${escapeHtml(x.trim())}</span>`).join("");
+}
+function speakEnglish(text){
+ if(!("speechSynthesis" in window)||!text)return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.86;speechSynthesis.speak(u);
+}
+
+function renderMessages(){
+ const cats=["⭐ 즐겨찾기",...new Set(MESSAGE_CARDS.map(x=>x.cat))];
+ const c=document.getElementById("msgCats"),root=document.getElementById("msgList"),q=(document.getElementById("msgSearch")?.value||"").toLowerCase(),favs=new Set(msgFavs());
+ if(!c||!root)return;
+ c.innerHTML=cats.map(x=>`<button class="chipbtn ${x===msgCat?"on":""}" data-mcat="${x}">${x}</button>`).join("");
+ const rows=MESSAGE_CARDS.filter(x=>(msgCat==="⭐ 즐겨찾기"?favs.has(x.title):x.cat===msgCat)&&(!q||`${x.title} ${x.en} ${x.ko}`.toLowerCase().includes(q)));
+ root.innerHTML=rows.length?rows.map(x=>`<article class="msg-item">
+   <button class="favbtn ${favs.has(x.title)?"on":""}" type="button" data-fav="${escapeAttr(x.title)}">${favs.has(x.title)?"★":"☆"}</button>
+   <div class="msgtitle">${x.icon} ${escapeHtml(x.title)}</div>
+   <div class="msgen">${messageSentences(x.en)}</div>
+   <div class="msgko">${escapeHtml(x.ko)}</div>
+   <div class="inline-actions">
+     <button type="button" data-msg-copy="${escapeAttr(x.en)}">📋 영어 복사</button>
+     <button type="button" data-msg-speak="${escapeAttr(x.en)}">🔊 영어 듣기</button>
+   </div>
+ </article>`).join(""):`<div class="toolcard">표시할 카드가 없습니다.</div>`;
+ c.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{msgCat=b.dataset.mcat;renderMessages()});
+ root.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{e.stopPropagation();toggleMsgFav(b.dataset.fav)});
+ root.querySelectorAll("[data-msg-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.msgCopy));
+ root.querySelectorAll("[data-msg-speak]").forEach(b=>b.onclick=()=>speakEnglish(b.dataset.msgSpeak));
+}
+document.getElementById("msgSearch")?.addEventListener("input",renderMessages);
+
+// ---------- Presentation ----------
+let presentText="";
+function escapeAttr(s){return String(s??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function openPresent(icon,en,ko){
+ presentText=en||"";
+ document.getElementById("presentIcon").textContent=icon||"💬";
+ document.getElementById("presentEn").textContent=en||"";
+ document.getElementById("presentKo").textContent=ko||"";
+ const p=document.getElementById("messagePresent");p.classList.add("open");p.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+}
+function closePresent(){const p=document.getElementById("messagePresent");p.classList.remove("open");p.setAttribute("aria-hidden","true");document.body.style.overflow=""}
+document.getElementById("presentClose")?.addEventListener("click",closePresent);
+document.getElementById("presentSpeak")?.addEventListener("click",()=>{
+ if(!("speechSynthesis" in window)||!presentText)return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(presentText);u.lang="en-US";u.rate=.88;speechSynthesis.speak(u);
+});
+document.getElementById("presentCopy")?.addEventListener("click",async()=>{
+ try{await navigator.clipboard.writeText(presentText)}catch(e){const ta=document.createElement("textarea");ta.value=presentText;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePresent()});
+
+
+const STUDY_STORIES=[
+ {id:"s1",chapter:"CHAPTER 1 · 1819년 이전",title:"① 작은 섬인데, 왜 사람들이 모였을까?",summary:"싱가포르의 첫 번째 자원은 땅이나 광물이 아니라 ‘위치’였다.",html:`
+  <div class="storylead">먼저 지도부터 · 싱가포르의 가장 큰 자원은 석유도 땅도 아니라 <b>위치</b>였다.</div>
+  <p>싱가포르는 말레이반도 가장 아래쪽의 작은 섬이다. 바로 옆에는 말라카 해협으로 이어지는 해상교통의 길목이 있다. 중국과 동남아시아에서 인도·중동·유럽으로 오가는 배에게 매우 중요한 위치였다.</p>
+  <p>쉽게 말하면 옛날부터 <b>세계 해상무역 고속도로 옆의 휴게소가 될 수 있는 자리</b>였다. 땅이 작아도 배가 계속 지나간다면 물건을 사고팔고, 물과 식량을 보충하고, 배를 고치는 항구가 성장할 수 있다.</p>
+  <p>1819년 이전에도 이 섬은 빈 땅이 아니었다. 말레이 세계의 교역망 안에 있었고, Temasek 같은 옛 이름도 전해진다. ‘1819년에 싱가포르가 갑자기 생겼다’고 생각하면 그 이전의 역사가 빠진다.</p>
+  <div class="storyfact"><b>🦁 이름 이야기</b><br>전승에는 Sang Nila Utama가 사자라고 생각한 동물을 보고 Singapura, 즉 ‘사자의 도시’라는 이름을 붙였다는 이야기가 있다. 오늘날 Merlion의 사자 머리도 이 전승을 활용한 현대적 상징이다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Merlion Park · Kampong Glam · Sultan Mosque</div>
+  <div class="storychild"><b>👧 아이에게 쉽게</b><br>“싱가포르는 땅은 작은데 배가 엄청 많이 지나가는 좋은 자리에 있었어. 그래서 사람들이 여기서 장사하기 시작한 거야.”</div>`},
+ {id:"s2",chapter:"CHAPTER 2 · 1819년 이후",title:"② 영국은 왜 싱가포르에 들어왔을까?",summary:"좋은 위치에 자유항 정책이 더해지면서 항구가 폭발적으로 성장했다.",html:`
+  <div class="storylead">좋은 위치 + 자유로운 무역 = 항구가 폭발적으로 성장한다.</div>
+  <p>19세기 초 영국은 아시아 무역을 늘리고 있었고, 이 지역에서 강한 영향력을 가진 네덜란드와 경쟁하고 있었다. 영국 상선이 편하게 들를 새로운 교역 거점이 필요했다.</p>
+  <p><b>1819년 Stamford Raffles</b>가 싱가포르에 영국의 교역 거점을 마련했다. 지금도 Raffles Hotel, Raffles Place처럼 도시 곳곳에서 그 이름을 볼 수 있다.</p>
+  <p>핵심은 단순히 영국인이 왔다는 사실보다 <b>자유항</b> 정책이었다. 무역 장벽을 낮추고 여러 지역의 상인에게 ‘여기 와서 장사하세요’라는 환경을 만들자 배와 사람이 빠르게 몰려왔다.</p>
+  <p>하지만 동시에 영국 식민지 도시가 되어가는 과정이기도 했다. 행정기관, 군사시설, 교회와 상업지구가 만들어졌고 도시 공간도 식민지 정부의 계획 아래 재편되었다.</p>
+  <div class="storyfact"><b>🤔 Raffles는 영웅일까?</b><br>국제 무역항 성장의 계기를 만든 인물이지만, 이미 사람이 살던 지역을 영국 식민지 체제에 편입시킨 인물이기도 하다. 두 관점을 함께 보는 편이 정확하다.</div>
+  <div class="storytrip"><b>📍 DAY 4 연결</b><br>Fort Canning · Padang · St Andrew’s Cathedral · Raffles Hotel · Civic District</div>`},
+ {id:"s3",chapter:"CHAPTER 3 · 19세기~20세기 초",title:"③ 항구가 커지자 다문화 도시가 만들어졌다",summary:"배가 모이고 일자리가 생기자 중국·인도·말레이·아랍계 사람들이 한 도시에 모였다.",html:`
+  <div class="storylead">배가 모이면 물건이 모이고, 물건이 모이면 일자리가 생기고, 일자리가 생기면 사람이 모인다.</div>
+  <p>항구가 빠르게 성장하면서 부두 노동자, 상인, 운송업자, 장인과 서비스 인력이 대량으로 필요해졌다. 중국 남부, 인도, 말레이 세계와 중동 등 여러 지역에서 사람들이 이동해 왔다.</p>
+  <p>오늘날 Chinatown, Little India, Kampong Glam 같은 지역은 이런 이민과 상업의 역사를 보여준다. 다만 실제 도시는 민족별로 완전히 분리되어 있지 않았다. 장사와 생활은 계속 섞였다.</p>
+  <p>절·사원·모스크와 씨족단체는 종교시설만이 아니라 낯선 도시에서 서로 돕는 공동체 역할도 했다.</p>
+  <div class="storyfact"><b>🍜 음식도 함께 이동했다</b><br>Chicken Rice, Bak Kut Teh, Satay, Roti Prata처럼 서로 다른 지역의 음식이 한 도시에 모였고, 현지화되면서 지금의 싱가포르 음식문화가 만들어졌다.</div>
+  <div class="storyfact"><b>🛕 왜 Chinatown에 힌두 사원이 있을까?</b><br>민족별 생활권은 있었지만 항구도시는 사람과 장사가 계속 섞이는 곳이었다. Sri Mariamman Temple이 Chinatown 안에 있는 모습 자체가 그 역사를 보여준다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Chinatown · Sri Mariamman Temple · Maxwell Food Centre · Little India · Kampong Glam</div>`},
+ {id:"s4",chapter:"CHAPTER 4 · 1942~1945",title:"④ ‘영국이 지켜줄 것’이라는 믿음이 무너졌다",summary:"일본 점령은 식민지 권력에 대한 믿음을 뒤흔든 큰 단절점이었다.",html:`
+  <div class="storylead">Japanese Occupation은 싱가포르 역사에서 큰 단절점이다.</div>
+  <p>제2차 세계대전이 아시아로 확대되면서 일본군은 말레이반도를 빠르게 남하했다. 영국은 싱가포르를 강력한 군사기지로 만들었기 때문에 쉽게 무너지지 않을 것이라 생각했다.</p>
+  <p>하지만 <b>1942년 영국군이 일본군에 항복</b>했다. 강력한 제국이라고 믿었던 영국이 무너지는 장면은 주민들에게 큰 충격이었다.</p>
+  <p>이후 약 3년 반 동안 일본의 지배가 이어졌고 식량 부족과 강압적 통치가 심했다. 특히 중국계 주민을 대상으로 한 Sook Ching 학살 등 심각한 폭력이 있었다.</p>
+  <p>1945년 일본 패전 뒤 영국이 돌아왔지만, ‘유럽 식민정부가 언제나 우리를 지켜준다’는 믿음은 이미 흔들렸다. 이후 자치와 독립 요구가 커지는 배경 중 하나가 되었다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>National Museum · Fort Canning의 전쟁 관련 흔적</div>`},
+ {id:"s5",chapter:"CHAPTER 5 · 1945~1965",title:"⑤ 영국 식민지에서 어떻게 독립국가가 되었을까?",summary:"자치 → Malaysia 합병 → 갈등 → 1965년 분리독립으로 이어졌다.",html:`
+  <div class="storylead">독립은 하루아침에 선언한 한 사건이 아니라 여러 단계가 이어진 과정이었다.</div>
+  <p>전쟁 뒤 식민지 체제에 대한 신뢰가 약해지고 정치 참여와 자치 요구가 커졌다. <b>People’s Action Party(PAP)</b>는 1954년 창당됐고, Lee Kuan Yew와 함께 자치·독립 과정에서 중심 세력이 되었다.</p>
+  <p>1959년 싱가포르는 내부 자치권을 크게 확보했다. 이후 1963년 Malaysia에 합류했지만 중앙정부와 싱가포르 지도부 사이에서 정치·경제·민족 문제를 둘러싼 갈등이 이어졌다.</p>
+  <p><b>1965년 8월 9일</b> 싱가포르는 Malaysia에서 분리돼 독립국가가 되었다. 지금은 National Day로 크게 기념하지만 당시에는 ‘이 작은 도시가 정말 혼자 살아남을 수 있을까?’라는 걱정이 컸다.</p>
+  <div class="storyfact"><b>🤔 Malaysia가 그냥 쫓아낸 건가?</b><br>Malaysia 의회가 분리를 결정한 것은 맞지만, 실제 과정은 양측의 정치·경제·민족 갈등이 누적된 결과라 단순히 한쪽이 싫어서 내보냈다고 보는 것은 지나치게 단순하다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>National Museum에서 전후 정치·독립 흐름을 연결해 보기</div>`},
+ {id:"s6",chapter:"CHAPTER 6 · 1965~1980s",title:"⑥ 독립했는데, 이제 뭘 먹고살지?",summary:"자원이 없다면 사람·도시·제도를 자원으로 만들자는 전략을 택했다.",html:`
+  <div class="storylead">싱가포르식 답 · “자원이 없다면 사람·도시·제도를 자원으로 만들자.”</div>
+  <p>독립 당시 국토는 작고 천연자원은 거의 없었으며 실업과 주거 문제도 컸다. 거대한 내수시장도 없었다.</p>
+  <p>정부는 세계 경제와 적극적으로 연결되는 방향을 택했다. 외국기업이 안심하고 투자할 수 있도록 항만, 전력, 행정, 교육과 산업기반을 정비했다.</p>
+  <p><b>HDB 공공주택</b>은 단순히 아파트를 많이 짓는 정책이 아니었다. 열악한 주거환경을 개선하고 도시를 체계적으로 재편하는 국가 프로젝트였다. CPF 같은 제도도 주택·노후·생활 안정과 연결되었다.</p>
+  <p>영어 중심의 교육과 다언어 환경, 효율적인 항만과 공항, 법과 행정의 예측 가능성도 외국기업과 세계 인재를 끌어들이는 기반이 되었다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>HDB 주거지역 · MRT · 항만/도심 인프라를 ‘생존전략’ 관점으로 보기</div>
+  <div class="storychild"><b>👧 아이에게</b><br>“없는 것을 불평하기보다, 사람들이 잘 공부하고 도시를 편하게 만들어 그걸 장점으로 만든 거야.”</div>`},
+ {id:"s7",chapter:"CHAPTER 7 · 1980s~2000s",title:"⑦ 제조업 도시에서 세계도시로",summary:"항만·제조업을 넘어 금융·항공·서비스·관광·첨단산업으로 확장했다.",html:`
+  <div class="storylead">살아남는 단계에서 ‘세계가 찾아오는 도시’를 만드는 단계로 넘어간다.</div>
+  <p>초기 산업화에 성공한 뒤 싱가포르는 단순한 저비용 생산기지만으로는 오래 경쟁하기 어렵다는 문제를 만났다. 그래서 더 높은 부가가치의 제조업, 금융, 물류, 항공, 서비스와 지식산업을 키웠다.</p>
+  <p>Changi Airport, Singapore Airlines, 세계적인 항만과 금융센터는 서로 따로 떨어진 성공이 아니라 ‘작은 나라가 세계와 최대한 연결된다’는 같은 전략의 결과로 볼 수 있다.</p>
+  <p>도시 이미지도 중요해졌다. 깨끗하고 안전하며 이동이 편하고, 기업과 관광객이 쉽게 사용할 수 있는 도시를 만들었다.</p>
+  <div class="storyfact"><b>🌏 작은 내수시장의 역설</b><br>국내시장만 바라보면 한계가 크기 때문에 처음부터 해외기업·관광객·물류·금융이 드나드는 국제도시를 지향해야 했다.</div>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Orchard Road · Changi Airport · CBD · 항만과 공항의 규모를 관찰하기</div>`},
+ {id:"s8",chapter:"CHAPTER 8 · 2000s~현재",title:"⑧ 오늘의 싱가포르는 무엇을 고민할까?",summary:"Marina Bay와 Jewel 같은 화려함 뒤에는 좁은 국토·인구·물·주거 문제를 관리하는 국가전략이 있다.",html:`
+  <div class="storylead">‘완성된 도시’가 아니라 계속 공간과 생존방식을 다시 설계하는 도시다.</div>
+  <p>Marina Bay의 많은 공간은 간척과 장기 도시계획의 결과다. 좁은 국토를 그냥 받아들이기보다 새 땅을 만들고 필요한 기능을 다시 배치했다.</p>
+  <p>물도 중요한 문제였다. Singapore는 집수, 수입수, NEWater, 해수담수화 등을 함께 사용하며 공급원을 다변화해 왔다. 작은 국토와 자원 부족을 기술과 시스템으로 대응한 사례다.</p>
+  <p>반면 높은 생활비, 주거비, 저출생·고령화, 외국인 노동력과 이민, 사회적 격차 같은 고민도 존재한다. 효율적인 국가라고 해서 문제가 없는 것은 아니다.</p>
+  <p>다문화 사회를 유지하기 위한 언어·교육·주거 정책도 계속 조정된다. 영어가 공통언어 역할을 하지만 Malay, Mandarin Chinese, Tamil까지 네 개의 공식언어를 둔다.</p>
+  <div class="storytrip"><b>📍 여행에서 연결</b><br>Marina Bay · Gardens by the Bay · Jewel · MRT · HDB · 다양한 언어 표지판</div>
+  <div class="storychild"><b>👧 여행 마지막에</b><br>“우리가 본 MRT, 아파트, 호커센터, Marina Bay, Jewel은 서로 다른 관광지가 아니야. 작은 항구도시가 어떻게 살아남을지 고민하면서 하나씩 만든 결과들이야.”</div>`},
+ {id:"s9",chapter:"CHAPTER 9 · 아빠랑 같이 생각해보기",title:"💡 싱가포르의 신기한 이야기",summary:"질문 → 아이의 추측 → 이야기 → 여행 미션 순서로 보는 호기심 이야기.",html:`
+  <div class="storylead">답부터 읽지 말고 <b>질문 → 아이의 추측 → 이야기 → 현장에서 찾아보기</b> 순서로 해보세요.</div>
+  <div class="storyfact"><b>👨‍👩‍👧‍👦 진행법</b><br>정답을 외우는 공부보다 새로운 나라를 관찰하고 ‘왜 그럴까?’를 생각하는 연습이 목표입니다.</div>
+  <div class="curiosity"><b>🦁 1. 싱가포르에는 정말 사자가 살았을까?</b><br><br><b>👀 생각해보기</b> · ‘사자의 도시’라면 옛날에 사자가 많았을까?<br><br><b>💡 이야기</b> · Sang Nila Utama가 사자라고 생각한 동물을 보고 Singapura라는 이름을 붙였다는 전승이 있지만, 야생 사자가 살았다는 확실한 증거는 알려져 있지 않다.<br><br><b>📍 미션</b> · Merlion 앞에서 ‘전설과 증거’가 어떻게 다른지 말해보기.</div>
+  <div class="curiosity"><b>🐟 2. Merlion은 진짜 옛날 동물일까?</b><br><br>Merlion은 사자 머리와 물고기 몸을 합친 현대의 관광 상징이다. 물고기 몸은 항구도시의 기원을, 사자 머리는 Singapura 전승을 연결한다.<br><br><b>📍 미션</b> · Merlion에서 물고기와 사자가 각각 무엇을 뜻하는지 맞혀보기.</div>
+  <div class="curiosity"><b>🏙️ 3. 바다였던 곳에 도시를 만들 수 있을까?</b><br><br>Marina Bay 일대의 상당 부분은 간척과 장기 도시계획으로 만들어졌다. 작은 국토라는 약점을 ‘공간을 다시 설계하는 능력’으로 대응한 셈이다.<br><br><b>📍 미션</b> · Marina Bay를 보며 어느 쪽이 옛 해안선이었을지 상상해보기.</div>
+  <div class="curiosity"><b>🚰 4. 비가 많이 오는데 왜 물이 국가문제였을까?</b><br><br>비가 많이 와도 저장할 땅과 안정적인 수원이 충분한 것은 아니다. 그래서 집수·수입수·NEWater·담수화를 함께 사용한다.<br><br><b>📍 미션</b> · 여행 중 NEWater 표시나 물 관리 시설 흔적 찾아보기.</div>
+  <div class="curiosity"><b>🏢 5. 왜 아파트가 국가전략일까?</b><br><br>HDB는 주택 공급을 넘어 위생, 주거 안정, 도시계획과 공동체 구성까지 연결된 정책이었다.<br><br><b>📍 미션</b> · 이동 중 HDB 단지를 보며 한국 아파트와 비슷한 점·다른 점 하나씩 찾기.</div>
+  <div class="curiosity"><b>🍜 6. ‘싱가포르 음식’은 어느 민족 음식일까?</b><br><br>항구도시에 여러 이주민이 모이며 각 지역 음식이 함께 들어왔고 서로 영향을 주며 현지화됐다. 하나의 정답보다 ‘섞이면서 생긴 도시의 음식’에 가깝다.<br><br><b>📍 미션</b> · 호커센터에서 중국계·말레이계·인도계 메뉴 하나씩 찾아보기.</div>
+  <div class="curiosity"><b>🏁 7. 나라가 작은데 왜 세계적인 공항과 항구가 필요할까?</b><br><br>국내시장만으로 성장하기 어렵기 때문에 사람·물건·돈이 지나가는 연결점을 만드는 것이 중요했다.<br><br><b>📍 미션</b> · Jewel에서 ‘공항인데 왜 쇼핑몰과 정원까지 만들었을까?’ 생각해보기.</div>
+  <div class="curiosity"><b>🔤 8. 왜 한 나라에서 말이 이렇게 많이 들릴까?</b><br><br>English, Malay, Mandarin Chinese, Tamil이 공식언어다. 항구도시의 이민 역사와 오늘의 다문화 정책이 함께 남아 있다.<br><br><b>📍 미션</b> · Chinatown·Little India·Kampong Glam에서 서로 다른 글자 3종 찾아보기.</div>
+  <div class="curiosity"><b>🐅 9. 사자의 도시인데 진짜 호랑이는 있었다</b><br><br>야생 사자의 확실한 증거와 달리, 호랑이는 과거 싱가포르 섬에 실제로 살았고 사람과 충돌한 기록도 있다. ‘사자는 이름의 전설, 호랑이는 실제 자연사’라는 대비가 재미있다.<br><br><b>📍 미션</b> · National Museum이나 Mandai에서 전설과 실제 자연사를 구분해보기.</div>
+  <div class="curiosity"><b>⚔️ 10. 힘으로 안 되면 아이디어로 — 황새치 이야기</b><br><br>Malay 전승의 Bukit Merah 이야기에는 황새치 공격에 사람들이 고생하자 영리한 소년이 해안에 바나나 줄기를 세워 물고기의 주둥이가 박히게 하자는 아이디어를 낸다. 아이와는 문제를 관찰하고 아이디어로 해결한 장면에 초점을 맞춰보면 좋다.<br><br><b>📍 미션</b> · 여행 중 불편한 일이 생기면 ‘황새치 소년이라면 어떻게 해결할까?’ 가족 해결책 만들기.</div>
+  <div class="storyfact"><b>💪 BONUS · Badang과 Singapore Stone</b><br>Malay 전승에는 엄청난 힘을 가진 Badang 이야기가 있고, 실제 유물 Singapore Stone과 연결되는 전설도 전해진다.</div>`}
+];
+
+function openStudyStory(id){
+ const s=STUDY_STORIES.find(x=>x.id===id);if(!s)return;
+ document.getElementById("deepEyebrow").textContent=s.chapter;
+ document.getElementById("deepTitle").textContent=s.title;
+ document.getElementById("deepBody").innerHTML=`<div class="storypopup">${s.html}</div>`;
+ document.getElementById("deepBackdrop").classList.add("open");
+ document.getElementById("deepModal").classList.add("open");
+ document.body.classList.add("deepopen");
+}
+
+// ---------- Study ----------
+function renderStudy(){
+ const root=document.getElementById("studyContent");if(!root)return;
+ root.innerHTML=`<div class="studygrid-v18">${STUDY_STORIES.map(s=>`
+   <article class="study-story-card" data-study-story="${s.id}">
+    <div class="chapter">${s.chapter}</div>
+    <h3>${s.title}</h3>
+    <p>${s.summary}</p>
+   </article>`).join("")}</div>`;
+ root.querySelectorAll("[data-study-story]").forEach(x=>x.onclick=()=>openStudyStory(x.dataset.studyStory));
+}
+
+// ---------- Journal ----------
+const JOURNAL_KEY="sg_trip_journal_v17";
+function journalData(){try{return JSON.parse(localStorage.getItem(JOURNAL_KEY)||"{}")}catch(e){return {}}}
+function renderJournal(){
+ const root=document.getElementById("journalContent");if(!root)return;
+ const d=journalData();
+ root.innerHTML=DAYS.map(x=>`<section class="journalday"><h3>DAY ${x.day} · ${x.title}</h3><textarea data-jday="${x.day}" placeholder="오늘 있었던 일, 아이들 반응, 맛있었던 것, 일정 변경…">${escapeHtml(d[x.day]||"")}</textarea><div class="savehint">입력하면 자동 저장</div></section>`).join("");
+ root.querySelectorAll("[data-jday]").forEach(t=>t.addEventListener("input",()=>{const x=journalData();x[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(x))}));
+}
+
+// Leaflet is an online enhancement. Core app still works if unavailable.
+let onlineMapAllowed=false;
+function leafletAvailable(){return typeof window.L!=="undefined";}
+function loadLeafletOnline(){
+  if(leafletAvailable()) return Promise.resolve();
+  return new Promise((resolve,reject)=>{
+    if(!document.querySelector('link[data-leaflet-online]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';link.dataset.leafletOnline='1';document.head.appendChild(link);
+    }
+    const existing=document.querySelector('script[data-leaflet-online]');
+    if(existing){existing.addEventListener('load',resolve,{once:true});existing.addEventListener('error',reject,{once:true});return;}
+    const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.dataset.leafletOnline='1';s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
+  });
+}
+function mapRouteSummary(m){return m.places.map(p=>`${p.n}. ${p.name}`).join(' → ');}
+async function enableOnlineMap(which='day'){
+  const btn=document.querySelector(`[data-enable-map="${which}"]`);
+  const status=document.getElementById("onlineStatus");
+  if(btn){btn.disabled=true;btn.textContent='지도 불러오는 중…';}
+  if(status && networkModeState==="offline")status.textContent="📴 오프라인 모드 · 요청한 지도만 일시적으로 온라인에서 불러오는 중";
+  try{
+    await loadLeafletOnline();
+    onlineMapAllowed=true;
+    if(which==='detail')renderDetailMap();else renderDayMap();
+    if(networkModeState==="offline"){
+      // Explicit user action only. The next DAY render returns to offline summary.
+      setTimeout(()=>{onlineMapAllowed=false;},0);
+      if(status)status.textContent="📴 오프라인 모드 · 요청한 지도만 온라인으로 불러왔습니다.";
+    }
+  }catch(e){
+    if(btn){btn.disabled=false;btn.textContent='온라인 지도 다시 시도';}
+    if(status)status.textContent="지도 연결 실패 · 네트워크를 확인해주세요.";
+  }
+}
+
+const DAY_MAPS={
+1:{
+  title:"DAY 1 ROUTE MAP",subtitle:"Changi Airport → Marriott Tang Plaza",
+  places:[
+    {n:1,name:"Changi Airport / Jewel",lat:1.3644,lng:103.9915,type:"airport"},
+    {n:2,name:"Singapore Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"}
+  ],
+  segments:[
+    {mode:"taxi",from:0,to:1,route:true}
+  ]
+},
+2:{
+  title:"DAY 2 ROUTE MAP",subtitle:"Orchard → Merlion → Marina Bay → Gardens",
+  places:[
+    {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:2,name:"Merlion Park",lat:1.2868,lng:103.8545},
+    {n:3,name:"Esplanade",lat:1.2897,lng:103.8559},
+    {n:4,name:"Singapore Flyer",lat:1.2893,lng:103.8631},
+    {n:5,name:"Marina Bay Sands",lat:1.2834,lng:103.8607},
+    {n:6,name:"Gardens by the Bay",lat:1.2816,lng:103.8636},
+    {n:7,name:"Supertree Grove",lat:1.2816,lng:103.8639}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.3055,103.8322],[1.3006,103.8389],[1.2966,103.8451],[1.2931,103.8520],[1.2841,103.8515],[1.2868,103.8545]]},
+    {mode:"walk",path:[[1.2868,103.8545],[1.2882,103.8552],[1.2897,103.8559],[1.2900,103.8585],[1.2893,103.8631]]},
+    {mode:"walk",path:[[1.2893,103.8631],[1.2874,103.8624],[1.2855,103.8614],[1.2834,103.8607]]},
+    {mode:"walk",path:[[1.2834,103.8607],[1.2827,103.8618],[1.2817,103.8626],[1.2816,103.8636],[1.2816,103.8639]]}
+  ]
+},
+3:{
+  title:"DAY 3 ROUTE MAP",subtitle:"Orchard → HarbourFront → VivoCity → USS",
+  places:[
+    {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:2,name:"HarbourFront MRT",lat:1.2654,lng:103.8216},
+    {n:3,name:"VivoCity",lat:1.2644,lng:103.8223},
+    {n:4,name:"Universal Studios Singapore",lat:1.2540,lng:103.8238},
+    {n:5,name:"Singapore Oceanarium",lat:1.2583,lng:103.8200,option:true},
+    {n:6,name:"Skyline Luge Sentosa",lat:1.2521,lng:103.8174,option:true},
+    {n:7,name:"Siloso Beach",lat:1.2507,lng:103.8168,option:true}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.3055,103.8322],[1.3006,103.8389],[1.2930,103.8465],[1.2764,103.8450],[1.2654,103.8216]]},
+    {mode:"walk",path:[[1.2654,103.8216],[1.2644,103.8223]]},
+    {mode:"mrt",path:[[1.2644,103.8223],[1.2620,103.8232],[1.2588,103.8236],[1.2540,103.8238]]},
+    {mode:"option",path:[[1.2540,103.8238],[1.2583,103.8200],[1.2521,103.8174],[1.2507,103.8168]]}
+  ]
+},
+4:{
+  title:"DAY 4 ROUTE MAP",subtitle:"Fort Canning → Civic District → Chinatown → Hotel → Clarke Quay",
+  places:[
+    {n:1,name:"Fort Canning Tree Tunnel",lat:1.2978,lng:103.8452},
+    {n:2,name:"National Museum",lat:1.2966,lng:103.8485},
+    {n:3,name:"CHIJMES",lat:1.2952,lng:103.8511},
+    {n:4,name:"Raffles Hotel",lat:1.2948,lng:103.8545},
+    {n:5,name:"Chinatown",lat:1.2838,lng:103.8444},
+    {n:6,name:"Maxwell Food Centre",lat:1.2803,lng:103.8441},
+    {n:7,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:8,name:"Old Hill Street Police Station",lat:1.2906,lng:103.8484},
+    {n:9,name:"Clarke Quay",lat:1.2890,lng:103.8466},
+    {n:10,name:"JUMBO Riverside Point",lat:1.2896,lng:103.8448}
+  ],
+  segments:[
+    {mode:"walk",path:[[1.2978,103.8452],[1.2973,103.8468],[1.2966,103.8485],[1.2958,103.8498],[1.2952,103.8511],[1.2948,103.8545]]},
+    {mode:"taxi",route:true,from:3,to:4},
+    {mode:"walk",path:[[1.2838,103.8444],[1.2822,103.8442],[1.2803,103.8441]]},
+    {mode:"mrt",path:[[1.2803,103.8441],[1.2827,103.8438],[1.2940,103.8490],[1.3055,103.8322]]},
+    {mode:"taxi",route:true,from:6,to:7},
+    {mode:"walk",path:[[1.2906,103.8484],[1.2897,103.8476],[1.2890,103.8466],[1.2893,103.8456],[1.2896,103.8448]]}
+  ]
+},
+5:{
+  title:"DAY 5 ROUTE MAP",subtitle:"Sentosa EASY · Oceanarium → Luge → Siloso",
+  places:[
+    {n:1,name:"HarbourFront / VivoCity",lat:1.2644,lng:103.8223},
+    {n:2,name:"Singapore Oceanarium",lat:1.2583,lng:103.8200},
+    {n:3,name:"Skyline Luge Sentosa",lat:1.2521,lng:103.8174,option:true},
+    {n:4,name:"Siloso Beach",lat:1.2507,lng:103.8168},
+    {n:5,name:"Wings of Time",lat:1.2516,lng:103.8160,option:true}
+  ],
+  segments:[
+    {mode:"mrt",path:[[1.2644,103.8223],[1.2620,103.8232],[1.2591,103.8220],[1.2583,103.8200]]},
+    {mode:"option",path:[[1.2583,103.8200],[1.2564,103.8188],[1.2540,103.8179],[1.2521,103.8174]]},
+    {mode:"walk",path:[[1.2521,103.8174],[1.2515,103.8170],[1.2507,103.8168],[1.2516,103.8160]]}
+  ]
+},
+6:{
+  title:"DAY 6 ROUTE MAP",subtitle:"Little India → Kampong Glam → Hotel → Jewel Changi",
+  places:[
+    {n:1,name:"Little India / Tekka Centre",lat:1.3067,lng:103.8510},
+    {n:2,name:"Sultan Mosque",lat:1.3023,lng:103.8590},
+    {n:3,name:"Haji Lane",lat:1.3006,lng:103.8594},
+    {n:4,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:5,name:"Jewel Changi Airport",lat:1.3602,lng:103.9897},
+    {n:6,name:"Changi Terminal / Gate",lat:1.3570,lng:103.9880}
+  ],
+  segments:[
+    {mode:"taxi",route:true,from:0,to:1},
+    {mode:"walk",path:[[1.3023,103.8590],[1.3016,103.8593],[1.3006,103.8594]]},
+    {mode:"taxi",route:true,from:2,to:3},
+    {mode:"taxi",route:true,from:3,to:4},
+    {mode:"walk",path:[[1.3602,103.9897],[1.3590,103.9890],[1.3570,103.9880]]}
+  ]
+}
+};
+
+let dayMap=null;
+let routeLayers=[];
+
+function markerIcon(n,type,option){
+  return L.divIcon({
+    className:"route-num-icon "+(type==="hotel"?"hotel":""),
+    html:`<div class="bubble" style="${option?'background:#7d8d97':''}">${n}</div>`,
+    iconSize:[30,30],iconAnchor:[15,15]
+  });
+}
+function modeStyle(mode){
+  if(mode==="walk") return {color:"#0f766e",weight:5,dashArray:"6 8",opacity:.92};
+  if(mode==="mrt") return {color:"#315b8a",weight:6,opacity:.9};
+  if(mode==="taxi") return {color:"#7d5200",weight:5,opacity:.9};
+  return {color:"#8ba0ad",weight:4,dashArray:"7 8",opacity:.85};
+}
+async function addRoadRoute(map,a,b,mode){
+  const style=modeStyle(mode);
+  let fallback;
+  try{
+    if(!map || !map._container || !map._container.isConnected) return;
+    fallback=L.polyline([[a.lat,a.lng],[b.lat,b.lng]],style).addTo(map);
+    const url=`https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
+    const r=await fetch(url);
+    if(!r.ok) throw new Error("route");
+    const j=await r.json();
+    const coords=j.routes?.[0]?.geometry?.coordinates?.map(x=>[x[1],x[0]]);
+    if(coords?.length && map && map._container && map._container.isConnected){
+      if(fallback && map.hasLayer(fallback)) map.removeLayer(fallback);
+      L.polyline(coords,style).addTo(map);
+    }
+  }catch(e){}
+}
+function renderDayMap(){
+  const m=DAY_MAPS[day];
+  if(dayMap){
+    try{dayMap.off();dayMap.remove();}catch(e){}
+    dayMap=null;
+  }
+  dayMapWrap.classList.remove("tile-load-error");
+  dayMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
+    <div id="leafletDayMap" class="daymap"></div>
+    <div class="maplegend">
+      <span><i class="mrtline"></i>MRT/모노레일</span>
+      <span><i class="walkline"></i>도보</span>
+      <span><i class="taxiline"></i>Grab/차량</span>
+      <span><i class="optionline"></i>OPTION</span>
+    </div>
+    <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>
+    <div class="tile-error-note" style="display:none;margin-top:7px;font-size:10px;color:#9a6700">지도 타일을 불러오지 못했습니다. 네트워크 연결 후 다시 열어주세요.</div>`;
+
+  if(!onlineMapAllowed){
+    const mapEl=document.getElementById("leafletDayMap");
+    if(mapEl)mapEl.innerHTML=`<div class="offlineMapCard"><b>🗺️ 오프라인 경로 요약</b><div class="offlineMapRoute">${esc(mapRouteSummary(m))}</div><button class="loadMapBtn" type="button" data-enable-map="day">온라인 지도 불러오기</button></div>`;
+    mapEl?.querySelector('[data-enable-map="day"]')?.addEventListener('click',()=>enableOnlineMap('day'));
+    return;
+  }
+  if(!leafletAvailable()){return;}
+  dayMap=L.map("leafletDayMap",{
+    zoomControl:true,
+    scrollWheelZoom:false,
+    doubleClickZoom:true,
+    touchZoom:true,
+    dragging:true,
+    zoomAnimation:true,
+    fadeAnimation:false,
+    markerZoomAnimation:true
+  });
+
+  const tiles=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19,
+    minZoom:2,
+    tileSize:256,
+    zoomOffset:0,
+    updateWhenIdle:true,
+    keepBuffer:4,
+    crossOrigin:false,
+    attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(dayMap);
+
+  tiles.on("tileerror",()=>{
+    dayMapWrap.classList.add("tile-load-error");
+    const note=dayMapWrap.querySelector(".tile-error-note");
+    if(note) note.style.display="block";
+  });
+
+  const bounds=[];
+  m.places.forEach((p,idx)=>{
+    bounds.push([p.lat,p.lng]);
+    const mk=L.marker([p.lat,p.lng],{icon:markerIcon(p.n,p.type,p.option)}).addTo(dayMap);
+    mk.bindTooltip(`<div class="route-label">${esc(p.name)}</div>`,{direction:"top",offset:[0,-14],opacity:1});
+    mk.on("click",()=>{ const cardIndex=Math.min(idx,current().items.length-1); if(current().items[cardIndex]) openItem(cardIndex); });
+  });
+
+  m.segments.forEach(s=>{
+    if(s.route){
+      const a=m.places[s.from],b=m.places[s.to];
+      addRoadRoute(dayMap,a,b,s.mode);
+    }else if(s.path){
+      L.polyline(s.path,modeStyle(s.mode)).addTo(dayMap);
+    }
+  });
+
+  requestAnimationFrame(()=>{
+    dayMap.invalidateSize({pan:false});
+    dayMap.fitBounds(bounds,{padding:[30,30],maxZoom:15,animate:false});
+    setTimeout(()=>dayMap.invalidateSize({pan:false}),180);
+    setTimeout(()=>dayMap.invalidateSize({pan:false}),650);
+  });
+}
+let day=1,sel=null;
+const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function current(){return DAYS.find(x=>x.day===day)}
+function render(){
+ const d=current();
+ daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}</button>`).join("");
+ hero.innerHTML=`<div class="heroemoji">${d.icon}</div><div class="heroday">DAY ${d.day}</div><div class="herotitle">${esc(d.title)}</div><div class="herosub">${esc(d.sub)}</div>`;
+ timeline.innerHTML=d.items.map((x,i)=>`<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="title">${esc(x.title)}</div><div class="arrow">›</div></article>`).join("");
+ renderDayMap();
+}
+function routeHtml(r=[]){
+ if(!r.length)return "";
+ return `<div class="route"><div class="route-line">`+r.map((x,i)=>`<div class="stop"><div class="dot">${i+1}</div><div><b>${esc(x[0])} ${esc(x[1])}</b><small>${esc(x[2]||"")}</small></div></div>${i<r.length-1?'<div class="connector"></div>':''}`).join("")+`</div></div>`;
+}
+function chips(arr=[]){return arr.map(x=>`<div class="check">${esc(x)}</div>`).join("")}
+
+function deepNotesFor(item,kind){
+  const t=((item?.title||"")+" "+(item?.detail||"")).toLowerCase();
+  const base={
+    route:["11명이 동시에 움직이므로 출발 전에 다음 집결 지점을 한 번 확인합니다.","아이·부모님 컨디션이 떨어지면 최단거리보다 Grab/택시 등 편한 이동을 우선합니다."],
+    see:["전부 다 하려 하기보다 이 장소에서 꼭 보고 싶은 1~2개를 먼저 처리합니다.","사진·화장실·휴식까지 포함해 다음 이동 시간을 너무 빡빡하게 잡지 않습니다."],
+    family:["아이 3명과 부모님이 함께 움직이므로 대기시간과 계단·더위를 먼저 봅니다.","그룹이 갈라질 경우 재집결 위치를 먼저 정하고 이동합니다."],
+    food:["11명은 바로 착석이 어려울 수 있으므로 식사시간이 가까워지면 자리를 먼저 확인합니다.","아이들이 먹을 수 있는 메뉴와 맵지 않은 메뉴를 먼저 확보합니다."],
+    explain:["이 일정은 이동 효율보다 실제 가족여행의 체력과 대기시간을 줄이는 방향으로 구성했습니다."]
+  }[kind]||[];
+  const extra=[];
+  if(/changi|airport|공항/.test(t)){
+    extra.push("입국·수하물 수령 뒤에는 11명이 한 번에 모인 것을 확인한 후 차량 호출/픽업 위치로 이동합니다.");
+    extra.push("캐리어와 유모차가 많아 일반 승용차 기준보다 차량 수가 늘어날 수 있습니다.");
+  }
+  if(/marriott|체크인/.test(t)){
+    extra.push("4개 객실이 같은 일행임을 호텔이 알고 있으므로 체크인 시 가까운 객실 배정 요청을 다시 확인하면 됩니다.");
+    extra.push("Rollaway Bed, Step Stool, Twin Beds, Air Purifier 등은 실제 배정 여부를 프런트에서 확인합니다.");
+  }
+  if(/universal|uss/.test(t)){
+    extra.push("11명이 항상 같이 움직이기보다 탑승팀과 아이 동반팀으로 잠시 나눠 움직이는 편이 효율적일 수 있습니다.");
+    extra.push("재집결 장소와 시간을 먼저 정해두면 놀이기구 대기열 때문에 서로 찾는 시간을 줄일 수 있습니다.");
+  }
+  if(/gardens|supertree|cloud forest|flower dome/.test(t)){
+    extra.push("실내 돔은 더위 피하기 좋은 휴식 구간으로 활용하고, 야외 구간은 햇빛과 비에 따라 순서를 바꿔도 됩니다.");
+  }
+  if(/fort canning|national museum|chijmes|raffles/.test(t)){
+    extra.push("DAY4는 걷는 구간이 길어질 수 있으므로 중간에 더위나 피로가 누적되면 일부 구간을 Grab으로 잘라 이동해도 됩니다.");
+  }
+  if(/river cruise|clarke quay/.test(t)){
+    extra.push("11명이 같은 회차에 탈 수 있는지 먼저 확인하고, 어렵다면 바로 다음 회차까지 함께 비교합니다.");
+  }
+  if(/jumbo/.test(t)){
+    extra.push("19:00, 11명 예약이 확정되어 있으므로 River Cruise 종료 시간을 식당 도착 기준으로 역산합니다.");
+    extra.push("칠리크랩 등 시가 메뉴는 주문 전에 중량과 총 예상금액을 확인하면 좋습니다.");
+  }
+  if(/oceanarium/.test(t)){
+    extra.push("유모차 이동이 쉬운 실내 일정이라 DAY5의 더위·비 대비 일정으로 활용하기 좋습니다.");
+  }
+  if(/luge|siloso/.test(t)){
+    extra.push("Luge는 아이 키/연령 조건과 실제 탑승 인원을 현장에서 다시 확인하고, 대기시간이 길면 해변 일정으로 전환할 수 있습니다.");
+  }
+  if(/little india|kampong|haji|sultan/.test(t)){
+    extra.push("출국일 일정이므로 관광 욕심보다 호텔 복귀와 공항 이동 시간을 우선합니다.");
+  }
+  if(/jewel|ke644|터미널|출발/.test(t)){
+    extra.push("Jewel 관광과 실제 탑승 터미널 이동 시간을 분리해서 생각하고, 체크인·출국심사 시간을 충분히 확보합니다.");
+  }
+  return [...base,...extra];
+}
+function deepList(arr=[]){
+  return arr.length?`<div class="deepnotes">${arr.map(x=>`<div class="deepnote">${esc(x)}</div>`).join("")}</div>`:`<div class="deepempty">추가 정보 없음</div>`;
+}
+function openDeep(kind){
+  if(!sel)return;
+  const names={route:"🚶 이동 · 동선",see:"👀 여기서 할 것",family:"👨‍👩‍👧 가족 체크",food:"🍽 식사",explain:"📝 추가 설명",transport:"🚦 이동 후보",booking:"🎫 예약 정보"};
+  document.getElementById("deepEyebrow").textContent=`${sel.time||""} · 추가정보`;
+  document.getElementById("deepTitle").textContent=`${sel.title} · ${names[kind]||"상세"}`;
+  let core="";
+  if(kind==="route") core=routeHtml(sel.route);
+  else if(kind==="see") core=deepList(sel.see||[]);
+  else if(kind==="family") core=deepList(sel.family||[]);
+  else if(kind==="food") core=deepList(sel.food||[]);
+  else if(kind==="transport") core=transportInfoHtml(sel)||'<div class="deepempty">별도 이동 후보 없음</div>';
+  else if(kind==="booking") core=reservationInfoHtml(sel)||'<div class="deepempty">이 일정에서 필요한 예약정보 없음</div>';
+  else core=`<div class="detailsbox">${esc(sel.detail||"추가 설명 없음")}</div>`;
+  document.getElementById("deepBody").innerHTML=`
+    <div class="deepintro">첫 화면의 정보를 그대로 유지하면서, 현장에서 판단할 때 도움이 되는 설명을 한 단계 더 붙였습니다.</div>
+    <div class="deepsec"><h4>기본 정보</h4>${core}</div>
+    <div class="deepsec"><h4>조금 더 알아두기</h4>${deepList(deepNotesFor(sel,kind))}</div>`;
+  document.getElementById("deepBackdrop").classList.add("open");
+  document.getElementById("deepModal").classList.add("open");
+  document.body.classList.add("deepopen");
+}
+function closeDeep(){
+  document.getElementById("deepBackdrop").classList.remove("open");
+  document.getElementById("deepModal").classList.remove("open");
+  document.body.classList.remove("deepopen");
+}
+
+
+// v19.4 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+const PLACE_IMAGE_LIBRARY={
+  airport:{key:"airport",name:'Incheon Airport',file:'user-incheon-airport.jpg',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
+  airplane:{key:"airplane",name:'Flight to Singapore',file:'-i---i- (31762043234).jpg',alt:'Airplane in the sky',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/-i---i-%20%2831762043234%29.jpg' },
+  changi:{key:"changi",name:'Changi Airport / Jewel',file:'user-changi-airport.jpg',alt:'Jewel Changi Airport with Rain Vortex',remote:'./assets/images/airplane.webp' },
+  changiTransfer:{key:"changiTransfer",name:'Changi Airport → Marriott',file:'user-changi-transfer.jpg',alt:'Pickup / transfer area from Changi Airport',remote:'./assets/images/changiTransfer.webp' },
+  marriott:{key:"marriott",name:'Marriott Tang Plaza Hotel',file:'user-marriott-tang-plaza.jpg',alt:'Singapore Marriott Tang Plaza Hotel exterior',remote:'./assets/images/marriott.webp' },
+  merlion:{key:"merlion",name:'Merlion Park',file:'user-merlion.jpg',alt:'Merlion Park, Singapore',remote:'./assets/images/merlion.webp' },
+  marina:{key:"marina",name:'Marina Bay',file:'At Singapore 2023 132.jpg',alt:'Marina Bay, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/At%20Singapore%202023%20132.jpg' },
+  mbs:{key:"mbs",name:'Marina Bay Sands',file:'user-marina-bay-sands.jpg',alt:'Marina Bay Sands viewed across the bay',remote:'./assets/images/marina.webp' },
+  gardens:{key:"gardens",name:'Gardens by the Bay',file:'user-gardens-by-the-bay.jpg',alt:'Gardens by the Bay conservatory interior',remote:'./assets/images/gardens.webp' },
+  supertree:{key:"supertree",name:'Supertree Grove',file:'user-supertree-grove.jpg',alt:'Supertree Grove illuminated at night',remote:'./assets/images/supertree.webp' },
+  sentosa:{key:"sentosa",name:'Sentosa Station',file:'user-sentosa-station.jpg',alt:'Sentosa Station entrance',remote:'./assets/images/sentosa.webp' },
+  uss:{key:"uss",name:'Universal Studios Singapore',file:'user-universal-studios-singapore.png',alt:'Universal Studios Singapore globe entrance',remote:'./assets/images/uss.webp' },
+  fort:{key:"fort",name:'Fort Canning Tree Tunnel',file:'user-fort-canning.jpg',alt:'Fort Canning spiral staircase photo spot',remote:'./assets/images/fort.webp' },
+  museum:{key:"museum",name:'National Museum of Singapore',file:'At National Museum of Singapore 2023 004.jpg',alt:'National Museum of Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/At%20National%20Museum%20of%20Singapore%202023%20004.jpg' },
+  chinatown:{key:"chinatown",name:'Chinatown',file:'Alleys of Chinatown Singapore.jpg',alt:'Chinatown street view, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Alleys%20of%20Chinatown%20Singapore.jpg' },
+  clarke:{key:"clarke",name:'Clarke Quay',file:'Clarke Quay 09-11-2023(19).jpg',alt:'Clarke Quay, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Clarke%20Quay%2009-11-2023%2819%29.jpg' },
+  jumbo:{key:"jumbo",name:'JUMBO Seafood',file:'embedded-jumbo.png',alt:'JUMBO Seafood / seafood dish',remote:'./assets/images/museum.webp' },
+  littleindia:{key:"littleindia",name:'Little India',file:'Little India at Night, Singapore (9005264852).jpg',alt:'Little India, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Little%20India%20at%20Night%2C%20Singapore%20%289005264852%29.jpg' },
+  kampong:{key:"kampong",name:'Kampong Glam',file:'Kampong Glam - panoramio (2).jpg',alt:'Kampong Glam, Singapore',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Kampong%20Glam%20-%20panoramio%20%282%29.jpg' },
+  jewel:{key:"jewel",name:'Jewel Changi / Rain Vortex',file:'Jewel Changi user.jpg',alt:'Jewel Changi Airport Rain Vortex',remote:'./assets/images/littleindia.webp' },
+  siloso:{key:"siloso",name:'Siloso Beach',file:'Siloso Beach 23.JPG',alt:'Siloso Beach, Sentosa',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Siloso%20Beach%2023.JPG' },
+  oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Singapore%20Oceanarium.jpg' }
+};
+
+const REP_DB_NAME="sg_trip_rep_images_v194";
+const REP_DB_STORE="images";
+const REP_IMAGE_URLS={};
+let repDbPromise=null;
+
+function openRepDb(){
+  if(repDbPromise)return repDbPromise;
+  repDbPromise=new Promise((resolve,reject)=>{
+    if(!("indexedDB" in window)){reject(new Error("IndexedDB unavailable"));return;}
+    const req=indexedDB.open(REP_DB_NAME,1);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(REP_DB_STORE))db.createObjectStore(REP_DB_STORE);};
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+  return repDbPromise;
+}
+async function repDbGet(key){
+  const db=await openRepDb();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(REP_DB_STORE,"readonly");
+    const req=tx.objectStore(REP_DB_STORE).get(key);
+    req.onsuccess=()=>resolve(req.result||null); req.onerror=()=>reject(req.error);
+  });
+}
+async function repDbPut(key,blob){
+  const db=await openRepDb();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(REP_DB_STORE,"readwrite");
+    tx.objectStore(REP_DB_STORE).put(blob,key);
+    tx.oncomplete=()=>resolve(true); tx.onerror=()=>reject(tx.error);
+  });
+}
+async function repDbDeleteAll(){
+  const db=await openRepDb();
+  return new Promise((resolve,reject)=>{
+    const tx=db.transaction(REP_DB_STORE,"readwrite");
+    tx.objectStore(REP_DB_STORE).clear();
+    tx.oncomplete=()=>resolve(true); tx.onerror=()=>reject(tx.error);
+  });
+}
+async function compressImageBlob(blob,maxWidth=960,quality=0.72){
+  const objectUrl=URL.createObjectURL(blob);
+  try{
+    const img=await new Promise((resolve,reject)=>{
+      const im=new Image(); im.onload=()=>resolve(im); im.onerror=reject; im.src=objectUrl;
+    });
+    const ratio=Math.min(1,maxWidth/(img.naturalWidth||maxWidth));
+    const canvas=document.createElement("canvas");
+    canvas.width=Math.max(1,Math.round((img.naturalWidth||maxWidth)*ratio));
+    canvas.height=Math.max(1,Math.round((img.naturalHeight||maxWidth*.5625)*ratio));
+    const ctx=canvas.getContext("2d",{alpha:false});
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    return await new Promise(resolve=>{
+      canvas.toBlob(b=>resolve(b||blob),"image/webp",quality);
+    });
+  }finally{URL.revokeObjectURL(objectUrl);}
+}
+async function loadCachedRepresentativeImages(){
+  let count=0;
+  try{
+    for(const meta of Object.values(PLACE_IMAGE_LIBRARY)){
+      const blob=await repDbGet(meta.key);
+      if(blob){
+        if(REP_IMAGE_URLS[meta.key])URL.revokeObjectURL(REP_IMAGE_URLS[meta.key]);
+        REP_IMAGE_URLS[meta.key]=URL.createObjectURL(blob); count++;
+      }
+    }
+  }catch(e){console.log("image cache load failed",e);}
+  refreshRepresentativeImages();
+  return count;
+}
+function getCachedRepresentativeSrc(key){return REP_IMAGE_URLS[key]||"";}
+function heroSrcFor(meta){
+  const cached=getCachedRepresentativeSrc(meta.key);
+  if(cached)return cached;
+  if(meta.remote?.startsWith("./assets/")) return meta.remote;
+  return networkModeState==="online"?meta.remote:"";
+}
+async function cacheRepresentativeImage(meta){
+  if(!meta?.key)return false;
+  if(meta.remote?.startsWith("./assets/")) return true;
+  if(REP_IMAGE_URLS[meta.key])return true;
+  try{
+    const res=await fetch(meta.remote,{mode:"cors",cache:"force-cache"});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const type=res.headers.get("content-type")||"";
+    if(!type.startsWith("image/"))throw new Error("not image");
+    const raw=await res.blob();
+    const blob=await compressImageBlob(raw,960,.72);
+    await repDbPut(meta.key,blob);
+    if(REP_IMAGE_URLS[meta.key])URL.revokeObjectURL(REP_IMAGE_URLS[meta.key]);
+    REP_IMAGE_URLS[meta.key]=URL.createObjectURL(blob);
+    refreshRepresentativeImages();
+    return true;
+  }catch(e){
+    console.warn("representative image cache fail",meta.key,e);
+    return false;
+  }
+}
+async function warmRepresentativeImages(){
+  const metas=Object.values(PLACE_IMAGE_LIBRARY);
+  const targets=metas.filter(meta=>!REP_IMAGE_URLS[meta.key]);
+  if(!targets.length)return {ok:0,fail:0,skipped:metas.length};
+  // 3 at a time to avoid mobile/browser connection limits.
+  let ok=0,fail=0;
+  for(let i=0;i<targets.length;i+=3){
+    const batch=targets.slice(i,i+3);
+    const results=await Promise.all(batch.map(cacheRepresentativeImage));
+    ok+=results.filter(Boolean).length;
+    fail+=results.filter(x=>!x).length;
+    updateImageDownloadStatus(ok,fail,targets.length);
+  }
+  return {ok,fail,skipped:metas.length-targets.length};
+}
+function updateImageDownloadStatus(ok,fail,total){
+  const status=document.getElementById("onlineStatus");
+  if(status && total)status.textContent=`대표 이미지 저장 중 · ${ok+fail}/${total} · 성공 ${ok}${fail?` · 실패 ${fail}`:""}`;
+}
+function refreshRepresentativeImages(){
+  document.querySelectorAll(".heroPhoto[data-place-key]").forEach(img=>{
+    const key=img.dataset.placeKey,meta=PLACE_IMAGE_LIBRARY[key];
+    const cached=REP_IMAGE_URLS[key];
+    if(cached){
+      img.src=cached;
+      img.closest(".heroCard")?.classList.remove("image-missing");
+      const s=img.closest(".heroCard")?.querySelector(".heroMeta span");
+      if(s)s.textContent=`${meta.name} · 기기 저장 완료`;
+    }else if(meta?.remote?.startsWith("./assets/")){
+      img.src=meta.remote;
+    }else if(networkModeState==="online" && meta?.remote){
+      img.src=meta.remote;
+    }
+  });
+}
+
+function itemImageMeta(sel){
+  const title=(sel.title||"").trim();
+  const t=`${sel.title||""} ${sel.detail||""}`.toLowerCase();
+  if(title==="공항 이동 · 여행서류 최종 확인") return PLACE_IMAGE_LIBRARY.airport;
+  if(title==="인천 → 싱가포르") return PLACE_IMAGE_LIBRARY.airplane;
+  if(title==="Changi Airport 도착") return PLACE_IMAGE_LIBRARY.changi;
+  if(title==="Changi Airport → Marriott") return PLACE_IMAGE_LIBRARY.changiTransfer;
+  if(title==="Marriott Tang Plaza 체크인") return PLACE_IMAGE_LIBRARY.marriott;
+  if(title==="Marriott → Merlion Park") return PLACE_IMAGE_LIBRARY.merlion;
+  if(title==="Marina Bay 산책") return PLACE_IMAGE_LIBRARY.marina;
+  if(title==="Marina Bay Sands") return PLACE_IMAGE_LIBRARY.mbs;
+  if(title==="Gardens by the Bay") return PLACE_IMAGE_LIBRARY.gardens;
+  if(title==="Supertree 야경") return PLACE_IMAGE_LIBRARY.supertree;
+  if(title==="Marriott → Sentosa") return PLACE_IMAGE_LIBRARY.sentosa;
+  if(title==="Universal Studios Singapore") return PLACE_IMAGE_LIBRARY.uss;
+  if(title==="충분히 놀았다면 Sentosa 확장") return PLACE_IMAGE_LIBRARY.sentosa;
+  if(title==="호텔 → Fort Canning") return PLACE_IMAGE_LIBRARY.fort;
+  if(title==="Fort Canning · National Museum") return PLACE_IMAGE_LIBRARY.fort;
+  if(title==="Chinatown · 점심") return PLACE_IMAGE_LIBRARY.chinatown;
+  if(title==="Clarke Quay · River Cruise") return PLACE_IMAGE_LIBRARY.clarke;
+  if(title==="JUMBO Seafood") return PLACE_IMAGE_LIBRARY.jumbo;
+  if(title==="Singapore Oceanarium") return PLACE_IMAGE_LIBRARY.oceanarium;
+  if(title==="Siloso Beach · 저녁") return PLACE_IMAGE_LIBRARY.siloso;
+  if(/merlion/.test(t)) return PLACE_IMAGE_LIBRARY.merlion;
+  if(/marina bay sands/.test(t)) return PLACE_IMAGE_LIBRARY.mbs;
+  if(/marina bay/.test(t)) return PLACE_IMAGE_LIBRARY.marina;
+  if(/supertree/.test(t)) return PLACE_IMAGE_LIBRARY.supertree;
+  if(/gardens by the bay/.test(t)) return PLACE_IMAGE_LIBRARY.gardens;
+  if(/universal studios|uss/.test(t)) return PLACE_IMAGE_LIBRARY.uss;
+  if(/fort canning/.test(t)) return PLACE_IMAGE_LIBRARY.fort;
+  if(/national museum|old singapore/.test(t)) return PLACE_IMAGE_LIBRARY.museum;
+  if(/chinatown/.test(t)) return PLACE_IMAGE_LIBRARY.chinatown;
+  if(/clarke quay|river cruise/.test(t)) return PLACE_IMAGE_LIBRARY.clarke;
+  if(/jumbo seafood|jumbo/.test(t)) return PLACE_IMAGE_LIBRARY.jumbo;
+  if(/oceanarium|s\.e\.a\.|sea aquarium/.test(t)) return PLACE_IMAGE_LIBRARY.oceanarium;
+  if(/siloso|wings of time/.test(t)) return PLACE_IMAGE_LIBRARY.siloso;
+  if(/sentosa|luge/.test(t)) return PLACE_IMAGE_LIBRARY.sentosa;
+  if(/little india/.test(t)) return PLACE_IMAGE_LIBRARY.littleindia;
+  if(/kampong glam|bugis/.test(t)) return PLACE_IMAGE_LIBRARY.kampong;
+  if(/jewel/.test(t)) return PLACE_IMAGE_LIBRARY.jewel;
+  if(/marriott|tang plaza|check-?in/.test(t)) return PLACE_IMAGE_LIBRARY.marriott;
+  if(/changi|terminal|ke644|ke643|공항|인천/.test(t)) return PLACE_IMAGE_LIBRARY.changi;
+  return null;
+}
+function itemImageHtml(sel){
+  const meta=itemImageMeta(sel);
+  if(!meta){
+    return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
+  }
+  const cached=!!REP_IMAGE_URLS[meta.key];
+  const src=heroSrcFor(meta);
+  if(!src){
+    return `<section class="heroCard no-photo image-missing"><div class="heroFallback">🖼️</div><div class="heroCopy"><b>${esc(meta.name)}</b><span>이미지가 아직 저장되지 않았습니다. 상단의 ‘수동 정보 가져오기’를 누르면 저장합니다.</span></div></section>`;
+  }
+  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"온라인 표시 · 저장 대기"}</span></div></section>`;
+}
+
+function openItem(i){
+ sel=current().items[+i];
+ document.getElementById("stime").textContent=sel.time;
+ document.getElementById("stitle").textContent=sel.title;
+ const noteKey=`sg_pamphlet_v19_${day}_${i}`;
+ body.innerHTML=`
+  ${itemImageHtml(sel)}
+  <section class="section deepable" data-deep="route"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
+  <section class="section deepable" data-deep="see"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
+  <section class="section deepable" data-deep="family"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
+  ${sel.food?.length?`<section class="section deepable" data-deep="food"><h3>🍽 식사</h3><div class="checklist">${chips(sel.food)}</div></section>`:""}
+  <section class="section deepable" data-deep="explain"><h3>📝 한 줄 설명</h3><div class="detailsbox">${esc(sel.detail||"")}</div></section>
+  ${sel.transportOptions?.length?`<div class="deepable" data-deep="transport">${transportInfoHtml(sel)}</div>`:""}
+  ${sel.bookingIds?.length?`<div class="deepable" data-deep="booking">${reservationInfoHtml(sel)}</div>`:""}
+  <section class="section"><h3>빠른 기능</h3><div class="actions"><a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">📍 실제지도</a><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
+ body.querySelectorAll("[data-deep]").forEach(el=>el.onclick=e=>{
+   if(e.target.closest("a,button,input,textarea"))return;
+   openDeep(el.dataset.deep);
+ });
+ document.getElementById("memoToggle").onclick=()=>{
+   const w=document.getElementById("memoWrap");
+   w.style.display=w.style.display==="none"?"block":"none";
+   if(w.style.display==="block"){
+     const m=document.getElementById("memo");
+     m.value=localStorage.getItem(noteKey)||"";
+     m.oninput=()=>localStorage.setItem(noteKey,m.value)
+   }
+ };
+ document.body.classList.add("open");
+}
+daysEl.onclick=e=>{
+ const b=e.target.closest("[data-day]");if(!b)return;
+ day=+b.dataset.day;render();
+ if(currentView==="detail"){
+   renderDetail();
+   requestAnimationFrame(()=>{
+     const target=document.getElementById("detailPaneItinerary");
+     const offset=(document.querySelector(".top")?.offsetHeight||0)+(document.getElementById("detailSticky")?.offsetHeight||0)+8;
+     const y=(target?.getBoundingClientRect().top||0)+window.scrollY-offset;
+     window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+   });
+ }else{
+   window.scrollTo({top:0,behavior:"smooth"});
+ }
+};
+timeline.onclick=e=>{const x=e.target.closest(".item");if(x)openItem(x.dataset.i)};
+function closePamphletSheet(){
+  closeDeep();
+  document.body.classList.remove("open");
+}
+document.getElementById("close").onclick=closePamphletSheet;
+document.getElementById("backdrop").onclick=closePamphletSheet;
+
+document.getElementById("pamphletTools")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-tool]");if(!b)return;
+  openPamTool(b.dataset.tool);
+});
+document.getElementById("pamToolClose").onclick=closePamTool;
+document.getElementById("pamToolBackdrop").onclick=closePamTool;
+
+document.getElementById("deepClose").onclick=closeDeep;
+document.getElementById("deepBackdrop").onclick=closeDeep;
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Escape")return;
+  if(document.getElementById("deepModal").classList.contains("open"))closeDeep();
+  else if(document.getElementById("pamToolPanel").classList.contains("open"))closePamTool();
+  else if(document.body.classList.contains("open"))closePamphletSheet();
+});
+
+const VIEW_KEY="sg_trip_view_mode_v17";
+let currentView=localStorage.getItem(VIEW_KEY)||"pamphlet";
+if(!["pamphlet","detail"].includes(currentView)) currentView="pamphlet";
+
+const pamphletView=document.getElementById("pamphletView");
+const detailView=document.getElementById("detailView");
+const viewPamphlet=document.getElementById("viewPamphlet");
+const viewDetail=document.getElementById("viewDetail");
+const detailHero=document.getElementById("detailHero");
+const detailList=document.getElementById("detailList");
+const detailMapWrap=document.getElementById("detailMapWrap");
+
+function setView(mode,save=true){
+  currentView=mode;
+  pamphletView.hidden=mode!=="pamphlet";
+  detailView.hidden=mode!=="detail";
+  viewPamphlet.classList.toggle("on",mode==="pamphlet");
+  viewDetail.classList.toggle("on",mode==="detail");
+  if(save) localStorage.setItem(VIEW_KEY,mode);
+
+  if(mode==="detail"){
+    setDetailMode(detailMode,false);
+    window.scrollTo({top:0,behavior:"smooth"});
+  }else{
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+    if(dayMap) setTimeout(()=>dayMap.invalidateSize({pan:false}),120);
+  }
+}
+viewPamphlet.onclick=()=>setView("pamphlet");
+viewDetail.onclick=()=>setView("detail");
+
+function detailRouteHtml(route=[]){
+  if(!route.length) return "";
+  return `<div class="detail-route">${route.map((r,i)=>
+    `${i?'<span class="detail-route-arrow">›</span>':''}<span class="detail-route-step">${esc((r[0]||"")+" "+(r[1]||""))}</span>`
+  ).join("")}</div>`;
+}
+function detailListHtml(title,items=[]){
+  if(!items.length)return "";
+  return `<div class="detail-box"><b>${title}</b><ul>${items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+}
+function renderDetail(){
+  const d=current();
+  detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day} · 공통 일정 데이터</div><h2>${d.icon} ${esc(d.title)}</h2><p>${esc(d.sub)}</p>
+    <div class="tripfacts" style="margin-top:10px">
+      <div class="tripfact"><b>✈️ 항공</b>${TRIP_META.flights.outbound.no} 도착 19:15 · ${TRIP_META.flights.return.no} 9/24 22:00 출발</div>
+      <div class="tripfact"><b>🏨 숙소</b>${TRIP_META.hotel.name} · 4객실 · 5박<br><span style="font-size:10px;color:var(--muted)">예약번호 ${TRIP_META.hotel.reservationNumbers.join(" · ")}</span></div>
+      <div class="tripfact"><b>🦀 확정 예약</b>JUMBO 9/22 19:00 · 11명 · ${TRIP_META.dining.jumbo.reservationId}</div>
+      <div class="tripfact"><b>👨‍👩‍👧‍👦 운영 기준</b>11명 · 3세 2명 · 7세 1명 · 부모님/아이 체력 우선</div>
+    </div>`;
+  detailList.innerHTML=d.items.map((x,i)=>`
+    <article class="detail-card">
+      <div class="detail-card-head">
+        <div class="detail-no">${i+1}</div>
+        <div class="detail-time">${esc(x.time)}</div>
+        <div class="detail-title">${esc(x.title)}</div>
+      </div>
+      ${x.detail?`<div class="detail-desc">${esc(x.detail)}</div>`:""}
+      ${detailRouteHtml(x.route||[])}
+      <div class="detail-cols">
+        ${detailListHtml("👀 여기서 할 것",x.see||[])}
+        ${detailListHtml("👨‍👩‍👧 가족 체크",x.family||[])}
+        ${detailListHtml("🍽 식사",x.food||[])}
+      </div>
+      ${transportInfoHtml(x)}
+      ${reservationInfoHtml(x)}
+    </article>`).join("");
+  renderDetailMap();
+}
+
+let detailMap=null;
+function renderDetailMap(){
+  const m=DAY_MAPS[day];
+  if(!m){detailMapWrap.innerHTML="";return;}
+  detailMapWrap.innerHTML=`<div class="daymaphead"><b>🗺️ ${esc(m.title)}</b><small>${esc(m.subtitle)}</small></div>
+    <div id="leafletDetailMap" class="daymap"></div>
+    <div class="maplegend">
+      <span><i class="mrtline"></i>MRT/모노레일</span>
+      <span><i class="walkline"></i>도보</span>
+      <span><i class="taxiline"></i>Grab/차량</span>
+      <span><i class="optionline"></i>OPTION</span>
+    </div>`;
+  if(!onlineMapAllowed){
+    const mapEl=document.getElementById("leafletDetailMap");
+    if(mapEl)mapEl.innerHTML=`<div class="offlineMapCard"><b>🗺️ 오프라인 경로 요약</b><div class="offlineMapRoute">${esc(mapRouteSummary(m))}</div><button class="loadMapBtn" type="button" data-enable-map="detail">온라인 지도 불러오기</button></div>`;
+    mapEl?.querySelector('[data-enable-map="detail"]')?.addEventListener('click',()=>enableOnlineMap('detail'));
+    return;
+  }
+  if(!leafletAvailable()){return;}
+  if(detailMap){detailMap.remove();detailMap=null;}
+  detailMap=L.map("leafletDetailMap",{zoomControl:true,scrollWheelZoom:false,touchZoom:true,dragging:true});
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19,minZoom:2,tileSize:256,keepBuffer:4,attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(detailMap);
+  const bounds=[];
+  m.places.forEach(p=>{
+    bounds.push([p.lat,p.lng]);
+    const mk=L.marker([p.lat,p.lng],{icon:markerIcon(p.n,p.type,p.option)}).addTo(detailMap);
+    mk.bindTooltip(`<div class="route-label">${esc(p.name)}</div>`,{direction:"top",offset:[0,-14],opacity:1});
+  });
+  m.segments.forEach(s=>{
+    if(s.route){
+      const a=m.places[s.from],b=m.places[s.to];
+      addRoadRoute(detailMap,a,b,s.mode);
+    }else if(s.path){
+      L.polyline(s.path,modeStyle(s.mode)).addTo(detailMap);
+    }
+  });
+  requestAnimationFrame(()=>{
+    detailMap.invalidateSize({pan:false});
+    detailMap.fitBounds(bounds,{padding:[28,28],maxZoom:15,animate:false});
+    setTimeout(()=>detailMap.invalidateSize({pan:false}),180);
+  });
+}
+
+
+
+
+// v18.3 · Pamphlet tools: use the same underlying content as Detail mode
+function toolTitle(mode){
+  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록"}[mode]||"도구";
+}
+function clonePaneForTool(mode){
+  const paneIds={
+    itinerary:"detailPaneItinerary",
+    booking:"detailPaneBooking",
+    prep:"detailPanePrep",
+    phrase:"detailPanePhrase",
+    message:"detailPaneMessage",
+    study:"detailPaneStudy",
+    journal:"detailPaneJournal"
+  };
+  if(mode==="itinerary") renderDetail();
+  if(mode==="booking") renderBookings();
+  if(mode==="prep") renderPrep();
+  if(mode==="phrase") renderPhrases();
+  if(mode==="message") renderMessages();
+  if(mode==="study") renderStudy();
+  if(mode==="journal") renderJournal();
+
+  const source=document.getElementById(paneIds[mode]);
+  if(!source)return '<div class="toolcard">내용을 불러오지 못했습니다.</div>';
+  const clone=source.cloneNode(true);
+  clone.removeAttribute("hidden");
+  clone.removeAttribute("id");
+  clone.querySelectorAll("[id]").forEach(el=>el.removeAttribute("id"));
+  return clone.outerHTML;
+}
+function rebindPamTool(mode){
+ const body=document.getElementById("pamToolBody");if(!body)return;
+
+ if(mode==="phrase"){
+  body.querySelectorAll("[data-plang]").forEach(b=>b.onclick=()=>{
+   phraseLang=b.dataset.plang;localStorage.setItem("sg_phrase_lang",phraseLang);
+   renderPhrases();body.innerHTML=clonePaneForTool("phrase");rebindPamTool("phrase");
+  });
+  body.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{
+   phraseCat=b.dataset.pcat;renderPhrases();body.innerHTML=clonePaneForTool("phrase");rebindPamTool("phrase");
+  });
+  const s=body.querySelector(".phrase-search");
+  if(s)s.oninput=()=>{const q=s.value.toLowerCase();body.querySelectorAll(".phrase-item").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?"":"none")};
+  body.querySelectorAll("[data-phrase-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.phraseCopy));
+  body.querySelectorAll("[data-phrase-speak]").forEach(b=>b.onclick=()=>phraseSpeak(b.dataset.phraseSpeak));
+ }
+ if(mode==="message"){
+  body.querySelectorAll("[data-mcat]").forEach(b=>b.onclick=()=>{
+   msgCat=b.dataset.mcat;renderMessages();body.innerHTML=clonePaneForTool("message");rebindPamTool("message");
+  });
+  const s=body.querySelector(".msg-search");
+  if(s)s.oninput=()=>{const q=s.value.toLowerCase();body.querySelectorAll(".msg-item").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?"":"none")};
+  body.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{
+   e.stopPropagation();toggleMsgFav(b.dataset.fav);renderMessages();body.innerHTML=clonePaneForTool("message");rebindPamTool("message");
+  });
+  body.querySelectorAll("[data-msg-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.msgCopy));
+  body.querySelectorAll("[data-msg-speak]").forEach(b=>b.onclick=()=>speakEnglish(b.dataset.msgSpeak));
+ }
+ if(mode==="study"){
+  body.querySelectorAll("[data-study-story]").forEach(x=>x.onclick=()=>openStudyStory(x.dataset.studyStory));
+ }
+ if(mode==="prep"){
+  body.querySelectorAll("[data-prep17]").forEach(cb=>cb.onchange=()=>{
+   const state=prepState();state[cb.dataset.prep17]=cb.checked;localStorage.setItem(PREP_STATE_KEY,JSON.stringify(state));
+  });
+ }
+ if(mode==="journal"){
+  body.querySelectorAll("[data-jday]").forEach(t=>t.oninput=()=>{
+   const state=journalData();state[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
+  });
+ }
+}
+function openPamTool(mode){
+  if(mode==="itinerary"){
+    closePamTool();
+    window.scrollTo({top:0,behavior:"smooth"});
+    return;
+  }
+  document.getElementById("pamToolTitle").textContent=toolTitle(mode);
+  const body=document.getElementById("pamToolBody");
+  body.innerHTML=clonePaneForTool(mode);
+  rebindPamTool(mode);
+  document.getElementById("pamToolBackdrop").classList.add("open");
+  document.getElementById("pamToolPanel").classList.add("open");
+  document.getElementById("pamToolBackdrop").setAttribute("aria-hidden","false");
+  document.getElementById("pamToolPanel").setAttribute("aria-hidden","false");
+  document.body.classList.add("pamtoolopen");
+}
+function closePamTool(){
+  const bg=document.getElementById("pamToolBackdrop");
+  const panel=document.getElementById("pamToolPanel");
+  if(bg){bg.classList.remove("open");bg.setAttribute("aria-hidden","true")}
+  if(panel){panel.classList.remove("open");panel.setAttribute("aria-hidden","true")}
+  document.body.classList.remove("pamtoolopen");
+}
+
+// v18.3 · Pamphlet DAY swipe
+(function initPamphletSwipe(){
+  const area=document.getElementById("pamphletView");
+  if(!area)return;
+  const ignore="button,a,input,textarea,select,label,.item,.leaflet-container,.daymapwrap,.sheet,.backdrop";
+  let sx=0,sy=0,st=0,tracking=false;
+  area.addEventListener("touchstart",e=>{
+    if(currentView!=="pamphlet" || document.body.classList.contains("open") || e.touches.length!==1 || e.target.closest(ignore)){
+      tracking=false;return;
+    }
+    const t=e.touches[0];
+    sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;
+  },{passive:true});
+  area.addEventListener("touchend",e=>{
+    if(!tracking||!e.changedTouches.length){tracking=false;return;}
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
+    tracking=false;
+    if(Math.abs(dx)<65 || Math.abs(dx)<=Math.abs(dy)*1.35 || dt>850)return;
+    const next=day+(dx<0?1:-1);
+    if(next<1||next>DAYS.length)return;
+    day=next;
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  },{passive:true});
+})();
+
+// v18.3 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+(function initDetailSwipe(){
+  const area=document.getElementById("detailPaneItinerary");
+  if(!area)return;
+  const ignore="button,a,input,textarea,select,label,[contenteditable='true'],.leaflet-container";
+  let sx=0,sy=0,st=0,tracking=false;
+  area.addEventListener("touchstart",e=>{
+    if(e.touches.length!==1||e.target.closest(ignore)){tracking=false;return;}
+    const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;
+  },{passive:true});
+  area.addEventListener("touchend",e=>{
+    if(!tracking||!e.changedTouches.length){tracking=false;return;}
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;tracking=false;
+    if(Math.abs(dx)<70||Math.abs(dx)<=Math.abs(dy)*1.4||dt>800)return;
+    const next=day+(dx<0?1:-1);
+    if(next<1||next>DAYS.length)return;
+    day=next;
+    render();
+    renderDetail();
+    const target=document.getElementById("detailPaneItinerary");
+    const offset=(document.querySelector(".top")?.offsetHeight||0)+(document.getElementById("detailSticky")?.offsetHeight||0)+8;
+    const y=(target?.getBoundingClientRect().top||0)+window.scrollY-offset;
+    window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+  },{passive:true});
+})();
+
+
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_4";
+// 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
+const DEFAULT_NETWORK_MODE="online";
+let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
+let onlineRefreshTimer=null;
+
+function updateNetworkModeUI(){
+  const online=networkModeState==="online";
+  document.querySelectorAll("[data-netmode]").forEach(b=>b.classList.toggle("on",b.dataset.netmode===networkModeState));
+  const updateBtn=document.getElementById("onlineUpdateBtn");
+  if(updateBtn){
+    updateBtn.disabled=false;
+    updateBtn.textContent=online?"↻ 지금 정보 새로고침":"↻ 수동 정보 가져오기";
+    updateBtn.title=online
+      ?"날씨·환율·대표이미지를 즉시 다시 가져옵니다."
+      :"오프라인 모드를 유지한 채 이번 한 번만 인터넷으로 날씨·환율·대표이미지를 가져옵니다.";
+  }
+  const status=document.getElementById("onlineStatus");
+  if(status){
+    status.innerHTML=online
+      ? `🌐 온라인 모드 <span class="netmodeBadge online">AUTO</span> · 날씨/환율 자동 갱신 · 지도 온라인 사용`
+      : `📴 오프라인 모드 <span class="netmodeBadge offline">MANUAL</span> · 자동 통신 없음 · 필요할 때 버튼으로 1회 갱신`;
+  }
+}
+
+async function activateOnlineMode({autoUpdate=true}={}){
+  clearInterval(onlineRefreshTimer);
+  await loadCachedRepresentativeImages();
+  if(autoUpdate) updateOnlineInfo({manual:false});
+  try{
+    await loadLeafletOnline();
+    if(networkModeState!=="online")return;
+    onlineMapAllowed=true;
+    renderDayMap();
+    if(typeof renderDetailMap==="function")renderDetailMap();
+  }catch(e){
+    console.log("online map init failed",e);
+  }
+  // Weather/FX only refresh periodically; already-cached images are not redownloaded.
+  onlineRefreshTimer=setInterval(()=>{
+    if(networkModeState==="online")updateLiveDataOnly(false);
+  },30*60*1000);
+}
+
+async function setNetworkMode(mode,{persist=true,autoUpdate=true}={}){
+  if(!["online","offline"].includes(mode))return;
+  networkModeState=mode;
+  if(persist)localStorage.setItem(NETWORK_MODE_KEY,mode);
+  clearInterval(onlineRefreshTimer);
+  onlineRefreshTimer=null;
+
+  if(mode==="offline"){
+    await loadCachedRepresentativeImages();
+    onlineMapAllowed=false;
+    try{if(dayMap){dayMap.off();dayMap.remove();dayMap=null}}catch(e){}
+    try{if(detailMap){detailMap.off();detailMap.remove();detailMap=null}}catch(e){}
+    renderDayMap();
+    if(typeof renderDetailMap==="function")renderDetailMap();
+    updateNetworkModeUI();
+  }else{
+    updateNetworkModeUI();
+    activateOnlineMode({autoUpdate});
+  }
+}
+document.getElementById("networkMode")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-netmode]");if(!b)return;
+  setNetworkMode(b.dataset.netmode);
+});
+
+function loadCachedLiveInfo(){
+  for(const [key,tempId,textId,iconId] of [["seoul","krTemp","krWeather","krWeatherIcon"],["singapore","sgTemp","sgWeather","sgWeatherIcon"]]){
+    try{const cached=JSON.parse(localStorage.getItem("pamphlet_weather_"+key)||"null");if(cached)paintWeather(cached,tempId,textId,iconId,true);}catch(e){}
+  }
+  try{const cached=JSON.parse(localStorage.getItem("pamphlet_fx_sgd_krw")||"null");if(cached?.rate){fxRate=Number(cached.rate);fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · 저장된 환율`;fromSGD();}}catch(e){}
+}
+async function updateLiveDataOnly(showStatus=true){
+  const status=document.getElementById("onlineStatus");
+  if(showStatus && status)status.textContent="날씨 · 환율 가져오는 중…";
+  const results=await Promise.allSettled([
+    loadWeather("seoul",37.5665,126.9780,"krTemp","krWeather","krWeatherIcon"),
+    loadWeather("singapore",1.3521,103.8198,"sgTemp","sgWeather","sgWeatherIcon"),
+    loadFx()
+  ]);
+  return results;
+}
+
+async function updateOnlineInfo({manual=true}={}){
+  const btn=document.getElementById("onlineUpdateBtn"),status=document.getElementById("onlineStatus");
+  const offlineManual=networkModeState==="offline";
+  btn?.classList.add('busy');
+  if(btn)btn.textContent=offlineManual?'수동으로 가져오는 중…':'업데이트 중…';
+  if(status)status.textContent=offlineManual
+    ?"📴 오프라인 모드 유지 · 이번 한 번만 온라인 정보 가져오는 중…"
+    :"🌐 온라인 정보 업데이트 중…";
+  try{
+    await updateLiveDataOnly(false);
+
+    // Representative images: only missing images are downloaded/cached.
+    // Weather/FX result is not held up if some image hosts fail.
+    const imageResult=await Promise.race([
+      warmRepresentativeImages(),
+      new Promise(resolve=>setTimeout(()=>resolve({ok:0,fail:0,timeout:true}),20000))
+    ]);
+    refreshRepresentativeImages();
+
+    const now=new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date());
+    if(status){
+      const imageMsg=imageResult?.timeout?" · 이미지는 백그라운드 저장 계속":imageResult?.ok?` · 새 이미지 ${imageResult.ok}장 저장`:"";
+      status.textContent=offlineManual
+        ? `📴 수동 갱신 완료 ${now}${imageMsg} · 오프라인 모드 유지`
+        : `🌐 최신 정보 ${now}${imageMsg}`;
+    }
+    // Timeout이어도 다운로드는 계속 진행.
+    if(imageResult?.timeout)warmRepresentativeImages().then(r=>{
+      refreshRepresentativeImages();
+      if(status)status.textContent=`이미지 저장 완료 · 성공 ${r.ok} · 실패 ${r.fail}`;
+    });
+  }catch(e){
+    if(status)status.textContent="정보 업데이트 실패 · 인터넷 연결을 확인해주세요.";
+  }finally{
+    if(btn){
+      btn.classList.remove('busy');
+      btn.textContent=networkModeState==="online"?"↻ 지금 정보 새로고침":"↻ 수동 정보 가져오기";
+    }
+  }
+}
+function clocks(){
+ const n=new Date(),f=tz=>new Intl.DateTimeFormat("ko-KR",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false}).format(n);
+ document.getElementById("krTime").textContent=f("Asia/Seoul");
+ document.getElementById("sgTime").textContent=f("Asia/Singapore");
+}
+
+function weatherText(code){
+ const c=Number(code);
+ if(c===0)return["☀️","맑음"];
+ if(c===1)return["🌤️","대체로 맑음"];
+ if(c===2)return["⛅","구름 조금"];
+ if(c===3)return["☁️","흐림"];
+ if(c===45||c===48)return["🌫️","안개"];
+ if([51,53,55,56,57].includes(c))return["🌦️","이슬비"];
+ if([61,63,65,66,67].includes(c))return["🌧️","비"];
+ if([71,73,75,77].includes(c))return["🌨️","눈"];
+ if([80,81,82].includes(c))return["🌦️","소나기"];
+ if([85,86].includes(c))return["🌨️","눈 소나기"];
+ if([95,96,99].includes(c))return["⛈️","뇌우"];
+ return["🌡️","날씨"];
+}
+
+async function loadWeather(key,lat,lon,tempId,textId,iconId){
+ const cacheKey="pamphlet_weather_"+key;
+ try{
+   const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+   const r=await fetch(url,{cache:"no-store"});
+   if(!r.ok)throw new Error("weather");
+   const j=await r.json();
+   const data={temp:Math.round(j.current.temperature_2m),code:j.current.weather_code,ts:Date.now()};
+   localStorage.setItem(cacheKey,JSON.stringify(data));
+   paintWeather(data,tempId,textId,iconId);
+ }catch(e){
+   try{
+     const cached=JSON.parse(localStorage.getItem(cacheKey)||"null");
+     if(cached){paintWeather(cached,tempId,textId,iconId,true);return;}
+   }catch(_){}
+   document.getElementById(textId).textContent="날씨 확인 실패";
+ }
+}
+function paintWeather(data,tempId,textId,iconId,cached=false){
+ const [icon,text]=weatherText(data.code);
+ document.getElementById(tempId).textContent=`${data.temp}°`;
+ document.getElementById(textId).textContent=text+(cached?" · 저장값":"");
+ document.getElementById(iconId).textContent=icon;
+}
+
+let fxRate=1080;
+const sgdInput=document.getElementById("sgdAmount");
+const krwInput=document.getElementById("krwAmount");
+const fxInfo=document.getElementById("fxRateInfo");
+
+function fmtKRW(v){return Math.round(v).toLocaleString("ko-KR")}
+function parseNumber(v){return Number(String(v).replace(/,/g,"").trim())||0}
+function fromSGD(){
+ const s=parseNumber(sgdInput.value);
+ krwInput.value=fmtKRW(s*fxRate);
+}
+function fromKRW(){
+ const k=parseNumber(krwInput.value);
+ const s=fxRate?k/fxRate:0;
+ sgdInput.value=(Math.round(s*100)/100).toString();
+}
+sgdInput.addEventListener("input",fromSGD);
+krwInput.addEventListener("input",fromKRW);
+krwInput.addEventListener("focus",()=>{krwInput.value=String(parseNumber(krwInput.value)||"")});
+krwInput.addEventListener("blur",()=>{krwInput.value=fmtKRW(parseNumber(krwInput.value));});
+
+async function loadFx(){
+ const cacheKey="pamphlet_fx_sgd_krw";
+ try{
+   const r=await fetch("https://api.frankfurter.app/latest?from=SGD&to=KRW",{cache:"no-store"});
+   if(!r.ok)throw new Error("fx");
+   const j=await r.json();
+   if(!j.rates?.KRW)throw new Error("fx");
+   fxRate=Number(j.rates.KRW);
+   localStorage.setItem(cacheKey,JSON.stringify({rate:fxRate,date:j.date||"",ts:Date.now()}));
+   fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · ${j.date||"최신"}`;
+ }catch(e){
+   try{
+     const cached=JSON.parse(localStorage.getItem(cacheKey)||"null");
+     if(cached?.rate){
+       fxRate=Number(cached.rate);
+       fxInfo.textContent=`1 SGD ≈ ${fxRate.toLocaleString("ko-KR",{maximumFractionDigits:2})} KRW · 저장된 환율`;
+     }else{
+       fxInfo.textContent=`1 SGD = ${fxRate.toLocaleString("ko-KR")} KRW · 임시값`;
+     }
+   }catch(_){
+     fxInfo.textContent=`1 SGD = ${fxRate.toLocaleString("ko-KR")} KRW · 임시값`;
+   }
+ }
+ fromSGD();
+}
+
+clocks();
+setInterval(clocks,60000);
+loadCachedLiveInfo();
+document.getElementById("onlineUpdateBtn")?.addEventListener("click",updateOnlineInfo);
+render();
+setDetailMode(detailMode,false);
+setView(currentView,false);
+updateNetworkModeUI();
+loadCachedRepresentativeImages().then(()=>{
+  refreshRepresentativeImages();
+  if(networkModeState==="online"){
+    setTimeout(()=>activateOnlineMode({autoUpdate:true}),350);
+  }else{
+    onlineMapAllowed=false;
+  }
+});
+</script>
+</body>
+</html>
