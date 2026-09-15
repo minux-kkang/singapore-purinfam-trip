@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v17.3</title>
+<title>Singapore Family Trip 2026 · v17.4</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -207,12 +207,12 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v17.3 · SINGLE FILE UNIFIED APP
+   v17.4 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
   position:sticky;top:0;z-index:50;display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;
+  grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;
   padding:4px;margin:0 0 12px;background:rgba(238,243,245,.96);
   border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)
 }
@@ -281,14 +281,14 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .tripfact{border:1px solid #e6ecef;background:#fbfcfd;border-radius:12px;padding:10px;font-size:11px}
 .tripfact b{display:block;color:var(--ink);margin-bottom:3px}
 @media(max-width:620px){
- .detailnav{grid-template-columns:repeat(3,minmax(0,1fr));position:sticky;top:0}
+ .detailnav{grid-template-columns:repeat(4,minmax(0,1fr));position:sticky;top:0}
  .detailnavbtn{font-size:9.5px;padding:8px 2px}
  .toolgrid,.tripfacts{grid-template-columns:1fr}
  .presentactions{grid-template-columns:1fr}
 }
 
 
-/* v17.3 · stable detail scrolling */
+/* v17.4 · stable detail scrolling */
 .detailsticky{
   position:sticky;top:0;z-index:80;background:var(--bg);
   padding:5px 0 4px;margin:-2px 0 8px;
@@ -307,7 +307,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 body.detail-scroll-lock{overflow:hidden}
 
 
-/* v17.3 · sticky hierarchy fix
+/* v17.4 · sticky hierarchy fix
    1) .top = primary sticky header (time / FX / real DAY buttons)
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
@@ -343,7 +343,7 @@ body.detail-scroll-lock{overflow:hidden}
 }
 
 
-/* v17.3 · Pamphlet sheet + map layering fix */
+/* v17.4 · Pamphlet sheet + map layering fix */
 .backdrop{
   z-index:2000!important;
   background:rgba(13,34,50,.62)!important;
@@ -384,12 +384,40 @@ body.open .sheet{touch-action:pan-y}
   .stitle{font-size:19px!important}
 }
 
+
+/* v17.4 · booking vault */
+.bookinggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bookingcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;position:relative}
+.bookinghead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px}
+.bookingtitle{font-size:15px;font-weight:950;color:var(--ink);line-height:1.3}
+.bookingtype{font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.05em}
+.bookingstatus{font-size:9px;font-weight:950;border-radius:999px;padding:5px 7px;white-space:nowrap}
+.bookingstatus.confirmed{background:#e6f6ef;color:#096657}
+.bookingstatus.pending{background:#fff1da;color:#8a5c00}
+.bookingstatus.optional{background:#f1ecfa;color:#6842a3}
+.bookingrows{display:grid;gap:6px}
+.bookingrow{display:grid;grid-template-columns:80px minmax(0,1fr);gap:7px;font-size:11px;line-height:1.45}
+.bookingrow .label{color:var(--muted);font-weight:850}
+.bookingrow .value{color:#263c49;word-break:break-word}
+.bookingnums{display:flex;flex-wrap:wrap;gap:5px}
+.bookingnum{display:inline-block;background:#f4f7f8;border:1px solid #e4eaed;border-radius:8px;padding:5px 7px;font-size:10px;font-weight:900}
+.qrslot{margin-top:9px;border:1px dashed #cbd6db;border-radius:12px;padding:11px;background:#fafcfd;display:flex;gap:10px;align-items:center}
+.qrplaceholder{width:54px;height:54px;border:1px solid #dfe6e9;border-radius:10px;background:
+linear-gradient(45deg,#eef2f4 25%,transparent 25%) 0 0/12px 12px,
+linear-gradient(-45deg,#eef2f4 25%,transparent 25%) 0 0/12px 12px,
+linear-gradient(45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px,
+linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
+.qrmeta{font-size:10px;color:var(--muted);line-height:1.45}
+.bookingnote{margin-top:8px;padding:8px 9px;border-radius:9px;background:#f8fafb;font-size:10px;color:#586a74;line-height:1.5}
+.bookingsectiontitle{margin:15px 0 7px;font-size:13px;font-weight:950;color:var(--ink)}
+@media(max-width:680px){.bookinggrid{grid-template-columns:1fr}.bookingrow{grid-template-columns:72px minmax(0,1fr)}}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.3</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v17.4</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -431,6 +459,7 @@ body.open .sheet{touch-action:pan-y}
   <div class="detailsticky" id="detailSticky">
     <nav class="detailnav" id="detailNav">
       <button class="detailnavbtn on" data-detail-mode="itinerary">🗓 일정</button>
+      <button class="detailnavbtn" data-detail-mode="booking">🎫 예약</button>
       <button class="detailnavbtn" data-detail-mode="prep">🧳 준비</button>
       <button class="detailnavbtn" data-detail-mode="phrase">💬 표현</button>
       <button class="detailnavbtn" data-detail-mode="message">📱 메시지</button>
@@ -443,6 +472,14 @@ body.open .sheet{touch-action:pan-y}
     <section id="detailHero" class="detailhero"></section>
     <section id="detailList" class="detail-list"></section>
     <section id="detailMapWrap" class="daymapwrap detail-mapbox"></section>
+  </section>
+
+
+  <section class="detailpane" id="detailPaneBooking" hidden>
+    <div class="toolhero"><div class="eyebrow">BOOKINGS & VOUCHERS</div><h2>🎫 예약 · 바우처</h2>
+      <p>확정된 예약은 실제 번호를 표시하고, 아직 미예약인 항목은 자리만 미리 만들어둡니다. QR/바우처는 추후 파일을 받으면 이 단일 HTML 안에 직접 넣을 수 있습니다.</p>
+    </div>
+    <div id="bookingContent"></div>
   </section>
 
   <section class="detailpane" id="detailPanePrep" hidden>
@@ -474,7 +511,7 @@ body.open .sheet{touch-action:pan-y}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v17.3 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
+  <div class="footer">v17.4 · 하나의 일정 데이터로 팜플렛과 디테일을 함께 렌더링합니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -548,7 +585,7 @@ const DAYS=[
 
 
 // =========================================================
-// v17.3 · unified single-file tools
+// v17.4 · unified single-file tools
 // =========================================================
 const TRIP_META={
   title:"Singapore Family Trip 2026",
@@ -573,19 +610,20 @@ const TRIP_META={
 
 const DETAIL_MODE_KEY="sg_trip_detail_mode_v17";
 let detailMode=localStorage.getItem(DETAIL_MODE_KEY)||"itinerary";
-const detailModes=["itinerary","prep","phrase","message","study","journal"];
+const detailModes=["itinerary","booking","prep","phrase","message","study","journal"];
 
 function setDetailMode(mode,save=true){
   if(!detailModes.includes(mode))mode="itinerary";
   detailMode=mode;
   document.querySelectorAll("[data-detail-mode]").forEach(b=>b.classList.toggle("on",b.dataset.detailMode===mode));
-  const ids={itinerary:"detailPaneItinerary",prep:"detailPanePrep",phrase:"detailPanePhrase",message:"detailPaneMessage",study:"detailPaneStudy",journal:"detailPaneJournal"};
+  const ids={itinerary:"detailPaneItinerary",booking:"detailPaneBooking",prep:"detailPanePrep",phrase:"detailPanePhrase",message:"detailPaneMessage",study:"detailPaneStudy",journal:"detailPaneJournal"};
   Object.entries(ids).forEach(([k,id])=>{const el=document.getElementById(id);if(el)el.hidden=k!==mode});
   if(save)localStorage.setItem(DETAIL_MODE_KEY,mode);
   if(mode==="itinerary"){
     renderDetail();
     if(detailMap)setTimeout(()=>detailMap.invalidateSize({pan:false}),120);
   }
+  if(mode==="booking")renderBookings();
   if(mode==="prep")renderPrep();
   if(mode==="phrase")renderPhrases();
   if(mode==="message")renderMessages();
@@ -595,6 +633,80 @@ function setDetailMode(mode,save=true){
 document.getElementById("detailNav")?.addEventListener("click",e=>{
   const b=e.target.closest("[data-detail-mode]");if(!b)return;setDetailMode(b.dataset.detailMode);
 });
+
+
+// ---------- Booking vault ----------
+const BOOKINGS=[
+ {group:"숙소",type:"HOTEL",icon:"🏨",title:"Singapore Marriott Tang Plaza Hotel",status:"confirmed",
+  date:"2026-09-19 ~ 2026-09-24",people:"11명 · 4객실 · 5박",
+  numbers:["86404986","86404965","86404979","86393926"],
+  detail:"4개 객실 동일 일행 전달 완료 · 가능한 가까운 객실 · 일부 Twin Beds · Rollaway Bed · Step Stool 요청 · Air Purifier 재고 시 제공",
+  qr:"",note:"Humidifier 없음 · Bed Guard 없음 · 객실 요청은 availability 기준"},
+ {group:"항공",type:"FLIGHT",icon:"✈️",title:"대한항공 KE643 · ICN → SIN",status:"confirmed",
+  date:"2026-09-19 · Singapore 19:15 도착",people:"11명",
+  numbers:[],detail:"출국편 KE643 확정 · 예약번호/바우처는 추후 입력",qr:"",note:"항공 예약번호가 확인되면 여기에 추가"},
+ {group:"항공",type:"FLIGHT",icon:"✈️",title:"대한항공 KE644 · SIN → ICN",status:"confirmed",
+  date:"2026-09-24 · 22:00 출발",people:"11명",
+  numbers:[],detail:"귀국편 KE644 확정 · 예약번호/바우처는 추후 입력",qr:"",note:"항공 예약번호가 확인되면 여기에 추가"},
+
+ {group:"공항 이동",type:"TRANSFER",icon:"🚐",title:"창이공항 → 호텔 픽업",status:"pending",
+  date:"2026-09-19",people:"11명 + 캐리어 + 유모차",
+  numbers:[],detail:"업체 / 차량 / 기사 / 픽업 위치 / 예약번호",qr:"",note:"아직 미확정 · 예약 후 실제 정보 입력"},
+ {group:"공항 이동",type:"TRANSFER",icon:"🚐",title:"호텔 → 창이공항 샌딩",status:"pending",
+  date:"2026-09-24",people:"11명 + 캐리어 + 유모차",
+  numbers:[],detail:"업체 / 차량 / 기사 / 픽업 시간 / 예약번호",qr:"",note:"아직 미확정 · 예약 후 실제 정보 입력"},
+
+ {group:"입장권",type:"TICKET",icon:"🎢",title:"Universal Studios Singapore",status:"pending",
+  date:"2026-09-21 · DAY 3",people:"11명",
+  numbers:[],detail:"티켓 종류 / 주문번호 / QR / 입장조건",qr:"",note:"현재 중요 TODO · 미예약"},
+ {group:"입장권",type:"TICKET",icon:"🌿",title:"Gardens by the Bay",status:"pending",
+  date:"2026-09-20 · DAY 2",people:"11명",
+  numbers:[],detail:"Cloud Forest / Flower Dome 티켓 여부 · 주문번호 / QR",qr:"",note:"구매 여부 확정 후 입력"},
+ {group:"입장권",type:"TICKET",icon:"🐠",title:"Singapore Oceanarium",status:"optional",
+  date:"DAY 3 또는 DAY 5",people:"11명",
+  numbers:[],detail:"DAY5 최종 결정 후 필요 시 구매 · 주문번호 / QR",qr:"",note:"후보 / 미예약"},
+ {group:"입장권",type:"TICKET",icon:"🛷",title:"Skyline Luge Sentosa",status:"optional",
+  date:"DAY 3 또는 DAY 5",people:"선택 인원",
+  numbers:[],detail:"탑승권 / 시간 / QR / 아동 조건",qr:"",note:"후보 / 미예약"},
+ {group:"입장권",type:"TICKET",icon:"🚤",title:"Singapore River Cruise",status:"pending",
+  date:"2026-09-22 · DAY 4",people:"11명",
+  numbers:[],detail:"회차 / 예약번호 / QR",qr:"",note:"일정 포함 · 실제 구매 전"},
+ {group:"입장권",type:"TICKET",icon:"🦁",title:"Mandai · Zoo / River Wonders",status:"optional",
+  date:"2026-09-23 · DAY 5 대안",people:"11명",
+  numbers:[],detail:"DAY5를 Mandai로 변경할 경우 티켓 정보 입력",qr:"",note:"대안 일정 후보"},
+
+ {group:"식당",type:"RESTAURANT",icon:"🦀",title:"JUMBO Seafood - Riverside Point",status:"confirmed",
+  date:"2026-09-22 · 19:00",people:"11명",
+  numbers:["6V5D9N"],detail:"Reservation ID · Riverside Point",qr:"",note:"확정 예약 · 임의 변경 금지"}
+];
+
+function bookingStatusLabel(s){return {confirmed:"확정",pending:"미예약",optional:"후보"}[s]||s}
+function renderBookings(){
+  const root=document.getElementById("bookingContent");if(!root)return;
+  const groups=[...new Set(BOOKINGS.map(x=>x.group))];
+  root.innerHTML=groups.map(g=>`
+    <div class="bookingsectiontitle">${g}</div>
+    <div class="bookinggrid">
+      ${BOOKINGS.filter(x=>x.group===g).map(x=>`
+        <article class="bookingcard">
+          <div class="bookinghead">
+            <div><div class="bookingtype">${x.type}</div><div class="bookingtitle">${x.icon} ${x.title}</div></div>
+            <span class="bookingstatus ${x.status}">${bookingStatusLabel(x.status)}</span>
+          </div>
+          <div class="bookingrows">
+            <div class="bookingrow"><span class="label">일정</span><span class="value">${x.date||"—"}</span></div>
+            <div class="bookingrow"><span class="label">인원</span><span class="value">${x.people||"—"}</span></div>
+            <div class="bookingrow"><span class="label">예약번호</span><span class="value">${x.numbers?.length?`<span class="bookingnums">${x.numbers.map(n=>`<span class="bookingnum">${n}</span>`).join("")}</span>`:"—"}</span></div>
+            <div class="bookingrow"><span class="label">상세</span><span class="value">${x.detail||"—"}</span></div>
+          </div>
+          <div class="qrslot">
+            <div class="qrplaceholder" aria-hidden="true"></div>
+            <div class="qrmeta"><b>QR / 바우처</b><br>${x.qr?"등록됨":"미등록 · 추후 실제 QR/바우처 삽입 예정"}</div>
+          </div>
+          ${x.note?`<div class="bookingnote">${x.note}</div>`:""}
+        </article>`).join("")}
+    </div>`).join("");
+}
 
 // ---------- Prep ----------
 const PREP_ITEMS=[
@@ -1240,7 +1352,7 @@ function renderDetailMap(){
 
 
 
-// v17.3 · Pamphlet DAY swipe
+// v17.4 · Pamphlet DAY swipe
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
@@ -1266,7 +1378,7 @@ function renderDetailMap(){
   },{passive:true});
 })();
 
-// v17.3 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
+// v17.4 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
 (function initDetailSwipe(){
   const area=document.getElementById("detailPaneItinerary");
   if(!area)return;
