@@ -3,34 +3,194 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip · Pamphlet v08</title>
+<title>Singapore Family Trip · Pamphlet</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f5f8fa;color:#17364f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;padding-bottom:80px}#source{display:none!important}
-header{position:sticky;top:0;z-index:20;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid #dfe7eb}
-.bar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}.brand{font-weight:950}.brand small{font-size:10px;color:#93a0a8}.live{border:1px solid #dfe7eb;border-radius:999px;padding:8px 11px;text-decoration:none;color:#17364f;font-size:11px;font-weight:900;background:white}
-.days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px}.days button{border:0;border-radius:999px;padding:9px 12px;white-space:nowrap;font-weight:900;background:#edf2f4;color:#566b78}.days button.on{background:#17364f;color:white}
-main{max-width:760px;margin:auto;padding:12px}.hero{min-height:155px;border:1px solid #dfe7eb;border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 65%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}.emoji{position:absolute;right:18px;top:15px;font-size:48px}.kick{font-size:12px;color:#0b7d73;font-weight:950}.hero h1{font-size:30px;line-height:1.05;margin:4px 0 7px;letter-spacing:-1px}.hero p{margin:0;color:#71818c;font-size:13px;font-weight:700}
-.list{display:grid;gap:9px}.item{background:white;border:1px solid #dfe7eb;border-radius:18px;min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 18px;gap:10px;align-items:center}.time{background:#e8f6f3;color:#0b7d73;border-radius:999px;padding:8px 5px;text-align:center;font-size:12px;font-weight:950}.title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.3px}.arrow{font-size:23px;color:#a6b1b8}
-.backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:40;transition:.2s}.sheet{position:fixed;left:0;right:0;bottom:0;max-height:84dvh;background:#fff;border-radius:24px 24px 0 0;transform:translateY(105%);transition:.22s;z-index:50;display:flex;flex-direction:column}.open .backdrop{opacity:1;pointer-events:auto}.open .sheet{transform:translateY(0)}.handle{width:42px;height:5px;background:#d2dbe0;border-radius:99px;margin:9px auto}.sheethead{display:flex;justify-content:space-between;padding:6px 17px 10px;gap:12px}.stime{font-size:12px;color:#0b7d73;font-weight:950}.stitle{font-size:21px;font-weight:950}.close{border:0;width:36px;height:36px;border-radius:50%;font-size:21px;background:#eef3f5}.tabs{display:flex;gap:6px;overflow:auto;padding:8px 13px 10px;border-bottom:1px solid #e9eef1}.tabs button{border:0;background:#eef3f5;border-radius:999px;padding:9px 13px;font-weight:900;color:#526672}.tabs button.on{background:#17364f;color:white}.body{overflow:auto;padding:16px 18px 28px;font-size:14px;line-height:1.65;color:#314956}.body .when{display:none!important}.action{display:block;background:#17364f;color:#fff;text-align:center;text-decoration:none;padding:14px;border-radius:14px;font-weight:900}.memo{width:100%;min-height:150px;border:1px solid #d5e0e5;border-radius:14px;padding:12px;font:inherit}
+:root{
+  --bg:#f5f8fa;--card:#fff;--ink:#17364f;--muted:#7b8b96;--line:#dfe7eb;
+  --mint:#e9f7f4;--mintInk:#0b7d73;--sheet:#fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif}
+body{padding-bottom:70px}
+.top{position:sticky;top:0;z-index:30;background:#ffffffef;backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
+.toprow{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.brand{font-size:15px;font-weight:950;letter-spacing:-.2px}.brand small{font-size:10px;color:#94a0a8;margin-left:4px}
+.practical{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;
+  color:var(--ink);text-decoration:none;font-size:11px;font-weight:900}
+.days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}.daybtn{border:0;background:#edf2f4;color:#526773;
+  border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
+.daybtn.on{background:var(--ink);color:#fff}
+.wrap{max-width:760px;margin:auto;padding:12px}
+.hero{min-height:155px;border:1px solid var(--line);border-radius:24px;padding:22px;
+  background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;
+  justify-content:flex-end;position:relative;margin-bottom:12px;overflow:hidden}
+.heroemoji{position:absolute;right:20px;top:15px;font-size:49px}.heroday{font-size:12px;font-weight:950;color:var(--mintInk)}
+.herotitle{font-size:30px;font-weight:1000;line-height:1.05;letter-spacing:-1px;margin-top:4px}
+.herosub{font-size:13px;color:#71818c;font-weight:700;margin-top:8px}
+.timeline{display:grid;gap:9px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;
+  min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 19px;
+  gap:10px;align-items:center;box-shadow:0 4px 14px rgba(23,54,79,.035);cursor:pointer}
+.item:active{transform:scale(.995)}.time{background:var(--mint);color:var(--mintInk);border-radius:999px;
+  padding:8px 5px;text-align:center;font-size:12px;font-weight:950;line-height:1.15}
+.title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.35px;word-break:keep-all}
+.arrow{font-size:23px;color:#a5b0b7}.footer{text-align:center;font-size:11px;color:#98a4ab;padding:18px 0}
+.backdrop{position:fixed;inset:0;background:#0d223270;opacity:0;pointer-events:none;z-index:50;transition:.2s}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--sheet);border-radius:24px 24px 0 0;
+  max-height:84dvh;transform:translateY(105%);transition:.22s;display:flex;flex-direction:column;
+  padding-bottom:env(safe-area-inset-bottom)}
+body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:translateY(0)}
+.handle{width:42px;height:5px;background:#d2dbe0;border-radius:99px;margin:9px auto 5px}
+.sheethead{display:flex;justify-content:space-between;gap:12px;padding:7px 17px 10px}
+.stime{font-size:12px;color:var(--mintInk);font-weight:950}.stitle{font-size:21px;line-height:1.3;font-weight:950}
+.close{border:0;background:#eef3f5;width:36px;height:36px;border-radius:50%;font-size:21px}
+.tabs{display:flex;gap:6px;overflow:auto;padding:8px 13px 10px;border-bottom:1px solid #e9eef1}
+.tabs button{border:0;background:#eef3f5;color:#526672;border-radius:999px;padding:9px 13px;white-space:nowrap;font-weight:900}
+.tabs button.on{background:var(--ink);color:#fff}.body{overflow:auto;padding:16px 18px 30px;font-size:14px;line-height:1.65;color:#314956}
+.box{background:#f6f8f9;border:1px solid #e1e7ea;border-radius:14px;padding:13px;margin-bottom:10px}.box b{color:var(--ink)}
+.action{display:block;background:var(--ink);color:#fff;text-align:center;text-decoration:none;padding:14px;border-radius:14px;font-weight:900;margin:8px 0}
+.memo{width:100%;min-height:150px;border:1px solid #d5e0e5;border-radius:14px;padding:12px;font:inherit}
+@media(min-width:700px){.timeline{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<iframe id="source" src="./index.html" aria-hidden="true"></iframe>
-<header><div class="bar"><div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET v08</small></div><a class="live" href="./index.html">실전 화면</a></div><div id="days" class="days"></div></header>
-<main><section id="hero" class="hero"></section><section id="list" class="list">일정 불러오는 중…</section></main>
+<header class="top">
+  <div class="toprow">
+    <div class="brand">🇸🇬 Singapore Family Trip <small>PAMPHLET TEST</small></div>
+    <a class="practical" href="./index.html">🛠 실전 화면</a>
+  </div>
+  <div id="days" class="days"></div>
+</header>
+
+<main class="wrap">
+  <section id="hero" class="hero"></section>
+  <section id="timeline" class="timeline"></section>
+  <div class="footer">2026.09.19 – 09.24 · 11명 · 5박 6일</div>
+</main>
+
 <div id="backdrop" class="backdrop"></div>
-<section class="sheet"><div class="handle"></div><div class="sheethead"><div><div id="stime" class="stime"></div><div id="stitle" class="stitle"></div></div><button id="close" class="close">×</button></div><div id="tabs" class="tabs"><button class="on" data-v="detail">상세</button><button data-v="map">지도</button><button data-v="move">이동</button><button data-v="food">식사</button><button data-v="memo">메모</button></div><div id="body" class="body"></div></section>
+<section class="sheet">
+  <div class="handle"></div>
+  <div class="sheethead">
+    <div><div id="stime" class="stime"></div><div id="stitle" class="stitle"></div></div>
+    <button id="close" class="close" type="button">×</button>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="on" data-view="detail">상세</button>
+    <button data-view="map">지도</button>
+    <button data-view="move">이동</button>
+    <button data-view="food">식사</button>
+    <button data-view="memo">메모</button>
+  </div>
+  <div id="body" class="body"></div>
+</section>
+
 <script>
-const META={1:["✈️","도착","싱가포르 도착 · 호텔 체크인 · 휴식"],2:["🌆","Marina Bay","마리나베이 · Gardens by the Bay"],3:["🎢","USS","Universal Studios Singapore 중심"],4:["🏛️","Old Singapore","Fort Canning · Chinatown · River Cruise"],5:["🏝️","Sentosa","Oceanarium · 해변 · Luge 옵션"],6:["🛫","Goodbye","Little India · Kampong Glam · Jewel Changi"]};
-const src=document.getElementById("source"),days=document.getElementById("days"),hero=document.getElementById("hero"),list=document.getElementById("list"),body=document.getElementById("body");let data=[],current=1,sel=null,view="detail";
-const T=e=>(e?.textContent||"").replace(/\s+/g," ").trim(),E=s=>(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-function titleOf(s){const x=s.querySelector(".activity b,.activity strong,.activity h3,.activity h4");if(x&&T(x))return T(x);const a=s.querySelector(".activity");if(a){const c=a.cloneNode(true);c.querySelectorAll("ul,ol,.meta,.note,.placeinfo,details,.logbtn,small").forEach(n=>n.remove());let t=T(c);if(t)return t.slice(0,54)}return "일정 보기"}
-function extract(){const d=src.contentDocument;if(!d?.body)return false;const ds=[...d.querySelectorAll(".day")];if(!ds.length)return false;data=ds.map((n,i)=>({day:i+1,slots:[...n.querySelectorAll(".slot")].map((s,j)=>{const c=s.cloneNode(true);c.querySelectorAll(".logbtn,script,style").forEach(x=>x.remove());return{i:j,time:T(s.querySelector(".when")),title:titleOf(s),raw:T(s),html:c.innerHTML}})}));return true}
-function render(){const d=data.find(x=>x.day===current);if(!d)return;const m=META[current];hero.innerHTML=`<div class="emoji">${m[0]}</div><div class="kick">DAY ${current}</div><h1>${m[1]}</h1><p>${m[2]}</p>`;days.innerHTML=data.map(x=>`<button class="${x.day===current?"on":""}" data-day="${x.day}">DAY ${x.day}</button>`).join("");list.innerHTML=d.slots.map(s=>`<article class="item" data-i="${s.i}"><div class="time">${E(s.time||"일정")}</div><div class="title">${E(s.title)}</div><div class="arrow">›</div></article>`).join("")}
-function openSheet(i){const d=data.find(x=>x.day===current);sel=d.slots.find(x=>x.i===+i);document.getElementById("stime").textContent=sel.time;document.getElementById("stitle").textContent=sel.title;view="detail";tabs();renderSheet();document.body.classList.add("open")}
-function tabs(){document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.v===view))}
-function renderSheet(){if(view==="detail"){body.innerHTML=sel.html;return}if(view==="map"){body.innerHTML=`<a class="action" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">Google Maps 열기</a>`;return}if(view==="move"||view==="food"){const re=view==="move"?/(MRT|Grab|이동|도보|택시|버스|환승|출발|도착|역)/i:/(식사|점심|저녁|식당|레스토랑|JUMBO|Cafe|카페|메뉴|예약)/i;const h=sel.raw.split(/[•·]/).map(x=>x.trim()).filter(x=>re.test(x));body.innerHTML=h.length?"<ul>"+[...new Set(h)].map(x=>`<li>${E(x)}</li>`).join("")+"</ul>":"<p>별도 정보가 없습니다.</p>";return}const k=`sg_note_${current}_${sel.i}`;body.innerHTML='<textarea id="memo" class="memo" placeholder="우리 가족 메모"></textarea>';const m=document.getElementById("memo");m.value=localStorage.getItem(k)||"";m.oninput=()=>localStorage.setItem(k,m.value)}
-src.onload=()=>{let n=0,t=setInterval(()=>{n++;if(extract()){clearInterval(t);render()}else if(n>30){clearInterval(t);list.innerHTML="일정 데이터를 불러오지 못했습니다."}},100)};
-days.onclick=e=>{const b=e.target.closest("[data-day]");if(!b)return;current=+b.dataset.day;render();scrollTo(0,0)};list.onclick=e=>{const x=e.target.closest(".item");if(x)openSheet(x.dataset.i)};document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.v;tabs();renderSheet()};
+const DAYS = [
+{
+ day:1, icon:"✈️", title:"도착", sub:"싱가포르 도착 · 호텔 체크인 · 휴식",
+ items:[
+  {time:"출발 전",title:"공항 이동 · 여행서류 최종 확인",detail:"여권 11명, 항공권, 호텔 예약, SG Arrival Card, 짐과 유모차를 최종 확인.",move:"사전예약 차량의 기사·차량·픽업시간 확인."},
+  {time:"출발",title:"집 → 인천공항",detail:"가족별 인원과 짐 개수를 마지막으로 확인하고 공항으로 이동.",move:"가족별 탑승 차량을 미리 정해두기."},
+  {time:"공항",title:"체크인 → 출국심사 → 탑승",detail:"탑승구와 Boarding Time을 먼저 확인한 뒤 면세·라운지 이용.",move:"11명이라 Gate 이동 시간을 넉넉히 잡기."},
+  {time:"13:50",title:"인천 → 싱가포르",detail:"대한항공 KE643 출국편.",move:"비행 중 도착 후 차량과 가족별 역할만 간단히 재확인."},
+  {time:"19:15",title:"Changi Airport 도착",detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",move:"11명+짐 기준 공항→호텔 이동수단 사전 확정 필요."},
+  {time:"21:30~",title:"Marriott Tang Plaza 체크인",detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",move:"320 Orchard Rd · Orchard MRT 인접."},
+  {time:"22:00~",title:"가벼운 야식 · 휴식",detail:"첫날은 체력을 남기는 것이 우선.",food:"국수·샌드위치·빵·과일처럼 부담 없는 메뉴."}
+ ]},
+{
+ day:2,icon:"🌆",title:"Marina Bay",sub:"싱가포르의 대표 풍경을 보는 날",
+ items:[
+  {time:"10:00",title:"호텔 → Merlion Park",detail:"머라이언과 Marina Bay 풍경으로 여행의 첫 대표사진.",move:"Orchard NS22 → Raffles Place NS26 직통 후 도보."},
+  {time:"10:30",title:"Marina Bay 산책",detail:"Merlion Park · Esplanade · Singapore Flyer를 흐름대로 본다.",move:"오전은 강변을 따라 이동. 더우면 짧은 차량 이동 허용."},
+  {time:"12:30",title:"점심 · 에어컨 휴식",detail:"오전 야외 일정 뒤 체온과 체력을 낮추는 핵심 휴식.",food:"MBS/Marina Bay 일대. 가족 편의와 좌석 우선."},
+  {time:"14:00",title:"Marina Bay Sands",detail:"Helix Bridge · MBS · The Shoppes를 천천히 통과.",move:"기본 도보. 아이 낮잠·더위 상황이면 Grab."},
+  {time:"17:00",title:"Gardens by the Bay",detail:"Cloud Forest · Flower Dome 중심.",move:"MBS에서 Gardens 방향으로 이동."},
+  {time:"19:00",title:"저녁",detail:"야간쇼 전에 식사와 휴식.",food:"Satay · Hokkien Mee · BBQ Seafood 등 현지식 후보."},
+  {time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",move:"쇼 사이 이동시간을 너무 빡빡하게 잡지 않기."}
+ ]},
+{
+ day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",
+ items:[
+  {time:"08:15",title:"호텔 → Sentosa",detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",move:"Orchard → Dhoby Ghaut → HarbourFront → Sentosa Express."},
+  {time:"10:00~",title:"Universal Studios Singapore",detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",food:"점심 피크를 조금 피하고 아이가 먹을 수 있는 익숙한 메뉴를 먼저 확보."},
+  {time:"15:00~",title:"충분히 놀았다면 Sentosa 확장",detail:"Oceanarium · Luge · Siloso Beach 등에서 1~2개 선택.",move:"DAY5와 중복되지 않게 오늘 한 것을 기억해두기."},
+  {time:"저녁",title:"Sentosa/VivoCity 저녁 → 호텔",detail:"아이들이 지쳤다면 바로 호텔 복귀.",food:"USS·Sentosa 또는 VivoCity에서 가족식."}
+ ]},
+{
+ day:4,icon:"🏛️",title:"Old Singapore",sub:"역사 · Chinatown · River Cruise · JUMBO",
+ items:[
+  {time:"09:00",title:"Fort Canning",detail:"Tree Tunnel을 시작으로 옛 싱가포르를 걷기 시작.",move:"11명이라 호텔에서 Grab/택시 분산 이동 권장."},
+  {time:"09:30",title:"National Museum · Civic District",detail:"National Museum · CHIJMES · Raffles Hotel · St Andrew’s Cathedral 등.",move:"걷는 구간이 길어지면 짧은 차량 이동 허용."},
+  {time:"12:30",title:"Chinatown · 점심",detail:"Pagoda Street · Sri Mariamman Temple · Buddha Tooth Relic Temple.",food:"Maxwell Food Centre 등에서 여러 메뉴를 나눠 먹기."},
+  {time:"15:30",title:"호텔 휴식",detail:"저녁 일정 전 체력 회복.",move:"Maxwell TE18 → Orchard TE14 직통."},
+  {time:"18:00",title:"Clarke Quay · River Cruise",detail:"Old Hill Street Police Station → Clarke Quay → Singapore River Cruise.",move:"리버크루즈 후 Riverside Point로 연결."},
+  {time:"19:00",title:"JUMBO Seafood",detail:"Riverside Point · 11명 예약 확정.",food:"Chilli Crab · Cereal Prawn · Fried Rice · Mantou. Reservation ID 6V5D9N"}
+ ]},
+{
+ day:5,icon:"🏝️",title:"Sentosa EASY",sub:"Oceanarium · 휴식 · 해변 · 선택 액티비티",
+ items:[
+  {time:"10:00",title:"호텔 → Sentosa",detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",move:"MRT 또는 가족 컨디션에 따라 Grab."},
+  {time:"11:00",title:"Singapore Oceanarium",detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠."},
+  {time:"13:00",title:"점심 · 충분한 휴식",detail:"맛집 욕심보다 냉방·좌석·아이 메뉴 우선.",food:"RWS / WEAVE / VivoCity 중 동선 좋은 곳."},
+  {time:"15:00",title:"Luge 또는 Sentosa 산책",detail:"활동팀과 휴식팀으로 잠깐 나뉘어도 됨.",move:"Sensoryscape · 해변 방향으로 천천히 이동."},
+  {time:"17:00",title:"Siloso Beach · 저녁",detail:"해질 무렵 센토사 분위기를 느긋하게 즐긴다.",food:"아이 컨디션에 따라 식사·카페 비중 확대."},
+  {time:"19:40~",title:"Wings of Time",detail:"DAY3에서 이미 봤다면 생략하고 일찍 호텔 복귀."}
+ ]},
+{
+ day:6,icon:"🛫",title:"Goodbye",sub:"Little India · Kampong Glam · Jewel Changi",
+ items:[
+  {time:"08:00",title:"조식 · 체크아웃 · 짐 보관",detail:"마지막 날 오전 일정 전 체크아웃 준비."},
+  {time:"09:30",title:"Little India",detail:"Tekka Centre · Tan Teng Niah · Sri Veeramakaliamman Temple.",move:"출국일이라 짧고 굵게."},
+  {time:"11:15",title:"Kampong Glam · Bugis",detail:"Sultan Mosque · Haji Lane · Bugis.",food:"Zam Zam · Prawn Mee · 디저트 등 후보."},
+  {time:"14:00",title:"호텔 복귀 · 짐 수령",detail:"공항으로 이동 준비.",move:"11명+짐 → 대형차량 사전예약 우선."},
+  {time:"16:00",title:"Jewel Changi",detail:"Rain Vortex · 마지막 쇼핑 · 이른 저녁.",food:"Bak Kut Teh · Kaya Toast 등 마지막 식사."},
+  {time:"19:00",title:"터미널 이동 · 체크인",detail:"Jewel에서 너무 늦게 나오지 않도록 기준 시간으로 사용."},
+  {time:"21:00",title:"Gate 도착 · 탑승 준비",detail:"22:00 출발 기준 약 60분 전 Gate 도착.",move:"실제 Boarding Time은 탑승권·Changi 안내가 최우선."},
+  {time:"22:00",title:"KE644 출발",detail:"싱가포르 → 인천 귀국편."}
+ ]}
+];
+
+let day=1, selected=null, view="detail";
+const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),
+timeline=document.getElementById("timeline"),body=document.getElementById("body");
+
+function e(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function currentDay(){return DAYS.find(x=>x.day===day)}
+function render(){
+ const d=currentDay();
+ daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}</button>`).join("");
+ hero.innerHTML=`<div class="heroemoji">${d.icon}</div><div class="heroday">DAY ${d.day}</div><div class="herotitle">${e(d.title)}</div><div class="herosub">${e(d.sub)}</div>`;
+ timeline.innerHTML=d.items.map((x,i)=>`<article class="item" data-i="${i}"><div class="time">${e(x.time)}</div><div class="title">${e(x.title)}</div><div class="arrow">›</div></article>`).join("");
+}
+function openItem(i){
+ selected=currentDay().items[+i]; view="detail";
+ document.getElementById("stime").textContent=selected.time;
+ document.getElementById("stitle").textContent=selected.title;
+ updateTabs();renderSheet();document.body.classList.add("open");
+}
+function updateTabs(){document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.view===view))}
+function renderSheet(){
+ if(!selected)return;
+ if(view==="detail"){
+  body.innerHTML=`<div class="box">${e(selected.detail||"상세 설명 준비 중.")}</div>`;return;
+ }
+ if(view==="map"){
+  body.innerHTML=`<a class="action" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selected.title+" Singapore")}">Google Maps 열기</a>`;return;
+ }
+ if(view==="move"){body.innerHTML=`<div class="box">${e(selected.move||"별도 이동 메모가 없습니다.")}</div>`;return}
+ if(view==="food"){body.innerHTML=`<div class="box">${e(selected.food||"별도 식사 메모가 없습니다.")}</div>`;return}
+ const key=`sg_pamphlet_note_d${day}_${selected.time}_${selected.title}`;
+ body.innerHTML='<textarea id="memo" class="memo" placeholder="우리 가족 메모"></textarea><p style="font-size:12px;color:#87969f">현재 기기에 자동 저장됩니다.</p>';
+ const m=document.getElementById("memo");m.value=localStorage.getItem(key)||"";m.oninput=()=>localStorage.setItem(key,m.value);
+}
+daysEl.onclick=e=>{const b=e.target.closest("[data-day]");if(!b)return;day=+b.dataset.day;render();window.scrollTo({top:0,behavior:"smooth"})};
+timeline.onclick=e=>{const x=e.target.closest(".item");if(x)openItem(x.dataset.i)};
+document.getElementById("close").onclick=document.getElementById("backdrop").onclick=()=>document.body.classList.remove("open");
+document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.view;updateTabs();renderSheet()};
+render();
 </script>
-</body></html>
+</body>
+</html>
