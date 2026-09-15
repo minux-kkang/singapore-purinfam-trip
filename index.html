@@ -520,6 +520,48 @@ input[type=checkbox]{width:18px;height:18px;vertical-align:-4px;margin-right:8px
 <div class="datamodebar" id="dataModeBar"><div class="datamodeleft"><b id="dataModeLabel">🌱 데이터 절약모드</b><span class="datamodedesc" id="dataModeDesc">온라인 지도·날씨·환율·외부 이미지를 자동으로 불러오지 않음</span></div><label class="dataswitch" title="데이터 사용 모드 전환"><input aria-label="데이터 사용 모드" id="dataModeToggle" type="checkbox"/><span class="dataslider"></span></label></div>
 <section class="hero">
 <h1>싱가포르 3대 가족여행</h1>
+
+ <!-- =========================================================
+  PAMPHLET TEST BUTTON
+  현재 index.html의 <section class="hero"> ... </section> 안에서
+  <h1>싱가포르 3대 가족여행</h1> 바로 다음 줄에 추가하세요.
+========================================================== -->
+<button
+  class="pamphlet-launch"
+  type="button"
+  onclick="location.href='./pamphlet.html'">
+  📰 팜플렛
+</button>
+
+<!-- 아래 CSS는 index.html의 </style> 직전에 추가 -->
+<style>
+.pamphlet-launch{
+  position:absolute;
+  right:62px;
+  top:14px;
+  z-index:96;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  border-radius:999px;
+  padding:7px 10px;
+  font:inherit;
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.pamphlet-launch:active{transform:scale(.97)}
+@media(max-width:620px){
+  .pamphlet-launch{
+    top:10px;
+    right:58px;
+    padding:6px 9px;
+    font-size:9px;
+  }
+}
+</style>
+ 
 <div class="sub">2026.09.19 SAT – 09.24 THU · 11명 · 5박 6일</div>
 <div class="badges">
 <span class="badge hotelquick" id="hotelQuick" title="호텔 위치 보기">Singapore Marriott Tang Plaza Hotel · 320 Orchard Rd</span>
