@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.15</title>
+<title>Singapore Family Trip 2026 · v19.16</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -13,21 +13,21 @@
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif}
 body{padding-bottom:80px}
 .top{position:sticky;top:0;z-index:30;background:#ffffffef;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.toprow{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.toprow{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
 .brand{font-size:15px;font-weight:950}.brand small{font-size:10px;color:#93a0a8;margin-left:4px}
 .practical{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:900}
-.livebar{padding:0 12px 9px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.livebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
+.livebar{padding:0 10px 5px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.livebox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 8px;min-width:0}
 .livebox b{font-size:11px}.livebox span{font-size:11px;color:#647581}
 .weatherline{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:2px}
 .weatherline .temp{font-weight:950;color:var(--ink)}
 .weatherline .desc{color:#647581}
 .fxrow{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:6px;font-size:11px;flex-wrap:wrap}
-.fxrow input{width:86px;border:1px solid #d4dee3;border-radius:8px;padding:6px 7px;text-align:center;font:inherit;background:#fff}
+.fxrow input{width:78px;border:1px solid #d4dee3;border-radius:8px;padding:4px 6px;text-align:center;font:inherit;background:#fff}
 .fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
 .fxarrow{font-weight:900;color:#82919a}
-.days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
-.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:15px;padding:7px 12px 6px;font-size:12px;font-weight:900;white-space:nowrap;line-height:1.05;min-width:58px}.daybtn .daydate{display:block;margin-top:4px;font-size:9px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
+.days{display:flex;gap:6px;overflow:auto;padding:0 10px 6px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
+.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:13px;padding:6px 10px 5px;font-size:11px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:54px}.daybtn .daydate{display:block;margin-top:4px;font-size:9px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
 .wrap{max-width:760px;margin:auto;padding:12px}
 .hero{min-height:155px;border:1px solid var(--line);border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}
@@ -42,11 +42,16 @@ body{padding-bottom:80px}
 .itemsub b{color:#536b79;font-weight:900}
 .arrow{font-size:23px;color:#a5b0b7}
 
-.daymapwrap{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
+.daymapwrap{margin:20px 6px 34px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:0 4px 14px rgba(23,54,79,.035)}
 .daymaphead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
 .daymaphead b{font-size:13px;color:var(--ink)}.daymaphead small{font-size:10px;color:#87959e;text-align:right}
-.daymap{width:100%;height:390px;border-radius:14px;background:#eef3f5;overflow:hidden;border:1px solid #e4ecef}
+.daymap{width:100%;height:350px;border-radius:14px;background:#eef3f5;overflow:hidden;border:1px solid #e4ecef}
 .daymap .leaflet-container{font-family:inherit}
+.daymapwrap:before,.daymapwrap:after{content:"";display:block;height:5px}
+@media(max-width:620px){
+  .daymapwrap{margin:24px 8px 40px;padding:12px}
+  .daymap{height:310px}
+}
 .map-water{fill:#e9f7ff}
 .map-land{fill:#fbfcfd}
 .map-park{fill:#edf7ef}
@@ -354,7 +359,7 @@ body.detail-scroll-lock{overflow:hidden}
    2) .detailsticky = secondary sticky menu directly below primary header
    No duplicate DAY bar in detail mode.
 */
-:root{--app-header-h:184px}
+:root{--app-header-h:142px}
 .brandver{
   display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;
   background:#16324f;color:#fff;font-size:10px;font-weight:950;vertical-align:2px
@@ -523,51 +528,64 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 body.deepopen{overflow:hidden!important}
 
 
-/* v18.3 · pamphlet tool launcher */
-.pamphlettools{
-  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
-  margin:8px 0 10px;padding:7px;border:1px solid var(--line);border-radius:14px;
-  background:rgba(255,255,255,.94);position:sticky;top:var(--app-header-h);z-index:88;
-  box-shadow:0 5px 14px rgba(20,43,57,.04)
+/* v19.16 · magnetic pull-down tool drawer */
+.toolmagnet{
+  position:sticky;top:var(--app-header-h);z-index:88;
+  margin:0 0 8px;
+  display:flex;flex-direction:column;align-items:center;
+  pointer-events:none
 }
+.toolmagnet-handle{
+  pointer-events:auto;
+  border:1px solid #dce5e9;border-top:0;
+  background:rgba(255,255,255,.96);
+  color:#526773;
+  border-radius:0 0 14px 14px;
+  min-width:104px;height:24px;padding:0 12px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:9px;font-weight:950;
+  box-shadow:0 4px 10px rgba(20,43,57,.07);
+  backdrop-filter:blur(10px);
+  cursor:pointer
+}
+.toolmagnet-grip{width:28px;height:3px;border-radius:999px;background:#cfd9de}
+.toolmagnet-label{white-space:nowrap}
+.pamphlettools{
+  pointer-events:auto;
+  width:100%;
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
+  padding:0 7px;
+  border:1px solid transparent;border-top:0;
+  border-radius:0 0 14px 14px;
+  background:rgba(255,255,255,.96);
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-8px);
+  transition:max-height .22s ease,opacity .18s ease,transform .22s ease,padding .22s ease,border-color .22s ease;
+  box-shadow:none;
+  backdrop-filter:blur(10px)
+}
+.toolmagnet.open .pamphlettools{
+  max-height:74px;
+  opacity:1;
+  transform:none;
+  padding:7px;
+  border-color:var(--line);
+  box-shadow:0 7px 16px rgba(20,43,57,.07)
+}
+.toolmagnet.open .toolmagnet-handle{border-radius:0 0 10px 10px}
 .pamphlettools button{
   min-width:0;border:0;border-radius:10px;background:#f5f8f9;color:#27414f;
   padding:7px 2px 6px;font-size:15px;font-weight:900;line-height:1
 }
 .pamphlettools button span{display:block;margin-top:5px;font-size:8.5px;white-space:nowrap}
 .pamphlettools button:active{transform:scale(.97)}
-.pamtoolbackdrop{
-  display:none;position:fixed;inset:0;background:rgba(8,24,36,.64);z-index:2500
-}
-.pamtoolpanel{
-  display:none;position:fixed;left:50%;top:4dvh;transform:translateX(-50%);
-  width:min(95vw,780px);height:92dvh;background:#f7f9fa;border-radius:18px;
-  z-index:2510;overflow:hidden;box-shadow:0 28px 90px rgba(0,0,0,.34)
-}
-.pamtoolbackdrop.open,.pamtoolpanel.open{display:block}
-.pamtoolhead{
-  height:66px;display:flex;justify-content:space-between;gap:10px;align-items:center;
-  padding:10px 13px;background:#fff;border-bottom:1px solid #e3eaed
-}
-.pamtooleyebrow{font-size:9px;color:#7d8f98;font-weight:900;letter-spacing:.08em}
-.pamtooltitle{font-size:18px;font-weight:950;color:#17364f;margin-top:2px}
-.pamtoolclose{
-  width:42px;height:42px;border-radius:50%;border:1px solid #d8e1e5;
-  background:#fff;color:#17364f;font-size:24px;font-weight:900
-}
-.pamtoolbody{
-  height:calc(92dvh - 66px);overflow:auto;padding:12px 12px 28px;
-  -webkit-overflow-scrolling:touch;overscroll-behavior:contain
-}
-.pamtoolbody .detailpane{display:block!important}
-.pamtoolbody .toolhero{margin-top:0}
-body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){
-  .pamphlettools{grid-template-columns:repeat(7,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none;padding:6px}
+  .pamphlettools{grid-template-columns:repeat(7,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
   .pamphlettools::-webkit-scrollbar{display:none}
   .pamphlettools button{min-width:46px}
-  .pamtoolpanel{top:2dvh;height:96dvh;width:96vw;border-radius:16px}
-  .pamtoolbody{height:calc(96dvh - 66px)}
+  .toolmagnet.open .pamphlettools{max-height:72px}
 }
 
 
@@ -631,9 +649,9 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.15 · offline-first controls */
-.netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
-.onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
+/* v19.16 · offline-first controls */
+.netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
+.onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
 .onlineStatus{font-size:9px;color:#748690;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .offlineMapCard{border:1px solid #dbe5e9;border-radius:14px;padding:13px;background:#f8fbfc;text-align:left}
@@ -644,7 +662,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.15 · explicit online/offline mode */
+/* v19.16 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -653,7 +671,7 @@ body.pamtoolopen{overflow:hidden!important}
 }
 .networkMode button{
   border:0;background:transparent;color:#60727c;border-radius:8px;
-  padding:6px 9px;font-size:9px;font-weight:950;white-space:nowrap
+  padding:4px 7px;font-size:8.5px;font-weight:950;white-space:nowrap
 }
 .networkMode button.on{background:#fff;color:#17364f;box-shadow:0 1px 5px rgba(22,52,73,.12)}
 .networkMode button[data-netmode="offline"].on{background:#17364f;color:#fff}
@@ -668,7 +686,7 @@ body.pamtoolopen{overflow:hidden!important}
   .netrow{display:grid;grid-template-columns:auto 1fr;align-items:center}
   .networkMode{grid-column:1}
   .onlineUpdateBtn{grid-column:2}
-  .onlineStatus{grid-column:1/-1}
+  .onlineStatus{display:none}
 }
 
 
@@ -679,7 +697,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.15</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.16</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -715,20 +733,25 @@ body.pamtoolopen{overflow:hidden!important}
 
 <main id="pamphletView" class="wrap">
 
-  <div class="pamphlettools" id="pamphletTools">
-    <button type="button" data-tool="itinerary">🗓<span>일정</span></button>
-    <button type="button" data-tool="booking">🎫<span>예약</span></button>
-    <button type="button" data-tool="prep">🧳<span>준비</span></button>
-    <button type="button" data-tool="phrase">💬<span>표현</span></button>
-    <button type="button" data-tool="message">📱<span>메시지</span></button>
-    <button type="button" data-tool="study">📚<span>공부</span></button>
-    <button type="button" data-tool="journal">📖<span>기록</span></button>
+  <div class="toolmagnet" id="toolMagnet">
+    <button class="toolmagnet-handle" id="toolMagnetHandle" type="button" aria-expanded="false">
+      <span class="toolmagnet-grip"></span><span class="toolmagnet-label">도구</span><span>⌄</span>
+    </button>
+    <div class="pamphlettools" id="pamphletTools">
+      <button type="button" data-tool="itinerary">🗓<span>일정</span></button>
+      <button type="button" data-tool="booking">🎫<span>예약</span></button>
+      <button type="button" data-tool="prep">🧳<span>준비</span></button>
+      <button type="button" data-tool="phrase">💬<span>표현</span></button>
+      <button type="button" data-tool="message">📱<span>메시지</span></button>
+      <button type="button" data-tool="study">📚<span>공부</span></button>
+      <button type="button" data-tool="journal">📖<span>기록</span></button>
+    </div>
   </div>
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.15 · DAY 제목이 펼쳐지는 통합 가이드</div>
+  <div class="footer">v19.16 · 컴팩트 상단 · 지도 스크롤 여백 · 당겨쓰는 도구서랍</div>
 </main>
 
 
@@ -789,7 +812,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.15 · DAY 제목이 펼쳐지는 통합 가이드</div>
+  <div class="footer">v19.16 · 컴팩트 상단 · 지도 스크롤 여백 · 당겨쓰는 도구서랍</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2066,7 +2089,7 @@ function closeDeep(){
 }
 
 
-// v19.15 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.16 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2095,7 +2118,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1915";
+const REP_DB_NAME="sg_trip_rep_images_v1916";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2380,8 +2403,44 @@ function closePamphletSheet(){
 document.getElementById("close").onclick=closePamphletSheet;
 document.getElementById("backdrop").onclick=closePamphletSheet;
 
+
+function syncAppHeaderHeight(){
+  const h=Math.ceil(document.querySelector(".top")?.getBoundingClientRect().height||0);
+  if(h)document.documentElement.style.setProperty("--app-header-h",`${h}px`);
+}
+window.addEventListener("resize",syncAppHeaderHeight,{passive:true});
+setTimeout(syncAppHeaderHeight,0);
+
+const toolMagnet=document.getElementById("toolMagnet");
+const toolMagnetHandle=document.getElementById("toolMagnetHandle");
+function setToolMagnet(open){
+  toolMagnet?.classList.toggle("open",!!open);
+  toolMagnetHandle?.setAttribute("aria-expanded",open?"true":"false");
+  const arrow=toolMagnetHandle?.querySelector("span:last-child");
+  if(arrow)arrow.textContent=open?"⌃":"⌄";
+}
+toolMagnetHandle?.addEventListener("click",()=>setToolMagnet(!toolMagnet?.classList.contains("open")));
+
+let magnetStartY=null,magnetLastY=null;
+toolMagnetHandle?.addEventListener("pointerdown",e=>{
+  magnetStartY=e.clientY;magnetLastY=e.clientY;
+  toolMagnetHandle.setPointerCapture?.(e.pointerId);
+});
+toolMagnetHandle?.addEventListener("pointermove",e=>{
+  if(magnetStartY==null)return;
+  magnetLastY=e.clientY;
+});
+toolMagnetHandle?.addEventListener("pointerup",e=>{
+  if(magnetStartY==null)return;
+  const dy=(magnetLastY??e.clientY)-magnetStartY;
+  if(dy>22)setToolMagnet(true);
+  else if(dy<-18)setToolMagnet(false);
+  magnetStartY=magnetLastY=null;
+});
+
 document.getElementById("pamphletTools")?.addEventListener("click",e=>{
   const b=e.target.closest("[data-tool]");if(!b)return;
+  setToolMagnet(false);
   openPamTool(b.dataset.tool);
 });
 document.getElementById("pamToolClose").onclick=closePamTool;
@@ -2665,7 +2724,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_15";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_16";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -2890,6 +2949,7 @@ setInterval(clocks,60000);
 loadCachedLiveInfo();
 document.getElementById("onlineUpdateBtn")?.addEventListener("click",updateOnlineInfo);
 render();
+syncAppHeaderHeight();
 setDetailMode(detailMode,false);
 setView();
 updateNetworkModeUI();
