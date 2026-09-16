@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.19</title>
+<title>Singapore Family Trip 2026 · v19.20</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -536,8 +536,46 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 .deepempty{padding:10px;border-radius:10px;background:#f6f8f9;color:#819099;font-size:11px}
 body.deepopen{overflow:hidden!important}
 
+body.pamtoolopen{overflow:hidden!important}
+body.pamtoolopen .toolmagnet{visibility:hidden}
+.pamtoolbackdrop{
+  display:none;position:fixed;inset:0;background:rgba(9,25,37,.55);
+  z-index:2200
+}
+.pamtoolpanel{
+  display:none;position:fixed;left:50%;bottom:0;transform:translateX(-50%);
+  width:min(100%,760px);max-height:88dvh;background:#fff;
+  border-radius:22px 22px 0 0;z-index:2210;overflow:hidden;
+  box-shadow:0 -18px 55px rgba(0,0,0,.24)
+}
+.pamtoolbackdrop.open,.pamtoolpanel.open{display:block}
+.pamtoolhead{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  padding:13px 14px 11px;border-bottom:1px solid #e7edef;background:#fff
+}
+.pamtooleyebrow{
+  font-size:9px;letter-spacing:.08em;color:#7d8e97;font-weight:900
+}
+.pamtooltitle{
+  margin-top:3px;font-size:18px;font-weight:950;line-height:1.25;color:#17364f
+}
+.pamtoolclose{
+  width:38px;height:38px;flex:0 0 38px;border-radius:50%;
+  border:1px solid #d9e1e5;background:#fff;font-size:22px;
+  font-weight:900;color:#17364f;cursor:pointer
+}
+.pamtoolbody{
+  overflow:auto;max-height:calc(88dvh - 64px);
+  padding:14px 14px calc(28px + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch
+}
+@media(max-width:620px){
+  .pamtoolpanel{max-height:90dvh}
+  .pamtoolbody{max-height:calc(90dvh - 62px)}
+}
 
-/* v19.19 · magnetic pull-down tool drawer */
+
+/* v19.20 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -665,7 +703,7 @@ body.deepopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.19 · offline-first controls */
+/* v19.20 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -678,7 +716,7 @@ body.deepopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.19 · explicit online/offline mode */
+/* v19.20 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -713,7 +751,7 @@ body.deepopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.19</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.20</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -768,7 +806,7 @@ body.deepopen{overflow:hidden!important}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.19 · 도구서랍 상단 상시 고정 · 스크롤 방향과 무관</div>
+  <div class="footer">v19.20 · 도구 메뉴 패널 복구 · 모바일 클릭 동작 보강</div>
 </main>
 
 
@@ -829,7 +867,7 @@ body.deepopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.19 · 도구서랍 상단 상시 고정 · 스크롤 방향과 무관</div>
+  <div class="footer">v19.20 · 도구 메뉴 패널 복구 · 모바일 클릭 동작 보강</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2146,7 +2184,7 @@ function closeDeep(){
 }
 
 
-// v19.19 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.20 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2175,7 +2213,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1919";
+const REP_DB_NAME="sg_trip_rep_images_v1920";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2495,6 +2533,12 @@ toolMagnetHandle?.addEventListener("pointerup",e=>{
   magnetStartY=magnetLastY=null;
 });
 
+
+document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
+  btn.addEventListener("pointerup",e=>{
+    e.stopPropagation();
+  },{passive:true});
+});
 document.getElementById("pamphletTools")?.addEventListener("click",e=>{
   const b=e.target.closest("[data-tool]");if(!b)return;
   setToolMagnet(false);
@@ -2781,7 +2825,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_19";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_20";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -3020,4 +3064,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-</html>
+  </html>
