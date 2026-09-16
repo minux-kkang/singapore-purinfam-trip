@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.24</title>
+<title>Singapore Family Trip 2026 · v19.25</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -587,7 +587,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.24 · magnetic pull-down tool drawer */
+/* v19.25 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -715,7 +715,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.24 · offline-first controls */
+/* v19.25 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -728,7 +728,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.24 · explicit online/offline mode */
+/* v19.25 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -763,7 +763,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.24</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.25</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -818,7 +818,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.24 · 표현/메시지 카드 전체화면 확대 기능 구조 복구</div>
+  <div class="footer">v19.25 · 표현/메시지 확대 이벤트 복제 문제 수정</div>
 </main>
 
 
@@ -879,7 +879,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.24 · 표현/메시지 카드 전체화면 확대 기능 구조 복구</div>
+  <div class="footer">v19.25 · 표현/메시지 확대 이벤트 복제 문제 수정</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2206,7 +2206,7 @@ function closeDeep(){
 }
 
 
-// v19.24 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.25 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2235,7 +2235,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1924";
+const REP_DB_NAME="sg_trip_rep_images_v1925";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2723,6 +2723,7 @@ function clonePaneForTool(mode){
   clone.removeAttribute("hidden");
   clone.removeAttribute("id");
   clone.querySelectorAll("[id]").forEach(el=>el.removeAttribute("id"));
+  clone.querySelectorAll("[data-present-bound]").forEach(el=>el.removeAttribute("data-present-bound"));
   return clone.outerHTML;
 }
 
@@ -2762,8 +2763,8 @@ function bindPhraseMessageZoom(root,mode){
   const selector=mode==="phrase"?".phrase-item":mode==="message"?".msg-item":"";
   if(!selector)return;
   root.querySelectorAll(selector).forEach(node=>{
-    if(node.dataset.presentBound==="1")return;
-    node.dataset.presentBound="1";
+    if(node.__presentBound)return;
+    node.__presentBound=true;
     node.addEventListener("click",e=>{
       // Keep copy/speak/favorite controls independent.
       if(e.target.closest("button,a,input,select,textarea,label"))return;
@@ -2813,6 +2814,24 @@ function rebindPamTool(mode){
   body.querySelectorAll("[data-jday]").forEach(t=>t.oninput=()=>{
    const state=journalData();state[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
   });
+ }
+
+
+ // Phrase/message card enlargement: delegated on the live tool-panel DOM.
+ // This remains valid even when cards are recreated/cloned after category/search changes.
+ if(mode==="phrase"){
+  body.onclick=e=>{
+   if(e.target.closest("button,a,input,select,textarea,label"))return;
+   const card=e.target.closest(".phrase-item");
+   if(card)phraseZoomFromNode(card);
+  };
+ }
+ if(mode==="message"){
+  body.onclick=e=>{
+   if(e.target.closest("button,a,input,select,textarea,label"))return;
+   const card=e.target.closest(".msg-item");
+   if(card)messageZoomFromNode(card);
+  };
  }
 
   bindPhraseMessageZoom(document.getElementById("pamToolBody"),mode);
@@ -2914,7 +2933,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_24";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_25";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
