@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.10</title>
+<title>Singapore Family Trip 2026 · v19.11</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -102,7 +102,19 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .connector{width:2px;height:18px;background:#b9c8cf;margin-left:11px}
 .checklist{display:grid;gap:7px}.check{background:#fffaf3;border:1px solid #f1dfc8;border-radius:12px;padding:9px 10px;font-size:12px}
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.actions button,.actions a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:11px 8px;text-align:center;text-decoration:none;font-weight:900;font-size:12px}.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}
-.detailsbox{background:#f7f8fa;border-radius:12px;padding:11px;font-size:12px}.memo{width:100%;min-height:120px;border:1px solid #d5e0e5;border-radius:12px;padding:11px;font:inherit}
+.detailsbox{background:#f7f8fa;border-radius:12px;padding:11px;font-size:12px}
+.optionalspots{display:grid;gap:8px}
+.optionalspot{border:1px solid #e3e8ec;background:linear-gradient(135deg,#fff,#f8fbfc);border-radius:15px;padding:11px 12px}
+.optionalspot-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.optionalspot-kicker{font-size:10px;font-weight:950;color:#8a6b13;margin-bottom:2px}
+.optionalspot-title{font-size:14px;font-weight:950;color:#17364f;line-height:1.25}
+.optionalspot-ko{font-size:10.5px;color:#82919a;margin-top:2px}
+.optionalspot-time{flex:0 0 auto;background:#fff5d9;border:1px solid #f2df9a;color:#7a5a00;border-radius:999px;padding:5px 7px;font-size:9.5px;font-weight:950;white-space:nowrap}
+.optionalspot-desc{font-size:11.5px;line-height:1.45;color:#536773;margin-top:8px}
+.optionalspot-note{font-size:10.5px;line-height:1.45;color:#74848e;margin-top:6px}
+.optionalspot-actions{display:flex;gap:7px;margin-top:9px}
+.optionalspot-actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #dbe4e8;background:#fff;color:#17364f;border-radius:10px;padding:7px 9px;font-size:10.5px;font-weight:900}
+.memo{width:100%;min-height:120px;border:1px solid #d5e0e5;border-radius:12px;padding:11px;font:inherit}
 @media(min-width:700px){.timeline{grid-template-columns:1fr 1fr}}
 
 /* v15 · Leaflet mobile stability / fallback core styles */
@@ -211,7 +223,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.10 · SINGLE FILE UNIFIED APP
+   v19.11 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -593,7 +605,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.10 · offline-first controls */
+/* v19.11 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -606,7 +618,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.10 · explicit online/offline mode */
+/* v19.11 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -641,7 +653,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.10</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.11</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -693,7 +705,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.10 · 일정 아래 작은 한국어 설명 추가 · 호텔 출발 표기 단순화</div>
+  <div class="footer">v19.11 · DAY2 Apple Marina Bay Sands 선택 방문 카드 추가 · 메인 Timeline 유지</div>
 </main>
 
 
@@ -754,7 +766,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.10 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.11 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -823,7 +835,25 @@ const DAYS=[
 {time:"12:30",title:"점심 · 에어컨 휴식",detail:"오전 야외 일정 뒤 체온과 체력을 낮추는 핵심 휴식.",route:[["🍽","Marina Bay/MBS","식사"],["❄️","실내 휴식","에어컨"],["👶","아이 낮잠","가능하면 확보"]],see:["식사","화장실","냉방"],family:["3세 아이 낮잠 우선"],food:["MBS / The Shoppes","가족 좌석 편한 곳","1인 S$15~30 예상"]},
 {time:"14:00",title:"Marina Bay Sands",detail:"Helix Bridge · MBS · The Shoppes를 천천히 통과.",route:[["🌉","Helix Bridge","사진"],["🏨","MBS","외관/실내"],["🛍","The Shoppes","휴식"]],see:["Helix 구조","MBS 스카이라인","쇼핑몰 실내"],family:["걷기 길면 짧은 Grab 허용"]},
 {time:"17:00",title:"Gardens by the Bay",bookingIds:["ticket-gbtb"],detail:"Cloud Forest · Flower Dome 중심.",route:[["🌿","Gardens by the Bay","진입"],["🌧","Cloud Forest","실내 폭포"],["🌸","Flower Dome","대형 온실"],["🌳","Supertree Grove","야경 준비"]],see:["Cloud Forest","Flower Dome","Supertree"],family:["실내 냉방 강할 수 있음","유모차 이동 편함"]},
-{time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동","체력 봐서"],["💦","Spectra","선택"]],see:["Garden Rhapsody","Spectra"],family:["아이 졸리면 한 쇼만 보고 귀가"]}]},
+{time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",
+optionalSpots:[
+  {
+    id:"apple-mbs",
+    icon:"🍎",
+    kicker:"잠깐 들러볼 곳",
+    title:"Apple Marina Bay Sands",
+    ko:"애플 마리나베이샌즈",
+    expectedTime:"20:10~20:50 예상",
+    duration:"약 30~40분",
+    location:"2 Bayfront Avenue, B2-06, Singapore 018972",
+    mapQuery:"Apple Marina Bay Sands, 2 Bayfront Avenue, Singapore 018972",
+    description:"Garden Rhapsody를 본 뒤 MBS 방향으로 이동할 때 잠깐 들르기 좋은 선택 방문지입니다.",
+    groupNote:"11명 전원이 함께 들어갈 필요 없음 · 원하는 사람만 Apple Store 구경 · 나머지는 Marina Bay 주변 휴식/구경 후 재합류",
+    timingNote:"19:45 Garden Rhapsody 관람 후 약 10~15분 이동을 잡으면 가장 자연스럽습니다. Spectra까지 볼 경우 Apple 체류는 20~30분 정도로 짧게 조정.",
+    hoursNote:"9/20 공식 운영시간 확인 기준 10:00~22:00"
+  }
+],
+route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동","체력 봐서"],["💦","Spectra","선택"]],see:["Garden Rhapsody","Spectra"],family:["아이 졸리면 한 쇼만 보고 귀가"]}]},
 {day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",items:[
 {time:"08:15",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","오픈런/체력 우선"]],detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
 {time:"10:00~",title:"Universal Studios Singapore",bookingIds:["ticket-uss"],detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",route:[["🎢","USS","오픈런"],["⭐","인기 어트랙션","우선"],["🍽","점심","피크 회피"],["🎭","캐릭터/쇼","중간 휴식"]],see:["Transformers","Minion Land","캐릭터/쇼"],family:["3세 아이팀/스릴팀 짧게 분리","대기 길면 바로 다음 후보"],food:["USS 내부 식사","아이 메뉴 먼저 확보"]},
@@ -1884,7 +1914,7 @@ function closeDeep(){
 }
 
 
-// v19.10 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.11 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -1913,7 +1943,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1910";
+const REP_DB_NAME="sg_trip_rep_images_v1911";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2117,6 +2147,33 @@ function itemImageHtml(sel){
   return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${sourceLabel}</span></div></section>`;
 }
 
+
+function optionalSpotsHtml(sel){
+  const spots=sel.optionalSpots||[];
+  if(!spots.length)return "";
+  return `<section class="section">
+    <h3>✨ 선택 방문</h3>
+    <div class="optionalspots">${spots.map(s=>{
+      const mapHref=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.mapQuery||s.title+" Singapore")}`;
+      return `<article class="optionalspot">
+        <div class="optionalspot-top">
+          <div>
+            <div class="optionalspot-kicker">${esc(s.icon||"⭐")} ${esc(s.kicker||"잠깐 들러볼 곳")}</div>
+            <div class="optionalspot-title">${esc(s.title||"")}</div>
+            ${s.ko?`<div class="optionalspot-ko">${esc(s.ko)}</div>`:""}
+          </div>
+          ${s.expectedTime?`<div class="optionalspot-time">${esc(s.expectedTime)}</div>`:""}
+        </div>
+        ${s.description?`<div class="optionalspot-desc">${esc(s.description)}</div>`:""}
+        ${s.duration||s.groupNote?`<div class="optionalspot-note">${s.duration?`⏱ ${esc(s.duration)}`:""}${s.duration&&s.groupNote?" · ":""}${s.groupNote?esc(s.groupNote):""}</div>`:""}
+        ${s.timingNote?`<div class="optionalspot-note">🧭 ${esc(s.timingNote)}</div>`:""}
+        ${s.hoursNote?`<div class="optionalspot-note">🕙 ${esc(s.hoursNote)}</div>`:""}
+        <div class="optionalspot-actions"><a href="${mapHref}" target="_blank" rel="noopener">📍 지도</a></div>
+      </article>`;
+    }).join("")}</div>
+  </section>`;
+}
+
 function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
@@ -2129,6 +2186,7 @@ function openItem(i){
   <section class="section deepable" data-deep="family"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
   ${sel.food?.length?`<section class="section deepable" data-deep="food"><h3>🍽 식사</h3><div class="checklist">${chips(sel.food)}</div></section>`:""}
   <section class="section deepable" data-deep="explain"><h3>📝 한 줄 설명</h3><div class="detailsbox">${esc(sel.detail||"")}</div></section>
+  ${optionalSpotsHtml(sel)}
   ${sel.transportOptions?.length?`<div class="deepable" data-deep="transport">${transportInfoHtml(sel)}</div>`:""}
   ${sel.bookingIds?.length?`<div class="deepable" data-deep="booking">${reservationInfoHtml(sel)}</div>`:""}
   <section class="section"><h3>빠른 기능</h3><div class="actions"><a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">📍 실제지도</a><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
@@ -2454,7 +2512,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_10";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_11";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
