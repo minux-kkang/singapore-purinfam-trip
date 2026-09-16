@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.14</title>
+<title>Singapore Family Trip 2026 · v19.15</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -237,47 +237,33 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .guide-date{display:inline-flex;margin-top:7px;border-radius:999px;background:var(--mint);color:var(--mintInk);padding:5px 8px;font-size:10px;font-weight:950}
 .guide-tool-list{display:grid;gap:7px}.guide-tool-note{background:#f7f9fa;border:1px solid #e7edef;border-radius:12px;padding:10px 11px;font-size:12px;line-height:1.5;color:#435a68}
 .guide-maplinks{display:grid;gap:7px}.guide-maplinks a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid #dde7eb;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900}
-.unifiedGuide{margin-top:12px}
-.unifiedGuideToggle{
-  width:100%;border:1px solid #dce6ea;background:linear-gradient(135deg,#ffffff,#f8fbfc);
-  border-radius:18px;padding:14px 15px;display:flex;align-items:center;justify-content:space-between;
-  gap:12px;text-align:left;color:var(--ink);cursor:pointer;box-shadow:0 4px 14px rgba(23,54,79,.035)
+.hero{transition:min-height .22s ease,padding .22s ease}
+.hero.guide-open{justify-content:flex-start;padding-top:22px}
+.hero-guide-toggle{
+  margin-top:14px;width:100%;border:0;border-top:1px solid rgba(66,105,113,.14);
+  background:transparent;padding:11px 0 0;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;text-align:left;color:var(--ink);cursor:pointer
 }
-.unifiedGuideToggle>div{min-width:0;display:grid;gap:3px}
-.unifiedGuideEyebrow{font-size:9px;font-weight:950;letter-spacing:.7px;color:var(--mintInk)}
-.unifiedGuideToggle b{font-size:15px;line-height:1.25}
-.unifiedGuideToggle small{font-size:11px;line-height:1.45;color:#74848e;font-weight:750;word-break:keep-all}
-.unifiedGuideArrow{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#eef5f7;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;transition:transform .2s ease}
-.unifiedGuide.open .unifiedGuideArrow{transform:rotate(180deg)}
-.unifiedGuideBody{padding-top:9px}
-.unifiedGuideBody .dayguide{gap:9px}
-.unifiedGuideBody .guideintro,.unifiedGuideBody .guideflow,.unifiedGuideBody .guidetools{border-radius:16px;padding:14px}
-.unifiedGuideBody .guidesection{padding:13px 14px}
-
-@media(max-width:620px){
-  .toprow{gap:8px}.brand{font-size:13px}.brand small{display:none}
-  .viewbtn{padding:7px 8px;font-size:9px}
-  .detail-card-head{grid-template-columns:40px 70px minmax(0,1fr)}
-  .detail-cols{grid-template-columns:1fr}
+.hero-guide-toggle b{font-size:12px;font-weight:950;color:#385a65}
+.hero-guide-toggle small{display:block;margin-top:2px;font-size:10.5px;font-weight:750;color:#80919a;line-height:1.35}
+.hero-guide-arrow{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.72);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:950;transition:transform .2s ease
 }
-
-
-/* =========================================================
-   v19.14 · SINGLE FILE UNIFIED APP
-   Pamphlet + Detail tools + Message Cards
-========================================================= */
-.detailnav{
-  position:sticky;top:0;z-index:50;display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;
-  padding:4px;margin:0 0 12px;background:rgba(238,243,245,.96);
-  border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)
+.hero.guide-open .hero-guide-arrow{transform:rotate(180deg)}
+.hero-guide-body{margin-top:12px;width:100%;animation:guideIn .18s ease}
+@keyframes guideIn{from{opacity:.25;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.hero-guide-body .dayguide{gap:9px}
+.hero-guide-body .guideintro,.hero-guide-body .guideflow,.hero-guide-body .guidetools{
+  background:rgba(255,255,255,.80);backdrop-filter:blur(3px);border-radius:15px;padding:13px
 }
-.detailnavbtn{
-  border:0;background:transparent;color:#687984;border-radius:10px;padding:9px 2px;
-  font:inherit;font-size:10px;font-weight:900;white-space:nowrap;cursor:pointer
+.hero-guide-body .guidesection{background:rgba(255,255,255,.78);padding:12px 13px}
+.hero-guide-body .guideprinciple{background:rgba(255,248,232,.90)}
+.hero-guide-body .guidealternative{background:rgba(244,250,245,.90)}
+.hero-guide-close{
+  width:100%;margin-top:9px;border:1px solid rgba(66,105,113,.16);background:rgba(255,255,255,.66);
+  color:#526773;border-radius:12px;padding:10px 12px;font-size:11px;font-weight:950;cursor:pointer
 }
-.detailnavbtn.on{background:#fff;color:var(--mintInk);box-shadow:0 1px 5px #0001}
-.detailpane[hidden]{display:none!important}
 .toolhero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:10px}
 .toolhero h2{margin:2px 0 4px;font-size:22px;color:var(--ink)}
 .toolhero p{margin:0;color:var(--muted);font-size:12px}
@@ -645,7 +631,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.14 · offline-first controls */
+/* v19.15 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -658,7 +644,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.14 · explicit online/offline mode */
+/* v19.15 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -693,7 +679,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.14</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.15</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -741,20 +727,8 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
 
-  <section id="unifiedGuide" class="unifiedGuide">
-    <button id="unifiedGuideToggle" class="unifiedGuideToggle" type="button" aria-expanded="false">
-      <div>
-        <span class="unifiedGuideEyebrow">TODAY GUIDE</span>
-        <b id="unifiedGuideTitle">오늘은 이렇게 여행해요</b>
-        <small id="unifiedGuideSummary"></small>
-      </div>
-      <span id="unifiedGuideArrow" class="unifiedGuideArrow">⌄</span>
-    </button>
-    <div id="unifiedGuideBody" class="unifiedGuideBody" hidden></div>
-  </section>
-
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.14 · 하나의 화면에서 일정 → 가족 가이드 → 여행 도구</div>
+  <div class="footer">v19.15 · DAY 제목이 펼쳐지는 통합 가이드</div>
 </main>
 
 
@@ -815,7 +789,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.14 · 하나의 화면에서 일정 → 가족 가이드 → 여행 도구</div>
+  <div class="footer">v19.15 · DAY 제목이 펼쳐지는 통합 가이드</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1951,43 +1925,59 @@ function unifiedGuideHtml(dayNum){
 function renderUnifiedGuide(){
   const d=current();
   const g=DAY_GUIDES[d.day]||{};
-  const box=document.getElementById("unifiedGuide");
-  const title=document.getElementById("unifiedGuideTitle");
-  const summary=document.getElementById("unifiedGuideSummary");
-  const body=document.getElementById("unifiedGuideBody");
-  const toggle=document.getElementById("unifiedGuideToggle");
-  if(!box||!title||!summary||!body||!toggle)return;
+  const heroBox=document.getElementById("hero");
+  const title=document.getElementById("heroGuideTitle");
+  const summary=document.getElementById("heroGuideSummary");
+  const body=document.getElementById("heroGuideBody");
+  const toggle=document.getElementById("heroGuideToggle");
+  if(!heroBox||!title||!summary||!body||!toggle)return;
 
-  title.textContent=`DAY ${d.day} · ${DAY_DATES[d.day]||""}  오늘은 이렇게 여행해요`;
+  title.textContent="오늘은 이렇게 여행해요";
   summary.textContent=g.tagline||d.sub||"오늘 하루의 흐름과 필요한 정보";
-  body.innerHTML=unifiedGuideHtml(d.day);
+  body.innerHTML=unifiedGuideOpen
+    ? `${unifiedGuideHtml(d.day)}<button id="heroGuideClose" class="hero-guide-close" type="button">접기 ↑</button>`
+    : "";
   body.hidden=!unifiedGuideOpen;
-  box.classList.toggle("open",unifiedGuideOpen);
+  heroBox.classList.toggle("guide-open",unifiedGuideOpen);
   toggle.setAttribute("aria-expanded",unifiedGuideOpen?"true":"false");
 
   body.querySelectorAll("[data-guide-tool]").forEach(btn=>{
     btn.onclick=()=>openGuideTool(d.day,btn.dataset.guideTool);
   });
+  document.getElementById("heroGuideClose")?.addEventListener("click",()=>{
+    unifiedGuideOpen=false;
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
 }
 
 function toggleUnifiedGuide(force){
   unifiedGuideOpen=typeof force==="boolean"?force:!unifiedGuideOpen;
-  renderUnifiedGuide();
+  render();
   if(unifiedGuideOpen){
-    setTimeout(()=>document.getElementById("unifiedGuide")?.scrollIntoView({behavior:"smooth",block:"start"}),30);
+    setTimeout(()=>document.getElementById("hero")?.scrollIntoView({behavior:"smooth",block:"start"}),30);
   }
 }
 
 function render(){
  const d=current();
  daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}<span class="daydate">${DAY_DATES[x.day]||""}</span></button>`).join("");
- hero.innerHTML=`<div class="heroemoji">${d.icon}</div><div class="heroday">DAY ${d.day}</div><div class="herotitle">${esc(d.title)}</div><div class="herosub">${esc(d.sub)}</div>`;
+ hero.innerHTML=`<div class="heroemoji">${d.icon}</div>
+ <div class="heroday">DAY ${d.day} · ${DAY_DATES[d.day]||""}</div>
+ <div class="herotitle">${esc(d.title)}</div>
+ <div class="herosub">${esc(d.sub)}</div>
+ <button id="heroGuideToggle" class="hero-guide-toggle" type="button" aria-expanded="${unifiedGuideOpen?"true":"false"}">
+   <div><b id="heroGuideTitle">오늘은 이렇게 여행해요</b><small id="heroGuideSummary"></small></div>
+   <span class="hero-guide-arrow">⌄</span>
+ </button>
+ <div id="heroGuideBody" class="hero-guide-body" ${unifiedGuideOpen?"":"hidden"}></div>`;
  timeline.innerHTML=d.items.map((x,i)=>{
    const [ko,brief]=itemBrief(x);
    const sub=(ko||brief)?`<div class="itemsub">${ko?`<b>${esc(ko)}</b>`:""}${ko&&brief?" · ":""}${brief?esc(brief):""}</div>`:"";
    return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${esc(x.title)}</div>${sub}</div><div class="arrow">›</div></article>`;
  }).join("");
  renderUnifiedGuide();
+ document.getElementById("heroGuideToggle")?.addEventListener("click",()=>toggleUnifiedGuide());
  renderDayMap();
 }
 function routeHtml(r=[]){
@@ -2076,7 +2066,7 @@ function closeDeep(){
 }
 
 
-// v19.14 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.15 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2105,7 +2095,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1914";
+const REP_DB_NAME="sg_trip_rep_images_v1915";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2675,7 +2665,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_14";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_15";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -2899,7 +2889,6 @@ clocks();
 setInterval(clocks,60000);
 loadCachedLiveInfo();
 document.getElementById("onlineUpdateBtn")?.addEventListener("click",updateOnlineInfo);
-document.getElementById("unifiedGuideToggle")?.addEventListener("click",()=>toggleUnifiedGuide());
 render();
 setDetailMode(detailMode,false);
 setView();
