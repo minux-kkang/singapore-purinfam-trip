@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.23</title>
+<title>Singapore Family Trip 2026 · v19.24</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -313,7 +313,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .favbtn{position:absolute;right:8px;top:8px;width:32px;height:32px;border:0;border-radius:50%;background:#f4f6f7;font-size:16px}
 .favbtn.on{background:#fff3c4}
 .present{
-  position:fixed;inset:0;z-index:20000;background:#fff;display:none;flex-direction:column;
+  position:fixed;inset:0;z-index:30000;background:#fff;display:none;flex-direction:column;
   padding:18px;overflow:auto
 }
 .present.open{display:flex}
@@ -587,7 +587,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.23 · magnetic pull-down tool drawer */
+/* v19.24 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -660,7 +660,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .phraselangs::-webkit-scrollbar{display:none}
 .langchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;white-space:nowrap;color:#314b59}
 .langchip.on{background:#17364f;color:#fff;border-color:#17364f}
-.phrase-item{cursor:default!important}
+.phrase-item{cursor:pointer!important}
 .phrase-item .native{font-size:16px;font-weight:950;line-height:1.45;margin-top:6px;color:#17364f;word-break:keep-word}
 .phrase-item .pron{font-size:10px;color:#7c8b93;margin-top:3px;line-height:1.45}
 .inline-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
@@ -668,7 +668,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
  border:1px solid #dbe3e7;background:#fff;border-radius:8px;padding:6px 8px;
  font-size:9px;font-weight:900;color:#36505e
 }
-.msg-item{cursor:default!important}
+.msg-item{cursor:pointer!important}
 .msgen{margin-top:8px!important}
 .msgsentence{
  display:block;padding:2px 0;font-size:13px;line-height:1.52;font-weight:850;color:#1b374a
@@ -715,7 +715,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.23 · offline-first controls */
+/* v19.24 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -728,7 +728,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.23 · explicit online/offline mode */
+/* v19.24 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -763,7 +763,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.23</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.24</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -818,7 +818,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.23 · 표현/메시지 항목 확대 팝업 복구</div>
+  <div class="footer">v19.24 · 표현/메시지 카드 전체화면 확대 기능 구조 복구</div>
 </main>
 
 
@@ -879,7 +879,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.23 · 표현/메시지 항목 확대 팝업 복구</div>
+  <div class="footer">v19.24 · 표현/메시지 카드 전체화면 확대 기능 구조 복구</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1441,6 +1441,7 @@ function renderPhrases(){
  c.querySelectorAll("[data-pcat]").forEach(b=>b.onclick=()=>{phraseCat=b.dataset.pcat;renderPhrases()});
  root.querySelectorAll("[data-phrase-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.phraseCopy));
  root.querySelectorAll("[data-phrase-speak]").forEach(b=>b.onclick=()=>phraseSpeak(b.dataset.phraseSpeak));
+ bindPhraseMessageZoom(root,"phrase");
 }
 document.getElementById("phraseSearch")?.addEventListener("input",renderPhrases);
 
@@ -1579,6 +1580,7 @@ function renderMessages(){
  root.querySelectorAll(".favbtn").forEach(b=>b.onclick=e=>{e.stopPropagation();toggleMsgFav(b.dataset.fav)});
  root.querySelectorAll("[data-msg-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.msgCopy));
  root.querySelectorAll("[data-msg-speak]").forEach(b=>b.onclick=()=>speakEnglish(b.dataset.msgSpeak));
+ bindPhraseMessageZoom(root,"message");
 }
 document.getElementById("msgSearch")?.addEventListener("input",renderMessages);
 
@@ -1592,7 +1594,11 @@ function openPresent(icon,en,ko){
  document.getElementById("presentKo").textContent=ko||"";
  const p=document.getElementById("messagePresent");p.classList.add("open");p.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
 }
-function closePresent(){const p=document.getElementById("messagePresent");p.classList.remove("open");p.setAttribute("aria-hidden","true");document.body.style.overflow=""}
+function closePresent(){
+ const p=document.getElementById("messagePresent");
+ p.classList.remove("open");p.setAttribute("aria-hidden","true");
+ document.body.style.overflow=document.body.classList.contains("pamtoolopen")?"hidden":"";
+}
 document.getElementById("presentClose")?.addEventListener("click",closePresent);
 document.getElementById("presentSpeak")?.addEventListener("click",()=>{
  if(!("speechSynthesis" in window)||!presentText)return;
@@ -2200,7 +2206,7 @@ function closeDeep(){
 }
 
 
-// v19.23 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.24 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2229,7 +2235,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1923";
+const REP_DB_NAME="sg_trip_rep_images_v1924";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2736,53 +2742,35 @@ function openZoomPopup(eyebrow,title,bodyHtml){
 }
 
 function phraseZoomFromNode(node){
-  const ko=node.querySelector(".ko,.phraseko,.kor,.title,b,strong")?.textContent?.trim()||"표현";
-  const foreign=node.querySelector(".en,.foreign,.phraseen,.text,.value")?.textContent?.trim()||
-                [...node.querySelectorAll("div,p,span")].map(x=>x.textContent.trim()).find(x=>x && x!==ko)||"";
-  const pron=node.querySelector(".pron,.pronounce,.roman,.sub,.desc")?.textContent?.trim()||"";
-  const html=`<div class="zoomcard"><div class="zoommain">
-      <div class="ko">${esc(ko)}</div>
-      ${foreign?`<div class="foreign">${esc(foreign)}</div>`:""}
-      ${pron?`<div class="pron">${esc(pron)}</div>`:""}
-    </div></div>`;
-  openZoomPopup("표현 · 크게 보기",ko,html);
+  const native=node.querySelector(".native")?.textContent?.trim()||"";
+  const ko=node.querySelector(".ko")?.textContent?.trim()||"";
+  const head=node.querySelector("b")?.textContent?.trim()||"💬";
+  const icon=(head.match(/^\p{Extended_Pictographic}/u)||["💬"])[0];
+  openPresent(icon,native,ko);
 }
 
 function messageZoomFromNode(node){
-  const title=node.querySelector(".msgtitle,.title,b,strong")?.textContent?.trim()||"메시지";
-  const text=node.querySelector(".msgtext,.text,.body,p")?.textContent?.trim()||
-             [...node.querySelectorAll("div,p,span")].map(x=>x.textContent.trim()).find(x=>x && x!==title)||"";
-  const html=`<div class="zoomcard"><div class="zoommain">
-      <div class="ko">${esc(title)}</div>
-      ${text?`<div class="foreign" style="font-size:22px">${esc(text)}</div>`:""}
-    </div></div>`;
-  openZoomPopup("메시지 · 크게 보기",title,html);
+  const en=node.querySelector(".msgen")?.textContent?.trim()||"";
+  const ko=node.querySelector(".msgko")?.textContent?.trim()||"";
+  const title=node.querySelector(".msgtitle")?.textContent?.trim()||"💬";
+  const icon=(title.match(/^\p{Extended_Pictographic}/u)||["💬"])[0];
+  openPresent(icon,en,ko);
 }
 
 function bindPhraseMessageZoom(root,mode){
   if(!root)return;
-  if(mode==="phrase"){
-    const candidates=root.querySelectorAll("[data-phrase-item],.phrasecard,.phraseitem,.phrase-row,.phraseRow");
-    candidates.forEach(node=>{
-      if(node.dataset.zoomBound)return;
-      node.dataset.zoomBound="1";
-      node.addEventListener("click",e=>{
-        if(e.target.closest("button,a,input,select,textarea"))return;
-        phraseZoomFromNode(node);
-      });
+  const selector=mode==="phrase"?".phrase-item":mode==="message"?".msg-item":"";
+  if(!selector)return;
+  root.querySelectorAll(selector).forEach(node=>{
+    if(node.dataset.presentBound==="1")return;
+    node.dataset.presentBound="1";
+    node.addEventListener("click",e=>{
+      // Keep copy/speak/favorite controls independent.
+      if(e.target.closest("button,a,input,select,textarea,label"))return;
+      if(mode==="phrase")phraseZoomFromNode(node);
+      else messageZoomFromNode(node);
     });
-  }
-  if(mode==="message"){
-    const candidates=root.querySelectorAll("[data-message-item],.msgcard,.messageitem,.message-row,.messageRow");
-    candidates.forEach(node=>{
-      if(node.dataset.zoomBound)return;
-      node.dataset.zoomBound="1";
-      node.addEventListener("click",e=>{
-        if(e.target.closest("button,a,input,select,textarea"))return;
-        messageZoomFromNode(node);
-      });
-    });
-  }
+  });
 }
 
 function rebindPamTool(mode){
@@ -2926,7 +2914,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_23";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_24";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
