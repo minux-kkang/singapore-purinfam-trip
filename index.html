@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.25</title>
+<title>Singapore Family Trip 2026 · v19.26</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -314,7 +314,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .favbtn.on{background:#fff3c4}
 .present{
   position:fixed;inset:0;z-index:30000;background:#fff;display:none;flex-direction:column;
-  padding:18px;overflow:auto
+  padding:18px;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y
 }
 .present.open{display:flex}
 .presenttop{display:flex;justify-content:space-between;gap:8px;align-items:center}
@@ -587,7 +587,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.25 · magnetic pull-down tool drawer */
+/* v19.26 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -715,7 +715,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.25 · offline-first controls */
+/* v19.26 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -728,7 +728,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.25 · explicit online/offline mode */
+/* v19.26 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -763,7 +763,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.25</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.26</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -818,7 +818,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.25 · 표현/메시지 확대 이벤트 복제 문제 수정</div>
+  <div class="footer">v19.26 · 본문 스크롤 잠금 오류 수정</div>
 </main>
 
 
@@ -879,7 +879,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.25 · 표현/메시지 확대 이벤트 복제 문제 수정</div>
+  <div class="footer">v19.26 · 본문 스크롤 잠금 오류 수정</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1589,15 +1589,22 @@ let presentText="";
 function escapeAttr(s){return String(s??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function openPresent(icon,en,ko){
  presentText=en||"";
- document.getElementById("presentIcon").textContent=icon||"💬";
- document.getElementById("presentEn").textContent=en||"";
- document.getElementById("presentKo").textContent=ko||"";
- const p=document.getElementById("messagePresent");p.classList.add("open");p.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+ const p=document.getElementById("messagePresent");
+ const iconEl=document.getElementById("presentIcon");
+ const enEl=document.getElementById("presentEn");
+ const koEl=document.getElementById("presentKo");
+ if(!p||!iconEl||!enEl||!koEl)return;
+ iconEl.textContent=icon||"💬";
+ enEl.textContent=en||"";
+ koEl.textContent=ko||"";
+ p.classList.add("open");
+ p.setAttribute("aria-hidden","false");
 }
 function closePresent(){
  const p=document.getElementById("messagePresent");
- p.classList.remove("open");p.setAttribute("aria-hidden","true");
- document.body.style.overflow=document.body.classList.contains("pamtoolopen")?"hidden":"";
+ if(!p)return;
+ p.classList.remove("open");
+ p.setAttribute("aria-hidden","true");
 }
 document.getElementById("presentClose")?.addEventListener("click",closePresent);
 document.getElementById("presentSpeak")?.addEventListener("click",()=>{
@@ -1607,7 +1614,10 @@ document.getElementById("presentSpeak")?.addEventListener("click",()=>{
 document.getElementById("presentCopy")?.addEventListener("click",async()=>{
  try{await navigator.clipboard.writeText(presentText)}catch(e){const ta=document.createElement("textarea");ta.value=presentText;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}
 });
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closePresent()});
+document.addEventListener("keydown",e=>{
+ if(e.key!=="Escape")return;
+ if(document.getElementById("messagePresent")?.classList.contains("open"))closePresent();
+});
 
 
 const STUDY_STORIES=[
@@ -2206,7 +2216,7 @@ function closeDeep(){
 }
 
 
-// v19.25 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.26 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2235,7 +2245,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1925";
+const REP_DB_NAME="sg_trip_rep_images_v1926";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2567,6 +2577,13 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
 });
 document.getElementById("pamToolClose").onclick=closePamTool;
 document.getElementById("pamToolBackdrop").onclick=closePamTool;
+window.addEventListener("pageshow",()=>{
+  const toolOpen=document.getElementById("pamToolPanel")?.classList.contains("open");
+  const deepOpen=document.getElementById("deepModal")?.classList.contains("open");
+  if(!toolOpen)document.body.classList.remove("pamtoolopen");
+  if(!deepOpen)document.body.classList.remove("deepopen");
+  document.body.style.removeProperty("overflow");
+});
 
 document.getElementById("deepClose").onclick=closeDeep;
 document.getElementById("deepBackdrop").onclick=closeDeep;
@@ -2876,6 +2893,7 @@ function closePamTool(){
   if(bg){bg.classList.remove("open");bg.setAttribute("aria-hidden","true")}
   if(panel){panel.classList.remove("open");panel.setAttribute("aria-hidden","true")}
   document.body.classList.remove("pamtoolopen");
+  document.body.style.removeProperty("overflow");
 }
 
 // v18.3 · Pamphlet DAY swipe
@@ -2933,7 +2951,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_25";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_26";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -3172,4 +3190,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-  </html>
+</html>
