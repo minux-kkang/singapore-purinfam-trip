@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.26</title>
+<title>Singapore Family Trip 2026 · v19.27</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -465,6 +465,38 @@ body.open .sheet{touch-action:pan-y}
 .copybtn,.voucherbtn{border:1px solid #d8e3e7;background:#fff;color:#355361;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:950;cursor:pointer}
 .voucherbtn.ready{background:#e6f6ef;border-color:#c6eadc;color:#096657}
 .itembadge{display:inline-flex;align-items:center;margin-left:6px;padding:3px 6px;border-radius:999px;background:#e6f6ef;color:#096657;font-size:8.5px;font-weight:950;vertical-align:2px;white-space:nowrap}
+.placebrief{background:#f8fbfc;border:1px solid #e1e9ec;border-radius:15px;padding:13px 14px}
+.placebrief-kicker{font-size:9px;font-weight:950;color:#7c919a;letter-spacing:.04em}
+.placebrief-title{margin-top:3px;font-size:15px;font-weight:950;color:#18394b}
+.placebrief-text{margin-top:7px;font-size:12.5px;line-height:1.6;color:#4d6571;word-break:keep-all}
+.placebrief-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.placebrief-meta span{background:#fff;border:1px solid #e3eaed;border-radius:999px;padding:5px 7px;font-size:9.5px;font-weight:900;color:#536b78}
+.place-more{margin-top:9px;border-top:1px dashed #dce6ea;padding-top:8px}
+.place-more summary{cursor:pointer;font-size:11px;font-weight:950;color:#365968}
+.place-more-body{display:grid;gap:7px;margin-top:8px}
+.place-info-row{background:#fff;border:1px solid #e6ecef;border-radius:11px;padding:9px 10px;font-size:11px;line-height:1.5;color:#506672}
+.traveltools{display:flex;flex-wrap:wrap;gap:7px}
+.traveltools a,.traveltools button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #dbe5e9;background:#fff;color:#23495a;border-radius:11px;padding:8px 10px;font-size:10.5px;font-weight:950;cursor:pointer}
+.transportdetail{display:grid;gap:7px;margin-top:8px}
+.transportdetail .routecard{border:1px solid #e2e9ec;border-radius:12px;background:#fff;padding:10px}
+.routecard b{display:block;font-size:11.5px;color:#294b5b;margin-bottom:4px}.routecard span{font-size:10.5px;line-height:1.45;color:#667983}
+.expense-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.expense-stat{border:1px solid #e3eaed;border-radius:13px;background:#f8fafb;padding:10px}
+.expense-stat span{display:block;font-size:9px;font-weight:900;color:#7b8d96}.expense-stat b{display:block;margin-top:3px;font-size:15px;color:#18394b}
+.expense-form{display:grid;gap:8px}
+.expense-form input,.expense-form select{width:100%;border:1px solid #d6e0e4;border-radius:10px;padding:9px 10px;font:inherit;background:#fff}
+.expense-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.expense-actions{display:flex;gap:7px;flex-wrap:wrap}
+.expense-actions button{border:1px solid #d7e1e5;background:#fff;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;color:#274b5b}
+.expense-actions button.primary{background:#173f52;color:#fff;border-color:#173f52}
+.expense-list{display:grid;gap:7px}
+.expense-item{border:1px solid #e2e9ec;background:#fff;border-radius:12px;padding:10px}
+.expense-item-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.expense-item-title{font-size:12px;font-weight:950;color:#1e4354}
+.expense-item-meta{margin-top:5px;font-size:10px;line-height:1.5;color:#6a7c86}
+.expense-item-amt{font-size:12px;font-weight:950;color:#17394b;white-space:nowrap}
+.expense-mini{font-size:9px;color:#7b8d96}
+.expense-delete{margin-top:7px;border:0;background:#f4f6f7;color:#7d4d4d;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:900}
+
 .resactions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .resnumline{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
 .resnumcopy{border:0;background:#eef4f6;color:#355361;border-radius:7px;padding:4px 6px;font-size:9px;font-weight:950;cursor:pointer}
@@ -587,7 +619,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.26 · magnetic pull-down tool drawer */
+/* v19.27 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -618,7 +650,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools{
   pointer-events:auto;
   width:100%;
-  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;
+  display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;
   padding:0 7px;
   border:1px solid transparent;border-top:0;
   border-radius:0 0 14px 14px;
@@ -648,7 +680,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools button:active{transform:scale(.97)}
 @media(max-width:620px){
   .toolmagnet{width:calc(100vw - 16px)}
-  .pamphlettools{grid-template-columns:repeat(7,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
+  .pamphlettools{grid-template-columns:repeat(8,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
   .pamphlettools::-webkit-scrollbar{display:none}
   .pamphlettools button{min-width:46px}
   .toolmagnet.open .pamphlettools{max-height:72px}
@@ -715,7 +747,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.26 · offline-first controls */
+/* v19.27 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -728,7 +760,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.26 · explicit online/offline mode */
+/* v19.27 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -763,7 +795,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.26</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.27</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -812,13 +844,14 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
       <button type="button" data-tool="message">📱<span>메시지</span></button>
       <button type="button" data-tool="study">📚<span>공부</span></button>
       <button type="button" data-tool="journal">📖<span>기록</span></button>
+      <button type="button" data-tool="expense">💰<span>가계부</span></button>
     </div>
   </div>
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.26 · 본문 스크롤 잠금 오류 수정</div>
+  <div class="footer">v19.27 · 예약 최신화 · 여행지 가이드 · 실제 교통버튼 · 가계부 추가</div>
 </main>
 
 
@@ -879,7 +912,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.26 · 본문 스크롤 잠금 오류 수정</div>
+  <div class="footer">v19.27 · 예약 최신화 · 여행지 가이드 · 실제 교통버튼 · 가계부 추가</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1090,6 +1123,108 @@ document.getElementById("detailNav")?.addEventListener("click",e=>{
 
 
 // ---------- Booking vault ----------
+
+const PLACE_GUIDES={
+  "Changi Airport 도착":{
+    intro:"세계적인 허브공항인 창이공항에 도착해 입국심사와 수하물 수령을 마치는 구간입니다.",
+    duration:"약 45~75분", core:["입국심사","수하물·유모차 수령","11명 재집결"], kids:"아이 화장실·간식부터 챙기고 이동합니다.", parents:"짐이 많아 이동보다 재집결과 차량 탑승 위치 확인이 우선입니다."
+  },
+  "Marriott Tang Plaza 체크인":{
+    intro:"오차드로드 중심에 있는 이번 여행의 5박 거점 호텔입니다.",
+    duration:"체크인 후 바로 휴식", core:["4개 객실 배정 확인","Rollaway/Twin 요청 확인","객실번호 가족 공유"], kids:"아이 잠자리부터 먼저 세팅합니다.", parents:"첫날은 객실 이동 최소화와 휴식이 우선입니다."
+  },
+  "Gardens by the Bay":{
+    intro:"거대한 온실과 미래적인 정원으로 유명한 싱가포르 대표 명소입니다. 이번 여행에서는 Flower Dome, Cloud Forest, Floral Fantasy 세 곳을 중심으로 봅니다.",
+    duration:"약 3시간", core:["Flower Dome 40~50분","Cloud Forest + Jurassic World 60~75분","Floral Fantasy + Disney/Pixar 40~50분"], kids:"실내폭포·공룡 전시·화려한 꽃 전시가 아이들이 보기 좋습니다.", parents:"실내 냉방이 강할 수 있어 얇은 겉옷이 있으면 좋습니다.",
+    more:"싱가포르가 ‘도시 속 자연’을 어떻게 만들었는지 보여주는 대표 공간입니다. 모든 전시를 자세히 보기보다 세 전시의 성격을 빠르게 비교해보는 방식으로 관람합니다."
+  },
+  "Marina Bay Sands":{
+    intro:"호텔·쇼핑몰·레스토랑이 연결된 싱가포르 대표 복합공간입니다. Gardens 관람 후 실내에서 쉬고 구경하는 오후 거점으로 사용합니다.",
+    duration:"약 2~3시간 내 자유롭게", core:["실내 휴식","쇼핑몰 구경","Apple Store 선택 방문"], kids:"실내에서 더위를 피하고 간식·화장실을 해결하기 좋습니다.", parents:"오후 체력 회복 구간으로 생각하면 됩니다."
+  },
+  "Supertree Grove · Mid-Autumn":{
+    intro:"Gardens by the Bay의 상징적인 거대 인공나무 군락입니다. 이날은 Mid-Autumn 분위기를 즐기고 19:45 Garden Rhapsody를 보는 것이 핵심입니다.",
+    duration:"약 45~60분", core:["Supertree 야경","Mid-Autumn 장식","19:45 Garden Rhapsody"], kids:"빛과 음악이 함께 나오는 야간쇼가 가장 재미있는 포인트입니다.", parents:"20:45 회차까지 기다리지 않고 첫 쇼 후 바로 호텔로 복귀합니다."
+  },
+  "Universal Studios Singapore":{
+    intro:"센토사 Resorts World 안에 있는 테마파크입니다. 가족 모두가 같은 놀이기구를 타기보다 각자 즐기고 중요한 시간에 다시 합류하는 방식으로 운영합니다.",
+    duration:"하루 메인 일정", core:["오전 인기 어트랙션","점심 재합류","오후 자유관람","체력 보고 퇴장"], kids:"탑승 가능 여부는 나이보다 실제 키 기준이 중요합니다.", parents:"카페·실내 공간을 휴식 거점으로 활용하고 대기시간이 긴 어트랙션은 과감히 건너뜁니다.",
+    more:"USS 안에서는 3세 아이팀, 7세 아이팀, 스릴 어트랙션 성인팀으로 짧게 나뉘는 것이 자연스럽습니다. 입장과 점심 등 주요 시점만 함께 움직이면 됩니다."
+  },
+  "Fort Canning · National Museum":{
+    intro:"싱가포르의 오래된 도심과 역사를 한 흐름으로 볼 수 있는 구간입니다. Fort Canning의 대표 포인트를 보고 National Museum에서 실내 관람과 휴식을 함께 합니다.",
+    duration:"약 2시간", core:["Tree Tunnel","Fort Canning 핵심 포인트","National Museum 주요 전시"], kids:"박물관에서 너무 오래 머물기보다 이야기와 영상 중심으로 봅니다.", parents:"언덕과 계단을 오래 걷지 않고 박물관을 휴식구간으로 활용합니다."
+  },
+  "Chinatown · 점심":{
+    intro:"싱가포르의 중국계 문화가 가장 선명하게 보이는 지역입니다. 거리와 사원, 전통 상점, 호커센터를 가볍게 경험합니다.",
+    duration:"약 2시간", core:["Pagoda Street","Sri Mariamman Temple","Buddha Tooth Relic Temple","점심"], kids:"색감 있는 거리와 간식 위주로 짧게 즐기기 좋습니다.", parents:"필요하면 쇼핑팀과 카페 휴식팀으로 나눌 수 있습니다."
+  },
+  "Clarke Quay · River Cruise":{
+    intro:"Singapore River를 따라 오래된 도심과 현대적인 강변 풍경을 한 번에 볼 수 있는 구간입니다.",
+    duration:"크루즈 이용 시 약 40분 + 이동", core:["Clarke Quay","강변","River Cruise 선택"], kids:"걷는 대신 배에서 쉬면서 풍경을 보는 장점이 있습니다.", parents:"19:00 JUMBO 예약이 우선이라 시간이 부족하면 크루즈를 줄이거나 생략합니다."
+  },
+  "JUMBO Seafood":{
+    intro:"칠리크랩으로 유명한 싱가포르 대표 해산물 레스토랑입니다. DAY4의 유일한 고정시간 일정입니다.",
+    duration:"19:00 예약 · 식사 약 1.5~2시간", core:["19:00 예약시간 준수","11명 함께 식사","칠리크랩·시리얼프론·만터우"], kids:"아이들이 먹기 쉬운 볶음밥 등도 함께 주문합니다.", parents:"앞 일정이 늦어져도 JUMBO 예약시간은 우선합니다."
+  },
+  "Singapore Oceanarium":{
+    intro:"대형 수조와 다양한 해양생물을 볼 수 있는 Sentosa의 실내 메인 관광지입니다. 여행 후반부에 무리 없이 즐기기 좋습니다.",
+    duration:"약 2시간 전후", core:["대형 수조","해양생물 전시","아이들이 관심 가는 구역 충분히"], kids:"상어·가오리·대형 수조처럼 크고 움직이는 생물이 핵심입니다.", parents:"실내 일정이라 더위와 비를 피하면서 쉬기 좋습니다."
+  },
+  "Luge 또는 Sentosa 산책":{
+    intro:"오후 컨디션에 따라 활동팀과 휴식팀이 다른 방식으로 Sentosa를 즐기는 선택 구간입니다.",
+    duration:"약 30~60분", core:["Luge 선택","카페·산책 선택","짧게 분리 후 재합류"], kids:"실제 탑승조건은 현장 기준을 확인합니다.", parents:"모든 가족이 Luge를 탈 필요 없이 휴식팀을 따로 운영합니다."
+  },
+  "Siloso Beach · 저녁":{
+    intro:"Sentosa의 해변 분위기를 느긋하게 즐기는 여행 후반부 휴식 구간입니다.",
+    duration:"저녁까지 유동적", core:["해변 산책","카페 또는 식사","귀국 전 마지막 밤 여유"], kids:"모래놀이를 하더라도 귀국 준비를 위해 너무 늦게까지 머물지 않습니다.", parents:"피곤하면 바로 Orchard로 돌아와 식사해도 됩니다."
+  },
+  "Little India":{
+    intro:"싱가포르 안의 인도계 문화와 시장, 사원을 가까이에서 볼 수 있는 다문화 지역입니다.",
+    duration:"약 45~60분", core:["거리 색감","인도계 상점","사원 외관"], kids:"색깔이 화려한 거리와 간단한 간식 정도로 가볍게 봅니다.", parents:"출국일이므로 오래 걷지 않고 핵심 거리만 봅니다."
+  },
+  "Kampong Glam · Bugis":{
+    intro:"Sultan Mosque를 중심으로 Arab Street와 Haji Lane이 이어지는 말레이·아랍 문화 지역입니다.",
+    duration:"약 1~1.5시간 + 점심", core:["Sultan Mosque","Arab Street","Haji Lane","마지막 점심"], kids:"골목의 벽화와 색감이 재미있는 포인트입니다.", parents:"쇼핑과 사진 중심으로 가볍게 보고 호텔 복귀 시간을 지킵니다."
+  },
+  "Jewel Changi":{
+    intro:"창이공항과 연결된 대형 복합공간으로, 실내 폭포 Rain Vortex가 대표 볼거리입니다.",
+    duration:"공항 수속 전 여유시간만큼", core:["Rain Vortex","마지막 쇼핑","간단한 식사 선택"], kids:"큰 실내폭포 자체가 가장 볼 만합니다.", parents:"관광보다 체크인·출국수속이 우선이라 시간이 부족하면 바로 줄입니다."
+  }
+};
+
+const TRANSPORT_GUIDES={
+  "호텔 → Gardens by the Bay":{
+    from:"Singapore Marriott Tang Plaza Hotel",to:"Gardens by the Bay, Singapore",
+    mrt:{label:"MRT",summary:"Orchard → Bayfront 방향 · 환승 포함 약 25~35분",note:"11명이 함께 이동하므로 플랫폼·환승 시 재집결 포인트를 정합니다."},
+    grab:{label:"Grab",summary:"차량 2~3대로 분산 · 약 15~25분 예상",note:"아이·부모님 체력이 떨어지면 가장 편한 선택입니다."},
+    walk:null
+  },
+  "호텔 → Sentosa":{
+    from:"Singapore Marriott Tang Plaza Hotel",to:"Universal Studios Singapore",
+    mrt:{label:"MRT + Sentosa Express",summary:"Orchard → HarbourFront/VivoCity → Sentosa · 약 35~50분",note:"VivoCity에서 화장실·간식 정비 후 함께 이동합니다."},
+    grab:{label:"Grab",summary:"Resorts World Sentosa까지 차량 2~3대 · 약 20~30분",note:"오픈시간과 가족 컨디션을 우선하면 편합니다."}
+  },
+  "호텔 → Fort Canning":{
+    from:"Singapore Marriott Tang Plaza Hotel",to:"Fort Canning Tree Tunnel, Singapore",
+    mrt:{label:"MRT + 도보",summary:"시내권 MRT 이동 후 도보 연결 · 약 25~35분",note:"첫 일정부터 걷는 양이 많아질 수 있습니다."},
+    grab:{label:"Grab",summary:"Tree Tunnel 인근까지 차량 2~3대 · 약 10~20분",note:"11명 단체·부모님 체력 고려 시 추천합니다."}
+  },
+  "호텔 → Little India":{
+    from:"Singapore Marriott Tang Plaza Hotel",to:"Little India, Singapore",
+    mrt:{label:"MRT",summary:"Orchard → Little India 방면 · 약 15~25분",note:"출국일이라 짐은 호텔에 두고 가볍게 이동합니다."},
+    grab:{label:"Grab",summary:"Tekka Centre 인근까지 약 10~15분",note:"오전 체력이 부족하면 차량 이동이 편합니다."}
+  },
+  "호텔 → Changi Airport":{
+    from:"Singapore Marriott Tang Plaza Hotel",to:"Singapore Changi Airport",
+    grab:{label:"Coach / Grab",summary:"Coach 확정 시 18:30 출발 기준 · 차량 이동 약 25~40분",note:"11명+캐리어를 한 번에 처리할 수 있는 Coach가 우선입니다."}
+  },
+  "Changi Airport → Marriott":{
+    from:"Singapore Changi Airport",to:"Singapore Marriott Tang Plaza Hotel",
+    grab:{label:"대형차 / Grab",summary:"공항 픽업 후 호텔 직행 · 약 25~40분",note:"11명+캐리어+유모차를 한 번에 처리할 수 있는 차량 우선."}
+  }
+};
+
 const BOOKINGS=[
  {id:"hotel-marriott",group:"숙소",type:"HOTEL",icon:"🏨",title:"Singapore Marriott Tang Plaza Hotel",status:"confirmed",
   date:"2026-09-19 ~ 2026-09-24",people:"11명 · 4객실 · 5박",
@@ -1124,7 +1259,7 @@ const BOOKINGS=[
   detail:"싱가포르 가든스 바이 더 베이 입장권",
   voucher:"바우처 확인 필요",qr:"",
   usage:"이용 전 바우처/QR 화면을 미리 열어두고 오프라인 저장 권장",
-  note:"예약 완료 · 이용일 2026-09-20"},
+  benefit:"예약자 전용 Grab Pass 제공 · Grab 앱 로그인 후 사용 가능 · 기존 혜택 이용 이력이 있으면 적용되지 않을 수 있음",note:"예약 완료 · 이용일 2026-09-20"},
  {id:"ticket-oceanarium",group:"입장권",type:"TICKET",icon:"🐠",title:"Singapore Oceanarium",status:"optional",
   date:"DAY 3 또는 DAY 5",people:"11명",
   numbers:[],detail:"DAY5 최종 결정 후 필요 시 구매 · 주문번호 / QR",qr:"",note:"후보 / 미예약"},
@@ -1139,7 +1274,7 @@ const BOOKINGS=[
   numbers:[],detail:"DAY5를 Mandai로 변경할 경우 티켓 정보 입력",qr:"",note:"대안 일정 후보"},
 
  {id:"restaurant-jumbo",group:"식당",type:"RESTAURANT",icon:"🦀",title:"JUMBO Seafood - Riverside Point",status:"confirmed",
-  date:"2026-09-22 · 19:00",people:"11명",
+  provider:"JUMBO Seafood",date:"2026-09-22 · 19:00",people:"11명",payment:"예약 확정",
   numbers:["6V5D9N"],detail:"Reservation ID · Riverside Point",qr:"",note:"확정 예약 · 임의 변경 금지"}
 ];
 
@@ -1191,6 +1326,7 @@ function reservationInfoHtml(item){
       ${b.countNote?`<div class="resrow"><span class="rlabel">건수</span><span>${b.countNote}</span></div>`:""}
       ${b.detail?`<div class="resrow"><span class="rlabel">상품/상세</span><span>${b.detail}</span></div>`:""}
       ${b.voucher?`<div class="resrow"><span class="rlabel">바우처</span><span>${b.voucher}</span></div>`:""}
+      ${b.benefit?`<div class="resrow"><span class="rlabel">추가혜택</span><span>${b.benefit}</span></div>`:""}
       ${b.usage?`<div class="resrow"><span class="rlabel">현장주의</span><span>${b.usage}</span></div>`:""}
       <div class="resactions"><button type="button" class="voucherbtn ${ready?'ready':''}" onclick="toggleVoucherReady('${b.id}');this.classList.toggle('ready');this.textContent=this.classList.contains('ready')?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'">${ready?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'}</button></div>
     </div>`;
@@ -1219,6 +1355,7 @@ function renderBookings(){
             <div class="bookingrow"><span class="label">예약번호</span><span class="value">${x.numbers?.length?`<span class="bookingnums">${x.numbers.map(n=>`<span class="bookingnumwrap"><span class="bookingnum">${n}</span><button class="copybtn" type="button" onclick="copyBookingNumber('${n}',this)">복사</button></span>`).join("")}</span>`:"—"}</span></div>
             ${x.countNote?`<div class="bookingrow"><span class="label">건수</span><span class="value">${x.countNote}</span></div>`:""}
             <div class="bookingrow"><span class="label">상세</span><span class="value">${x.detail||"—"}</span></div>
+            ${x.benefit?`<div class="bookingrow"><span class="label">추가 혜택</span><span class="value">${x.benefit}</span></div>`:""}
             ${x.usage?`<div class="bookingrow"><span class="label">현장 주의</span><span class="value">${x.usage}</span></div>`:""}
           </div>
           <div class="resactions"><button type="button" class="voucherbtn ${ready?'ready':''}" onclick="toggleVoucherReady('${x.id}')">${ready?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'}</button></div>
@@ -1230,8 +1367,8 @@ function renderBookings(){
 
 // ---------- Prep ----------
 const PREP_ITEMS=[
- ["예약/티켓","USS 티켓 예약 완료 · 바우처 저장 확인","done"],
- ["예약/티켓","Gardens by the Bay 티켓 예약 완료 · 바우처 저장 확인","done"],
+ ["예약/티켓","USS 예약완료 · 예약번호 2건 · e-ticket 캡처/오프라인 저장 확인","done"],
+ ["예약/티켓","Gardens by the Bay 예약완료 · 대표번호 EXP-20260916-00018976 · 바우처 저장 확인","done"],
  ["예약/티켓","DAY5 일정 최종 판단","plan"],
  ["예약/티켓","필요 시 Singapore Oceanarium 티켓","unbooked"],
  ["예약/티켓","필요 시 Luge / Sentosa 액티비티","candidate"],
@@ -2065,7 +2202,7 @@ function unifiedGuideHtml(dayNum){
     <section class="guidetools">
       <h3>필요할 때만 열어보는 여행 도구</h3>
       <div class="guidechips">
-        ${(g.tools||[]).map(t=>`<button class="guidechip" type="button" data-guide-tool="${esc(t.id)}">${t.label}</button>`).join("")}
+        ${`<button class="guidechip" type="button" data-guide-tool="places">📍 여행지 정보</button>`}${(g.tools||[]).map(t=>`<button class="guidechip" type="button" data-guide-tool="${esc(t.id)}">${t.label}</button>`).join("")}
       </div>
     </section>
   </div>`;
@@ -2216,7 +2353,7 @@ function closeDeep(){
 }
 
 
-// v19.26 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.27 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2245,7 +2382,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1926";
+const REP_DB_NAME="sg_trip_rep_images_v1927";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2450,6 +2587,55 @@ function itemImageHtml(sel){
 }
 
 
+
+function placeGuideFor(sel){ return PLACE_GUIDES[sel?.title]||null; }
+function placeGuideHtml(sel){
+  const g=placeGuideFor(sel);
+  if(!g)return "";
+  return `<section class="section">
+    <div class="placebrief">
+      <div class="placebrief-kicker">TRAVEL GUIDE</div>
+      <div class="placebrief-title">이곳은 어떤 곳?</div>
+      <div class="placebrief-text">${esc(g.intro||"")}</div>
+      <div class="placebrief-meta">
+        ${g.duration?`<span>⏱ ${esc(g.duration)}</span>`:""}
+        ${(g.core||[]).slice(0,2).map(x=>`<span>✓ ${esc(x)}</span>`).join("")}
+      </div>
+      <details class="place-more">
+        <summary>이 장소 더 알아보기</summary>
+        <div class="place-more-body">
+          ${(g.core||[]).length?`<div class="place-info-row"><b>이번 여행에서 볼 핵심</b><br>${g.core.map(x=>`• ${esc(x)}`).join("<br>")}</div>`:""}
+          ${g.kids?`<div class="place-info-row"><b>👧 아이들과 함께</b><br>${esc(g.kids)}</div>`:""}
+          ${g.parents?`<div class="place-info-row"><b>👵 부모님과 이동</b><br>${esc(g.parents)}</div>`:""}
+          ${g.more?`<div class="place-info-row"><b>조금 더 알아보기</b><br>${esc(g.more)}</div>`:""}
+        </div>
+      </details>
+    </div>
+  </section>`;
+}
+
+function directionUrl(from,to,mode){
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=${mode}`;
+}
+function transportGuideFor(sel){return TRANSPORT_GUIDES[sel?.title]||null;}
+function travelToolsHtml(sel){
+  const t=transportGuideFor(sel);
+  const q=sel?.title?`${sel.title} Singapore`:"Singapore";
+  const map=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  if(!t)return `<div class="traveltools"><a target="_blank" rel="noopener" href="${map}">🗺️ 지도</a></div>`;
+  let buttons=[];
+  if(t.mrt)buttons.push(`<a target="_blank" rel="noopener" href="${directionUrl(t.from,t.to,"transit")}">🚇 MRT</a>`);
+  if(t.grab)buttons.push(`<a target="_blank" rel="noopener" href="https://www.grab.com/sg/">🚕 Grab</a>`);
+  if(t.walk)buttons.push(`<a target="_blank" rel="noopener" href="${directionUrl(t.from,t.to,"walking")}">🚶 도보</a>`);
+  buttons.push(`<a target="_blank" rel="noopener" href="${map}">🗺️ 지도</a>`);
+  return `<div class="traveltools">${buttons.join("")}</div>
+    <div class="transportdetail">
+      ${t.mrt?`<div class="routecard"><b>🚇 ${esc(t.mrt.label)}</b><span>${esc(t.mrt.summary)}<br>${esc(t.mrt.note||"")}</span></div>`:""}
+      ${t.grab?`<div class="routecard"><b>🚕 ${esc(t.grab.label)}</b><span>${esc(t.grab.summary)}<br>${esc(t.grab.note||"")}<br>출발: ${esc(t.from)}<br>도착: ${esc(t.to)}</span></div>`:""}
+      ${t.walk?`<div class="routecard"><b>🚶 도보</b><span>${esc(t.walk.summary||"")}</span></div>`:""}
+    </div>`;
+}
+
 function optionalSpotsHtml(sel){
   const spots=sel.optionalSpots||[];
   if(!spots.length)return "";
@@ -2483,6 +2669,7 @@ function openItem(i){
  const noteKey=`sg_pamphlet_v19_${day}_${i}`;
  body.innerHTML=`
   ${itemImageHtml(sel)}
+  ${placeGuideHtml(sel)}
   <section class="section deepable" data-deep="route"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
   <section class="section deepable" data-deep="see"><h3>👀 여기서 할 것</h3><div class="checklist">${chips(sel.see||[])}</div></section>
   <section class="section deepable" data-deep="family"><h3>👨‍👩‍👧 가족 체크</h3><div class="checklist">${chips(sel.family||[])}</div></section>
@@ -2491,7 +2678,7 @@ function openItem(i){
   ${optionalSpotsHtml(sel)}
   ${sel.transportOptions?.length?`<div class="deepable" data-deep="transport">${transportInfoHtml(sel)}</div>`:""}
   ${sel.bookingIds?.length?`<div class="deepable" data-deep="booking">${reservationInfoHtml(sel)}</div>`:""}
-  <section class="section"><h3>빠른 기능</h3><div class="actions"><a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sel.title+" Singapore")}">📍 실제지도</a><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
+  <section class="section"><h3>필요할 때 보기</h3>${travelToolsHtml(sel)}<div class="actions" style="margin-top:8px"><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
  body.querySelectorAll("[data-deep]").forEach(el=>el.onclick=e=>{
    if(e.target.closest("a,button,input,textarea"))return;
    openDeep(el.dataset.deep);
@@ -2621,6 +2808,9 @@ function detailListHtml(title,items=[]){
 }
 function guideToolContent(dayNum,tool){
   const d=DAYS.find(x=>x.day===dayNum),g=DAY_GUIDES[dayNum]||{};
+  if(tool.id==="places"){
+    return d.items.map(x=>{const pg=PLACE_GUIDES[x.title];return pg?`<div class="guide-tool-note"><b>${esc(x.title)}</b><br>${esc(pg.intro)}${pg.duration?`<br>⏱ ${esc(pg.duration)}`:""}</div>`:""}).join("")||`<div class="guide-tool-note">등록된 여행지 설명이 없습니다.</div>`;
+  }
   if(tool.id==="tickets"){
     const arr=d.items.filter(x=>x.bookingIds?.length);
     return arr.length?arr.map(x=>`<div class="deepsec"><h4>${esc(x.title)}</h4>${reservationInfoHtml(x)||'<div class="guide-tool-note">예약정보 확인 필요</div>'}</div>`).join(""):`<div class="guide-tool-note">연결된 예약정보가 없습니다.</div>`;
@@ -2638,7 +2828,7 @@ function guideToolContent(dayNum,tool){
   return `<div class="guide-tool-list">${arr.map(x=>`<div class="guide-tool-note">${esc(x)}</div>`).join("")}</div>${map}`;
 }
 function openGuideTool(dayNum,toolId){
-  const g=DAY_GUIDES[dayNum],tool=(g?.tools||[]).find(x=>x.id===toolId); if(!tool)return;
+  const g=DAY_GUIDES[dayNum],tool=toolId==="places"?{id:"places",label:"📍 여행지 정보"}:(g?.tools||[]).find(x=>x.id===toolId); if(!tool)return;
   document.getElementById("deepEyebrow").textContent=`DAY ${dayNum} · ${DAY_DATES[dayNum]||""} · 추가정보`;
   document.getElementById("deepTitle").textContent=tool.label;
   document.getElementById("deepBody").innerHTML=guideToolContent(dayNum,tool);
@@ -2712,9 +2902,118 @@ function renderDetailMap(){
 
 
 
+
+const EXPENSE_KEY="sg_trip_expenses_v19_27";
+function expenseData(){try{return JSON.parse(localStorage.getItem(EXPENSE_KEY)||"[]")||[]}catch(e){return []}}
+function saveExpenses(x){localStorage.setItem(EXPENSE_KEY,JSON.stringify(x))}
+function won(n){return `${Math.round(Number(n)||0).toLocaleString("ko-KR")}원`}
+function expenseEstimate(sgd,rate,fee){return (Number(sgd)||0)*(Number(rate)||0)*(1+(Number(fee)||0)/100)}
+function parseQuickExpense(text){
+  const s=String(text||"").trim();
+  if(!s)return null;
+  const sgd=(s.match(/S\\$\\s*([\\d,.]+)/i)||[])[1];
+  const krw=(s.match(/(?:₩|KRW\\s*)([\\d,.]+)/i)||[])[1];
+  const status=/결제|완료/.test(s)?"결제완료":"예상";
+  const cleaned=s.replace(/S\\$\\s*[\\d,.]+/i,"").replace(/(?:₩|KRW\\s*)[\\d,.]+/i,"").replace(/결제(?:완료)?/g,"").trim();
+  const bits=cleaned.split(/\\s+/).filter(Boolean);
+  let payer="",item=cleaned||"여행경비";
+  if(bits.length>=2){payer=bits[bits.length-1];item=bits.slice(0,-1).join(" ")}
+  return {item,payer,sgd:Number((sgd||"").replace(/,/g,""))||0,actualKRW:Number((krw||"").replace(/,/g,""))||0,status};
+}
+function inferExpenseDay(item){
+  const t=String(item||"").toLowerCase();
+  if(t.includes("jumbo"))return 4;
+  if(t.includes("garden"))return 2;
+  if(t.includes("uss")||t.includes("universal"))return 3;
+  if(t.includes("ocean")||t.includes("luge")||t.includes("sentosa"))return 5;
+  if(t.includes("jewel")||t.includes("changi"))return 6;
+  return day||1;
+}
+function renderExpenseTool(){
+  const arr=expenseData();
+  const estimated=arr.reduce((a,x)=>a+(Number(x.estimatedKRW)||0),0);
+  const actual=arr.reduce((a,x)=>a+(Number(x.actualKRW)||0),0);
+  const payer={}; const byDay={};
+  arr.forEach(x=>{payer[x.payer||"미지정"]=(payer[x.payer||"미지정"]||0)+(Number(x.actualKRW)||Number(x.estimatedKRW)||0);byDay[x.day]=(byDay[x.day]||0)+(Number(x.actualKRW)||Number(x.estimatedKRW)||0)});
+  return `<div class="toolgrid">
+    <section class="toolcard">
+      <h3>💰 여행 가계부</h3>
+      <div class="expense-summary">
+        <div class="expense-stat"><span>전체 예상</span><b>${won(estimated)}</b></div>
+        <div class="expense-stat"><span>실제 결제</span><b>${won(actual)}</b></div>
+      </div>
+      <div class="expense-form">
+        <input id="expenseQuick" placeholder="예: JUMBO 민욱 S$420 결제">
+        <div class="row2"><input id="expenseRate" type="number" inputmode="decimal" value="${Number(fxRate||1080).toFixed(0)}" placeholder="SGD→KRW 환율"><input id="expenseFee" type="number" inputmode="decimal" value="1.5" step="0.1" placeholder="수수료 %"></div>
+        <div class="expense-actions"><button class="primary" id="expenseQuickAdd">빠른 입력 추가</button><button id="expenseExport">CSV 내보내기</button></div>
+      </div>
+    </section>
+    <section class="toolcard">
+      <h3>직접 입력</h3>
+      <div class="expense-form">
+        <div class="row2"><select id="expenseDay">${[1,2,3,4,5,6].map(d=>`<option value="${d}" ${d===day?"selected":""}>DAY ${d}</option>`).join("")}</select><input id="expenseItem" placeholder="항목"></div>
+        <div class="row2"><input id="expensePayer" placeholder="결제자"><select id="expenseStatus"><option>예상</option><option>결제완료</option><option>취소</option></select></div>
+        <div class="row2"><input id="expenseSGD" type="number" inputmode="decimal" placeholder="SGD 참고금액"><input id="expenseActualKRW" type="number" inputmode="numeric" placeholder="실제 원화금액"></div>
+        <div class="row2"><input id="expenseDate" type="date"><input id="expenseBooking" placeholder="예약번호"></div>
+        <input id="expenseMemo" placeholder="메모">
+        <div class="expense-actions"><button class="primary" id="expenseAdd">가계부 추가</button></div>
+      </div>
+    </section>
+    <section class="toolcard">
+      <h3>집계</h3>
+      <div class="guide-tool-list">
+        <div class="guide-tool-note"><b>결제자별</b><br>${Object.entries(payer).map(([k,v])=>`${esc(k)} ${won(v)}`).join(" · ")||"아직 없음"}</div>
+        <div class="guide-tool-note"><b>DAY별</b><br>${Object.entries(byDay).map(([k,v])=>`DAY ${k} ${won(v)}`).join(" · ")||"아직 없음"}</div>
+      </div>
+    </section>
+    <section class="toolcard">
+      <h3>내역</h3>
+      <div class="expense-list">${arr.length?arr.slice().reverse().map((x,ri)=>{
+        const i=arr.length-1-ri;
+        return `<article class="expense-item"><div class="expense-item-top"><div><div class="expense-item-title">DAY ${x.day} · ${esc(x.item)}</div><div class="expense-item-meta">${esc(x.payer||"결제자 미지정")} · ${esc(x.status||"예상")} ${x.booking?`· ${esc(x.booking)}`:""}<br>${x.sgd?`S$${Number(x.sgd).toLocaleString()} 참고 · `:""}${x.actualKRW?`실제 ${won(x.actualKRW)}`:`예상 ${won(x.estimatedKRW)}`}</div></div><div class="expense-item-amt">${x.actualKRW?won(x.actualKRW):won(x.estimatedKRW)}</div></div><button class="expense-delete" data-exp-del="${i}">삭제</button></article>`;
+      }).join(""):'<div class="guide-tool-note">아직 입력된 경비가 없습니다.</div>'}</div>
+    </section>
+  </div>`;
+}
+function addExpenseRecord(rec,rate,fee){
+  const arr=expenseData();
+  const r=Number(rate)||Number(fxRate)||1080, f=Number(fee)||0;
+  rec.day=Number(rec.day)||inferExpenseDay(rec.item);
+  rec.rate=r;rec.fee=f;
+  rec.estimatedKRW=rec.actualKRW?Number(rec.actualKRW):expenseEstimate(rec.sgd,r,f);
+  rec.id=Date.now();
+  arr.push(rec);saveExpenses(arr);
+}
+function bindExpenseTool(body){
+  const rate=()=>Number(body.querySelector("#expenseRate")?.value)||Number(fxRate)||1080;
+  const fee=()=>Number(body.querySelector("#expenseFee")?.value)||0;
+  body.querySelector("#expenseQuickAdd")?.addEventListener("click",()=>{
+    const rec=parseQuickExpense(body.querySelector("#expenseQuick")?.value);
+    if(!rec)return;
+    rec.day=inferExpenseDay(rec.item);addExpenseRecord(rec,rate(),fee());
+    body.innerHTML=renderExpenseTool();bindExpenseTool(body);
+  });
+  body.querySelector("#expenseAdd")?.addEventListener("click",()=>{
+    const rec={
+      day:Number(body.querySelector("#expenseDay")?.value)||day,item:body.querySelector("#expenseItem")?.value||"여행경비",
+      payer:body.querySelector("#expensePayer")?.value||"",status:body.querySelector("#expenseStatus")?.value||"예상",
+      sgd:Number(body.querySelector("#expenseSGD")?.value)||0,actualKRW:Number(body.querySelector("#expenseActualKRW")?.value)||0,
+      date:body.querySelector("#expenseDate")?.value||"",booking:body.querySelector("#expenseBooking")?.value||"",memo:body.querySelector("#expenseMemo")?.value||""
+    };
+    addExpenseRecord(rec,rate(),fee());body.innerHTML=renderExpenseTool();bindExpenseTool(body);
+  });
+  body.querySelectorAll("[data-exp-del]").forEach(b=>b.onclick=()=>{const arr=expenseData();arr.splice(Number(b.dataset.expDel),1);saveExpenses(arr);body.innerHTML=renderExpenseTool();bindExpenseTool(body)});
+  body.querySelector("#expenseExport")?.addEventListener("click",()=>{
+    const rows=[["DAY","항목","결제자","상태","SGD","예상KRW","실제KRW","결제일","예약번호","메모"],...expenseData().map(x=>[x.day,x.item,x.payer,x.status,x.sgd,x.estimatedKRW,x.actualKRW,x.date,x.booking,x.memo])];
+    const csv=rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\n");
+    const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);a.download="singapore-trip-expenses.csv";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  });
+}
+
 // v18.3 · Pamphlet tools: use the same underlying content as Detail mode
 function toolTitle(mode){
-  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록"}[mode]||"도구";
+  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록",expense:"💰 가계부"}[mode]||"도구";
 }
 function clonePaneForTool(mode){
   const paneIds={
@@ -2878,8 +3177,8 @@ function openPamTool(mode){
 
   requestAnimationFrame(()=>{
     try{
-      body.innerHTML=clonePaneForTool(mode);
-      rebindPamTool(mode);
+      if(mode==="expense"){body.innerHTML=renderExpenseTool();bindExpenseTool(body);}
+      else{body.innerHTML=clonePaneForTool(mode);rebindPamTool(mode);}
       body.scrollTop=0;
     }catch(err){
       console.error("Trip tool render failed:",mode,err);
@@ -2951,7 +3250,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_26";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_27";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
