@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.11</title>
+<title>Singapore Family Trip 2026 · v19.12</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -27,7 +27,7 @@ body{padding-bottom:80px}
 .fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
 .fxarrow{font-weight:900;color:#82919a}
 .days{display:flex;gap:7px;overflow:auto;padding:0 12px 10px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
-.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:900;white-space:nowrap}
+.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:15px;padding:7px 12px 6px;font-size:12px;font-weight:900;white-space:nowrap;line-height:1.05;min-width:58px}.daybtn .daydate{display:block;margin-top:4px;font-size:9px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
 .wrap{max-width:760px;margin:auto;padding:12px}
 .hero{min-height:155px;border:1px solid var(--line);border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}
@@ -214,6 +214,24 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .detail-route-step{white-space:nowrap;background:#eef5f7;border:1px solid #dbe8ed;border-radius:999px;padding:7px 9px;font-size:11px;font-weight:850}
 .detail-route-arrow{color:#9aa8b0;font-weight:900}
 .detail-mapbox{margin-top:14px}
+.detailsticky{display:none!important}
+.dayguide{display:grid;gap:11px}
+.guideintro,.guideflow,.guideprinciple,.guidealternative,.guidetools{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 4px 14px rgba(23,54,79,.025)}
+.guideintro h3,.guideflow h3,.guidetools h3{margin:0 0 10px;font-size:14px;color:var(--ink)}
+.guideintro p{margin:0 0 10px;font-size:14px;line-height:1.72;color:#405764;word-break:keep-all}
+.guideintro p:last-child{margin-bottom:0}
+.guideflow-list{display:grid;gap:0}
+.guideflow-row{display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;align-items:start}
+.guideflow-dot{width:24px;height:24px;border-radius:50%;background:var(--mint);color:var(--mintInk);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950;margin-top:1px}
+.guideflow-text{font-size:13px;font-weight:850;color:#334d5b;line-height:1.45;padding:3px 0 10px;word-break:keep-all}
+.guideflow-line{width:2px;height:12px;background:#dce7eb;margin:0 0 0 11px}
+.guideprinciple{background:#fff8e8;border-color:#f0dfb8;font-size:13px;font-weight:950;color:#674d00;line-height:1.5}
+.guidealternative{background:#f4faf5;border-color:#dcebdd}.guidealternative b{display:block;font-size:13px;margin-bottom:5px}.guidealternative span{font-size:12px;line-height:1.55;color:#526773}
+.guidechips{display:flex;flex-wrap:wrap;gap:7px}
+.guidechip{border:1px solid #dce6ea;background:#f9fbfc;color:#274657;border-radius:999px;padding:9px 11px;font-size:11px;font-weight:900;cursor:pointer}
+.guide-date{display:inline-flex;margin-top:7px;border-radius:999px;background:var(--mint);color:var(--mintInk);padding:5px 8px;font-size:10px;font-weight:950}
+.guide-tool-list{display:grid;gap:7px}.guide-tool-note{background:#f7f9fa;border:1px solid #e7edef;border-radius:12px;padding:10px 11px;font-size:12px;line-height:1.5;color:#435a68}
+.guide-maplinks{display:grid;gap:7px}.guide-maplinks a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid #dde7eb;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900}
 @media(max-width:620px){
   .toprow{gap:8px}.brand{font-size:13px}.brand small{display:none}
   .viewbtn{padding:7px 8px;font-size:9px}
@@ -223,7 +241,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.11 · SINGLE FILE UNIFIED APP
+   v19.12 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -605,7 +623,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.11 · offline-first controls */
+/* v19.12 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -618,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.11 · explicit online/offline mode */
+/* v19.12 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -653,7 +671,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.11</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.12</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -705,7 +723,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.11 · DAY2 Apple Marina Bay Sands 선택 방문 카드 추가 · 메인 Timeline 유지</div>
+  <div class="footer">v19.12 · DAY 상세보기 공통 가이드 템플릿 · 실제 날짜 표시</div>
 </main>
 
 
@@ -766,7 +784,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.11 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.12 · 가족용 가이드 본문 → 예상 흐름 → 필요정보 팝업</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -829,31 +847,16 @@ const DAYS=[
 {time:"19:15",title:"Changi Airport 도착",bookingIds:["transfer-arrival"],detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",route:[["🛬","Changi Airport","도착"],["🛂","입국심사","수하물 수령"],["🚕","픽업","11명+짐"],["🏨","Marriott Tang Plaza","체크인"]],see:["수하물","유모차","가족 재집결"],family:["아이 우선 화장실·간식","대표자 1명은 차량 연락"]},
 {time:"20:30 전후",title:"Changi Airport → Marriott",bookingIds:["transfer-arrival"],transportOptions:[["🚐","사전예약 대형차","11명+캐리어+유모차를 한 번에 처리하기 가장 편한 후보","우선 검토"],["🚕","택시/Grab 분산","차량 2~3대로 나눠 이동. 호출과 짐 분산이 필요","대안"]],detail:"입국·수하물 수령 후 Singapore Marriott Tang Plaza Hotel로 이동.",route:[["🛬","Changi Airport","입국·수하물"],["🚐","공항 픽업","차량 탑승"],["🏨","Marriott Tang Plaza","호텔 도착"]],see:["입국 후 가족 11명 재집결","차량 탑승 위치 확인","호텔까지 바로 이동"],family:["3세 아이 2명 피로 고려","짐·유모차 수량 확인"]},
 {time:"21:30~",title:"Marriott Tang Plaza 체크인",bookingIds:["hotel-marriott"],detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",route:[["🏨","호텔 로비","체크인"],["🛏","4개 객실","가까운 객실 요청"],["😴","휴식","첫날 체력 보존"]],see:["객실번호 공유","Rollaway 요청 확인","Twin 요청 확인"],family:["아이 잠자리 먼저 세팅"]}]},
-{day:2,icon:"🌆",title:"Marina Bay",sub:"싱가포르의 대표 풍경을 보는 날",items:[
-{time:"10:00",title:"호텔 → Merlion Park",transportOptions:[["🚇","MRT","Orchard에서 Raffles Place 방향으로 이동 후 도보","기본"],["🚕","Grab/택시","11명은 2~3대로 나눠 바로 Merlion Park 인근까지 이동","체력 우선"]],detail:"머라이언과 Marina Bay 풍경으로 여행의 첫 대표사진.",route:[["🏨","Marriott Tang Plaza","출발"],["🚇","Orchard NS22","MRT 탑승"],["🚇","Raffles Place NS26","하차"],["🦁","Merlion Park","도보 약 10분"]],see:["Merlion","MBS 방향 가족사진","Marina Bay 전경"],family:["그늘 적음","유모차 이동 가능","30~40분이면 충분"],food:["근처 식사는 다음 구간에서 해결"]},
-{time:"10:30",title:"Marina Bay 산책",detail:"Merlion Park · Esplanade · Singapore Flyer를 흐름대로 본다.",route:[["🦁","Merlion Park","출발"],["🎭","Esplanade","강변 산책"],["🎡","Singapore Flyer","선택 관람"]],see:["Esplanade 외관","강변 풍경","Flyer 전망"],family:["더우면 Flyer를 휴식형 콘텐츠로 활용"]},
-{time:"12:30",title:"점심 · 에어컨 휴식",detail:"오전 야외 일정 뒤 체온과 체력을 낮추는 핵심 휴식.",route:[["🍽","Marina Bay/MBS","식사"],["❄️","실내 휴식","에어컨"],["👶","아이 낮잠","가능하면 확보"]],see:["식사","화장실","냉방"],family:["3세 아이 낮잠 우선"],food:["MBS / The Shoppes","가족 좌석 편한 곳","1인 S$15~30 예상"]},
-{time:"14:00",title:"Marina Bay Sands",detail:"Helix Bridge · MBS · The Shoppes를 천천히 통과.",route:[["🌉","Helix Bridge","사진"],["🏨","MBS","외관/실내"],["🛍","The Shoppes","휴식"]],see:["Helix 구조","MBS 스카이라인","쇼핑몰 실내"],family:["걷기 길면 짧은 Grab 허용"]},
-{time:"17:00",title:"Gardens by the Bay",bookingIds:["ticket-gbtb"],detail:"Cloud Forest · Flower Dome 중심.",route:[["🌿","Gardens by the Bay","진입"],["🌧","Cloud Forest","실내 폭포"],["🌸","Flower Dome","대형 온실"],["🌳","Supertree Grove","야경 준비"]],see:["Cloud Forest","Flower Dome","Supertree"],family:["실내 냉방 강할 수 있음","유모차 이동 편함"]},
-{time:"19:45~",title:"Supertree 야경",detail:"Garden Rhapsody와 Spectra 중 가족 체력에 맞게 선택.",
-optionalSpots:[
-  {
-    id:"apple-mbs",
-    icon:"🍎",
-    kicker:"잠깐 들러볼 곳",
-    title:"Apple Marina Bay Sands",
-    ko:"애플 마리나베이샌즈",
-    expectedTime:"20:10~20:50 예상",
-    duration:"약 30~40분",
-    location:"2 Bayfront Avenue, B2-06, Singapore 018972",
-    mapQuery:"Apple Marina Bay Sands, 2 Bayfront Avenue, Singapore 018972",
-    description:"Garden Rhapsody를 본 뒤 MBS 방향으로 이동할 때 잠깐 들르기 좋은 선택 방문지입니다.",
-    groupNote:"11명 전원이 함께 들어갈 필요 없음 · 원하는 사람만 Apple Store 구경 · 나머지는 Marina Bay 주변 휴식/구경 후 재합류",
-    timingNote:"19:45 Garden Rhapsody 관람 후 약 10~15분 이동을 잡으면 가장 자연스럽습니다. Spectra까지 볼 경우 Apple 체류는 20~30분 정도로 짧게 조정.",
-    hoursNote:"9/20 공식 운영시간 확인 기준 10:00~22:00"
-  }
-],
-route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동","체력 봐서"],["💦","Spectra","선택"]],see:["Garden Rhapsody","Spectra"],family:["아이 졸리면 한 쇼만 보고 귀가"]}]},
+{day:2,icon:"🌆",title:"Gardens & Marina Bay",sub:"Gardens by the Bay · Marina Bay · Supertree 야경",items:[
+{time:"09:30~",title:"호텔 → Gardens by the Bay",transportOptions:[["🚇","MRT","Orchard에서 Bayfront 방향 이동 후 도보","기본"],["🚕","Grab/택시","11명은 2~3대로 나눠 Gardens 인근까지 이동","체력 우선"]],detail:"호텔 조식 후 서두르지 않고 Gardens by the Bay로 이동.",route:[["🏨","호텔","조식 후 출발"],["🌿","Gardens by the Bay","도착"]],see:["입장 전 화장실","물·간식 정비"],family:["전날 도착 피로 고려","아침부터 무리하지 않기"]},
+{time:"10:30~13:30",title:"Gardens by the Bay",bookingIds:["ticket-gbtb"],detail:"Flower Dome · Cloud Forest · Floral Fantasy 세 곳을 주요 볼거리 위주로 약 3시간 관람.",route:[["🌺","Flower Dome","40~50분"],["🌿","Cloud Forest","60~75분"],["🌸","Floral Fantasy","40~50분"]],see:["다양한 꽃과 식물","Cloud Forest 실내폭포","Jurassic World 전시","Disney/Pixar Garden of Wonder"],family:["Cloud Forest는 조금 더 여유 있게","실내 냉방 대비 얇은 겉옷"]},
+{time:"14:00~",title:"Marina Bay Sands",detail:"Gardens 관람 후 Marina Bay Sands로 이동해 실내에서 쉬고 쇼핑·구경.",optionalSpots:[
+  {id:"apple-mbs",icon:"🍎",kicker:"잠깐 들러볼 곳",title:"Apple Marina Bay Sands",ko:"애플 마리나베이샌즈",expectedTime:"14:30~15:10 예상",duration:"약 30~40분",location:"2 Bayfront Avenue, Singapore",mapQuery:"Apple Marina Bay Sands, Singapore",description:"Gardens by the Bay 관람 후 MBS 쪽으로 이동하면서 원하는 가족만 잠시 들르는 선택 방문지입니다.",groupNote:"11명 전원이 함께 들어갈 필요 없음 · 관심 없는 가족은 MBS에서 쇼핑하거나 쉬었다가 재합류",timingNote:"Gardens를 약 13:30 전후 마치고 MBS로 이동하면 오후 자유시간에 자연스럽게 넣을 수 있습니다."}
+],route:[["🌿","Gardens","관람 종료"],["🚶","MBS 방향","이동"],["🏨","Marina Bay Sands","휴식/구경"]],see:["MBS 로비·쇼핑몰","Apple Store 선택 방문"],family:["실내에서 충분히 쉬기","원하면 잠시 팀 분리 가능"]},
+{time:"17:00~18:40",title:"이른 저녁식사 · 휴식",detail:"Supertree 야간 일정 전에 충분히 먹고 앉아서 쉬는 시간.",route:[["🍽","Marina Bay/MBS","저녁"],["😴","휴식","체력 회복"],["🌳","Supertree Grove","이동"]],see:["이른 저녁","화장실","아이 휴식"],family:["3세 아이 컨디션 우선","쇼 전 무리한 추가관광 없음"],food:["MBS / Marina Bay 주변","11명 좌석과 아이 메뉴 우선"]},
+{time:"19:15~",title:"Supertree Grove · Mid-Autumn",detail:"야간 분위기를 가볍게 즐기고 19:45 Garden Rhapsody를 목표로 이동.",route:[["🌳","Supertree Grove","야경"],["🏮","Mid-Autumn 분위기","가볍게 관람"],["🎶","Garden Rhapsody","19:45"]],see:["Supertree 야경","19:45 Garden Rhapsody"],family:["20:45 회차는 기본 일정에서 제외","자리 욕심보다 아이·부모님 체력 우선"]},
+{time:"20:00~",title:"호텔 복귀",detail:"Garden Rhapsody 종료 후 추가 관광 없이 바로 호텔로 복귀.",route:[["🌳","Supertree","쇼 종료"],["🚕","Grab/MRT","상황에 따라"],["🏨","호텔","휴식"]],see:["바로 복귀"],family:["DAY3 USS를 위해 체력 보존"]}
+]},
 {day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",items:[
 {time:"08:15",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","오픈런/체력 우선"]],detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
 {time:"10:00~",title:"Universal Studios Singapore",bookingIds:["ticket-uss"],detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",route:[["🎢","USS","오픈런"],["⭐","인기 어트랙션","우선"],["🍽","점심","피크 회피"],["🎭","캐릭터/쇼","중간 휴식"]],see:["Transformers","Minion Land","캐릭터/쇼"],family:["3세 아이팀/스릴팀 짧게 분리","대기 길면 바로 다음 후보"],food:["USS 내부 식사","아이 메뉴 먼저 확보"]},
@@ -870,17 +873,32 @@ route:[["🌳","Supertree Grove","Garden Rhapsody"],["🚶","MBS 방향 이동",
 {time:"11:00",title:"Singapore Oceanarium",bookingIds:["ticket-oceanarium"],detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠.",route:[["🐠","Oceanarium","메인 관람"],["❄️","실내","더위 회피"]],see:["대형 수조","해양생물 전시"],family:["아이/부모님 모두 부담 적음"]},
 {time:"13:00",title:"점심 · 충분한 휴식",detail:"맛집 욕심보다 냉방·좌석·아이 메뉴 우선.",route:[["🍽","RWS/WEAVE/VivoCity","식사"],["😴","휴식","충분히"]],see:["좌석","냉방","아이 메뉴"],food:["동선 좋은 곳 우선"]},
 {time:"15:00",title:"Luge 또는 Sentosa 산책",bookingIds:["ticket-luge"],detail:"활동팀과 휴식팀으로 잠깐 나뉘어도 됨.",route:[["🛷","Luge","활동팀"],["☕","카페","휴식팀"],["🌿","Sensoryscape","재합류"]],see:["가족 취향 1개"],family:["30~60분 짧게 분리 후 재합류"]},
-{time:"17:00",title:"Siloso Beach · 저녁",detail:"해질 무렵 센토사 분위기를 느긋하게 즐긴다.",route:[["🏖","Siloso Beach","산책"],["🌿","Sensoryscape","조명"],["🍽","저녁","느긋하게"]],see:["해질 무렵 분위기"],family:["아이 지치면 카페/식사 비중 확대"]},
-{time:"19:40~",title:"Wings of Time",detail:"DAY3에서 이미 봤다면 생략하고 일찍 호텔 복귀.",route:[["🌅","Beach Station","이동"],["🎆","Wings of Time","선택"],["🏨","호텔","복귀"]],see:["야간 피날레"],family:["반복이면 과감히 생략"]}]},
-{day:6,icon:"🛫",title:"Goodbye",sub:"Little India · Kampong Glam · Jewel Changi",items:[
-{time:"09:30",title:"호텔 → Little India",transportOptions:[["🚇","MRT","Orchard → Little India 방면 이동","기본"],["🚕","Grab/택시","Tekka Centre 인근까지 바로 이동","아이/부모님 체력 우선"]],detail:"체크아웃과 짐 보관을 마친 뒤 Singapore Marriott Tang Plaza Hotel에서 Little India로 이동.",route:[["🏨","Marriott Tang Plaza","체크아웃·짐 보관"],["🚇","Orchard → Little India","MRT 또는 Grab"],["🛍","Tekka Centre","도착"]],see:["체크아웃 완료","호텔 짐 보관 확인","Little India 첫 집결점 Tekka Centre"],family:["출국일이라 짐은 호텔에 두고 가볍게 이동","아이·부모님 컨디션 따라 Grab 사용"]},
-{time:"10:00",title:"Little India",detail:"Tekka Centre · Tan Teng Niah · Sri Veeramakaliamman Temple.",route:[["🛍","Tekka Centre","시장"],["🏠","Tan Teng Niah","사진"],["🛕","Sri Veeramakaliamman","사원"]],see:["시장","색감","힌두 문화"],family:["출국일이라 짧고 굵게"]},
-{time:"11:15",title:"Kampong Glam · Bugis",detail:"Sultan Mosque · Haji Lane · Bugis.",route:[["🕌","Sultan Mosque","핵심"],["🎨","Haji Lane","골목"],["🛍","Bugis","점심/쇼핑"]],see:["모스크","벽화","골목"],food:["Zam Zam","Prawn Mee","디저트"]},
-{time:"14:00",title:"호텔 복귀 · 짐 수령",bookingIds:["transfer-departure"],transportOptions:[["🚐","사전예약 대형차","호텔에서 짐 수령 후 11명+짐을 한 번에 공항으로 이동","우선 검토"],["🚕","Grab/택시 분산","2~3대로 나눠 창이공항 이동","대안"]],detail:"공항으로 이동 준비.",route:[["🛍","Bugis","출발"],["🏨","호텔","짐 수령"],["🚐","공항 이동","대형차량"]],see:["짐 개수 최종 확인"],family:["11명+짐 이동"]},
-{time:"16:00",title:"Jewel Changi",detail:"Rain Vortex · 마지막 쇼핑 · 이른 저녁.",route:[["✈️","Changi","도착"],["💦","Rain Vortex","관람"],["🛍","Jewel","쇼핑"],["🍽","저녁","이른 식사"]],see:["Rain Vortex","마지막 쇼핑"],food:["Bak Kut Teh","Kaya Toast"]},
-{time:"19:00",title:"터미널 이동 · 체크인",bookingIds:["flight-ke644"],detail:"Jewel에서 너무 늦게 나오지 않도록 기준 시간으로 사용.",route:[["🛍","Jewel","종료"],["🛫","터미널","체크인"],["🚪","Gate","이동"]],see:["Boarding Time 먼저 확인"],family:["21:00 전 Gate 목표"]},
-{time:"22:00",title:"KE644 출발",bookingIds:["flight-ke644"],detail:"싱가포르 → 인천 귀국편.",route:[["🛫","SIN","22:00"],["✈️","KE644","귀국"]],see:["탑승권·Gate 안내 최우선"]}]}
+{time:"17:00",title:"Siloso Beach · 저녁",detail:"해질 무렵 센토사 분위기를 느긋하게 즐긴다.",route:[["🏖","Siloso Beach","산책"],["🌿","Sensoryscape","조명"],["🍽","저녁","느긋하게"]],see:["해질 무렵 분위기"],family:["아이 지치면 카페/식사 비중 확대"]}
+]},
+{day:6,icon:"🛫",title:"Goodbye",sub:"Little India · Kampong Glam · Jewel · KE644",items:[
+{time:"09:30~",title:"호텔 → Little India",transportOptions:[["🚇","MRT","Orchard → Little India 방면 이동","기본"],["🚕","Grab/택시","Tekka Centre 인근까지 바로 이동","아이/부모님 체력 우선"]],detail:"마지막 조식 후 일반 객실은 체크아웃하고 짐은 호텔에 맡긴 뒤 가볍게 출발.",route:[["🏨","호텔","체크아웃·짐 보관"],["🇮🇳","Little India","이동"]],see:["짐 보관 확인","가벼운 외출 준비"],family:["Platinum 객실 1개는 16:00 Late Checkout 활용 방향","오전 일정은 피로하면 축소"]},
+{time:"10:00~",title:"Little India",detail:"알록달록한 거리와 인도계 상점·사원을 짧고 가볍게 경험.",route:[["🛍","Tekka Centre","시장"],["🏠","Tan Teng Niah","사진"],["🛕","Sri Veeramakaliamman","사원"]],see:["시장","색감","힌두 문화"],family:["출국일이라 오래 머물지 않기"]},
+{time:"11:15~",title:"Kampong Glam · Bugis",detail:"Sultan Mosque · Arab Street · Haji Lane 일대를 둘러보고 마지막 싱가포르 점심.",route:[["🕌","Sultan Mosque","핵심"],["🎨","Haji Lane","골목"],["🍽","Bugis/Kampong Glam","점심"]],see:["모스크","거리 분위기","마지막 쇼핑"],family:["관광보다 여유 우선"],food:["이 주변에서 마지막 점심"]},
+{time:"14:00~16:00",title:"호텔 복귀 · 휴식 · 짐 정리",detail:"호텔로 돌아와 짐을 찾고, 가능하면 Platinum 객실을 16:00까지 마지막 휴식 거점으로 활용.",route:[["🏨","Marriott","복귀"],["🧳","짐 정리","캐리어 재정리"],["🚿","휴식","아이 씻기·옷 갈아입기"]],see:["비행기에서 쓸 물건 분리","캐리어 최종 정리"],family:["Late Checkout은 실제 적용 여부 확인","앞 일정이 힘들면 관광을 줄이고 호텔 휴식 확대"]},
+{time:"18:30 목표",title:"호텔 → Changi Airport",bookingIds:["transfer-departure"],transportOptions:[["🚐","호텔 Coach","확정되면 18:30 호텔 출발 기준. 11명+짐 한 번에 이동","요청/확인 필요"],["🚕","Grab/택시 분산","Coach 미확정 시 2~3대로 나눠 공항 이동","대안"]],detail:"KE644 22:00 출발을 기준으로 약 3시간 전 공항 도착 목표.",route:[["🏨","호텔","짐·인원 최종 확인"],["🚐","공항 이동","Coach 또는 차량"],["✈️","Changi Airport","도착"]],see:["11명 인원 체크","캐리어·유모차 개수 확인"],family:["관광보다 공항 이동이 최우선"]},
+{time:"19:15 전후",title:"Jewel Changi",detail:"수속 시간을 보면서 Rain Vortex와 마지막 쇼핑을 여유 있게. 시간이 부족하면 자연스럽게 축소.",route:[["💎","Jewel","Rain Vortex"],["🛍","쇼핑","선택"],["🍽","간단한 식사","선택"]],see:["Rain Vortex","마지막 쇼핑"],family:["고정 관광지보다 공항 여유시간 활용 개념"]},
+{time:"20:00~",title:"출국수속 · 탑승구 이동",bookingIds:["flight-ke644"],detail:"Jewel에서 너무 늦게 머물지 않고 체크인·출국심사·탑승구 이동.",route:[["🧳","체크인","수하물"],["🛂","출국심사","통과"],["🚪","Gate","이동"]],see:["Boarding Time","Gate"],family:["탑승구까지 이동시간 충분히 확보"]},
+{time:"22:00",title:"KE644 출발",bookingIds:["flight-ke644"],detail:"싱가포르 → 인천 귀국편.",route:[["🛫","SIN","22:00"],["✈️","KE644","귀국"]],see:["탑승권·Gate 안내 최우선"]}
+]}
 ];
+
+
+
+const DAY_DATES={1:"9/19",2:"9/20",3:"9/21",4:"9/22",5:"9/23",6:"9/24"};
+
+const DAY_GUIDES={
+1:{tagline:"도착하는 날 · 체크인과 휴식이 우선",intro:["오늘은 싱가포르에 도착하는 날입니다. 관광 일정을 넣기보다 11명이 안전하게 이동하고 호텔에 편하게 자리 잡는 것이 목표입니다.","창이공항 도착 후 입국심사와 수하물 수령을 마치고 가족이 다시 모인 뒤 호텔로 이동합니다. 아이들이 피곤할 수 있으므로 체크인 후에는 가벼운 정리만 하고 바로 쉽니다."],flow:["공항 이동 · 여행서류 확인","KE643 인천 → 싱가포르","19:15 Changi Airport 도착","공항 → Marriott 이동","Marriott 체크인 & 휴식"],principle:"첫날은 관광보다 이동 · 체크인 · 휴식이 우선",tools:[{id:"tickets",label:"✈️ 항공"},{id:"transport",label:"🚐 공항 이동"},{id:"hotel",label:"🏨 호텔",content:["Singapore Marriott Tang Plaza Hotel · 4객실 · 5박","객실을 가능한 가까이 배정 요청","Rollaway Bed 요청 등록 · 기타 요청은 availability 기준"]},{id:"map",label:"🗺️ 지도"},{id:"checkpoint",label:"📌 체크포인트",content:["여권 11명과 수하물 최종 확인","공항 도착 후 전원 재집결","아이들 잠자리부터 세팅","첫날 추가 관광 없음"]}]},
+2:{tagline:"Gardens by the Bay & Marina Bay",intro:["오늘은 싱가포르의 대표적인 정원인 Gardens by the Bay와 Marina Bay 일대를 둘러보는 날입니다.","오전에는 너무 서두르지 않고 호텔에서 조식을 먹고 출발합니다. Gardens by the Bay에서는 Flower Dome, Cloud Forest, Floral Fantasy 세 곳을 모두 둘러보되 주요 볼거리 위주로 약 3시간 정도 관람합니다.","Flower Dome에서는 다양한 꽃과 식물, Cloud Forest에서는 실내폭포와 Jurassic World 전시, Floral Fantasy에서는 Disney/Pixar Garden of Wonder 전시를 중심으로 봅니다.","오후에는 Marina Bay Sands와 주변을 구경하면서 Apple Marina Bay Sands에도 원하는 가족만 잠시 들릅니다. 관심 없는 가족은 MBS에서 쇼핑하거나 쉬었다가 다시 합류하면 됩니다.","이후 이른 저녁식사와 충분한 휴식을 갖고 Supertree Grove로 이동합니다. Mid-Autumn Festival 야간 분위기를 즐긴 뒤 19:45 Garden Rhapsody를 관람하고 쇼가 끝나면 추가 관광 없이 호텔로 바로 복귀합니다."],flow:["호텔 조식 & 여유롭게 출발","Gardens by the Bay 이동","🌺 Flower Dome · 40~50분","🌿 Cloud Forest + Jurassic World · 60~75분","🌸 Floral Fantasy + Disney · 40~50분","Marina Bay Sands 이동","🍎 Apple Marina Bay Sands · 30~40분 선택","이른 저녁식사 & 휴식","Supertree Grove · Mid-Autumn 야경","19:45 Garden Rhapsody","호텔 복귀"],principle:"3개 전시는 핵심 위주 · Apple은 선택 · 19:45 쇼 이후 바로 호텔",tools:[{id:"tickets",label:"🎫 티켓"},{id:"flower",label:"🌺 Flower Dome",content:["다양한 기후대의 꽃과 식물을 보는 대형 온실","예상 관람 40~50분","모든 구역을 오래 보기보다 가족이 흥미로운 전시 중심"]},{id:"cloud",label:"🌿 Cloud Forest",content:["실내폭포와 높은 실내 정원이 핵심","Jurassic World 전시를 함께 보는 구간","예상 관람 60~75분 · 세 전시 중 가장 여유 있게","실내 냉방 대비 얇은 겉옷"]},{id:"floral",label:"🌸 Floral Fantasy",content:["꽃과 설치물을 결합한 실내 전시","Disney/Pixar Garden of Wonder 중심","예상 관람 40~50분"]},{id:"apple",label:"🍎 Apple Store",content:["선택 방문지 · 약 30~40분","원하는 사람만 방문","나머지 가족은 MBS에서 휴식/쇼핑 후 재합류","Gardens 관람 후 MBS 오후 일정에 넣는 것이 자연스러움"],mapQuery:"Apple Marina Bay Sands, Singapore"},{id:"supertree",label:"🌳 Supertree",content:["19:45 Garden Rhapsody 목표","20:45 회차는 기본 일정에서 제외","Mid-Autumn 야경은 쇼 전 가볍게","쇼 종료 후 호텔 복귀"]},{id:"meal",label:"🍽️ 식사",content:["MBS/Marina Bay 주변에서 이른 저녁","11명이 앉기 편하고 아이 메뉴가 있는 곳 우선","야간쇼 전에 충분히 앉아서 휴식"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"kids",label:"💡 아이와 함께",content:["세 전시 모두 실내라 더운 시간 피하기 좋음","Cloud Forest 냉방 대비 얇은 겉옷","3세 아이가 피곤하면 MBS 실내 휴식 확대","야간쇼는 19:45 한 회차만 목표"]},{id:"checkpoint",label:"📌 오늘의 체크포인트",content:["3개 전시는 빠르게 관람","Cloud Forest/Jurassic은 상대적으로 여유 있게","Apple Store는 선택 일정","저녁식사 후 충분히 휴식","19:45 Supertree 쇼","쇼 이후 추가 관광 없이 호텔 복귀"]}]},
+3:{tagline:"Universal Studios Singapore",intro:["오늘은 센토사의 Universal Studios Singapore에서 하루를 보내는 날입니다.","전날 Gardens by the Bay와 Marina Bay 야간 일정이 있기 때문에 아침부터 너무 서두르지는 않습니다. 호텔에서 조식을 먹고 준비한 뒤 USS 개장시간에 맞춰 여유 있게 센토사로 이동합니다.","USS 입장까지는 11명이 함께 움직이는 것을 기본으로 하지만 안에서는 만 7세 아이, 만 3세 아이들, 성인들이 원하는 어트랙션이 다르므로 가족별로 잠시 나뉘었다가 다시 만나는 방식도 활용합니다.","점심에는 모두 다시 만나 식사하고 오전 컨디션을 확인합니다. 오후에는 못 탄 놀이기구와 쇼·캐릭터 중심으로 자유롭게 즐기며 현장 대기시간과 가족 체력을 보고 퇴장시간을 결정합니다.","USS를 충분히 즐겼다면 미련 없이 나옵니다. Oceanarium과 Luge는 DAY5 선택 일정으로 남기고 저녁은 Sentosa 또는 Orchard 중 상태에 따라 결정합니다. 별도의 야간 관광은 넣지 않습니다."],flow:["호텔 조식","Sentosa 이동","🎢 USS 입장 — 전원 함께","오전 인기 어트랙션","🍔 점심 & 휴식 — 다시 합류","오후 가족별 자유관람","컨디션에 따라 USS 퇴장","Sentosa 가벼운 구경 또는 바로 이동","Sentosa / Orchard 중 상황에 따라 저녁","호텔 복귀 & 휴식"],principle:"입장까지 함께 · 내부는 유연하게 · 퇴장시간은 체력과 대기시간을 보고 결정",tools:[{id:"tickets",label:"🎫 USS 티켓"},{id:"rides",label:"🎢 추천 어트랙션",content:["오전에는 인기 어트랙션부터 우선","오후에는 대기시간이 긴 곳을 억지로 기다리지 않기","쇼·캐릭터 콘텐츠를 중간 휴식처럼 활용"]},{id:"height",label:"👧 아이 키/탑승조건",content:["탑승 가능 여부는 나이보다 실제 키 기준이 중요","아이들 키를 알려주면 ‘모두 가능 / 7세 중심 / 성인 중심 / 아이 휴식 중 성인 추천’으로 분류 가능","현장 공식 키 제한 표기를 최종 기준으로 확인"]},{id:"familycourse",label:"👨‍👩‍👧‍👦 가족별 추천코스",content:["전원 함께: 입장·점심·주요 합류시간","3세 아이팀: 캐릭터·쇼·실내 휴식 중심","7세 아이팀: 키 조건에 맞는 어트랙션 중심","성인팀: 아이 휴식시간에 스릴 어트랙션"]},{id:"meal",label:"🍔 식사",content:["점심에는 전원 다시 합류","좌석 확보와 아이 메뉴 우선","오전에 많이 움직였으면 식사 후 충분히 앉아 있기"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"wait",label:"⏱️ 대기시간",content:["오전 시간을 인기 어트랙션에 활용","오후 대기시간이 길면 다음 후보로 전환","공식 앱/현장 표기의 실시간 대기시간을 기준으로 판단"]},{id:"checkpoint",label:"💡 오늘의 체크포인트",content:["아침부터 무리하지 않기","USS 입장까지는 전원 함께","하루 종일 같은 놀이기구를 탈 필요 없음","점심에 다시 합류","Oceanarium/Luge는 DAY5로 남겨두기","퇴장 후 야간 관광 추가하지 않기"]}]},
+4:{tagline:"Old Singapore & City Tour",intro:["오늘은 놀이공원이나 대형 관광지보다 싱가포르의 오래된 도심을 천천히 따라가 보는 날입니다.","Fort Canning에서 시작해 National Museum, CHIJMES, Raffles Hotel을 지나 Chinatown까지 이동하고 저녁에는 Singapore River와 Clarke Quay로 이어집니다.","장소는 많지만 각각 오래 머무르기보다 걷고 보고 쉬면서 도시 분위기를 경험합니다. 박물관은 관람과 동시에 에어컨이 있는 휴식구간으로 활용합니다.","오후 Chinatown에서는 필요하면 가족별 쇼핑이나 카페 자유시간을 가질 수 있습니다. River Cruise는 그날 실제 진행속도와 체력을 보고 결정합니다.","DAY4에서 반드시 맞춰야 하는 시간은 19:00 JUMBO Seafood 예약입니다. 앞 일정이 늦어지면 관광이나 River Cruise 시간을 줄이더라도 JUMBO에는 여유 있게 도착합니다."],flow:["호텔 조식","🌳 Fort Canning — 가벼운 오전 산책","🏛️ National Museum — 관람 & 휴식","⛪ CHIJMES","🏨 Raffles Hotel","🍽️ 점심 & 휴식","🏮 Chinatown — 관광/자유시간","🚤 Singapore River Cruise — 시간 되면","🦀 19:00 JUMBO Seafood — 예약 확정","Clarke Quay / 강변 가벼운 산책","호텔 복귀"],principle:"앞 일정은 유동적 / JUMBO 19:00은 고정",tools:[{id:"fort",label:"🌳 Fort Canning",content:["Tree Tunnel 등 주요 포인트만 가볍게","공원 전체를 길게 걷지 않기","뒤 일정이 많으므로 오전 체력 보존"]},{id:"museum",label:"🏛️ 박물관",content:["National Museum of Singapore","싱가포르가 지금의 도시가 된 과정을 주요 전시 위주로 관람","모든 전시를 보려 하지 않고 실내 휴식시간으로도 활용"]},{id:"chinatown",label:"🏮 Chinatown",content:["거리·상점·사원을 자유롭게 구경","필요하면 가족별 자유시간","모든 장소를 다 보는 것이 목표가 아님"]},{id:"river",label:"🚤 River Cruise",content:["시간과 체력이 괜찮을 때 이용","현장 진행속도를 보고 결정","JUMBO 19:00 도착이 우선"]},{id:"jumbo",label:"🦀 JUMBO 예약",content:["JUMBO Seafood – Riverside Point","9/22 19:00 · 11명 예약 확정","Reservation ID 6V5D9N","앞 일정이 늦으면 다른 관광시간을 줄이고 예약시간 우선"]},{id:"meal",label:"🍽️ 식사",content:["점심은 이동 흐름에서 충분히 쉬는 방식","저녁은 JUMBO 예약 확정","식사 후 별도 관광지를 추가하지 않기"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"kids",label:"💡 아이와 함께",content:["걷는 양이 많은 날이라 짧은 Grab 활용 가능","National Museum을 실내 휴식구간으로 활용","Chinatown에서는 카페/자유시간 허용","저녁 이후 피곤하면 강변 산책 생략"]}]},
+5:{tagline:"Sentosa, 여유롭게 즐기는 날",intro:["오늘은 여행 후반부인 만큼 일정을 빡빡하게 잡지 않고 여유롭게 보내는 날입니다.","DAY3에 USS를 중심으로 Sentosa를 즐겼다면 오늘은 Singapore Oceanarium을 기본 메인 일정으로 천천히 둘러보고 오후에는 가족 컨디션과 날씨에 따라 Luge나 해변·카페 중 원하는 방식으로 선택합니다.","Oceanarium 관람 후 근처에서 점심을 먹고 충분히 쉽니다. 오후 일정은 점심자리에서 결정해도 됩니다. 가족들 의견이 다르면 Luge팀과 해변·휴식팀으로 잠시 나뉘었다가 다시 합류할 수 있습니다.","여행 마지막 밤이므로 별도의 야간 관광을 억지로 추가하기보다 상황에 따라 Sentosa 또는 Orchard에서 저녁을 먹고 호텔로 여유 있게 돌아와 귀국 짐을 정리합니다."],flow:["호텔 조식 & 여유로운 출발","🏝️ Sentosa 이동","🐠 Singapore Oceanarium","🍽️ 점심 & 충분한 휴식","🛷 Luge 또는 🏖️ 해변/휴식","Sentosa 또는 Orchard에서 저녁","호텔 복귀 / 귀국 준비"],principle:"미리 꽉 채우지 않고 DAY3까지 여행해본 뒤 최종 결정",alternative:{title:"🦁 Alternative Plan · Mandai",text:"DAY3까지 여행한 뒤 ‘센토사는 충분하다’는 의견이 많으면 DAY5 전체를 Singapore Zoo / Mandai 일정으로 변경할 수 있습니다. 이동거리와 걷는 양이 많기 때문에 가족 체력과 날씨를 보고 최종 결정합니다."},tools:[{id:"oceanarium",label:"🐠 Oceanarium",content:["DAY5 기본 메인 일정","대형 수조와 해양생물을 보는 실내 관광지","아이들과 부모님이 함께 보기 좋고 더운 낮 시간을 피하기 좋음","다른 일정이 많지 않아 아이들이 좋아하는 곳은 충분히 머물기"]},{id:"luge",label:"🛷 Luge",content:["날씨와 체력이 좋을 때 선택","전원이 반드시 탈 필요 없음","Luge팀 / 휴식팀으로 잠시 나눠 움직인 뒤 재합류"]},{id:"beach",label:"🏖️ 해변/휴식",content:["쉬고 싶다면 해변이나 카페로 이동","활동보다 여행 후반 체력 회복이 우선","날씨가 좋지 않으면 실내 비중 확대"]},{id:"meal",label:"🍽️ 식사",content:["Oceanarium 후 근처에서 점심 & 충분한 휴식","저녁은 Sentosa 또는 Orchard 중 상태에 따라 결정"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"alternative",label:"🦁 Mandai 대안"},{id:"kids",label:"💡 아이와 함께",content:["Oceanarium은 아이·부모님 모두 부담이 적은 실내 일정","오후에는 가족별 선택 가능","마지막 밤이므로 피곤하면 일찍 호텔 복귀"]},{id:"checkpoint",label:"📌 오늘의 체크포인트",content:["Oceanarium이 기본 메인","오후는 현장에서 결정","모든 일정을 다 할 필요 없음","Sentosa가 충분하면 Mandai 대안 검토","야간 관광보다 호텔 복귀와 귀국 준비 우선"]}]},
+6:{tagline:"로컬 싱가포르 & 귀국하는 날",intro:["오늘은 싱가포르에서의 마지막 날입니다. 오전에는 Little India와 Kampong Glam을 가볍게 둘러보고 오후에는 호텔로 돌아와 충분히 쉬면서 출국 준비를 합니다.","일반 객실 3개는 체크아웃하고 짐을 호텔에 맡겨두며 Platinum 혜택이 적용되는 우리 가족 객실 1개는 가능하면 16:00 Late Checkout을 마지막 휴식 거점으로 활용하는 방향입니다.","Little India와 Kampong Glam에서는 관광지를 하나하나 오래 보기보다 거리 분위기와 다문화적인 모습을 즐기고 마지막 점심을 먹은 뒤 호텔로 돌아옵니다.","호텔 Coach가 확정되면 18:30 출발을 기준으로 11명과 캐리어가 한 번에 창이공항으로 이동합니다. Coach가 확정되지 않으면 차량을 나눠 이동합니다.","공항에서는 수속시간을 우선으로 보면서 여유가 있을 때 Jewel Changi와 Rain Vortex를 둘러봅니다. Jewel은 고정 관광지라기보다 공항에 일찍 도착했을 때 즐기는 마지막 코스입니다.","대한항공 KE644는 22:00 출발입니다. DAY6의 핵심은 관광보다 귀국이 우선이며 오전 일정은 얼마든지 줄일 수 있습니다."],flow:["호텔 조식 / 체크아웃 준비","🇮🇳 Little India","🕌 Kampong Glam · Sultan Mosque · Haji Lane","🍽️ 마지막 점심","호텔 복귀 / 휴식 / 짐 정리","🕓 Platinum 객실 16:00 Late Checkout 활용 방향","🚐 18:30 호텔 출발 목표","✈️ Changi Airport","💎 Jewel / Rain Vortex","🧳 출국수속","✈️ 22:00 KE644 인천행"],principle:"관광보다 귀국이 우선 · 오전 일정은 얼마든지 줄일 수 있음",tools:[{id:"littleindia",label:"🇮🇳 Little India",content:["알록달록한 거리와 인도계 상점·사원","출국일이라 길게 보기보다 분위기와 사진 중심","피곤하면 과감히 축소"]},{id:"kampong",label:"🕌 Kampong Glam",content:["Sultan Mosque · Arab Street · Haji Lane","거리 분위기·쇼핑·사진 위주","이 주변에서 마지막 싱가포르 점심"]},{id:"latecheckout",label:"🕓 Late Checkout",content:["일반 객실 3개는 체크아웃 후 짐 보관","Platinum 혜택 객실 1개는 16:00까지 활용하는 방향","실제 적용 여부는 호텔에서 최종 확인","아이 씻기·옷 갈아입기·캐리어 재정리의 마지막 거점"]},{id:"coach",label:"🚐 공항 이동",content:["호텔 Coach가 확정되면 18:30 호텔 출발 기준","11명과 캐리어를 한 번에 이동하는 것이 목표","Coach 미확정 시 Grab/택시 분산","KE644 22:00 출발 · 약 3시간 전 공항 도착 목표"]},{id:"jewel",label:"💎 Jewel",content:["Rain Vortex 중심으로 가볍게","시간이 충분하면 쇼핑·간단한 식사","출국수속이 필요하면 Jewel 관광시간을 줄임"]},{id:"tickets",label:"✈️ KE644"},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"checkpoint",label:"📌 오늘의 체크포인트",content:["오전 관광은 축소 가능","오후 호텔 휴식 충분히 확보","Late Checkout 실제 적용 여부 확인","Coach 확정 여부 확인","공항에서는 Jewel보다 체크인·출국심사가 우선","22:00 KE644 탑승"]}]}
+};
 
 
 // =========================================================
@@ -1819,7 +1837,7 @@ function itemBrief(x){
 
 function render(){
  const d=current();
- daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}</button>`).join("");
+ daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}<span class="daydate">${DAY_DATES[x.day]||""}</span></button>`).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div><div class="heroday">DAY ${d.day}</div><div class="herotitle">${esc(d.title)}</div><div class="herosub">${esc(d.sub)}</div>`;
  timeline.innerHTML=d.items.map((x,i)=>{
    const [ko,brief]=itemBrief(x);
@@ -1914,7 +1932,7 @@ function closeDeep(){
 }
 
 
-// v19.11 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.12 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -1943,7 +1961,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1911";
+const REP_DB_NAME="sg_trip_rep_images_v1912";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2091,7 +2109,7 @@ function itemImageMeta(sel){
   if(title==="Changi Airport 도착") return PLACE_IMAGE_LIBRARY.changi;
   if(title==="Changi Airport → Marriott") return PLACE_IMAGE_LIBRARY.changiTransfer;
   if(title==="Marriott Tang Plaza 체크인") return PLACE_IMAGE_LIBRARY.marriott;
-  if(title==="호텔 → Merlion Park") return PLACE_IMAGE_LIBRARY.merlion;
+  if(title==="호텔 → Gardens by the Bay") return PLACE_IMAGE_LIBRARY.gardens;
   if(title==="Marina Bay 산책") return PLACE_IMAGE_LIBRARY.marina;
   if(title==="Marina Bay Sands") return PLACE_IMAGE_LIBRARY.mbs;
   if(title==="Gardens by the Bay") return PLACE_IMAGE_LIBRARY.gardens;
@@ -2286,33 +2304,48 @@ function detailListHtml(title,items=[]){
   if(!items.length)return "";
   return `<div class="detail-box"><b>${title}</b><ul>${items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
 }
+function guideToolContent(dayNum,tool){
+  const d=DAYS.find(x=>x.day===dayNum),g=DAY_GUIDES[dayNum]||{};
+  if(tool.id==="tickets"){
+    const arr=d.items.filter(x=>x.bookingIds?.length);
+    return arr.length?arr.map(x=>`<div class="deepsec"><h4>${esc(x.title)}</h4>${reservationInfoHtml(x)||'<div class="guide-tool-note">예약정보 확인 필요</div>'}</div>`).join(""):`<div class="guide-tool-note">연결된 예약정보가 없습니다.</div>`;
+  }
+  if(tool.id==="transport"){
+    const arr=d.items.filter(x=>x.transportOptions?.length);
+    return arr.length?arr.map(x=>`<div class="deepsec"><h4>${esc(x.title)}</h4>${transportInfoHtml(x)}</div>`).join(""):`<div class="guide-tool-note">세부 이동정보는 각 일정 팝업에서 확인합니다.</div>`;
+  }
+  if(tool.id==="map"){
+    return `<div class="guide-tool-note"><b>오늘 전체 흐름</b><br>${esc(d.items.map(x=>x.title).join(" → "))}</div><div class="guide-maplinks" style="margin-top:9px">${d.items.map(x=>`<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.title+" Singapore")}">📍 ${esc(x.title)}</a>`).join("")}</div>`;
+  }
+  if(tool.id==="alternative"&&g.alternative)return `<div class="guide-tool-note"><b>${esc(g.alternative.title)}</b><br>${esc(g.alternative.text)}</div>`;
+  const arr=tool.content||[];
+  const map=tool.mapQuery?`<div class="guide-maplinks" style="margin-top:9px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tool.mapQuery)}">📍 지도에서 열기</a></div>`:"";
+  return `<div class="guide-tool-list">${arr.map(x=>`<div class="guide-tool-note">${esc(x)}</div>`).join("")}</div>${map}`;
+}
+function openGuideTool(dayNum,toolId){
+  const g=DAY_GUIDES[dayNum],tool=(g?.tools||[]).find(x=>x.id===toolId); if(!tool)return;
+  document.getElementById("deepEyebrow").textContent=`DAY ${dayNum} · ${DAY_DATES[dayNum]||""} · 추가정보`;
+  document.getElementById("deepTitle").textContent=tool.label;
+  document.getElementById("deepBody").innerHTML=guideToolContent(dayNum,tool);
+  document.getElementById("deepBackdrop").classList.add("open");
+  document.getElementById("deepModal").classList.add("open");
+  document.body.classList.add("deepopen");
+}
+function guideFlowHtml(flow=[]){
+  return `<div class="guideflow-list">${flow.map((x,i)=>`<div class="guideflow-row"><div><div class="guideflow-dot">${i+1}</div>${i<flow.length-1?'<div class="guideflow-line"></div>':''}</div><div class="guideflow-text">${esc(x)}</div></div>`).join("")}</div>`;
+}
 function renderDetail(){
-  const d=current();
-  detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day} · 공통 일정 데이터</div><h2>${d.icon} ${esc(d.title)}</h2><p>${esc(d.sub)}</p>
-    <div class="tripfacts" style="margin-top:10px">
-      <div class="tripfact"><b>✈️ 항공</b>${TRIP_META.flights.outbound.no} 도착 19:15 · ${TRIP_META.flights.return.no} 9/24 22:00 출발</div>
-      <div class="tripfact"><b>🏨 숙소</b>${TRIP_META.hotel.name} · 4객실 · 5박<br><span style="font-size:10px;color:var(--muted)">예약번호 ${TRIP_META.hotel.reservationNumbers.join(" · ")}</span></div>
-      <div class="tripfact"><b>🦀 확정 예약</b>JUMBO 9/22 19:00 · 11명 · ${TRIP_META.dining.jumbo.reservationId}</div>
-      <div class="tripfact"><b>👨‍👩‍👧‍👦 운영 기준</b>11명 · 3세 2명 · 7세 1명 · 부모님/아이 체력 우선</div>
-    </div>`;
-  detailList.innerHTML=d.items.map((x,i)=>`
-    <article class="detail-card">
-      <div class="detail-card-head">
-        <div class="detail-no">${i+1}</div>
-        <div class="detail-time">${esc(x.time)}</div>
-        <div class="detail-title">${esc(x.title)}</div>
-      </div>
-      ${x.detail?`<div class="detail-desc">${esc(x.detail)}</div>`:""}
-      ${detailRouteHtml(x.route||[])}
-      <div class="detail-cols">
-        ${detailListHtml("👀 여기서 할 것",x.see||[])}
-        ${detailListHtml("👨‍👩‍👧 가족 체크",x.family||[])}
-        ${detailListHtml("🍽 식사",x.food||[])}
-      </div>
-      ${transportInfoHtml(x)}
-      ${reservationInfoHtml(x)}
-    </article>`).join("");
-  renderDetailMap();
+  const d=current(),g=DAY_GUIDES[d.day]||{intro:[d.sub],flow:d.items.map(x=>`${x.time} · ${x.title}`),tools:[]};
+  detailHero.innerHTML=`<div class="eyebrow">DAY ${d.day}</div><h2>${d.icon} ${esc(d.title)}</h2><div class="guide-date">${DAY_DATES[d.day]||""} · 2026</div><p style="margin-top:8px">${esc(g.tagline||d.sub)}</p>`;
+  detailList.innerHTML=`<div class="dayguide">
+    <section class="guideintro"><h3>오늘은 이렇게 여행합니다</h3>${(g.intro||[]).map(x=>`<p>${esc(x)}</p>`).join("")}</section>
+    ${g.principle?`<section class="guideprinciple">📌 ${esc(g.principle)}</section>`:""}
+    <section class="guideflow"><h3>오늘의 예상 흐름</h3>${guideFlowHtml(g.flow||[])}</section>
+    ${g.alternative?`<section class="guidealternative"><b>${esc(g.alternative.title)}</b><span>${esc(g.alternative.text)}</span></section>`:""}
+    <section class="guidetools"><h3>필요할 때 열어보는 추가정보</h3><div class="guidechips">${(g.tools||[]).map(t=>`<button class="guidechip" type="button" data-guide-tool="${esc(t.id)}">${t.label}</button>`).join("")}</div></section>
+  </div>`;
+  detailList.querySelectorAll("[data-guide-tool]").forEach(btn=>btn.onclick=()=>openGuideTool(d.day,btn.dataset.guideTool));
+  detailMapWrap.innerHTML="";
 }
 
 let detailMap=null;
@@ -2512,7 +2545,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_11";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_12";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
