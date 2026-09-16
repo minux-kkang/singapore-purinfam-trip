@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.16</title>
+<title>Singapore Family Trip 2026 · v19.17</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -448,6 +448,15 @@ body.open .sheet{touch-action:pan-y}
 .bookingrow .value{color:#263c49;word-break:break-word}
 .bookingnums{display:flex;flex-wrap:wrap;gap:5px}
 .bookingnum{display:inline-block;background:#f4f7f8;border:1px solid #e4eaed;border-radius:8px;padding:5px 7px;font-size:10px;font-weight:900}
+.bookingnumwrap{display:inline-flex;align-items:center;gap:4px;background:#f4f7f8;border:1px solid #e4eaed;border-radius:9px;padding:3px 4px 3px 7px}
+.bookingnumwrap .bookingnum{background:transparent;border:0;padding:0}
+.copybtn,.voucherbtn{border:1px solid #d8e3e7;background:#fff;color:#355361;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:950;cursor:pointer}
+.voucherbtn.ready{background:#e6f6ef;border-color:#c6eadc;color:#096657}
+.itembadge{display:inline-flex;align-items:center;margin-left:6px;padding:3px 6px;border-radius:999px;background:#e6f6ef;color:#096657;font-size:8.5px;font-weight:950;vertical-align:2px;white-space:nowrap}
+.resactions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.resnumline{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.resnumcopy{border:0;background:#eef4f6;color:#355361;border-radius:7px;padding:4px 6px;font-size:9px;font-weight:950;cursor:pointer}
+
 .qrslot{margin-top:9px;border:1px dashed #cbd6db;border-radius:12px;padding:11px;background:#fafcfd;display:flex;gap:10px;align-items:center}
 .qrplaceholder{width:54px;height:54px;border:1px solid #dfe6e9;border-radius:10px;background:
 linear-gradient(45deg,#eef2f4 25%,transparent 25%) 0 0/12px 12px,
@@ -528,7 +537,7 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 body.deepopen{overflow:hidden!important}
 
 
-/* v19.16 · magnetic pull-down tool drawer */
+/* v19.17 · magnetic pull-down tool drawer */
 .toolmagnet{
   position:sticky;top:var(--app-header-h);z-index:88;
   margin:0 0 8px;
@@ -649,7 +658,7 @@ body.deepopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.16 · offline-first controls */
+/* v19.17 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -662,7 +671,7 @@ body.deepopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.16 · explicit online/offline mode */
+/* v19.17 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -697,7 +706,7 @@ body.deepopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.16</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.17</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -751,7 +760,7 @@ body.deepopen{overflow:hidden!important}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.16 · 컴팩트 상단 · 지도 스크롤 여백 · 당겨쓰는 도구서랍</div>
+  <div class="footer">v19.17 · Gardens/USS 예약완료 · 예약번호 복사 · 바우처 체크</div>
 </main>
 
 
@@ -812,7 +821,7 @@ body.deepopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.16 · 컴팩트 상단 · 지도 스크롤 여백 · 당겨쓰는 도구서랍</div>
+  <div class="footer">v19.17 · Gardens/USS 예약완료 · 예약번호 복사 · 바우처 체크</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1041,12 +1050,21 @@ const BOOKINGS=[
   date:"2026-09-24",people:"11명 + 캐리어 + 유모차",
   numbers:[],detail:"업체 / 차량 / 기사 / 픽업 시간 / 예약번호",qr:"",note:"아직 미확정 · 예약 후 실제 정보 입력"},
 
- {id:"ticket-uss",group:"입장권",type:"TICKET",icon:"🎢",title:"Universal Studios Singapore",status:"pending",
-  date:"2026-09-21 · DAY 3",people:"11명",
-  numbers:[],detail:"티켓 종류 / 주문번호 / QR / 입장조건",qr:"",note:"현재 중요 TODO · 미예약"},
- {id:"ticket-gbtb",group:"입장권",type:"TICKET",icon:"🌿",title:"Gardens by the Bay",status:"pending",
-  date:"2026-09-20 · DAY 2",people:"11명",
-  numbers:[],detail:"Cloud Forest / Flower Dome 티켓 여부 · 주문번호 / QR",qr:"",note:"구매 여부 확정 후 입력"},
+ {id:"ticket-uss",group:"입장권",type:"TICKET",icon:"🎢",title:"Universal Studios Singapore",status:"confirmed",
+  provider:"마이리얼트립",date:"2026-09-21 · DAY 3",people:"수량 상세 확인 예정",payment:"결제 완료",
+  numbers:["EXP-20260915-00018715","EXP-20260915-00019004"],
+  detail:"예약 2건으로 나뉘어 있음 · 현재 전달된 예약 문자만으로는 각 예약번호별 정확한 티켓 수량 및 입장권/익스프레스 구성은 확정 표시하지 않음",
+  voucher:"마이리얼트립 [내 여행 → 예약 상세 보기]에서 e-티켓 확인",qr:"",
+  usage:"출발 전 바우처 화면 캡처 또는 출력 · 현지 인터넷 문제 대비 오프라인 저장 권장",
+  note:"상품 페이지: Universal Studios Singapore (1일권/익스프레스패스/VIP투어/콤보). 상세/바우처 확인 후 구성 업데이트 예정"},
+ {id:"ticket-gbtb",group:"입장권",type:"TICKET",icon:"🌿",title:"Gardens by the Bay",status:"confirmed",
+  provider:"마이리얼트립",date:"2026-09-20 · DAY 2",people:"11명",payment:"결제 완료",
+  numbers:["EXP-20260916-00018976"],
+  countNote:"대표 예약번호 포함 총 11건",
+  detail:"싱가포르 가든스 바이 더 베이 입장권",
+  voucher:"바우처 확인 필요",qr:"",
+  usage:"이용 전 바우처/QR 화면을 미리 열어두고 오프라인 저장 권장",
+  note:"예약 완료 · 이용일 2026-09-20"},
  {id:"ticket-oceanarium",group:"입장권",type:"TICKET",icon:"🐠",title:"Singapore Oceanarium",status:"optional",
   date:"DAY 3 또는 DAY 5",people:"11명",
   numbers:[],detail:"DAY5 최종 결정 후 필요 시 구매 · 주문번호 / QR",qr:"",note:"후보 / 미예약"},
@@ -1066,6 +1084,24 @@ const BOOKINGS=[
 ];
 
 
+
+const VOUCHER_READY_KEY="sg_trip_voucher_ready_v19_17";
+function loadVoucherReady(){try{return JSON.parse(localStorage.getItem(VOUCHER_READY_KEY)||"{}")||{}}catch(e){return {}}}
+function voucherReady(id){return !!loadVoucherReady()[id]}
+function toggleVoucherReady(id){
+  const map=loadVoucherReady();map[id]=!map[id];localStorage.setItem(VOUCHER_READY_KEY,JSON.stringify(map));
+  renderBookings();
+  if(document.querySelector('.modal.open')){
+    const item=current()?.items?.[selected];
+    if(item) document.querySelectorAll('.resbox').forEach(()=>{});
+  }
+}
+async function copyBookingNumber(text,btn){
+  try{await navigator.clipboard.writeText(text);if(btn){const old=btn.textContent;btn.textContent='복사됨';setTimeout(()=>btn.textContent=old,1200)}}
+  catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();if(btn)btn.textContent='복사됨';}
+}
+function bookingConfirmedForItem(item){return bookingForItem(item).some(b=>b.status==='confirmed')}
+
 function bookingForItem(item){
   const ids=Array.isArray(item?.bookingIds)?item.bookingIds:[];
   return ids.map(id=>BOOKINGS.find(x=>x.id===id)).filter(Boolean);
@@ -1082,48 +1118,60 @@ function transportInfoHtml(item){
 function reservationInfoHtml(item){
   const list=bookingForItem(item);
   if(!list.length)return "";
-  return list.map(b=>`
-    <div class="resbox">
+  return list.map(b=>{
+    const ready=voucherReady(b.id);
+    return `<div class="resbox">
       <h4>🎫 예약 정보 · ${b.title}</h4>
       <div class="resrow"><span class="rlabel">상태</span><span>${bookingStatusLabel(b.status)}</span></div>
-      ${b.date?`<div class="resrow"><span class="rlabel">일정</span><span>${b.date}</span></div>`:""}
-      <div class="resrow"><span class="rlabel">예약번호</span><span>${b.numbers?.length?`<span class="resnums">${b.numbers.map(n=>`<span class="resnum">${n}</span>`).join("")}</span>`:`<span class="respending">미등록</span>`}</span></div>
-      ${b.detail?`<div class="resrow"><span class="rlabel">상세</span><span>${b.detail}</span></div>`:""}
-      <div class="resrow"><span class="rlabel">QR/바우처</span><span>${b.qr?"등록됨":"미등록"}</span></div>
-    </div>`).join("");
+      ${b.provider?`<div class="resrow"><span class="rlabel">예약처</span><span>${b.provider}</span></div>`:""}
+      ${b.date?`<div class="resrow"><span class="rlabel">이용일</span><span>${b.date}</span></div>`:""}
+      ${b.people?`<div class="resrow"><span class="rlabel">인원</span><span>${b.people}</span></div>`:""}
+      ${b.payment?`<div class="resrow"><span class="rlabel">결제상태</span><span>${b.payment}</span></div>`:""}
+      <div class="resrow"><span class="rlabel">예약번호</span><span>${b.numbers?.length?`<span class="resnums">${b.numbers.map(n=>`<span class="resnumline"><span class="resnum">${n}</span><button class="resnumcopy" type="button" onclick="copyBookingNumber('${n}',this)">복사</button></span>`).join("")}</span>`:`<span class="respending">미등록</span>`}</span></div>
+      ${b.countNote?`<div class="resrow"><span class="rlabel">건수</span><span>${b.countNote}</span></div>`:""}
+      ${b.detail?`<div class="resrow"><span class="rlabel">상품/상세</span><span>${b.detail}</span></div>`:""}
+      ${b.voucher?`<div class="resrow"><span class="rlabel">바우처</span><span>${b.voucher}</span></div>`:""}
+      ${b.usage?`<div class="resrow"><span class="rlabel">현장주의</span><span>${b.usage}</span></div>`:""}
+      <div class="resactions"><button type="button" class="voucherbtn ${ready?'ready':''}" onclick="toggleVoucherReady('${b.id}');this.classList.toggle('ready');this.textContent=this.classList.contains('ready')?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'">${ready?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'}</button></div>
+    </div>`;
+  }).join("");
 }
 
-function bookingStatusLabel(s){return {confirmed:"확정",pending:"미예약",optional:"후보"}[s]||s}
+function bookingStatusLabel(s){return {confirmed:"예약완료",pending:"미예약",optional:"후보"}[s]||s}
 function renderBookings(){
   const root=document.getElementById("bookingContent");if(!root)return;
   const groups=[...new Set(BOOKINGS.map(x=>x.group))];
   root.innerHTML=groups.map(g=>`
     <div class="bookingsectiontitle">${g}</div>
     <div class="bookinggrid">
-      ${BOOKINGS.filter(x=>x.group===g).map(x=>`
-        <article class="bookingcard">
+      ${BOOKINGS.filter(x=>x.group===g).map(x=>{
+        const ready=voucherReady(x.id);
+        return `<article class="bookingcard">
           <div class="bookinghead">
             <div><div class="bookingtype">${x.type}</div><div class="bookingtitle">${x.icon} ${x.title}</div></div>
             <span class="bookingstatus ${x.status}">${bookingStatusLabel(x.status)}</span>
           </div>
           <div class="bookingrows">
-            <div class="bookingrow"><span class="label">일정</span><span class="value">${x.date||"—"}</span></div>
+            <div class="bookingrow"><span class="label">이용일</span><span class="value">${x.date||"—"}</span></div>
+            ${x.provider?`<div class="bookingrow"><span class="label">예약처</span><span class="value">${x.provider}</span></div>`:""}
             <div class="bookingrow"><span class="label">인원</span><span class="value">${x.people||"—"}</span></div>
-            <div class="bookingrow"><span class="label">예약번호</span><span class="value">${x.numbers?.length?`<span class="bookingnums">${x.numbers.map(n=>`<span class="bookingnum">${n}</span>`).join("")}</span>`:"—"}</span></div>
+            ${x.payment?`<div class="bookingrow"><span class="label">결제상태</span><span class="value">${x.payment}</span></div>`:""}
+            <div class="bookingrow"><span class="label">예약번호</span><span class="value">${x.numbers?.length?`<span class="bookingnums">${x.numbers.map(n=>`<span class="bookingnumwrap"><span class="bookingnum">${n}</span><button class="copybtn" type="button" onclick="copyBookingNumber('${n}',this)">복사</button></span>`).join("")}</span>`:"—"}</span></div>
+            ${x.countNote?`<div class="bookingrow"><span class="label">건수</span><span class="value">${x.countNote}</span></div>`:""}
             <div class="bookingrow"><span class="label">상세</span><span class="value">${x.detail||"—"}</span></div>
+            ${x.usage?`<div class="bookingrow"><span class="label">현장 주의</span><span class="value">${x.usage}</span></div>`:""}
           </div>
-          <div class="qrslot">
-            <div class="qrplaceholder" aria-hidden="true"></div>
-            <div class="qrmeta"><b>QR / 바우처</b><br>${x.qr?"등록됨":"미등록 · 추후 실제 QR/바우처 삽입 예정"}</div>
-          </div>
+          <div class="resactions"><button type="button" class="voucherbtn ${ready?'ready':''}" onclick="toggleVoucherReady('${x.id}')">${ready?'✓ 바우처 저장 완료':'바우처 확인/저장 체크'}</button></div>
           ${x.note?`<div class="bookingnote">${x.note}</div>`:""}
-        </article>`).join("")}
+        </article>`;
+      }).join("")}
     </div>`).join("");
 }
 
 // ---------- Prep ----------
 const PREP_ITEMS=[
- ["예약/티켓","USS 티켓 예약","unbooked"],
+ ["예약/티켓","USS 티켓 예약 완료 · 바우처 저장 확인","done"],
+ ["예약/티켓","Gardens by the Bay 티켓 예약 완료 · 바우처 저장 확인","done"],
  ["예약/티켓","DAY5 일정 최종 판단","plan"],
  ["예약/티켓","필요 시 Singapore Oceanarium 티켓","unbooked"],
  ["예약/티켓","필요 시 Luge / Sentosa 액티비티","candidate"],
@@ -1997,7 +2045,8 @@ function render(){
  timeline.innerHTML=d.items.map((x,i)=>{
    const [ko,brief]=itemBrief(x);
    const sub=(ko||brief)?`<div class="itemsub">${ko?`<b>${esc(ko)}</b>`:""}${ko&&brief?" · ":""}${brief?esc(brief):""}</div>`:"";
-   return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${esc(x.title)}</div>${sub}</div><div class="arrow">›</div></article>`;
+   const booked=bookingConfirmedForItem(x)?`<span class="itembadge">예약완료</span>`:"";
+   return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${esc(x.title)}${booked}</div>${sub}</div><div class="arrow">›</div></article>`;
  }).join("");
  renderUnifiedGuide();
  document.getElementById("heroGuideToggle")?.addEventListener("click",()=>toggleUnifiedGuide());
@@ -2089,7 +2138,7 @@ function closeDeep(){
 }
 
 
-// v19.16 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.17 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2118,7 +2167,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1916";
+const REP_DB_NAME="sg_trip_rep_images_v1917";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2724,7 +2773,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_16";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_17";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -2963,4 +3012,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-</html>
+  </html>
