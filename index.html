@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.17</title>
+<title>Singapore Family Trip 2026 · v19.18</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -242,17 +242,17 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .guide-date{display:inline-flex;margin-top:7px;border-radius:999px;background:var(--mint);color:var(--mintInk);padding:5px 8px;font-size:10px;font-weight:950}
 .guide-tool-list{display:grid;gap:7px}.guide-tool-note{background:#f7f9fa;border:1px solid #e7edef;border-radius:12px;padding:10px 11px;font-size:12px;line-height:1.5;color:#435a68}
 .guide-maplinks{display:grid;gap:7px}.guide-maplinks a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid #dde7eb;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900}
-.hero{transition:min-height .22s ease,padding .22s ease}
+.hero{transition:min-height .22s ease,padding .22s ease;padding-bottom:13px}
 .hero.guide-open{justify-content:flex-start;padding-top:22px}
 .hero-guide-toggle{
-  margin-top:14px;width:100%;border:0;border-top:1px solid rgba(66,105,113,.14);
-  background:transparent;padding:11px 0 0;display:flex;align-items:center;justify-content:space-between;
+  margin-top:9px;width:100%;border:0;border-top:1px solid rgba(66,105,113,.12);
+  background:transparent;padding:7px 0 0;display:flex;align-items:center;justify-content:space-between;
   gap:10px;text-align:left;color:var(--ink);cursor:pointer
 }
-.hero-guide-toggle b{font-size:12px;font-weight:950;color:#385a65}
-.hero-guide-toggle small{display:block;margin-top:2px;font-size:10.5px;font-weight:750;color:#80919a;line-height:1.35}
+.hero-guide-toggle b{font-size:11.5px;font-weight:950;color:#385a65}
+.hero-guide-toggle small{display:block;margin-top:1px;font-size:9.5px;font-weight:750;color:#80919a;line-height:1.25}
 .hero-guide-arrow{
-  flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.72);
+  flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.72);
   display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:950;transition:transform .2s ease
 }
 .hero.guide-open .hero-guide-arrow{transform:rotate(180deg)}
@@ -537,10 +537,10 @@ linear-gradient(-45deg,transparent 75%,#eef2f4 75%) 0 0/12px 12px}
 body.deepopen{overflow:hidden!important}
 
 
-/* v19.17 · magnetic pull-down tool drawer */
+/* v19.18 · magnetic pull-down tool drawer */
 .toolmagnet{
-  position:sticky;top:var(--app-header-h);z-index:88;
-  margin:0 0 8px;
+  position:sticky;top:calc(var(--app-header-h) - 2px);z-index:88;
+  margin:-2px 0 6px;
   display:flex;flex-direction:column;align-items:center;
   pointer-events:none
 }
@@ -550,7 +550,7 @@ body.deepopen{overflow:hidden!important}
   background:rgba(255,255,255,.96);
   color:#526773;
   border-radius:0 0 14px 14px;
-  min-width:104px;height:24px;padding:0 12px;
+  min-width:100px;height:22px;padding:0 11px;
   display:flex;align-items:center;justify-content:center;gap:6px;
   font-size:9px;font-weight:950;
   box-shadow:0 4px 10px rgba(20,43,57,.07);
@@ -658,7 +658,7 @@ body.deepopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.17 · offline-first controls */
+/* v19.18 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -671,7 +671,7 @@ body.deepopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.17 · explicit online/offline mode */
+/* v19.18 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -706,7 +706,7 @@ body.deepopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.17</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.18</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -760,7 +760,7 @@ body.deepopen{overflow:hidden!important}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.17 · Gardens/USS 예약완료 · 예약번호 복사 · 바우처 체크</div>
+  <div class="footer">v19.18 · 도구서랍 상단 밀착 · TODAY GUIDE 버튼 슬림화</div>
 </main>
 
 
@@ -821,7 +821,7 @@ body.deepopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.17 · Gardens/USS 예약완료 · 예약번호 복사 · 바우처 체크</div>
+  <div class="footer">v19.18 · 도구서랍 상단 밀착 · TODAY GUIDE 버튼 슬림화</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2138,7 +2138,7 @@ function closeDeep(){
 }
 
 
-// v19.17 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.18 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2167,7 +2167,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1917";
+const REP_DB_NAME="sg_trip_rep_images_v1918";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2773,7 +2773,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_17";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_18";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
