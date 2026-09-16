@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.22</title>
+<title>Singapore Family Trip 2026 · v19.23</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -242,6 +242,18 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .guide-date{display:inline-flex;margin-top:7px;border-radius:999px;background:var(--mint);color:var(--mintInk);padding:5px 8px;font-size:10px;font-weight:950}
 .guide-tool-list{display:grid;gap:7px}.guide-tool-note{background:#f7f9fa;border:1px solid #e7edef;border-radius:12px;padding:10px 11px;font-size:12px;line-height:1.5;color:#435a68}
 .guide-maplinks{display:grid;gap:7px}.guide-maplinks a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid #dde7eb;border-radius:12px;padding:10px 11px;font-size:12px;font-weight:900}
+.zoomcard{display:grid;gap:12px}
+.zoommain{
+  border:1px solid #dfe7ea;background:#fff;border-radius:16px;
+  padding:20px 16px;text-align:center
+}
+.zoommain .ko{font-size:16px;font-weight:950;color:#17364f;line-height:1.45}
+.zoommain .foreign{margin-top:12px;font-size:27px;font-weight:950;color:#111;line-height:1.35;word-break:keep-all}
+.zoommain .pron{margin-top:9px;font-size:13px;font-weight:800;color:#72848d;line-height:1.45}
+.zoommeta{display:grid;gap:7px}
+.zoommeta .guide-tool-note{font-size:12px}
+.phraseitem,.messageitem,[data-phrase-item],[data-message-item]{cursor:pointer}
+
 .hero{transition:min-height .22s ease,padding .22s ease;padding-bottom:13px}
 .hero.guide-open{justify-content:flex-start;padding-top:22px}
 .hero-guide-toggle{
@@ -575,7 +587,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.22 · magnetic pull-down tool drawer */
+/* v19.23 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -703,7 +715,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.22 · offline-first controls */
+/* v19.23 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -716,7 +728,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.22 · explicit online/offline mode */
+/* v19.23 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -751,7 +763,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.22</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.23</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -806,7 +818,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.22 · 표현/메시지/기록 렌더링 오류 수정</div>
+  <div class="footer">v19.23 · 표현/메시지 항목 확대 팝업 복구</div>
 </main>
 
 
@@ -867,7 +879,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.22 · 표현/메시지/기록 렌더링 오류 수정</div>
+  <div class="footer">v19.23 · 표현/메시지 항목 확대 팝업 복구</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1066,7 +1078,9 @@ function setDetailMode(mode,save=true){
   if(mode==="booking")renderBookings();
   if(mode==="prep")renderPrep();
   if(mode==="phrase")renderPhrases();
+  setTimeout(()=>bindPhraseMessageZoom(document, "phrase"),0);
   if(mode==="message")renderMessages();
+  setTimeout(()=>bindPhraseMessageZoom(document, "message"),0);
   if(mode==="study")renderStudy();
   if(mode==="journal")renderJournal();
 }
@@ -2186,7 +2200,7 @@ function closeDeep(){
 }
 
 
-// v19.22 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.23 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2215,7 +2229,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1922";
+const REP_DB_NAME="sg_trip_rep_images_v1923";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2705,6 +2719,72 @@ function clonePaneForTool(mode){
   clone.querySelectorAll("[id]").forEach(el=>el.removeAttribute("id"));
   return clone.outerHTML;
 }
+
+function openZoomPopup(eyebrow,title,bodyHtml){
+  const eb=document.getElementById("deepEyebrow");
+  const tt=document.getElementById("deepTitle");
+  const bd=document.getElementById("deepBody");
+  const bg=document.getElementById("deepBackdrop");
+  const md=document.getElementById("deepModal");
+  if(!eb||!tt||!bd||!bg||!md)return;
+  eb.textContent=eyebrow||"확대 보기";
+  tt.textContent=title||"";
+  bd.innerHTML=bodyHtml||"";
+  bg.classList.add("open");
+  md.classList.add("open");
+  document.body.classList.add("deepopen");
+}
+
+function phraseZoomFromNode(node){
+  const ko=node.querySelector(".ko,.phraseko,.kor,.title,b,strong")?.textContent?.trim()||"표현";
+  const foreign=node.querySelector(".en,.foreign,.phraseen,.text,.value")?.textContent?.trim()||
+                [...node.querySelectorAll("div,p,span")].map(x=>x.textContent.trim()).find(x=>x && x!==ko)||"";
+  const pron=node.querySelector(".pron,.pronounce,.roman,.sub,.desc")?.textContent?.trim()||"";
+  const html=`<div class="zoomcard"><div class="zoommain">
+      <div class="ko">${esc(ko)}</div>
+      ${foreign?`<div class="foreign">${esc(foreign)}</div>`:""}
+      ${pron?`<div class="pron">${esc(pron)}</div>`:""}
+    </div></div>`;
+  openZoomPopup("표현 · 크게 보기",ko,html);
+}
+
+function messageZoomFromNode(node){
+  const title=node.querySelector(".msgtitle,.title,b,strong")?.textContent?.trim()||"메시지";
+  const text=node.querySelector(".msgtext,.text,.body,p")?.textContent?.trim()||
+             [...node.querySelectorAll("div,p,span")].map(x=>x.textContent.trim()).find(x=>x && x!==title)||"";
+  const html=`<div class="zoomcard"><div class="zoommain">
+      <div class="ko">${esc(title)}</div>
+      ${text?`<div class="foreign" style="font-size:22px">${esc(text)}</div>`:""}
+    </div></div>`;
+  openZoomPopup("메시지 · 크게 보기",title,html);
+}
+
+function bindPhraseMessageZoom(root,mode){
+  if(!root)return;
+  if(mode==="phrase"){
+    const candidates=root.querySelectorAll("[data-phrase-item],.phrasecard,.phraseitem,.phrase-row,.phraseRow");
+    candidates.forEach(node=>{
+      if(node.dataset.zoomBound)return;
+      node.dataset.zoomBound="1";
+      node.addEventListener("click",e=>{
+        if(e.target.closest("button,a,input,select,textarea"))return;
+        phraseZoomFromNode(node);
+      });
+    });
+  }
+  if(mode==="message"){
+    const candidates=root.querySelectorAll("[data-message-item],.msgcard,.messageitem,.message-row,.messageRow");
+    candidates.forEach(node=>{
+      if(node.dataset.zoomBound)return;
+      node.dataset.zoomBound="1";
+      node.addEventListener("click",e=>{
+        if(e.target.closest("button,a,input,select,textarea"))return;
+        messageZoomFromNode(node);
+      });
+    });
+  }
+}
+
 function rebindPamTool(mode){
  const body=document.getElementById("pamToolBody");if(!body)return;
 
@@ -2746,6 +2826,8 @@ function rebindPamTool(mode){
    const state=journalData();state[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
   });
  }
+
+  bindPhraseMessageZoom(document.getElementById("pamToolBody"),mode);
 }
 function openPamTool(mode){
   if(mode==="itinerary"){
@@ -2844,7 +2926,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_22";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_23";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -3083,4 +3165,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-</html>
+  </html>
