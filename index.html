@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.8</title>
+<title>Singapore Family Trip 2026 · v19.9</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.8 · SINGLE FILE UNIFIED APP
+   v19.9 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.8 · offline-first controls */
+/* v19.9 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.8 · explicit online/offline mode */
+/* v19.9 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -636,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.8</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.9</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -688,7 +688,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.8 · 이미지 파일명 매칭 정리 · Oceanarium 로컬 이미지 반영 · 로컬 assets 우선</div>
+  <div class="footer">v19.9 · 이미지 파일명 매칭 정리 · Oceanarium 로컬 이미지 반영 · 로컬 assets 우선</div>
 </main>
 
 
@@ -749,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.8 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.9 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1831,7 +1831,7 @@ function closeDeep(){
 }
 
 
-// v19.8 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.9 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -1860,7 +1860,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v198";
+const REP_DB_NAME="sg_trip_rep_images_v199";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2055,11 +2055,13 @@ function itemImageHtml(sel){
     return `<section class="heroCard no-photo"><div class="heroFallback">🗺️</div><div class="heroCopy"><b>대표 이미지 없음</b><span>이 일정은 텍스트 중심으로 확인해도 충분합니다.</span></div></section>`;
   }
   const cached=!!REP_IMAGE_URLS[meta.key];
+  const localAsset=meta.remote?.startsWith("./assets/");
   const src=heroSrcFor(meta);
   if(!src){
     return `<section class="heroCard no-photo image-missing"><div class="heroFallback">🖼️</div><div class="heroCopy"><b>${esc(meta.name)}</b><span>이미지가 아직 저장되지 않았습니다. 상단의 ‘수동 정보 가져오기’를 누르면 저장합니다.</span></div></section>`;
   }
-  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${cached?"기기 저장 완료":"온라인 표시 · 저장 대기"}</span></div></section>`;
+  const sourceLabel=localAsset?"앱 이미지":(cached?"기기 저장 완료":"온라인 표시 · 저장 대기");
+  return `<section class="heroCard"><img class="heroPhoto" data-place-key="${meta.key}" src="${src}" alt="${esc(meta.alt||meta.name)}" loading="eager" referrerpolicy="no-referrer"><div class="heroMeta"><b>대표 이미지</b><span>${esc(meta.name)} · ${sourceLabel}</span></div></section>`;
 }
 
 function openItem(i){
@@ -2399,7 +2401,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_8";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_9";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
