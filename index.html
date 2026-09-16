@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.27</title>
+<title>Singapore Family Trip 2026 · v19.28</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -465,6 +465,10 @@ body.open .sheet{touch-action:pan-y}
 .copybtn,.voucherbtn{border:1px solid #d8e3e7;background:#fff;color:#355361;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:950;cursor:pointer}
 .voucherbtn.ready{background:#e6f6ef;border-color:#c6eadc;color:#096657}
 .itembadge{display:inline-flex;align-items:center;margin-left:6px;padding:3px 6px;border-radius:999px;background:#e6f6ef;color:#096657;font-size:8.5px;font-weight:950;vertical-align:2px;white-space:nowrap}
+.itemref{display:inline-flex;align-items:center;margin-right:6px;padding:2px 5px;border-radius:7px;background:#eef3f5;color:#6f818a;font-size:8.5px;font-weight:950;vertical-align:2px;letter-spacing:.02em}
+.detailref{display:inline-flex;align-items:center;gap:5px;margin-bottom:7px;padding:4px 7px;border-radius:9px;background:#eef3f5;color:#60737d;font-size:9.5px;font-weight:950}
+.refhelp{margin-top:8px;font-size:9.5px;line-height:1.45;color:#82929a}
+
 .placebrief{background:#f8fbfc;border:1px solid #e1e9ec;border-radius:15px;padding:13px 14px}
 .placebrief-kicker{font-size:9px;font-weight:950;color:#7c919a;letter-spacing:.04em}
 .placebrief-title{margin-top:3px;font-size:15px;font-weight:950;color:#18394b}
@@ -619,7 +623,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.27 · magnetic pull-down tool drawer */
+/* v19.28 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -747,7 +751,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.27 · offline-first controls */
+/* v19.28 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -760,7 +764,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.27 · explicit online/offline mode */
+/* v19.28 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -795,7 +799,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.27</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.28</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -851,7 +855,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.27 · 예약 최신화 · 여행지 가이드 · 실제 교통버튼 · 가계부 추가</div>
+  <div class="footer">v19.28 · 일정 ID 인덱싱 추가 (예: 5.3.여기서할것)</div>
 </main>
 
 
@@ -912,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.27 · 예약 최신화 · 여행지 가이드 · 실제 교통버튼 · 가계부 추가</div>
+  <div class="footer">v19.28 · 일정 ID 인덱싱 추가 (예: 5.3.여기서할것)</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2245,6 +2249,26 @@ function toggleUnifiedGuide(force){
   }
 }
 
+
+function itemRef(dayNum,itemIndex){
+  return `${dayNum}.${Number(itemIndex)+1}`;
+}
+function itemPartRef(dayNum,itemIndex,part){
+  return `${itemRef(dayNum,itemIndex)}.${part}`;
+}
+const ITEM_REF_PARTS={
+  설명:"이 관광지/일정의 소개와 왜 가는지",
+  여기서할것:"이번 여행에서 실제로 볼 것/할 것",
+  이동:"MRT·Grab·도보 등 이동정보",
+  예약:"예약번호·티켓·바우처",
+  아이:"아이 탑승조건·관람포인트·휴식",
+  부모님:"부모님 체력·이동 참고사항",
+  식사:"식사·카페·간식",
+  체크포인트:"현장에서 놓치지 말 것",
+  이미지:"대표사진/장소사진",
+  메모:"가족용 추가 메모"
+};
+
 function render(){
  const d=current();
  daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}<span class="daydate">${DAY_DATES[x.day]||""}</span></button>`).join("");
@@ -2261,7 +2285,8 @@ function render(){
    const [ko,brief]=itemBrief(x);
    const sub=(ko||brief)?`<div class="itemsub">${ko?`<b>${esc(ko)}</b>`:""}${ko&&brief?" · ":""}${brief?esc(brief):""}</div>`:"";
    const booked=bookingConfirmedForItem(x)?`<span class="itembadge">예약완료</span>`:"";
-   return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${esc(x.title)}${booked}</div>${sub}</div><div class="arrow">›</div></article>`;
+   const ref=`<span class="itemref">${itemRef(d.day,i)}</span>`;
+   return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${ref}${esc(x.title)}${booked}</div>${sub}</div><div class="arrow">›</div></article>`;
  }).join("");
  renderUnifiedGuide();
  document.getElementById("heroGuideToggle")?.addEventListener("click",()=>toggleUnifiedGuide());
@@ -2353,7 +2378,7 @@ function closeDeep(){
 }
 
 
-// v19.27 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.28 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2382,7 +2407,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1927";
+const REP_DB_NAME="sg_trip_rep_images_v1928";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2666,8 +2691,10 @@ function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
  document.getElementById("stitle").textContent=sel.title;
+ const ref=itemRef(day,+i);
  const noteKey=`sg_pamphlet_v19_${day}_${i}`;
  body.innerHTML=`
+  <div class="detailref">일정 ID · ${ref}</div>
   ${itemImageHtml(sel)}
   ${placeGuideHtml(sel)}
   <section class="section deepable" data-deep="route"><h3>🚶 지금 이렇게 움직이면 됩니다</h3>${routeHtml(sel.route)}</section>
@@ -2678,7 +2705,7 @@ function openItem(i){
   ${optionalSpotsHtml(sel)}
   ${sel.transportOptions?.length?`<div class="deepable" data-deep="transport">${transportInfoHtml(sel)}</div>`:""}
   ${sel.bookingIds?.length?`<div class="deepable" data-deep="booking">${reservationInfoHtml(sel)}</div>`:""}
-  <section class="section"><h3>필요할 때 보기</h3>${travelToolsHtml(sel)}<div class="actions" style="margin-top:8px"><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div></section>`;
+  <section class="section"><h3>필요할 때 보기</h3>${travelToolsHtml(sel)}<div class="actions" style="margin-top:8px"><button type="button" id="memoToggle">✏️ 메모</button></div><div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div><div class="refhelp">수정 요청 예: <b>${ref}.설명</b> · <b>${ref}.여기서할것</b> · <b>${ref}.이동</b> · <b>${ref}.예약</b> · <b>${ref}.아이</b> · <b>${ref}.체크포인트</b></div></section>`;
  body.querySelectorAll("[data-deep]").forEach(el=>el.onclick=e=>{
    if(e.target.closest("a,button,input,textarea"))return;
    openDeep(el.dataset.deep);
@@ -3250,7 +3277,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_27";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_28";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
