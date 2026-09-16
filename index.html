@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.20</title>
+<title>Singapore Family Trip 2026 · v19.21</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -575,7 +575,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.20 · magnetic pull-down tool drawer */
+/* v19.21 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -703,7 +703,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.20 · offline-first controls */
+/* v19.21 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -716,7 +716,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.20 · explicit online/offline mode */
+/* v19.21 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -751,7 +751,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.20</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.21</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -806,7 +806,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.20 · 도구 메뉴 패널 복구 · 모바일 클릭 동작 보강</div>
+  <div class="footer">v19.21 · 표현/메시지/기록 도구 직접 실행 방식으로 수정</div>
 </main>
 
 
@@ -867,7 +867,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.20 · 도구 메뉴 패널 복구 · 모바일 클릭 동작 보강</div>
+  <div class="footer">v19.21 · 표현/메시지/기록 도구 직접 실행 방식으로 수정</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1377,6 +1377,7 @@ const PHRASE_I18N={
 };
 for(const p of PHRASES){ if(PHRASE_I18N[p.ko]) Object.assign(p,PHRASE_I18N[p.ko]); }
 let phraseLang=localStorage.getItem("sg_phrase_lang")||"en";
+if(!PHRASE_LANGS[phraseLang])phraseLang="en";
 
 function phraseValue(x){
  const cfg=PHRASE_LANGS[phraseLang]||PHRASE_LANGS.en;
@@ -2184,7 +2185,7 @@ function closeDeep(){
 }
 
 
-// v19.20 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.21 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2213,7 +2214,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1920";
+const REP_DB_NAME="sg_trip_rep_images_v1921";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2535,14 +2536,13 @@ toolMagnetHandle?.addEventListener("pointerup",e=>{
 
 
 document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
-  btn.addEventListener("pointerup",e=>{
+  btn.addEventListener("click",e=>{
+    e.preventDefault();
     e.stopPropagation();
-  },{passive:true});
-});
-document.getElementById("pamphletTools")?.addEventListener("click",e=>{
-  const b=e.target.closest("[data-tool]");if(!b)return;
-  setToolMagnet(false);
-  openPamTool(b.dataset.tool);
+    const mode=btn.dataset.tool;
+    setToolMagnet(false);
+    openPamTool(mode);
+  });
 });
 document.getElementById("pamToolClose").onclick=closePamTool;
 document.getElementById("pamToolBackdrop").onclick=closePamTool;
@@ -2691,10 +2691,10 @@ function clonePaneForTool(mode){
   if(mode==="itinerary") renderDetail();
   if(mode==="booking") renderBookings();
   if(mode==="prep") renderPrep();
-  if(mode==="phrase") renderPhrases();
-  if(mode==="message") renderMessages();
+  if(mode==="phrase"){ if(!PHRASE_LANGS[phraseLang])phraseLang="en"; renderPhrases(); }
+  if(mode==="message"){ if(!msgCat)msgCat="⭐ 이번 여행"; renderMessages(); }
   if(mode==="study") renderStudy();
-  if(mode==="journal") renderJournal();
+  if(mode==="journal"){ renderJournal(); }
 
   const source=document.getElementById(paneIds[mode]);
   if(!source)return '<div class="toolcard">내용을 불러오지 못했습니다.</div>';
@@ -2752,15 +2752,33 @@ function openPamTool(mode){
     window.scrollTo({top:0,behavior:"smooth"});
     return;
   }
-  document.getElementById("pamToolTitle").textContent=toolTitle(mode);
+
+  const panel=document.getElementById("pamToolPanel");
+  const bg=document.getElementById("pamToolBackdrop");
   const body=document.getElementById("pamToolBody");
-  body.innerHTML=clonePaneForTool(mode);
-  rebindPamTool(mode);
-  document.getElementById("pamToolBackdrop").classList.add("open");
-  document.getElementById("pamToolPanel").classList.add("open");
-  document.getElementById("pamToolBackdrop").setAttribute("aria-hidden","false");
-  document.getElementById("pamToolPanel").setAttribute("aria-hidden","false");
+  const title=document.getElementById("pamToolTitle");
+  if(!panel||!bg||!body||!title)return;
+
+  title.textContent=toolTitle(mode);
+  body.innerHTML='<div class="toolcard">불러오는 중…</div>';
+
+  // Open first so a content-render error can never look like a dead button.
+  bg.classList.add("open");
+  panel.classList.add("open");
+  bg.setAttribute("aria-hidden","false");
+  panel.setAttribute("aria-hidden","false");
   document.body.classList.add("pamtoolopen");
+
+  requestAnimationFrame(()=>{
+    try{
+      body.innerHTML=clonePaneForTool(mode);
+      rebindPamTool(mode);
+      body.scrollTop=0;
+    }catch(err){
+      console.error("Trip tool render failed:",mode,err);
+      body.innerHTML=`<div class="toolcard"><b>${toolTitle(mode)}</b><br><br>내용을 여는 중 오류가 발생했습니다.<br><small>${esc(err?.message||"Unknown error")}</small></div>`;
+    }
+  });
 }
 function closePamTool(){
   const bg=document.getElementById("pamToolBackdrop");
@@ -2825,7 +2843,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_20";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_21";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -3064,4 +3082,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-  </html>
+</html>
