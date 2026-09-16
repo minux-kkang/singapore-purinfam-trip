@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.7</title>
+<title>Singapore Family Trip 2026 · v19.8</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -206,7 +206,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 
 
 /* =========================================================
-   v19.7 · SINGLE FILE UNIFIED APP
+   v19.8 · SINGLE FILE UNIFIED APP
    Pamphlet + Detail tools + Message Cards
 ========================================================= */
 .detailnav{
@@ -588,7 +588,7 @@ body.pamtoolopen{overflow:hidden!important}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.7 · offline-first controls */
+/* v19.8 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:8px;padding:0 2px 7px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:10px;padding:7px 10px;font-size:10px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -601,7 +601,7 @@ body.pamtoolopen{overflow:hidden!important}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.7 · explicit online/offline mode */
+/* v19.8 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -636,7 +636,7 @@ body.pamtoolopen{overflow:hidden!important}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.7</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.8</b></div>
     <div class="viewtoggle" role="group" aria-label="보기 모드">
       <button id="viewPamphlet" class="viewbtn on" type="button">📰 팜플렛</button>
       <button id="viewDetail" class="viewbtn" type="button">🛠 디테일</button>
@@ -688,7 +688,7 @@ body.pamtoolopen{overflow:hidden!important}
   <section id="hero" class="hero"></section>
   <section id="timeline" class="timeline"></section>
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.7 · GitHub 개발용 구조 · 대표 이미지는 assets/images 분리 · 최종 배포 시 단일파일로 다시 묶을 수 있습니다.</div>
+  <div class="footer">v19.8 · 이미지 파일명 매칭 정리 · Oceanarium 로컬 이미지 반영 · 로컬 assets 우선</div>
 </main>
 
 
@@ -749,7 +749,7 @@ body.pamtoolopen{overflow:hidden!important}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.7 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
+  <div class="footer">v19.8 · 오프라인 우선 · 날씨/환율/대표이미지는 수동 업데이트, 지도는 필요할 때만 온라인으로 불러옵니다.</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1831,35 +1831,36 @@ function closeDeep(){
 }
 
 
-// v19.7 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.8 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
-  airport:{key:"airport",name:'Incheon Airport',file:'user-incheon-airport.jpg',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
+  airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
-  changi:{key:"changi",name:'Changi Airport / Jewel',file:'user-changi-airport.jpg',alt:'Jewel Changi Airport with Rain Vortex',remote:'./assets/images/airplane.webp' },
-  changiTransfer:{key:"changiTransfer",name:'Changi Airport → Marriott',file:'user-changi-transfer.jpg',alt:'Pickup / transfer area from Changi Airport',remote:'./assets/images/changiTransfer.webp' },
-  marriott:{key:"marriott",name:'Marriott Tang Plaza Hotel',file:'user-marriott-tang-plaza.jpg',alt:'Singapore Marriott Tang Plaza Hotel exterior',remote:'./assets/images/marriott.webp' },
-  merlion:{key:"merlion",name:'Merlion Park',file:'user-merlion.jpg',alt:'Merlion Park, Singapore',remote:'./assets/images/merlion.webp' },
+  changi:{key:"changi",name:'Changi Airport / Jewel',file:'changi.webp',alt:'Jewel Changi Airport with Rain Vortex',remote:'./assets/images/changi.webp' },
+  changiTransfer:{key:"changiTransfer",name:'Changi Airport → Marriott',file:'changi-transfer.webp',alt:'Pickup / transfer area from Changi Airport',remote:'./assets/images/changi-transfer.webp' },
+  marriott:{key:"marriott",name:'Marriott Tang Plaza Hotel',file:'marriott.webp',alt:'Singapore Marriott Tang Plaza Hotel exterior',remote:'./assets/images/marriott.webp' },
+  merlion:{key:"merlion",name:'Merlion Park',file:'merlion.webp',alt:'Merlion Park, Singapore',remote:'./assets/images/merlion.webp' },
   marina:{key:"marina",name:'Marina Bay',file:'marina-bay.webp',alt:'Marina Bay waterfront, Singapore',remote:'./assets/images/marina-bay.webp' },
   mbs:{key:"mbs",name:'Marina Bay Sands',file:'mbs-lobby.webp',alt:'Marina Bay Sands interior lobby',remote:'./assets/images/mbs-lobby.webp' },
-  gardens:{key:"gardens",name:'Gardens by the Bay',file:'user-gardens-by-the-bay.jpg',alt:'Gardens by the Bay conservatory interior',remote:'./assets/images/gardens.webp' },
-  supertree:{key:"supertree",name:'Supertree Grove',file:'user-supertree-grove.jpg',alt:'Supertree Grove illuminated at night',remote:'./assets/images/supertree.webp' },
+  gardens:{key:"gardens",name:'Gardens by the Bay',file:'gardens.webp',alt:'Gardens by the Bay conservatory interior',remote:'./assets/images/gardens.webp' },
+  supertree:{key:"supertree",name:'Supertree Grove',file:'supertree.webp',alt:'Supertree Grove illuminated at night',remote:'./assets/images/supertree.webp' },
+  sentosaStation:{key:"sentosaStation",name:'Sentosa Station',file:'sentosa-station.webp',alt:'Sentosa Station entrance',remote:'./assets/images/sentosa-station.webp' },
   sentosa:{key:"sentosa",name:'Sentosa approach',file:'sentosa-expand.webp',alt:'Sentosa overview with cable car and harbour',remote:'./assets/images/sentosa-expand.webp' },
-  uss:{key:"uss",name:'Universal Studios Singapore',file:'user-universal-studios-singapore.png',alt:'Universal Studios Singapore globe entrance',remote:'./assets/images/uss.webp' },
-  fort:{key:"fort",name:'Fort Canning Tree Tunnel',file:'user-fort-canning.jpg',alt:'Fort Canning spiral staircase photo spot',remote:'./assets/images/fort.webp' },
+  uss:{key:"uss",name:'Universal Studios Singapore',file:'uss.webp',alt:'Universal Studios Singapore globe entrance',remote:'./assets/images/uss.webp' },
+  fort:{key:"fort",name:'Fort Canning Tree Tunnel',file:'fort.webp',alt:'Fort Canning spiral staircase photo spot',remote:'./assets/images/fort.webp' },
   museum:{key:"museum",name:'National Museum of Singapore',file:'museum.webp',alt:'National Museum of Singapore building exterior',remote:'./assets/images/museum.webp' },
   chinatown:{key:"chinatown",name:'Chinatown',file:'chinatown.webp',alt:'Chinatown street view, Singapore',remote:'./assets/images/chinatown.webp' },
   clarke:{key:"clarke",name:'Clarke Quay / River Cruise',file:'clarke.webp',alt:'Clarke Quay riverside at dusk',remote:'./assets/images/clarke.webp' },
-  jumbo:{key:"jumbo",name:'JUMBO Seafood',file:'embedded-jumbo.png',alt:'JUMBO Seafood / seafood dish',remote:'./assets/images/museum.webp' },
+  jumbo:{key:"jumbo",name:'JUMBO Seafood',file:'jumbo.webp',alt:'JUMBO Seafood restaurant exterior',remote:'./assets/images/jumbo.webp' },
   littleindia:{key:"littleindia",name:'Little India',file:'littleindia.webp',alt:'Little India street corner, Singapore',remote:'./assets/images/littleindia.webp' },
   kampong:{key:"kampong",name:'Kampong Glam',file:'kampong.webp',alt:'Kampong Glam street with Sultan Mosque',remote:'./assets/images/kampong.webp' },
   jewel:{key:"jewel",name:'Jewel Changi / Rain Vortex',file:'jewel.webp',alt:'Jewel Changi interior view',remote:'./assets/images/jewel.webp' },
   siloso:{key:"siloso",name:'Siloso Beach',file:'siloso.webp',alt:'Siloso Beach shoreline, Sentosa',remote:'./assets/images/siloso.webp' },
   luge:{key:"luge",name:'Skyline Luge Sentosa',file:'luge.webp',alt:'Skyline Luge Sentosa',remote:'./assets/images/luge.webp' },
   wings:{key:"wings",name:'Wings of Time',file:'wings.webp',alt:'Wings of Time night show',remote:'./assets/images/wings.webp' },
-  oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'Singapore Oceanarium.jpg',alt:'Singapore Oceanarium',remote:'https://commons.wikimedia.org/wiki/Special:FilePath/Singapore%20Oceanarium.jpg' }
+  oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v197";
+const REP_DB_NAME="sg_trip_rep_images_v198";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2012,7 +2013,7 @@ function itemImageMeta(sel){
   if(title==="Marina Bay Sands") return PLACE_IMAGE_LIBRARY.mbs;
   if(title==="Gardens by the Bay") return PLACE_IMAGE_LIBRARY.gardens;
   if(title==="Supertree 야경") return PLACE_IMAGE_LIBRARY.supertree;
-  if(title==="Marriott → Sentosa") return PLACE_IMAGE_LIBRARY.sentosa;
+  if(title==="Marriott → Sentosa") return PLACE_IMAGE_LIBRARY.sentosaStation;
   if(title==="Universal Studios Singapore") return PLACE_IMAGE_LIBRARY.uss;
   if(title==="충분히 놀았다면 Sentosa 확장") return PLACE_IMAGE_LIBRARY.sentosa;
   if(title==="Luge 또는 Sentosa 산책") return PLACE_IMAGE_LIBRARY.luge;
@@ -2039,6 +2040,7 @@ function itemImageMeta(sel){
   if(/wings of time/.test(t)) return PLACE_IMAGE_LIBRARY.wings;
   if(/siloso/.test(t)) return PLACE_IMAGE_LIBRARY.siloso;
   if(/luge/.test(t)) return PLACE_IMAGE_LIBRARY.luge;
+  if(/marriott.*sentosa|sentosa.*station|sentosa 이동/.test(t)) return PLACE_IMAGE_LIBRARY.sentosaStation;
   if(/sentosa/.test(t)) return PLACE_IMAGE_LIBRARY.sentosa;
   if(/little india/.test(t)) return PLACE_IMAGE_LIBRARY.littleindia;
   if(/kampong glam|bugis/.test(t)) return PLACE_IMAGE_LIBRARY.kampong;
@@ -2397,7 +2399,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_7";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_8";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
