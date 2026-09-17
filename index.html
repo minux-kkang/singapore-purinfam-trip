@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.8</title>
+<title>Singapore Family Trip 2026 · v20.9</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -199,6 +199,7 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .viewbtn{border:0;background:transparent;color:#60717c;border-radius:999px;padding:7px 9px;font-size:10px;font-weight:950;white-space:nowrap;cursor:pointer}
 .viewbtn.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(23,54,79,.12)}
 #pamphletView[hidden],#detailView[hidden]{display:none!important}
+#pamphletView{touch-action:pan-y}
 .detailwrap{max-width:860px;margin:auto;padding:12px}
 .detailhero{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:10px}
 .detailhero .eyebrow{font-size:11px;color:var(--mintInk);font-weight:950}
@@ -720,7 +721,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.8 · magnetic pull-down tool drawer */
+/* v20.9 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -848,7 +849,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.8 · offline-first controls */
+/* v20.9 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -861,7 +862,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.8 · explicit online/offline mode */
+/* v20.9 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -896,7 +897,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.8</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.9</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -953,7 +954,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.8 · 2.2 Gardens 관람 중 간식/가벼운 점심 팁 · 현장 후보 추가</div>
+  <div class="footer">v20.9 · DAY 좌우 스와이프 복구 · 일정 카드 위에서도 스와이프 가능</div>
 </main>
 
 
@@ -1014,7 +1015,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.8 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.9 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -3576,7 +3577,7 @@ function closeDeep(){
 }
 
 
-// v20.8 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.9 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4496,31 +4497,68 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v18.3 · Pamphlet DAY swipe
+// v20.9 · DAY swipe
+// Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
   if(!area)return;
-  const ignore="button,a,input,textarea,select,label,.item,.leaflet-container,.daymapwrap,.sheet,.backdrop";
+
+  const ignore="button,a,input,textarea,select,label,[contenteditable='true'],.leaflet-container,.sheet,.backdrop,.pamtoolpanel,.pamtoolbackdrop";
   let sx=0,sy=0,st=0,tracking=false;
+  let suppressClickUntil=0;
+
   area.addEventListener("touchstart",e=>{
-    if(currentView!=="pamphlet" || document.body.classList.contains("open") || e.touches.length!==1 || e.target.closest(ignore)){
-      tracking=false;return;
+    if(
+      currentView!=="pamphlet" ||
+      document.body.classList.contains("open") ||
+      document.body.classList.contains("pamtoolopen") ||
+      e.touches.length!==1 ||
+      e.target.closest(ignore)
+    ){
+      tracking=false;
+      return;
     }
     const t=e.touches[0];
-    sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;
+    sx=t.clientX;
+    sy=t.clientY;
+    st=Date.now();
+    tracking=true;
   },{passive:true});
+
   area.addEventListener("touchend",e=>{
-    if(!tracking||!e.changedTouches.length){tracking=false;return;}
-    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
+    if(!tracking || !e.changedTouches.length){
+      tracking=false;
+      return;
+    }
+
+    const t=e.changedTouches[0];
+    const dx=t.clientX-sx;
+    const dy=t.clientY-sy;
+    const dt=Date.now()-st;
     tracking=false;
-    if(Math.abs(dx)<65 || Math.abs(dx)<=Math.abs(dy)*1.35 || dt>850)return;
+
+    // Horizontal intent only. Keep normal vertical scrolling untouched.
+    if(Math.abs(dx)<55 || Math.abs(dx)<=Math.abs(dy)*1.15 || dt>900)return;
+
     const next=day+(dx<0?1:-1);
-    if(next<1||next>DAYS.length)return;
+    if(next<1 || next>DAYS.length)return;
+
+    // A swipe that starts on a timeline card must not also open that card.
+    suppressClickUntil=Date.now()+450;
+
     day=next;
     unifiedGuideOpen=false;
     render();
     window.scrollTo({top:0,behavior:"smooth"});
   },{passive:true});
+
+  area.addEventListener("click",e=>{
+    if(Date.now()<suppressClickUntil){
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation?.();
+    }
+  },true);
 })();
 
 // v18.3 · Detail itinerary swipe: conservative threshold, buttons remain primary navigation
@@ -4551,7 +4589,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_8";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_9";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
