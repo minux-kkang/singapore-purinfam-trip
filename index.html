@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.1</title>
+<title>Singapore Family Trip 2026 · v20.2</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -30,9 +30,9 @@ body{padding-bottom:80px}
 .daybtn{border:0;background:#edf2f4;color:#526773;border-radius:13px;padding:6px 10px 5px;font-size:11px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:54px}.daybtn .daydate{display:block;margin-top:4px;font-size:9px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
 .wrap{max-width:760px;margin:auto;padding:12px}
-.hero{min-height:155px;border:1px solid var(--line);border-radius:24px;padding:22px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:12px}
-.heroemoji{position:absolute;right:20px;top:15px;font-size:49px}.heroday{font-size:12px;font-weight:950;color:var(--mintInk)}
-.herotitle{font-size:30px;font-weight:1000;line-height:1.05;letter-spacing:-1px;margin-top:4px}.herosub{font-size:13px;color:#71818c;font-weight:700;margin-top:8px}
+.hero{min-height:118px;border:1px solid var(--line);border-radius:22px;padding:16px 18px 11px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-bottom:10px}
+.heroemoji{position:absolute;right:18px;top:11px;font-size:39px}.heroday{font-size:11px;font-weight:950;color:var(--mintInk)}
+.herotitle{font-size:25px;font-weight:1000;line-height:1.03;letter-spacing:-.8px;margin-top:3px}.herosub{font-size:11.5px;color:#71818c;font-weight:700;margin-top:5px}
 .timeline{display:grid;gap:9px}.item{background:#fff;border:1px solid var(--line);border-radius:18px;min-height:72px;padding:12px 13px;display:grid;grid-template-columns:64px minmax(0,1fr) 19px;gap:10px;align-items:center;box-shadow:0 4px 14px rgba(23,54,79,.035);cursor:pointer}
 .time{background:var(--mint);color:var(--mintInk);border-radius:999px;padding:8px 5px;text-align:center;font-size:12px;font-weight:950;line-height:1.15}
 .title{font-size:18px;font-weight:950;line-height:1.25;letter-spacing:-.35px;word-break:keep-all}
@@ -49,6 +49,11 @@ body{padding-bottom:80px}
 .daymap .leaflet-container{font-family:inherit}
 .daymapwrap:before,.daymapwrap:after{content:"";display:block;height:5px}
 @media(max-width:620px){
+  .hero{min-height:104px;padding:14px 15px 9px}
+  .heroemoji{right:14px;top:10px;font-size:34px}
+  .herotitle{font-size:22px}
+  .herosub{font-size:10.5px}
+
   .daymapwrap{margin:24px 8px 40px;padding:12px}
   .daymap{height:310px}
 }
@@ -254,32 +259,32 @@ body.open .backdrop{opacity:1;pointer-events:auto}body.open .sheet{transform:tra
 .zoommeta .guide-tool-note{font-size:12px}
 .phraseitem,.messageitem,[data-phrase-item],[data-message-item]{cursor:pointer}
 
-.hero{transition:min-height .22s ease,padding .22s ease;padding-bottom:13px}
-.hero.guide-open{justify-content:flex-start;padding-top:22px}
+.hero{transition:min-height .22s ease,padding .22s ease;padding-bottom:8px}
+.hero.guide-open{justify-content:flex-start;padding-top:16px}
 .hero-guide-toggle{
-  margin-top:9px;width:100%;border:0;border-top:1px solid rgba(66,105,113,.12);
-  background:transparent;padding:7px 0 0;display:flex;align-items:center;justify-content:space-between;
-  gap:10px;text-align:left;color:var(--ink);cursor:pointer
+  margin-top:6px;width:100%;border:0;border-top:1px solid rgba(66,105,113,.10);
+  background:transparent;padding:4px 0 0;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;text-align:left;color:var(--ink);cursor:pointer
 }
-.hero-guide-toggle b{font-size:11.5px;font-weight:950;color:#385a65}
-.hero-guide-toggle small{display:block;margin-top:1px;font-size:9.5px;font-weight:750;color:#80919a;line-height:1.25}
+.hero-guide-toggle b{font-size:10.4px;font-weight:950;color:#385a65}
+.hero-guide-toggle small{display:block;margin-top:0;font-size:8.5px;font-weight:750;color:#80919a;line-height:1.15}
 .hero-guide-arrow{
-  flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.72);
-  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:950;transition:transform .2s ease
+  flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.72);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:950;transition:transform .2s ease
 }
 .hero.guide-open .hero-guide-arrow{transform:rotate(180deg)}
-.hero-guide-body{margin-top:12px;width:100%;animation:guideIn .18s ease}
+.hero-guide-body{margin-top:8px;width:100%;animation:guideIn .18s ease}
 @keyframes guideIn{from{opacity:.25;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.hero-guide-body .dayguide{gap:9px}
+.hero-guide-body .dayguide{gap:7px}
 .hero-guide-body .guideintro,.hero-guide-body .guideflow,.hero-guide-body .guidetools{
-  background:rgba(255,255,255,.80);backdrop-filter:blur(3px);border-radius:15px;padding:13px
+  background:rgba(255,255,255,.80);backdrop-filter:blur(3px);border-radius:14px;padding:10px 11px
 }
-.hero-guide-body .guidesection{background:rgba(255,255,255,.78);padding:12px 13px}
+.hero-guide-body .guidesection{background:rgba(255,255,255,.78);padding:10px 11px}
 .hero-guide-body .guideprinciple{background:rgba(255,248,232,.90)}
 .hero-guide-body .guidealternative{background:rgba(244,250,245,.90)}
 .hero-guide-close{
-  width:100%;margin-top:9px;border:1px solid rgba(66,105,113,.16);background:rgba(255,255,255,.66);
-  color:#526773;border-radius:12px;padding:10px 12px;font-size:11px;font-weight:950;cursor:pointer
+  width:100%;margin-top:7px;border:1px solid rgba(66,105,113,.16);background:rgba(255,255,255,.66);
+  color:#526773;border-radius:11px;padding:8px 10px;font-size:10px;font-weight:950;cursor:pointer
 }
 .toolhero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:10px}
 .toolhero h2{margin:2px 0 4px;font-size:22px;color:var(--ink)}
@@ -925,7 +930,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.1 · 전 일정 ‘더 알아보기’ 역사/특징/시설/가족팁 확장</div>
+  <div class="footer">v20.2 · DAY 제목 배너 / 오늘 이렇게 여행해요 영역 높이 축소</div>
 </main>
 
 
@@ -3262,7 +3267,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v201";
+const REP_DB_NAME="sg_trip_rep_images_v202";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -4206,7 +4211,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_1";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_2";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
