@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.14</title>
+<title>Singapore Family Trip 2026 · v20.16</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -19,6 +19,11 @@ body{padding-bottom:80px}
 .livebar{padding:0 10px 5px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .livebox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:5px 8px;min-width:0}
 .livebox b{font-size:11px}.livebox span{font-size:11px;color:#647581}
+.livehead{display:flex;align-items:center;justify-content:space-between;gap:8px;line-height:1.05}
+.livehead .livetime{font-size:12px;font-weight:950;color:#17364f;letter-spacing:.1px}
+.livebox .weatherline{margin-top:4px;flex-wrap:nowrap;min-width:0}
+.livebox .weatherline .desc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+
 .weatherline{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:2px}
 .weatherline .temp{font-weight:950;color:var(--ink)}
 .weatherline .desc{color:#647581}
@@ -599,6 +604,17 @@ body.open .sheet{touch-action:pan-y}
 .expense-item-amt{font-size:12px;font-weight:950;color:#17394b;white-space:nowrap}
 .expense-mini{font-size:9px;color:#7b8d96}
 .expense-delete{margin-top:7px;border:0;background:#f4f6f7;color:#7d4d4d;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:900}
+.expense-sync-card{border:1px solid #dfe8ec;background:linear-gradient(145deg,#f8fbfc,#fff);border-radius:14px;padding:11px;margin-bottom:9px}
+.expense-sync-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.expense-sync-head h3{margin:0;font-size:13px;color:#17364f}
+.expense-sync-state{font-size:9px;font-weight:950;border-radius:999px;padding:4px 7px;background:#eef3f5;color:#637780;white-space:nowrap}
+.expense-sync-state.ok{background:#e7f7ef;color:#08705b}
+.expense-sync-state.wait{background:#fff4de;color:#8a6200}
+.expense-sync-state.err{background:#fff0f0;color:#9c3d3d}
+.expense-sync-info{margin-top:7px;font-size:10px;line-height:1.5;color:#687b85}
+.expense-sync-settings{margin-top:9px;padding-top:9px;border-top:1px dashed #dde6e9}
+.expense-sync-settings input{width:100%;border:1px solid #d6e0e4;border-radius:9px;padding:8px 9px;font:inherit;background:#fff;margin-top:6px}
+
 
 .resactions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .resnumline{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
@@ -722,7 +738,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.14 · magnetic pull-down tool drawer */
+/* v20.16 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -853,7 +869,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.14 · offline-first controls */
+/* v20.16 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -866,7 +882,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.14 · explicit online/offline mode */
+/* v20.16 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -897,7 +913,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.14 · collapsed tool drawer click-through fix */
+/* v20.16 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -929,17 +945,15 @@ body.pamtoolopen .pamtoolpanel,
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.14</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.16</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
-      <b>🇰🇷 서울</b><br>
-      <span id="krTime">--:--</span>
+      <div class="livehead"><b>🇰🇷 서울</b><span id="krTime" class="livetime">--:--</span></div>
       <div class="weatherline"><span id="krWeatherIcon">⛅</span><span id="krTemp" class="temp">--°</span><span id="krWeather" class="desc">저장값 없음</span></div>
     </div>
     <div class="livebox">
-      <b>🇸🇬 싱가포르</b><br>
-      <span id="sgTime">--:--</span>
+      <div class="livehead"><b>🇸🇬 싱가포르</b><span id="sgTime" class="livetime">--:--</span></div>
       <div class="weatherline"><span id="sgWeatherIcon">⛅</span><span id="sgTemp" class="temp">--°</span><span id="sgWeather" class="desc">저장값 없음</span></div>
     </div>
     <div class="livebox fxrow">
@@ -971,7 +985,6 @@ body.pamtoolopen .pamtoolpanel,
       <span class="toolmagnet-grip"></span><span class="toolmagnet-label">도구</span><span>⌄</span>
     </button>
     <div class="pamphlettools" id="pamphletTools">
-      <button type="button" data-tool="itinerary">🗓<span>일정</span></button>
       <button type="button" data-tool="booking">🎫<span>예약</span></button>
       <button type="button" data-tool="prep">🧳<span>준비</span></button>
       <button type="button" data-tool="phrase">💬<span>표현</span></button>
@@ -986,7 +999,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.14 · Kok Sen 가족 Pick 우선 · Michelin Bib Gourmand/Chinatown 동선 보완</div>
+  <div class="footer">v20.16 · 가계부 Google Sheets 누적/자동·수동 동기화 연결</div>
 </main>
 
 
@@ -1047,7 +1060,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.14 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.16 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1387,6 +1400,15 @@ function transportCommonHtml(){
       <ul>${x.bullets.map(v=>`<li>${esc(v)}</li>`).join("")}</ul>
       <div class="tip">💡 ${esc(x.tip)}</div>
     </section>`}).join("")}
+   <section class="transport-card">
+      <h4>🔎 대중교통 경로 빠른 검색</h4>
+      <p>별도 지도 API 없이 Google Maps 경로검색을 새 창으로 엽니다.</p>
+      <div class="expense-form" style="margin-top:8px">
+        <input id="transportOrigin" placeholder="출발지 · 예: Singapore Marriott Tang Plaza Hotel">
+        <input id="transportDestination" placeholder="도착지 · 예: Tekka Centre">
+        <div class="expense-actions"><button id="transportTransitSearch">🚇 MRT/Bus 경로</button><button id="transportDrivingSearch">🚕 차량 경로</button></div>
+      </div>
+   </section>
    <section class="transport-card">
       <h4>👨‍👩‍👧‍👦 11명 이동 공통 규칙</h4>
       <ul>
@@ -1780,6 +1802,30 @@ const PREP_ITEMS=[
  ["확정","JUMBO Riverside Point · 9/22 19:00 · 11명","done"],
  ["확정","귀국 KE644 · 9/24 22:00","done"]
 ];
+
+const PACK_ITEMS=[
+ ["서류/귀중품","여권 11명 · 항공권/호텔/티켓 바우처 오프라인 저장"],
+ ["서류/귀중품","신용카드/체크카드 · 예비카드 · 소액 SGD"],
+ ["전자기기","휴대폰 · 충전기 · 보조배터리 · 케이블"],
+ ["전자기기","싱가포르 Type G 변환 플러그/멀티어댑터"],
+ ["통신","eSIM/로밍 개통 확인 · 가족별 연락수단"],
+ ["의류","얇고 통풍되는 여름옷 · 여벌 속옷/양말"],
+ ["의류","실내 냉방 대비 얇은 겉옷"],
+ ["의류","편한 운동화 · 샌들/슬리퍼"],
+ ["우천/야외","작은 우산/우비 · 모자 · 선크림"],
+ ["아이","3세 아이 여벌옷 · 물티슈 · 기저귀/필요용품"],
+ ["아이","아이 간식 · 빨대컵/물병 · 작은 장난감"],
+ ["아이","유모차 · 레인커버/선풍기 등 필요한 부속"],
+ ["건강","개인 상비약 · 처방약 · 해열/소화/밴드 등 기본 구급품"],
+ ["위생","칫솔/세면도구 · 손소독제 · 휴지/물티슈"],
+ ["수영/센토사","수영복 · 래시가드 · 방수팩 · 젖은옷 봉투"],
+ ["기내가방","여권 · 휴대폰 · 보조배터리 · 아이 여벌옷/간식은 위탁수하물에 넣지 않기"],
+ ["기내가방","도착 직후 필요한 호텔 주소/Grab/차량 정보 캡처"],
+ ["공항","캐리어/유모차 개수 가족별로 공유 · 네임택 확인"]
+];
+const PACK_STATE_KEY="sg_trip_pack_v20";
+function packState(){try{return JSON.parse(localStorage.getItem(PACK_STATE_KEY)||"{}")}catch(e){return {}}}
+
 const PREP_STATE_KEY="sg_trip_prep_v17";
 function prepState(){try{return JSON.parse(localStorage.getItem(PREP_STATE_KEY)||"{}")}catch(e){return {}}}
 function statusName(s){return {unbooked:"미예약",plan:"계획",candidate:"후보",done:"완료",confirmed:"확정"}[s]||s}
@@ -1795,7 +1841,7 @@ function renderPrep(){
       <div class="tripfacts">
         <div class="tripfact"><b>DAY 5</b>Sentosa EASY 기본 · Mandai 대안. 최종 선택 후 티켓 구매 연동 필요.</div>
         <div class="tripfact"><b>공항 → 호텔</b>아직 이동수단 확정 필요. 11명+짐+유모차 기준으로 차량 용량 확인.</div>
-        <div class="tripfact"><b>USS</b>미예약 상태. 11명 동시입장 가능 수량과 날짜 조건 우선 확인.</div>
+        <div class="tripfact"><b>USS</b>예약완료 · 마이리얼트립 예약번호 2건. 출발 전 e-ticket 캡처/오프라인 저장 확인.</div>
         <div class="tripfact"><b>실시간 정보</b>날씨·환율·지도 타일은 인터넷 필요. 나머지 핵심 내용은 파일 하나로 사용 가능.</div>
       </div>
     </section>
@@ -1806,9 +1852,16 @@ function renderPrep(){
         <div class="tripfact"><b>객실 요청</b>${TRIP_META.hotel.requests.join(" · ")}</div>
         <div class="tripfact"><b>조식 특별가</b>${TRIP_META.hotel.breakfast}</div>
       </div>
+    </section>
+    <section class="toolcard" style="margin-top:9px"><h3>🧳 전체 준비물 체크리스트</h3>
+      <p style="margin:0 0 8px;font-size:10.5px;color:#71818c">예약/TODO와 별개로 실제 짐을 챙길 때 쓰는 목록입니다.</p>
+      ${PACK_ITEMS.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-pack="${i}" ${packState()[i]?"checked":""}><span><b style="font-size:9px;color:#71818c">${x[0]}</b><br>${x[1]}</span></label>`).join("")}
     </section>`;
   root.querySelectorAll("[data-prep17]").forEach(cb=>cb.addEventListener("change",()=>{
     const s=prepState();s[cb.dataset.prep17]=cb.checked;localStorage.setItem(PREP_STATE_KEY,JSON.stringify(s));
+  }));
+  root.querySelectorAll("[data-pack]").forEach(cb=>cb.addEventListener("change",()=>{
+    const s=packState();s[cb.dataset.pack]=cb.checked;localStorage.setItem(PACK_STATE_KEY,JSON.stringify(s));
   }));
 }
 
@@ -2257,11 +2310,24 @@ function renderStudy(){
 // ---------- Journal ----------
 const JOURNAL_KEY="sg_trip_journal_v17";
 function journalData(){try{return JSON.parse(localStorage.getItem(JOURNAL_KEY)||"{}")}catch(e){return {}}}
+function exportJournalText(){
+ const d=journalData();
+ const text=DAYS.map(x=>`DAY ${x.day} · ${x.date} · ${x.title}\n${d[x.day]||"(기록 없음)"}`).join("\n\n--------------------\n\n");
+ const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="singapore-trip-journal.txt";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function exportJournalJson(){
+ const blob=new Blob([JSON.stringify({trip:"Singapore Family Trip 2026",exportedAt:new Date().toISOString(),journal:journalData()},null,2)],{type:"application/json;charset=utf-8"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="singapore-trip-journal.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
 function renderJournal(){
  const root=document.getElementById("journalContent");if(!root)return;
  const d=journalData();
- root.innerHTML=DAYS.map(x=>`<section class="journalday"><h3>DAY ${x.day} · ${x.title}</h3><textarea data-jday="${x.day}" placeholder="오늘 있었던 일, 아이들 반응, 맛있었던 것, 일정 변경…">${escapeHtml(d[x.day]||"")}</textarea><div class="savehint">입력하면 자동 저장</div></section>`).join("");
+ root.innerHTML=`<section class="toolcard" style="margin-bottom:9px"><h3>📤 기록 내보내기</h3><p style="margin:0 0 8px;font-size:11px;color:#687b85">DAY별 기록은 이 기기에 자동 저장됩니다. 여행 후 TXT 또는 JSON으로 추출할 수 있습니다.</p><div class="expense-actions"><button id="journalExportTxt">TXT 내보내기</button><button id="journalExportJson">JSON 백업</button></div></section>`+
+ DAYS.map(x=>`<section class="journalday"><h3>DAY ${x.day} · ${x.title}</h3><textarea data-jday="${x.day}" placeholder="오늘 있었던 일, 아이들 반응, 맛있었던 것, 일정 변경…">${escapeHtml(d[x.day]||"")}</textarea><div class="savehint">입력하면 자동 저장</div></section>`).join("");
  root.querySelectorAll("[data-jday]").forEach(t=>t.addEventListener("input",()=>{const x=journalData();x[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(x))}));
+ root.querySelector("#journalExportTxt")?.addEventListener("click",exportJournalText);
+ root.querySelector("#journalExportJson")?.addEventListener("click",exportJournalJson);
 }
 
 // Leaflet is an online enhancement. Core app still works if unavailable.
@@ -3616,7 +3682,7 @@ function closeDeep(){
 }
 
 
-// v20.14 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.16 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4117,7 +4183,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.14 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.16 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -4273,8 +4339,82 @@ function renderDetailMap(){
 
 
 const EXPENSE_KEY="sg_trip_expenses_v19_27";
-function expenseData(){try{return JSON.parse(localStorage.getItem(EXPENSE_KEY)||"[]")||[]}catch(e){return []}}
+const EXPENSE_SYNC_CONFIG_KEY="sg_trip_expense_sheet_sync_v20";
+const EXPENSE_DELETED_KEY="sg_trip_expense_deleted_v20";
+const EXPENSE_SHEET_URL="https://docs.google.com/spreadsheets/d/1yaxsfo2J9q1CkqIDBpDSZOI7fQ_vojsp7vQZRyivUtQ/edit";
+
+function expenseData(){
+  try{
+    const arr=JSON.parse(localStorage.getItem(EXPENSE_KEY)||"[]")||[];
+    let changed=false;
+    arr.forEach((x,i)=>{
+      if(!x.id){x.id=`exp-${Date.now()}-${i}-${Math.random().toString(36).slice(2,7)}`;changed=true}
+      if(!x.updatedAt){x.updatedAt=new Date().toISOString();changed=true}
+    });
+    if(changed)localStorage.setItem(EXPENSE_KEY,JSON.stringify(arr));
+    return arr;
+  }catch(e){return []}
+}
 function saveExpenses(x){localStorage.setItem(EXPENSE_KEY,JSON.stringify(x))}
+function expenseSyncConfig(){try{return JSON.parse(localStorage.getItem(EXPENSE_SYNC_CONFIG_KEY)||"{}")||{}}catch(e){return {}}}
+function saveExpenseSyncConfig(x){localStorage.setItem(EXPENSE_SYNC_CONFIG_KEY,JSON.stringify(x||{}))}
+function expenseDeletedQueue(){try{return JSON.parse(localStorage.getItem(EXPENSE_DELETED_KEY)||"[]")||[]}catch(e){return []}}
+function saveExpenseDeletedQueue(x){localStorage.setItem(EXPENSE_DELETED_KEY,JSON.stringify(x||[]))}
+function expensePendingCount(){
+  const arr=expenseData();
+  return arr.filter(x=>!x.syncedAt || new Date(x.updatedAt||0)>new Date(x.syncedAt||0)).length + expenseDeletedQueue().length;
+}
+function expenseSyncConfigured(){
+  const c=expenseSyncConfig();
+  return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(String(c.url||"")) && !!String(c.key||"").trim();
+}
+function appScriptJsonp(action,payload,timeout=15000){
+  return new Promise((resolve,reject)=>{
+    const c=expenseSyncConfig();
+    if(!expenseSyncConfigured())return reject(new Error("동기화 설정이 필요합니다."));
+    const cb="__sgExpenseSync_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    let timer=null,script=null;
+    const cleanup=()=>{if(timer)clearTimeout(timer);if(script)script.remove();try{delete window[cb]}catch(e){window[cb]=undefined}};
+    window[cb]=res=>{cleanup();res&&res.ok?resolve(res):reject(new Error(res?.error||"동기화 실패"))};
+    const q=new URLSearchParams({action,key:c.key,callback:cb,payload:JSON.stringify(payload||{})});
+    script=document.createElement("script");
+    script.src=c.url+(c.url.includes("?")?"&":"?")+q.toString();
+    script.onerror=()=>{cleanup();reject(new Error("Apps Script 연결 실패"))};
+    timer=setTimeout(()=>{cleanup();reject(new Error("동기화 응답 시간 초과"))},timeout);
+    document.head.appendChild(script);
+  });
+}
+async function testExpenseSheetConnection(){
+  return appScriptJsonp("ping",{});
+}
+async function syncExpensesToSheet(){
+  if(!navigator.onLine)throw new Error("현재 기기가 오프라인입니다.");
+  if(!expenseSyncConfigured())throw new Error("Apps Script URL과 동기화 키를 먼저 저장해주세요.");
+
+  const arr=expenseData();
+  const pending=arr.filter(x=>!x.syncedAt || new Date(x.updatedAt||0)>new Date(x.syncedAt||0));
+
+  for(const rec of pending){
+    await appScriptJsonp("upsert",rec);
+    rec.syncedAt=new Date().toISOString();
+    saveExpenses(arr);
+  }
+
+  const deletes=expenseDeletedQueue().slice();
+  const remaining=[];
+  for(const id of deletes){
+    try{await appScriptJsonp("delete",{id})}
+    catch(e){remaining.push(id)}
+  }
+  saveExpenseDeletedQueue(remaining);
+
+  if(remaining.length)throw new Error(`삭제 동기화 ${remaining.length}건 실패`);
+  return {synced:pending.length,deleted:deletes.length};
+}
+function maybeAutoSyncExpenses(){
+  if(networkModeState!=="online" || !navigator.onLine || !expenseSyncConfigured())return;
+  syncExpensesToSheet().catch(()=>{});
+}
 function won(n){return `${Math.round(Number(n)||0).toLocaleString("ko-KR")}원`}
 function expenseEstimate(sgd,rate,fee){return (Number(sgd)||0)*(Number(rate)||0)*(1+(Number(fee)||0)/100)}
 function parseQuickExpense(text){
@@ -4304,7 +4444,28 @@ function renderExpenseTool(){
   const actual=arr.reduce((a,x)=>a+(Number(x.actualKRW)||0),0);
   const payer={}; const byDay={};
   arr.forEach(x=>{payer[x.payer||"미지정"]=(payer[x.payer||"미지정"]||0)+(Number(x.actualKRW)||Number(x.estimatedKRW)||0);byDay[x.day]=(byDay[x.day]||0)+(Number(x.actualKRW)||Number(x.estimatedKRW)||0)});
-  return `<div class="toolgrid">
+  const syncCfg=expenseSyncConfig();
+  const pendingCount=expensePendingCount();
+  const syncMode=networkModeState==="online"?"온라인 모드 · 자동 동기화":"오프라인 모드 · 수동 동기화";
+  return `<div class="expense-sync-card">
+    <div class="expense-sync-head">
+      <h3>☁️ Google Sheets 동기화</h3>
+      <span id="expenseSyncBadge" class="expense-sync-state ${expenseSyncConfigured()?(pendingCount?"wait":"ok"):""}">${expenseSyncConfigured()?(pendingCount?`대기 ${pendingCount}건`:"연결됨"):"미설정"}</span>
+    </div>
+    <div class="expense-sync-info">${syncMode}<br>입력은 항상 이 기기에 먼저 저장됩니다. ${networkModeState==="online"?"연결돼 있으면 자동 업로드를 시도합니다.":"인터넷이 있어도 자동 업로드하지 않고 ‘지금 동기화’를 눌렀을 때만 업로드합니다."}</div>
+    <div class="expense-actions" style="margin-top:8px">
+      <button class="primary" id="expenseSyncNow">☁️ 지금 동기화</button>
+      <button id="expenseSyncToggle">⚙️ 연결 설정</button>
+      <a href="${EXPENSE_SHEET_URL}" target="_blank" rel="noopener" style="border:1px solid #d7e1e5;background:#fff;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;color:#274b5b;text-decoration:none">📊 Sheet 열기</a>
+    </div>
+    <div id="expenseSyncSettings" class="expense-sync-settings" style="display:none">
+      <div class="expense-sync-info">Apps Script 배포 후 받은 <b>/exec URL</b>과 Code.gs 상단의 <b>SYNC_KEY</b>를 입력하세요. 이 값은 이 기기에만 저장됩니다.</div>
+      <input id="expenseSyncUrl" placeholder="https://script.google.com/macros/s/.../exec" value="${esc(syncCfg.url||"")}">
+      <input id="expenseSyncKey" placeholder="동기화 키" value="${esc(syncCfg.key||"")}">
+      <div class="expense-actions" style="margin-top:7px"><button class="primary" id="expenseSyncSave">설정 저장</button><button id="expenseSyncTest">연결 테스트</button></div>
+    </div>
+    <div id="expenseSyncMessage" class="expense-sync-info"></div>
+  </div><div class="toolgrid">
     <section class="toolcard">
       <h3>💰 여행 가계부</h3>
       <div class="expense-summary">
@@ -4321,7 +4482,9 @@ function renderExpenseTool(){
       <h3>직접 입력</h3>
       <div class="expense-form">
         <div class="row2"><select id="expenseDay">${[1,2,3,4,5,6].map(d=>`<option value="${d}" ${d===day?"selected":""}>DAY ${d}</option>`).join("")}</select><input id="expenseItem" placeholder="항목"></div>
+        <div class="row2"><select id="expenseCategory"><option>기타</option><option>숙박</option><option>교통</option><option>관광</option><option>식사</option><option>조식</option></select><input id="expensePlace" placeholder="내용/장소"></div>
         <div class="row2"><input id="expensePayer" placeholder="결제자"><select id="expenseStatus"><option>예상</option><option>결제완료</option><option>취소</option></select></div>
+        <div class="row2"><input id="expensePaymentMethod" placeholder="결제수단 · 카드/현금/호텔결제"><input id="expensePeople" type="number" inputmode="numeric" value="11" placeholder="인원"></div>
         <div class="row2"><input id="expenseSGD" type="number" inputmode="decimal" placeholder="SGD 참고금액"><input id="expenseActualKRW" type="number" inputmode="numeric" placeholder="실제 원화금액"></div>
         <div class="row2"><input id="expenseDate" type="date"><input id="expenseBooking" placeholder="예약번호"></div>
         <input id="expenseMemo" placeholder="메모">
@@ -4350,30 +4513,85 @@ function addExpenseRecord(rec,rate,fee){
   rec.day=Number(rec.day)||inferExpenseDay(rec.item);
   rec.rate=r;rec.fee=f;
   rec.estimatedKRW=rec.actualKRW?Number(rec.actualKRW):expenseEstimate(rec.sgd,r,f);
-  rec.id=Date.now();
+  rec.id=rec.id||`exp-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  rec.updatedAt=new Date().toISOString();
+  rec.syncedAt=rec.syncedAt||"";
   arr.push(rec);saveExpenses(arr);
+  maybeAutoSyncExpenses();
 }
 function bindExpenseTool(body){
   const rate=()=>Number(body.querySelector("#expenseRate")?.value)||Number(fxRate)||1080;
   const fee=()=>Number(body.querySelector("#expenseFee")?.value)||0;
+  const syncMsg=(msg,kind="")=>{
+    const el=body.querySelector("#expenseSyncMessage");if(el)el.innerHTML=msg?`<span class="${kind}">${esc(msg)}</span>`:"";
+  };
+  body.querySelector("#expenseSyncToggle")?.addEventListener("click",()=>{
+    const s=body.querySelector("#expenseSyncSettings");if(s)s.style.display=s.style.display==="none"?"block":"none";
+  });
+  body.querySelector("#expenseSyncSave")?.addEventListener("click",()=>{
+    saveExpenseSyncConfig({
+      url:(body.querySelector("#expenseSyncUrl")?.value||"").trim(),
+      key:(body.querySelector("#expenseSyncKey")?.value||"").trim()
+    });
+    syncMsg("동기화 설정을 이 기기에 저장했습니다.");
+    body.innerHTML=renderExpenseTool();bindExpenseTool(body);
+  });
+  body.querySelector("#expenseSyncTest")?.addEventListener("click",async()=>{
+    try{
+      saveExpenseSyncConfig({url:(body.querySelector("#expenseSyncUrl")?.value||"").trim(),key:(body.querySelector("#expenseSyncKey")?.value||"").trim()});
+      syncMsg("연결 확인 중…");
+      await testExpenseSheetConnection();
+      syncMsg("✅ Google Sheets 연결 성공");
+    }catch(e){syncMsg("❌ "+(e.message||e),"err")}
+  });
+  body.querySelector("#expenseSyncNow")?.addEventListener("click",async()=>{
+    const btn=body.querySelector("#expenseSyncNow");
+    try{
+      if(btn){btn.disabled=true;btn.textContent="동기화 중…"}
+      syncMsg("업로드 중…");
+      const r=await syncExpensesToSheet();
+      body.innerHTML=renderExpenseTool();bindExpenseTool(body);
+      const msg=body.querySelector("#expenseSyncMessage");if(msg)msg.textContent=`✅ 동기화 완료 · 업로드 ${r.synced}건 / 삭제 ${r.deleted}건`;
+    }catch(e){
+      if(btn){btn.disabled=false;btn.textContent="☁️ 지금 동기화"}
+      syncMsg("❌ "+(e.message||e),"err");
+    }
+  });
   body.querySelector("#expenseQuickAdd")?.addEventListener("click",()=>{
     const rec=parseQuickExpense(body.querySelector("#expenseQuick")?.value);
     if(!rec)return;
-    rec.day=inferExpenseDay(rec.item);addExpenseRecord(rec,rate(),fee());
+    rec.day=inferExpenseDay(rec.item);
+    rec.category=/jumbo|식사|restaurant|cafe|food/i.test(rec.item)?"식사":/grab|taxi|coach|mrt|bus|공항/i.test(rec.item)?"교통":/hotel|marriott|숙박/i.test(rec.item)?"숙박":/garden|uss|universal|ocean|luge|cruise/i.test(rec.item)?"관광":"기타";
+    rec.place="";rec.paymentMethod="";rec.people=11;
+    addExpenseRecord(rec,rate(),fee());
     body.innerHTML=renderExpenseTool();bindExpenseTool(body);
   });
   body.querySelector("#expenseAdd")?.addEventListener("click",()=>{
     const rec={
       day:Number(body.querySelector("#expenseDay")?.value)||day,item:body.querySelector("#expenseItem")?.value||"여행경비",
+      category:body.querySelector("#expenseCategory")?.value||"기타",place:body.querySelector("#expensePlace")?.value||"",
       payer:body.querySelector("#expensePayer")?.value||"",status:body.querySelector("#expenseStatus")?.value||"예상",
+      paymentMethod:body.querySelector("#expensePaymentMethod")?.value||"",people:Number(body.querySelector("#expensePeople")?.value)||11,
       sgd:Number(body.querySelector("#expenseSGD")?.value)||0,actualKRW:Number(body.querySelector("#expenseActualKRW")?.value)||0,
       date:body.querySelector("#expenseDate")?.value||"",booking:body.querySelector("#expenseBooking")?.value||"",memo:body.querySelector("#expenseMemo")?.value||""
     };
     addExpenseRecord(rec,rate(),fee());body.innerHTML=renderExpenseTool();bindExpenseTool(body);
   });
-  body.querySelectorAll("[data-exp-del]").forEach(b=>b.onclick=()=>{const arr=expenseData();arr.splice(Number(b.dataset.expDel),1);saveExpenses(arr);body.innerHTML=renderExpenseTool();bindExpenseTool(body)});
+  body.querySelectorAll("[data-exp-del]").forEach(b=>b.onclick=()=>{
+    const arr=expenseData();
+    const rec=arr[Number(b.dataset.expDel)];
+    if(rec?.id){
+      const q=expenseDeletedQueue();
+      if(!q.includes(String(rec.id)))q.push(String(rec.id));
+      saveExpenseDeletedQueue(q);
+    }
+    arr.splice(Number(b.dataset.expDel),1);
+    saveExpenses(arr);
+    maybeAutoSyncExpenses();
+    body.innerHTML=renderExpenseTool();bindExpenseTool(body);
+  });
   body.querySelector("#expenseExport")?.addEventListener("click",()=>{
-    const rows=[["DAY","항목","결제자","상태","SGD","예상KRW","실제KRW","결제일","예약번호","메모"],...expenseData().map(x=>[x.day,x.item,x.payer,x.status,x.sgd,x.estimatedKRW,x.actualKRW,x.date,x.booking,x.memo])];
+    const rows=[["기록ID","DAY","구분","항목","내용/장소","결제자","결제수단","상태","SGD","환율","수수료%","예상KRW","실제KRW","인원","결제일","예약번호","메모","Sheet동기화시각"],...expenseData().map(x=>[x.id,x.day,x.category,x.item,x.place,x.payer,x.paymentMethod,x.status,x.sgd,x.rate,x.fee,x.estimatedKRW,x.actualKRW,x.people,x.date,x.booking,x.memo,x.syncedAt])];
     const csv=rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\n");
     const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");
     a.href=URL.createObjectURL(blob);a.download="singapore-trip-expenses.csv";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
@@ -4494,11 +4712,16 @@ function rebindPamTool(mode){
   body.querySelectorAll("[data-prep17]").forEach(cb=>cb.onchange=()=>{
    const state=prepState();state[cb.dataset.prep17]=cb.checked;localStorage.setItem(PREP_STATE_KEY,JSON.stringify(state));
   });
+  body.querySelectorAll("[data-pack]").forEach(cb=>cb.onchange=()=>{
+   const state=packState();state[cb.dataset.pack]=cb.checked;localStorage.setItem(PACK_STATE_KEY,JSON.stringify(state));
+  });
  }
  if(mode==="journal"){
   body.querySelectorAll("[data-jday]").forEach(t=>t.oninput=()=>{
    const state=journalData();state[t.dataset.jday]=t.value;localStorage.setItem(JOURNAL_KEY,JSON.stringify(state));
   });
+  body.querySelector("#journalExportTxt")?.addEventListener("click",exportJournalText);
+  body.querySelector("#journalExportJson")?.addEventListener("click",exportJournalJson);
  }
 
 
@@ -4530,6 +4753,20 @@ function syncPamToolHitArea(){
   p.setAttribute("aria-hidden",open?"false":"true");
 }
 
+
+function bindTransportTool(root){
+  if(!root)return;
+  const go=mode=>{
+    const origin=root.querySelector("#transportOrigin")?.value?.trim();
+    const destination=root.querySelector("#transportDestination")?.value?.trim();
+    if(!destination){root.querySelector("#transportDestination")?.focus();return;}
+    const url=`https://www.google.com/maps/dir/?api=1${origin?`&origin=${encodeURIComponent(origin)}`:""}&destination=${encodeURIComponent(destination)}&travelmode=${mode}`;
+    window.open(url,"_blank","noopener");
+  };
+  root.querySelector("#transportTransitSearch")?.addEventListener("click",()=>go("transit"));
+  root.querySelector("#transportDrivingSearch")?.addEventListener("click",()=>go("driving"));
+}
+
 function openPamTool(mode){
   if(mode==="itinerary"){
     closePamTool();
@@ -4556,7 +4793,7 @@ function openPamTool(mode){
   requestAnimationFrame(()=>{
     try{
       if(mode==="expense"){body.innerHTML=renderExpenseTool();bindExpenseTool(body);}
-      else if(mode==="transport"){body.innerHTML=transportCommonHtml();}
+      else if(mode==="transport"){body.innerHTML=transportCommonHtml();bindTransportTool(body);}
       else{body.innerHTML=clonePaneForTool(mode);rebindPamTool(mode);}
       body.scrollTop=0;
     }catch(err){
@@ -4574,7 +4811,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.14 · DAY swipe
+// v20.16 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
@@ -4666,10 +4903,22 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_14";
-// 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20";
+const NETWORK_MODE_LEGACY_KEYS=["sg_trip_network_mode_v20_16","sg_trip_network_mode_v20_14","sg_trip_network_mode_v20_13","sg_trip_network_mode_v20_12","sg_trip_network_mode_v20_11","sg_trip_network_mode_v20_10","sg_trip_network_mode_v20_9"];
 const DEFAULT_NETWORK_MODE="online";
-let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
+function loadPersistedNetworkMode(){
+  const stable=localStorage.getItem(NETWORK_MODE_KEY);
+  if(stable==="online"||stable==="offline")return stable;
+  for(const k of NETWORK_MODE_LEGACY_KEYS){
+    const v=localStorage.getItem(k);
+    if(v==="online"||v==="offline"){
+      localStorage.setItem(NETWORK_MODE_KEY,v);
+      return v;
+    }
+  }
+  return DEFAULT_NETWORK_MODE;
+}
+let networkModeState=loadPersistedNetworkMode();
 let onlineRefreshTimer=null;
 
 function updateNetworkModeUI(){
@@ -4681,13 +4930,13 @@ function updateNetworkModeUI(){
     updateBtn.textContent=online?"↻ 지금 정보 새로고침":"↻ 수동 정보 가져오기";
     updateBtn.title=online
       ?"날씨·환율·대표이미지를 즉시 다시 가져옵니다."
-      :"오프라인 모드를 유지한 채 이번 한 번만 인터넷으로 날씨·환율·대표이미지를 가져옵니다.";
+      :"오프라인 모드를 유지한 채 이번 한 번만 인터넷으로 날씨·환율·대표이미지를 가져옵니다. 지도는 각 지도 화면에서 별도로 불러옵니다.";
   }
   const status=document.getElementById("onlineStatus");
   if(status){
     status.innerHTML=online
       ? `🌐 온라인 모드 <span class="netmodeBadge online">AUTO</span> · 날씨/환율 자동 갱신 · 지도 온라인 사용`
-      : `📴 오프라인 모드 <span class="netmodeBadge offline">MANUAL</span> · 자동 통신 없음 · 필요할 때 버튼으로 1회 갱신`;
+      : `📴 오프라인 모드 <span class="netmodeBadge offline">MANUAL</span> · 자동 통신 없음 · 수동버튼=날씨/환율/이미지 · 지도는 별도`;
   }
 }
 
