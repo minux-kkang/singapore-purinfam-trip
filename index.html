@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.6</title>
+<title>Singapore Family Trip 2026 · v20.7</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -720,7 +720,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.6 · magnetic pull-down tool drawer */
+/* v20.7 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -848,7 +848,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.6 · offline-first controls */
+/* v20.7 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -861,7 +861,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.6 · explicit online/offline mode */
+/* v20.7 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -896,7 +896,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.6</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.7</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -953,7 +953,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.6 · 전 식사 일정 후보 확장 · Orchard/MBS/USS/Chinatown/Sentosa/Kampong Glam</div>
+  <div class="footer">v20.7 · 식당 후보 중복 제거 · 그룹 분류 상호배타 처리</div>
 </main>
 
 
@@ -1014,7 +1014,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.6 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.7 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2699,12 +2699,29 @@ function dayFoodRestaurants(dayNum,itemId=null){
 }
 function foodHubHtml(dayNum,item,itemId=null){
   const all=dayFoodRestaurants(dayNum,itemId);
-  const family=all.filter(r=>(r.requestCount||0)>0 || r.priority==="family-pick");
   const confirmed=all.filter(r=>r.status==="confirmed");
-  const recommended=all.filter(r=>r.status!=="confirmed" && !((r.requestCount||0)>0 || r.priority==="family-pick") && (r.category==="recommended"||r.priority==="route"));
-  const local=all.filter(r=>r.status!=="confirmed" && !((r.requestCount||0)>0 || r.priority==="family-pick") && r.category==="local");
-  const cafe=all.filter(r=>r.category==="cafe");
-  const backup=all.filter(r=>r.priority==="backup");
+  const family=all.filter(r=>r.status!=="confirmed" && ((r.requestCount||0)>0 || r.priority==="family-pick"));
+  const recommended=all.filter(r=>r.status!=="confirmed"
+    && !family.includes(r)
+    && r.category==="recommended"
+    && r.priority!=="backup");
+  const local=all.filter(r=>r.status!=="confirmed"
+    && !family.includes(r)
+    && !recommended.includes(r)
+    && r.category==="local"
+    && r.priority!=="backup");
+  const cafe=all.filter(r=>r.status!=="confirmed"
+    && !family.includes(r)
+    && !recommended.includes(r)
+    && !local.includes(r)
+    && r.category==="cafe"
+    && r.priority!=="backup");
+  const backup=all.filter(r=>r.status!=="confirmed"
+    && !family.includes(r)
+    && !recommended.includes(r)
+    && !local.includes(r)
+    && !cafe.includes(r)
+    && r.priority==="backup");
   const other=all.filter(r=>!confirmed.includes(r)&&!family.includes(r)&&!recommended.includes(r)&&!local.includes(r)&&!cafe.includes(r)&&!backup.includes(r));
   const group=(title,arr)=>arr.length?`<section class="foodgroup"><div class="foodgroup-title">${title}</div>${arr.map(restaurantCardHtml).join("")}</section>`:"";
   const wishes=FOOD_MENU_WISHES.filter(w=>(!w.day || +w.day===+dayNum) && (!itemId || !w.itemIds?.length || w.itemIds.includes(itemId)));
@@ -3530,7 +3547,7 @@ function closeDeep(){
 }
 
 
-// v20.6 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.7 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4505,7 +4522,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_6";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_7";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
