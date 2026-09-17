@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.0</title>
+<title>Singapore Family Trip 2026 · v20.1</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -488,6 +488,21 @@ body.open .sheet{touch-action:pan-y}
 .itemmore>summary::-webkit-details-marker{display:none}
 .itemmore>summary:after{content:"⌄";float:right;color:#8999a1}.itemmore[open]>summary:after{content:"⌃"}
 .itemmorebody{margin-top:11px;display:grid;gap:12px}
+.knowledge{border-top:1px solid #e8eef1;padding:13px 1px}
+.knowledge>summary{cursor:pointer;list-style:none;font-size:11.5px;font-weight:950;color:#244f62;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.knowledge>summary::-webkit-details-marker{display:none}
+.knowledge>summary:after{content:"⌄";color:#8b9aa2}.knowledge[open]>summary:after{content:"⌃"}
+.knowledge-body{margin-top:12px}
+.knowledge-sec{padding:10px 0;border-top:1px dashed #e2e9ec}
+.knowledge-sec:first-child{border-top:0;padding-top:0}
+.knowledge-sec h4{margin:0 0 6px;font-size:11px;color:#2d5364}
+.knowledge-sec p{margin:0;font-size:10.8px;line-height:1.7;color:#536b76;word-break:keep-all}
+.knowledge-sec ul{margin:6px 0 0;padding-left:18px}
+.knowledge-sec li{margin:4px 0;font-size:10.5px;line-height:1.55;color:#4e6671}
+.knowledge-fun{margin-top:8px;padding:8px 9px;border-radius:10px;background:#f7fafb;font-size:10px;line-height:1.55;color:#526975}
+.knowledge-source{margin-top:8px;font-size:8.8px;line-height:1.45;color:#8a99a0}
+.knowledge-source a{color:#6b7f88;text-decoration:underline}
+
 .itemactions{display:flex;flex-wrap:wrap;gap:7px;padding:12px 1px 2px;border-top:1px solid #e8eef1}
 .itemactions a,.itemactions button{border:1px solid #d9e3e7;background:#fff;color:#234b5e;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;text-decoration:none}
 .itemactions a.primary,.itemactions button.primary{background:#173f52;color:#fff;border-color:#173f52}
@@ -677,7 +692,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.0 · magnetic pull-down tool drawer */
+/* v20.1 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -805,7 +820,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.0 · offline-first controls */
+/* v20.1 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -818,7 +833,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.0 · explicit online/offline mode */
+/* v20.1 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -853,7 +868,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.0</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.1</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -910,7 +925,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.0 · 상세 이동정보 전면 개편 · MRT/Grab/Bus 실제 승하차/목적지 단계화</div>
+  <div class="footer">v20.1 · 전 일정 ‘더 알아보기’ 역사/특징/시설/가족팁 확장</div>
 </main>
 
 
@@ -971,7 +986,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.0 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.1 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2429,6 +2444,272 @@ const ITEM_DETAIL_GUIDE={
 };
 function detailGuideFor(dayNum,item){ return ITEM_DETAIL_GUIDE[`${dayNum}.${item?.title}`]||null; }
 
+
+const ITEM_KNOWLEDGE={
+"1.1":{
+ title:"인천공항부터 여행이 시작되는 이유",
+ about:"인천국제공항은 2001년 3월 29일 개항한 한국의 대표 허브공항입니다. 영종도와 주변 바다를 매립해 만든 대규모 공항으로, 수도권의 국제선 수요를 처리하고 동북아 허브를 목표로 건설됐습니다. 대한항공 국제선은 제2여객터미널을 주로 사용하므로, 우리 여행에서도 ‘공항 도착→수하물 위탁→출국심사→게이트’ 흐름을 T2 기준으로 생각하면 됩니다.",
+ history:"공항 건설은 1992년 시작됐고 8년 넘는 공사 끝에 개항했습니다. 이후 여러 단계 확장을 거치며 제2여객터미널과 추가 활주로 등이 들어섰습니다. 단순한 출발 장소가 아니라 한국의 국제 항공 네트워크를 상징하는 인프라입니다.",
+ highlights:["아이와 함께라면 출국심사 전에 화장실·간식·물부터 정비","공항에는 유아휴게실과 어린이 놀이시설 같은 가족 편의시설이 있음","여권·휴대폰·보조배터리·아이용품은 위탁수하물에 넣지 않기","게이트가 멀 수 있으므로 면세구역에서 너무 오래 머물지 않기"],
+ fun:"아이들에게는 ‘이 공항이 바다를 메워 만든 섬 위에 있다’고 이야기해주면 여행 시작부터 흥미 포인트가 됩니다.",
+ sources:[["인천국제공항공사 건설사","https://www.airport.kr/co_ko/766/subview.do"],["인천공항 편의시설","https://www.airport.kr/ap_en/1536/subview.do"]]
+},
+"1.2":{
+ title:"서울에서 싱가포르까지, 약 4,600km의 비행",
+ about:"KE643은 인천에서 싱가포르 창이공항으로 가는 대한항공 직항편입니다. 2026년 하계 스케줄 기준 비행시간은 대략 6시간대이며, 한국보다 싱가포르가 1시간 느립니다. 지도상 직선거리는 약 4,600km 정도입니다.",
+ history:"대한항공은 싱가포르 노선을 오래 운항해왔고, 현재 인천–싱가포르 노선은 하루 여러 편이 운항됩니다. 우리 편인 KE643은 낮에 출발해 저녁에 도착하는 일정이라 아이들과 이동하기에도 비교적 생활리듬이 덜 깨지는 편입니다.",
+ highlights:["실제 항로는 날씨·바람·관제에 따라 매일 달라져 ‘어느 나라 상공을 반드시 지난다’고 단정할 수 없음","중간부터 적도에 가까워지며 열대 지역의 적운·소나기 구름을 만날 수 있어 가끔 흔들림이 생길 수 있음","아이들은 지도 앱이나 기내 지도에서 현재 위치·남은 거리를 보는 것 자체가 좋은 콘텐츠","도착 1시간 전쯤에는 화장실·아이 옷·입국 후 필요한 물건을 정리해두기"],
+ fun:"북반구 중위도에서 적도 가까이 내려가는 비행이라, 출발지와 도착지의 계절감과 해 지는 시간이 다르게 느껴집니다. 창밖 풍경은 항로와 좌석 방향에 따라 크게 달라집니다.",
+ sources:[["대한항공 2026 싱가포르 운항스케줄","https://www.koreanair.com/contents/promotion/list/2026/sin2608"],["KE643 최근 운항정보","https://www.flightstats.com/v2/flight-tracker/KE/643"]]
+},
+"1.3":{
+ title:"창이공항은 왜 공항 자체가 관광지가 됐을까?",
+ about:"싱가포르 창이공항은 단순한 교통시설이 아니라 정원, 미디어아트, 쇼핑, 식음, 환승시설을 한데 묶은 ‘공항 경험’으로 유명합니다. 우리 KE643은 현재 Terminal 4 도착편으로 운영되고 있으며, T4는 자동화와 자연광, 넓은 상업공간을 강조한 터미널입니다.",
+ history:"창이공항은 1981년 문을 연 뒤 터미널을 계속 확장해왔습니다. T3는 2008년 개장했고, T4는 2017년 개장했습니다. 이후 2019년 Jewel이 추가되면서 공항이 ‘머무는 목적지’로까지 확장됐습니다.",
+ highlights:["T4는 입국 후 Ride-Hailing Pick-up 구역이 별도로 있어 Grab 이용 시 표지판을 잘 따라가야 함","T3의 Butterfly Garden, T1의 Kinetic Rain처럼 터미널별 대표 시설이 다름","Jewel은 공항 터미널 자체가 아니라 T1과 연결된 별도 복합시설이라 귀국일에 보는 편이 효율적","입국일엔 공항 구경보다 수하물·유모차·11명 재집결이 우선"],
+ fun:"창이는 ‘공항에서 시간을 보내는 것 자체가 경험’이 되도록 설계된 대표 사례입니다. 아이들에게는 ‘공항 안에 정원과 폭포가 있는 나라’라고 설명하기 좋습니다.",
+ sources:[["Changi Airport 역사","https://www.changiairport.com/en/corporate/about-us/our-story.html"],["Jewel 공식","https://www.jewelchangiairport.com/en/our-story.html"]]
+},
+"1.4":{
+ title:"공항에서 오차드로드로 들어가는 첫 싱가포르 풍경",
+ about:"창이공항에서 Marriott Tang Plaza가 있는 Orchard Road까지는 차량으로 대략 25~40분 정도를 생각하면 됩니다. 공항을 빠져나오면 동부의 넓은 도로와 녹지, 고속도로를 따라 시내 쪽으로 들어가고, 점차 고층 주거·업무지역과 도심 풍경이 늘어납니다.",
+ history:"싱가포르는 국토가 작아 공항과 중심가의 거리가 비교적 짧고, 주요 도로가 체계적으로 연결돼 있습니다. 공항에서 시내로 가는 길은 ‘열대 녹지가 많은 도시’라는 첫인상을 받기 좋은 구간입니다.",
+ highlights:["첫날은 밤 시간대라 관광보다 차량 탑승·도착 안정성이 우선","Grab을 타면 목적지를 ‘Singapore Marriott Tang Plaza Hotel, 320 Orchard Road’로 통일","여러 대로 나눠 타면 먼저 도착한 팀은 호텔 로비에서 기다리기","차 안에서 아이들에게 왼쪽 통행, 영어 도로표지, 야자수와 열대수목을 보여줘도 재미있음"],
+ fun:"싱가포르는 영국 식민지 시기의 영향으로 차량이 한국과 반대인 왼쪽으로 달립니다. 아이들이 가장 빨리 알아차리는 ‘다른 나라 느낌’ 중 하나입니다.",
+ sources:[["Singapore Marriott 주소/위치","https://www.marriott.com/en-us/hotels/sindt-singapore-marriott-tang-plaza-hotel/overview/"]]
+},
+"1.5":{
+ title:"Marriott Tang Plaza는 왜 외관이 중국식일까?",
+ about:"Singapore Marriott Tang Plaza Hotel은 Orchard Road와 Scotts Road가 만나는 핵심 위치에 있는 5성급 호텔입니다. Orchard MRT와 바로 연결되는 수준의 위치라 여행 중 ‘숙소 자체가 교통 허브’ 역할을 합니다. 야외 수영장, 24시간 피트니스, 레스토랑과 라운지 등 기본 시설도 갖추고 있습니다.",
+ history:"이 장소의 뿌리는 1958년 문을 연 C.K. Tang 백화점입니다. 창업자 Tang Choon Keng은 베이징의 궁궐 건축에서 영감을 받은 녹색 기와와 붉은 기둥의 독특한 건물을 만들었습니다. 1982년 현재 Tang Plaza가 들어섰고, 호텔은 과거 Dynasty Hotel을 거쳐 1995년 Marriott로 바뀌었습니다. 지금도 탑처럼 올라가는 중국식 지붕선 때문에 Orchard Road에서 눈에 잘 띕니다.",
+ highlights:["Orchard MRT 접근성이 좋아 DAY별 출발점으로 편리","TANGS 백화점과 바로 붙어 있어 간단한 쇼핑·생필품 구입에 유리","수영장·피트니스·Lobby Lounge 등 호텔 안에서 쉬기 좋은 공간이 있음","우리 일행은 4개 객실이므로 체크인 때 객실번호와 엘리베이터 동선을 가족끼리 공유"],
+ fun:"호텔 외관을 보면 ‘왜 싱가포르 한복판 호텔이 중국 궁궐처럼 생겼지?’라는 질문이 생기는데, 바로 TANGS 백화점의 역사와 연결됩니다.",
+ sources:[["Marriott 공식","https://www.marriott.com/en-us/hotels/sindt-singapore-marriott-tang-plaza-hotel/overview/"],["Tang Plaza 역사","https://www.roots.gov.sg/places/places-landing/Places/landmarks/orchard-heritage-trail-historical-gems/tang-plaza"]]
+},
+"2.1":{
+ title:"오차드에서 마리나베이의 ‘정원도시’로 이동",
+ about:"호텔이 있는 Orchard는 싱가포르의 대표 쇼핑축이고, Gardens by the Bay는 매립지에 새로 만들어진 Marina Bay 도시계획의 상징입니다. 약 30분 안팎 이동하면서 ‘오래된 상업 중심지’에서 ‘계획도시형 신도심’으로 분위기가 바뀝니다.",
+ highlights:["MRT를 이용하면 TEL(Thomson-East Coast Line)로 Gardens by the Bay역까지 직통 가능","Grab이면 Flower Dome/Main Entrance 쪽을 목적지로 잡아 내부 도보를 줄일 수 있음","도착하면 바로 전시를 시작하지 말고 11명 화장실·물·바우처부터 정비"],
+ fun:"싱가포르 여행에서 흥미로운 점은 도시 중심에서 몇 정거장만 움직여도 쇼핑도시→정원도시→워터프런트가 빠르게 바뀐다는 점입니다."
+},
+"2.2":{
+ title:"Gardens by the Bay — 싱가포르가 만든 ‘미래의 정원’",
+ about:"Marina Bay 워터프런트의 대형 정원으로, Bay South·Bay East·Bay Central 세 구역으로 구성됩니다. 가장 유명한 Bay South는 2012년 문을 열었고, 거대한 냉방 온실과 Supertree를 통해 싱가포르의 ‘City in a Garden’ 비전을 상징합니다.",
+ history:"2006년 국제 설계공모가 시작됐고 24개국 170개 회사에서 70개가 넘는 안이 제출됐습니다. 2007년 착공 뒤 Bay South가 2012년 본격 개장했습니다. Flower Dome은 2015년 Guinness World Records에서 세계 최대 유리온실로 인정받았습니다.",
+ highlights:["Flower Dome: 1.28ha 규모의 거대한 유리온실, 지중해·건조기후 식물과 계절 꽃 전시","Cloud Forest: 거대한 실내 산·폭포·공중보행로. 현재 Jurassic World: The Experience가 진행 중","Floral Fantasy: 1,500㎡ 공간에 15,000개가 넘는 생화·건조·보존 꽃 장식. 2026년에는 Disney Garden of Wonder 진행","우리 방문일 9/20에는 Mid-Autumn Festival 2026도 진행 기간(9/12~9/27)"],
+ family:"아이들은 공룡·폭포·디즈니 캐릭터가 확실한 포인트고, 부모님은 냉방 온실에서 더위를 피할 수 있습니다. 공식 추천 조합 자체가 약 3시간이라 현재 일정과도 잘 맞습니다.",
+ fun:"Flower Dome 내부는 싱가포르 바깥의 ‘봄 같은 기후’를 일부러 만들어놓은 공간입니다. 열대국가에서 오히려 시원한 온실을 만든다는 점이 재미있는 포인트입니다.",
+ sources:[["Gardens 역사","https://www.gardensbythebay.com.sg/en/about-us/our-gardens-story/our-history.html"],["Cloud Forest","https://www.gardensbythebay.com.sg/cloudforest"],["Disney Garden of Wonder","https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/disney-garden-of-wonder-at-floral-fantasy.html"]]
+},
+"2.3":{
+ title:"Marina Bay Sands — 세 개의 타워 위에 ‘배’를 올린 건물",
+ about:"2010년 문을 연 Marina Bay Sands는 호텔·카지노·쇼핑몰·박물관·극장·컨벤션센터가 결합된 대형 복합리조트입니다. 세 개의 57층 호텔 타워 위에 길게 놓인 SkyPark 때문에 싱가포르 스카이라인의 상징이 됐습니다.",
+ history:"건축가는 Moshe Safdie입니다. SkyPark는 약 1.2ha 규모로 세 타워를 잇고, 건물 전체는 싱가포르가 Marina Bay를 새로운 도심 워터프런트로 개발한 흐름을 상징합니다.",
+ highlights:["The Shoppes: 대형 쇼핑몰과 식당이 연결돼 더위 피하기 좋음","Apple Marina Bay Sands: 물 위에 떠 있는 듯한 구형 유리건물로 선택 방문","밖에서 보는 세 타워와 SkyPark 실루엣 자체가 대표 사진 포인트","우리 일정에서는 ‘관광지 정복’보다 휴식·쇼핑·재집결 거점으로 활용"],
+ fun:"멀리서 보면 SkyPark가 거대한 배처럼 보여서 아이들이 기억하기 쉽습니다.",
+ sources:[["MBS 회사/역사","https://www.marinabaysands.com/company-information.html"],["MBS 건축","https://www.marinabaysands.com/guides/exceptional-experiences/marina-bay-sands-architecture.html"]]
+},
+"2.4":{
+ title:"저녁 전에 일부러 쉬는 시간",
+ about:"이 일정은 관광지가 아니라 ‘야간 하이라이트를 망치지 않기 위한 전략적 휴식’입니다. 싱가포르의 낮 더위와 실내외 온도차 때문에 오후에는 아이와 부모님 체력이 급격히 떨어질 수 있습니다.",
+ highlights:["식당은 유명세보다 11명 착석·냉방·아이메뉴 우선","식사 뒤 바로 이동하지 말고 화장실과 앉아서 쉬는 시간을 포함","19:15 전후 Supertree에 도착할 수 있게 역산"],
+ fun:"가족여행에서는 ‘아무것도 안 하는 1시간’이 다음 관광지 한 곳보다 가치 있는 경우가 많습니다."
+},
+"2.5":{
+ title:"Supertree Grove — 나무처럼 보이지만 거대한 수직정원",
+ about:"Supertree는 Gardens by the Bay의 상징적인 인공 구조물로, 식물을 수직으로 심은 거대한 정원입니다. 낮에는 미래도시 조형물처럼 보이고 밤에는 조명과 음악이 더해져 전혀 다른 분위기가 됩니다.",
+ history:"Bay South와 함께 2012년 문을 열며 싱가포르의 대표 이미지가 됐습니다. 단순 장식이 아니라 식재, 그늘, 환경기술의 상징을 한 구조물에 결합한 것이 특징입니다.",
+ highlights:["19:45 Garden Rhapsody가 이날 핵심","9/20은 Mid-Autumn Festival 2026 기간이라 등불·야간 분위기가 더해짐","쇼를 위해 너무 좋은 자리를 고집하기보다 아이·부모님이 서 있기 편한 곳 우선","쇼 끝나면 20:45 두 번째 회차는 기다리지 않고 복귀"],
+ fun:"낮과 밤의 사진을 비교해보면 같은 장소가 완전히 다른 도시처럼 보입니다.",
+ sources:[["Gardens 2026 이벤트","https://www.gardensbythebay.com.sg/"],["Gardens 역사","https://www.gardensbythebay.com.sg/en/about-us/our-gardens-story/our-history.html"]]
+},
+"2.6":{
+ title:"야경 욕심보다 다음 날 USS",
+ about:"이 구간의 핵심은 ‘싱가포르 야경을 더 하나 보는 것’이 아니라 DAY3을 위해 체력을 남기는 것입니다. Marina Bay는 볼 것이 많아 계속 추가하고 싶어지지만, 가족 11명의 다음날 만족도를 생각하면 쇼 종료 직후 복귀가 맞습니다.",
+ highlights:["피곤하면 Grab 우선","호텔 도착 후 다음날 e-ticket과 아이 물품만 확인","늦은 야식·추가 산책은 기본안에서 제외"]
+},
+"3.1":{
+ title:"Sentosa로 들어가는 길 — 도시에서 리조트 섬으로",
+ about:"Sentosa는 지금은 테마파크와 해변으로 유명하지만, 과거에는 Pulau Blakang Mati라는 이름의 섬이었습니다. 어민과 Orang Laut 공동체, 영국 군사기지, 일본 점령기 시설 등을 거쳐 1972년 레저 개발을 위해 ‘Sentosa’로 이름을 바꿨습니다.",
+ history:"19세기 이후 영국은 이 섬에 여러 군사시설을 두었고, 그 흔적이 Fort Siloso 등에 남아 있습니다. 오늘날에는 Resorts World Sentosa, USS, Oceanarium, 해변이 있는 대표 관광섬으로 바뀌었습니다.",
+ highlights:["MRT로 가면 VivoCity에서 Sentosa Express로 갈아타며 ‘섬으로 들어가는 느낌’이 확실함","Grab으로 들어가면 이동시간을 줄일 수 있음","아이들에게 ‘옛날 군사 섬이 지금 놀이섬으로 바뀌었다’고 설명하면 재미있음"],
+ sources:[["Sentosa Heritage","https://www.sentosa.com.sg/en/get-inspired/rediscover-sentosa-rich-heritage-and-history/"]]
+},
+"3.2":{
+ title:"Universal Studios Singapore — 영화 속 세계를 압축한 테마파크",
+ about:"Universal Studios Singapore는 Resorts World Sentosa 안에 있는 영화·캐릭터 테마파크입니다. 2010년 3월 일반에 문을 열었고, 개장 당시 Hollywood, Sci-Fi City, The Lost World 등 7개 테마구역을 갖춘 형태로 출발했습니다.",
+ history:"2010년 RWS 개발의 핵심 시설 중 하나로 문을 열었고 이후 지속적으로 콘텐츠를 교체·확장했습니다. 2025년에는 Illumination’s Minion Land가 새로 문을 열어 Buggie Boogie와 Minion Mayhem 같은 최신 콘텐츠가 추가됐습니다.",
+ highlights:["Transformers 계열 어트랙션은 대표적인 실내 스릴 콘텐츠","Minion Land는 2025년 새로 열린 비교적 최신 구역","가족 11명이 모두 같은 놀이기구를 타는 것보다 관심·키 제한에 따라 팀을 나누는 편이 효율적","탑승조건은 나이보다 키 기준이 중요하므로 현장/공식 앱에서 재확인"],
+ family:"3세 아이 둘은 캐릭터·퍼레이드·완만한 시설 중심, 7세 아이는 키 조건에 따라 선택 폭이 넓어지고, 성인 스릴팀은 별도로 움직이는 방식이 자연스럽습니다.",
+ fun:"USS는 규모가 아주 큰 미국 본토 파크와 달리 비교적 압축돼 있어 ‘한 날 안에 여러 세계를 빠르게 넘나드는’ 느낌이 강합니다.",
+ sources:[["USS 2010 개장자료","https://www.rwsentosa.com/-/jssmedia/project/non-gaming/rwsentosa/press-release/pdf/en/2010/20100305-rws-uss.pdf"],["Minion Land","https://www.rwsentosa.com/en/play/universal-studios-singapore/zones/minion-land"]]
+},
+"3.3":{
+ title:"Sentosa 확장은 ‘보너스 스테이지’",
+ about:"USS에서 충분히 놀고도 체력이 남았을 때만 쓰는 선택 구간입니다. Sentosa는 Oceanarium, Luge, 해변, 케이블카 등 선택지가 많아서 한 번에 다 하려고 하면 오히려 여행 후반 일정이 무너질 수 있습니다.",
+ history:"Sentosa는 군사·주거 섬에서 1970년대 이후 본격적인 레저 섬으로 전환됐고, 지금은 서로 성격이 다른 여러 관광시설을 묶어 하루 이상 머무는 목적지로 발전했습니다.",
+ highlights:["DAY5를 위해 Oceanarium/Luge 중 일부는 남겨두기","USS 퇴장시각과 아이 상태를 먼저 보고 결정","‘안 하는 것도 선택’으로 인정하는 일정"],
+ sources:[["Sentosa 역사","https://www.sentosa.com.sg/en/get-inspired/sentosa-guides/16-things-you-didnt-know-about-sentosa/"]]
+},
+"4.1":{
+ title:"Fort Canning으로 가는 길부터 ‘옛 싱가포르’가 시작",
+ about:"호텔의 Orchard Road에서 Fort Canning으로 이동하면 현대 쇼핑지구에서 싱가포르의 오래된 역사 중심부로 이동하게 됩니다. 도착한 언덕은 14세기 왕궁 전승부터 영국 군사시설까지 여러 시대가 겹쳐 있는 장소입니다.",
+ highlights:["Grab 목적지를 Fort Canning Tree Tunnel로 찍으면 첫 포인트까지 걷기를 줄일 수 있음","MRT로 가면 Dhoby Ghaut 하차 후 도보가 남음","DAY4는 이후에도 많이 걷기 때문에 이 첫 구간은 체력 절약이 중요"]
+},
+"4.2":{
+ title:"Fort Canning과 National Museum — 싱가포르의 700년을 한 오전에",
+ about:"Fort Canning은 22ha 규모의 역사공원으로, 14세기 말레이 왕궁이 있었다고 전해지는 언덕이자 식민지 시기에는 통신·군사 거점이었습니다. 1942년 2월 15일 영국군의 일본군 항복 결정과도 연결되는 장소입니다.",
+ history:"언덕에는 1822년 싱가포르 최초의 실험·식물원이 조성됐고, 이후 포트와 군사시설이 들어섰습니다. National Museum은 1887년 Raffles Library and Museum으로 문을 연 싱가포르에서 가장 오래된 박물관이며 1992년 National Monument로 지정됐습니다.",
+ highlights:["Fort Canning Tree Tunnel은 사진 포인트지만 계단·대기 여부를 보고 짧게","National Museum은 2026년 9월 현재 Singapore History Gallery가 개편 중이며 2026년 10월 재개관 예정","대신 Once Upon a Tide와 Singapore Odyssea 등으로 싱가포르 역사를 볼 수 있음","CHIJMES와 Raffles Hotel은 박물관 이후 ‘식민지 시대 건축 분위기’를 이어 보는 연결 포인트"],
+ family:"아이들에게는 ‘왕의 언덕→영국군 요새→박물관’이라는 이야기 흐름으로 설명하면 단순한 건물 구경보다 이해하기 쉽습니다. 부모님은 언덕을 오래 걷지 않고 박물관에서 냉방·휴식을 확보하는 것이 좋습니다.",
+ fun:"Fort Canning 한 장소 안에서 중세 왕국, 향신료 재배, 영국군, 제2차 세계대전 이야기가 모두 나옵니다.",
+ sources:[["Fort Canning 역사","https://www.nparks.gov.sg/visit/parks/fort-canning-park/activities/heritage-appreciation"],["National Museum","https://www.nationalmuseum.nhb.gov.sg/about-us/about-us"]]
+},
+"4.3":{
+ title:"Chinatown — ‘중국계 거리’라기보다 초기 이민도시의 압축판",
+ about:"싱가포르 Chinatown은 1822년 Raffles의 도시계획에서 ‘Chinese Campong’으로 지정된 지역에서 성장했습니다. 중국 남부 출신 이민자들이 방언집단별로 자리 잡았고, 1840년대 이후 상점주택(shophouse)이 빠르게 늘었습니다.",
+ history:"한때는 과밀과 빈곤, 아편굴, 쿨리 숙소가 뒤섞인 생활공간이었고, 1960년대 이후 도시재개발과 이주가 진행됐습니다. 1989년 보존지구로 지정되며 역사적 건물과 거리풍경이 보존됐습니다. Kreta Ayer라는 이름은 과거 우마차로 물을 나르던 모습에서 나온 말입니다.",
+ highlights:["Pagoda Street의 shophouse 외관","Sri Mariamman Temple과 Buddha Tooth Relic Temple처럼 서로 다른 종교건축이 가까이 붙어 있는 점","Maxwell/Tekka 같은 호커문화와 비교해보기","점심 후보 Kok Sen Restaurant: Big Prawn Hor Fun, Claypot Yong Tau Foo. 11명은 사전예약 권장"],
+ family:"아이들에게 ‘왜 차이나타운 안에 힌두사원이 있을까?’라고 물어보면 싱가포르가 실제로는 여러 민족이 섞여 살아온 도시였다는 점을 자연스럽게 이야기할 수 있습니다.",
+ fun:"Chinatown은 중국인만의 공간으로 단순화하기 어렵습니다. 실제 역사는 중국계·인도계·말레이계와 항구 노동·상업이 뒤섞인 다민족 도시 이야기와 가깝습니다.",
+ sources:[["Chinatown 역사","https://www.roots.gov.sg/Collection-Landing/listing/1184876"],["Kreta Ayer","https://www.roots.gov.sg/stories-landing/stories/Kreta-Ayer-Heritage-Gallery/"]]
+},
+"4.4":{
+ title:"호텔 휴식도 DAY4의 핵심 일정",
+ about:"Fort Canning–박물관–Chinatown까지 오전과 점심에 이미 걷는 양이 많습니다. 저녁에는 River Cruise와 19:00 JUMBO 예약이 기다리고 있으므로 이 시간은 ‘비는 시간’이 아니라 여행 후반 체력을 회복하는 핵심 구간입니다.",
+ highlights:["아이 낮잠·샤워·옷 갈아입기","부모님 발·허리 휴식","JUMBO 예약번호와 이동시간 재확인","저녁에 필요한 것만 작은 가방에 다시 정리"],
+ fun:"11명 가족여행에서는 관광지 한 곳 추가보다 모두가 다시 같은 속도로 움직이게 만드는 휴식이 더 중요합니다."
+},
+"4.5":{
+ title:"Singapore River — 싱가포르가 항구도시로 성장한 중심",
+ about:"Singapore River는 1819년 영국 무역거점이 들어선 뒤 150년 넘게 상업의 핵심 동맥 역할을 했습니다. Boat Quay와 Clarke Quay 주변에는 창고, 상점, 부두가 밀집했고 작은 배들이 물건을 실어 날랐습니다.",
+ history:"산업화와 항만 이전 뒤 오염 문제가 심해지자 1970~80년대 대대적인 정화사업이 진행됐고, 1983년까지 큰 정비가 마무리됐습니다. Clarke Quay의 오래된 창고와 shophouse는 1989년 보존됐고 이후 식당·상점·엔터테인먼트 지역으로 재생됐습니다.",
+ highlights:["River Cruise를 타면 ‘현대 스카이라인’과 ‘옛 창고·부두’가 한 번에 보임","Old Hill Street Police Station, Clarke Quay, Boat Quay 쪽의 색감과 건축 비교","크루즈가 늦어지면 JUMBO 19:00을 위해 생략 가능"],
+ family:"걷는 대신 배에 앉아서 풍경을 볼 수 있어 아이·부모님에게는 오히려 휴식형 관광이 됩니다.",
+ fun:"지금의 깨끗한 강만 보면 상상하기 어렵지만, 예전에는 화물과 사람, 생활폐수가 몰리는 ‘일하는 강’이었습니다.",
+ sources:[["Singapore River Story","https://www.roots.gov.sg/stories-landing/stories/the-singapore-river-story/story"],["Clarke Quay 역사","https://www.roots.gov.sg/~/media/Roots/Files/singapore-river-walk/nhb_singpaore-river-walk_2018.pdf"]]
+},
+"4.6":{
+ title:"JUMBO Seafood — 관광객 식당이기 전에 1987년 시작한 싱가포르 브랜드",
+ about:"JUMBO Seafood는 1987년 East Coast Seafood Centre의 한 매장에서 시작했습니다. Chilli Crab과 Black Pepper Crab 같은 싱가포르식 해산물 요리로 유명해졌고, 지금은 여러 나라에 매장이 있는 대표 해산물 브랜드가 됐습니다.",
+ history:"처음에는 East Coast Seafood Centre의 단일 매장이었지만 현지인과 관광객 모두에게 인기를 얻으며 확장했습니다. 싱가포르 대표음식인 Chilli Crab을 ‘여행에서 한 번 제대로 먹는 자리’로 잡기 좋은 이유입니다.",
+ highlights:["우리 예약: Riverside Point · 9/22 19:00 · 11명 · 6V5D9N","Chilli Crab, Black Pepper Crab, Cereal Prawn, Mantou 등이 대표적","아이용으로 볶음밥·순한 요리를 함께 주문하면 편함","칠리크랩 소스에 Mantou를 찍어 먹는 방식이 대표적인 조합"],
+ fun:"Chilli Crab은 이름과 달리 ‘엄청 매운 게’ 핵심이라기보다 달고 짭짤하고 매콤한 소스를 게와 함께 먹는 싱가포르식 요리입니다.",
+ sources:[["JUMBO Story","https://www.jumboseafood.com.sg/en/jumbo-seafood-story"]]
+},
+"5.1":{
+ title:"두 번째 Sentosa는 ‘정복’이 아니라 ‘느긋하게 즐기기’",
+ about:"DAY3에 이미 Sentosa의 속도와 이동법을 익혔기 때문에 DAY5는 훨씬 편하게 움직일 수 있습니다. Sentosa 자체는 원래 Pulau Blakang Mati라는 역사 깊은 섬이었고, 오늘날의 리조트섬 이미지는 1970년대 이후 만들어진 것입니다.",
+ history:"1972년 레저 개발을 위해 Sentosa라는 이름으로 바뀌었고, 군사시설과 마을이 있던 섬이 테마파크·해변·호텔·박물관이 공존하는 관광섬으로 변했습니다.",
+ highlights:["DAY3에서 못한 것만 골라서 완성","늦은 출발 가능","Oceanarium이 메인이고 나머지는 체력에 따라 선택"],
+ sources:[["Sentosa Heritage","https://www.sentosa.com.sg/en/get-inspired/rediscover-sentosa-rich-heritage-and-history/"]]
+},
+"5.2":{
+ title:"Singapore Oceanarium — ‘수족관’에서 해양교육 기관으로 확장",
+ about:"Singapore Oceanarium은 기존 S.E.A. Aquarium을 확장·재구성해 2025년 7월 23일 공식 개장한 새로운 해양시설입니다. 단순히 큰 물고기를 보는 수족관에서 벗어나 해양의 과거·현재·미래를 스토리텔링과 디지털 기술로 설명하는 방향을 강조합니다.",
+ history:"Resorts World Sentosa는 기존 S.E.A. Aquarium을 크게 확장해 해양교육·연구·보전 중심 시설로 재편했습니다. 별도의 Research and Learning Centre도 함께 운영하며 해양연구와 교육 기능을 강화했습니다.",
+ highlights:["대형 수조와 다양한 해양생물","몰입형 스토리텔링과 인터랙티브 전시","Research and Learning Centre의 교육·보전 콘셉트","실내라 여행 후반부 더위·비를 피하기 좋음"],
+ family:"3세 아이는 큰 수조와 움직이는 생물 자체가 핵심이고, 7세 아이에게는 ‘왜 바다를 보호해야 하는가’까지 한 단계 더 이야기하기 좋습니다.",
+ fun:"2025년에 새로 문을 연 시설이라 이번 여행에서는 비교적 ‘신상 관광지’를 경험하는 셈입니다.",
+ sources:[["Singapore Oceanarium 공식","https://www.rwsentosa.com/ko-kr/play/singapore-oceanarium"],["2025 개장자료","https://www.rwsentosa.com/en/about/press-room"]]
+},
+"5.3":{
+ title:"점심과 휴식도 Oceanarium 관람의 일부",
+ about:"Oceanarium은 실내라 몸은 편해 보여도 아이들은 시각자극과 이동으로 피곤해질 수 있습니다. 오후 Luge/해변을 선택하기 전에 식사와 ‘아무것도 안 하는 시간’을 충분히 넣는 것이 좋습니다.",
+ highlights:["RWS/WEAVE/VivoCity 중 현재 위치에서 가장 가까운 곳 우선","11명 좌석 확보가 맛집 순위보다 중요","식사 후 30분 정도 앉아 쉬고 오후 일정 결정"]
+},
+"5.4":{
+ title:"Luge — Sentosa의 ‘짧고 강한’ 액티비티",
+ about:"Skyline Luge는 높은 곳에서 중력으로 내려오는 카트형 액티비티와 리프트를 결합한 체험입니다. 해변 산책과 성격이 완전히 달라 가족 취향에 따라 팀을 나누기 좋습니다.",
+ highlights:["Luge 희망자만 타고 휴식팀은 카페·산책","아이 탑승조건은 현장/공식 기준 확인","30~60분 정도 짧게 즐기고 재합류","비·노면 상태에 따라 만족도가 크게 달라질 수 있어 당일 결정이 합리적"],
+ fun:"한 가족 안에서도 ‘액티비티팀’과 ‘카페팀’으로 나눌 수 있다는 게 이 일정의 장점입니다."
+},
+"5.5":{
+ title:"Siloso Beach — Sentosa의 가장 활기찬 해변",
+ about:"Siloso Beach는 Sentosa의 대표 해변 중 하나로, 해변 자체뿐 아니라 주변에 바·레스토랑·액티비티가 모여 있어 비교적 활기찬 분위기입니다. 낮에는 물놀이와 산책, 저녁에는 해변 분위기와 식사를 즐기는 성격이 강합니다.",
+ highlights:["여행 마지막 저녁이므로 오래 머무르기보다 해질 무렵 분위기만 즐겨도 충분","아이들은 모래놀이가 시작되면 시간이 길어질 수 있어 귀국 준비시간 고려","피곤하면 해변을 생략하고 Orchard로 돌아가 식사해도 됨"],
+ fun:"Sentosa가 ‘섬 리조트’라는 느낌을 가장 직관적으로 받을 수 있는 장소입니다.",
+ sources:[["Siloso Beach 공식","https://www.sentosa.com.sg/en/things-to-do/attractions/siloso-beach/"]]
+},
+"6.1":{
+ title:"출국일 오전, 다시 ‘생활도시’ 싱가포르로",
+ about:"호텔에서 Little India로 이동하면서 Orchard의 고급 쇼핑지구에서 오래된 이민자 상업지구로 분위기가 크게 바뀝니다. 관광 마지막 날에 싱가포르의 다문화성을 보는 흐름으로 좋습니다.",
+ highlights:["Grab은 Tekka Centre를 목적지로 잡으면 시작점이 명확","Bus 65는 직행성이 좋아 당일 도착시간이 잘 맞으면 의외로 실용적","MRT는 Newton 환승이 필요해 11명에겐 Grab/버스보다 운영이 약간 복잡"]
+},
+"6.2":{
+ title:"Little India — 인도계 이민자의 생활과 상업이 만든 거리",
+ about:"Little India의 중심축인 Serangoon Road는 1828년 지도에 이미 등장합니다. 이 일대는 처음에는 유럽인들의 경마와 주거지로도 쓰였고, 이후 소 거래와 관련된 인도계 노동자·상인의 활동이 늘며 인도계 공동체 중심지가 됐습니다.",
+ history:"Tekka Centre의 전신 시장은 1915년 문을 열었고, 현재 건물은 1980년대에 이전된 형태입니다. Little India는 1989년 보존지구로 지정됐습니다. Sri Veeramakaliamman Temple은 1850년대부터 이어지는 오래된 힌두사원으로 유명합니다.",
+ highlights:["Tekka Centre: 시장과 먹거리로 생활감 보기","Tan Teng Niah: Little India에 남은 희귀한 중국계 빌라로, 이 지역이 한 민족만의 공간이 아니었다는 증거","Sri Veeramakaliamman Temple: 화려한 gopuram과 Kali 신상","꽃가게·사리·금세공·향신료 가게 등 거리 자체가 주요 볼거리"],
+ family:"아이들에게는 향신료 냄새, 꽃목걸이, 화려한 신상처럼 오감으로 느낄 수 있는 요소가 많습니다. 다만 출국일이므로 깊게 보기보다 45~60분 정도가 적당합니다.",
+ fun:"‘Little India’ 안에 중국계 사업가의 집인 Tan Teng Niah가 남아 있다는 점이 싱가포르 다문화 역사를 잘 보여줍니다.",
+ sources:[["Little India 공식 지도/역사","https://www.visitsingapore.com/content/dam/visitsingapore/neighbourhoods/little-india/Little-India_Digital-Version_Final_%281%29_%281%29.pdf"],["Sri Veeramakaliamman","https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/little-india/sri-veeramakaliamman-temple/"]]
+},
+"6.3":{
+ title:"Kampong Glam — 왕궁과 모스크, 직물상가와 힙한 골목이 겹친 동네",
+ about:"Kampong Glam은 과거 Malay royalty가 거주하던 지역이자 Javanese, Sumatrans, Baweanese, Arabs, Chinese, Indians 등 다양한 공동체가 모여 살던 곳입니다. 오늘날에는 Sultan Mosque, Arab Street, Haji Lane이 한 도보권에 겹쳐 있습니다.",
+ history:"Sultan Mosque의 첫 건물은 Sultan Hussein의 요청으로 1824~1826년에 세워졌고, 현재의 황금돔 건물은 1920년대에 재건됐습니다. 돔 밑부분에는 형편이 넉넉하지 않은 신도들이 기부한 유리병이 사용됐다는 이야기가 유명합니다. 1975년 National Monument로 지정됐습니다.",
+ highlights:["Sultan Mosque: 황금돔과 Muscat Street 정면 풍경","Arab Street: 직물·카펫·향수 등 오래된 상업 전통","Haji Lane: 좁은 골목, 벽화, 카페와 소형 상점","점심은 이 일대에서 해결하고 쇼핑보다 호텔 복귀시간 우선"],
+ family:"아이들에게 ‘왕이 살던 동네에 모스크가 생기고, 여러 나라 사람이 모여 살았다’는 이야기로 풀어주기 좋습니다.",
+ fun:"Sultan Mosque 황금돔 아래 기부 유리병 이야기는 아이들이 건물을 다시 보게 만드는 포인트입니다.",
+ sources:[["Kampong Glam Heritage Trail","https://www.roots.gov.sg/places/places-landing/trails/kampong-glam-heritage-trail"],["Sultan Mosque","https://www.roots.gov.sg/places/places-landing/Places/national-monuments/sultan-mosque"]]
+},
+"6.4":{
+ title:"호텔로 다시 돌아오는 이유 — 여행 종료를 준비하는 베이스캠프",
+ about:"마지막 관광 뒤 호텔로 돌아오는 것은 단순한 ‘쉬는 시간’이 아니라 공항 이동 전에 여행 전체를 다시 정리하는 운영 구간입니다. 11명의 짐·여권·아이 옷·유모차를 한 번에 맞추는 마지막 기회입니다.",
+ highlights:["일반 객실 짐 찾기","가능하면 Platinum 객실을 16:00까지 마지막 휴식거점으로 활용","기내용 가방과 위탁수하물 분리","아이 씻기·옷 갈아입기","공항으로 가져갈 캐리어·유모차 총개수 최종 확인"]
+},
+"6.5":{
+ title:"Orchard Road에서 Changi T4까지 — 여행의 마지막 단체 이동",
+ about:"호텔에서 공항까지는 차량으로 약 25~40분을 잡지만, 퇴근시간·비·사고에 따라 변동될 수 있습니다. 11명과 큰 짐이 함께 움직이는 만큼 실제 운전시간보다 로비 집결과 차량 적재 시간이 더 중요할 수 있습니다.",
+ highlights:["Coach 확정 시 18:30 한 번에 이동하는 것이 가장 단순","Grab이면 목적지를 ‘Changi Airport Terminal 4 - Departure’로 통일","싱가포르는 왼쪽통행이며 주요 고속도로망이 공항까지 잘 연결돼 있음","공항 도착 후 Jewel보다 먼저 체크인·탑승구 관련 여유를 확인"],
+ fun:"도착일에는 공항에서 시내로, 마지막 날에는 같은 길을 반대로 달리면서 여행 첫날과 마지막날 풍경을 비교할 수 있습니다."
+},
+"6.6":{
+ title:"Jewel Changi — 공항 주차장이 세계적인 실내정원으로 변한 곳",
+ about:"Jewel은 Terminal 1의 옛 야외주차장 부지에 만든 135,700㎡ 규모 복합시설로 2019년 4월 일반에 문을 열었습니다. 정원, 쇼핑, 식당, 호텔, 공항지원시설을 거대한 유리·철골 돔 안에 결합했습니다.",
+ history:"Jewel은 Changi Airport의 허브 경쟁력을 높이고 환승객과 현지인 모두가 찾는 목적지를 만들기 위해 기획됐습니다. 2019년 10월 공식 개장행사가 열렸고, Moshe Safdie가 설계한 돔과 Rain Vortex가 세계적인 아이콘이 됐습니다.",
+ highlights:["HSBC Rain Vortex: 높이 40m, 세계에서 가장 높은 실내 폭포","Shiseido Forest Valley: 폭포 주변의 실내정원","쇼핑·식사·기념품을 한곳에서 해결 가능","하지만 T4 출발편은 Jewel과 바로 붙어 있지 않으므로 이동시간을 반드시 감안"],
+ family:"아이들은 폭포 하나만 봐도 충분히 기억에 남습니다. 시간이 부족하면 Canopy Park 같은 유료시설은 과감히 제외하고 Rain Vortex만 보고 이동하는 게 좋습니다.",
+ fun:"공항의 부족한 주차공간을 해결하는 프로젝트가 세계적인 관광명소로 발전했다는 점이 Jewel의 재미있는 출발점입니다.",
+ sources:[["Jewel 공식 역사","https://www.jewelchangiairport.com/en/our-story.html"],["Jewel 2019 공식 개장자료","https://www.jewelchangiairport.com/content/dam/jca-project/documents/media/18%20Oct_MEDIA%20RELEASE_%20Jewel%20Changi%20Airport%20official%20opening.pdf"]]
+},
+"6.7":{
+ title:"창이공항 출국은 ‘게이트까지 이동시간’까지 포함",
+ about:"Jewel을 보고 나면 관광은 끝입니다. 체크인·수하물 위탁·출국심사 이후에도 Changi는 터미널 규모가 크고 탑승구까지 걸리는 시간이 있으므로 Boarding Time을 기준으로 움직여야 합니다.",
+ highlights:["KE644 터미널은 당일 앱/전광판으로 다시 확인","11명 탑승권과 수하물 개수 확인","출국심사 뒤 Gate 위치 먼저 확인한 다음 면세점 이용","아이들은 탑승 직전 화장실"],
+ fun:"창이공항은 출국 뒤에도 쇼핑·정원·미디어시설이 많아서 ‘게이트를 먼저 확인하지 않으면 계속 구경하게 되는 공항’입니다."
+},
+"6.8":{
+ title:"KE644 — 여행을 정리하는 밤 비행",
+ about:"KE644는 싱가포르에서 인천으로 돌아오는 야간편입니다. 밤에 출발해 한국에 다음날 아침 도착하는 일정이라, 탑승 후에는 관광모드보다 수면과 귀국 후 이동 준비로 전환하는 편이 좋습니다.",
+ highlights:["탑승 직후 아이용 담요·목베개·물 준비","귀국 후 바로 쓸 옷과 휴대폰 충전 상태 확인","착륙 전 여권·휴대폰·가방을 가족별로 다시 확인","싱가포르와 한국의 시차는 1시간이라 시차적응 부담은 크지 않음"],
+ fun:"갈 때는 낮에 적도 쪽으로 내려가고, 돌아올 때는 밤에 북쪽으로 올라오는 같은 노선의 반대편 경험입니다.",
+ sources:[["대한항공 2026 싱가포르 운항스케줄","https://www.koreanair.com/contents/promotion/list/2026/sin2608"]]
+}
+};
+
+function knowledgeHtml(dayNum,itemIndex,item){
+  const k=ITEM_KNOWLEDGE[`${dayNum}.${Number(itemIndex)+1}`];
+  if(!k)return "";
+  const sec=(title,body)=>body?`<section class="knowledge-sec"><h4>${title}</h4><p>${esc(body)}</p></section>`:"";
+  const list=k.highlights?.length?`<section class="knowledge-sec"><h4>🔎 알아두면 좋은 포인트</h4><ul>${k.highlights.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section>`:"";
+  const fam=k.family?`<section class="knowledge-sec"><h4>👨‍👩‍👧 가족과 볼 포인트</h4><p>${esc(k.family)}</p></section>`:"";
+  const fun=k.fun?`<div class="knowledge-fun">💡 ${esc(k.fun)}</div>`:"";
+  const sources=k.sources?.length?`<div class="knowledge-source">자료: ${k.sources.map(s=>`<a target="_blank" rel="noopener" href="${s[1]}">${esc(s[0])}</a>`).join(" · ")}</div>`:"";
+  return `<details class="knowledge">
+    <summary>📚 이 일정 더 알아보기 · 역사/특징/꿀팁</summary>
+    <div class="knowledge-body">
+      <section class="knowledge-sec"><h4>${esc(k.title||"더 알아보기")}</h4><p>${esc(k.about||"")}</p></section>
+      ${sec("🕰 어떻게 만들어졌나",k.history)}
+      ${list}
+      ${fam}
+      ${fun}
+      ${sources}
+    </div>
+  </details>`;
+}
+
 const DAY_ITEM_MAP_POINTS={
   1:[
     {item:2,lat:1.3644,lng:103.9915,name:"Changi Airport 도착",type:"airport"},
@@ -2952,7 +3233,7 @@ function closeDeep(){
 }
 
 
-// v20.0 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.1 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2981,7 +3262,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v200";
+const REP_DB_NAME="sg_trip_rep_images_v201";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -3326,6 +3607,8 @@ function openItem(i){
     <p class="lead">${esc(lead)}</p>
     ${desc?`<p class="desc">${esc(desc)}</p>`:""}
   </div>
+
+  ${knowledgeHtml(day,+i,sel)}
 
   ${g?.steps?.length?`<section class="itemdetail-section"><h3>오늘은 이렇게 움직여요</h3>${detailStepsHtml(g)}</section>`:""}
 
@@ -3923,7 +4206,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_0";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_1";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
