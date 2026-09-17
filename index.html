@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.4</title>
+<title>Singapore Family Trip 2026 · v20.5</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -524,6 +524,11 @@ body.open .sheet{touch-action:pan-y}
 .foodnote{margin-top:6px;padding:7px 8px;border-radius:9px;background:#f7fafb;font-size:9.5px;line-height:1.5;color:#657881}
 .foodwarn{margin-top:6px;font-size:9.2px;line-height:1.45;color:#8a650d}
 .foodempty{font-size:10px;color:#8b9aa2;padding:4px 0}
+.meal-candidates{margin:12px 0 2px;padding:12px;border:1px solid #e3e9ec;border-radius:14px;background:#fbfcfd}
+.meal-candidates-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.meal-candidates-head h3{margin:0;font-size:12px;color:#234b5d}
+.meal-candidates-head small{font-size:8.8px;color:#87969e}
+
 
 
 .itemactions{display:flex;flex-wrap:wrap;gap:7px;padding:12px 1px 2px;border-top:1px solid #e8eef1}
@@ -715,7 +720,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.1 · magnetic pull-down tool drawer */
+/* v20.5 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -843,7 +848,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.1 · offline-first controls */
+/* v20.5 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -856,7 +861,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.1 · explicit online/offline mode */
+/* v20.5 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -891,7 +896,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.4</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.5</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -948,7 +953,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.4 · 가족 희망 맛집/메뉴 관리 구조 · DAY별 먹거리 후보 정렬</div>
+  <div class="footer">v20.5 · 점심/저녁 일정 상세에 식당 후보 직접 노출 · 가족 Pick 우선정렬</div>
 </main>
 
 
@@ -1009,7 +1014,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.1 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.5 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2471,7 +2476,7 @@ function detailGuideFor(dayNum,item){ return ITEM_DETAIL_GUIDE[`${dayNum}.${item
 
 const RESTAURANTS=[
  {
-  id:"jumbo-riverside",name:"JUMBO Seafood - Riverside Point",day:4,category:"recommended",
+  id:"jumbo-riverside",name:"JUMBO Seafood - Riverside Point",day:4,itemIds:["4.6"],category:"recommended",
   status:"confirmed",time:"19:00",area:"Clarke Quay / Riverside Point",
   menus:["Chilli Crab","Black Pepper Crab","Cereal Prawn","Mantou","Fried Rice"],
   price:"중~고가 · 게 요리는 시가/중량 확인",hours:"예약시간 19:00 기준",reservation:"예약완료 · 11명 · 6V5D9N",
@@ -2479,7 +2484,7 @@ const RESTAURANTS=[
   note:"DAY4 고정 일정. 앞 일정이 밀리면 다른 관광을 줄여서라도 예약시간 우선."
  },
  {
-  id:"kok-sen",name:"Kok Sen Restaurant",day:4,category:"local",
+  id:"kok-sen",name:"Kok Sen Restaurant",day:4,itemIds:["4.3"],category:"local",
   status:"candidate",time:"점심 후보",area:"Chinatown · 4 Keong Saik Road",
   menus:["Big Prawn Hor Fun","Claypot Yong Tau Foo"],
   price:"대체로 요리당 S$10~20대부터",hours:"점심 영업 시작 12:00 기준 · 최신 영업시간 재확인",
@@ -2528,11 +2533,13 @@ function restaurantCardHtml(r){
     ${warning}
   </article>`;
 }
-function dayFoodRestaurants(dayNum){
-  return RESTAURANTS.filter(r=>+r.day===+dayNum).sort((a,b)=>restaurantRank(a)-restaurantRank(b)||(b.requestCount||0)-(a.requestCount||0));
+function dayFoodRestaurants(dayNum,itemId=null){
+  return RESTAURANTS
+    .filter(r=>+r.day===+dayNum && (!itemId || !(r.itemIds?.length) || r.itemIds.includes(itemId)))
+    .sort((a,b)=>restaurantRank(a)-restaurantRank(b)||(b.requestCount||0)-(a.requestCount||0));
 }
-function foodHubHtml(dayNum,item){
-  const all=dayFoodRestaurants(dayNum);
+function foodHubHtml(dayNum,item,itemId=null){
+  const all=dayFoodRestaurants(dayNum,itemId);
   const family=all.filter(r=>(r.requestCount||0)>0 || r.priority==="family-pick");
   const confirmed=all.filter(r=>r.status==="confirmed");
   const recommended=all.filter(r=>r.status!=="confirmed" && !((r.requestCount||0)>0 || r.priority==="family-pick") && (r.category==="recommended"||r.priority==="route"));
@@ -2541,7 +2548,7 @@ function foodHubHtml(dayNum,item){
   const backup=all.filter(r=>r.priority==="backup");
   const other=all.filter(r=>!confirmed.includes(r)&&!family.includes(r)&&!recommended.includes(r)&&!local.includes(r)&&!cafe.includes(r)&&!backup.includes(r));
   const group=(title,arr)=>arr.length?`<section class="foodgroup"><div class="foodgroup-title">${title}</div>${arr.map(restaurantCardHtml).join("")}</section>`:"";
-  const wishes=FOOD_MENU_WISHES.filter(w=>!w.day || +w.day===+dayNum);
+  const wishes=FOOD_MENU_WISHES.filter(w=>(!w.day || +w.day===+dayNum) && (!itemId || !w.itemIds?.length || w.itemIds.includes(itemId)));
   return `<div class="foodhub">
     ${family.length?group("❤️ 가족이 가고 싶은 곳",family):""}
     ${group("✅ 예약완료",confirmed)}
@@ -2553,6 +2560,25 @@ function foodHubHtml(dayNum,item){
     ${wishes.length?`<section class="foodgroup"><div class="foodgroup-title">❤️ 가족이 먹고 싶은 메뉴</div>${wishes.map(w=>`<div class="foodcard"><div class="foodcard-name">${esc(w.menu)}</div><div class="foodmeta">${esc((w.requestedBy||[]).join(", "))}${w.requestCount?` · 희망 ${w.requestCount}`:""}</div>${w.note?`<div class="foodnote">${esc(w.note)}</div>`:""}</div>`).join("")}</section>`:""}
     ${!all.length&&!wishes.length?`<div class="foodempty">이 DAY에 등록된 식당 후보가 아직 없습니다. 가족 의견이 생기면 여기에 추가합니다.</div>`:""}
   </div>`;
+}
+
+
+function isMealSchedule(ref,item){
+  if(["2.4","3.2","4.3","4.6","5.3","5.5","6.3"].includes(ref))return true;
+  return /점심|저녁|식사|JUMBO/i.test(item?.title||"");
+}
+function mealCandidatePanelHtml(dayNum,itemIndex,item){
+  const ref=itemRef(dayNum,itemIndex);
+  const all=dayFoodRestaurants(dayNum,ref);
+  const wishes=FOOD_MENU_WISHES.filter(w=>(!w.day || +w.day===+dayNum) && (!w.itemIds?.length || w.itemIds.includes(ref)));
+  if(!isMealSchedule(ref,item) || (!all.length && !wishes.length))return "";
+  return `<section class="meal-candidates">
+    <div class="meal-candidates-head">
+      <h3>🍽 이 시간에 갈 식당 후보</h3>
+      <small>${esc(ref)}.식사후보</small>
+    </div>
+    ${foodHubHtml(dayNum,item,ref)}
+  </section>`;
 }
 
 const ITEM_KNOWLEDGE={
@@ -3326,7 +3352,7 @@ function openDeep(kind){
   else if(kind==="family") core=deepList(sel.family||[]);
   else if(kind==="food") core=`
     ${(sel.food||[]).length?`<div style="margin-bottom:10px">${deepList(sel.food||[])}</div>`:""}
-    ${foodHubHtml(day,sel)}`;
+    ${foodHubHtml(day,sel,itemRef(day,current().items.indexOf(sel)))}`;
   else if(kind==="transport") core=transportInfoHtml(sel)||'<div class="deepempty">별도 이동 후보 없음</div>';
   else if(kind==="booking") core=reservationInfoHtml(sel)||'<div class="deepempty">이 일정에서 필요한 예약정보 없음</div>';
   else core=`<div class="detailsbox">${esc(sel.detail||"추가 설명 없음")}</div>`;
@@ -3345,7 +3371,7 @@ function closeDeep(){
 }
 
 
-// v20.1 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.5 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -3722,6 +3748,8 @@ function openItem(i){
 
   ${knowledgeHtml(day,+i,sel)}
 
+  ${mealCandidatePanelHtml(day,+i,sel)}
+
   ${g?.steps?.length?`<section class="itemdetail-section"><h3>오늘은 이렇게 움직여요</h3>${detailStepsHtml(g)}</section>`:""}
 
   ${g?.facts?.length?`<section class="itemdetail-section"><h3>한눈에 보기</h3>${detailFactsHtml(g)}</section>`:""}
@@ -3736,7 +3764,7 @@ function openItem(i){
       ${sel.route?.length?`<div><h3>이동 흐름</h3>${compactRouteHtml(sel)}</div>`:""}
       ${sel.see?.length?`<div><h3>여기서 볼 것</h3>${compactListHtml(sel.see)}</div>`:""}
       ${sel.family?.length?`<div><h3>아이·부모님 참고</h3>${compactListHtml(sel.family)}</div>`:""}
-      ${sel.food?.length?`<div><h3>식사</h3>${compactListHtml(sel.food)}${foodHubHtml(day,sel)}</div>`:""}
+      ${sel.food?.length?`<div><h3>식사 참고</h3>${compactListHtml(sel.food)}</div>`:""}
       ${sel.transportOptions?.length?`<div><h3>이동수단 비교</h3>${transportInfoHtml(sel)}</div>`:""}
       ${optionalSpotsHtml(sel)}
     </div>
@@ -4318,7 +4346,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_4";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_5";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
