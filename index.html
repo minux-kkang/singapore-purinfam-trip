@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.5</title>
+<title>Singapore Family Trip 2026 · v20.6</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -720,7 +720,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.5 · magnetic pull-down tool drawer */
+/* v20.6 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -848,7 +848,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.5 · offline-first controls */
+/* v20.6 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -861,7 +861,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.5 · explicit online/offline mode */
+/* v20.6 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -896,7 +896,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.5</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.6</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -953,7 +953,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.5 · 점심/저녁 일정 상세에 식당 후보 직접 노출 · 가족 Pick 우선정렬</div>
+  <div class="footer">v20.6 · 전 식사 일정 후보 확장 · Orchard/MBS/USS/Chinatown/Sentosa/Kampong Glam</div>
 </main>
 
 
@@ -1014,7 +1014,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.5 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.6 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2491,6 +2491,165 @@ const RESTAURANTS=[
   reservation:"11명은 사전예약 권장 · 예약방식/가능시간 재확인",
   seats11:"예약 확인 필요",requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
   note:"4.3 Chinatown 점심 동선에 잘 맞음. 저녁 JUMBO가 있어 점심은 과하게 주문하지 않는 편이 좋음."
+ },
+ {
+  id:"crossroads-cafe",name:"Crossroads Cafe",day:1,itemIds:["1.5"],category:"recommended",
+  status:"candidate",time:"체크인 후 가벼운 저녁",area:"Singapore Marriott Tang Plaza Hotel 1층",
+  menus:["Seafood Char Hor Fun","Burger","Pizza / Bar Bites"],
+  price:"중가 · 호텔 레스토랑 가격대",hours:"일~목 11:00~00:00 · 금/토 11:00~01:30",
+  reservation:"11명은 사전 좌석 문의 권장",seats11:"대형 그룹 이용 가능성이 높은 편",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"1.5 체크인 뒤 가장 편한 선택. 비가 오거나 모두 지쳤을 때 호텔 밖으로 다시 나가지 않아도 됨."
+ },
+ {
+  id:"food-republic-wisma",name:"Food Republic @ Wisma Atria",day:1,itemIds:["1.5"],category:"local",
+  status:"candidate",time:"가벼운 저녁 / 각자 취향",area:"Wisma Atria Level 4 · 호텔 인근",
+  menus:["싱가포르 로컬식","중식","말레이/아시안","간단식"],
+  price:"저~중가",hours:"매장별 상이 · 당일 확인",reservation:"예약 없음 · 자유석",
+  seats11:"좌석 수는 많지만 피크시간엔 붙어 앉기 어려울 수 있음",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"약 800석 규모 푸드코트로 메뉴 취향이 갈릴 때 유용. 첫날에는 모두 같은 테이블을 고집하지 않아도 되는 백업."
+ },
+ {
+  id:"song-fa-centrepoint",name:"Song Fa Bak Kut Teh - The Centrepoint",day:1,itemIds:["1.5"],category:"local",
+  status:"candidate",time:"저녁 후보",area:"176 Orchard Road · The Centrepoint",
+  menus:["Peppery Bak Kut Teh","Braised Dishes","You Tiao"],
+  price:"중저가",hours:"매일 11:00~21:00",
+  reservation:"11명 좌석/예약 가능 여부 사전확인",seats11:"한 번에 착석 가능 여부 확인 필요",
+  requestedBy:[],requestCount:0,wantedMenu:["Bak Kut Teh"],priority:"candidate",
+  note:"바쿠테를 첫날 바로 먹고 싶을 때 후보. 다만 호텔 체크인 뒤 다시 이동해야 하므로 피곤하면 무리하지 않기."
+ },
+ {
+  id:"dtf-mbs",name:"Din Tai Fung @ Marina Bay Sands",day:2,itemIds:["2.4"],category:"recommended",
+  status:"candidate",time:"이른 저녁",area:"The Shoppes at Marina Bay Sands #B1-01",
+  menus:["Xiao Long Bao","Fried Rice","Noodles","Chicken Soup"],
+  price:"중가",hours:"일~목 11:00~22:00 · 금/토 11:00~22:00",
+  reservation:"예약 가능 · 보통 대기 있음",seats11:"11명은 예약/분할테이블 가능 여부 확인 권장",
+  requestedBy:[],requestCount:0,wantedMenu:["Xiao Long Bao","Dim Sum"],priority:"route",
+  note:"2.3 MBS 이후 그대로 식사하기 좋아 동선이 가장 단순한 편. 아이들이 먹을 메뉴도 고르기 쉬움."
+ },
+ {
+  id:"rasapura-mbs",name:"Rasapura Masters",day:2,itemIds:["2.4"],category:"local",
+  status:"candidate",time:"이른 저녁 / 빠른 식사",area:"The Shoppes at Marina Bay Sands #B2-50",
+  menus:["Bak Kut Teh","Ban Mian","Fishball Noodles","Mala","Yong Tau Fu"],
+  price:"저~중가",hours:"매일 10:00~23:00 · 일부 스톨 24시간",
+  reservation:"예약 불가 · Walk-in only",seats11:"좌석을 한꺼번에 잡기 어려울 수 있음",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"메뉴 선택 폭이 넓고 빨리 먹기 좋지만 11명이 한 테이블에 앉기는 어려울 수 있음. 19:45 Supertree 전 빠른 식사 백업."
+ },
+ {
+  id:"mels-uss",name:"Mel’s Drive-In",day:3,itemIds:["3.2"],category:"recommended",
+  status:"candidate",time:"USS 점심",area:"Universal Studios Singapore · Hollywood",
+  menus:["Cheeseburger","Buttermilk Chicken Burger","Fish Burger","Kids Mini Chicken Nuggets"],
+  price:"대략 S$15~25 중심",hours:"최근 기준 10:00~19:00 · 파크 운영에 따라 변동",
+  reservation:"현장 이용",seats11:"가족/그룹 이용 적합 · 피크타임 좌석 분산 가능성",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"아이 메뉴가 명확하고 식사 선택이 쉬움. 11명이 점심 재집결하기 좋은 ‘기준 식당’ 후보."
+ },
+ {
+  id:"friars-uss",name:"Friar’s Good Food",day:3,itemIds:["3.2"],category:"recommended",
+  status:"candidate",time:"USS 점심",area:"Universal Studios Singapore · Far Far Away",
+  menus:["Fast Food","Quick Bites","Kids Menu"],
+  price:"대략 S$10~20",hours:"최근 기준 10:00~19:00 · 파크 운영에 따라 변동",
+  reservation:"현장 이용",seats11:"Large groups / Families with children 적합 표시",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"Far Far Away 주변에서 놀고 있을 때 동선이 좋음. 아이팀 중심 점심 후보."
+ },
+ {
+  id:"discovery-food-court-uss",name:"Discovery Food Court",day:3,itemIds:["3.2"],category:"local",
+  status:"candidate",time:"USS 점심",area:"Universal Studios Singapore · The Lost World",
+  menus:["아시안/로컬 푸드코트 메뉴"],
+  price:"저~중가",hours:"USS 운영시간 내 · 당일 확인",reservation:"현장 이용",
+  seats11:"푸드코트형이라 분산 착석 가능",requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"일행 취향이 많이 갈리거나 빠르게 먹고 다시 놀이기구로 돌아갈 때 백업."
+ },
+ {
+  id:"maxwell-food-centre",name:"Maxwell Food Centre",day:4,itemIds:["4.3"],category:"local",
+  status:"candidate",time:"Chinatown 점심",area:"1 Kadayanallur Street",
+  menus:["Chicken Rice","Local Hawker Food","Dessert / Drinks"],
+  price:"저가",hours:"센터는 아침~늦은 밤 · 스톨별 영업시간 상이",
+  reservation:"예약 없음",seats11:"11명 연속 좌석 확보 어려울 수 있음",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"Kok Sen 대기가 길거나 메뉴 취향이 갈릴 때 가장 실용적인 백업. 여러 테이블로 나눠 앉는 운영이 현실적."
+ },
+ {
+  id:"chinatown-complex",name:"Chinatown Complex Food Centre",day:4,itemIds:["4.3"],category:"local",
+  status:"candidate",time:"Chinatown 점심",area:"335 Smith Street",
+  menus:["Singapore Hawker Food","Satay","Noodles","Chendol"],
+  price:"저가",hours:"스톨별 상이",reservation:"예약 없음",
+  seats11:"분산 착석 전제",requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"관광 동선 안에서 로컬 푸드를 다양하게 고를 수 있음. 11명 모두 같은 메뉴를 먹지 않아도 되는 장점."
+ },
+ {
+  id:"soi-social",name:"Soi Social",day:5,itemIds:["5.3"],category:"recommended",
+  status:"candidate",time:"Oceanarium 후 점심",area:"Resorts World Sentosa · Grand Steps",
+  menus:["Thai Street Food","Grilled Skewers","Thai Shared Dishes"],
+  price:"중가",hours:"매일 12:00~15:00 / 17:00~23:00",
+  reservation:"예약 가능",seats11:"11명은 예약 권장",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"5.2 Oceanarium 뒤 제대로 앉아 쉬면서 먹기 좋은 후보. 점심 후 충분히 쉬는 DAY5 운영과 잘 맞음."
+ },
+ {
+  id:"asian-food-hall-weave",name:"Asian Food Hall @ WEAVE",day:5,itemIds:["5.3"],category:"local",
+  status:"candidate",time:"Oceanarium 후 점심",area:"WEAVE #02-201~203 / 210~212",
+  menus:["Singaporean","Malaysian","Thai","Vietnamese","Asian Street Food"],
+  price:"저~중가",hours:"월~목 11:00~20:00 · 금~일 11:00~22:00",
+  reservation:"현장 이용",seats11:"Large groups / Families with children 표시 · 피크타임 좌석 분산 가능",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"11명이 각자 다른 메뉴를 고르기 쉽고 빠르게 식사 가능. Oceanarium 후 체력상태에 따라 유연하게 쓰기 좋음."
+ },
+ {
+  id:"dtf-weave",name:"Din Tai Fung @ WEAVE",day:5,itemIds:["5.3"],category:"recommended",
+  status:"candidate",time:"점심",area:"WEAVE #02-208/209",
+  menus:["Xiao Long Bao","Fried Rice","Noodles","Dim Sum"],
+  price:"중가",hours:"평일 11:00~21:00 · 주말 10:30~21:15 수준",
+  reservation:"예약 가능 · 대기 가능성 있음",seats11:"11명은 사전 예약/테이블 확인 권장",
+  requestedBy:[],requestCount:0,wantedMenu:["Xiao Long Bao","Dim Sum"],priority:"candidate",
+  note:"아이들이 먹기 편한 메뉴가 필요할 때 안정적인 선택. 단, 대기시간이 길면 Asian Food Hall로 바로 전환."
+ },
+ {
+  id:"coastes-siloso",name:"Coastes - Siloso Beach",day:5,itemIds:["5.5"],category:"recommended",
+  status:"candidate",time:"해변 저녁",area:"50 Siloso Beach Walk",
+  menus:["Western","Seafood","Pizza / Pasta","Kids-friendly dishes"],
+  price:"중가",hours:"평일 11:00~21:00 · 금/토는 더 늦게 운영",
+  reservation:"예약 가능",seats11:"Good for groups / Family friendly · 11명 예약 권장",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"route",
+  note:"Siloso Beach 분위기를 살리면서 저녁까지 한 번에 해결하는 후보. 야외라 비/더위는 당일 판단."
+ },
+ {
+  id:"good-old-days-sentosa",name:"Good Old Days Singapore Flavours",day:5,itemIds:["5.5"],category:"local",
+  status:"candidate",time:"해변 저녁",area:"60 Siloso Beach Walk",
+  menus:["Singaporean Local Food","Rice / Noodles","Kids Menu"],
+  price:"대략 S$10~20",hours:"매일 11:00~22:00",
+  reservation:"예약 가능",seats11:"Good for groups · Kids menu 있음",
+  requestedBy:[],requestCount:0,wantedMenu:[],priority:"backup",
+  note:"해변 분위기보다 실내/편한 식사를 우선하고 싶을 때 좋은 백업. 아이 메뉴와 가격 부담이 상대적으로 낮음."
+ },
+ {
+  id:"zam-zam",name:"Singapore Zam Zam",day:6,itemIds:["6.3"],category:"local",
+  status:"candidate",time:"Kampong Glam 점심",area:"697-699 North Bridge Road",
+  menus:["Murtabak","Biryani","Indian-Muslim Local Food"],
+  price:"저가",hours:"매일 07:00~23:00",
+  reservation:"현장 중심 · 11명 좌석은 사전 문의 권장",seats11:"Large groups 표시",
+  requestedBy:[],requestCount:0,wantedMenu:["Murtabak"],priority:"route",
+  note:"Sultan Mosque 바로 옆 동선이라 가장 ‘여행지 느낌’이 강한 로컬 점심 후보."
+ },
+ {
+  id:"hjh-maimunah",name:"Hjh Maimunah",day:6,itemIds:["6.3"],category:"local",
+  status:"candidate",time:"Kampong Glam 점심",area:"11 Jalan Pisang",
+  menus:["Nasi Padang","Malay / Indonesian dishes"],
+  price:"저가",hours:"영업시간은 지점/요일별 최신 확인",reservation:"11명 이용 가능 여부 사전 확인",
+  seats11:"확인 필요",requestedBy:[],requestCount:0,wantedMenu:["Nasi Padang"],priority:"route",
+  note:"말레이식 여러 반찬을 골라 먹는 로컬 경험에 좋음. 아이들이 먹을 수 있는 순한 반찬도 함께 고르기 쉬움."
+ },
+ {
+  id:"coconut-club-beach-road",name:"The Coconut Club - Beach Road",day:6,itemIds:["6.3"],category:"recommended",
+  status:"candidate",time:"점심",area:"269 Beach Road",
+  menus:["Nasi Lemak","Coconut-based Singaporean dishes","Dessert"],
+  price:"중가",hours:"평일 점심 11:00~15:30 중심 · 주말 저녁까지 운영",
+  reservation:"예약 가능 · 보통 대기 있음",seats11:"11명은 반드시 사전예약 권장",
+  requestedBy:[],requestCount:0,wantedMenu:["Nasi Lemak"],priority:"candidate",
+  note:"조금 더 편안하고 정돈된 로컬식 후보. 출국일이라 대기가 길면 Zam Zam/Hjh Maimunah로 바로 전환."
  }
 ];
 
@@ -2564,7 +2723,7 @@ function foodHubHtml(dayNum,item,itemId=null){
 
 
 function isMealSchedule(ref,item){
-  if(["2.4","3.2","4.3","4.6","5.3","5.5","6.3"].includes(ref))return true;
+  if(["1.5","2.4","3.2","4.3","4.6","5.3","5.5","6.3"].includes(ref))return true;
   return /점심|저녁|식사|JUMBO/i.test(item?.title||"");
 }
 function mealCandidatePanelHtml(dayNum,itemIndex,item){
@@ -3371,7 +3530,7 @@ function closeDeep(){
 }
 
 
-// v20.5 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.6 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4346,7 +4505,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_5";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_6";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -4585,4 +4744,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-</html>
+  </html>
