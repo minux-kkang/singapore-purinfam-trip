@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.9</title>
+<title>Singapore Family Trip 2026 · v20.10</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -26,8 +26,8 @@ body{padding-bottom:80px}
 .fxrow input{width:78px;border:1px solid #d4dee3;border-radius:8px;padding:4px 6px;text-align:center;font:inherit;background:#fff}
 .fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
 .fxarrow{font-weight:900;color:#82919a}
-.days{display:flex;gap:6px;overflow:auto;padding:0 10px 6px;scrollbar-width:none}.days::-webkit-scrollbar{display:none}
-.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:13px;padding:6px 10px 5px;font-size:11px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:54px}.daybtn .daydate{display:block;margin-top:4px;font-size:9px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
+.days{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:0 8px 6px;width:100%}
+.daybtn{border:0;background:#edf2f4;color:#526773;border-radius:12px;padding:6px 3px 5px;font-size:10.5px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis}.daybtn .daydate{display:block;margin-top:3px;font-size:8.3px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
 .wrap{max-width:760px;margin:auto;padding:4px 12px 12px}
 .hero{min-height:118px;border:1px solid var(--line);border-radius:22px;padding:16px 18px 11px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-top:-2px;margin-bottom:10px}
@@ -49,6 +49,7 @@ body{padding-bottom:80px}
 .daymap .leaflet-container{font-family:inherit}
 .daymapwrap:before,.daymapwrap:after{content:"";display:block;height:5px}
 @media(max-width:620px){
+
   .hero{min-height:104px;padding:14px 15px 9px;margin-top:-4px}
   .heroemoji{right:14px;top:10px;font-size:34px}
   .herotitle{font-size:22px}
@@ -721,7 +722,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.9 · magnetic pull-down tool drawer */
+/* v20.10 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -752,7 +753,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools{
   pointer-events:auto;
   width:100%;
-  display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;
   padding:0 7px;
   border:1px solid transparent;border-top:0;
   border-radius:0 0 14px 14px;
@@ -766,7 +767,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   backdrop-filter:blur(10px)
 }
 .toolmagnet.open .pamphlettools{
-  max-height:74px;
+  max-height:118px;
   opacity:1;
   transform:none;
   padding:7px;
@@ -782,10 +783,10 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools button:active{transform:scale(.97)}
 @media(max-width:620px){
   .toolmagnet{width:calc(100vw - 16px)}
-  .pamphlettools{grid-template-columns:repeat(9,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
+  .pamphlettools{grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;scrollbar-width:none}
   .pamphlettools::-webkit-scrollbar{display:none}
-  .pamphlettools button{min-width:46px}
-  .toolmagnet.open .pamphlettools{max-height:72px}
+  .pamphlettools button{min-width:0}
+  .toolmagnet.open .pamphlettools{max-height:170px}
 }
 
 
@@ -849,7 +850,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.9 · offline-first controls */
+/* v20.10 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -862,7 +863,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.9 · explicit online/offline mode */
+/* v20.10 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -897,7 +898,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.9</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.10</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -954,7 +955,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.9 · DAY 좌우 스와이프 복구 · 일정 카드 위에서도 스와이프 가능</div>
+  <div class="footer">v20.10 · 스와이프 방향 반전 · DAY 6개 균등배치 · 요일표시 · 도구메뉴 반응형</div>
 </main>
 
 
@@ -1015,7 +1016,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.9 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.10 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -3466,9 +3467,16 @@ const ITEM_REF_PARTS={
   메모:"가족용 추가 메모"
 };
 
+function dayWeekday(dateText){
+  const m=String(dateText||"").match(/(\d{1,2})\/(\d{1,2})/);
+  if(!m)return "";
+  const dt=new Date(2026,Number(m[1])-1,Number(m[2]));
+  return ["일","월","화","수","목","금","토"][dt.getDay()];
+}
+
 function render(){
  const d=current();
- daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}<span class="daydate">${DAY_DATES[x.day]||""}</span></button>`).join("");
+ daysEl.innerHTML=DAYS.map(x=>`<button class="daybtn ${x.day===day?'on':''}" data-day="${x.day}">DAY ${x.day}<span class="daydate">${DAY_DATES[x.day]||""} ${dayWeekday(DAY_DATES[x.day])}</span></button>`).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div>
  <div class="heroday">DAY ${d.day} · ${DAY_DATES[d.day]||""}</div>
  <div class="herotitle">${esc(d.title)}</div>
@@ -3577,7 +3585,7 @@ function closeDeep(){
 }
 
 
-// v20.9 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.10 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4497,7 +4505,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.9 · DAY swipe
+// v20.10 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
@@ -4540,7 +4548,7 @@ function closePamTool(){
     // Horizontal intent only. Keep normal vertical scrolling untouched.
     if(Math.abs(dx)<55 || Math.abs(dx)<=Math.abs(dy)*1.15 || dt>900)return;
 
-    const next=day+(dx<0?1:-1);
+    const next=day+(dx<0?-1:1);
     if(next<1 || next>DAYS.length)return;
 
     // A swipe that starts on a timeline card must not also open that card.
@@ -4589,7 +4597,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v20_9";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v20_10";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
@@ -4828,4 +4836,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-  </html>
+</html>
