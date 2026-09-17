@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.28</title>
+<title>Singapore Family Trip 2026 · v19.29</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -623,7 +623,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.28 · magnetic pull-down tool drawer */
+/* v19.29 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -751,7 +751,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.28 · offline-first controls */
+/* v19.29 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -764,7 +764,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.28 · explicit online/offline mode */
+/* v19.29 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -799,7 +799,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.28</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.29</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -855,7 +855,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.28 · 일정 ID 인덱싱 추가 (예: 5.3.여기서할것)</div>
+  <div class="footer">v19.29 · 지도 번호를 Timeline 일정 ID와 완전 동기화</div>
 </main>
 
 
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.28 · 일정 ID 인덱싱 추가 (예: 5.3.여기서할것)</div>
+  <div class="footer">v19.29 · 지도 번호를 Timeline 일정 ID와 완전 동기화</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1906,9 +1906,58 @@ async function enableOnlineMap(which='day'){
   }
 }
 
+
+// Map numbers are driven by the CURRENT timeline, not by old route-stop numbering.
+// One numbered marker = one timeline item. Route geometry can still contain extra sub-stops.
+const DAY_ITEM_MAP_POINTS={
+  1:[
+    {item:2,lat:1.3644,lng:103.9915,name:"Changi Airport 도착",type:"airport"},
+    {item:3,lat:1.3639,lng:103.9909,name:"Changi Airport → Marriott"},
+    {item:4,lat:1.3055,lng:103.8322,name:"Marriott Tang Plaza 체크인",type:"hotel"}
+  ],
+  2:[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Gardens by the Bay",type:"hotel"},
+    {item:1,lat:1.2816,lng:103.8636,name:"Gardens by the Bay"},
+    {item:2,lat:1.2834,lng:103.8607,name:"Marina Bay Sands"},
+    {item:3,lat:1.2840,lng:103.8602,name:"이른 저녁식사 · 휴식"},
+    {item:4,lat:1.2816,lng:103.8639,name:"Supertree Grove · Mid-Autumn"},
+    {item:5,lat:1.3058,lng:103.8325,name:"호텔 복귀",type:"hotel"}
+  ],
+  3:[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Sentosa",type:"hotel"},
+    {item:1,lat:1.2540,lng:103.8238,name:"Universal Studios Singapore"},
+    {item:2,lat:1.2583,lng:103.8200,name:"충분히 놀았다면 Sentosa 확장",option:true}
+  ],
+  4:[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Fort Canning",type:"hotel"},
+    {item:1,lat:1.2978,lng:103.8452,name:"Fort Canning · National Museum"},
+    {item:2,lat:1.2838,lng:103.8444,name:"Chinatown · 점심"},
+    {item:3,lat:1.3058,lng:103.8325,name:"호텔 휴식",type:"hotel"},
+    {item:4,lat:1.2890,lng:103.8466,name:"Clarke Quay · River Cruise"},
+    {item:5,lat:1.2896,lng:103.8448,name:"JUMBO Seafood"}
+  ],
+  5:[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Sentosa",type:"hotel"},
+    {item:1,lat:1.2583,lng:103.8200,name:"Singapore Oceanarium"},
+    {item:2,lat:1.2570,lng:103.8208,name:"점심 · 충분한 휴식"},
+    {item:3,lat:1.2521,lng:103.8174,name:"Luge 또는 Sentosa 산책",option:true},
+    {item:4,lat:1.2507,lng:103.8168,name:"Siloso Beach · 저녁"}
+  ],
+  6:[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Little India",type:"hotel"},
+    {item:1,lat:1.3067,lng:103.8510,name:"Little India"},
+    {item:2,lat:1.3023,lng:103.8590,name:"Kampong Glam · Bugis"},
+    {item:3,lat:1.3058,lng:103.8325,name:"호텔 복귀 · 휴식 · 짐 정리",type:"hotel"},
+    {item:4,lat:1.3578,lng:103.9888,name:"호텔 → Changi Airport",type:"airport"},
+    {item:5,lat:1.3602,lng:103.9897,name:"Jewel Changi"},
+    {item:6,lat:1.3570,lng:103.9880,name:"출국수속 · 탑승구 이동",type:"airport"},
+    {item:7,lat:1.3567,lng:103.9884,name:"KE644 출발",type:"airport"}
+  ]
+};
+
 const DAY_MAPS={
 1:{
-  title:"DAY 1 ROUTE MAP",subtitle:"Changi Airport → Marriott Tang Plaza",
+  title:"DAY 1 ROUTE MAP",subtitle:"Timeline 1.3~1.5 · Changi Airport → Marriott Tang Plaza",
   places:[
     {n:1,name:"Changi Airport / Jewel",lat:1.3644,lng:103.9915,type:"airport"},
     {n:2,name:"Singapore Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"}
@@ -1918,7 +1967,7 @@ const DAY_MAPS={
   ]
 },
 2:{
-  title:"DAY 2 ROUTE MAP",subtitle:"Orchard → Merlion → Marina Bay → Gardens",
+  title:"DAY 2 ROUTE MAP",subtitle:"Timeline 2.1~2.6 · Gardens → MBS → Supertree",
   places:[
     {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
     {n:2,name:"Merlion Park",lat:1.2868,lng:103.8545},
@@ -1936,7 +1985,7 @@ const DAY_MAPS={
   ]
 },
 3:{
-  title:"DAY 3 ROUTE MAP",subtitle:"Orchard → HarbourFront → VivoCity → USS",
+  title:"DAY 3 ROUTE MAP",subtitle:"Timeline 3.1~3.3 · Sentosa → USS → 선택 확장",
   places:[
     {n:1,name:"Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
     {n:2,name:"HarbourFront MRT",lat:1.2654,lng:103.8216},
@@ -1954,7 +2003,7 @@ const DAY_MAPS={
   ]
 },
 4:{
-  title:"DAY 4 ROUTE MAP",subtitle:"Fort Canning → Civic District → Chinatown → Hotel → Clarke Quay",
+  title:"DAY 4 ROUTE MAP",subtitle:"Timeline 4.1~4.6 · Old Singapore → Chinatown → River → JUMBO",
   places:[
     {n:1,name:"Fort Canning Tree Tunnel",lat:1.2978,lng:103.8452},
     {n:2,name:"National Museum",lat:1.2966,lng:103.8485},
@@ -1977,7 +2026,7 @@ const DAY_MAPS={
   ]
 },
 5:{
-  title:"DAY 5 ROUTE MAP",subtitle:"Sentosa EASY · Oceanarium → Luge → Siloso",
+  title:"DAY 5 ROUTE MAP",subtitle:"Timeline 5.1~5.5 · Oceanarium → 휴식 → Luge/산책 → Siloso",
   places:[
     {n:1,name:"HarbourFront / VivoCity",lat:1.2644,lng:103.8223},
     {n:2,name:"Singapore Oceanarium",lat:1.2583,lng:103.8200},
@@ -1992,7 +2041,7 @@ const DAY_MAPS={
   ]
 },
 6:{
-  title:"DAY 6 ROUTE MAP",subtitle:"Little India → Kampong Glam → Hotel → Jewel Changi",
+  title:"DAY 6 ROUTE MAP",subtitle:"Timeline 6.1~6.8 · Little India → Kampong Glam → Airport",
   places:[
     {n:1,name:"Little India / Tekka Centre",lat:1.3067,lng:103.8510},
     {n:2,name:"Sultan Mosque",lat:1.3023,lng:103.8590},
@@ -2059,7 +2108,7 @@ function renderDayMap(){
       <span><i class="taxiline"></i>Grab/차량</span>
       <span><i class="optionline"></i>OPTION</span>
     </div>
-    <div class="mapnote">실제 OpenStreetMap 배경 위에 장소 좌표와 이동 흐름을 표시합니다. 차량 구간은 온라인 상태에서 실제 도로 경로를 불러오고, 실패하면 저장된 구간선으로 표시합니다.</div>
+    <div class="mapnote">지도 번호는 현재 Timeline 일정번호와 동일합니다. 예: DAY5의 3번 일정 = 5.3. 경로선에는 일정 내부의 세부 이동도 포함될 수 있습니다.</div>
     <div class="tile-error-note" style="display:none;margin-top:7px;font-size:10px;color:#9a6700">지도 타일을 불러오지 못했습니다. 네트워크 연결 후 다시 열어주세요.</div>`;
 
   if(!onlineMapAllowed){
@@ -2098,11 +2147,16 @@ function renderDayMap(){
   });
 
   const bounds=[];
-  m.places.forEach((p,idx)=>{
+  // Keep route geometry in bounds, but only CURRENT timeline items receive numbered pins.
+  (m.places||[]).forEach(p=>bounds.push([p.lat,p.lng]));
+  const itemPoints=DAY_ITEM_MAP_POINTS[day]||[];
+  itemPoints.forEach(p=>{
     bounds.push([p.lat,p.lng]);
-    const mk=L.marker([p.lat,p.lng],{icon:markerIcon(p.n,p.type,p.option)}).addTo(dayMap);
-    mk.bindTooltip(`<div class="route-label">${esc(p.name)}</div>`,{direction:"top",offset:[0,-14],opacity:1});
-    mk.on("click",()=>{ const cardIndex=Math.min(idx,current().items.length-1); if(current().items[cardIndex]) openItem(cardIndex); });
+    const n=p.item+1;
+    const mk=L.marker([p.lat,p.lng],{icon:markerIcon(n,p.type,p.option)}).addTo(dayMap);
+    const fullRef=itemRef(day,p.item);
+    mk.bindTooltip(`<div class="route-label"><b>${esc(fullRef)}</b> · ${esc(p.name)}</div>`,{direction:"top",offset:[0,-14],opacity:1});
+    mk.on("click",()=>{ if(current().items[p.item]) openItem(p.item); });
   });
 
   m.segments.forEach(s=>{
@@ -2378,7 +2432,7 @@ function closeDeep(){
 }
 
 
-// v19.28 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.29 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2407,7 +2461,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1928";
+const REP_DB_NAME="sg_trip_rep_images_v1929";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -3277,7 +3331,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_28";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_29";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
