@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v19.30</title>
+<title>Singapore Family Trip 2026 · v19.31</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -491,6 +491,20 @@ body.open .sheet{touch-action:pan-y}
 .itemactions{display:flex;flex-wrap:wrap;gap:7px;padding:12px 1px 2px;border-top:1px solid #e8eef1}
 .itemactions a,.itemactions button{border:1px solid #d9e3e7;background:#fff;color:#234b5e;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950;text-decoration:none}
 .itemactions a.primary,.itemactions button.primary{background:#173f52;color:#fff;border-color:#173f52}
+.transport-center{display:grid;gap:10px}
+.transport-card{border:1px solid #e0e8eb;border-radius:14px;background:#fff;padding:12px}
+.transport-card h4{margin:0 0 7px;font-size:12px;color:#23495a}
+.transport-card p{margin:0;font-size:10.8px;line-height:1.6;color:#5f737d}
+.transport-card ul{margin:8px 0 0;padding-left:17px}
+.transport-card li{margin:5px 0;font-size:10.6px;line-height:1.5;color:#4e6671}
+.transport-card .tip{margin-top:8px;padding:8px 9px;background:#f6f9fa;border-radius:10px;font-size:10px;line-height:1.5;color:#49616d}
+.transport-rank{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.transport-rank div{border:1px solid #e2e8eb;border-radius:10px;padding:8px;text-align:center}
+.transport-rank b{display:block;font-size:10px;color:#23495a}.transport-rank span{display:block;margin-top:3px;font-size:8.7px;color:#82919a}
+.transport-quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.transport-quick a{border:1px solid #dbe4e8;border-radius:9px;background:#fff;color:#2a5163;text-decoration:none;padding:7px 9px;font-size:9.5px;font-weight:900}
+.routecard .commonlink{display:inline-block;margin-top:7px;font-size:9px;font-weight:900;color:#315c70;text-decoration:underline;cursor:pointer}
+
 .detailbooking{margin-top:12px;border-top:1px solid #e8eef1;padding-top:12px}
 .detailbooking>summary{cursor:pointer;font-size:11px;font-weight:950;color:#245369}
 .detailbooking .reservationinfo{margin-top:9px}
@@ -650,7 +664,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v19.30 · magnetic pull-down tool drawer */
+/* v19.31 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:22px;
   margin:-2px 0 6px;
@@ -681,7 +695,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools{
   pointer-events:auto;
   width:100%;
-  display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;
+  display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px;
   padding:0 7px;
   border:1px solid transparent;border-top:0;
   border-radius:0 0 14px 14px;
@@ -711,7 +725,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .pamphlettools button:active{transform:scale(.97)}
 @media(max-width:620px){
   .toolmagnet{width:calc(100vw - 16px)}
-  .pamphlettools{grid-template-columns:repeat(8,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
+  .pamphlettools{grid-template-columns:repeat(9,minmax(44px,1fr));overflow-x:auto;scrollbar-width:none}
   .pamphlettools::-webkit-scrollbar{display:none}
   .pamphlettools button{min-width:46px}
   .toolmagnet.open .pamphlettools{max-height:72px}
@@ -778,7 +792,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v19.30 · offline-first controls */
+/* v19.31 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -791,7 +805,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v19.30 · explicit online/offline mode */
+/* v19.31 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -826,7 +840,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.30</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v19.31</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -875,6 +889,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
       <button type="button" data-tool="message">📱<span>메시지</span></button>
       <button type="button" data-tool="study">📚<span>공부</span></button>
       <button type="button" data-tool="journal">📖<span>기록</span></button>
+      <button type="button" data-tool="transport">🚦<span>교통</span></button>
       <button type="button" data-tool="expense">💰<span>가계부</span></button>
     </div>
   </div>
@@ -882,7 +897,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v19.30 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v19.31 · Grab/MRT/Bus 공통가이드 · 일정별 교통정보 업데이트</div>
 </main>
 
 
@@ -943,7 +958,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v19.30 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v19.31 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1224,26 +1239,101 @@ const PLACE_GUIDES={
   }
 };
 
+
+const TRANSPORT_COMMON={
+ grab:{
+  title:"Grab 이용 가이드",
+  summary:"11명 가족여행에서 가장 편한 이동수단. 특히 공항·늦은 밤·부모님/아이 피로가 큰 구간은 Grab/차량 우선.",
+  bullets:[
+   "출국 전 Grab 앱 설치·회원가입·결제수단 등록",
+   "호출 전 출발지와 목적지를 정확히 확인하고, 공항은 지정 Ride-Hailing Pick-up 위치로 이동",
+   "배차되면 차량번호를 확인한 뒤 탑승",
+   "11명은 보통 2~3대로 나눠 이동하고 모든 차량의 목적지를 동일하게 맞추기",
+   "먼저 도착한 팀은 이동하지 말고 정해둔 지점에서 대기",
+   "공항에서는 픽업존에 거의 도착한 뒤 호출해 대기/취소 리스크 줄이기",
+   "Grab Pass/프로모션은 실제 적용 가능 여부를 호출 전에 확인"
+  ],
+  tip:"창이공항 T3 이용 시 B1 Ride-Hailing Pick-up 안내를 따라가며, Door 번호는 현장 표지와 Grab 앱 안내를 최종 기준으로 확인."
+ },
+ mrt:{
+  title:"MRT 이용 가이드",
+  summary:"도심 이동에서 가장 안정적인 대중교통. 교통체증 영향이 적고 노선이 단순한 구간에 유리.",
+  bullets:[
+   "Google Maps/노선도에서 출발역·도착역·환승역을 먼저 확인",
+   "컨택리스 결제수단을 사용할 경우 각 승객이 자기 카드/기기로 Tap in · Tap out",
+   "승차와 하차는 같은 결제수단을 사용",
+   "여러 컨택리스 카드가 겹친 지갑을 통째로 대지 말고 사용할 카드 한 장만 태그",
+   "환승 시 역 이름뿐 아니라 노선 색과 진행 방향/종착역을 함께 확인",
+   "11명은 개찰구 통과 뒤 첫 번째 넓은 공간에서 재집결하는 규칙을 정해두기",
+   "유모차·부모님이 있으면 엘리베이터 위치를 우선 확인"
+  ],
+  tip:"해외발급 카드에는 별도 관리수수료가 붙을 수 있으므로 실제 사용할 카드의 최신 정책을 출국 전 확인."
+ },
+ bus:{
+  title:"버스 이용 가이드",
+  summary:"MRT역에서 목적지까지 많이 걸어야 할 때 유용한 보조수단. 우리 일정에서는 기본이 아니라 '걷는 거리 절감'이 확실할 때 사용.",
+  bullets:[
+   "지도에서 버스 번호와 정확한 정류장 위치 확인",
+   "앞문으로 승차하면서 사용할 카드 태그",
+   "목적지가 가까워지면 하차벨 누르기",
+   "뒷문으로 내리며 승차 때 사용한 같은 카드 다시 태그",
+   "요금은 거리비례 방식이므로 하차 태그를 빠뜨리지 않기",
+   "버스→버스, 버스→MRT 환승은 조건 충족 시 하나의 여정으로 계산될 수 있음",
+   "일방통행 때문에 돌아가는 정류장이 길 바로 맞은편이 아닐 수 있으니 지도에서 재확인",
+   "2층버스가 오면 아이들과 위층 앞자리는 작은 관광 포인트가 될 수 있음"
+  ],
+  tip:"블로그 이용후기에서는 2026년 9월 기준 45분 이내 환승, 한 여정 최대 5회 환승으로 안내. 실제 여행 시 PTC/SimplyGo 최신 정책을 다시 확인."
+ }
+};
+function transportCommonHtml(){
+ return `<div class="transport-center">
+   <div class="transport-rank">
+     <div><b>🚕 Grab</b><span>편의성 우선</span></div>
+     <div><b>🚇 MRT</b><span>도심 기본</span></div>
+     <div><b>🚌 Bus</b><span>걷기 절감 시</span></div>
+   </div>
+   ${["grab","mrt","bus"].map(k=>{const x=TRANSPORT_COMMON[k];return `<section class="transport-card">
+      <h4>${k==="grab"?"🚕":k==="mrt"?"🚇":"🚌"} ${esc(x.title)}</h4>
+      <p>${esc(x.summary)}</p>
+      <ul>${x.bullets.map(v=>`<li>${esc(v)}</li>`).join("")}</ul>
+      <div class="tip">💡 ${esc(x.tip)}</div>
+    </section>`}).join("")}
+   <section class="transport-card">
+      <h4>👨‍👩‍👧‍👦 11명 이동 공통 규칙</h4>
+      <ul>
+       <li>출발 전에 다음 목적지와 재집결 지점을 모두에게 공유</li>
+       <li>차량 분산 시 누가 어느 차를 타는지 먼저 정하고 목적지는 동일하게 입력</li>
+       <li>MRT/버스는 앞팀이 먼저 움직이지 말고 승하차 후 재집결</li>
+       <li>아이·부모님 피로가 커지면 비용보다 이동 편의성을 우선</li>
+      </ul>
+   </section>
+ </div>`;
+}
+
 const TRANSPORT_GUIDES={
   "호텔 → Gardens by the Bay":{
     from:"Singapore Marriott Tang Plaza Hotel",to:"Gardens by the Bay, Singapore",
-    mrt:{label:"MRT",summary:"Orchard → Bayfront 방향 · 환승 포함 약 25~35분",note:"11명이 함께 이동하므로 플랫폼·환승 시 재집결 포인트를 정합니다."},
+    mrt:{label:"MRT",summary:"Orchard → Bayfront 방향 · 환승 포함 약 25~35분",note:"Bayfront 도착 후 Gardens 방향 표지 확인. 11명은 환승/개찰구 통과 뒤 재집결."},
+    bus:{label:"Bus",summary:"직행성이 좋은 노선이 확인될 때만 후보",note:"MRT보다 걷는 거리가 줄어드는 경우에만 현 위치 기준 Google Maps로 확인."},
     grab:{label:"Grab",summary:"차량 2~3대로 분산 · 약 15~25분 예상",note:"아이·부모님 체력이 떨어지면 가장 편한 선택입니다."},
     walk:null
   },
   "호텔 → Sentosa":{
     from:"Singapore Marriott Tang Plaza Hotel",to:"Universal Studios Singapore",
-    mrt:{label:"MRT + Sentosa Express",summary:"Orchard → HarbourFront/VivoCity → Sentosa · 약 35~50분",note:"VivoCity에서 화장실·간식 정비 후 함께 이동합니다."},
+    mrt:{label:"MRT + Sentosa Express",summary:"Orchard → HarbourFront/VivoCity → Sentosa · 약 35~50분",note:"VivoCity에서 화장실·간식 정비 후 11명 재집결."},
+    bus:{label:"Bus",summary:"기본안 아님",note:"Sentosa는 MRT+Sentosa Express 또는 Grab을 우선하고 버스는 특별히 유리할 때만."},
     grab:{label:"Grab",summary:"Resorts World Sentosa까지 차량 2~3대 · 약 20~30분",note:"오픈시간과 가족 컨디션을 우선하면 편합니다."}
   },
   "호텔 → Fort Canning":{
     from:"Singapore Marriott Tang Plaza Hotel",to:"Fort Canning Tree Tunnel, Singapore",
-    mrt:{label:"MRT + 도보",summary:"시내권 MRT 이동 후 도보 연결 · 약 25~35분",note:"첫 일정부터 걷는 양이 많아질 수 있습니다."},
+    mrt:{label:"MRT + 도보",summary:"시내권 MRT 이동 후 도보 연결 · 약 25~35분",note:"역에서 다시 걸어야 해서 첫 일정부터 피로가 생길 수 있음."},
+    bus:{label:"Bus",summary:"Fort Canning 인근 정류장까지 가까이 가는 노선이면 후보",note:"걷는 거리가 확실히 줄어들 때만 사용. 당일 Google Maps 경로 기준으로 판단."},
     grab:{label:"Grab",summary:"Tree Tunnel 인근까지 차량 2~3대 · 약 10~20분",note:"11명 단체·부모님 체력 고려 시 추천합니다."}
   },
   "호텔 → Little India":{
     from:"Singapore Marriott Tang Plaza Hotel",to:"Little India, Singapore",
-    mrt:{label:"MRT",summary:"Orchard → Little India 방면 · 약 15~25분",note:"출국일이라 짐은 호텔에 두고 가볍게 이동합니다."},
+    mrt:{label:"MRT",summary:"Orchard → Little India 방면 · 약 15~25분",note:"짐은 호텔에 두고 이동. 개찰구 통과 뒤 11명 재집결."},
+    bus:{label:"Bus",summary:"호텔 인근에서 Little India 방향 직행 노선이 잡히면 후보",note:"MRT보다 걷는 거리가 줄어드는 경우에만 사용."},
     grab:{label:"Grab",summary:"Tekka Centre 인근까지 약 10~15분",note:"오전 체력이 부족하면 차량 이동이 편합니다."}
   },
   "호텔 → Changi Airport":{
@@ -1960,7 +2050,7 @@ const ITEM_DETAIL_GUIDE={
   lead:"첫날 가장 중요한 실제 이동 구간입니다. 11명과 캐리어·유모차를 함께 옮겨야 하므로, 이동시간보다 ‘짐을 한 번에 안정적으로 처리할 수 있는가’를 우선합니다.",
   desc:"사전예약 대형차가 확정되면 가장 편합니다. 그렇지 않으면 Grab/택시를 2~3대로 나누되, 모든 차량의 목적지를 Singapore Marriott Tang Plaza Hotel로 통일합니다.",
   steps:["픽업 위치에서 11명 재확인","짐을 차량별로 나누기 전에 누가 어느 차량을 타는지 정하기","호텔명을 기사에게 동일하게 전달","먼저 도착한 팀은 로비에서 대기"],
-  facts:[["추천","사전예약 대형차 우선"],["대안","Grab/택시 2~3대 분산"],["예상","교통상황에 따라 약 25~40분"],["도착","Singapore Marriott Tang Plaza Hotel"]]
+  facts:[["추천","사전예약 대형차 우선"],["대안","Grab/택시 2~3대 분산"],["예상","교통상황에 따라 약 25~40분"],["공항 Grab","지정 Ride-Hailing Pick-up 위치로 이동 후 호출"],["팁","픽업존에 거의 도착한 뒤 호출 · 차량번호 확인"],["도착","Singapore Marriott Tang Plaza Hotel"]]
 },
 "1.Marriott Tang Plaza 체크인":{
   lead:"5박 동안 사용할 4개 객실을 확인하고, 첫날은 객실 배정과 아이 잠자리만 정리한 뒤 바로 쉬는 일정입니다.",
@@ -2092,7 +2182,7 @@ const ITEM_DETAIL_GUIDE={
   lead:"마지막 날 첫 이동입니다. 일반 객실은 체크아웃 후 짐을 호텔에 맡겨두고, 필요한 물건만 들고 Little India로 이동합니다. 출국일이라 관광보다 체력을 아끼면서 오전 일정을 시작하는 것이 중요합니다.",
   desc:"11명이면 Grab 2~3대로 Tekka Centre 또는 Little India 중심부까지 바로 이동하는 방법이 가장 편합니다. MRT도 가능하지만 역 이동과 도보가 추가됩니다.",
   steps:["일반 객실 체크아웃·짐 보관 완료","09:30 전후 호텔 로비 집결","Grab이면 모든 차량 목적지를 Tekka Centre로 통일","먼저 도착한 팀은 움직이지 않고 대기","10:00 전후 Little India 관광 시작"],
-  facts:[["추천","Grab 2~3대"],["MRT","Orchard → Little India 방향 · 약 15~25분"],["Grab","약 10~15분 예상"],["짐","호텔에 보관하고 가벼운 외출가방만"]]
+  facts:[["추천","Grab 2~3대 · 목적지는 Tekka Centre로 통일"],["MRT","Orchard → Little India 방향 · 약 15~25분"],["Bus","당일 직행 노선이 걷기를 줄여줄 때만 후보"],["Grab","약 10~15분 예상"],["짐","호텔에 보관하고 가벼운 외출가방만"]]
 },
 "6.Little India":{
   lead:"싱가포르 안에서 인도계 문화가 가장 선명하게 보이는 지역입니다. 시장, 힌두 사원, 화려한 건물과 상점이 한 동네에 모여 있어 짧게 걸어도 분위기가 확실히 다릅니다.",
@@ -2662,7 +2752,7 @@ function closeDeep(){
 }
 
 
-// v19.30 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v19.31 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -2691,7 +2781,7 @@ const PLACE_IMAGE_LIBRARY={
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' }
 };
 
-const REP_DB_NAME="sg_trip_rep_images_v1930";
+const REP_DB_NAME="sg_trip_rep_images_v1931";
 const REP_DB_STORE="images";
 const REP_IMAGE_URLS={};
 let repDbPromise=null;
@@ -2931,15 +3021,18 @@ function travelToolsHtml(sel){
   const t=transportGuideFor(sel);
   const q=sel?.title?`${sel.title} Singapore`:"Singapore";
   const map=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-  if(!t)return `<div class="traveltools"><a target="_blank" rel="noopener" href="${map}">🗺️ 지도</a></div>`;
+  if(!t)return `<div class="traveltools"><a target="_blank" rel="noopener" href="${map}">🗺️ 지도</a><button type="button" data-open-transport-guide>🚦 교통 이용법</button></div>`;
   let buttons=[];
   if(t.mrt)buttons.push(`<a target="_blank" rel="noopener" href="${directionUrl(t.from,t.to,"transit")}">🚇 MRT</a>`);
+  if(t.bus)buttons.push(`<a target="_blank" rel="noopener" href="${directionUrl(t.from,t.to,"transit")}">🚌 Bus</a>`);
   if(t.grab)buttons.push(`<a target="_blank" rel="noopener" href="https://www.grab.com/sg/">🚕 Grab</a>`);
   if(t.walk)buttons.push(`<a target="_blank" rel="noopener" href="${directionUrl(t.from,t.to,"walking")}">🚶 도보</a>`);
   buttons.push(`<a target="_blank" rel="noopener" href="${map}">🗺️ 지도</a>`);
+  buttons.push(`<button type="button" data-open-transport-guide>🚦 이용법</button>`);
   return `<div class="traveltools">${buttons.join("")}</div>
     <div class="transportdetail">
       ${t.mrt?`<div class="routecard"><b>🚇 ${esc(t.mrt.label)}</b><span>${esc(t.mrt.summary)}<br>${esc(t.mrt.note||"")}</span></div>`:""}
+      ${t.bus?`<div class="routecard"><b>🚌 ${esc(t.bus.label)}</b><span>${esc(t.bus.summary)}<br>${esc(t.bus.note||"")}</span></div>`:""}
       ${t.grab?`<div class="routecard"><b>🚕 ${esc(t.grab.label)}</b><span>${esc(t.grab.summary)}<br>${esc(t.grab.note||"")}<br>출발: ${esc(t.from)}<br>도착: ${esc(t.to)}</span></div>`:""}
       ${t.walk?`<div class="routecard"><b>🚶 도보</b><span>${esc(t.walk.summary||"")}</span></div>`:""}
     </div>`;
@@ -2988,6 +3081,19 @@ function compactListHtml(arr){
   return arr?.length?`<ul class="itembullets">${arr.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
 }
 
+
+function bindTransportGuideButtons(root=document){
+ root.querySelectorAll("[data-open-transport-guide]").forEach(b=>{
+  if(b.__transportBound)return;
+  b.__transportBound=true;
+  b.addEventListener("click",e=>{
+   e.preventDefault();e.stopPropagation();
+   document.body.classList.remove("open");
+   openPamTool("transport");
+  });
+ });
+}
+
 function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
@@ -3030,6 +3136,7 @@ function openItem(i){
   <div id="memoWrap" style="display:none;margin-top:10px"><textarea class="memo" id="memo" placeholder="우리 가족 메모"></textarea></div>
   <div class="refhelp">수정 요청: <b>${ref}.설명</b> · <b>${ref}.여기서할것</b> · <b>${ref}.이동</b> · <b>${ref}.예약</b> · <b>${ref}.아이</b> · <b>${ref}.체크포인트</b></div>`;
 
+ bindTransportGuideButtons(body);
  document.getElementById("memoToggle").onclick=()=>{
    const w=document.getElementById("memoWrap");
    w.style.display=w.style.display==="none"?"block":"none";
@@ -3360,7 +3467,7 @@ function bindExpenseTool(body){
 
 // v18.3 · Pamphlet tools: use the same underlying content as Detail mode
 function toolTitle(mode){
-  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록",expense:"💰 가계부"}[mode]||"도구";
+  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록",transport:"🚦 교통",expense:"💰 가계부"}[mode]||"도구";
 }
 function clonePaneForTool(mode){
   const paneIds={
@@ -3525,6 +3632,7 @@ function openPamTool(mode){
   requestAnimationFrame(()=>{
     try{
       if(mode==="expense"){body.innerHTML=renderExpenseTool();bindExpenseTool(body);}
+      else if(mode==="transport"){body.innerHTML=transportCommonHtml();}
       else{body.innerHTML=clonePaneForTool(mode);rebindPamTool(mode);}
       body.scrollTop=0;
     }catch(err){
@@ -3597,7 +3705,7 @@ function closePamTool(){
 })();
 
 
-const NETWORK_MODE_KEY="sg_trip_network_mode_v19_30";
+const NETWORK_MODE_KEY="sg_trip_network_mode_v19_31";
 // 출발 전 개발판 기본값. 최종 배포판에서는 "offline"으로 변경.
 const DEFAULT_NETWORK_MODE="online";
 let networkModeState=localStorage.getItem(NETWORK_MODE_KEY)||DEFAULT_NETWORK_MODE;
