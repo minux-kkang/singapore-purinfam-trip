@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.17</title>
+<title>Singapore Family Trip 2026 · v20.20</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.17 · magnetic pull-down tool drawer */
+/* v20.20 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.17 · offline-first controls */
+/* v20.20 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.17 · explicit online/offline mode */
+/* v20.20 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.17 · collapsed tool drawer click-through fix */
+/* v20.20 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -943,12 +943,21 @@ body.pamtoolopen .pamtoolpanel,
   visibility:visible;
 }
 
+
+/* v20.20 · DAY5B exact user-image gallery */
+.detailgallery{margin:9px 0 11px}
+.detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
+.detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.detailgallery-card{margin:0;border-radius:12px;overflow:hidden;background:#f4f7f8;border:1px solid #e1e8eb}
+.detailgallery-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.17</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.20</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1002,7 +1011,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.17 · DAY5A Sentosa / DAY5B Singapore Zoo 이중 일정 · 7버튼 전환</div>
+  <div class="footer">v20.20 · DAY5B 사용자 제공 이미지 4장 webp 반영 · 패키지 정리 완료</div>
 </main>
 
 
@@ -1063,7 +1072,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.17 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.20 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1156,7 +1165,7 @@ const DAYS=[
 ]},
 {day:5,variant:"B",navKey:"5B",icon:"🦧",title:"Singapore Zoo",sub:"Mandai · Singapore Zoo · Tram · 여유로운 동물 관람",items:[
 {time:"09:00",title:"호텔 → Singapore Zoo",bookingIds:["ticket-mandai"],transportOptions:[["🚕","Grab/택시","Singapore Zoo · Mandai Wildlife EAST로 바로 이동. 11명은 2~3대 예상","추천"],["🚇","MRT + M2 Khatib Bus","Orchard → Khatib(NS14) → M2 Khatib Bus 약 20분","대안"]],detail:"DAY3에서 Sentosa를 충분히 즐겼다면 DAY5는 완전히 다른 분위기의 Mandai로 이동. 11명 이동 편의상 아침에는 Grab 분산 이동을 우선 검토.",route:[["🏨","Marriott Tang Plaza","09:00 전후 출발"],["🚕","Grab 2~3대","목적지 Singapore Zoo"],["🦁","Mandai Wildlife EAST","동물원 입장"]],see:["입장 전 화장실·물 정비","공식 지도 또는 Mandai 앱 확인"],family:["3세 아이 2명과 부모님이 있어 공원 안에서는 무료 Tram 적극 활용","오픈런보다는 09:30 전후 도착 목표"]},
-{time:"09:45~12:00",title:"Singapore Zoo · 오전 관람",bookingIds:["ticket-mandai"],detail:"오랑우탄·영장류, 코끼리·기린 등 가족이 좋아할 동물을 중심으로 관람. 전 구역 정복보다 주요 동물과 먹이활동/프레젠테이션 시간을 보고 동선을 조정.",route:[["🦧","영장류/오랑우탄","대표 관람"],["🦒","대형 동물","기린·코끼리 등"],["🚋","Tram","긴 구간 체력 절약"]],see:["오랑우탄과 개방형 전시","주요 동물 관람","무료 Tram 무제한 이용"],family:["유모차·부모님 체력 고려해 한 구역씩 끊어 보기","아이 반응 좋은 동물은 충분히 보고 덜 관심 있는 구역은 과감히 생략"]},
+{time:"09:45~12:00",title:"Singapore Zoo · 오전 관람",bookingIds:["ticket-mandai"],detailImageKeys:["zooArrival","zooStart","zoo1","zoo2"],detail:"오랑우탄·영장류, 코끼리·기린 등 가족이 좋아할 동물을 중심으로 관람. 전 구역 정복보다 주요 동물과 먹이활동/프레젠테이션 시간을 보고 동선을 조정.",route:[["🦧","영장류/오랑우탄","대표 관람"],["🦒","대형 동물","기린·코끼리 등"],["🚋","Tram","긴 구간 체력 절약"]],see:["오랑우탄과 개방형 전시","주요 동물 관람","무료 Tram 무제한 이용"],family:["유모차·부모님 체력 고려해 한 구역씩 끊어 보기","아이 반응 좋은 동물은 충분히 보고 덜 관심 있는 구역은 과감히 생략"]},
 {time:"12:00~13:20",title:"동물원 점심 · 휴식",detail:"오전 관람 후 식사와 냉방/그늘 휴식을 충분히 확보. 맛집보다 11명 좌석과 아이가 먹을 수 있는 메뉴가 우선.",route:[["🍽","Singapore Zoo 식당권","점심"],["🥤","수분 보충","더위 대비"],["😴","휴식","오후 체력 확인"]],see:["11명 좌석","아이 메뉴","물·음료"],family:["식사 뒤 바로 걷기 시작하지 않고 20~30분 쉬기"],food:["Ah Meng Restaurant 등 공원 내 식당 우선","혼잡하면 여러 메뉴를 한 번에 해결할 수 있는 곳 선택"]},
 {time:"13:30~15:30",title:"Singapore Zoo · 오후 관람",bookingIds:["ticket-mandai"],detail:"오전에 못 본 구역 중 가족 선호가 높은 곳만 선택. KidzWorld 또는 아이들이 좋아한 동물 재방문도 가능하며 Tram으로 이동량을 줄임.",route:[["🚋","Tram","오후 이동"],["🐘","남은 핵심 구역","선택 관람"],["🧒","KidzWorld","아이 컨디션 좋을 때 선택"]],see:["오전 미관람 핵심 동물","KidzWorld 선택","기념품점 선택"],family:["3세 아이가 지치면 KidzWorld까지 욕심내지 않기","15시 전후부터는 귀가 타이밍을 열어두기"]},
 {time:"15:30~16:00",title:"Mandai 휴식 · 퇴장 준비",detail:"마지막으로 화장실과 간식을 챙기고 가족이 다시 모여 호텔 복귀 준비. River Wonders까지 연속으로 넣지 않는 것이 기본.",route:[["☕","입구/휴식공간","재집결"],["🚻","화장실","복귀 전 정비"],["🚕","픽업존","차량 호출"]],see:["전원 재집결","유모차·짐 확인"],family:["Night Safari·River Wonders 추가는 기본 일정에서 제외","여행 5일차라 체력을 남기는 쪽을 우선"]},
@@ -3839,7 +3848,7 @@ function closeDeep(){
 }
 
 
-// v20.17 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.20 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -3866,7 +3875,10 @@ const PLACE_IMAGE_LIBRARY={
   luge:{key:"luge",name:'Skyline Luge Sentosa',file:'luge.webp',alt:'Skyline Luge Sentosa',remote:'./assets/images/luge.webp' },
   wings:{key:"wings",name:'Wings of Time',file:'wings.webp',alt:'Wings of Time night show',remote:'./assets/images/wings.webp' },
   oceanarium:{key:"oceanarium",name:'Singapore Oceanarium',file:'oceanarium.webp',alt:'Singapore Oceanarium entrance',remote:'./assets/images/oceanarium.webp' },
-  zoo:{key:"zoo",name:'Singapore Zoo',file:'zoo.webp',alt:'Orangutan at Singapore Zoo',remote:'./assets/images/zoo.webp' }
+  zooArrival:{key:"zooArrival",name:'Singapore Zoo · 도착',file:'zoo-arrival.webp',alt:'Singapore Zoo entrance',remote:'./assets/images/zoo-arrival.webp' },
+  zooStart:{key:"zooStart",name:'Singapore Zoo · 시작',file:'zoo-start.webp',alt:'Singapore Zoo visitor map',remote:'./assets/images/zoo-start.webp' },
+  zoo1:{key:"zoo1",name:'Singapore Zoo · 동물원 1',file:'zoo-1.webp',alt:'Elephants at Singapore Zoo',remote:'./assets/images/zoo-1.webp' },
+  zoo2:{key:"zoo2",name:'Singapore Zoo · 동물원 2',file:'zoo-2.webp',alt:'Children with pony at Singapore Zoo',remote:'./assets/images/zoo-2.webp' }
 };
 
 const REP_DB_NAME="sg_trip_rep_images_v204";
@@ -4032,7 +4044,10 @@ function itemImageMeta(sel){
   if(title==="Clarke Quay · River Cruise") return PLACE_IMAGE_LIBRARY.clarke;
   if(title==="JUMBO Seafood") return PLACE_IMAGE_LIBRARY.jumbo;
   if(title==="Singapore Oceanarium") return PLACE_IMAGE_LIBRARY.oceanarium;
-  if(title==="호텔 → Singapore Zoo" || title==="Singapore Zoo · 오전 관람" || title==="동물원 점심 · 휴식" || title==="Singapore Zoo · 오후 관람" || title==="Mandai 휴식 · 퇴장 준비" || title==="Singapore Zoo → 호텔 · 저녁") return PLACE_IMAGE_LIBRARY.zoo;
+  if(title==="호텔 → Singapore Zoo") return PLACE_IMAGE_LIBRARY.zooArrival;
+  if(title==="Singapore Zoo · 오전 관람") return PLACE_IMAGE_LIBRARY.zooStart;
+  if(title==="Singapore Zoo · 오후 관람") return PLACE_IMAGE_LIBRARY.zoo1;
+  if(title==="Mandai 휴식 · 퇴장 준비") return PLACE_IMAGE_LIBRARY.zoo2;
   if(title==="Siloso Beach · 저녁") return PLACE_IMAGE_LIBRARY.siloso;
   if(title==="Wings of Time") return PLACE_IMAGE_LIBRARY.wings;
   if(/merlion/.test(t)) return PLACE_IMAGE_LIBRARY.merlion;
@@ -4059,6 +4074,20 @@ function itemImageMeta(sel){
   if(/changi|terminal|ke644|ke643|공항|인천/.test(t)) return PLACE_IMAGE_LIBRARY.changi;
   return null;
 }
+
+function detailImageGalleryHtml(sel){
+  const keys=sel?.detailImageKeys||[];
+  if(!keys.length)return "";
+  const cards=keys.map(k=>{
+    const meta=PLACE_IMAGE_LIBRARY[k];
+    if(!meta)return "";
+    const src=heroSrcFor(meta);
+    if(!src)return "";
+    return `<figure class="detailgallery-card"><img src="${src}" alt="${esc(meta.alt||meta.name)}" loading="lazy"><figcaption>${esc(meta.name)}</figcaption></figure>`;
+  }).join("");
+  return cards?`<section class="detailgallery"><div class="detailgallery-title">📷 동물원 이미지</div><div class="detailgallery-grid">${cards}</div></section>`:"";
+}
+
 function itemImageHtml(sel){
   const meta=itemImageMeta(sel);
   if(!meta){
@@ -4211,6 +4240,7 @@ function openItem(i){
  body.innerHTML=`
   <div class="detailref">일정 ID · ${ref}</div>
   ${itemImageHtml(sel)}
+  ${detailImageGalleryHtml(sel)}
   <div class="itemstory">
     <p class="lead">${esc(lead)}</p>
     ${desc?`<p class="desc">${esc(desc)}</p>`:""}
@@ -4342,7 +4372,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.17 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.20 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -4974,7 +5004,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.17 · DAY swipe
+// v20.20 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
@@ -5070,7 +5100,7 @@ function closePamTool(){
 
 
 const NETWORK_MODE_KEY="sg_trip_network_mode_v20";
-const NETWORK_MODE_LEGACY_KEYS=["sg_trip_network_mode_v20_17","sg_trip_network_mode_v20_14","sg_trip_network_mode_v20_13","sg_trip_network_mode_v20_12","sg_trip_network_mode_v20_11","sg_trip_network_mode_v20_10","sg_trip_network_mode_v20_9"];
+const NETWORK_MODE_LEGACY_KEYS=["sg_trip_network_mode_v20_19","sg_trip_network_mode_v20_14","sg_trip_network_mode_v20_13","sg_trip_network_mode_v20_12","sg_trip_network_mode_v20_11","sg_trip_network_mode_v20_10","sg_trip_network_mode_v20_9"];
 const DEFAULT_NETWORK_MODE="online";
 function loadPersistedNetworkMode(){
   const stable=localStorage.getItem(NETWORK_MODE_KEY);
