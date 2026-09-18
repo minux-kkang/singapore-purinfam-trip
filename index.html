@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.21</title>
+<title>Singapore Family Trip 2026 · v20.22</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.21 · magnetic pull-down tool drawer */
+/* v20.22 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.21 · offline-first controls */
+/* v20.22 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.21 · explicit online/offline mode */
+/* v20.22 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.21 · collapsed tool drawer click-through fix */
+/* v20.22 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.21 · DAY5B exact user-image gallery */
+/* v20.22 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.21 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.22 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -979,7 +979,7 @@ body.pamtoolopen .pamtoolpanel,
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.21</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.22</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1021,6 +1021,7 @@ body.pamtoolopen .pamtoolpanel,
     <div class="pamphlettools" id="pamphletTools">
       <button type="button" data-tool="booking">🎫<span>예약</span></button>
       <button type="button" data-tool="prep">🧳<span>준비</span></button>
+      <button type="button" data-tool="medicine">💊<span>상비약</span></button>
       <button type="button" data-tool="phrase">💬<span>표현</span></button>
       <button type="button" data-tool="message">📱<span>메시지</span></button>
       <button type="button" data-tool="study">📚<span>공부</span></button>
@@ -1033,7 +1034,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.21 · 준비 도구 하위메뉴에 공용 상비약 완료 목록/주의사항 적용</div>
+  <div class="footer">v20.22 · 상비약을 준비 하위메뉴에서 분리 · 도구 최상위 메뉴로 이동</div>
 </main>
 
 
@@ -1094,7 +1095,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.21 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.22 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -2057,12 +2058,14 @@ function bindPrepControls(root){
   root.querySelectorAll("[data-pack]").forEach(cb=>cb.onchange=()=>{
     const state=packState();state[cb.dataset.pack]=cb.checked;localStorage.setItem(PACK_STATE_KEY,JSON.stringify(state));
   });
-  root.querySelectorAll("[data-prep-tab]").forEach(btn=>btn.onclick=()=>setPrepSubTab(root,btn.dataset.prepTab));
+}
+
+function bindMedicineTool(root){
+  if(!root)return;
   root.querySelector("[data-med-share]")?.addEventListener("click",e=>{
     copyText(MED_FAMILY_SHARE_TEXT);
     const b=e.currentTarget,old=b.textContent;b.textContent="✓ 복사됨";setTimeout(()=>b.textContent=old,1200);
   });
-  setPrepSubTab(root,prepTab());
 }
 
 const PREP_STATE_KEY="sg_trip_prep_v17";
@@ -2073,7 +2076,7 @@ function renderPrep(){
   const state=prepState(),groups={};
   PREP_ITEMS.forEach((x,i)=>(groups[x[0]]??=[]).push({...x,i}));
 
-  const checklistHtml=`<div class="toolgrid">${Object.entries(groups).map(([g,items])=>`
+  root.innerHTML=`<div class="toolgrid">${Object.entries(groups).map(([g,items])=>`
     <section class="toolcard"><h3>${g}</h3>
     ${items.map(x=>`<label class="checkrow"><input type="checkbox" data-prep17="${x.i}" ${state[x.i]?"checked":""}>
       <span><span class="statuspill status-${x[2]}">${statusName(x[2])}</span>${x[1]}</span></label>`).join("")}</section>`).join("")}</div>
@@ -2082,7 +2085,7 @@ function renderPrep(){
         <div class="tripfact"><b>DAY 5</b>5A Sentosa / 5B Singapore Zoo 두 안 중 현장에서 최종 선택. 선택 일정에 맞춰 필요 티켓 확인.</div>
         <div class="tripfact"><b>공항 → 호텔</b>아직 이동수단 확정 필요. 11명+짐+유모차 기준으로 차량 용량 확인.</div>
         <div class="tripfact"><b>USS</b>예약완료 · 마이리얼트립 예약번호 2건. 출발 전 e-ticket 캡처/오프라인 저장 확인.</div>
-        <div class="tripfact"><b>공용 상비약</b>준비 완료. 자세한 목록/사용 주의사항은 위의 ‘💊 공용 상비약’ 메뉴에서 확인.</div>
+        <div class="tripfact"><b>공용 상비약</b>준비 완료. 자세한 목록/사용 주의사항은 도구의 ‘💊 상비약’에서 확인.</div>
         <div class="tripfact"><b>실시간 정보</b>날씨·환율·지도 타일은 인터넷 필요. 나머지 핵심 내용은 오프라인 사용 가능.</div>
       </div>
     </section>
@@ -2098,14 +2101,6 @@ function renderPrep(){
       <p style="margin:0 0 8px;font-size:10.5px;color:#71818c">예약/TODO와 별개로 실제 짐을 챙길 때 쓰는 목록입니다.</p>
       ${PACK_ITEMS.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-pack="${i}" ${packState()[i]?"checked":""}><span><b style="font-size:9px;color:#71818c">${x[0]}</b><br>${x[1]}</span></label>`).join("")}
     </section>`;
-
-  root.innerHTML=`
-    <div class="prepsubtabs">
-      <button type="button" class="prepsubbtn" data-prep-tab="checklist">🧳 준비 · 체크리스트</button>
-      <button type="button" class="prepsubbtn" data-prep-tab="medicine">💊 공용 상비약</button>
-    </div>
-    <div data-prep-panel="checklist">${checklistHtml}</div>
-    <div data-prep-panel="medicine">${medicinePrepHtml()}</div>`;
 
   bindPrepControls(root);
 }
@@ -4052,7 +4047,7 @@ function closeDeep(){
 }
 
 
-// v20.21 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.22 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4576,7 +4571,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.21 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.22 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -4997,7 +4992,7 @@ function bindExpenseTool(body){
 
 // v18.3 · Pamphlet tools: use the same underlying content as Detail mode
 function toolTitle(mode){
-  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록",transport:"🚦 교통",expense:"💰 가계부"}[mode]||"도구";
+  return {itinerary:"🗓 일정",booking:"🎫 예약",prep:"🧳 준비",medicine:"💊 상비약",phrase:"💬 표현",message:"📱 메시지",study:"📚 공부",journal:"📖 기록",transport:"🚦 교통",expense:"💰 가계부"}[mode]||"도구";
 }
 function clonePaneForTool(mode){
   const paneIds={
@@ -5186,6 +5181,7 @@ function openPamTool(mode){
     try{
       if(mode==="expense"){body.innerHTML=renderExpenseTool();bindExpenseTool(body);}
       else if(mode==="transport"){body.innerHTML=transportCommonHtml();bindTransportTool(body);}
+      else if(mode==="medicine"){body.innerHTML=medicinePrepHtml();bindMedicineTool(body);}
       else{body.innerHTML=clonePaneForTool(mode);rebindPamTool(mode);}
       body.scrollTop=0;
     }catch(err){
@@ -5203,7 +5199,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.21 · DAY swipe
+// v20.22 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
