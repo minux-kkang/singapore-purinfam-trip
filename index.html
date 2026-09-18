@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.22</title>
+<title>Singapore Family Trip 2026 · v20.23</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -31,11 +31,11 @@ body{padding-bottom:80px}
 .fxrow input{width:78px;border:1px solid #d4dee3;border-radius:8px;padding:4px 6px;text-align:center;font:inherit;background:#fff}
 .fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
 .fxarrow{font-weight:900;color:#82919a}
-.days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,.52fr) minmax(0,.52fr) minmax(0,1fr);gap:4px;padding:0 8px 6px;width:100%}
+.days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,.52fr) minmax(0,.52fr) minmax(0,.52fr) minmax(0,.52fr) minmax(0,1fr);gap:4px;padding:0 8px 6px;width:100%}
 .daybtn{border:0;background:#edf2f4;color:#526773;border-radius:12px;padding:6px 3px 5px;font-size:10.5px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis}.daybtn .daydate{display:block;margin-top:3px;font-size:8.3px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
-.daybtn.day5split{padding-left:1px;padding-right:1px;font-size:9.6px}
-.daybtn.day5split .daydate{font-size:7.4px;letter-spacing:-.25px}
+.daybtn.daysplit{padding-left:1px;padding-right:1px;font-size:9.4px}
+.daybtn.daysplit .daydate{font-size:7.2px;letter-spacing:-.3px}
 
 .wrap{max-width:760px;margin:auto;padding:4px 12px 12px}
 .hero{min-height:118px;border:1px solid var(--line);border-radius:22px;padding:16px 18px 11px;background:linear-gradient(145deg,#e7f6f2,#f3f7fb 64%,#fff1df);display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-top:-2px;margin-bottom:10px}
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.22 · magnetic pull-down tool drawer */
+/* v20.23 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.22 · offline-first controls */
+/* v20.23 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.22 · explicit online/offline mode */
+/* v20.23 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.22 · collapsed tool drawer click-through fix */
+/* v20.23 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.22 · DAY5B exact user-image gallery */
+/* v20.23 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.22 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.23 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -979,7 +979,7 @@ body.pamtoolopen .pamtoolpanel,
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.22</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.23</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1034,7 +1034,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.22 · 상비약을 준비 하위메뉴에서 분리 · 도구 최상위 메뉴로 이동</div>
+  <div class="footer">v20.23 · DAY4 팀 분기형 4A/4B + DAY5 하루 선택형 5A/5B</div>
 </main>
 
 
@@ -1095,7 +1095,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.22 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.23 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1172,13 +1172,21 @@ const DAYS=[
 {time:"08:15",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","오픈런/체력 우선"]],detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
 {time:"10:00~",title:"Universal Studios Singapore",bookingIds:["ticket-uss"],detail:"오늘의 기본은 USS 종일. 인기 어트랙션·캐릭터·쇼·휴식을 섞어 운영.",route:[["🎢","USS","오픈런"],["⭐","인기 어트랙션","우선"],["🍽","점심","피크 회피"],["🎭","캐릭터/쇼","중간 휴식"]],see:["Transformers","Minion Land","캐릭터/쇼"],family:["3세 아이팀/스릴팀 짧게 분리","대기 길면 바로 다음 후보"],food:["USS 내부 식사","아이 메뉴 먼저 확보"]},
 {time:"15:00~",title:"충분히 놀았다면 Sentosa 확장",bookingIds:["ticket-oceanarium","ticket-luge"],detail:"Oceanarium · Luge · Siloso Beach 등에서 1~2개 선택.",route:[["🎢","USS","만족도 판단"],["🐠","Oceanarium","실내"],["🛷","Luge","선택"],["🏖","Siloso Beach","휴식"]],see:["1~2개만 선택"],family:["DAY5와 중복되지 않게 오늘 한 것 기억"]}]},
-{day:4,icon:"🏛️",title:"Old Singapore",sub:"역사 · Chinatown · River Cruise · JUMBO",items:[
+{day:4,variant:"A",navKey:"4A",icon:"🏛️",title:"Old Singapore / Chinatown",sub:"OPTION A · 시내 역사 · Chinatown · River · JUMBO",items:[
 {time:"09:00",title:"호텔 → Fort Canning",transportOptions:[["🚕","Grab/택시","Tree Tunnel 인근으로 바로 이동. 11명은 2~3대 분산","추천"],["🚇","MRT + 도보","Orchard에서 시내권 이동 후 도보 연결","대안"]],detail:"Singapore Marriott Tang Plaza Hotel에서 Fort Canning Tree Tunnel로 이동하며 DAY 4를 시작.",route:[["🏨","Marriott Tang Plaza","출발"],["🚕","Grab/택시","11명은 3대 분산 권장"],["🌳","Fort Canning Tree Tunnel","도착"]],see:["호텔 로비에서 11명 집결","차량별 인원 확인","Tree Tunnel 도착 후 재집결"],family:["아침 첫 이동은 걷기보다 차량 권장","유모차·부모님 체력 보존"]},
 {time:"09:30",title:"Fort Canning · National Museum",detail:"Tree Tunnel을 시작으로 옛 싱가포르를 걷기 시작.",route:[["🌳","Fort Canning","Tree Tunnel"],["🏛","National Museum","역사"],["⛪","CHIJMES","건축"],["🏨","Raffles Hotel","외관"]],see:["Tree Tunnel","National Museum","Civic District"],family:["언덕/계단 주의","더우면 Grab 활용"]},
 {time:"12:30",title:"Chinatown · 점심",detail:"Pagoda Street · Sri Mariamman Temple · Buddha Tooth Relic Temple.",route:[["🏮","Chinatown","골목"],["🛕","Sri Mariamman","사원"],["🛕","Buddha Tooth Relic","사원"],["🍜","Maxwell","점심"]],see:["다문화 종교공간","Shophouse","호커센터"],family:["자리 확보팀/주문팀 분리"],food:["Maxwell Food Centre","치킨라이스·호키엔미·주스"]},
 {time:"15:30",title:"호텔 휴식",detail:"저녁 일정 전 체력 회복.",route:[["🍜","Maxwell","출발"],["🚇","TE18","탑승"],["🚇","Orchard TE14","하차"],["🏨","호텔","휴식"]],see:["1~2시간 휴식"],family:["아이 낮잠","부모님 체력 회복"]},
 {time:"18:00",title:"Clarke Quay · River Cruise",bookingIds:["ticket-rivercruise"],detail:"Old Hill Street Police Station → Clarke Quay → Singapore River Cruise.",route:[["🌈","Old Hill Street","사진"],["🌉","Clarke Quay","강변"],["🚤","River Cruise","약 40분"],["🦀","JUMBO","저녁"]],see:["Old Hill Street","Clarke Quay","River Cruise"],family:["걷는 대신 배에서 휴식 가능"]},
 {time:"19:00",title:"JUMBO Seafood",bookingIds:["restaurant-jumbo"],detail:"Riverside Point · 11명 예약 확정.",route:[["🚤","River Cruise","하선"],["🦀","JUMBO Riverside Point","19:00 예약"]],see:["Reservation ID 6V5D9N"],family:["실내 좌석이 아이/부모님에 편함"],food:["Chilli Crab","Cereal Prawn","Fried Rice","Mantou"]}]},
+{day:4,variant:"B",navKey:"4B",icon:"🦧",title:"Old Singapore + Singapore Zoo",sub:"OPTION B · 오전 공통 → 오후 Zoo팀 분리 → 19:00 JUMBO 재합류",items:[
+{time:"09:00",title:"호텔 → Fort Canning",transportOptions:[["🚕","Grab/택시","Fort Canning Tree Tunnel 인근으로 이동. 오전은 A/B팀 공통","추천"],["🚇","MRT + 도보","Orchard → Dhoby Ghaut 후 도보","대안"]],detail:"DAY4 오전은 OPTION A와 함께 움직이는 공통 구간입니다. Fort Canning과 National Museum 중심으로 Old Singapore 분위기를 함께 봅니다.",route:[["🏨","Marriott Tang Plaza","출발"],["🚕","Grab/택시","Fort Canning"],["🌳","Fort Canning","공통 일정 시작"]],see:["Fort Canning 핵심 포인트","National Museum"],family:["오전은 함께 이동","오후 분리를 위해 오전 체력 보존"]},
+{time:"09:30~11:30",title:"Fort Canning · National Museum",detail:"오전 공통구간입니다. Fort Canning과 National Museum을 본 뒤 Zoo팀은 점심과 이동을 위해 11:30 전후부터 분리 준비를 합니다.",route:[["🌳","Fort Canning","핵심만"],["🏛","National Museum","관람/휴식"]],see:["Fort Canning","National Museum"],family:["A/B팀 모두 함께","박물관을 휴식구간으로 활용"]},
+{time:"11:30~12:30",title:"시내 점심 · A/B 팀 분리",detail:"점심 전후부터 가족별로 A팀과 B팀으로 나뉩니다. A팀은 Chinatown/Clarke Quay 방향으로 기존 일정 진행, B팀은 가볍게 식사 후 Grab으로 Singapore Zoo 이동.",route:[["🍽","시내 점심","가볍게"],["↔️","A/B 팀 분리","가족별 선택"],["🚕","B팀 Grab","Singapore Zoo"]],see:["B팀 인원 확인","차량 수 확인","19:00 JUMBO 재합류 공유"],family:["전원이 같은 옵션을 고를 필요 없음","아이·부모님 컨디션에 따라 가족별 선택"]},
+{time:"13:15~16:30",title:"Singapore Zoo · 오후 핵심 관람",bookingIds:["ticket-mandai"],detail:"오후만 Zoo를 보는 일정이라 대표 구역 위주로 압축합니다. 오랑우탄·대형 동물·아이들이 좋아하는 구역을 보고 Tram을 적극 활용합니다.",route:[["🦧","오랑우탄/영장류","핵심"],["🚋","Tram","체력 절약"],["🐘","대형 동물","선택"]],see:["대표 동물","무료 Tram","아이 선호 구역"],family:["전 구역 정복하지 않기","15:30부터 퇴장 타이밍 열어두기"]},
+{time:"16:30~17:00",title:"Zoo 퇴장 · JUMBO 이동 준비",detail:"17시 전후 Zoo를 출발해 Riverside Point로 이동합니다. 19:00 JUMBO가 고정이므로 교통 정체를 감안해 여유 있게 출발합니다.",route:[["🚻","재집결/화장실","출발 전"],["🚕","Grab","Riverside Point"],["🦀","JUMBO","A팀과 재합류"]],see:["차량별 도착시간 공유","예약 ID 6V5D9N"],family:["늦어지면 관광보다 JUMBO 도착 우선"]},
+{time:"19:00",title:"JUMBO Seafood · A/B팀 재합류",bookingIds:["restaurant-jumbo"],detail:"OPTION A/B팀 모두 Riverside Point에서 다시 합류합니다. 예약은 19:00 · 11명 · ID 6V5D9N으로 그대로 유지합니다.",route:[["🦀","JUMBO Riverside Point","19:00"],["👨‍👩‍👧‍👦","A/B팀","재합류"]],see:["Reservation ID 6V5D9N"],family:["DAY4 옵션과 관계없이 저녁은 고정"]}
+]},
 {day:5,variant:"A",navKey:"5A",icon:"🏝️",title:"Sentosa EASY",sub:"Oceanarium · 휴식 · 해변 · 선택 액티비티",items:[
 {time:"10:00",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","체력 우선"]],detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",route:[["🏨","호텔","늦은 출발"],["🚇","HarbourFront","이동"],["🏝","Sentosa","도착"]],see:["DAY3 미완료 일정만"],family:["오픈런 불필요"]},
 {time:"11:00",title:"Singapore Oceanarium",bookingIds:["ticket-oceanarium"],detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠.",route:[["🐠","Oceanarium","메인 관람"],["❄️","실내","더위 회피"]],see:["대형 수조","해양생물 전시"],family:["아이/부모님 모두 부담 적음"]},
@@ -1231,7 +1239,7 @@ const DAY_GUIDES={
 {icon:"🍽️",title:"저녁 · Sentosa 또는 Orchard",text:"퇴장시간과 가족들 상태를 보고 결정합니다. 아직 여유가 있으면 Sentosa에서 먹고, 많이 지쳤다면 호텔로 돌아와 Orchard 주변에서 편하게 식사합니다."},
 {icon:"🏨",title:"저녁 · Marriott 복귀",text:"저녁식사 후 호텔로 복귀하며 DAY3를 마무리합니다. 다음 날은 이동이 많은 DAY4이므로 USS 이후 별도의 야간 관광은 넣지 않습니다."}
 ],flow:["호텔 조식","Sentosa 이동","🎢 USS 입장 — 전원 함께","오전 인기 어트랙션","🍔 점심 & 휴식 — 다시 합류","오후 가족별 자유관람","컨디션에 따라 USS 퇴장","Sentosa 가벼운 구경 또는 바로 이동","Sentosa / Orchard 중 상황에 따라 저녁","호텔 복귀 & 휴식"],principle:"입장까지 함께 · 내부는 유연하게 · 퇴장시간은 체력과 대기시간을 보고 결정",tools:[{id:"tickets",label:"🎫 USS 티켓"},{id:"rides",label:"🎢 추천 어트랙션",content:["오전에는 인기 어트랙션부터 우선","오후에는 대기시간이 긴 곳을 억지로 기다리지 않기","쇼·캐릭터 콘텐츠를 중간 휴식처럼 활용"]},{id:"height",label:"👧 아이 키/탑승조건",content:["탑승 가능 여부는 나이보다 실제 키 기준이 중요","아이들 키를 알려주면 ‘모두 가능 / 7세 중심 / 성인 중심 / 아이 휴식 중 성인 추천’으로 분류 가능","현장 공식 키 제한 표기를 최종 기준으로 확인"]},{id:"familycourse",label:"👨‍👩‍👧‍👦 가족별 추천코스",content:["전원 함께: 입장·점심·주요 합류시간","3세 아이팀: 캐릭터·쇼·실내 휴식 중심","7세 아이팀: 키 조건에 맞는 어트랙션 중심","성인팀: 아이 휴식시간에 스릴 어트랙션"]},{id:"meal",label:"🍔 식사",content:["점심에는 전원 다시 합류","좌석 확보와 아이 메뉴 우선","오전에 많이 움직였으면 식사 후 충분히 앉아 있기"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"wait",label:"⏱️ 대기시간",content:["오전 시간을 인기 어트랙션에 활용","오후 대기시간이 길면 다음 후보로 전환","공식 앱/현장 표기의 실시간 대기시간을 기준으로 판단"]},{id:"checkpoint",label:"💡 오늘의 체크포인트",content:["아침부터 무리하지 않기","USS 입장까지는 전원 함께","하루 종일 같은 놀이기구를 탈 필요 없음","점심에 다시 합류","Oceanarium/Luge는 DAY5로 남겨두기","퇴장 후 야간 관광 추가하지 않기"]}]},
-4:{tagline:"Old Singapore & City Tour",intro:["오늘은 놀이공원이나 대형 관광지보다 싱가포르의 오래된 도심을 천천히 따라가 보는 날입니다.","Fort Canning에서 시작해 National Museum, CHIJMES, Raffles Hotel을 지나 Chinatown까지 이동하고 저녁에는 Singapore River와 Clarke Quay로 이어집니다.","장소는 많지만 각각 오래 머무르기보다 걷고 보고 쉬면서 도시 분위기를 경험합니다. 박물관은 관람과 동시에 에어컨이 있는 휴식구간으로 활용합니다.","오후 Chinatown에서는 필요하면 가족별 쇼핑이나 카페 자유시간을 가질 수 있습니다. River Cruise는 그날 실제 진행속도와 체력을 보고 결정합니다.","DAY4에서 반드시 맞춰야 하는 시간은 19:00 JUMBO Seafood 예약입니다. 앞 일정이 늦어지면 관광이나 River Cruise 시간을 줄이더라도 JUMBO에는 여유 있게 도착합니다."],sections:[
+"4A":{tagline:"Old Singapore & City Tour",intro:["오늘은 놀이공원이나 대형 관광지보다 싱가포르의 오래된 도심을 천천히 따라가 보는 날입니다.","Fort Canning에서 시작해 National Museum, CHIJMES, Raffles Hotel을 지나 Chinatown까지 이동하고 저녁에는 Singapore River와 Clarke Quay로 이어집니다.","장소는 많지만 각각 오래 머무르기보다 걷고 보고 쉬면서 도시 분위기를 경험합니다. 박물관은 관람과 동시에 에어컨이 있는 휴식구간으로 활용합니다.","오후 Chinatown에서는 필요하면 가족별 쇼핑이나 카페 자유시간을 가질 수 있습니다. River Cruise는 그날 실제 진행속도와 체력을 보고 결정합니다.","DAY4에서 반드시 맞춰야 하는 시간은 19:00 JUMBO Seafood 예약입니다. 앞 일정이 늦어지면 관광이나 River Cruise 시간을 줄이더라도 JUMBO에는 여유 있게 도착합니다."],sections:[
 {icon:"☀️",title:"아침 · 호텔 → Fort Canning",text:"호텔에서 조식을 먹고 Fort Canning으로 이동합니다. Tree Tunnel 등 주요 포인트를 가볍게 보고 공원 전체를 길게 걷지는 않습니다. 이날은 뒤에도 걸을 곳이 많아 아침 체력 보존이 중요합니다."},
 {icon:"🏛️",title:"오전 · National Museum",text:"Fort Canning에서 이어서 National Museum of Singapore로 이동합니다. 싱가포르가 어떤 과정을 거쳐 지금의 도시가 되었는지 주요 전시 중심으로 보고, 동시에 에어컨이 있는 실내에서 쉬어가는 시간으로 활용합니다."},
 {icon:"⛪",title:"점심 전후 · CHIJMES & Raffles Hotel",text:"박물관에서 나와 CHIJMES와 Raffles Hotel 방향으로 이동합니다. 건축물과 역사적인 분위기를 가볍게 보고, 이 구간에서 점심식사와 충분한 휴식을 갖습니다."},
@@ -1240,6 +1248,13 @@ const DAY_GUIDES={
 {icon:"🦀",title:"19:00 · JUMBO Seafood",text:"JUMBO Seafood – Riverside Point에 11명 예약이 확정되어 있습니다. DAY4에서 가장 중요한 고정시간은 19:00이며, 앞 일정이 늦어지면 관광이나 River Cruise 시간을 줄여서라도 여유 있게 도착합니다."},
 {icon:"🌃",title:"저녁 · Clarke Quay → 호텔",text:"식사 후 강변 야경을 가볍게 보고, 피곤하면 바로 차량으로 이동합니다. DAY4 자체가 많이 걷는 날이므로 별도의 관광지는 추가하지 않습니다."}
 ],flow:["호텔 조식","🌳 Fort Canning — 가벼운 오전 산책","🏛️ National Museum — 관람 & 휴식","⛪ CHIJMES","🏨 Raffles Hotel","🍽️ 점심 & 휴식","🏮 Chinatown — 관광/자유시간","🚤 Singapore River Cruise — 시간 되면","🦀 19:00 JUMBO Seafood — 예약 확정","Clarke Quay / 강변 가벼운 산책","호텔 복귀"],principle:"앞 일정은 유동적 / JUMBO 19:00은 고정",tools:[{id:"fort",label:"🌳 Fort Canning",content:["Tree Tunnel 등 주요 포인트만 가볍게","공원 전체를 길게 걷지 않기","뒤 일정이 많으므로 오전 체력 보존"]},{id:"museum",label:"🏛️ 박물관",content:["National Museum of Singapore","싱가포르가 지금의 도시가 된 과정을 주요 전시 위주로 관람","모든 전시를 보려 하지 않고 실내 휴식시간으로도 활용"]},{id:"chinatown",label:"🏮 Chinatown",content:["거리·상점·사원을 자유롭게 구경","필요하면 가족별 자유시간","모든 장소를 다 보는 것이 목표가 아님"]},{id:"river",label:"🚤 River Cruise",content:["시간과 체력이 괜찮을 때 이용","현장 진행속도를 보고 결정","JUMBO 19:00 도착이 우선"]},{id:"jumbo",label:"🦀 JUMBO 예약",content:["JUMBO Seafood – Riverside Point","9/22 19:00 · 11명 예약 확정","Reservation ID 6V5D9N","앞 일정이 늦으면 다른 관광시간을 줄이고 예약시간 우선"]},{id:"meal",label:"🍽️ 식사",content:["점심은 이동 흐름에서 충분히 쉬는 방식","저녁은 JUMBO 예약 확정","식사 후 별도 관광지를 추가하지 않기"]},{id:"transport",label:"🚇 이동"},{id:"map",label:"🗺️ 지도"},{id:"kids",label:"💡 아이와 함께",content:["걷는 양이 많은 날이라 짧은 Grab 활용 가능","National Museum을 실내 휴식구간으로 활용","Chinatown에서는 카페/자유시간 허용","저녁 이후 피곤하면 강변 산책 생략"]}]},
+"4B":{tagline:"오전은 함께 · 오후는 Zoo팀 · 저녁은 다시 함께",intro:["DAY4B는 오전 Old Singapore 구간은 함께 움직이고 점심 전후부터 가족별로 A팀/B팀으로 나뉘는 팀 분기형 일정입니다.","B팀은 점심 후 Singapore Zoo로 이동해 오후 핵심 구역만 보고 17시 전후 Zoo를 출발합니다. A팀은 기존 DAY4A처럼 Chinatown과 Singapore River 쪽으로 이동합니다.","두 팀의 고정점은 19:00 JUMBO Seafood Riverside Point입니다. 저녁 예약은 어느 옵션에서도 바뀌지 않습니다.","DAY4에서 Zoo를 다녀간 가족이 많으면 DAY5는 5A Sentosa가 자연스럽고, DAY4에 Zoo를 가지 않은 가족은 DAY5B Mandai를 그대로 선택할 수 있습니다."],sections:[
+{icon:"👨‍👩‍👧‍👦",title:"오전 · 공통 Old Singapore",text:"Fort Canning과 National Museum 중심으로 오전은 함께 움직입니다. 오후 분기를 고려해 오전 일정은 핵심만 봅니다."},
+{icon:"↔️",title:"점심 전후 · A/B팀 분리",text:"A팀은 Chinatown/Clarke Quay 방향, B팀은 가볍게 점심 후 Grab으로 Singapore Zoo 이동. 전원이 같은 옵션을 고를 필요는 없습니다."},
+{icon:"🦧",title:"오후 · B팀 Singapore Zoo",text:"대표 동물 위주로 압축해서 보고 Tram을 적극 활용합니다. 오후만 방문하므로 전 구역 정복은 목표가 아닙니다."},
+{icon:"🚕",title:"17시 전후 · Riverside Point 이동",text:"교통을 고려해 17시 전후 Zoo를 출발합니다. 19:00 JUMBO 도착을 우선합니다."},
+{icon:"🦀",title:"19:00 · JUMBO 재합류",text:"OPTION A/B팀 모두 Riverside Point에서 다시 합류합니다. 예약 ID 6V5D9N은 그대로 유지합니다."}
+],flow:["호텔 조식","🌳 Fort Canning","🏛️ National Museum","🍽️ 점심","↔️ A/B팀 분리","🦧 B팀 Singapore Zoo","🚕 17:00 Zoo 출발","🦀 19:00 JUMBO 재합류"],principle:"오전 공통 · 오후 가족별 분기 · 19:00 JUMBO 고정",alternative:{title:"🏛️ DAY4A · Old Singapore / Chinatown",text:"Zoo 대신 시내 일정으로 계속 움직이는 가족은 DAY4A를 선택합니다. 두 팀은 19:00 JUMBO에서 다시 합류합니다."},tools:[{id:"split",label:"↔️ 팀 분기",content:["오전은 함께","점심 전후 가족별 A/B 선택","19:00 JUMBO 재합류"]},{id:"zoo",label:"🦧 Zoo",content:["오후 핵심 관람만","Tram 적극 활용","17시 전후 출발"]},{id:"transport",label:"🚕 이동"},{id:"map",label:"🗺️ 지도"},{id:"alternative",label:"🏛️ DAY4A 시내"},{id:"checkpoint",label:"📌 체크포인트",content:["오전 공통","점심 전후 팀 분리","Zoo팀 17시 전후 출발","19:00 JUMBO 고정"]}]},
 "5A":{tagline:"Sentosa, 여유롭게 즐기는 날",intro:["오늘은 여행 후반부인 만큼 일정을 빡빡하게 잡지 않고 여유롭게 보내는 날입니다.","DAY3에 USS를 중심으로 Sentosa를 즐겼다면 오늘은 Singapore Oceanarium을 기본 메인 일정으로 천천히 둘러보고 오후에는 가족 컨디션과 날씨에 따라 Luge나 해변·카페 중 원하는 방식으로 선택합니다.","Oceanarium 관람 후 근처에서 점심을 먹고 충분히 쉽니다. 오후 일정은 점심자리에서 결정해도 됩니다. 가족들 의견이 다르면 Luge팀과 해변·휴식팀으로 잠시 나뉘었다가 다시 합류할 수 있습니다.","여행 마지막 밤이므로 별도의 야간 관광을 억지로 추가하기보다 상황에 따라 Sentosa 또는 Orchard에서 저녁을 먹고 호텔로 여유 있게 돌아와 귀국 짐을 정리합니다."],sections:[
 {icon:"☀️",title:"아침 · 여유롭게 출발",text:"호텔에서 조식을 충분히 먹고 천천히 준비한 뒤 Sentosa로 이동합니다. 앞선 여행의 피로도를 보고 출발시간도 조금 여유 있게 잡습니다."},
 {icon:"🐠",title:"오전 · Singapore Oceanarium",text:"오늘의 기본 메인 일정입니다. 다양한 해양생물과 대형 수조를 볼 수 있는 실내 관광지라 아이들과 부모님이 함께 보기 좋고, 더운 낮 시간을 피하기에도 좋습니다. 다른 일정이 많지 않아 아이들이 좋아하는 곳에서는 충분히 머뭅니다."},
@@ -2730,6 +2745,12 @@ const ITEM_DETAIL_GUIDE={
   steps:["18:45 전후 Riverside Point 도착 목표","예약자명/예약번호 확인","11명 착석 후 아이 메뉴부터 주문","식사 후 체력에 따라 강변 짧게 보거나 바로 호텔 복귀"],
   facts:[["예약","19:00 · 11명 · 예약완료"],["Reservation ID","6V5D9N"],["핵심 메뉴","Chilli Crab · Cereal Prawn · Mantou"],["원칙","앞 일정은 줄여도 예약시간은 유지"]]
 },
+"4B.호텔 → Fort Canning":{lead:"DAY4 오전 공통 시작입니다.",desc:"A/B팀 모두 함께 Fort Canning으로 이동하며 오후 분리를 고려해 오전은 체력을 아낍니다.",steps:["호텔 재집결","Fort Canning 이동","공통 일정 시작"],facts:[["공통","A/B팀 모두"],["분리","점심 전후"]]},
+"4B.Fort Canning · National Museum":{lead:"오전 공통구간입니다.",desc:"Fort Canning과 National Museum을 본 뒤 B팀은 11:30 전후부터 Zoo 이동 준비를 합니다.",steps:["Fort Canning 핵심","National Museum","점심 이동"],facts:[["원칙","오전 핵심만"],["B팀","11:30 전후 분리 준비"]]},
+"4B.시내 점심 · A/B 팀 분리":{lead:"DAY4의 핵심 분기점입니다.",desc:"가족별로 시내팀(A)과 Zoo팀(B) 중 원하는 쪽으로 나눕니다.",steps:["점심","A/B 선택","B팀 차량 호출","JUMBO 합류시간 공유"],facts:[["전원 동일 선택","필요 없음"],["재합류","19:00 JUMBO"]]},
+"4B.Singapore Zoo · 오후 핵심 관람":{lead:"오후만 보는 Zoo라 대표 구역 중심으로 봅니다.",desc:"오랑우탄·대형 동물·아이 선호 구역을 보고 Tram을 사용합니다.",steps:["13시대 입장","핵심 2~3구역","Tram","15:30부터 퇴장 준비"],facts:[["전 구역","욕심내지 않기"],["출발","17시 전후"]]},
+"4B.Zoo 퇴장 · JUMBO 이동 준비":{lead:"17시 전후 Zoo를 출발합니다.",desc:"19:00 예약이 고정이므로 관광보다 이동 안정성이 우선입니다.",steps:["재집결","Grab 호출","Riverside Point 이동"],facts:[["목표","여유 있게 도착"],["예약","6V5D9N"]]},
+"4B.JUMBO Seafood · A/B팀 재합류":{lead:"DAY4의 고정점입니다.",desc:"A/B팀 모두 JUMBO Riverside Point에서 다시 합류합니다.",steps:["A/B팀 도착","11명 재합류","예약 확인"],facts:[["시간","19:00"],["인원","11명"],["예약 ID","6V5D9N"]]},
 "5.호텔 → Sentosa":{
   lead:"DAY3보다 느긋하게 Sentosa로 다시 들어가는 일정입니다. 오픈런이 목적이 아니므로 아침부터 서두르지 않고, 그날 체력에 따라 MRT 또는 Grab을 선택합니다.",
   desc:"DAY3에서 이미 익숙해진 동선이므로 이동 자체보다 ‘오늘 무엇을 할지’를 다시 확인한 뒤 출발하는 것이 중요합니다.",
@@ -2846,13 +2867,13 @@ const ITEM_DETAIL_GUIDE={
   facts:[["추천","Grab/택시"],["저녁","Orchard / 호텔 주변"],["추가 야간관광","기본 없음"]]
 }
 };
-function detailGuideFor(dayNum,item){ const prefix=Number(dayNum)===5?`5${day5Variant}`:String(dayNum); return ITEM_DETAIL_GUIDE[`${prefix}.${item?.title}`]||null; }
+function detailGuideFor(dayNum,item){ const prefix=Number(dayNum)===4?`4${day4Variant}`:Number(dayNum)===5?`5${day5Variant}`:String(dayNum); return ITEM_DETAIL_GUIDE[`${prefix}.${item?.title}`]||null; }
 
 
 
 const RESTAURANTS=[
  {
-  id:"jumbo-riverside",name:"JUMBO Seafood - Riverside Point",day:4,itemIds:["4.6"],category:"recommended",
+  id:"jumbo-riverside",name:"JUMBO Seafood - Riverside Point",day:4,itemIds:["4A.6","4B.6"],category:"recommended",
   status:"confirmed",time:"19:00",area:"Clarke Quay / Riverside Point",
   menus:["Chilli Crab","Black Pepper Crab","Cereal Prawn","Mantou","Fried Rice"],
   price:"중~고가 · 게 요리는 시가/중량 확인",hours:"예약시간 19:00 기준",reservation:"예약완료 · 11명 · 6V5D9N",
@@ -2860,7 +2881,7 @@ const RESTAURANTS=[
   note:"DAY4 고정 일정. 앞 일정이 밀리면 다른 관광을 줄여서라도 예약시간 우선."
  },
  {
-  id:"kok-sen",name:"Kok Sen Restaurant",day:4,itemIds:["4.3"],category:"local",
+  id:"kok-sen",name:"Kok Sen Restaurant",day:4,itemIds:["4A.3"],category:"local",
   status:"candidate",time:"점심 우선 후보",area:"Chinatown · 4 Keong Saik Road",
   menus:["Big Prawn Hor Fun","Claypot Yong Tau Foo"],
   price:"대체로 요리당 S$10~20대부터",hours:"Tue-Sun 12:00~22:30 안내 · 월요일 휴무",
@@ -2940,7 +2961,7 @@ const RESTAURANTS=[
   note:"일행 취향이 많이 갈리거나 빠르게 먹고 다시 놀이기구로 돌아갈 때 백업."
  },
  {
-  id:"maxwell-food-centre",name:"Maxwell Food Centre",day:4,itemIds:["4.3"],category:"local",
+  id:"maxwell-food-centre",name:"Maxwell Food Centre",day:4,itemIds:["4A.3"],category:"local",
   status:"candidate",time:"Chinatown 점심",area:"1 Kadayanallur Street",
   menus:["Chicken Rice","Local Hawker Food","Dessert / Drinks"],
   price:"저가",hours:"센터는 아침~늦은 밤 · 스톨별 영업시간 상이",
@@ -2949,7 +2970,7 @@ const RESTAURANTS=[
   note:"Kok Sen 대기가 길거나 메뉴 취향이 갈릴 때 가장 실용적인 백업. 여러 테이블로 나눠 앉는 운영이 현실적."
  },
  {
-  id:"chinatown-complex",name:"Chinatown Complex Food Centre",day:4,itemIds:["4.3"],category:"local",
+  id:"chinatown-complex",name:"Chinatown Complex Food Centre",day:4,itemIds:["4A.3"],category:"local",
   status:"candidate",time:"Chinatown 점심",area:"335 Smith Street",
   menus:["Singapore Hawker Food","Satay","Noodles","Chendol"],
   price:"저가",hours:"스톨별 상이",reservation:"예약 없음",
@@ -3314,6 +3335,12 @@ const ITEM_KNOWLEDGE={
  fun:"Chilli Crab은 이름과 달리 ‘엄청 매운 게’ 핵심이라기보다 달고 짭짤하고 매콤한 소스를 게와 함께 먹는 싱가포르식 요리입니다.",
  sources:[["JUMBO Story","https://www.jumboseafood.com.sg/en/jumbo-seafood-story"]]
 },
+"4B.1":{title:"DAY4B는 팀 분기형 일정",about:"오전에는 11명이 Old Singapore 구간을 함께 보고 점심 전후부터 가족별로 시내팀과 Zoo팀으로 나눕니다.",highlights:["오전 공통","점심 전후 분리","19:00 재합류"]},
+"4B.2":{title:"오전 공통구간을 짧게 두는 이유",about:"Zoo팀은 점심 후 Mandai까지 이동해야 하므로 오전 일정이 길어지면 오후 관람과 19시 저녁 합류가 모두 빡빡해집니다.",highlights:["Fort Canning","National Museum","체력 보존"]},
+"4B.3":{title:"가족별 선택이 가능한 분기점",about:"아이 컨디션과 부모님 체력, Zoo 선호도에 따라 가족 단위로 A/B를 선택합니다.",highlights:["A팀 Chinatown/Clarke Quay","B팀 Singapore Zoo","전원 동일 선택 불필요"]},
+"4B.4":{title:"오후 Zoo는 핵심만",about:"오후 일정이라 대표 동물 위주로 보고 Tram을 적극 활용합니다.",highlights:["오랑우탄","대형 동물","Tram","15:30부터 퇴장 준비"]},
+"4B.5":{title:"17시 출발이 중요한 이유",about:"Riverside Point까지 이동시간을 고려해 19:00 JUMBO에 맞추려면 17시 전후 출발이 안전합니다.",highlights:["관광보다 저녁 예약 우선","차량별 도착시간 공유"]},
+"4B.6":{title:"DAY4의 고정점은 JUMBO",about:"앞 일정은 유연하지만 19:00 JUMBO Seafood Riverside Point 예약은 고정입니다.",highlights:["11명","19:00","Reservation ID 6V5D9N"]},
 "5A.1":{
  title:"두 번째 Sentosa는 ‘정복’이 아니라 ‘느긋하게 즐기기’",
  about:"DAY3에 이미 Sentosa의 속도와 이동법을 익혔기 때문에 DAY5는 훨씬 편하게 움직일 수 있습니다. Sentosa 자체는 원래 Pulau Blakang Mati라는 역사 깊은 섬이었고, 오늘날의 리조트섬 이미지는 1970년대 이후 만들어진 것입니다.",
@@ -3443,7 +3470,7 @@ const ITEM_KNOWLEDGE={
 };
 
 function knowledgeHtml(dayNum,itemIndex,item){
-  const prefix=Number(dayNum)===5?`5${day5Variant}`:String(dayNum); const k=ITEM_KNOWLEDGE[`${prefix}.${Number(itemIndex)+1}`];
+  const prefix=Number(dayNum)===4?`4${day4Variant}`:Number(dayNum)===5?`5${day5Variant}`:String(dayNum); const k=ITEM_KNOWLEDGE[`${prefix}.${Number(itemIndex)+1}`];
   if(!k)return "";
   const sec=(title,body)=>body?`<section class="knowledge-sec"><h4>${title}</h4><p>${esc(body)}</p></section>`:"";
   const list=k.highlights?.length?`<section class="knowledge-sec"><h4>🔎 알아두면 좋은 포인트</h4><ul>${k.highlights.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section>`:"";
@@ -3482,13 +3509,21 @@ const DAY_ITEM_MAP_POINTS={
     {item:1,lat:1.2540,lng:103.8238,name:"Universal Studios Singapore"},
     {item:2,lat:1.2583,lng:103.8200,name:"충분히 놀았다면 Sentosa 확장",option:true}
   ],
-  4:[
+  "4A":[
     {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Fort Canning",type:"hotel"},
     {item:1,lat:1.2978,lng:103.8452,name:"Fort Canning · National Museum"},
     {item:2,lat:1.2838,lng:103.8444,name:"Chinatown · 점심"},
     {item:3,lat:1.3058,lng:103.8325,name:"호텔 휴식",type:"hotel"},
     {item:4,lat:1.2890,lng:103.8466,name:"Clarke Quay · River Cruise"},
     {item:5,lat:1.2896,lng:103.8448,name:"JUMBO Seafood"}
+  ],
+  "4B":[
+    {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Fort Canning",type:"hotel"},
+    {item:1,lat:1.2966,lng:103.8485,name:"Fort Canning · National Museum"},
+    {item:2,lat:1.2916,lng:103.8455,name:"시내 점심 · A/B 팀 분리"},
+    {item:3,lat:1.4043,lng:103.7930,name:"Singapore Zoo · 오후 핵심 관람"},
+    {item:4,lat:1.4040,lng:103.7928,name:"Zoo 퇴장 · JUMBO 이동 준비"},
+    {item:5,lat:1.2896,lng:103.8448,name:"JUMBO Seafood · A/B팀 재합류"}
   ],
   "5A":[
     {item:0,lat:1.3055,lng:103.8322,name:"호텔 → Sentosa",type:"hotel"},
@@ -3564,8 +3599,8 @@ const DAY_MAPS={
     {mode:"option",path:[[1.2540,103.8238],[1.2583,103.8200],[1.2521,103.8174],[1.2507,103.8168]]}
   ]
 },
-4:{
-  title:"DAY 4 ROUTE MAP",subtitle:"Timeline 4.1~4.6 · Old Singapore → Chinatown → River → JUMBO",
+"4A":{
+  title:"DAY 4A ROUTE MAP",subtitle:"Timeline 4.1~4.6 · Old Singapore → Chinatown → River → JUMBO",
   places:[
     {n:1,name:"Fort Canning Tree Tunnel",lat:1.2978,lng:103.8452},
     {n:2,name:"National Museum",lat:1.2966,lng:103.8485},
@@ -3585,6 +3620,20 @@ const DAY_MAPS={
     {mode:"mrt",path:[[1.2803,103.8441],[1.2827,103.8438],[1.2940,103.8490],[1.3055,103.8322]]},
     {mode:"taxi",route:true,from:6,to:7},
     {mode:"walk",path:[[1.2906,103.8484],[1.2897,103.8476],[1.2890,103.8466],[1.2893,103.8456],[1.2896,103.8448]]}
+  ]
+},
+"4B":{
+  title:"DAY 4B ROUTE MAP",subtitle:"오전 공통 → 오후 Zoo팀 분리 → 19:00 JUMBO 재합류",
+  places:[
+    {n:1,name:"Singapore Marriott Tang Plaza",lat:1.3055,lng:103.8322,type:"hotel"},
+    {n:2,name:"Fort Canning / National Museum",lat:1.2966,lng:103.8485},
+    {n:3,name:"Singapore Zoo",lat:1.4043,lng:103.7930},
+    {n:4,name:"JUMBO Seafood Riverside Point",lat:1.2896,lng:103.8448,type:"food"}
+  ],
+  segments:[
+    {mode:"taxi",route:true,from:0,to:1},
+    {mode:"taxi",route:true,from:1,to:2},
+    {mode:"taxi",route:true,from:2,to:3}
   ]
 },
 "5A":{
@@ -3751,18 +3800,19 @@ function renderDayMap(){
     setTimeout(()=>dayMap.invalidateSize({pan:false}),650);
   });
 }
-let day=1,day5Variant=localStorage.getItem("sg_trip_day5_variant_v20")||"A",sel=null;
+let day=1,day4Variant=localStorage.getItem("sg_trip_day4_variant_v20")||"A",day5Variant=localStorage.getItem("sg_trip_day5_variant_v20")||"A",sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const escapeHtml=s=>esc(s??'');
-function current(){return DAYS.find(x=>x.day===day && (day!==5 || (x.variant||"A")===day5Variant))}
-function currentDayKey(){return day===5?`5${day5Variant}`:String(day)}
-function currentDayLabel(){return day===5?`DAY 5${day5Variant}`:`DAY ${day}`}
+function current(){return DAYS.find(x=>x.day===day && (day!==4 || (x.variant||"A")===day4Variant) && (day!==5 || (x.variant||"A")===day5Variant))}
+function currentDayKey(){return day===4?`4${day4Variant}`:day===5?`5${day5Variant}`:String(day)}
+function currentDayLabel(){return day===4?`DAY 4${day4Variant}`:day===5?`DAY 5${day5Variant}`:`DAY ${day}`}
 const DAY_NAV=[
   {day:1,key:"1",label:"DAY 1"},
   {day:2,key:"2",label:"DAY 2"},
   {day:3,key:"3",label:"DAY 3"},
-  {day:4,key:"4",label:"DAY 4"},
+  {day:4,key:"4A",variant:"A",label:"4A"},
+  {day:4,key:"4B",variant:"B",label:"4B"},
   {day:5,key:"5A",variant:"A",label:"5A"},
   {day:5,key:"5B",variant:"B",label:"5B"},
   {day:6,key:"6",label:"DAY 6"}
@@ -3770,9 +3820,10 @@ const DAY_NAV=[
 function selectDayNav(key){
   const nav=DAY_NAV.find(x=>x.key===String(key));if(!nav)return;
   day=nav.day;
+  if(day===4){day4Variant=nav.variant||"A";localStorage.setItem("sg_trip_day4_variant_v20",day4Variant)}
   if(day===5){day5Variant=nav.variant||"A";localStorage.setItem("sg_trip_day5_variant_v20",day5Variant)}
 }
-function dayGuideKey(dayNum=day){return Number(dayNum)===5?`5${day5Variant}`:String(dayNum)}
+function dayGuideKey(dayNum=day){return Number(dayNum)===4?`4${day4Variant}`:Number(dayNum)===5?`5${day5Variant}`:String(dayNum)}
 
 
 const ITEM_BRIEFS={
@@ -3906,7 +3957,7 @@ function toggleUnifiedGuide(force){
 
 
 function itemRef(dayNum,itemIndex){
-  const prefix=Number(dayNum)===5?`5${day5Variant}`:String(dayNum);
+  const prefix=Number(dayNum)===4?`4${day4Variant}`:Number(dayNum)===5?`5${day5Variant}`:String(dayNum);
   return `${prefix}.${Number(itemIndex)+1}`;
 }
 function itemPartRef(dayNum,itemIndex,part){
@@ -3935,9 +3986,9 @@ function dayWeekday(dateText){
 function render(){
  const d=current();
  daysEl.innerHTML=DAY_NAV.map(x=>{
-   const on=x.day===day && (x.day!==5 || x.variant===day5Variant);
+   const on=x.day===day && (x.day!==4 || x.variant===day4Variant) && (x.day!==5 || x.variant===day5Variant);
    const date=DAY_DATES[x.day]||"";
-   return `<button class="daybtn ${x.day===5?"day5split ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
+   return `<button class="daybtn ${(x.day===4||x.day===5)?"daysplit ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
  }).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div>
  <div class="heroday">${currentDayLabel()} · ${DAY_DATES[d.day]||""}</div>
@@ -4047,7 +4098,7 @@ function closeDeep(){
 }
 
 
-// v20.22 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.23 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4571,7 +4622,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.22 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.23 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5199,7 +5250,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.22 · DAY swipe
+// v20.23 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
