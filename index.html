@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.23</title>
+<title>Singapore Family Trip 2026 · v20.24</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.23 · magnetic pull-down tool drawer */
+/* v20.24 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.23 · offline-first controls */
+/* v20.24 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.23 · explicit online/offline mode */
+/* v20.24 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.23 · collapsed tool drawer click-through fix */
+/* v20.24 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.23 · DAY5B exact user-image gallery */
+/* v20.24 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.23 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.24 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -974,12 +974,33 @@ body.pamtoolopen .pamtoolpanel,
 .medshare{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
+
+/* v20.24 · DAY4 / DAY5 A·B paired split buttons */
+.days .daybtn[data-day-key="4A"],
+.days .daybtn[data-day-key="5A"]{
+  border-top-right-radius:0;
+  border-bottom-right-radius:0;
+  margin-right:-4px;
+  border-right-width:0;
+}
+.days .daybtn[data-day-key="4B"],
+.days .daybtn[data-day-key="5B"]{
+  border-top-left-radius:0;
+  border-bottom-left-radius:0;
+}
+.days .daybtn[data-day-key="4A"].on + .daybtn[data-day-key="4B"],
+.days .daybtn[data-day-key="5A"].on + .daybtn[data-day-key="5B"],
+.days .daybtn[data-day-key="4B"].on,
+.days .daybtn[data-day-key="5B"].on{
+  border-left-color:rgba(255,255,255,.28);
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.23</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.24</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1034,7 +1055,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.23 · DAY4 팀 분기형 4A/4B + DAY5 하루 선택형 5A/5B</div>
+  <div class="footer">v20.24 · DAY4/5 A·B 버튼을 하나의 분할 버튼처럼 연결</div>
 </main>
 
 
@@ -1095,7 +1116,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.23 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.24 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -4098,7 +4119,7 @@ function closeDeep(){
 }
 
 
-// v20.23 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.24 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4622,7 +4643,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.23 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.24 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5250,7 +5271,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.23 · DAY swipe
+// v20.24 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
@@ -5596,4 +5617,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-  </html>
+</html>
