@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.24</title>
+<title>Singapore Family Trip 2026 · v20.25</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.24 · magnetic pull-down tool drawer */
+/* v20.25 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.24 · offline-first controls */
+/* v20.25 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.24 · explicit online/offline mode */
+/* v20.25 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.24 · collapsed tool drawer click-through fix */
+/* v20.25 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.24 · DAY5B exact user-image gallery */
+/* v20.25 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.24 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.25 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -975,7 +975,7 @@ body.pamtoolopen .pamtoolpanel,
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
 
-/* v20.24 · DAY4 / DAY5 A·B paired split buttons */
+/* v20.25 · DAY4 / DAY5 A·B paired split buttons */
 .days .daybtn[data-day-key="4A"],
 .days .daybtn[data-day-key="5A"]{
   border-top-right-radius:0;
@@ -995,12 +995,67 @@ body.pamtoolopen .pamtoolpanel,
   border-left-color:rgba(255,255,255,.28);
 }
 
+
+/* v20.25 · actual-date default + Singapore-time schedule focus */
+.daybtn.today:not(.on){
+  box-shadow:inset 0 0 0 1.5px #0b7d73;
+  color:#0b7d73;
+}
+.daybtn.today .daydate:after{
+  content:" · 오늘";
+  color:#0b7d73;
+  font-weight:950;
+}
+.daybtn.today.on .daydate:after{color:#d6f4ef}
+
+.item.is-now{
+  border:2px solid #0b7d73;
+  background:linear-gradient(135deg,#f5fffc,#ffffff 72%);
+  box-shadow:0 7px 22px rgba(11,125,115,.16);
+}
+.item.is-now .time{
+  background:#0b7d73;
+  color:#fff;
+}
+.item.is-next{
+  border-color:#b8cbd3;
+  background:#fbfdfe;
+}
+.liveScheduleBadge{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin-left:7px;
+  padding:3px 7px;
+  border-radius:999px;
+  vertical-align:2px;
+  font-size:9px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.1px;
+  white-space:nowrap;
+}
+.liveScheduleBadge.now{
+  background:#0b7d73;
+  color:#fff;
+}
+.liveScheduleBadge.next{
+  background:#e8eef1;
+  color:#506773;
+}
+.liveScheduleBadge.now:before{
+  content:"";
+  width:5px;height:5px;border-radius:50%;
+  background:#baf7e9;
+  box-shadow:0 0 0 3px rgba(186,247,233,.18);
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.24</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.25</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1055,7 +1110,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.24 · DAY4/5 A·B 버튼을 하나의 분할 버튼처럼 연결</div>
+  <div class="footer">v20.25 · 실제 날짜 자동 DAY 진입 · 싱가포르 시간 기준 지금/다음 일정 강조</div>
 </main>
 
 
@@ -1116,7 +1171,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.24 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.25 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -3821,7 +3876,84 @@ function renderDayMap(){
     setTimeout(()=>dayMap.invalidateSize({pan:false}),650);
   });
 }
-let day=1,day4Variant=localStorage.getItem("sg_trip_day4_variant_v20")||"A",day5Variant=localStorage.getItem("sg_trip_day5_variant_v20")||"A",sel=null;
+
+const TRIP_DATE_TO_DAY={
+  "2026-09-19":1,
+  "2026-09-20":2,
+  "2026-09-21":3,
+  "2026-09-22":4,
+  "2026-09-23":5,
+  "2026-09-24":6
+};
+function singaporeDateTimeParts(date=new Date()){
+  const parts=new Intl.DateTimeFormat("en-CA",{
+    timeZone:"Asia/Singapore",
+    year:"numeric",month:"2-digit",day:"2-digit",
+    hour:"2-digit",minute:"2-digit",hour12:false
+  }).formatToParts(date);
+  const o={};
+  parts.forEach(p=>{if(p.type!=="literal")o[p.type]=p.value});
+  return {
+    date:`${o.year}-${o.month}-${o.day}`,
+    minutes:(Number(o.hour)%24)*60+Number(o.minute)
+  };
+}
+function tripDayForSingaporeNow(){
+  const {date}=singaporeDateTimeParts();
+  if(TRIP_DATE_TO_DAY[date])return TRIP_DATE_TO_DAY[date];
+  if(date<"2026-09-19")return 1;
+  return 6;
+}
+function todayTripDay(){
+  const {date}=singaporeDateTimeParts();
+  return TRIP_DATE_TO_DAY[date]||null;
+}
+function parseScheduleClock(text){
+  const m=String(text||"").match(/(\d{1,2}):(\d{2})/);
+  if(!m)return null;
+  return Number(m[1])*60+Number(m[2]);
+}
+function parseScheduleEnd(text){
+  const ms=[...String(text||"").matchAll(/(\d{1,2}):(\d{2})/g)];
+  if(ms.length<2)return null;
+  return Number(ms[1][1])*60+Number(ms[1][2]);
+}
+function liveScheduleState(items,nowMin){
+  const timed=(items||[]).map((x,i)=>({
+    i,
+    start:parseScheduleClock(x.time),
+    end:parseScheduleEnd(x.time)
+  })).filter(x=>x.start!=null);
+  if(!timed.length)return {now:-1,next:-1};
+
+  for(let n=0;n<timed.length;n++){
+    const cur=timed[n];
+    const inferredEnd=cur.end ?? (timed[n+1]?.start ?? Math.min(cur.start+120,24*60));
+    if(nowMin>=cur.start && nowMin<inferredEnd){
+      return {now:cur.i,next:timed[n+1]?.i ?? -1};
+    }
+    if(nowMin<cur.start){
+      return {now:-1,next:cur.i};
+    }
+  }
+  return {now:-1,next:-1};
+}
+let didInitialTimeFocus=false;
+function focusCurrentScheduleOnce(){
+  if(didInitialTimeFocus)return;
+  const td=todayTripDay();
+  if(!td || day!==td)return;
+  const target=timeline.querySelector(".item.is-now")||timeline.querySelector(".item.is-next");
+  if(!target)return;
+  didInitialTimeFocus=true;
+  setTimeout(()=>{
+    const topH=(document.querySelector(".top")?.getBoundingClientRect().height||0)+10;
+    const y=target.getBoundingClientRect().top+window.scrollY-topH;
+    window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+  },220);
+}
+
+let day=tripDayForSingaporeNow(),day4Variant=localStorage.getItem("sg_trip_day4_variant_v20")||"A",day5Variant=localStorage.getItem("sg_trip_day5_variant_v20")||"A",sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const escapeHtml=s=>esc(s??'');
@@ -4009,7 +4141,8 @@ function render(){
  daysEl.innerHTML=DAY_NAV.map(x=>{
    const on=x.day===day && (x.day!==4 || x.variant===day4Variant) && (x.day!==5 || x.variant===day5Variant);
    const date=DAY_DATES[x.day]||"";
-   return `<button class="daybtn ${(x.day===4||x.day===5)?"daysplit ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
+   const isToday=todayTripDay()===x.day;
+   return `<button class="daybtn ${(x.day===4||x.day===5)?"daysplit ":""}${isToday?"today ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
  }).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div>
  <div class="heroday">${currentDayLabel()} · ${DAY_DATES[d.day]||""}</div>
@@ -4020,14 +4153,20 @@ function render(){
    <span class="hero-guide-arrow">⌄</span>
  </button>
  <div id="heroGuideBody" class="hero-guide-body" ${unifiedGuideOpen?"":"hidden"}></div>`;
+ const sgNow=singaporeDateTimeParts();
+ const td=todayTripDay();
+ const live=(td===d.day)?liveScheduleState(d.items,sgNow.minutes):{now:-1,next:-1};
  timeline.innerHTML=d.items.map((x,i)=>{
    const [ko,brief]=itemBrief(x);
    const sub=(ko||brief)?`<div class="itemsub">${ko?`<b>${esc(ko)}</b>`:""}${ko&&brief?" · ":""}${brief?esc(brief):""}</div>`:"";
    const booked=bookingConfirmedForItem(x)?`<span class="itembadge">예약완료</span>`:"";
    const ref=`<span class="itemref">${itemRef(d.day,i)}</span>`;
-   return `<article class="item" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${ref}${esc(x.title)}${booked}</div>${sub}</div><div class="arrow">›</div></article>`;
+   const nowClass=i===live.now?" is-now":i===live.next?" is-next":"";
+   const liveBadge=i===live.now?`<span class="liveScheduleBadge now">지금</span>`:i===live.next?`<span class="liveScheduleBadge next">다음</span>`:"";
+   return `<article class="item${nowClass}" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${ref}${esc(x.title)}${booked}${liveBadge}</div>${sub}</div><div class="arrow">›</div></article>`;
  }).join("");
  renderUnifiedGuide();
+ focusCurrentScheduleOnce();
  document.getElementById("heroGuideToggle")?.addEventListener("click",()=>toggleUnifiedGuide());
  renderDayMap();
 }
@@ -4119,7 +4258,7 @@ function closeDeep(){
 }
 
 
-// v20.24 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.25 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4643,7 +4782,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.24 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.25 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5271,7 +5410,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.24 · DAY swipe
+// v20.25 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
@@ -5600,6 +5739,11 @@ async function loadFx(){
 
 clocks();
 setInterval(clocks,60000);
+setInterval(()=>{
+  if(todayTripDay()===day && !document.body.classList.contains("open") && !document.body.classList.contains("pamtoolopen")){
+    render();
+  }
+},60000);
 loadCachedLiveInfo();
 document.getElementById("onlineUpdateBtn")?.addEventListener("click",updateOnlineInfo);
 render();
@@ -5617,4 +5761,4 @@ loadCachedRepresentativeImages().then(()=>{
 });
 </script>
 </body>
-</html>
+  </html>
