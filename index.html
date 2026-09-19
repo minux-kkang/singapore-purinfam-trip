@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.25</title>
+<title>Singapore Family Trip 2026 · v20.26</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.25 · magnetic pull-down tool drawer */
+/* v20.26 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.25 · offline-first controls */
+/* v20.26 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.25 · explicit online/offline mode */
+/* v20.26 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.25 · collapsed tool drawer click-through fix */
+/* v20.26 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.25 · DAY5B exact user-image gallery */
+/* v20.26 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.25 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.26 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -975,7 +975,7 @@ body.pamtoolopen .pamtoolpanel,
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
 
-/* v20.25 · DAY4 / DAY5 A·B paired split buttons */
+/* v20.26 · DAY4 / DAY5 A·B paired split buttons */
 .days .daybtn[data-day-key="4A"],
 .days .daybtn[data-day-key="5A"]{
   border-top-right-radius:0;
@@ -996,7 +996,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.25 · actual-date default + Singapore-time schedule focus */
+/* v20.26 · actual-date default + Singapore-time schedule focus */
 .daybtn.today:not(.on){
   box-shadow:inset 0 0 0 1.5px #0b7d73;
   color:#0b7d73;
@@ -1055,7 +1055,7 @@ body.pamtoolopen .pamtoolpanel,
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.25</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.26</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1110,7 +1110,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.25 · 실제 날짜 자동 DAY 진입 · 싱가포르 시간 기준 지금/다음 일정 강조</div>
+  <div class="footer">v20.26 · DAY2 Merlion Park 복원 · 도보/Grab 상황별 선택</div>
 </main>
 
 
@@ -1171,7 +1171,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.25 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.26 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1240,6 +1240,11 @@ const DAYS=[
 {time:"14:00~",title:"Marina Bay Sands",detail:"Gardens 관람 후 Marina Bay Sands로 이동해 실내에서 쉬고 쇼핑·구경.",optionalSpots:[
   {id:"apple-mbs",icon:"🍎",kicker:"잠깐 들러볼 곳",title:"Apple Marina Bay Sands",ko:"애플 마리나베이샌즈",expectedTime:"14:30~15:10 예상",duration:"약 30~40분",location:"2 Bayfront Avenue, Singapore",mapQuery:"Apple Marina Bay Sands, Singapore",description:"Gardens by the Bay 관람 후 MBS 쪽으로 이동하면서 원하는 가족만 잠시 들르는 선택 방문지입니다.",groupNote:"11명 전원이 함께 들어갈 필요 없음 · 관심 없는 가족은 MBS에서 쇼핑하거나 쉬었다가 재합류",timingNote:"Gardens를 약 13:30 전후 마치고 MBS로 이동하면 오후 자유시간에 자연스럽게 넣을 수 있습니다."}
 ],route:[["🌿","Gardens","관람 종료"],["🚶","MBS 방향","이동"],["🏨","Marina Bay Sands","휴식/구경"]],see:["MBS 로비·쇼핑몰","Apple Store 선택 방문"],family:["실내에서 충분히 쉬기","원하면 잠시 팀 분리 가능"]},
+{time:"15:20~16:00",title:"Merlion Park",transportOptions:[
+  ["🚶","도보","MBS에서 Marina Bay 산책로를 따라 이동","날씨·체력 괜찮을 때"],
+  ["🚕","Grab/택시","덥거나 비가 오거나 아이·부모님이 힘들면 바로 이동","상황에 따라"]
+],detail:"Marina Bay Sands에서 Merlion Park로 이동해 대표 포토포인트와 Marina Bay 풍경을 짧게 봅니다. 이동은 기본적으로 도보를 생각하되, 날씨·체력·아이 컨디션에 따라 Grab으로 바로 전환합니다.",route:[["🏨","Marina Bay Sands","출발"],["🚶/🚕","도보 또는 Grab","상황에 따라 선택"],["🦁","Merlion Park","사진·전망"]],see:["Merlion","Marina Bay 전경","가족 사진"],family:["11명 전원이 무리해서 걸을 필요 없음","더위·비·아이 컨디션 나쁘면 바로 Grab","30~40분 정도로 짧게 보고 이동"]},
+
 {time:"17:00~18:40",title:"이른 저녁식사 · 휴식",detail:"Supertree 야간 일정 전에 충분히 먹고 앉아서 쉬는 시간.",route:[["🍽","Marina Bay/MBS","저녁"],["😴","휴식","체력 회복"],["🌳","Supertree Grove","이동"]],see:["이른 저녁","화장실","아이 휴식"],family:["3세 아이 컨디션 우선","쇼 전 무리한 추가관광 없음"],food:["MBS / Marina Bay 주변","11명 좌석과 아이 메뉴 우선"]},
 {time:"19:15~",title:"Supertree Grove · Mid-Autumn",detail:"야간 분위기를 가볍게 즐기고 19:45 Garden Rhapsody를 목표로 이동.",route:[["🌳","Supertree Grove","야경"],["🏮","Mid-Autumn 분위기","가볍게 관람"],["🎶","Garden Rhapsody","19:45"]],see:["Supertree 야경","19:45 Garden Rhapsody"],family:["20:45 회차는 기본 일정에서 제외","자리 욕심보다 아이·부모님 체력 우선"]},
 {time:"20:00~",title:"호텔 복귀",detail:"Garden Rhapsody 종료 후 추가 관광 없이 바로 호텔로 복귀.",route:[["🌳","Supertree","쇼 종료"],["🚕","Grab/MRT","상황에 따라"],["🏨","호텔","휴식"]],see:["바로 복귀"],family:["DAY3 USS를 위해 체력 보존"]}
@@ -1296,7 +1301,7 @@ const DAY_DATES={1:"9/19",2:"9/20",3:"9/21",4:"9/22",5:"9/23",6:"9/24"};
 
 const DAY_GUIDES={
 1:{tagline:"도착하는 날 · 체크인과 휴식이 우선",intro:["오늘은 싱가포르에 도착하는 날입니다. 관광 일정을 넣기보다 11명이 안전하게 이동하고 호텔에 편하게 자리 잡는 것이 목표입니다.","창이공항 도착 후 입국심사와 수하물 수령을 마치고 가족이 다시 모인 뒤 호텔로 이동합니다. 아이들이 피곤할 수 있으므로 체크인 후에는 가벼운 정리만 하고 바로 쉽니다."],flow:["공항 이동 · 여행서류 확인","KE643 인천 → 싱가포르","19:15 Changi Airport 도착","공항 → Marriott 이동","Marriott 체크인 & 휴식"],principle:"첫날은 관광보다 이동 · 체크인 · 휴식이 우선",tools:[{id:"tickets",label:"✈️ 항공"},{id:"transport",label:"🚐 공항 이동"},{id:"hotel",label:"🏨 호텔",content:["Singapore Marriott Tang Plaza Hotel · 4객실 · 5박","객실을 가능한 가까이 배정 요청","Rollaway Bed 요청 등록 · 기타 요청은 availability 기준"]},{id:"map",label:"🗺️ 지도"},{id:"checkpoint",label:"📌 체크포인트",content:["여권 11명과 수하물 최종 확인","공항 도착 후 전원 재집결","아이들 잠자리부터 세팅","첫날 추가 관광 없음"]}]},
-2:{tagline:"Gardens by the Bay & Marina Bay",intro:["오늘은 싱가포르의 대표적인 정원인 Gardens by the Bay와 Marina Bay 일대를 둘러보는 날입니다.","오전에는 너무 서두르지 않고 호텔에서 조식을 먹고 출발합니다. Gardens by the Bay에서는 Flower Dome, Cloud Forest, Floral Fantasy 세 곳을 모두 둘러보되 주요 볼거리 위주로 약 3시간 정도 관람합니다.","Flower Dome에서는 다양한 꽃과 식물, Cloud Forest에서는 실내폭포와 Jurassic World 전시, Floral Fantasy에서는 Disney/Pixar Garden of Wonder 전시를 중심으로 봅니다.","오후에는 Marina Bay Sands와 주변을 구경하면서 Apple Marina Bay Sands에도 원하는 가족만 잠시 들릅니다. 관심 없는 가족은 MBS에서 쇼핑하거나 쉬었다가 다시 합류하면 됩니다.","이후 이른 저녁식사와 충분한 휴식을 갖고 Supertree Grove로 이동합니다. Mid-Autumn Festival 야간 분위기를 즐긴 뒤 19:45 Garden Rhapsody를 관람하고 쇼가 끝나면 추가 관광 없이 호텔로 바로 복귀합니다."],sections:[
+2:{tagline:"Gardens by the Bay & Marina Bay",intro:["오늘은 싱가포르의 대표적인 정원인 Gardens by the Bay와 Marina Bay 일대를 둘러보는 날입니다.","오전에는 너무 서두르지 않고 호텔에서 조식을 먹고 출발합니다. Gardens by the Bay에서는 Flower Dome, Cloud Forest, Floral Fantasy 세 곳을 모두 둘러보되 주요 볼거리 위주로 약 3시간 정도 관람합니다.","Flower Dome에서는 다양한 꽃과 식물, Cloud Forest에서는 실내폭포와 Jurassic World 전시, Floral Fantasy에서는 Disney/Pixar Garden of Wonder 전시를 중심으로 봅니다.","오후에는 Marina Bay Sands와 주변을 구경하면서 Apple Marina Bay Sands에도 원하는 가족만 잠시 들릅니다. 이후 Merlion Park로 이동해 대표 포토포인트를 보고, 이동은 날씨·체력에 따라 도보 또는 Grab으로 유연하게 선택합니다.","이후 이른 저녁식사와 충분한 휴식을 갖고 Supertree Grove로 이동합니다. Mid-Autumn Festival 야간 분위기를 즐긴 뒤 19:45 Garden Rhapsody를 관람하고 쇼가 끝나면 추가 관광 없이 호텔로 바로 복귀합니다."],sections:[
 {icon:"☀️",title:"아침 · 호텔 → Gardens by the Bay",text:"호텔에서 조식을 먹고 너무 서두르지 않게 출발합니다. DAY2는 오전부터 저녁까지 이어지는 날이므로 시작부터 무리하지 않는 것이 중요합니다."},
 {icon:"🌺",title:"오전 · Flower Dome",text:"다양한 꽃과 식물을 보는 대형 온실입니다. 모든 구역을 자세히 보기보다 주요 볼거리 중심으로 약 40~50분 정도 둘러봅니다."},
 {icon:"🌿",title:"오전 · Cloud Forest + Jurassic World",text:"실내폭포와 높은 실내 정원이 핵심입니다. Jurassic World 전시도 함께 보며 DAY2의 세 전시 중에서는 가장 여유 있게 약 60~75분 정도 봅니다."},
@@ -4258,7 +4263,7 @@ function closeDeep(){
 }
 
 
-// v20.25 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.26 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4782,7 +4787,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.25 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.26 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5410,7 +5415,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.25 · DAY swipe
+// v20.26 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
