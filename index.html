@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.30</title>
+<title>Singapore Family Trip 2026 · v20.31</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.30 · magnetic pull-down tool drawer */
+/* v20.31 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.30 · offline-first controls */
+/* v20.31 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.30 · explicit online/offline mode */
+/* v20.31 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.30 · collapsed tool drawer click-through fix */
+/* v20.31 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.30 · DAY5B exact user-image gallery */
+/* v20.31 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.30 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.31 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -975,7 +975,7 @@ body.pamtoolopen .pamtoolpanel,
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
 
-/* v20.30 · DAY4 / DAY5 A·B paired split buttons */
+/* v20.31 · DAY4 / DAY5 A·B paired split buttons */
 .days .daybtn[data-day-key="4A"],
 .days .daybtn[data-day-key="5A"]{
   border-top-right-radius:0;
@@ -996,7 +996,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.30 · actual-date default + Singapore-time schedule focus */
+/* v20.31 · actual-date default + Singapore-time schedule focus */
 .daybtn.today:not(.on){
   box-shadow:inset 0 0 0 1.5px #0b7d73;
   color:#0b7d73;
@@ -1051,7 +1051,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.30 · DAY2 route progress */
+/* v20.31 · DAY2 route progress */
 .routeProgress{margin-top:10px;padding:10px;border:1px solid #dfe7eb;border-radius:14px;background:#fbfdfe}
 .routeProgressTitle{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px;font-size:11px}
 .routeProgressTitle b{font-size:12px}
@@ -1069,7 +1069,7 @@ body.pamtoolopen .pamtoolpanel,
 .routeDistanceLabel{background:#fff;border:1px solid #d7e1e5;border-radius:999px;padding:2px 6px;box-shadow:0 1px 5px #0002;font-size:9px;font-weight:900;color:#17364f;white-space:nowrap}
 
 
-/* v20.30 · Singapore 3-hour forecast strip */
+/* v20.31 · Singapore 3-hour forecast strip */
 .sgforecast{
   grid-column:1/-1;
   display:flex;
@@ -1110,12 +1110,59 @@ body.pamtoolopen .pamtoolpanel,
 .sgfc b{font-size:9.5px;color:#17364f}
 .sgfc .rain{color:#315b8a;font-weight:900}
 
+
+/* v20.31 · detailed MRT guide in transport card */
+.mrtGuide{
+  margin-top:10px;
+  padding:11px;
+  border:1px solid #dbe4e8;
+  border-radius:14px;
+  background:#fbfdfe;
+}
+.mrtGuide h3{
+  margin:0 0 8px;
+  font-size:12px;
+}
+.mrtGuideLine{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr);
+  gap:8px;
+  align-items:start;
+  padding:7px 0;
+  border-top:1px dashed #e2e8eb;
+}
+.mrtGuideLine:first-of-type{border-top:0}
+.mrtGuideIcon{
+  width:28px;height:28px;
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:#eef3f5;
+  font-size:14px;
+}
+.mrtGuideLine b{font-size:11px}
+.mrtGuideLine small{
+  display:block;
+  margin-top:2px;
+  color:#71818c;
+  font-size:10px;
+  line-height:1.35;
+}
+.mrtGuideSummary{
+  margin-top:8px;
+  padding:7px 9px;
+  border-radius:10px;
+  background:#eef7f5;
+  color:#315b55;
+  font-size:10px;
+  font-weight:800;
+}
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.30</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.31</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1174,7 +1221,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.30 · 싱가포르 3시간 예보 시간대 선택 오류 수정</div>
+  <div class="footer">v20.31 · DAY2 MRT 상세 안내 보강 · 역/노선/방향/정거장/하차 후 도보 표시</div>
 </main>
 
 
@@ -1235,7 +1282,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.30 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.31 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1301,7 +1348,16 @@ const DAYS=[
 {day:2,icon:"🌆",title:"Merlion → MBS → Gardens",sub:"Merlion Park · Marina Bay Sands · Gardens by the Bay · Supertree 야경",items:[
 {time:"07:00~08:00",title:"호텔 조식 · 오늘 일정 브리핑",detail:"다 같이 조식하면서 오늘 동선과 컨디션을 확인합니다. Merlion까지 첫 이동은 MRT/Grab 중 현장에서 결정하고, 필요한 티켓·물·우산·아이 준비물을 확인합니다.",route:[["🍳","호텔 조식","전원 모임"],["🗣️","오늘 일정","Merlion → MBS → Gardens"],["🚇/🚕","첫 이동","MRT 또는 Grab 결정"]],see:["전원 컨디션","티켓·바우처","날씨·우산"],family:["아이/부모님 상태 보고 이동수단 결정","조식 후 각 객실로 돌아가 준비"]},
 {time:"08:00~09:00",title:"객실 복귀 · 출발 준비",detail:"각 가족이 객실로 돌아가 씻기·화장실·가방·유모차를 정리한 뒤 09:00 로비에 다시 모입니다.",route:[["🛏️","객실","각자 준비"],["🧳","가방/유모차","최종 확인"],["🏨","호텔 로비","09:00 재집결"]],see:["물·간식","보조배터리","유모차"],family:["정해진 시간에 로비 재집결","늦는 팀이 있으면 먼저 연락"]},
-{time:"09:00~09:40",title:"호텔 → Merlion Park · MRT",transportOptions:[["🚇","MRT","Orchard 출발 → 시내권 이동 후 Merlion Park 방향 도보","오늘 확정"],["🚕","Grab/택시","비가 강하거나 아이 컨디션이 급격히 떨어질 때만 대안","비상 대안"]],detail:"09:00 호텔 로비에 모여 MRT로 Merlion Park 방향으로 이동합니다. 오늘 첫 이동은 MRT 기준으로 운영하고, 비가 강해지거나 아이·부모님 컨디션이 좋지 않을 때만 Grab으로 전환합니다.",route:[["🏨","Marriott Tang Plaza","09:00 집합"],["🚇","MRT","오늘 기본 이동"],["🦁","Merlion Park","도착"]],see:["09:00 전원 로비 집합","MRT 탑승 전 우산·교통카드 확인"],family:["11명 함께 이동하므로 승하차 때 인원 확인","유모차는 엘리베이터 우선","비가 강하면 Grab 전환"]},
+{time:"09:00~09:40",title:"호텔 → Merlion Park · MRT",transportOptions:[["🚇","MRT","Orchard NS22 → Raffles Place NS26/EW14 · 환승 없음","오늘 확정"],["🚕","Grab/택시","비가 강하거나 아이 컨디션이 급격히 떨어질 때만 대안","비상 대안"]],mrtGuide:{
+start:"Orchard MRT · NS22",
+line:"North-South Line · 빨간색",
+direction:"Marina South Pier 방면",
+stops:["NS23 Somerset","NS24 Dhoby Ghaut","NS25 City Hall","NS26/EW14 Raffles Place"],
+transfer:"환승 없음 · 4정거장",
+exit:"Raffles Place 하차 후 One Fullerton / Merlion Park 방향으로 도보",
+walk:"역에서 Merlion Park까지 약 10분 내외",
+tips:["호텔에서 Orchard MRT까지는 도보 이동","유모차는 엘리베이터 우선","11명 모두 승차·하차했는지 마지막에 인원 확인","비가 강하면 Raffles Place 하차 후 실외 도보를 줄이기 위해 Grab 전환 가능"]
+},detail:"09:00 호텔 로비에 모여 Orchard MRT(NS22)로 이동합니다. North-South Line 빨간색의 Marina South Pier 방면 열차를 타고 Raffles Place(NS26/EW14)까지 환승 없이 4정거장 이동한 뒤 Merlion Park까지 걸어갑니다.",route:[["🏨","Marriott Tang Plaza","09:00 집합"],["🚶","Orchard MRT NS22","도보 이동"],["🔴","North-South Line","Marina South Pier 방면"],["🚇","Raffles Place NS26/EW14","4정거장 · 환승 없음"],["🚶","One Fullerton / Merlion 방향","약 10분"],["🦁","Merlion Park","도착"]],see:["09:00 전원 로비 집합","NS22 Orchard 승차","NS26 Raffles Place 하차","우산·교통카드 확인"],family:["11명 함께 이동하므로 승하차 때 인원 확인","유모차는 엘리베이터 우선","비가 강하면 하차 후 Grab 전환 가능"]},
 {time:"09:40~10:05",title:"Merlion Park",detail:"Merlion과 Marina Bay 전경을 보고 가족 사진을 찍습니다. 오래 머무르기보다 30분 안팎으로 보고 MBS 방향으로 이동합니다.",route:[["🦁","Merlion","대표 사진"],["📷","Marina Bay","가족 사진"],["➡️","MBS 방향","다음 이동"]],see:["Merlion","MBS 스카이라인","Marina Bay 전경"],family:["그늘이 적으면 사진 위주로 짧게","화장실 필요 시 다음 MBS에서 해결"]},
 {time:"10:05~10:30",title:"Merlion → Marina Bay Sands",transportOptions:[["🚶","도보","Jubilee/Esplanade 수변 → Helix Bridge 방향 · 약 1.5~1.7km","날씨 좋을 때"],["🚕","Grab/택시","덥거나 비가 오거나 아이·부모님이 힘들면 바로 MBS 이동","상황 전환"]],detail:"Marina Bay 수변을 따라 MBS 쪽으로 건너갑니다. 걷는 구간 자체가 관광이지만, 더위·비·아이 컨디션이 나쁘면 고민 없이 Grab으로 전환합니다.",route:[["🦁","Merlion Park","출발"],["🌉","수변 산책로","Esplanade/Helix 방향"],["🏨","Marina Bay Sands","도착"]],see:["Marina Bay 수변","Helix Bridge","MBS 외관"],family:["걷기 시작 후 힘들면 중간에서 차량 전환 가능","11명이 속도를 맞추기보다 재집결 지점을 MBS로 잡기"]},
 {time:"10:30~11:15",title:"Marina Bay Sands",detail:"MBS 실내에서 잠시 쉬고 구경합니다. Apple Marina Bay Sands는 원하는 가족만 짧게 들르고, 나머지는 실내에서 쉬거나 쇼핑 후 재합류합니다.",optionalSpots:[
@@ -4377,7 +4433,7 @@ function closeDeep(){
 }
 
 
-// v20.30 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.31 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -4757,6 +4813,26 @@ function bindTransportGuideButtons(root=document){
  });
 }
 
+
+function mrtGuideHtml(sel){
+  const g=sel?.mrtGuide;
+  if(!g)return "";
+  const steps=[
+    ["🚉","출발역",g.start],
+    ["🔴","노선",g.line],
+    ["➡️","방향",g.direction],
+    ["🚇","정거장",Array.isArray(g.stops)?g.stops.join(" → "):g.stops],
+    ["🔁","환승",g.transfer],
+    ["🚶","하차 후",g.exit],
+    ["📍","도보",g.walk]
+  ].filter(x=>x[2]);
+  return `<section class="mrtGuide">
+    <h3>🚇 MRT 상세 안내</h3>
+    ${steps.map(x=>`<div class="mrtGuideLine"><div class="mrtGuideIcon">${x[0]}</div><div><b>${esc(x[1])}</b><small>${esc(x[2])}</small></div></div>`).join("")}
+    ${g.tips?.length?`<div class="mrtGuideSummary">${g.tips.map(x=>`• ${esc(x)}`).join("<br>")}</div>`:""}
+  </section>`;
+}
+
 function openItem(i){
  sel=current().items[+i];
  document.getElementById("stime").textContent=sel.time;
@@ -4784,6 +4860,8 @@ function openItem(i){
   ${g?.facts?.length?`<section class="itemdetail-section"><h3>한눈에 보기</h3>${detailFactsHtml(g)}</section>`:""}
 
   ${transportDecisionHtml(sel)}
+
+  ${mrtGuideHtml(sel)}
 
   ${sel.bookingIds?.length?`<details class="detailbooking"><summary>🎫 예약/티켓 정보 보기</summary>${reservationInfoHtml(sel)}</details>`:""}
 
@@ -4901,7 +4979,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.30 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.31 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5529,7 +5607,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.30 · DAY swipe
+// v20.31 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
