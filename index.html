@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.34</title>
+<title>Singapore Family Trip 2026 · v20.36</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.34 · magnetic pull-down tool drawer */
+/* v20.36 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.34 · offline-first controls */
+/* v20.36 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.34 · explicit online/offline mode */
+/* v20.36 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.34 · collapsed tool drawer click-through fix */
+/* v20.36 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.34 · DAY5B exact user-image gallery */
+/* v20.36 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.34 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.36 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -975,7 +975,7 @@ body.pamtoolopen .pamtoolpanel,
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
 
-/* v20.34 · DAY4 / DAY5 A·B paired split buttons */
+/* v20.36 · DAY4 / DAY5 A·B paired split buttons */
 .days .daybtn[data-day-key="4A"],
 .days .daybtn[data-day-key="5A"]{
   border-top-right-radius:0;
@@ -996,7 +996,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.34 · actual-date default + Singapore-time schedule focus */
+/* v20.36 · actual-date default + Singapore-time schedule focus */
 .daybtn.today:not(.on){
   box-shadow:inset 0 0 0 1.5px #0b7d73;
   color:#0b7d73;
@@ -1051,7 +1051,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.34 · DAY2 route progress */
+/* v20.36 · DAY2 route progress */
 .routeProgress{margin-top:10px;padding:10px;border:1px solid #dfe7eb;border-radius:14px;background:#fbfdfe}
 .routeProgressTitle{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px;font-size:11px}
 .routeProgressTitle b{font-size:12px}
@@ -1069,7 +1069,7 @@ body.pamtoolopen .pamtoolpanel,
 .routeDistanceLabel{background:#fff;border:1px solid #d7e1e5;border-radius:999px;padding:2px 6px;box-shadow:0 1px 5px #0002;font-size:9px;font-weight:900;color:#17364f;white-space:nowrap}
 
 
-/* v20.34 · Singapore 3-hour forecast strip */
+/* v20.36 · Singapore 3-hour forecast strip */
 .sgforecast{
   grid-column:1/-1;
   display:flex;
@@ -1111,7 +1111,7 @@ body.pamtoolopen .pamtoolpanel,
 .sgfc .rain{color:#315b8a;font-weight:900}
 
 
-/* v20.34 · detailed MRT guide in transport card */
+/* v20.36 · detailed MRT guide in transport card */
 .mrtGuide{
   margin-top:10px;
   padding:11px;
@@ -1157,12 +1157,16 @@ body.pamtoolopen .pamtoolpanel,
   font-weight:800;
 }
 
+
+/* v20.36 · DAY2 actual travel record */
+.item.recorded{border-left:4px solid #607d8b}
+.recordBadge{display:inline-flex;align-items:center;margin-left:7px;padding:3px 7px;border-radius:999px;background:#eef2f4;color:#526773;font-size:9px;font-weight:950;vertical-align:2px}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.34</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.36</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1221,7 +1225,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.34 · DAY2 저녁 실시간 반영 · 18:00 Floral Fantasy → 19:00 Supertree → Grab 복귀</div>
+  <div class="footer">v20.36 · DAY2 실제 기록 · 19:10 Gardens 순환 셔틀로 Flower Dome 쪽 재이동 반영</div>
 </main>
 
 
@@ -1282,7 +1286,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.34 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.36 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1345,61 +1349,20 @@ const DAYS=[
 {time:"19:15",title:"Changi Airport 도착",bookingIds:["transfer-arrival"],detail:"입국심사·수하물·화장실 정비 후 가족 재집결.",route:[["🛬","Changi Airport","도착"],["🛂","입국심사","수하물 수령"],["🚕","픽업","11명+짐"],["🏨","Marriott Tang Plaza","체크인"]],see:["수하물","유모차","가족 재집결"],family:["아이 우선 화장실·간식","대표자 1명은 차량 연락"]},
 {time:"20:30 전후",title:"Changi Airport → Marriott",bookingIds:["transfer-arrival"],transportOptions:[["🚐","사전예약 대형차","11명+캐리어+유모차를 한 번에 처리하기 가장 편한 후보","우선 검토"],["🚕","택시/Grab 분산","차량 2~3대로 나눠 이동. 호출과 짐 분산이 필요","대안"]],detail:"입국·수하물 수령 후 Singapore Marriott Tang Plaza Hotel로 이동.",route:[["🛬","Changi Airport","입국·수하물"],["🚐","공항 픽업","차량 탑승"],["🏨","Marriott Tang Plaza","호텔 도착"]],see:["입국 후 가족 11명 재집결","차량 탑승 위치 확인","호텔까지 바로 이동"],family:["3세 아이 2명 피로 고려","짐·유모차 수량 확인"]},
 {time:"21:30~",title:"Marriott Tang Plaza 체크인",bookingIds:["hotel-marriott"],detail:"4개 객실 체크인. 가능한 가까운 객실 배정 요청사항 확인.",route:[["🏨","호텔 로비","체크인"],["🛏","4개 객실","가까운 객실 요청"],["😴","휴식","첫날 체력 보존"]],see:["객실번호 공유","Rollaway 요청 확인","Twin 요청 확인"],family:["아이 잠자리 먼저 세팅"]}]},
-{day:2,icon:"🌆",title:"Merlion → MBS → Gardens",sub:"Merlion Park · Marina Bay Sands · Gardens by the Bay · Supertree 야경",items:[
-{time:"07:00~08:00",title:"호텔 조식 · 오늘 일정 브리핑",detail:"다 같이 조식하면서 오늘 동선과 컨디션을 확인합니다. Merlion까지 첫 이동은 MRT/Grab 중 현장에서 결정하고, 필요한 티켓·물·우산·아이 준비물을 확인합니다.",route:[["🍳","호텔 조식","전원 모임"],["🗣️","오늘 일정","Merlion → MBS → Gardens"],["🚇/🚕","첫 이동","MRT 또는 Grab 결정"]],see:["전원 컨디션","티켓·바우처","날씨·우산"],family:["아이/부모님 상태 보고 이동수단 결정","조식 후 각 객실로 돌아가 준비"]},
-{time:"08:00~09:00",title:"객실 복귀 · 출발 준비",detail:"각 가족이 객실로 돌아가 씻기·화장실·가방·유모차를 정리한 뒤 09:00 로비에 다시 모입니다.",route:[["🛏️","객실","각자 준비"],["🧳","가방/유모차","최종 확인"],["🏨","호텔 로비","09:00 재집결"]],see:["물·간식","보조배터리","유모차"],family:["정해진 시간에 로비 재집결","늦는 팀이 있으면 먼저 연락"]},
-{time:"09:00~09:40",title:"호텔 → Merlion Park · MRT",transportOptions:[["🚇","MRT","Orchard NS22 → Raffles Place NS26/EW14 · 환승 없음","오늘 확정"],["🚕","Grab/택시","비가 강하거나 아이 컨디션이 급격히 떨어질 때만 대안","비상 대안"]],mrtGuide:{
-start:"Orchard MRT · NS22",
-line:"North-South Line · 빨간색",
-direction:"Marina South Pier 방면",
-stops:["NS23 Somerset","NS24 Dhoby Ghaut","NS25 City Hall","NS26/EW14 Raffles Place"],
-transfer:"환승 없음 · 4정거장",
-exit:"Raffles Place 하차 후 One Fullerton / Merlion Park 방향으로 도보",
-walk:"역에서 Merlion Park까지 약 10분 내외",
-tips:["호텔에서 Orchard MRT까지는 도보 이동","유모차는 엘리베이터 우선","11명 모두 승차·하차했는지 마지막에 인원 확인","비가 강하면 Raffles Place 하차 후 실외 도보를 줄이기 위해 Grab 전환 가능"]
-},detail:"09:00 호텔 로비에 모여 Orchard MRT(NS22)로 이동합니다. North-South Line 빨간색의 Marina South Pier 방면 열차를 타고 Raffles Place(NS26/EW14)까지 환승 없이 4정거장 이동한 뒤 Merlion Park까지 걸어갑니다.",route:[["🏨","Marriott Tang Plaza","09:00 집합"],["🚶","Orchard MRT NS22","도보 이동"],["🔴","North-South Line","Marina South Pier 방면"],["🚇","Raffles Place NS26/EW14","4정거장 · 환승 없음"],["🚶","One Fullerton / Merlion 방향","약 10분"],["🦁","Merlion Park","도착"]],see:["09:00 전원 로비 집합","NS22 Orchard 승차","NS26 Raffles Place 하차","우산·교통카드 확인"],family:["11명 함께 이동하므로 승하차 때 인원 확인","유모차는 엘리베이터 우선","비가 강하면 하차 후 Grab 전환 가능"]},
-{time:"09:40~10:05",title:"Merlion Park",detail:"Merlion과 Marina Bay 전경을 보고 가족 사진을 찍습니다. 오래 머무르기보다 30분 안팎으로 보고 MBS 방향으로 이동합니다.",route:[["🦁","Merlion","대표 사진"],["📷","Marina Bay","가족 사진"],["➡️","MBS 방향","다음 이동"]],see:["Merlion","MBS 스카이라인","Marina Bay 전경"],family:["그늘이 적으면 사진 위주로 짧게","화장실 필요 시 다음 MBS에서 해결"]},
-{time:"10:05~10:30",title:"Merlion → Marina Bay Sands",transportOptions:[["🚶","도보","Jubilee/Esplanade 수변 → Helix Bridge 방향 · 약 1.5~1.7km","날씨 좋을 때"],["🚕","Grab/택시","덥거나 비가 오거나 아이·부모님이 힘들면 바로 MBS 이동","상황 전환"]],detail:"Marina Bay 수변을 따라 MBS 쪽으로 건너갑니다. 걷는 구간 자체가 관광이지만, 더위·비·아이 컨디션이 나쁘면 고민 없이 Grab으로 전환합니다.",route:[["🦁","Merlion Park","출발"],["🌉","수변 산책로","Esplanade/Helix 방향"],["🏨","Marina Bay Sands","도착"]],see:["Marina Bay 수변","Helix Bridge","MBS 외관"],family:["걷기 시작 후 힘들면 중간에서 차량 전환 가능","11명이 속도를 맞추기보다 재집결 지점을 MBS로 잡기"]},
-{time:"10:30~12:25",title:"Marina Bay Sands · Shoppes · 점심",detail:"Merlion 이후 Marina Bay Sands로 이동해 Shoppes 지하 쇼핑몰까지 들어왔고, 푸드코트에서 점심식사를 마쳤습니다. 이제 식사 후 정비를 마치고 Gardens by the Bay로 이동합니다.",optionalSpots:[
-  {id:"apple-mbs",icon:"🍎",kicker:"선택 방문",title:"Apple Marina Bay Sands",ko:"애플 마리나베이샌즈",expectedTime:"오전 방문 · 필요 시 짧게",duration:"약 20~30분",location:"2 Bayfront Avenue, Singapore",mapQuery:"Apple Marina Bay Sands, Singapore",description:"Merlion에서 MBS로 넘어온 뒤 원하는 가족만 짧게 들르는 선택 방문지입니다.",groupNote:"11명 전원이 함께 들어갈 필요 없음 · 관심 없는 가족은 MBS 실내에서 휴식/쇼핑",timingNote:"점심 후 Gardens 방향으로 이동하는 것을 기준으로 합니다."}
-],route:[["🏨","MBS / Shoppes","실내 이동"],["🍽️","지하 푸드코트","점심 완료"],["🚻","식사 후 정비","화장실·유모차"],["👨‍👩‍👧‍👦","재집합","Gardens 이동"]],see:["Shoppes 지하 푸드코트 점심 완료","Gardens 이동 준비"],family:["식사 후 바로 무리하지 말고 화장실·유모차 정비","3세 아이 티켓 수령 준비"]},
-{time:"12:25~12:40",title:"MBS → Gardens by the Bay",transportOptions:[["🚶","도보","Bayfront 연결통로/브리지 방향으로 Gardens 진입 · 약 0.7~0.9km","기본"]],detail:"MBS에서 Gardens 방향으로 그대로 넘어갑니다. 이제부터는 Gardens 안에서 움직이므로 Merlion 쪽으로 되돌아갈 필요가 없습니다.",route:[["🏨","MBS","출발"],["🌉","Bayfront 연결","Gardens 방향"],["🌿","Gardens by the Bay","입장"]],see:["MBS에서 Gardens로 이어지는 연결 동선"],family:["이 구간부터는 유모차 이동 기준으로 엘리베이터/완만한 길 우선"]},
-{time:"12:40~17:50",title:"Gardens by the Bay · 관람 & 휴식",bookingIds:["ticket-gbtb"],detail:"오후 Gardens 관람 후 현재 Shake Shack에서 충분히 쉬는 중입니다. 돌아다니는 시간을 더 늘리지 않고 17:50 전후 Floral Fantasy로 이동합니다.",route:[["🌺","오후 관람","진행"],["🍔","Shake Shack","휴식"],["🌸","Floral Fantasy","17:50 전후 이동"]],see:["Shake Shack 휴식","Floral Fantasy 준비"],family:["지금은 체력 회복 우선","불필요한 이동 최소화"]},
-{time:"17:50~18:00",title:"Shake Shack → Floral Fantasy",detail:"Shake Shack에서 일어나 천천히 Floral Fantasy로 이동합니다. 18:00 입장을 목표로 하되 서두르지 않습니다.",route:[["🍔","Shake Shack","출발"],["🚶","Gardens 내부","천천히 이동"],["🌸","Floral Fantasy","18:00 전후 입장"]],see:["출발 전 화장실 확인"],family:["아이·부모님 보행속도에 맞추기"]},
-{time:"18:00~19:00",title:"Floral Fantasy",bookingIds:["ticket-gbtb"],detail:"약 1시간 정도 Floral Fantasy를 관람합니다. 오늘 마지막 실내 전시로 생각하고 19:00 전후 나오면 바로 Supertree 야경 쪽으로 이동합니다.",route:[["🌸","Floral Fantasy","약 1시간"],["📷","핵심 포인트","여유 있게"],["➡️","Supertree 방향","19:00 전후 출발"]],see:["Disney/Pixar Garden of Wonder","대표 포토포인트"],family:["전부 다 보려 하기보다 핵심 위주"]},
-{time:"19:00~20:00",title:"Supertree Grove · 야경 · Garden Rhapsody",detail:"Floral Fantasy에서 나온 뒤 바로 Supertree Grove로 이동해 야경을 보고 19:45 Garden Rhapsody를 봅니다.",route:[["🌸","Floral Fantasy","19:00 전후 종료"],["🚶","Supertree Grove","바로 이동"],["🌳","야경","자리 잡기"],["🎶","Garden Rhapsody","19:45"]],see:["Supertree 야경","19:45 Garden Rhapsody"],family:["오늘 체력 소모가 커서 추가 관광 없음","쇼 보고 바로 호텔 복귀"]},
-{time:"20:00~",title:"Supertree → 호텔 복귀 · Grab 우선",transportOptions:[
-["🚕","Grab/택시","Supertree/Gardens 인근 픽업포인트에서 Singapore Marriott Tang Plaza까지 바로 이동","오늘 우선"],
-["🚇","MRT","Bayfront DT16 → Newton 환승 → Orchard NS22 → Exit 1 → Marriott","백업"]
-],mrtGuide:{
-start:"Supertree Grove → Bayfront MRT · DT16/CE1",
-line:"Downtown Line · 파란색 → Newton에서 North-South Line · 빨간색",
-direction:"Bayfront에서는 Bukit Panjang 방면 → Newton 환승 후 Marina South Pier 방면",
-stops:["DT15 Promenade","DT14 Bugis","DT13 Rochor","DT12 Little India","DT11 Newton","환승 → NS21 Newton","NS22 Orchard"],
-transfer:"Newton에서 1회 환승 · Downtown Line DT11 → North-South Line NS21",
-exit:"Orchard NS22 하차 후 Exit 1 · Tang Plaza / Singapore Marriott Tang Plaza Hotel 방향",
-walk:"Supertree Grove에서 Bayfront MRT까지 약 5~10분 · Orchard Exit 1에서 호텔은 약 1분",
-tips:[
-"쇼가 끝나면 Supertree Grove에서 The Meadow / Bayfront Plaza 방향으로 이동",
-"Bayfront MRT는 Exit B 연결통로 쪽으로 들어가면 됨",
-"Bayfront DT16에서 Downtown Line 파란색 · Bukit Panjang 방면 탑승",
-"Newton DT11에서 내려 North-South Line NS21 빨간색으로 환승",
-"Newton NS21에서 Marina South Pier 방면 1정거장 → Orchard NS22",
-"Orchard에서는 Exit 1 · Tang Plaza / Marriott 방향",
-"11명이라 환승 때 앞팀/뒷팀 갈라지지 않게 Newton에서 한 번 재집결",
-"아이들이 많이 피곤하면 쇼 종료 직후 Grab으로 바로 전환"
-]
-},detail:"오늘은 걷는 양이 많아 Garden Rhapsody 종료 후 Grab으로 바로 호텔 복귀하는 것을 우선합니다. MRT 경로는 Grab 호출이 어렵거나 대기가 길 때 사용할 백업으로 남겨둡니다.",route:[
-["🌳","Supertree Grove","쇼 종료"],
-["🚶","Bayfront MRT","The Meadow / Bayfront Plaza 방향 · 약 5~10분"],
-["🔵","DT16 Bayfront","Downtown Line · Bukit Panjang 방면"],
-["🚇","DT11 Newton","5정거장"],
-["🔁","Newton 환승","DT11 → NS21"],
-["🔴","NS21 Newton","Marina South Pier 방면"],
-["🚇","NS22 Orchard","1정거장"],
-["🚪","Exit 1","Tang Plaza / Marriott 방향"],
-["🏨","Singapore Marriott Tang Plaza","도착"]
-],see:["Bayfront MRT Exit B 연결통로","Newton 1회 환승","Orchard Exit 1"],family:["11명은 Newton 환승 시 한 번 재집결","유모차는 엘리베이터 우선","DAY3 USS를 위해 너무 피곤하면 Grab 전환"]}
+{day:2,icon:"📍",title:"DAY 2 · 실제 여행 기록",sub:"실제 이동 그대로 기록 · Merlion → MBS → Gardens → 셔틀 → Supertree",items:[
+{time:"07:00~",title:"호텔 조식 · 가족 브리핑",record:true,detail:"아침 7시에 함께 조식하면서 오늘 일정과 이동방법을 이야기한 뒤 각 객실로 돌아가 준비했습니다.",route:[["🍳","호텔 조식","가족 전체"],["🗣️","오늘 일정","간단히 공유"],["🛏️","객실","각자 출발 준비"]],see:["아침 일정 공유"],family:["조식 후 각 가족별로 준비"]},
+{time:"09:00",title:"호텔 로비 집합 · MRT 출발",record:true,transportOptions:[["🚇","MRT","Orchard NS22 → Raffles Place NS26/EW14 · 환승 없음","실제 이용"],["🚕","Grab/택시","비상 대안","미사용"]],mrtGuide:{start:"Orchard MRT · NS22",line:"North-South Line · 빨간색",direction:"Marina South Pier 방면",stops:["NS23 Somerset","NS24 Dhoby Ghaut","NS25 City Hall","NS26/EW14 Raffles Place"],transfer:"환승 없음 · 4정거장",exit:"Raffles Place 하차 후 Fullerton / One Fullerton / Merlion Park 방향",walk:"역에서 Merlion Park까지 도보 이동",tips:["11명 함께 이동","유모차는 엘리베이터 우선","Raffles Place에서 Merlion 방향으로 이동"]},detail:"09:00 호텔 로비에 집합해 Orchard MRT에서 출발했습니다. North-South Line으로 Raffles Place까지 환승 없이 이동했습니다.",route:[["🏨","Marriott","09:00 집합"],["🚶","Orchard MRT NS22","도보"],["🔴","North-South Line","Marina South Pier 방면"],["🚇","Raffles Place NS26","하차"],["🚶","Merlion Park","도보"]],see:["Orchard NS22","Raffles Place NS26"],family:["승하차 시 11명 인원 확인"]},
+{time:"오전",title:"Merlion Park",record:true,detail:"Raffles Place에서 걸어 Merlion Park로 이동해 Merlion과 Marina Bay 전경을 봤습니다.",route:[["🚶","Raffles Place","출발"],["🏨","Fullerton 방향","이동 기준점"],["🦁","Merlion Park","관람"]],see:["Merlion","Marina Bay 전경","MBS 스카이라인"],family:["짧게 보고 다음 동선으로 이동"]},
+{time:"오전~점심",title:"Merlion → Marina Bay Sands",record:true,detail:"Merlion Park에서 Marina Bay Sands 방향으로 이동했고, 이후 The Shoppes at Marina Bay Sands 지하 쇼핑몰로 들어갔습니다.",route:[["🦁","Merlion Park","출발"],["🌉","Marina Bay 수변","MBS 방향"],["🏨","Marina Bay Sands","도착"],["🛍️","The Shoppes","지하 이동"]],see:["Marina Bay 수변","MBS"],family:["중간중간 쉬면서 이동"]},
+{time:"~12:25",title:"MBS Shoppes 푸드코트 · 점심",record:true,detail:"The Shoppes at Marina Bay Sands 지하 푸드코트에서 점심식사를 했고 12시 20분대까지 머문 뒤 Gardens by the Bay로 넘어갈 준비를 했습니다.",route:[["🛍️","The Shoppes","지하 쇼핑몰"],["🍽️","푸드코트","점심"],["🚻","정비","식사 후 이동 준비"]],see:["점심 완료"],family:["식사 후 Gardens 이동"]},
+{time:"12:30 이후",title:"MBS → Gardens by the Bay",record:true,detail:"점심을 마친 뒤 MBS에서 Gardens by the Bay 방향으로 이동했습니다. 3세 아이 2명은 Ticket Office에서 필요한 티켓을 받는 일정으로 진행했습니다.",route:[["🏨","MBS","출발"],["🚶","Gardens 연결동선","도보"],["🎫","Ticket Office","3세 아이 2명 티켓"],["🌿","Gardens by the Bay","관람 시작"]],see:["3세 아이 2명 Ticket Office","Gardens 입장"],family:["유모차 이동 기준으로 동선 선택"]},
+{time:"오후",title:"Gardens by the Bay 관람",record:true,bookingIds:["ticket-gbtb"],detail:"Gardens by the Bay에서 오후 관람을 진행했습니다. Flower Dome과 Cloud Forest 등 실내 전시를 보고 중간중간 충분히 쉬었습니다.",route:[["🌺","Flower Dome","관람"],["🌿","Cloud Forest","관람"],["😴","휴식","체력 조절"]],see:["Flower Dome","Cloud Forest","Jurassic World 전시"],family:["많이 걸어 체력 소모가 컸음","휴식 우선"]},
+{time:"~17:50",title:"Shake Shack · 긴 휴식",record:true,detail:"오후 관람 후 Shake Shack에 앉아 오래 쉬었습니다. 17시 30분이 넘은 시점에도 휴식 중이었고 18시 직전 Floral Fantasy로 이동하기로 했습니다.",route:[["🍔","Shake Shack","휴식"],["😴","체력 회복","충분히"],["🌸","Floral Fantasy","다음 일정"]],see:["장시간 휴식"],family:["돌아다니는 시간을 줄이고 체력 회복"]},
+{time:"18:00~19:00",title:"Floral Fantasy",record:true,bookingIds:["ticket-gbtb"],detail:"18시 전후 Floral Fantasy로 이동해 약 1시간 관람했습니다.",route:[["🍔","Shake Shack","출발"],["🌸","Floral Fantasy","약 1시간"]],see:["Disney/Pixar Garden of Wonder","대표 포토포인트"],family:["핵심 위주로 관람"]},
+{time:"19:10",title:"Gardens 순환 셔틀 → Flower Dome 쪽으로 이동",record:true,detail:"Floral Fantasy 관람 후 19:10경 Gardens 내부 순환 셔틀버스를 타고 Flower Dome 쪽으로 다시 이동했습니다. 동선상으로는 한 번 되돌아간 셈이지만, 실제로 이동한 기록이므로 그대로 남깁니다.",route:[["🌸","Floral Fantasy","관람 종료"],["🚌","Gardens 순환 셔틀","19:10 탑승"],["🌺","Flower Dome 쪽","다시 이동"]],see:["실제 이동 경로 기록"],family:["걷는 양을 줄이기 위해 셔틀 이용"]},
+{time:"19:10 이후",title:"Flower Dome 쪽 → Supertree Grove",record:true,detail:"셔틀로 Flower Dome 쪽까지 이동한 뒤 Supertree Grove 방향으로 다시 이동했습니다. 오늘은 효율적인 최단동선보다 체력 부담을 줄이기 위해 셔틀을 이용한 실제 흐름입니다.",route:[["🌺","Flower Dome 쪽","셔틀 하차"],["🚶","Supertree Grove 방향","이동"],["🌳","Supertree Grove","야경"]],see:["Supertree 야경"],family:["걷기 최소화","아이·부모님 체력 우선"]},
+{time:"19:45",title:"Garden Rhapsody",record:true,detail:"Supertree Grove에서 19:45 Garden Rhapsody를 관람했습니다.",route:[["🌳","Supertree Grove","야경"],["🎶","Garden Rhapsody","19:45"]],see:["Supertree 야경","Garden Rhapsody"],family:["추가 관광 없이 저녁 일정 마무리"]},
+{time:"20:00 이후",title:"호텔 복귀 · Grab 우선",record:true,transportOptions:[["🚕","Grab/택시","Gardens / Supertree 인근 → Singapore Marriott Tang Plaza","우선"],["🚇","MRT","Bayfront → Newton 환승 → Orchard","백업"]],mrtGuide:{start:"Bayfront MRT · DT16/CE1",line:"Downtown Line · 파란색 → Newton에서 North-South Line · 빨간색",direction:"Bayfront에서 Bukit Panjang 방면 → Newton 환승 후 Marina South Pier 방면",stops:["DT15 Promenade","DT14 Bugis","DT13 Rochor","DT12 Little India","DT11 Newton","환승 → NS21 Newton","NS22 Orchard"],transfer:"Newton 1회 환승",exit:"Orchard NS22 → Exit 1 · Tang Plaza / Marriott 방향",walk:"Orchard 역에서 호텔은 매우 가까움",tips:["오늘은 걷는 양이 많아 Grab 우선","MRT는 Grab 대기가 길 때 백업"]},detail:"오늘은 걸은 양이 많아 귀가는 Grab을 우선하기로 했습니다. MRT 경로는 백업으로 남겨둡니다.",route:[["🌳","Supertree","종료"],["🚕","Grab","호텔 직행"],["🏨","Marriott","복귀"]],see:["Grab 우선"],family:["아이·부모님 체력 보존"]}
 ]},
 {day:3,icon:"🎢",title:"USS",sub:"Universal Studios Singapore 중심",items:[
 {time:"08:15",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","오픈런/체력 우선"]],detail:"VivoCity를 거쳐 Resorts World Sentosa로 이동.",route:[["🏨","호텔","출발"],["🚇","HarbourFront","MRT"],["🏬","VivoCity","정비"],["🚝","Sentosa Express","탑승"],["🎢","USS","도착"]],see:["VivoCity에서 화장실·간식 정비"],family:["재집결 장소 미리 정하기"]},
@@ -4369,8 +4332,10 @@ function render(){
    const booked=bookingConfirmedForItem(x)?`<span class="itembadge">예약완료</span>`:"";
    const ref=`<span class="itemref">${itemRef(d.day,i)}</span>`;
    const nowClass=i===live.now?" is-now":i===live.next?" is-next":"";
+   const recordClass=x.record?" recorded":"";
    const liveBadge=i===live.now?`<span class="liveScheduleBadge now">지금</span>`:i===live.next?`<span class="liveScheduleBadge next">다음</span>`:"";
-   return `<article class="item${nowClass}" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${ref}${esc(x.title)}${booked}${liveBadge}</div>${sub}</div><div class="arrow">›</div></article>`;
+   const recordBadge=x.record?`<span class="recordBadge">실제 기록</span>`:"";
+   return `<article class="item${nowClass}${recordClass}" data-i="${i}"><div class="time">${i+1}<br><span style="font-size:10px;font-weight:800">${esc(x.time)}</span></div><div class="itemcopy"><div class="title">${ref}${esc(x.title)}${booked}${recordBadge}${liveBadge}</div>${sub}</div><div class="arrow">›</div></article>`;
  }).join("");
  renderUnifiedGuide();
  focusCurrentScheduleOnce();
@@ -4465,7 +4430,7 @@ function closeDeep(){
 }
 
 
-// v20.34 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.36 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -5011,7 +4976,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.34 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.36 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5639,7 +5604,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.34 · DAY swipe
+// v20.36 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
