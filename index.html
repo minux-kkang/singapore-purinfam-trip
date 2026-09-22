@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.44</title>
+<title>Singapore Family Trip 2026 · v20.45</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -31,7 +31,7 @@ body{padding-bottom:80px}
 .fxrow input{width:78px;border:1px solid #d4dee3;border-radius:8px;padding:4px 6px;text-align:center;font:inherit;background:#fff}
 .fxrateinfo{width:100%;text-align:center;font-size:10px;color:#82919a;margin-top:-1px}
 .fxarrow{font-weight:900;color:#82919a}
-.days{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,.52fr) minmax(0,.52fr) minmax(0,1fr);gap:4px;padding:0 8px 6px;width:100%}
+.days{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;padding:0 8px 6px;width:100%}
 .daybtn{border:0;background:#edf2f4;color:#526773;border-radius:12px;padding:6px 3px 5px;font-size:10.5px;font-weight:900;white-space:nowrap;line-height:1.03;min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis}.daybtn .daydate{display:block;margin-top:3px;font-size:8.3px;font-weight:800;color:#91a0a9}.daybtn.on .daydate{color:#cbd8df}
 .daybtn.on{background:var(--ink);color:#fff}
 .daybtn.daysplit{padding-left:1px;padding-right:1px;font-size:9.4px}
@@ -741,7 +741,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 }
 
 
-/* v20.44 · magnetic pull-down tool drawer */
+/* v20.45 · magnetic pull-down tool drawer */
 .toolmagnet-slot{
   height:6px;
   margin:-2px 0 0;
@@ -872,7 +872,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCopy span{font-size:12px;line-height:1.45}
 
 
-/* v20.44 · offline-first controls */
+/* v20.45 · offline-first controls */
 .netrow{display:flex;align-items:center;gap:6px;padding:0 2px 4px;min-width:0}
 .onlineUpdateBtn{border:1px solid #cbd9df;background:#fff;border-radius:9px;padding:5px 8px;font-size:9px;font-weight:950;color:#214557;white-space:nowrap}
 .onlineUpdateBtn.busy{opacity:.65;pointer-events:none}
@@ -885,7 +885,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 @media(max-width:620px){.netrow{padding-left:0;padding-right:0}.onlineStatus{font-size:8px}}
 
 
-/* v20.44 · explicit online/offline mode */
+/* v20.45 · explicit online/offline mode */
 .netrow{gap:7px;flex-wrap:wrap}
 .networkMode{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
@@ -916,7 +916,7 @@ body.pamtoolopen .toolmagnet{visibility:hidden}
 .heroCard.image-missing{border-style:dashed}
 
 
-/* v20.44 · collapsed tool drawer click-through fix */
+/* v20.45 · collapsed tool drawer click-through fix */
 .pamtoolpanel,
 .pamtoolpanel *{
   pointer-events:none;
@@ -944,7 +944,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.44 · DAY5B exact user-image gallery */
+/* v20.45 · DAY5B exact user-image gallery */
 .detailgallery{margin:9px 0 11px}
 .detailgallery-title{font-size:10px;font-weight:950;color:#627884;margin:0 0 6px}
 .detailgallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
@@ -953,7 +953,7 @@ body.pamtoolopen .pamtoolpanel,
 .detailgallery-card figcaption{padding:5px 6px;font-size:8.5px;font-weight:900;color:#5f737d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 
-/* v20.44 · 준비 도구 하위 메뉴 / 공용 상비약 */
+/* v20.45 · 준비 도구 하위 메뉴 / 공용 상비약 */
 .prepsubtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 9px}
 .prepsubbtn{border:1px solid #d9e3e7;background:#f5f8f9;color:#62747d;border-radius:11px;padding:8px 7px;font-size:10px;font-weight:950}
 .prepsubbtn.on{background:#17364f;color:#fff;border-color:#17364f}
@@ -975,7 +975,7 @@ body.pamtoolopen .pamtoolpanel,
 .medshare button{border:1px solid #d7e1e5;background:#fff;color:#274b5b;border-radius:10px;padding:8px 10px;font-size:10px;font-weight:950}
 
 
-/* v20.44 · DAY4 / DAY5 A·B paired split buttons */
+/* v20.45 · DAY4 / DAY5 A·B paired split buttons */
 .days .daybtn[data-day-key="4A"],
 .days .daybtn[data-day-key="5A"]{
   border-top-right-radius:0;
@@ -996,7 +996,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.44 · actual-date default + Singapore-time schedule focus */
+/* v20.45 · actual-date default + Singapore-time schedule focus */
 .daybtn.today:not(.on){
   box-shadow:inset 0 0 0 1.5px #0b7d73;
   color:#0b7d73;
@@ -1051,7 +1051,7 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.44 · DAY2 route progress */
+/* v20.45 · DAY2 route progress */
 .routeProgress{margin-top:10px;padding:10px;border:1px solid #dfe7eb;border-radius:14px;background:#fbfdfe}
 .routeProgressTitle{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px;font-size:11px}
 .routeProgressTitle b{font-size:12px}
@@ -1069,7 +1069,7 @@ body.pamtoolopen .pamtoolpanel,
 .routeDistanceLabel{background:#fff;border:1px solid #d7e1e5;border-radius:999px;padding:2px 6px;box-shadow:0 1px 5px #0002;font-size:9px;font-weight:900;color:#17364f;white-space:nowrap}
 
 
-/* v20.44 · Singapore 3-hour forecast strip */
+/* v20.45 · Singapore 3-hour forecast strip */
 .sgforecast{
   grid-column:1/-1;
   display:flex;
@@ -1111,7 +1111,7 @@ body.pamtoolopen .pamtoolpanel,
 .sgfc .rain{color:#315b8a;font-weight:900}
 
 
-/* v20.44 · detailed MRT guide in transport card */
+/* v20.45 · detailed MRT guide in transport card */
 .mrtGuide{
   margin-top:10px;
   padding:11px;
@@ -1158,14 +1158,14 @@ body.pamtoolopen .pamtoolpanel,
 }
 
 
-/* v20.44 · DAY2 actual travel record */
+/* v20.45 · DAY2 actual travel record */
 .item.recorded{border-left:4px solid #607d8b}
 .recordBadge{display:inline-flex;align-items:center;margin-left:7px;padding:3px 7px;border-radius:999px;background:#eef2f4;color:#526773;font-size:9px;font-weight:950;vertical-align:2px}
 
 .plannedBadge{display:inline-flex;align-items:center;margin-left:7px;padding:3px 7px;border-radius:999px;background:#fff4d9;color:#8a6a18;font-size:9px;font-weight:950;vertical-align:2px}
 
 
-/* v20.44 · DAY4 only 4B is visible; keep 4A data hidden in source */
+/* v20.45 · DAY4 only 4B is visible; keep 4A data hidden in source */
 .days .daybtn[data-day-key="4B"]{
   border-radius:12px;
   margin-right:0;
@@ -1177,7 +1177,7 @@ body.pamtoolopen .pamtoolpanel,
 <body>
 <header class="top">
   <div class="toprow">
-    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.44</b></div>
+    <div class="brand">🇸🇬 Singapore Family Trip <b class="brandver">v20.45</b></div>
 </div>
   <div class="livebar">
     <div class="livebox">
@@ -1236,7 +1236,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.44 · DAY4 버튼은 4B만 노출 · 4A 데이터는 숨겨서 보존</div>
+  <div class="footer">v20.45 · DAY4는 DAY 4로 표시 · DAY5는 Sentosa(A)만 DAY 5로 표시 · 대안 데이터는 보존</div>
 </main>
 
 
@@ -1297,7 +1297,7 @@ body.pamtoolopen .pamtoolpanel,
     <div id="journalContent"></div>
   </section>
 
-  <div class="footer">v20.44 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
+  <div class="footer">v20.45 · 전체 일정 상세페이지 실사용형 콘텐츠/레이아웃 전면 개편</div>
 </main>
 
 <div id="backdrop" class="backdrop"></div>
@@ -1413,7 +1413,7 @@ const DAYS=[
 {time:"19:00",title:"JUMBO Seafood · 예약 유지 / 방문은 현장 결정",planned:true,bookingIds:["restaurant-jumbo"],detail:"Riverside Point · 19:00 · 11명 · Reservation ID 6V5D9N 예약은 유지합니다. 다만 오늘은 Zoo 일정과 동선이 반대라 후보 일정으로 운영합니다.",route:[["🚕","Zoo","출발 시각 중요"],["🦀","JUMBO Riverside Point","19:00 예약"]],see:["Reservation ID 6V5D9N"],family:["시간이 빠듯하면 무리해서 이동하지 않기"],food:["Chilli Crab","Cereal Prawn","Fried Rice","Mantou"]},
 {time:"저녁",title:"JUMBO 미방문 시 · 편한 저녁 후 호텔 복귀",planned:true,detail:"JUMBO를 가지 않기로 하면 Zoo 종료 후 호텔이나 Orchard로 바로 돌아가 가까운 곳에서 편하게 저녁을 먹고 하루를 마무리합니다.",route:[["🦧","Zoo","퇴장"],["🚕","Grab","호텔/Orchard"],["🍽️","저녁","가까운 곳"],["🏨","호텔","휴식"]],see:["체력 우선"],family:["DAY5를 위해 저녁 이동 최소화"]}
 ]},
-{day:5,variant:"A",navKey:"5A",icon:"🏝️",title:"Sentosa EASY",sub:"Oceanarium · 휴식 · 해변 · 선택 액티비티",items:[
+{day:5,variant:"A",navKey:"5A",icon:"🏝️",title:"Sentosa EASY",sub:"DAY4 Zoo 확정 기준 · Sentosa / Oceanarium 중심 · 동물원 없음",items:[
 {time:"10:00",title:"호텔 → Sentosa",transportOptions:[["🚇","MRT + Sentosa Express","Orchard → HarbourFront/VivoCity → Sentosa Express","기본"],["🚕","Grab/택시","Resorts World Sentosa까지 바로 이동. 11명은 2~3대 예상","체력 우선"]],detail:"DAY3에서 못한 것만 완성하는 느긋한 날.",route:[["🏨","호텔","늦은 출발"],["🚇","HarbourFront","이동"],["🏝","Sentosa","도착"]],see:["DAY3 미완료 일정만"],family:["오픈런 불필요"]},
 {time:"11:00",title:"Singapore Oceanarium",bookingIds:["ticket-oceanarium"],detail:"아이부터 어른까지 함께 보기 좋은 실내 메인 콘텐츠.",route:[["🐠","Oceanarium","메인 관람"],["❄️","실내","더위 회피"]],see:["대형 수조","해양생물 전시"],family:["아이/부모님 모두 부담 적음"]},
 {time:"13:00",title:"점심 · 충분한 휴식",detail:"맛집 욕심보다 냉방·좌석·아이 메뉴 우선.",route:[["🍽","RWS/WEAVE/VivoCity","식사"],["😴","휴식","충분히"]],see:["좌석","냉방","아이 메뉴"],food:["동선 좋은 곳 우선"]},
@@ -4153,7 +4153,7 @@ function focusCurrentScheduleOnce(){
   },220);
 }
 
-let day=tripDayForSingaporeNow(),day4Variant="B",day5Variant=localStorage.getItem("sg_trip_day5_variant_v20")||"A",sel=null;
+let day=tripDayForSingaporeNow(),day4Variant="B",day5Variant="A",sel=null;
 const daysEl=document.getElementById("days"),hero=document.getElementById("hero"),timeline=document.getElementById("timeline"),body=document.getElementById("body"),dayMapWrap=document.getElementById("dayMapWrap");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const escapeHtml=s=>esc(s??'');
@@ -4164,9 +4164,8 @@ const DAY_NAV=[
   {day:1,key:"1",label:"DAY 1"},
   {day:2,key:"2",label:"DAY 2"},
   {day:3,key:"3",label:"DAY 3"},
-  {day:4,key:"4B",variant:"B",label:"4B"},
-  {day:5,key:"5A",variant:"A",label:"5A"},
-  {day:5,key:"5B",variant:"B",label:"5B"},
+  {day:4,key:"4B",variant:"B",label:"DAY 4"},
+  {day:5,key:"5A",variant:"A",label:"DAY 5"},
   {day:6,key:"6",label:"DAY 6"}
 ];
 function selectDayNav(key){
@@ -4341,7 +4340,7 @@ function render(){
    const on=x.day===day && (x.day!==4 || x.variant===day4Variant) && (x.day!==5 || x.variant===day5Variant);
    const date=DAY_DATES[x.day]||"";
    const isToday=todayTripDay()===x.day;
-   return `<button class="daybtn ${x.day===5?"daysplit ":""}${isToday?"today ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
+   return `<button class="daybtn ${isToday?"today ":""}${on?"on":""}" data-day-key="${x.key}">${x.label}<span class="daydate">${date} ${dayWeekday(date)}</span></button>`;
  }).join("");
  hero.innerHTML=`<div class="heroemoji">${d.icon}</div>
  <div class="heroday">${currentDayLabel()} · ${DAY_DATES[d.day]||""}</div>
@@ -4460,7 +4459,7 @@ function closeDeep(){
 }
 
 
-// v20.44 image curation: swap only the Commons filename in each entry to replace a representative photo later.
+// v20.45 image curation: swap only the Commons filename in each entry to replace a representative photo later.
 const PLACE_IMAGE_LIBRARY={
   airport:{key:"airport",name:'Incheon Airport',file:'airport.webp',alt:'Incheon International Airport terminal',remote:'./assets/images/airport.webp' },
   airplane:{key:"airplane",name:'Flight to Singapore',file:'airplane.webp',alt:'Flight path from Seoul to Singapore',remote:'./assets/images/airplane.webp' },
@@ -5020,7 +5019,7 @@ document.querySelectorAll("#pamphletTools [data-tool]").forEach(btn=>{
     openPamTool(mode);
   });
 });
-// v20.44 · close the expanded tool drawer when tapping anywhere outside it.
+// v20.45 · close the expanded tool drawer when tapping anywhere outside it.
 document.addEventListener("pointerdown",e=>{
   if(!toolMagnet?.classList.contains("open")) return;
   if(toolMagnet.contains(e.target)) return;
@@ -5648,7 +5647,7 @@ function closePamTool(){
   document.body.style.removeProperty("overflow");
 }
 
-// v20.44 · DAY swipe
+// v20.45 · DAY swipe
 // Timeline cards are swipeable too. Only real controls / maps / open overlays are excluded.
 (function initPamphletSwipe(){
   const area=document.getElementById("pamphletView");
