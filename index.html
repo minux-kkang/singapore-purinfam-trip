@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Singapore Family Trip 2026 · v20.53</title>
+<title>Singapore Family Trip 2026 · v20.54</title>
 <style>
 :root{
   --bg:#f4f8fa;--card:#fff;--ink:#17364f;--muted:#71818c;--line:#dfe7eb;
@@ -997,6 +997,8 @@ body.pamtoolopen .pamtoolpanel,
 
 
 
+
+/* v20.54 · DAY5 actual-record refresh: bookstore removed, Zoo actual flow, OverEasy + 20:00 Marina Bay show + 20:30 River Cruise */
 /* v20.53 · DAY5 split → merge timeline */
 .days .daybtn[data-day-key="5A"]{
   border-radius:12px!important;
@@ -1293,7 +1295,7 @@ body.pamtoolopen .pamtoolpanel,
   <section id="timeline" class="timeline"></section>
 
   <section id="dayMapWrap" class="daymapwrap"></section>
-  <div class="footer">v20.53 · DAY5 분기형 타임라인 · A/B 오전 2열 · 15시 호텔 합류 · River Cruise · Lantern</div>
+  <div class="footer">v20.54 · DAY5 실제 기록 · 오전 A/B 분리 · 호텔 재합류 · OverEasy · 20:30 River Cruise</div>
 </main>
 
 
@@ -1475,29 +1477,33 @@ const DAYS=[
 {time:"18:00 전후",title:"숙소에서 배달 저녁",planned:true,detail:"숙소로 돌아온 뒤 외출하지 않고 배달 음식으로 저녁을 먹습니다. 가족별로 편한 메뉴를 주문해 객실 또는 함께 모여 식사합니다.",route:[["🏨","Marriott","숙소"],["🛵","배달 주문","저녁"],["🍽️","객실/공용공간","편하게 식사"]],food:["아이 먹기 쉬운 밥·면 메뉴 포함","가족별 원하는 메뉴로 주문"],family:["추가 이동 없음","씻고 쉬면서 식사"]},
 {time:"저녁 식사 후",title:"가족별 자유시간 · 휴식",planned:true,detail:"저녁 식사 후에는 단체 일정을 더 잡지 않고 가족별로 자유시간을 갖습니다. 객실 휴식, 간단한 쇼핑, 산책 등 각자 컨디션에 맞춰 하루를 마무리합니다.",route:[["🍽️","배달 저녁","마무리"],["↔️","가족별","자유시간"],["🛏️","객실","휴식"]],family:["오늘 단체 일정 종료","DAY5를 위해 충분히 휴식"]}
 ]},
-{day:5,variant:"A",navKey:"5A",icon:"🌿",title:"Botanic Gardens · Orchard · River Cruise",sub:"오전 팀 분리 · Botanic Gardens 산책 · 서점/다림/DON DON DONKI · 오후 호텔 휴식 · River Cruise · Lantern",items:[
-{time:"07:00",title:"호텔 조식",planned:true,detail:"호텔에서 조식을 먹고 오전 팀 분리 일정에 맞춰 천천히 준비합니다.",route:[["🍳","Marriott","조식"],["🧳","객실","외출 준비" ]],family:["09:00 로비 집결"]},
-{time:"09:00",title:"호텔 → Singapore Botanic Gardens",planned:true,transportOptions:[["🚕","Grab/택시","Marriott → Singapore Botanic Gardens","편한 이동"],["🚇","MRT","Orchard/Tanglin 방면 이동 후 도보","대안"]],detail:"09:00 호텔에서 Zoo팀과 인사 후 분리 출발. Botanic Gardens 팀은 오전 산책을 시작합니다.",route:[["🏨","Marriott","09:00 출발"],["🌿","Botanic Gardens","산책 시작"]],family:["오전은 두 팀이 따로 움직임"]},
-{time:"09:15~11:00",title:"Singapore Botanic Gardens · 산책",planned:true,detail:"무리하지 않고 약 2시간 정도 정원과 산책로를 둘러봅니다. 오전 더위가 올라오기 전에 핵심 구간 위주로 걷습니다.",route:[["🌿","Botanic Gardens","산책"],["☕","중간 휴식","필요 시"]],see:["정원 풍경","산책로"],family:["걷는 속도는 느긋하게"]},
-{time:"11:00~12:00",title:"서점 · Orchard 이동",planned:true,detail:"Botanic Gardens 산책 후 Orchard 쪽으로 이동해 서점을 둘러봅니다.",route:[["🌿","Botanic Gardens","출발"],["📚","서점","구경"]],family:["오후 호텔 휴식을 위해 쇼핑 시간을 길게 끌지 않기"]},
-{time:"12:00~13:00",title:"한식 · 다림",planned:true,detail:"점심은 한식 다림에서 편하게 먹습니다. 오후 일정이 길지 않으므로 충분히 먹고 쉬어갑니다.",route:[["📚","서점","출발"],["🍚","다림","점심"]],food:["한식"],family:["아이/부모님이 편하게 먹을 수 있는 메뉴 우선"]},
-{time:"13:00~14:00",title:"DON DON DONKI",planned:true,detail:"점심 후 DON DON DONKI에서 필요한 간식과 쇼핑을 하고 호텔로 돌아갑니다.",route:[["🍚","다림","출발"],["🛒","DON DON DONKI","쇼핑"],["🏨","Marriott","복귀"]],family:["Zoo팀은 DONKI 일정 없음"]},
-{time:"14:00~18:00",title:"호텔 휴식 · 수영장 · 사우나 · 헬스장",planned:true,detail:"Botanic Gardens 팀은 14시 전후 먼저 호텔에 복귀해 쉬고, Zoo팀은 15시 전후 합류합니다. 이후 전원 각자 객실·수영장·사우나·헬스장에서 자유시간을 보냅니다.",route:[["🏨","Marriott","휴식 거점"],["🏊","수영장","선택"],["🧖","사우나","선택"],["🏋️","헬스장","선택"]],family:["Zoo팀 15:00 전후 합류","18시 저녁 전 충분히 회복"]},
-{time:"18:00~19:00",title:"저녁 · 피자 또는 칠리크랩",planned:true,detail:"저녁은 당일 컨디션에 따라 피자 또는 칠리크랩 중 선택합니다. 19시 River Cruise 이동을 위해 식사시간을 길게 끌지 않습니다.",route:[["🍕","Pizza","후보"],["🦀","Chilli Crab","후보"],["🚤","River Cruise","19시"]],food:["Pizza","Chilli Crab"],family:["11명이라 이동·주문 시간을 보고 메뉴 결정"]},
-{time:"19:00~20:00",title:"Singapore River Cruise",bookingIds:["ticket-rivercruise"],planned:true,detail:"저녁 후 Singapore River Cruise를 타며 야경을 봅니다.",route:[["🌉","Singapore River","탑승"],["🚤","River Cruise","약 40분"],["🌃","Marina Bay","야경"]],see:["Singapore River","도심 야경"],family:["걷는 대신 배에서 쉬는 저녁 일정"]},
-{time:"20:00~22:00",title:"Lantern Bar · 여행 마지막 밤",planned:true,detail:"River Cruise 이후 Lantern Bar로 이동해 마지막 밤을 여유롭게 보냅니다. 아이·가족 컨디션에 따라 일찍 호텔로 복귀해도 됩니다.",route:[["🚤","River Cruise","하선"],["🍸","Lantern Bar","20:00~22:00"],["🏨","Marriott","복귀"]],family:["컨디션에 따라 조기 복귀 가능"]}
+{day:5,variant:"A",navKey:"5A",icon:"🌿",title:"Botanic Gardens · Singapore Zoo · Marina Bay Night",sub:"실제 여행 기록 · 오전 2팀 분리 · 오후 호텔 재합류 · OverEasy · Marina Bay 쇼 · 20:30 River Cruise",items:[
+{time:"07:00",title:"호텔 조식",record:true,detail:"호텔에서 조식을 먹고 오전 팀 분리 일정에 맞춰 준비했습니다.",route:[["🍳","Marriott","조식"],["🏨","로비","09:00 집결"]],family:["09:00 두 팀으로 나눠 출발"]},
+{time:"09:00",title:"A팀 · Botanic Gardens 이동",record:true,transportOptions:[["🚕","Grab/택시","Marriott → Singapore Botanic Gardens","실제 이동"]],detail:"09:00 호텔에서 Zoo팀과 나뉘어 Botanic Gardens로 이동했습니다.",route:[["🏨","Marriott","09:00 출발"],["🌿","Botanic Gardens","산책"]]},
+{time:"09:00~11:00",title:"Singapore Botanic Gardens · 산책",record:true,detail:"오전에는 Botanic Gardens를 천천히 산책했습니다.",route:[["🌿","Botanic Gardens","산책"],["☕","중간 휴식","필요 시"]],see:["정원 풍경","산책로"]},
+{time:"11:00~13:00",title:"한식 · 다림",record:true,detail:"원래 검토했던 서점 일정은 진행하지 않고, 한식 다림에서 점심을 먹는 일정으로 정리했습니다.",route:[["🌿","Botanic Gardens","출발"],["🍚","다림","점심"]],food:["한식"],family:["서점 일정은 미진행"]},
+{time:"13:00~14:00",title:"DON DON DONKI",record:true,detail:"점심 후 DON DON DONKI에서 쇼핑한 뒤 호텔로 돌아왔습니다.",route:[["🍚","다림","출발"],["🛒","DON DON DONKI","쇼핑"],["🏨","Marriott","복귀"]]},
+{time:"14:00~오후",title:"A팀 · 호텔 선복귀 · 자유시간",record:true,detail:"Botanic Gardens 팀은 먼저 호텔로 돌아와 객실과 호텔 시설에서 자유시간을 보냈습니다.",route:[["🏨","Marriott","선복귀"],["🛏️","객실/호텔","자유시간"]]},
+{time:"오후~18:00",title:"전원 호텔 합류 · 자유시간",record:true,detail:"Zoo팀도 오후에 호텔로 돌아와 합류했습니다. 이후 18시까지 가족별로 쉬며 저녁 일정을 준비했습니다.",route:[["🏨","Marriott","전원 합류"],["🛏️","객실","휴식"],["🏊","수영장/사우나/헬스장","선택"]],family:["18:00 다시 집결"]},
+{time:"18:00~",title:"호텔 집결 → Marina Bay · 택시",record:true,transportOptions:[["🚕","택시/Grab","Marriott → One Fullerton / Marina Bay","실제 이동"]],detail:"18시에 다시 모여 택시를 타고 Marina Bay로 이동했습니다.",route:[["🏨","Marriott","18:00 집결"],["🚕","택시","Marina Bay"],["🍽️","OverEasy","저녁"]]},
+{time:"저녁~20:00",title:"OverEasy · 저녁 식사",record:true,detail:"Marina Bay의 OverEasy에서 저녁을 먹고, 20시 정각 식당에서 Marina Bay 쇼를 보기로 했습니다.",route:[["🍽️","OverEasy","저녁"],["🌃","Marina Bay","야경"]],food:["저녁 식사"],family:["쇼 시작 전 자리에서 대기"]},
+{time:"20:00",title:"Marina Bay 쇼 · 식당에서 관람",planned:true,detail:"20시 정각 OverEasy에서 Marina Bay 쪽 쇼를 관람할 예정입니다.",route:[["🍽️","OverEasy","식당"],["✨","Marina Bay","쇼 관람"]],see:["Marina Bay 야경","20:00 쇼"]},
+{time:"20:30~21:10",title:"Singapore River Cruise",bookingIds:["ticket-rivercruise"],planned:true,detail:"20:30 River Cruise에 탑승해 약 40분간 야경을 보고 21:10 전후 하선할 예정입니다.",route:[["🚤","River Cruise","20:30 탑승"],["🌃","Singapore River / Marina Bay","약 40분"],["⚓","하선","21:10 전후"]],family:["저녁 이후 걷는 양을 줄이는 일정"]},
+{time:"21:10~",title:"하선 → 택시 → 호텔 복귀",planned:true,transportOptions:[["🚕","택시/Grab","River Cruise 하선 지점 → Marriott","예정"]],detail:"크루즈에서 내린 뒤 택시를 타고 호텔로 돌아가 DAY5를 마무리할 예정입니다.",route:[["⚓","River Cruise","하선"],["🚕","택시","호텔 이동"],["🏨","Marriott","복귀"]]}
 ]},
-{day:5,variant:"B",navKey:"5B",icon:"🦧",title:"Singapore Zoo · River Cruise",sub:"아이 동반팀 · 09:00 Grab 출발 · Zoo 핵심 관람 · DON DON DONKI 없음 · 15:00 호텔 복귀 · 저녁 전원 합류",items:[
-{time:"07:00",title:"호텔 조식",planned:true,detail:"호텔에서 조식을 먹고 09:00 Zoo 출발에 맞춰 준비합니다.",route:[["🍳","Marriott","조식"],["🧳","객실","Zoo 준비"]],family:["물·유모차·아이 준비물 확인"]},
-{time:"09:00",title:"호텔 → Singapore Zoo · Grab",bookingIds:["ticket-mandai"],planned:true,transportOptions:[["🚕","Grab/택시","Marriott Tang Plaza → Singapore Zoo","기본"]],detail:"09:00 호텔 로비에서 만나 Grab으로 바로 Singapore Zoo로 출발합니다. 오늘 Zoo팀은 DON DON DONKI 일정 없이 15시 호텔 복귀를 목표로 합니다.",route:[["🏨","Marriott Tang Plaza","09:00 출발"],["🚕","Grab","Singapore Zoo"],["🦁","Mandai","09:30 전후 도착"]],family:["아이 동반팀 중심","복귀시간 15:00 목표"]},
-{time:"09:30~12:00",title:"Singapore Zoo · 오전 핵심 관람",bookingIds:["ticket-mandai"],detailImageKeys:["zooArrival","zooStart","zoo1","zoo2"],planned:true,detail:"오랑우탄·영장류와 대형 동물 등 아이들이 좋아할 핵심 구역 위주로 봅니다. 전 구역 완주보다 Tram을 섞어 효율적으로 이동합니다.",route:[["🦧","영장류","핵심 관람"],["🦒","대형 동물","선택"],["🚋","Tram","체력 절약"]],family:["아이 반응 좋은 곳 위주","걷는 양 최소화"]},
-{time:"12:00~13:00",title:"동물원 점심 · 휴식",planned:true,detail:"공원 안에서 간단히 점심을 먹고 잠깐 쉽니다. 15시 호텔 복귀가 목표라 식사 후 바로 남은 핵심 구역으로 이동합니다.",route:[["🍽","Zoo 식당","점심"],["🥤","수분 보충","휴식"]],food:["아이 먹기 쉬운 메뉴 우선"],family:["점심을 너무 길게 잡지 않기"]},
-{time:"13:00~14:15",title:"Singapore Zoo · 남은 핵심 구역",bookingIds:["ticket-mandai"],planned:true,detail:"오전에 못 본 곳 중 꼭 보고 싶은 구역만 선택합니다. KidzWorld 등은 시간이 남고 아이 컨디션이 좋을 때만 선택합니다.",route:[["🚋","Tram","이동"],["🐘","남은 핵심 동물","선택 관람"]],family:["14:15 전후 퇴장 준비 시작"]},
-{time:"14:15~15:00",title:"Singapore Zoo → 호텔 · Grab",planned:true,transportOptions:[["🚕","Grab/택시","Mandai Wildlife EAST → Marriott Tang Plaza","기본"]],detail:"14시대에 관람을 마무리하고 Grab을 호출해 호텔로 복귀합니다. DON DON DONKI는 들르지 않습니다.",route:[["🦁","Singapore Zoo","퇴장"],["🚕","Grab","호텔 이동"],["🏨","Marriott","15:00 전후 복귀"]],see:["전원·유모차·짐 확인"],family:["15시 호텔 합류가 우선"]},
-{time:"15:00~18:00",title:"호텔 휴식 · 전원 합류",planned:true,detail:"Zoo팀이 호텔에 복귀해 Botanic Gardens 팀과 합류합니다. 이후 수영장·사우나·헬스장·객실 휴식으로 저녁 전까지 충분히 쉽니다.",route:[["🏨","Marriott","전원 합류"],["🏊","수영장","선택"],["🧖","사우나","선택"],["🏋️","헬스장","선택"]],family:["오후 3시간은 회복 시간으로 확보"]},
-{time:"18:00~19:00",title:"저녁 · 피자 또는 칠리크랩",planned:true,detail:"전원 함께 저녁. 19시 River Cruise 일정에 맞춰 피자 또는 칠리크랩 중 당일 상황에 맞는 메뉴를 선택합니다.",route:[["🍕","Pizza","후보"],["🦀","Chilli Crab","후보"],["🚤","River Cruise","19시"]],food:["Pizza","Chilli Crab"]},
-{time:"19:00~20:00",title:"Singapore River Cruise",bookingIds:["ticket-rivercruise"],planned:true,detail:"전원 함께 Singapore River Cruise를 타며 야경을 즐깁니다.",route:[["🌉","Singapore River","탑승"],["🚤","River Cruise","약 40분"],["🌃","Marina Bay","야경"]],family:["Zoo 뒤 많이 걷지 않는 저녁 일정"]},
-{time:"20:00~22:00",title:"Lantern Bar · 여행 마지막 밤",planned:true,detail:"River Cruise 이후 Lantern Bar로 이동해 마지막 밤을 보냅니다. 아이나 부모님이 피곤하면 가족별로 먼저 호텔 복귀해도 됩니다.",route:[["🚤","River Cruise","하선"],["🍸","Lantern Bar","20:00~22:00"],["🏨","Marriott","복귀"]],family:["컨디션에 따라 조기 복귀 가능"]}
+{day:5,variant:"B",navKey:"5B",icon:"🦧",title:"Singapore Zoo · Marina Bay Night",sub:"실제 여행 기록 · 09:00 Grab · 동물 쇼 · Tram · Gift Shop · 오후 호텔 복귀 · 저녁 전원 합류",items:[
+{time:"07:00",title:"호텔 조식",record:true,detail:"호텔에서 조식을 먹고 09:00 Zoo 출발에 맞춰 준비했습니다.",route:[["🍳","Marriott","조식"],["🧳","객실","Zoo 준비"]]},
+{time:"09:00",title:"B팀 · 호텔 → Singapore Zoo · Grab",bookingIds:["ticket-mandai"],record:true,transportOptions:[["🚕","Grab/택시","Marriott Tang Plaza → Singapore Zoo","실제 이동"]],detail:"09:00 호텔에서 만나 Grab으로 Singapore Zoo로 출발했습니다.",route:[["🏨","Marriott Tang Plaza","09:00 출발"],["🚕","Grab","Singapore Zoo"]]},
+{time:"오전",title:"동물 쇼 관람",record:true,detail:"동물원 입장 후 초반에 물개쇼로 보이는 동물 쇼 1회를 관람했습니다. 정확한 공연명은 여행 기록상 확정하지 않고 남깁니다.",route:[["🦭","동물 쇼","관람"],["🚋","Tram Stop","이동"]],family:["공연명은 추후 확인 가능"]},
+{time:"오전~오후",title:"Tram 이동 · 주요 구역 관람",record:true,detail:"쇼 관람 후 Tram을 타고 첫 번째 Tram Stop 쪽으로 이동했고, 하차 후 주변 동물 구역을 계속 둘러봤습니다.",route:[["🚋","Tram","이동"],["📍","첫 번째 Tram Stop","하차"],["🦁","주변 구역","관람"]],family:["아이들 중심으로 무리하지 않고 관람"]},
+{time:"오후",title:"Gift Shop · 동물원 마무리",record:true,detail:"마지막으로 Gift Shop을 들른 뒤 동물원 일정을 마무리했습니다.",route:[["🎁","Gift Shop","쇼핑"],["🚕","택시/Grab","호텔 출발"]]},
+{time:"오후",title:"Singapore Zoo → 호텔 · 택시",record:true,transportOptions:[["🚕","택시/Grab","Singapore Zoo → Marriott Tang Plaza","실제 이동"]],detail:"예정보다 조금 늦게 동물원을 나왔지만 오후 휴식시간이 예비시간이어서 전체 일정에는 큰 문제가 없었습니다. 택시를 타고 호텔로 복귀했습니다.",route:[["🦁","Singapore Zoo","출발"],["🚕","택시","호텔 이동"],["🏨","Marriott","도착"]],family:["DON DON DONKI는 Zoo팀 일정에서 제외"]},
+{time:"오후~18:00",title:"전원 호텔 합류 · 자유시간",record:true,detail:"호텔에 도착해 다른 팀과 합류했습니다. 이후 18시까지 가족별로 쉬며 저녁 일정을 준비했습니다.",route:[["🏨","Marriott","전원 합류"],["🛏️","객실","휴식"],["🏊","수영장/사우나/헬스장","선택"]]},
+{time:"18:00~",title:"호텔 집결 → Marina Bay · 택시",record:true,transportOptions:[["🚕","택시/Grab","Marriott → One Fullerton / Marina Bay","실제 이동"]],detail:"18시에 다시 모여 택시를 타고 Marina Bay로 이동했습니다.",route:[["🏨","Marriott","18:00 집결"],["🚕","택시","Marina Bay"],["🍽️","OverEasy","저녁"]]},
+{time:"저녁~20:00",title:"OverEasy · 저녁 식사",record:true,detail:"OverEasy에서 저녁을 먹고 20시 정각 식당에서 Marina Bay 쇼를 관람하는 흐름입니다.",route:[["🍽️","OverEasy","저녁"],["🌃","Marina Bay","야경"]]},
+{time:"20:00",title:"Marina Bay 쇼 · 식당에서 관람",planned:true,detail:"20시 정각 OverEasy에서 Marina Bay 쪽 쇼를 관람할 예정입니다.",route:[["🍽️","OverEasy","식당"],["✨","Marina Bay","쇼 관람"]]},
+{time:"20:30~21:10",title:"Singapore River Cruise",bookingIds:["ticket-rivercruise"],planned:true,detail:"20:30 탑승해 약 40분간 River Cruise를 즐기고 21:10 전후 하선할 예정입니다.",route:[["🚤","River Cruise","20:30 탑승"],["🌃","야경","약 40분"],["⚓","하선","21:10 전후"]]},
+{time:"21:10~",title:"하선 → 택시 → 호텔 복귀",planned:true,detail:"크루즈 종료 후 택시를 타고 Marriott로 복귀할 예정입니다.",route:[["⚓","River Cruise","하선"],["🚕","택시","호텔"],["🏨","Marriott","DAY5 종료"]]}
 ]},
 
 /* v20.51 DAY5 LEGACY ARCHIVE — 화면에서는 사용하지 않음. Sentosa/Oceanarium 및 기존 Zoo 대안 데이터 보존.
@@ -4503,17 +4509,17 @@ function renderDay5SplitTimeline(){
   const breakfast=normalTimelineCard(a.items[0],0,a,live);
   const aMorning=[1,2,3,4,5].map(i=>day5MiniCard(a.items[i],i,"A")).join("");
   const bMorning=[1,2,3,4,5].map(i=>day5MiniCard(b.items[i],i,"B")).join("");
-  const common=[6,7,8,9].map(i=>normalTimelineCard(a.items[i],i,a,live)).join("");
+  const common=[6,7,8,9,10,11].map(i=>normalTimelineCard(a.items[i],i,a,live)).join("");
   return `<div class="day5-flow">
     ${breakfast}
     <div class="day5-split-wrap">
       <div class="day5-split-head">
-        <div class="day5-team-head a"><b>🌿 A팀 · Botanic Gardens</b><span>산책 → 서점 → 다림 → DON DON DONKI</span></div>
-        <div class="day5-team-head b"><b>🦧 B팀 · Singapore Zoo</b><span>Grab → Zoo 핵심 관람 → 15시 호텔 복귀</span></div>
+        <div class="day5-team-head a"><b>🌿 A팀 · Botanic Gardens</b><span>산책 → 다림 → DON DON DONKI → 호텔 선복귀</span></div>
+        <div class="day5-team-head b"><b>🦧 B팀 · Singapore Zoo</b><span>동물 쇼 → Tram → 관람 → Gift Shop → 호텔 복귀</span></div>
       </div>
       <div class="day5-split-grid"><div class="day5-team-col">${aMorning}</div><div class="day5-team-col">${bMorning}</div></div>
     </div>
-    <div class="day5-merge"><span>15:00 · 호텔에서 다시 합류</span></div>
+    <div class="day5-merge"><span>오후 · 호텔에서 다시 합류</span></div>
     <div class="day5-common-label">이후 전원 공통 일정</div>
     ${common}
   </div>`;
